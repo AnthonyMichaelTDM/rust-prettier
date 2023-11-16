@@ -1,0 +1,325 @@
+use std::path::PathBuf;
+
+use cfg_if::cfg_if;
+
+cfg_if! {
+    if #[cfg(not(debug_assertions))] {
+        fn main() {}
+    } else {
+        use convert_case::{Case, Casing};
+        use quote::quote;
+        use std::{collections::HashMap, io::Write};
+
+        const SNAPSHORT_START: &str = "exports[`";
+        const _CONFIG_SEPARATOR: &str =
+            "====================================options=====================================";
+        const INPUT_SEPARATOR: &str =
+            "=====================================input======================================";
+        const OUTPUT_SEPARATOR: &str =
+            "=====================================output=====================================";
+        const SNAPSHOT_END: &str =
+            "================================================================================";
+        const OUT_DIR: &str = "./tests/generated/";
+
+        #[deny(clippy::all, clippy::pedantic, clippy::nursery, clippy::perf)]
+        #[derive(Debug)]
+        struct Snapshot {
+            content: String,
+            parser: String,
+            rule: String,
+        }
+
+        struct TestCase {
+            name: String,
+            config: HashMap<syn::Ident, syn::Ident>,
+            input: String,
+            output: String,
+        }
+
+        impl TestCase {
+            fn parse(test_case: &str) -> Self {
+                let mut lines = test_case.lines();
+                let mut config = HashMap::new();
+                let mut input = String::new();
+                let mut output = String::new();
+
+                // parse out the name
+                let name = lines
+                    .next()
+                    .unwrap()
+                    .trim_end_matches("`] = `")
+                    .replace('.', "_")
+                    .replace(['[', ']', '{', '}', '\"', '/', ':'], "")
+                    .to_case(Case::Snake);
+
+                // consume the config separator
+                lines.next();
+
+                // parse out the config
+                #[allow(clippy::while_let_on_iterator)]
+                while let Some(line) = lines.next() {
+                    if line == INPUT_SEPARATOR {
+                        break;
+                    }
+
+                    let parts = line.splitn(2, ": ").collect::<Vec<_>>();
+
+                    if parts.len() != 2 {
+                        continue;
+                    }
+
+                    let Ok(key) =
+                        syn::parse_str::<syn::Ident>(&parts.first().expect("key").to_case(Case::Snake))
+                    else {
+                        continue;
+                    };
+                    let Ok(value) = syn::parse_str::<syn::Ident>(parts.get(1).expect("value").to_owned())
+                    else {
+                        continue;
+                    };
+
+                    config.insert(key.to_owned(), value.to_owned());
+                }
+
+                // parse out the input
+                #[allow(clippy::while_let_on_iterator)]
+                while let Some(line) = lines.next() {
+                    if line == OUTPUT_SEPARATOR {
+                        break;
+                    }
+
+                    input.push_str(line);
+                    input.push('\n');
+                }
+
+                // parse out the output
+                #[allow(clippy::while_let_on_iterator)]
+                while let Some(line) = lines.next() {
+                    if line == SNAPSHOT_END {
+                        break;
+                    }
+
+                    output.push_str(line);
+                    output.push('\n');
+                }
+
+                // reformat the name to start with "test_", and end with a hashing of the input
+                let name = format!(
+                    "test_{name}_{hash}",
+                    name = name,
+                    hash = format!("{:x}", md5::compute(input.as_bytes()))[..8].to_owned()
+                );
+
+                // remove trailing "\n\n" from input and output
+                input.pop();
+                input.pop();
+                output.pop();
+                output.pop();
+
+                TestCase {
+                    name,
+                    config,
+                    input,
+                    output,
+                }
+            }
+        }
+
+        fn main() -> anyhow::Result<()> {
+            use git2::Repository;
+
+            // using git2, clone the prettier repo if it doesn't exist locally
+            let _ = Repository::open("prettier")
+                .or_else(|_| Repository::clone("https://github.com/prettier/prettier.git", "prettier"))?; // TODO: pull if exists
+
+            // // delete contents of OUT_DIR
+            // std::fs::remove_dir_all(OUT_DIR).unwrap();
+            // // create OUT_DIR
+            // std::fs::create_dir_all(OUT_DIR).unwrap();
+
+            println!("cargo:rerun-if-changed=prettier/tests/format");
+
+            // create mod.rs for OUT_DIR
+            std::fs::write(format!("{OUT_DIR}mod.rs", OUT_DIR = OUT_DIR), "").unwrap();
+
+            // get the text and simplified path to every prettier/tests/format/**/__snapshots__/*.snap file (every format test)
+            let snapshots = std::fs::read_dir("./prettier/tests/format")?
+                .filter_map(|entry| entry.ok())
+                .filter(|entry| entry.file_type().unwrap().is_dir())
+                .filter_map(|entry| {
+                    let parser = entry.file_name().to_str()?.to_owned().replace("-", "_");
+                    // append to the mod.rs file
+                    std::fs::OpenOptions::new()
+                        .append(true)
+                        .open(format!("{OUT_DIR}mod.rs"))
+                        .unwrap()
+                        .write_all(format!("mod {parser};\n", parser = parser).as_bytes())
+                        .unwrap();
+
+                    Some((parser, std::fs::read_dir(entry.path()).ok()?))
+                })
+                .flat_map(|(parser, parser_dir)| {
+                    let rules = parser_dir
+                        .filter_map(|entry| entry.ok())
+                        .filter(|entry| entry.file_type().unwrap().is_dir())
+                        .filter_map(|entry| {
+                            let rule = entry
+                                .file_name()
+                                .to_str()?
+                                .to_owned()
+                                .replace("-", "_")
+                                .replace(".", "_");
+                            Some((format!("test_{rule}",), entry.path()))
+                        })
+                        .collect::<Vec<_>>();
+
+                    // create the parser directory if it doesn't exist
+                    std::fs::create_dir_all(format!("{OUT_DIR}{parser}")).unwrap();
+                    // create mod.rs file for the parser
+                    std::fs::write(
+                        format!("{OUT_DIR}{parser}/mod.rs", parser = parser),
+                        rules
+                            .iter()
+                            .filter(|(_, path)| {
+                                std::path::Path::new(&format!("{}/__snapshots__", path.to_str().unwrap()))
+                                    .exists()
+                            })
+                            .map(|(rule, _)| format!("#[cfg(test)]\nmod {};", rule))
+                            .collect::<Vec<_>>()
+                            .join("\n"),
+                    )
+                    .unwrap();
+
+                    rules.into_iter().filter_map(move |(rule, path)| {
+                        Some((
+                            parser.clone(),
+                            rule.to_owned(),
+                            std::fs::read_dir(path).ok()?,
+                        ))
+                    })
+                })
+                .flat_map(|(parser, rule, rule_dir)| {
+                    rule_dir
+                        .filter_map(|entry| entry.ok())
+                        .filter(|entry| {
+                            entry.file_type().unwrap().is_dir() && entry.file_name() == "__snapshots__"
+                        })
+                        .filter_map(move |entry| {
+                            Some((
+                                parser.clone(),
+                                rule.clone(),
+                                std::fs::read_dir(entry.path()).ok()?,
+                            ))
+                        })
+                })
+                .flat_map(|(parser, rule, snapshot_dir)| {
+                    snapshot_dir
+                        .filter_map(|entry| entry.ok())
+                        .filter(|entry| {
+                            entry.file_type().unwrap().is_file()
+                                && entry.path().extension().unwrap() == "snap"
+                        })
+                        .map(move |entry| {
+                            let content = std::fs::read_to_string(entry.path()).unwrap();
+                            Snapshot {
+                                content,
+                                parser: parser.clone(),
+                                rule: rule.to_owned(),
+                            }
+                        })
+                })
+                .collect::<Vec<Snapshot>>();
+
+            // now, for each of those snapshots, we need to parse out all the test cases, the configs they use, and the expected output
+            let test_cases = snapshots
+                .iter()
+                // split the snapshots into test cases, ignoring the first one because that's just junk
+                .map(|snapshot| {
+                    (
+                        &snapshot.parser,
+                        &snapshot.rule,
+                        snapshot.content.split(SNAPSHORT_START).collect::<Vec<_>>()[1..].to_owned(),
+                    )
+                })
+                // parse those test cases into TestCase structs
+                .map(|(parser, rule, test_cases)| {
+                    (
+                        parser,
+                        rule,
+                        test_cases
+                            .iter()
+                            .map(|test_case| TestCase::parse(test_case))
+                            .collect::<Vec<_>>(),
+                    )
+                })
+                .collect::<Vec<_>>();
+
+            // now, we need to generate a test for each of those test cases
+            for (parser, rule, test_cases) in test_cases {
+                let test_module = generate_test_module(test_cases);
+
+                // create the parser directory if it doesn't exist
+                std::fs::create_dir_all(format!("{OUT_DIR}{parser}"))?;
+                // write the test module to a file
+                std::fs::write(format!("{OUT_DIR}{parser}/{rule}.rs"), test_module)?;
+
+                // rustfmt the file
+                rustfmt(format!("{OUT_DIR}{parser}/{rule}.rs"))?;
+            }
+
+            Ok(())
+        }
+
+        fn generate_test_module(test_cases: Vec<TestCase>) -> String {
+            let imports_and_helpers = quote! {
+                #[allow(unused_imports)]
+                use rust_prettier::PrettyPrinterBuilder;
+            };
+
+            let tests = test_cases
+                .iter()
+                .filter_map(|test_case| {
+                    let name = syn::parse_str::<syn::Ident>(&test_case.name).ok()?;
+                    let config = &test_case.config;
+                    let config_keys = config.keys();
+                    let config_values = config.values();
+                    let input = &test_case.input;
+                    let output = &test_case.output;
+
+                    Some(quote! {
+                        #[test]
+                        fn #name() {
+                            let pretty_printer = PrettyPrinterBuilder::default()
+                                #(.#config_keys(&#config_values))*
+                                .build()
+                                .unwrap();
+
+                            let formatted = pretty_printer.format(#input);
+                            assert!(formatted.is_ok());
+                            let formatted = formatted.unwrap();
+                            assert_eq!(formatted, #output);
+                        }
+                    })
+                })
+                .collect::<Vec<_>>();
+
+            quote!(
+                #imports_and_helpers
+
+                #(#tests)*
+            )
+            .to_string()
+        }
+
+        fn rustfmt(path: impl AsRef<str>) -> anyhow::Result<()> {
+            use std::process::Command;
+
+            Command::new("rustfmt")
+                .args(["--emit", "files", "--edition", "2021"])
+                .arg(path.as_ref())
+                .output()?;
+
+            Ok(())
+        }
+    }
+}
