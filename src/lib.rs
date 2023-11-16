@@ -5,6 +5,7 @@
 //!
 //! to facilitate this, we expose a `PrettyPrinterBuilder` struct to the user, which they can use to configure a `PrettyPrinter` to their liking.
 //!
+pub mod document;
 
 use anyhow::Result;
 use derive_builder::Builder;
