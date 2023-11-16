@@ -1,0 +1,53 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_arrow_regression_ts_semifalse_format_1_f353599e() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("const bar = (...varargs:any[]) => {\n  console.log(varargs);\n};\n\nconst foo = (x:string):void => (\n  bar(\n    x,\n    () => {},\n    () => {}\n  )\n);\n\napp.get(\"/\", (req, res): void => {\n  res.send(\"Hello world\");\n});") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "const bar = (...varargs: any[]) => {\n  console.log(varargs)\n}\n\nconst foo = (x: string): void =>\n  bar(\n    x,\n    () => {},\n    () => {},\n  )\n\napp.get(\"/\", (req, res): void => {\n  res.send(\"Hello world\")\n})");
+}
+#[test]
+fn test_arrow_regression_ts_format_1_f353599e() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("const bar = (...varargs:any[]) => {\n  console.log(varargs);\n};\n\nconst foo = (x:string):void => (\n  bar(\n    x,\n    () => {},\n    () => {}\n  )\n);\n\napp.get(\"/\", (req, res): void => {\n  res.send(\"Hello world\");\n});") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "const bar = (...varargs: any[]) => {\n  console.log(varargs);\n};\n\nconst foo = (x: string): void =>\n  bar(\n    x,\n    () => {},\n    () => {},\n  );\n\napp.get(\"/\", (req, res): void => {\n  res.send(\"Hello world\");\n});");
+}
+#[test]
+fn test_comments_ts_semifalse_format_1_2f46ee2e() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("const fn1 = () => {\n  return;\n} /* foo */;\n\nconst fn2 = () => {\n  return;\n}\n\n// foo\n;") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq!(
+        formatted,
+        "const fn1 = () => {\n  return\n} /* foo */\n\nconst fn2 = () => {\n  return\n}\n\n// foo"
+    );
+}
+#[test]
+fn test_comments_ts_format_1_2f46ee2e() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("const fn1 = () => {\n  return;\n} /* foo */;\n\nconst fn2 = () => {\n  return;\n}\n\n// foo\n;") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "const fn1 = () => {\n  return;\n}; /* foo */\n\nconst fn2 = () => {\n  return;\n};\n\n// foo");
+}
+#[test]
+fn test_issue_6107_curry_ts_semifalse_format_1_b64e2abf() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("const getIconEngagementTypeFrom = (engagementTypes: Array<EngagementType>) =>\n  iconEngagementType => engagementTypes.includes(iconEngagementType);\n\nconst getIconEngagementTypeFrom2 =\n  (\n    engagementTypes: Array<EngagementType>,\n    secondArg: Something\n  ) =>\n  iconEngagementType =>\n  engagementTypes.includes(iconEngagementType);\n\nconst getIconEngagementTypeFrom2 =\n  (\n    engagementTypes: Array<EngagementType>,\n    secondArg: Something,\n    thirArg: SomethingElse\n  ) =>\n  iconEngagementType =>\n  engagementTypes.includes(iconEngagementType);") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "const getIconEngagementTypeFrom =\n  (engagementTypes: Array<EngagementType>) => (iconEngagementType) =>\n    engagementTypes.includes(iconEngagementType)\n\nconst getIconEngagementTypeFrom2 =\n  (engagementTypes: Array<EngagementType>, secondArg: Something) =>\n  (iconEngagementType) =>\n    engagementTypes.includes(iconEngagementType)\n\nconst getIconEngagementTypeFrom2 =\n  (\n    engagementTypes: Array<EngagementType>,\n    secondArg: Something,\n    thirArg: SomethingElse,\n  ) =>\n  (iconEngagementType) =>\n    engagementTypes.includes(iconEngagementType)");
+}
+#[test]
+fn test_issue_6107_curry_ts_format_1_b64e2abf() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("const getIconEngagementTypeFrom = (engagementTypes: Array<EngagementType>) =>\n  iconEngagementType => engagementTypes.includes(iconEngagementType);\n\nconst getIconEngagementTypeFrom2 =\n  (\n    engagementTypes: Array<EngagementType>,\n    secondArg: Something\n  ) =>\n  iconEngagementType =>\n  engagementTypes.includes(iconEngagementType);\n\nconst getIconEngagementTypeFrom2 =\n  (\n    engagementTypes: Array<EngagementType>,\n    secondArg: Something,\n    thirArg: SomethingElse\n  ) =>\n  iconEngagementType =>\n  engagementTypes.includes(iconEngagementType);") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "const getIconEngagementTypeFrom =\n  (engagementTypes: Array<EngagementType>) => (iconEngagementType) =>\n    engagementTypes.includes(iconEngagementType);\n\nconst getIconEngagementTypeFrom2 =\n  (engagementTypes: Array<EngagementType>, secondArg: Something) =>\n  (iconEngagementType) =>\n    engagementTypes.includes(iconEngagementType);\n\nconst getIconEngagementTypeFrom2 =\n  (\n    engagementTypes: Array<EngagementType>,\n    secondArg: Something,\n    thirArg: SomethingElse,\n  ) =>\n  (iconEngagementType) =>\n    engagementTypes.includes(iconEngagementType);");
+}

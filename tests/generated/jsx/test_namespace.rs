@@ -1,0 +1,14 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_jsx_namespaced_name_js_format_1_816ff36f() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer
+        .format("<jsx:namespacedname />;\n\n<jsx:namespacedname>1</jsx:namespacedname>;");
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq!(
+        formatted,
+        "<jsx:namespacedname />;\n\n<jsx:namespacedname>1</jsx:namespacedname>;"
+    );
+}

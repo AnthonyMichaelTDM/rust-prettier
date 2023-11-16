@@ -1,0 +1,10 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_directive_decl_graphql_format_1_b9347be9() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("directive @a on QUERY\ndirective @a(as: String) on QUERY\ndirective @a(as: String = 1) on QUERY\ndirective @a(as: String, b: Int!) on QUERY\ndirective @a(as: String! = 1 @deprecated) on QUERY\ndirective @a(as: String! = 1 @deprecated) on QUERY | MUTATION\ndirective @a(as: String! = 1 @deprecated) repeatable on QUERY | MUTATION\n\ndirective @a on QUERY\ndirective @a repeatable on QUERY\n\n\ndirective @a(as: String) on QUERY\n\n\n\n\ndirective @a(as: String = 1) on QUERY") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "directive @a on QUERY\ndirective @a(as: String) on QUERY\ndirective @a(as: String = 1) on QUERY\ndirective @a(as: String, b: Int!) on QUERY\ndirective @a(as: String! = 1 @deprecated) on QUERY\ndirective @a(as: String! = 1 @deprecated) on QUERY | MUTATION\ndirective @a(as: String! = 1 @deprecated) repeatable on QUERY | MUTATION\n\ndirective @a on QUERY\ndirective @a repeatable on QUERY\n\ndirective @a(as: String) on QUERY\n\ndirective @a(as: String = 1) on QUERY");
+}

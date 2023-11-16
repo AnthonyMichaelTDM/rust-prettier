@@ -1,0 +1,10 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_import_css_format_1_8fc2400c() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("        @import         \"./settings\"    ;\n\n\n@import      \"./components\" ;@import \"./themes\";\n.class{float: left;\n}") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "@import \"./settings\";\n\n@import \"./components\";\n@import \"./themes\";\n.class {\n  float: left;\n}");
+}

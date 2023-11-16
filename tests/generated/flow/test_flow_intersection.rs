@@ -1,0 +1,10 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_intersection_js_format_1_0f160ee1() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("type State = {\n  sharedProperty: any;\n} & (\n  | { discriminant: \"FOO\"; foo: any }\n  | { discriminant: \"BAR\"; bar: any }\n  | { discriminant: \"BAZ\"; baz: any } \n);") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "type State = {\n  sharedProperty: any,\n} & (\n  | { discriminant: \"FOO\", foo: any }\n  | { discriminant: \"BAR\", bar: any }\n  | { discriminant: \"BAZ\", baz: any }\n);");
+}

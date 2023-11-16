@@ -1,0 +1,18 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_with_pragma_yml_require_pragmatrue_format_1_f4bd2e0f() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer.format("# @prettier\n\n    123");
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq!(formatted, "# @prettier\n\n123");
+}
+#[test]
+fn test_without_pragma_yml_require_pragmatrue_format_1_a0991ecd() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer.format("\n\n    123");
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq!(formatted, "\n\n    123");
+}

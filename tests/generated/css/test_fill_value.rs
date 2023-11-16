@@ -1,0 +1,10 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_fill_css_format_1_2d1bbbf1() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("div {\n  border-left: 1px solid mix($warningBackgroundColors, $warningBorderColors, 50%);\n  $fontFamily: \"Lato\", -apple-system, \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "div {\n  border-left: 1px solid\n    mix($warningBackgroundColors, $warningBorderColors, 50%);\n  $fontFamily:\n    \"Lato\",\n    -apple-system,\n    \"Helvetica Neue\",\n    Helvetica,\n    Arial,\n    sans-serif;\n}");
+}

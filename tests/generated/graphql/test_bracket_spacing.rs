@@ -1,0 +1,18 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_bracket_spacing_graphql_bracket_spacingfalse_format_1_52e19abc() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("fragment Visit on HighlightedVisit\n  @argumentDefinitions(\n    count: {type: \"Int\", defaultValue: 20}\n  ) {\n  name\n}") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "fragment Visit on HighlightedVisit\n@argumentDefinitions(count: {type: \"Int\", defaultValue: 20}) {\n  name\n}");
+}
+#[test]
+fn test_bracket_spacing_graphql_format_1_52e19abc() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("fragment Visit on HighlightedVisit\n  @argumentDefinitions(\n    count: {type: \"Int\", defaultValue: 20}\n  ) {\n  name\n}") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "fragment Visit on HighlightedVisit\n@argumentDefinitions(count: { type: \"Int\", defaultValue: 20 }) {\n  name\n}");
+}

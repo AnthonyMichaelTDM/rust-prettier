@@ -1,0 +1,10 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_test_js_format_1_f5049ed4() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nimport { Foo, type Baz } from \"../module\";\nimport type {} from 'foo';\n\nimport type {somethingSuperLongsomethingSuperLong} from 'somethingSuperLongsomethingSuperLongsomethingSuperLong'\nimport type {a, somethingSuperLongsomethingSuperLong} from 'somethingSuperLongsomethingSuperLongsomethingSuperLong'\n\nimport transformRouterContext, { type TransformedContextRouter } from '../../helpers/transformRouterContext';") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "/**\n * @flow\n */\n\nimport { Foo, type Baz } from \"../module\";\nimport type {} from \"foo\";\n\nimport type { somethingSuperLongsomethingSuperLong } from \"somethingSuperLongsomethingSuperLongsomethingSuperLong\";\nimport type {\n  a,\n  somethingSuperLongsomethingSuperLong,\n} from \"somethingSuperLongsomethingSuperLongsomethingSuperLong\";\n\nimport transformRouterContext, {\n  type TransformedContextRouter,\n} from \"../../helpers/transformRouterContext\";");
+}

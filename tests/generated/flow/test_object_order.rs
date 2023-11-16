@@ -1,0 +1,18 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_order_js_trailing_commaall_format_1_62f98dce() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("type Foo = {\n  // a\n  alpha: 'hello',\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n}") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "type Foo = {\n  // a\n  alpha: \"hello\",\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n};");
+}
+#[test]
+fn test_order_js_trailing_commaes_5_format_1_62f98dce() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format ("type Foo = {\n  // a\n  alpha: 'hello',\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n}") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq ! (formatted , "type Foo = {\n  // a\n  alpha: \"hello\",\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n};");
+}

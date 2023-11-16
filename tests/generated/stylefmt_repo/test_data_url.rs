@@ -1,0 +1,14 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_data_url_css_format_1_e5235d7b() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer
+        .format("div {\n  background-image: url(data:image/png;base64,iVBORw0KGg);\n}");
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq!(
+        formatted,
+        "div {\n  background-image: url(data:image/png;base64,iVBORw0KGg);\n}"
+    );
+}

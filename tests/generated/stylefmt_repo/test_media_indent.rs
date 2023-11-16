@@ -1,0 +1,13 @@
+#[allow(unused_imports)]
+use rust_prettier::PrettyPrinterBuilder;
+#[test]
+fn test_media_indent_css_format_1_3eeccb15() {
+    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let formatted = pretty_printer . format (".foo {\n    @media(max-width:1000px)\n    {\n        display: none;\n          }\n        }") ;
+    assert!(formatted.is_ok());
+    let formatted = formatted.unwrap();
+    assert_eq!(
+        formatted,
+        ".foo {\n  @media (max-width: 1000px) {\n    display: none;\n  }\n}"
+    );
+}
