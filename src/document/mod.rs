@@ -10,8 +10,8 @@ pub use builders::{
 };
 // pub use printer::print_doc_to_string;
 pub use utils::{
-    can_break, find_in_doc, map_doc, remove_lines, replace_end_of_line, strip_trailing_hardline,
-    traverse_doc, will_break,
+    can_break, find_in_doc, inherit_label, map_doc, normalize_doc, remove_lines,
+    replace_end_of_line, strip_trailing_hardline, traverse_doc, will_break,
 };
 
 type ID = usize;
@@ -28,7 +28,7 @@ impl Doc {
         match self {
             Doc::String(s) => s.is_empty(),
             Doc::Array(a) => a.is_empty(),
-            Doc::DocCommand(d) => d.is_empty(),
+            Doc::DocCommand(_) => false,
         }
     }
 }
@@ -117,40 +117,6 @@ pub enum DocCommand {
     },
     LineSuffixBoundary,
     Trim,
-}
-
-impl DocCommand {
-    pub fn is_empty(&self) -> bool {
-        match self {
-            DocCommand::Align { contents, .. }
-            | DocCommand::Indent { contents }
-            | DocCommand::IndentIfBreak { contents, .. }
-            | DocCommand::LineSuffix { contents }
-            | DocCommand::Label { contents, .. } => contents.is_empty(),
-            DocCommand::BreakParent
-            | DocCommand::Cursor
-            | DocCommand::Line(_)
-            | DocCommand::LineSuffixBoundary
-            | DocCommand::Trim => false,
-            DocCommand::Fill { parts } => parts.is_empty() || parts.iter().all(|p| p.is_empty()),
-            DocCommand::Group {
-                contents,
-                expanded_states,
-                id,
-                ..
-            } => {
-                contents.as_ref().is_empty()
-                    && id.is_none()
-                    && (expanded_states.is_none()
-                        || matches!(expanded_states, Some(states) if states.is_empty()))
-            }
-            DocCommand::IfBreak {
-                break_contents,
-                flat_contents,
-                ..
-            } => break_contents.is_empty() && flat_contents.is_none(),
-        }
-    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
