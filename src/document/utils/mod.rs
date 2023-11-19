@@ -6,7 +6,7 @@ pub use traverse_docs::traverse_doc;
 
 use crate::document::{join, DocCommand};
 
-use super::{Doc, LineType};
+use super::{Break, Doc, LineType};
 
 /// Applies the given function `f` to each node in the `doc` tree, returning a new `Doc` tree with the results.
 ///
@@ -99,7 +99,7 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                     expanded_states,
                     contents: Box::new(contents),
                     id: id.clone(),
-                    should_break: *should_break,
+                    should_break: should_break.to_owned(),
                 }))
             }
             Doc::DocCommand(DocCommand::Align {
@@ -185,7 +185,8 @@ pub fn find_in_doc(doc: &Doc, f: impl Fn(&Doc) -> bool) -> Option<Doc> {
 pub fn will_break(doc: &Doc) -> bool {
     find_in_doc(doc, |d| match d {
         Doc::DocCommand(DocCommand::Group {
-            should_break: true, ..
+            should_break: Break::Yes,
+            ..
         }) => true,
         Doc::DocCommand(DocCommand::Line(LineType::Hard)) => true,
         Doc::DocCommand(DocCommand::BreakParent) => true,
@@ -262,7 +263,7 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
             contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
-            should_break: *should_break,
+            should_break: should_break.to_owned(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
@@ -348,7 +349,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 expanded_states,
             }) => {
                 if contents.as_ref().is_empty()
-                    && !should_break
+                    && Break::No == *should_break
                     && id.is_none()
                     && (expanded_states.is_none()
                         || matches!(expanded_states, Some(states) if states.is_empty() || states.iter().all(|d| d.is_empty())))
@@ -471,7 +472,7 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
             contents: Box::new(normalize_doc(&contents)),
-            should_break: *should_break,
+            should_break: should_break.to_owned(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::LineSuffix { contents }) => {

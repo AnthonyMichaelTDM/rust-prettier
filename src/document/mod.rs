@@ -1,6 +1,9 @@
 mod builders;
+pub mod debug;
 mod printer;
 mod utils;
+
+use std::fmt::Display;
 
 pub use builders::{
     add_alignment_to_doc, align, break_parent, conditional_group, cursor, dedent, dedent_to_root,
@@ -14,9 +17,7 @@ pub use utils::{
     replace_end_of_line, strip_trailing_hardline, traverse_doc, will_break,
 };
 
-type ID = usize;
-
-#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Doc {
     String(String),
     Array(Vec<Box<Doc>>),
@@ -77,7 +78,7 @@ impl From<DocCommand> for Doc {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash)]
 pub enum DocCommand {
     Align {
         contents: Box<Doc>,
@@ -91,7 +92,7 @@ pub enum DocCommand {
     Group {
         id: Option<ID>,
         contents: Box<Doc>,
-        should_break: bool,
+        should_break: Break,
         expanded_states: Option<Vec<Box<Doc>>>,
     },
     IfBreak {
@@ -123,7 +124,51 @@ pub enum DocCommand {
 pub enum Align {
     By(isize),
     With(String),
-    Root,
+    AsRoot,
+    ToRoot,
+}
+
+#[derive(Clone, PartialEq, Eq, Hash)]
+pub enum ID {
+    // TODO: this is basically the Symbol type from the original implementation
+    Symbol(String),
+    Number(usize),
+}
+
+impl Display for ID {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ID::Symbol(s) => write!(f, "{}", s),
+            ID::Number(n) => write!(f, "{}", n),
+        }
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, Hash)]
+pub enum Break {
+    Yes,
+    No,
+    Propagated,
+}
+
+impl Display for Break {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Break::Yes => write!(f, "{:?}", true),
+            Break::No => write!(f, "{:?}", false),
+            Break::Propagated => write!(f, "propagated"),
+        }
+    }
+}
+
+impl From<bool> for Break {
+    fn from(t: bool) -> Break {
+        if t {
+            Break::Yes
+        } else {
+            Break::No
+        }
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
@@ -133,7 +178,15 @@ pub enum LineType {
     Literal,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Copy)]
 pub enum Label {
     MethodChain,
+}
+
+impl Display for Label {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Label::MethodChain => write!(f, "method-chain"),
+        }
+    }
 }

@@ -49,7 +49,7 @@ pub fn group(
     Doc::DocCommand(DocCommand::Group {
         id,
         contents: Box::new(contents),
-        should_break,
+        should_break: should_break.into(),
         expanded_states,
     })
 }
@@ -58,7 +58,7 @@ pub fn group(
 pub fn dedent_to_root(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
-        alignment: Align::By(isize::MIN),
+        alignment: Align::ToRoot,
     })
 }
 
@@ -66,7 +66,7 @@ pub fn dedent_to_root(contents: Doc) -> Doc {
 pub fn mark_as_root(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
-        alignment: Align::Root,
+        alignment: Align::AsRoot,
     })
 }
 
@@ -216,7 +216,7 @@ pub fn add_alignment_to_doc(doc: Doc, size: isize, tab_width: NonZeroUsize) -> D
         aligned = align(aligned, Align::By((size as usize % tab_width) as isize));
         // size is absolute from 0 and not relative to the current
         // indentation, so we use -Infinity to reset the indentation to 0
-        aligned = align(aligned, Align::By(isize::MIN));
+        aligned = align(aligned, Align::ToRoot);
     }
     aligned
 }
