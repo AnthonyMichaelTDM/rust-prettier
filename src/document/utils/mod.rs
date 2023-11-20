@@ -2,6 +2,8 @@
 
 mod traverse_docs;
 
+use std::collections::{HashSet, VecDeque};
+
 pub use traverse_docs::traverse_doc;
 
 use crate::document::{join, DocCommand};
@@ -288,9 +290,13 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
                 .map(|d| Box::from(strip_trailing_hardline_from_doc(&d))),
             group_id: group_id.clone(),
         }),
-        Doc::DocCommand(DocCommand::Fill { parts }) => Doc::DocCommand(DocCommand::Fill {
-            parts: strip_trailing_hardline_from_parts(parts.to_vec()),
-        }),
+        Doc::DocCommand(DocCommand::Fill { parts }) => {
+            let mut parts = parts.clone();
+            parts.make_contiguous();
+            Doc::DocCommand(DocCommand::Fill {
+                parts: strip_trailing_hardline_from_parts(parts.as_slices().0.to_vec()).into(),
+            })
+        }
         Doc::Array(parts) => Doc::Array(strip_trailing_hardline_from_parts(parts.to_vec())),
         Doc::String(s) => Doc::from(s.replace("\n", "").replace("\r", "")),
         Doc::DocCommand(DocCommand::Cursor)
@@ -312,7 +318,11 @@ fn flatten_and_concat(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
     for part in parts.into_iter() {
         match part.as_ref() {
             Doc::Array(parts) => result.extend(flatten_and_concat(parts)),
-            Doc::DocCommand(DocCommand::Fill { parts }) => result.extend(flatten_and_concat(parts)),
+            Doc::DocCommand(DocCommand::Fill { parts }) => {
+                let mut parts = parts.clone();
+                parts.make_contiguous();
+                result.extend(flatten_and_concat(parts.as_slices().0))
+            }
             Doc::String(s) => {
                 if let Some(Doc::String(last)) = result.last_mut().map(|d| &mut **d) {
                     *last += &s;
@@ -410,14 +420,13 @@ pub fn clean_doc(doc: &Doc) -> Doc {
 // TODO: this has too many allocations, optimize it
 fn normalize_parts(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
     let mut new_parts: Vec<Box<Doc>> = Vec::new();
-    let mut rest_parts: Vec<&Box<Doc>> = parts.iter().collect();
+    let mut rest_parts: Vec<&Box<Doc>> = parts.iter().rev().collect();
 
-    while !rest_parts.is_empty() {
-        let part = rest_parts.remove(0);
-
+    for part in parts.iter().rev() {
         match *part.as_ref() {
-            Doc::Array(ref parts) | Doc::DocCommand(DocCommand::Fill { ref parts }) => {
-                rest_parts.splice(0..0, parts.iter().collect::<Vec<_>>());
+            Doc::Array(ref parts) => {
+                rest_parts.extend(parts.iter().rev().collect::<Vec<_>>());
+                continue;
             }
             Doc::String(ref s) => {
                 if let Some(last_part) = new_parts.last_mut() {
@@ -441,9 +450,13 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
     map_doc(doc, |current_doc| match current_doc {
         // first layer
         Doc::Array(parts) => Doc::Array(normalize_parts(&parts)),
-        Doc::DocCommand(DocCommand::Fill { parts }) => Doc::DocCommand(DocCommand::Fill {
-            parts: normalize_parts(&parts),
-        }),
+        Doc::DocCommand(DocCommand::Fill { parts }) => {
+            let mut parts = parts.clone();
+            parts.make_contiguous();
+            Doc::DocCommand(DocCommand::Fill {
+                parts: normalize_parts(parts.as_slices().0).into(),
+            })
+        }
         // recursive cases
         Doc::DocCommand(DocCommand::Align {
             contents,

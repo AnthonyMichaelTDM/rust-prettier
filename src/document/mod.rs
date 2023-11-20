@@ -3,7 +3,7 @@ pub mod debug;
 mod printer;
 mod utils;
 
-use std::fmt::Display;
+use std::{collections::VecDeque, fmt::Display};
 
 pub use builders::{
     add_alignment_to_doc, align, break_parent, conditional_group, cursor, dedent, dedent_to_root,
@@ -87,7 +87,7 @@ pub enum DocCommand {
     BreakParent,
     Cursor,
     Fill {
-        parts: Vec<Box<Doc>>,
+        parts: VecDeque<Box<Doc>>,
     },
     Group {
         id: Option<ID>,

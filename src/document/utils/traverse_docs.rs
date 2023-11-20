@@ -52,7 +52,12 @@ pub fn traverse_doc(
             | Doc::DocCommand(DocCommand::BreakParent) => {
                 // no children
             }
-            Doc::Array(parts) | Doc::DocCommand(DocCommand::Fill { parts }) => {
+            Doc::DocCommand(DocCommand::Fill { parts }) => {
+                for part in parts.iter().rev() {
+                    stack.push(TraverseDoc::Doc(part));
+                }
+            }
+            Doc::Array(parts) => {
                 for part in parts.iter().rev() {
                     stack.push(TraverseDoc::Doc(part));
                 }

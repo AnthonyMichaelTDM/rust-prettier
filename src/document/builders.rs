@@ -101,7 +101,9 @@ pub fn conditional_group(states: Vec<Box<Doc>>, id: Option<ID>, should_break: bo
 ///
 /// Expects the docs argument to be an array of alternating content and line breaks. In other words, elements with odd indices must be line breaks (e.g., softline).
 pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
-    Doc::DocCommand(DocCommand::Fill { parts })
+    Doc::DocCommand(DocCommand::Fill {
+        parts: parts.into(),
+    })
 }
 
 /// Print something if the current group or the current element of fill breaks and something else if it doesn't.
