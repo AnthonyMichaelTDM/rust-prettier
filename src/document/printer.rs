@@ -53,14 +53,16 @@ pub enum FormattingError {
 }
 
 impl Doc {
-    pub fn format(&mut self, options: PrettyPrinter) -> Result<String, FormattingError> {
+    pub fn format(&self, options: PrettyPrinter) -> Result<String, FormattingError> {
         let mut group_mode_map: HashMap<ID, Mode> = HashMap::new();
 
         let width = options.print_width.clamp(0, isize::MAX as usize);
         let new_line = options.end_of_line;
         let mut pos = 0;
 
-        propagate_breaks(self);
+        let mut doc = self.clone();
+
+        propagate_breaks(&mut doc);
 
         // cmds is basically a stack. We've turned a recursive call into a
         // while loop which is much faster. The while loop below adds new
@@ -68,7 +70,7 @@ impl Doc {
         let mut cmds = vec![Command {
             indent: Indent::root(),
             mode: Mode::Break,
-            doc: self.clone(),
+            doc: doc,
         }];
         let mut out: Vec<OutputItem> = Vec::new();
         let mut should_remeasure = false;
