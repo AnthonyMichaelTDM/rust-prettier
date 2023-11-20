@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_32d32507() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_test_js_format_1_32d32507() {
 #[test]
 fn test_test_2_js_format_1_c1071b0c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_test_2_js_format_1_c1071b0c() {
 #[test]
 fn test_test_3_js_format_1_5a7caf19() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_test_3_js_format_1_5a7caf19() {
 #[test]
 fn test_test_4_js_format_1_6f3b07fb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_test_4_js_format_1_6f3b07fb() {
 #[test]
 fn test_test_5_js_format_1_d820ad01() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_test_5_js_format_1_d820ad01() {
 #[test]
 fn test_test_6_js_format_1_328729b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_test_6_js_format_1_328729b7() {
 #[test]
 fn test_test_7_js_format_1_799f65dc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

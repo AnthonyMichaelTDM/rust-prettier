@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_js_format_1_a556c08a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_a_js_format_1_a556c08a() {
 #[test]
 fn test_b_js_format_1_5028902a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_b_js_format_1_5028902a() {
 #[test]
 fn test_c_js_format_1_01f60f2e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_c_js_format_1_01f60f2e() {
 #[test]
 fn test_d_js_format_1_2678d60b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_d_js_format_1_2678d60b() {
 #[test]
 fn test_lib_js_format_1_4c91862e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

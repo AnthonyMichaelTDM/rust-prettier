@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attribute_hbs_format_1_4e9f7525() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_attribute_hbs_format_1_4e9f7525() {
 #[test]
 fn test_class_name_hbs_format_1_76790309() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_class_name_hbs_format_1_76790309() {
 #[test]
 fn test_order_hbs_format_1_3bf15b5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_order_hbs_format_1_3bf15b5e() {
 #[test]
 fn test_quotes_hbs_format_1_980a1b89() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();

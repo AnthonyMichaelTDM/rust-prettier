@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_basic_ts_format_1_5f8d059e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_basic_ts_format_1_5f8d059e() {
 #[test]
 fn test_binary_expr_ts_format_1_7fd1e105() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_binary_expr_ts_format_1_7fd1e105() {
 #[test]
 fn test_inferface_asi_ts_format_1_6b596118() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -45,7 +45,7 @@ fn test_inferface_asi_ts_format_1_6b596118() {
 #[test]
 fn test_logical_expr_ts_format_1_482e2ad6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_logical_expr_ts_format_1_482e2ad6() {
 #[test]
 fn test_new_ts_format_1_aca772f7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_new_ts_format_1_aca772f7() {
 #[test]
 fn test_property_access_ts_format_1_f218477e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_property_access_ts_format_1_f218477e() {
 #[test]
 fn test_typeof_ts_format_1_9df6bc3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

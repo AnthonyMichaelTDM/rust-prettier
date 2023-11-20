@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_trailing_comma_notjson_trailing_commaall_format_1_02e9caad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("notjson")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -22,7 +22,7 @@ fn test_trailing_comma_notjson_trailing_commaall_format_1_02e9caad() {
 #[test]
 fn test_trailing_comma_notjson_trailing_commaall_format_2_02e9caad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("notjson")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -39,7 +39,7 @@ fn test_trailing_comma_notjson_trailing_commaall_format_2_02e9caad() {
 #[test]
 fn test_trailing_comma_notjson_trailing_commaes_5_format_1_02e9caad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("notjson")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -56,7 +56,7 @@ fn test_trailing_comma_notjson_trailing_commaes_5_format_1_02e9caad() {
 #[test]
 fn test_trailing_comma_notjson_trailing_commaes_5_format_2_02e9caad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("notjson")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -73,7 +73,7 @@ fn test_trailing_comma_notjson_trailing_commaes_5_format_2_02e9caad() {
 #[test]
 fn test_trailing_comma_notjson_format_1_02e9caad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("notjson")
         .print_width(80)
         .build()
         .unwrap();

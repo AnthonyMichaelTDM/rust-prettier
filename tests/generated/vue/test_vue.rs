@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attributes_vue_semifalse_format_1_b687bddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -18,7 +18,7 @@ fn test_attributes_vue_semifalse_format_1_b687bddd() {
 #[test]
 fn test_attributes_vue_trailing_commaes_5_format_1_b687bddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_attributes_vue_trailing_commaes_5_format_1_b687bddd() {
 #[test]
 fn test_attributes_vue_trailing_commanone_format_1_b687bddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -44,7 +44,7 @@ fn test_attributes_vue_trailing_commanone_format_1_b687bddd() {
 #[test]
 fn test_board_card_vue_semifalse_format_1_7b682582() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -57,7 +57,7 @@ fn test_board_card_vue_semifalse_format_1_7b682582() {
 #[test]
 fn test_board_card_vue_trailing_commaes_5_format_1_7b682582() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -70,7 +70,7 @@ fn test_board_card_vue_trailing_commaes_5_format_1_7b682582() {
 #[test]
 fn test_board_card_vue_trailing_commanone_format_1_7b682582() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -83,7 +83,7 @@ fn test_board_card_vue_trailing_commanone_format_1_7b682582() {
 #[test]
 fn test_case_sensitive_tags_vue_semifalse_format_1_6ab445a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -96,7 +96,7 @@ fn test_case_sensitive_tags_vue_semifalse_format_1_6ab445a7() {
 #[test]
 fn test_case_sensitive_tags_vue_trailing_commaes_5_format_1_6ab445a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -109,7 +109,7 @@ fn test_case_sensitive_tags_vue_trailing_commaes_5_format_1_6ab445a7() {
 #[test]
 fn test_case_sensitive_tags_vue_trailing_commanone_format_1_6ab445a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -122,7 +122,7 @@ fn test_case_sensitive_tags_vue_trailing_commanone_format_1_6ab445a7() {
 #[test]
 fn test_custom_block_vue_semifalse_format_1_96430b86() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -135,7 +135,7 @@ fn test_custom_block_vue_semifalse_format_1_96430b86() {
 #[test]
 fn test_custom_block_vue_trailing_commaes_5_format_1_96430b86() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -148,7 +148,7 @@ fn test_custom_block_vue_trailing_commaes_5_format_1_96430b86() {
 #[test]
 fn test_custom_block_vue_trailing_commanone_format_1_96430b86() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -161,7 +161,7 @@ fn test_custom_block_vue_trailing_commanone_format_1_96430b86() {
 #[test]
 fn test_expression_binding_vue_semifalse_format_1_1096e839() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -174,7 +174,7 @@ fn test_expression_binding_vue_semifalse_format_1_1096e839() {
 #[test]
 fn test_expression_binding_vue_trailing_commaes_5_format_1_1096e839() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -187,7 +187,7 @@ fn test_expression_binding_vue_trailing_commaes_5_format_1_1096e839() {
 #[test]
 fn test_expression_binding_vue_trailing_commanone_format_1_1096e839() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -200,7 +200,7 @@ fn test_expression_binding_vue_trailing_commanone_format_1_1096e839() {
 #[test]
 fn test_expression_binding_ts_vue_semifalse_format_1_f3bac74c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -213,7 +213,7 @@ fn test_expression_binding_ts_vue_semifalse_format_1_f3bac74c() {
 #[test]
 fn test_expression_binding_ts_vue_trailing_commaes_5_format_1_f3bac74c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -226,7 +226,7 @@ fn test_expression_binding_ts_vue_trailing_commaes_5_format_1_f3bac74c() {
 #[test]
 fn test_expression_binding_ts_vue_trailing_commanone_format_1_f3bac74c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -239,7 +239,7 @@ fn test_expression_binding_ts_vue_trailing_commanone_format_1_f3bac74c() {
 #[test]
 fn test_filter_vue_semifalse_format_1_b28caafd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -252,7 +252,7 @@ fn test_filter_vue_semifalse_format_1_b28caafd() {
 #[test]
 fn test_filter_vue_trailing_commaes_5_format_1_b28caafd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -265,7 +265,7 @@ fn test_filter_vue_trailing_commaes_5_format_1_b28caafd() {
 #[test]
 fn test_filter_vue_trailing_commanone_format_1_b28caafd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -278,7 +278,7 @@ fn test_filter_vue_trailing_commanone_format_1_b28caafd() {
 #[test]
 fn test_interpolations_vue_semifalse_format_1_c2882a66() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -291,7 +291,7 @@ fn test_interpolations_vue_semifalse_format_1_c2882a66() {
 #[test]
 fn test_interpolations_vue_trailing_commaes_5_format_1_c2882a66() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -304,7 +304,7 @@ fn test_interpolations_vue_trailing_commaes_5_format_1_c2882a66() {
 #[test]
 fn test_interpolations_vue_trailing_commanone_format_1_c2882a66() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -317,7 +317,7 @@ fn test_interpolations_vue_trailing_commanone_format_1_c2882a66() {
 #[test]
 fn test_multiple_template_1_vue_semifalse_format_1_bf438e5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -334,7 +334,7 @@ fn test_multiple_template_1_vue_semifalse_format_1_bf438e5a() {
 #[test]
 fn test_multiple_template_1_vue_trailing_commaes_5_format_1_bf438e5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -351,7 +351,7 @@ fn test_multiple_template_1_vue_trailing_commaes_5_format_1_bf438e5a() {
 #[test]
 fn test_multiple_template_1_vue_trailing_commanone_format_1_bf438e5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -368,7 +368,7 @@ fn test_multiple_template_1_vue_trailing_commanone_format_1_bf438e5a() {
 #[test]
 fn test_multiple_template_2_vue_semifalse_format_1_30916f11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -383,7 +383,7 @@ fn test_multiple_template_2_vue_semifalse_format_1_30916f11() {
 #[test]
 fn test_multiple_template_2_vue_trailing_commaes_5_format_1_30916f11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -398,7 +398,7 @@ fn test_multiple_template_2_vue_trailing_commaes_5_format_1_30916f11() {
 #[test]
 fn test_multiple_template_2_vue_trailing_commanone_format_1_30916f11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -413,7 +413,7 @@ fn test_multiple_template_2_vue_trailing_commanone_format_1_30916f11() {
 #[test]
 fn test_nested_template_vue_semifalse_format_1_885d9209() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -426,7 +426,7 @@ fn test_nested_template_vue_semifalse_format_1_885d9209() {
 #[test]
 fn test_nested_template_vue_trailing_commaes_5_format_1_885d9209() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -439,7 +439,7 @@ fn test_nested_template_vue_trailing_commaes_5_format_1_885d9209() {
 #[test]
 fn test_nested_template_vue_trailing_commanone_format_1_885d9209() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -452,7 +452,7 @@ fn test_nested_template_vue_trailing_commanone_format_1_885d9209() {
 #[test]
 fn test_one_line_template_1_vue_semifalse_format_1_71e8ec8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -468,7 +468,7 @@ fn test_one_line_template_1_vue_semifalse_format_1_71e8ec8b() {
 #[test]
 fn test_one_line_template_1_vue_trailing_commaes_5_format_1_71e8ec8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -484,7 +484,7 @@ fn test_one_line_template_1_vue_trailing_commaes_5_format_1_71e8ec8b() {
 #[test]
 fn test_one_line_template_1_vue_trailing_commanone_format_1_71e8ec8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -500,7 +500,7 @@ fn test_one_line_template_1_vue_trailing_commanone_format_1_71e8ec8b() {
 #[test]
 fn test_one_line_template_2_vue_semifalse_format_1_15b37f58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -517,7 +517,7 @@ fn test_one_line_template_2_vue_semifalse_format_1_15b37f58() {
 #[test]
 fn test_one_line_template_2_vue_trailing_commaes_5_format_1_15b37f58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -534,7 +534,7 @@ fn test_one_line_template_2_vue_trailing_commaes_5_format_1_15b37f58() {
 #[test]
 fn test_one_line_template_2_vue_trailing_commanone_format_1_15b37f58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -551,7 +551,7 @@ fn test_one_line_template_2_vue_trailing_commanone_format_1_15b37f58() {
 #[test]
 fn test_pre_child_vue_semifalse_format_1_fbb92ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -564,7 +564,7 @@ fn test_pre_child_vue_semifalse_format_1_fbb92ce4() {
 #[test]
 fn test_pre_child_vue_trailing_commaes_5_format_1_fbb92ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -577,7 +577,7 @@ fn test_pre_child_vue_trailing_commaes_5_format_1_fbb92ce4() {
 #[test]
 fn test_pre_child_vue_trailing_commanone_format_1_fbb92ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -590,7 +590,7 @@ fn test_pre_child_vue_trailing_commanone_format_1_fbb92ce4() {
 #[test]
 fn test_script_src_vue_semifalse_format_1_72ce1b9d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -603,7 +603,7 @@ fn test_script_src_vue_semifalse_format_1_72ce1b9d() {
 #[test]
 fn test_script_src_vue_trailing_commaes_5_format_1_72ce1b9d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -616,7 +616,7 @@ fn test_script_src_vue_trailing_commaes_5_format_1_72ce1b9d() {
 #[test]
 fn test_script_src_vue_trailing_commanone_format_1_72ce1b9d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -629,7 +629,7 @@ fn test_script_src_vue_trailing_commanone_format_1_72ce1b9d() {
 #[test]
 fn test_self_closing_vue_semifalse_format_1_fb2b536a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -642,7 +642,7 @@ fn test_self_closing_vue_semifalse_format_1_fb2b536a() {
 #[test]
 fn test_self_closing_vue_trailing_commaes_5_format_1_fb2b536a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -655,7 +655,7 @@ fn test_self_closing_vue_trailing_commaes_5_format_1_fb2b536a() {
 #[test]
 fn test_self_closing_vue_trailing_commanone_format_1_fb2b536a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -668,7 +668,7 @@ fn test_self_closing_vue_trailing_commanone_format_1_fb2b536a() {
 #[test]
 fn test_self_closing_style_vue_semifalse_format_1_2a01d682() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -681,7 +681,7 @@ fn test_self_closing_style_vue_semifalse_format_1_2a01d682() {
 #[test]
 fn test_self_closing_style_vue_trailing_commaes_5_format_1_2a01d682() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -694,7 +694,7 @@ fn test_self_closing_style_vue_trailing_commaes_5_format_1_2a01d682() {
 #[test]
 fn test_self_closing_style_vue_trailing_commanone_format_1_2a01d682() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -707,7 +707,7 @@ fn test_self_closing_style_vue_trailing_commanone_format_1_2a01d682() {
 #[test]
 fn test_slot_ts_vue_semifalse_format_1_cdba1545() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -720,7 +720,7 @@ fn test_slot_ts_vue_semifalse_format_1_cdba1545() {
 #[test]
 fn test_slot_ts_vue_trailing_commaes_5_format_1_cdba1545() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -733,7 +733,7 @@ fn test_slot_ts_vue_trailing_commaes_5_format_1_cdba1545() {
 #[test]
 fn test_slot_ts_vue_trailing_commanone_format_1_cdba1545() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -746,7 +746,7 @@ fn test_slot_ts_vue_trailing_commanone_format_1_cdba1545() {
 #[test]
 fn test_style_vue_semifalse_format_1_a038f778() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -759,7 +759,7 @@ fn test_style_vue_semifalse_format_1_a038f778() {
 #[test]
 fn test_style_vue_trailing_commaes_5_format_1_a038f778() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -772,7 +772,7 @@ fn test_style_vue_trailing_commaes_5_format_1_a038f778() {
 #[test]
 fn test_style_vue_trailing_commanone_format_1_a038f778() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -785,7 +785,7 @@ fn test_style_vue_trailing_commanone_format_1_a038f778() {
 #[test]
 fn test_tag_name_vue_semifalse_format_1_54a88e99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -798,7 +798,7 @@ fn test_tag_name_vue_semifalse_format_1_54a88e99() {
 #[test]
 fn test_tag_name_vue_trailing_commaes_5_format_1_54a88e99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -811,7 +811,7 @@ fn test_tag_name_vue_trailing_commaes_5_format_1_54a88e99() {
 #[test]
 fn test_tag_name_vue_trailing_commanone_format_1_54a88e99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -824,7 +824,7 @@ fn test_tag_name_vue_trailing_commanone_format_1_54a88e99() {
 #[test]
 fn test_template_vue_semifalse_format_1_a1b5b80e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -837,7 +837,7 @@ fn test_template_vue_semifalse_format_1_a1b5b80e() {
 #[test]
 fn test_template_vue_trailing_commaes_5_format_1_a1b5b80e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -850,7 +850,7 @@ fn test_template_vue_trailing_commaes_5_format_1_a1b5b80e() {
 #[test]
 fn test_template_vue_trailing_commanone_format_1_a1b5b80e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -863,7 +863,7 @@ fn test_template_vue_trailing_commanone_format_1_a1b5b80e() {
 #[test]
 fn test_template_dom_html_semifalse_format_1_6ef2e38a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .semi(false)
         .build()
@@ -876,7 +876,7 @@ fn test_template_dom_html_semifalse_format_1_6ef2e38a() {
 #[test]
 fn test_template_dom_html_trailing_commaes_5_format_1_6ef2e38a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -889,7 +889,7 @@ fn test_template_dom_html_trailing_commaes_5_format_1_6ef2e38a() {
 #[test]
 fn test_template_dom_html_trailing_commanone_format_1_6ef2e38a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -902,7 +902,7 @@ fn test_template_dom_html_trailing_commanone_format_1_6ef2e38a() {
 #[test]
 fn test_template_lang_vue_semifalse_format_1_1c55fca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -915,7 +915,7 @@ fn test_template_lang_vue_semifalse_format_1_1c55fca2() {
 #[test]
 fn test_template_lang_vue_trailing_commaes_5_format_1_1c55fca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -928,7 +928,7 @@ fn test_template_lang_vue_trailing_commaes_5_format_1_1c55fca2() {
 #[test]
 fn test_template_lang_vue_trailing_commanone_format_1_1c55fca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -941,7 +941,7 @@ fn test_template_lang_vue_trailing_commanone_format_1_1c55fca2() {
 #[test]
 fn test_test_vue_semifalse_format_1_a1e4ec14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -954,7 +954,7 @@ fn test_test_vue_semifalse_format_1_a1e4ec14() {
 #[test]
 fn test_test_vue_trailing_commaes_5_format_1_a1e4ec14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -967,7 +967,7 @@ fn test_test_vue_trailing_commaes_5_format_1_a1e4ec14() {
 #[test]
 fn test_test_vue_trailing_commanone_format_1_a1e4ec14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -980,7 +980,7 @@ fn test_test_vue_trailing_commanone_format_1_a1e4ec14() {
 #[test]
 fn test_v_if_vue_semifalse_format_1_57152ca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .semi(false)
         .build()
@@ -993,7 +993,7 @@ fn test_v_if_vue_semifalse_format_1_57152ca2() {
 #[test]
 fn test_v_if_vue_trailing_commaes_5_format_1_57152ca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -1006,7 +1006,7 @@ fn test_v_if_vue_trailing_commaes_5_format_1_57152ca2() {
 #[test]
 fn test_v_if_vue_trailing_commanone_format_1_57152ca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .trailing_comma("none")
         .build()

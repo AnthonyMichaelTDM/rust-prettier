@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_basics_hbs_print_width_40_format_1_218a6559() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_basics_hbs_print_width_40_format_1_218a6559() {
 #[test]
 fn test_boss_hbs_print_width_40_format_1_ca18ca6e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_boss_hbs_print_width_40_format_1_ca18ca6e() {
 #[test]
 fn test_curly_hbs_print_width_40_format_1_9cec655c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -45,7 +45,7 @@ fn test_curly_hbs_print_width_40_format_1_9cec655c() {
 #[test]
 fn test_display_inline_block_hbs_print_width_40_format_1_69dd8a70() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_display_inline_block_hbs_print_width_40_format_1_69dd8a70() {
 #[test]
 fn test_display_none_hbs_print_width_40_format_1_30ef9dce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_display_none_hbs_print_width_40_format_1_30ef9dce() {
 #[test]
 fn test_fill_hbs_print_width_40_format_1_a51f7b7e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_fill_hbs_print_width_40_format_1_a51f7b7e() {
 #[test]
 fn test_inline_element_hbs_print_width_40_format_1_67ab3d79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_inline_element_hbs_print_width_40_format_1_67ab3d79() {
 #[test]
 fn test_non_breaking_whitespace_hbs_print_width_40_format_1_36686950() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_non_breaking_whitespace_hbs_print_width_40_format_1_36686950() {
 #[test]
 fn test_preserved_spaces_and_breaks_hbs_print_width_40_format_1_5a5436e7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -117,7 +117,7 @@ fn test_preserved_spaces_and_breaks_hbs_print_width_40_format_1_5a5436e7() {
 #[test]
 fn test_punctuation_hbs_print_width_40_format_1_27ce49f7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -129,7 +129,7 @@ fn test_punctuation_hbs_print_width_40_format_1_27ce49f7() {
 #[test]
 fn test_surrounding_linebreak_hbs_print_width_40_format_1_2c745e6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -141,7 +141,7 @@ fn test_surrounding_linebreak_hbs_print_width_40_format_1_2c745e6f() {
 #[test]
 fn test_table_hbs_print_width_40_format_1_2b5f20f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -153,7 +153,7 @@ fn test_table_hbs_print_width_40_format_1_2b5f20f4() {
 #[test]
 fn test_textarea_hbs_print_width_40_format_1_01024a9e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();
@@ -165,7 +165,7 @@ fn test_textarea_hbs_print_width_40_format_1_01024a9e() {
 #[test]
 fn test_whitespace_control_hbs_print_width_40_format_1_39af7daa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(40)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_cases_html_format_1_861f1c79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -21,7 +21,7 @@ fn test_cases_html_format_1_861f1c79() {
 #[test]
 fn test_document_html_format_1_f5b604a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -33,7 +33,7 @@ fn test_document_html_format_1_f5b604a9() {
 #[test]
 fn test_long_lines_html_format_1_04dc7fc8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

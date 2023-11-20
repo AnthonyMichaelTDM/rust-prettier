@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrows_js_babel_flow_format_1_dd25fc9d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -16,7 +16,10 @@ fn test_arrows_js_babel_flow_format_1_dd25fc9d() {
 }
 #[test]
 fn test_arrows_js_flow_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

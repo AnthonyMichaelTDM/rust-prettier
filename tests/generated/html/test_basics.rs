@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_broken_html_html_format_1_8bf60b99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_broken_html_html_format_1_8bf60b99() {
 #[test]
 fn test_comment_html_format_1_ef5a3410() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_comment_html_format_1_ef5a3410() {
 #[test]
 fn test_empty_html_format_1_68b329da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_empty_html_format_1_68b329da() {
 #[test]
 fn test_empty_doc_html_format_1_40ec566a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_empty_doc_html_format_1_40ec566a() {
 #[test]
 fn test_form_html_format_1_db01a4e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_form_html_format_1_db01a4e0() {
 #[test]
 fn test_hello_world_html_format_1_6b32a0d1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_hello_world_html_format_1_6b32a0d1() {
 #[test]
 fn test_html_comments_html_format_1_78ffce31() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_html_comments_html_format_1_78ffce31() {
 #[test]
 fn test_html_5_boilerplate_html_format_1_fe8bb766() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_html_5_boilerplate_html_format_1_fe8bb766() {
 #[test]
 fn test_issue_9368_html_format_1_4ca688fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -117,7 +117,7 @@ fn test_issue_9368_html_format_1_4ca688fc() {
 #[test]
 fn test_issue_9368_2_html_format_1_3fedb30e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -129,7 +129,7 @@ fn test_issue_9368_2_html_format_1_3fedb30e() {
 #[test]
 fn test_issue_9368_3_html_format_1_dc423d5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -145,7 +145,7 @@ fn test_issue_9368_3_html_format_1_dc423d5e() {
 #[test]
 fn test_more_html_html_format_1_29d9bc23() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -157,7 +157,7 @@ fn test_more_html_html_format_1_29d9bc23() {
 #[test]
 fn test_void_elements_html_format_1_d99149a4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -169,7 +169,7 @@ fn test_void_elements_html_format_1_d99149a4() {
 #[test]
 fn test_void_elements_2_html_format_1_984d7ae4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -181,7 +181,7 @@ fn test_void_elements_2_html_format_1_984d7ae4() {
 #[test]
 fn test_with_colon_html_format_1_e4060f1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

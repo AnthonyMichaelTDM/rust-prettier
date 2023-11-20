@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_logical_assignment_js_format_1_0a95194a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

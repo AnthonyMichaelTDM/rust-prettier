@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_enum_unknown_members_js_trailing_commaall_format_1_c48af451() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_enum_unknown_members_js_trailing_commaall_format_1_c48af451() {
 #[test]
 fn test_enum_unknown_members_empty_js_trailing_commaall_format_1_d271186d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_asterisk_md_prose_wrapalways_format_1_15620974() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_asterisk_md_prose_wrapalways_format_1_15620974() {
 #[test]
 fn test_underscore_md_prose_wrapalways_format_1_664644af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_sfc_blocks_vue_single_attribute_per_linetrue_format_1_55e70240() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .single_attribute_per_line(true)
         .build()
@@ -18,7 +18,7 @@ fn test_sfc_blocks_vue_single_attribute_per_linetrue_format_1_55e70240() {
 #[test]
 fn test_sfc_blocks_vue_format_1_55e70240() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,7 @@ fn test_sfc_blocks_vue_format_1_55e70240() {
 #[test]
 fn test_single_attribute_per_line_vue_single_attribute_per_linetrue_format_1_22b10caf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .single_attribute_per_line(true)
         .build()
@@ -43,7 +43,7 @@ fn test_single_attribute_per_line_vue_single_attribute_per_linetrue_format_1_22b
 #[test]
 fn test_single_attribute_per_line_vue_format_1_22b10caf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comment_tag_js_format_1_3e8c9ca6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_comment_tag_js_format_1_3e8c9ca6() {
 #[test]
 fn test_definitions_js_format_1_85735e87() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -34,7 +34,7 @@ fn test_definitions_js_format_1_85735e87() {
 #[test]
 fn test_escape_js_format_1_569b4cc1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -46,7 +46,7 @@ fn test_escape_js_format_1_569b4cc1() {
 #[test]
 fn test_expressions_js_format_1_bd7127ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -58,7 +58,7 @@ fn test_expressions_js_format_1_bd7127ea() {
 #[test]
 fn test_graphql_js_format_1_55a22759() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -70,7 +70,7 @@ fn test_graphql_js_format_1_55a22759() {
 #[test]
 fn test_graphql_tag_js_format_1_6bdd2dd6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -82,7 +82,7 @@ fn test_graphql_tag_js_format_1_6bdd2dd6() {
 #[test]
 fn test_invalid_js_format_1_fd645794() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -94,7 +94,7 @@ fn test_invalid_js_format_1_fd645794() {
 #[test]
 fn test_react_relay_js_format_1_711441bd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_elastic_header_html_format_1_2015e17d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_elastic_header_html_format_1_2015e17d() {
 #[test]
 fn test_hello_world_html_format_1_458df905() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_hello_world_html_format_1_458df905() {
 #[test]
 fn test_upper_case_2_html_format_1_39092d61() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_upper_case_2_html_format_1_39092d61() {
 #[test]
 fn test_upper_case_html_tag_html_format_1_9a2d9078() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_upper_case_html_tag_html_format_1_9a2d9078() {
 #[test]
 fn test_upper_case_html_tag_2_html_format_1_0a6a2668() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_upper_case_html_tag_2_html_format_1_0a6a2668() {
 #[test]
 fn test_upper_case_html_tag_3_html_format_1_4a71015a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -80,7 +80,7 @@ fn test_upper_case_html_tag_3_html_format_1_4a71015a() {
 #[test]
 fn test_upper_case_html_tag_4_html_format_1_b0754683() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -92,7 +92,7 @@ fn test_upper_case_html_tag_4_html_format_1_b0754683() {
 #[test]
 fn test_void_element_html_format_1_dc93e493() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

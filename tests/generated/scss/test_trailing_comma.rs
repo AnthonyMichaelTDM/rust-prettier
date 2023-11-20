@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_at_rules_scss_trailing_commaes_5_format_1_9208d4ff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -18,7 +18,7 @@ fn test_at_rules_scss_trailing_commaes_5_format_1_9208d4ff() {
 #[test]
 fn test_at_rules_scss_trailing_commanone_format_1_9208d4ff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -31,7 +31,7 @@ fn test_at_rules_scss_trailing_commanone_format_1_9208d4ff() {
 #[test]
 fn test_declaration_scss_trailing_commaes_5_format_1_351a4dcc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -44,7 +44,7 @@ fn test_declaration_scss_trailing_commaes_5_format_1_351a4dcc() {
 #[test]
 fn test_declaration_scss_trailing_commanone_format_1_351a4dcc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -57,7 +57,7 @@ fn test_declaration_scss_trailing_commanone_format_1_351a4dcc() {
 #[test]
 fn test_list_scss_trailing_commaes_5_format_1_d1a3021a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -70,7 +70,7 @@ fn test_list_scss_trailing_commaes_5_format_1_d1a3021a() {
 #[test]
 fn test_list_scss_trailing_commanone_format_1_d1a3021a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -83,7 +83,7 @@ fn test_list_scss_trailing_commanone_format_1_d1a3021a() {
 #[test]
 fn test_map_scss_trailing_commaes_5_format_1_305b355c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -96,7 +96,7 @@ fn test_map_scss_trailing_commaes_5_format_1_305b355c() {
 #[test]
 fn test_map_scss_trailing_commanone_format_1_305b355c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -109,7 +109,7 @@ fn test_map_scss_trailing_commanone_format_1_305b355c() {
 #[test]
 fn test_selector_list_scss_trailing_commaes_5_format_1_d1e9c00d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -122,7 +122,7 @@ fn test_selector_list_scss_trailing_commaes_5_format_1_d1e9c00d() {
 #[test]
 fn test_selector_list_scss_trailing_commanone_format_1_d1e9c00d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -135,7 +135,7 @@ fn test_selector_list_scss_trailing_commanone_format_1_d1e9c00d() {
 #[test]
 fn test_variable_scss_trailing_commaes_5_format_1_257a4bf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -148,7 +148,7 @@ fn test_variable_scss_trailing_commaes_5_format_1_257a4bf8() {
 #[test]
 fn test_variable_scss_trailing_commanone_format_1_257a4bf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()

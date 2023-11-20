@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_kitchen_sink_graphql_format_1_f51a47bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_kitchen_sink_graphql_format_1_f51a47bb() {
 #[test]
 fn test_schema_kitchen_sink_graphql_format_1_2bdf666f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();

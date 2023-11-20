@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_inside_template_vue_vue_indent_script_and_stylefalse_format_1_e6d00990() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .vue_indent_script_and_style(false)
         .build()
@@ -18,7 +18,7 @@ fn test_inside_template_vue_vue_indent_script_and_stylefalse_format_1_e6d00990()
 #[test]
 fn test_inside_template_vue_vue_indent_script_and_styletrue_format_1_e6d00990() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .vue_indent_script_and_style(true)
         .build()
@@ -31,7 +31,7 @@ fn test_inside_template_vue_vue_indent_script_and_styletrue_format_1_e6d00990() 
 #[test]
 fn test_vue_tag_indent_vue_vue_indent_script_and_stylefalse_format_1_299ab9e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .vue_indent_script_and_style(false)
         .build()
@@ -44,7 +44,7 @@ fn test_vue_tag_indent_vue_vue_indent_script_and_stylefalse_format_1_299ab9e0() 
 #[test]
 fn test_vue_tag_indent_vue_vue_indent_script_and_styletrue_format_1_299ab9e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .vue_indent_script_and_style(true)
         .build()

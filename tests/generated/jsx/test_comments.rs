@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_eslint_disable_js_bracket_same_linetrue_format_1_31e7aee1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_eslint_disable_js_bracket_same_linetrue_format_1_31e7aee1() {
 fn test_in_attributes_js_bracket_same_linetrue_format_1_c12d59a4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,10 @@ fn test_in_attributes_js_bracket_same_linetrue_format_1_c12d59a4() {
 }
 #[test]
 fn test_in_end_tag_js_bracket_same_linetrue_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -38,7 +41,10 @@ fn test_in_end_tag_js_bracket_same_linetrue_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_in_end_tag_js_bracket_same_linetrue_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -48,7 +54,7 @@ fn test_in_end_tag_js_bracket_same_linetrue_typescript_format_1_d41d8cd9() {
 fn test_in_end_tag_js_bracket_same_linetrue_format_1_db3189b1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -61,7 +67,7 @@ fn test_in_end_tag_js_bracket_same_linetrue_format_1_db3189b1() {
 fn test_in_tags_js_bracket_same_linetrue_format_1_e5d6a89f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -74,7 +80,7 @@ fn test_in_tags_js_bracket_same_linetrue_format_1_e5d6a89f() {
 fn test_jsx_tag_comment_after_prop_js_bracket_same_linetrue_format_1_2a639ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -87,7 +93,7 @@ fn test_jsx_tag_comment_after_prop_js_bracket_same_linetrue_format_1_2a639ce4() 
 fn test_like_a_comment_in_jsx_text_js_bracket_same_linetrue_format_1_04141cd9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

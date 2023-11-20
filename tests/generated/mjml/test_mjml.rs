@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_empty_mjml_format_1_8bb12296() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("mjml")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_empty_mjml_format_1_8bb12296() {
 #[test]
 fn test_head_mjml_format_1_7a39d5c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("mjml")
         .print_width(80)
         .build()
         .unwrap();

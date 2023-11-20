@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_9734_md_trailing_commaall_format_1_ebdc8df0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_9734_md_trailing_commaall_format_1_ebdc8df0() {
 #[test]
 fn test_jsx_comment_md_trailing_commaall_format_1_b309925f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -31,7 +31,7 @@ fn test_jsx_comment_md_trailing_commaall_format_1_b309925f() {
 #[test]
 fn test_meta_in_code_block_md_trailing_commaall_format_1_a13a5346() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -44,7 +44,7 @@ fn test_meta_in_code_block_md_trailing_commaall_format_1_a13a5346() {
 #[test]
 fn test_trailing_comma_md_trailing_commaall_format_1_e188516a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .trailing_comma("all")
         .build()

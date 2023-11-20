@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_nested_quotes_json_quote_propspreserve_format_1_641f866b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .quote_props("preserve")
         .build()

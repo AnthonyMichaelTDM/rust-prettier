@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_single_attribute_per_line_js_single_attribute_per_linetrue_format_1_06ec9d35() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .single_attribute_per_line(true)
         .build()
@@ -18,7 +18,7 @@ fn test_single_attribute_per_line_js_single_attribute_per_linetrue_format_1_06ec
 #[test]
 fn test_single_attribute_per_line_js_format_1_06ec9d35() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow", "babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

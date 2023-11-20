@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_escaped_js_trailing_commaall_format_1_7da35aab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_escaped_js_trailing_commaall_format_1_7da35aab() {
 #[test]
 fn test_escaped_js_trailing_commaes_5_format_1_7da35aab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_escaped_js_trailing_commaes_5_format_1_7da35aab() {
 #[test]
 fn test_multiline_literal_js_trailing_commaall_format_1_74bb47c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -44,7 +44,7 @@ fn test_multiline_literal_js_trailing_commaall_format_1_74bb47c4() {
 #[test]
 fn test_multiline_literal_js_trailing_commaes_5_format_1_74bb47c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -56,7 +56,10 @@ fn test_multiline_literal_js_trailing_commaes_5_format_1_74bb47c4() {
 }
 #[test]
 fn test_non_octal_eight_and_nine_js_trailing_commaall_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -64,7 +67,10 @@ fn test_non_octal_eight_and_nine_js_trailing_commaall_acorn_format_1_d41d8cd9() 
 }
 #[test]
 fn test_non_octal_eight_and_nine_js_trailing_commaall_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -73,7 +79,7 @@ fn test_non_octal_eight_and_nine_js_trailing_commaall_espree_format_1_d41d8cd9()
 #[test]
 fn test_non_octal_eight_and_nine_js_trailing_commaall_format_1_959bf89a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -85,7 +91,10 @@ fn test_non_octal_eight_and_nine_js_trailing_commaall_format_1_959bf89a() {
 }
 #[test]
 fn test_non_octal_eight_and_nine_js_trailing_commaes_5_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -93,7 +102,10 @@ fn test_non_octal_eight_and_nine_js_trailing_commaes_5_acorn_format_1_d41d8cd9()
 }
 #[test]
 fn test_non_octal_eight_and_nine_js_trailing_commaes_5_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -102,7 +114,7 @@ fn test_non_octal_eight_and_nine_js_trailing_commaes_5_espree_format_1_d41d8cd9(
 #[test]
 fn test_non_octal_eight_and_nine_js_trailing_commaes_5_format_1_959bf89a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -115,7 +127,7 @@ fn test_non_octal_eight_and_nine_js_trailing_commaes_5_format_1_959bf89a() {
 #[test]
 fn test_strings_js_trailing_commaall_format_1_fa3beb71() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -128,7 +140,7 @@ fn test_strings_js_trailing_commaall_format_1_fa3beb71() {
 #[test]
 fn test_strings_js_trailing_commaes_5_format_1_fa3beb71() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -141,7 +153,7 @@ fn test_strings_js_trailing_commaes_5_format_1_fa3beb71() {
 #[test]
 fn test_template_literals_js_trailing_commaall_format_1_f3f169a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -154,7 +166,7 @@ fn test_template_literals_js_trailing_commaall_format_1_f3f169a1() {
 #[test]
 fn test_template_literals_js_trailing_commaes_5_format_1_f3f169a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()

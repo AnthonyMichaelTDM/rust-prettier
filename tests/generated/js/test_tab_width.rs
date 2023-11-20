@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_js_tab_width_4_format_1_038c69eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -18,7 +18,7 @@ fn test_class_js_tab_width_4_format_1_038c69eb() {
 #[test]
 fn test_class_js_format_1_038c69eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,7 @@ fn test_class_js_format_1_038c69eb() {
 #[test]
 fn test_nested_functions_spec_js_tab_width_4_format_1_d2844d83() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("spec.js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -43,7 +43,7 @@ fn test_nested_functions_spec_js_tab_width_4_format_1_d2844d83() {
 #[test]
 fn test_nested_functions_spec_js_format_1_d2844d83() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("spec.js")
         .print_width(80)
         .build()
         .unwrap();

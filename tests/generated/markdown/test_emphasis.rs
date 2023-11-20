@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_asterisk_md_prose_wrapalways_format_1_ae78015e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_asterisk_md_prose_wrapalways_format_1_ae78015e() {
 #[test]
 fn test_complex_md_prose_wrapalways_format_1_bb7a0796() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -35,7 +35,7 @@ fn test_complex_md_prose_wrapalways_format_1_bb7a0796() {
 #[test]
 fn test_special_md_prose_wrapalways_format_1_b78ef1d8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -48,7 +48,7 @@ fn test_special_md_prose_wrapalways_format_1_b78ef1d8() {
 #[test]
 fn test_underscore_md_prose_wrapalways_format_1_16db6593() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()

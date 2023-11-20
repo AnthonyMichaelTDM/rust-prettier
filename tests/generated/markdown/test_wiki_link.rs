@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_additional_spacing_md_prose_wrapalways_format_1_909eb6c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -22,7 +22,7 @@ fn test_additional_spacing_md_prose_wrapalways_format_1_909eb6c0() {
 #[test]
 fn test_additional_spacing_md_prose_wrapnever_format_1_909eb6c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -39,7 +39,7 @@ fn test_additional_spacing_md_prose_wrapnever_format_1_909eb6c0() {
 #[test]
 fn test_additional_spacing_md_prose_wrappreserve_format_1_909eb6c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -56,7 +56,7 @@ fn test_additional_spacing_md_prose_wrappreserve_format_1_909eb6c0() {
 #[test]
 fn test_end_of_line_md_prose_wrapalways_format_1_3a342cb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -69,7 +69,7 @@ fn test_end_of_line_md_prose_wrapalways_format_1_3a342cb0() {
 #[test]
 fn test_end_of_line_md_prose_wrapnever_format_1_3a342cb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -82,7 +82,7 @@ fn test_end_of_line_md_prose_wrapnever_format_1_3a342cb0() {
 #[test]
 fn test_end_of_line_md_prose_wrappreserve_format_1_3a342cb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -95,7 +95,7 @@ fn test_end_of_line_md_prose_wrappreserve_format_1_3a342cb0() {
 #[test]
 fn test_exceeds_line_length_md_prose_wrapalways_format_1_b4061339() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -108,7 +108,7 @@ fn test_exceeds_line_length_md_prose_wrapalways_format_1_b4061339() {
 #[test]
 fn test_exceeds_line_length_md_prose_wrapnever_format_1_b4061339() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -121,7 +121,7 @@ fn test_exceeds_line_length_md_prose_wrapnever_format_1_b4061339() {
 #[test]
 fn test_exceeds_line_length_md_prose_wrappreserve_format_1_b4061339() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -134,7 +134,7 @@ fn test_exceeds_line_length_md_prose_wrappreserve_format_1_b4061339() {
 #[test]
 fn test_exceeds_line_length_in_prose_md_prose_wrapalways_format_1_742c1f44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -147,7 +147,7 @@ fn test_exceeds_line_length_in_prose_md_prose_wrapalways_format_1_742c1f44() {
 #[test]
 fn test_exceeds_line_length_in_prose_md_prose_wrapnever_format_1_742c1f44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -160,7 +160,7 @@ fn test_exceeds_line_length_in_prose_md_prose_wrapnever_format_1_742c1f44() {
 #[test]
 fn test_exceeds_line_length_in_prose_md_prose_wrappreserve_format_1_742c1f44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -173,7 +173,7 @@ fn test_exceeds_line_length_in_prose_md_prose_wrappreserve_format_1_742c1f44() {
 #[test]
 fn test_exceeds_line_length_in_prose_broken_md_prose_wrapalways_format_1_d42641e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -186,7 +186,7 @@ fn test_exceeds_line_length_in_prose_broken_md_prose_wrapalways_format_1_d42641e
 #[test]
 fn test_exceeds_line_length_in_prose_broken_md_prose_wrapnever_format_1_d42641e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -199,7 +199,7 @@ fn test_exceeds_line_length_in_prose_broken_md_prose_wrapnever_format_1_d42641e6
 #[test]
 fn test_exceeds_line_length_in_prose_broken_md_prose_wrappreserve_format_1_d42641e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -212,7 +212,7 @@ fn test_exceeds_line_length_in_prose_broken_md_prose_wrappreserve_format_1_d4264
 #[test]
 fn test_extra_brackets_md_prose_wrapalways_format_1_c14b2378() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -225,7 +225,7 @@ fn test_extra_brackets_md_prose_wrapalways_format_1_c14b2378() {
 #[test]
 fn test_extra_brackets_md_prose_wrapnever_format_1_c14b2378() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -238,7 +238,7 @@ fn test_extra_brackets_md_prose_wrapnever_format_1_c14b2378() {
 #[test]
 fn test_extra_brackets_md_prose_wrappreserve_format_1_c14b2378() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -251,7 +251,7 @@ fn test_extra_brackets_md_prose_wrappreserve_format_1_c14b2378() {
 #[test]
 fn test_extra_brackets_leading_md_prose_wrapalways_format_1_b8dfc396() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -264,7 +264,7 @@ fn test_extra_brackets_leading_md_prose_wrapalways_format_1_b8dfc396() {
 #[test]
 fn test_extra_brackets_leading_md_prose_wrapnever_format_1_b8dfc396() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -277,7 +277,7 @@ fn test_extra_brackets_leading_md_prose_wrapnever_format_1_b8dfc396() {
 #[test]
 fn test_extra_brackets_leading_md_prose_wrappreserve_format_1_b8dfc396() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -290,7 +290,7 @@ fn test_extra_brackets_leading_md_prose_wrappreserve_format_1_b8dfc396() {
 #[test]
 fn test_extra_brackets_trailing_md_prose_wrapalways_format_1_ccdde741() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -303,7 +303,7 @@ fn test_extra_brackets_trailing_md_prose_wrapalways_format_1_ccdde741() {
 #[test]
 fn test_extra_brackets_trailing_md_prose_wrapnever_format_1_ccdde741() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -316,7 +316,7 @@ fn test_extra_brackets_trailing_md_prose_wrapnever_format_1_ccdde741() {
 #[test]
 fn test_extra_brackets_trailing_md_prose_wrappreserve_format_1_ccdde741() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -329,7 +329,7 @@ fn test_extra_brackets_trailing_md_prose_wrappreserve_format_1_ccdde741() {
 #[test]
 fn test_multi_line_md_prose_wrapalways_format_1_b398fbde() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -342,7 +342,7 @@ fn test_multi_line_md_prose_wrapalways_format_1_b398fbde() {
 #[test]
 fn test_multi_line_md_prose_wrapnever_format_1_b398fbde() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -355,7 +355,7 @@ fn test_multi_line_md_prose_wrapnever_format_1_b398fbde() {
 #[test]
 fn test_multi_line_md_prose_wrappreserve_format_1_b398fbde() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -368,7 +368,7 @@ fn test_multi_line_md_prose_wrappreserve_format_1_b398fbde() {
 #[test]
 fn test_nested_link_md_prose_wrapalways_format_1_9cb44fd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -381,7 +381,7 @@ fn test_nested_link_md_prose_wrapalways_format_1_9cb44fd5() {
 #[test]
 fn test_nested_link_md_prose_wrapnever_format_1_9cb44fd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -394,7 +394,7 @@ fn test_nested_link_md_prose_wrapnever_format_1_9cb44fd5() {
 #[test]
 fn test_nested_link_md_prose_wrappreserve_format_1_9cb44fd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -407,7 +407,7 @@ fn test_nested_link_md_prose_wrappreserve_format_1_9cb44fd5() {
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_420b8e05() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -420,7 +420,7 @@ fn test_simple_md_prose_wrapalways_format_1_420b8e05() {
 #[test]
 fn test_simple_md_prose_wrapnever_format_1_420b8e05() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -433,7 +433,7 @@ fn test_simple_md_prose_wrapnever_format_1_420b8e05() {
 #[test]
 fn test_simple_md_prose_wrappreserve_format_1_420b8e05() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()
@@ -446,7 +446,7 @@ fn test_simple_md_prose_wrappreserve_format_1_420b8e05() {
 #[test]
 fn test_with_whitespace_md_prose_wrapalways_format_1_735e1269() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -463,7 +463,7 @@ fn test_with_whitespace_md_prose_wrapalways_format_1_735e1269() {
 #[test]
 fn test_with_whitespace_md_prose_wrapnever_format_1_735e1269() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -480,7 +480,7 @@ fn test_with_whitespace_md_prose_wrapnever_format_1_735e1269() {
 #[test]
 fn test_with_whitespace_md_prose_wrappreserve_format_1_735e1269() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("preserve")
         .build()

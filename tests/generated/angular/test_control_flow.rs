@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_after_close_tag_html_format_1_5d6c7ee1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_after_close_tag_html_format_1_5d6c7ee1() {
 #[test]
 fn test_chid_html_format_1_7485573e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,7 @@ fn test_chid_html_format_1_7485573e() {
 #[test]
 fn test_defer_html_format_1_41bedaba() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -42,7 +42,7 @@ fn test_defer_html_format_1_41bedaba() {
 #[test]
 fn test_element_tags_html_format_1_5abe714a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -54,7 +54,7 @@ fn test_element_tags_html_format_1_5abe714a() {
 #[test]
 fn test_for_html_format_1_9bc1cdc8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -66,7 +66,7 @@ fn test_for_html_format_1_9bc1cdc8() {
 #[test]
 fn test_if_html_format_1_0c8bf85f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -78,7 +78,7 @@ fn test_if_html_format_1_0c8bf85f() {
 #[test]
 fn test_mix_html_format_1_8ba93dc5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -90,7 +90,7 @@ fn test_mix_html_format_1_8ba93dc5() {
 #[test]
 fn test_switch_html_format_1_bda03d4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -102,7 +102,7 @@ fn test_switch_html_format_1_bda03d4f() {
 #[test]
 fn test_unclosed_html_format_1_fb198443() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -114,7 +114,7 @@ fn test_unclosed_html_format_1_fb198443() {
 #[test]
 fn test_unknown_block_html_format_1_b3bdde1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -126,7 +126,7 @@ fn test_unknown_block_html_format_1_b3bdde1a() {
 #[test]
 fn test_with_comment_html_format_1_39506734() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

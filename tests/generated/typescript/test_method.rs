@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_issue_10352_consistency_ts_format_1_d511cd13() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_issue_10352_consistency_ts_format_1_d511cd13() {
 #[test]
 fn test_method_signature_ts_format_1_2dfda62a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_method_signature_ts_format_1_2dfda62a() {
 #[test]
 fn test_method_signature_with_wrapped_return_type_ts_format_1_d1fce9d8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_method_signature_with_wrapped_return_type_ts_format_1_d1fce9d8() {
 #[test]
 fn test_semi_ts_format_1_8a21e15e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_semi_ts_format_1_8a21e15e() {
 #[test]
 fn test_type_literal_optional_method_ts_format_1_e37c3568() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

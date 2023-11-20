@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_component_hbs_format_1_05027681() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_component_hbs_format_1_05027681() {
 #[test]
 fn test_literals_hbs_format_1_4fd29d7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_literals_hbs_format_1_4fd29d7f() {
 #[test]
 fn test_named_block_hbs_format_1_a46fb6d7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_named_block_hbs_format_1_a46fb6d7() {
 #[test]
 fn test_nested_path_hbs_format_1_90cb90bf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_nested_path_hbs_format_1_90cb90bf() {
 #[test]
 fn test_raw_hbs_format_1_96e82d97() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();

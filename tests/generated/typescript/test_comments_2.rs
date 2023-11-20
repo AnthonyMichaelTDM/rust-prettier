@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_dangling_ts_semifalse_format_1_7f70bc26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .semi(false)
         .build()
@@ -23,7 +23,7 @@ fn test_dangling_ts_semifalse_format_1_7f70bc26() {
 #[test]
 fn test_dangling_ts_format_1_7f70bc26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -40,7 +40,7 @@ fn test_dangling_ts_format_1_7f70bc26() {
 #[test]
 fn test_issues_ts_semifalse_format_1_23eed1a5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .semi(false)
         .build()
@@ -53,7 +53,7 @@ fn test_issues_ts_semifalse_format_1_23eed1a5() {
 #[test]
 fn test_issues_ts_format_1_23eed1a5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_issues_ts_format_1_23eed1a5() {
 #[test]
 fn test_last_arg_ts_semifalse_format_1_07d2f8bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .semi(false)
         .build()
@@ -78,7 +78,7 @@ fn test_last_arg_ts_semifalse_format_1_07d2f8bc() {
 #[test]
 fn test_last_arg_ts_format_1_07d2f8bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

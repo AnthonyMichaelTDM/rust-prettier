@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_declaration_22_ts_format_1_e048cef4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_class_declaration_22_ts_format_1_e048cef4() {
 #[test]
 fn test_any_is_assignable_to_object_ts_format_1_4ca91a37() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_any_is_assignable_to_object_ts_format_1_4ca91a37() {
 #[test]
 fn test_cast_of_await_ts_format_1_30e65afa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_cast_of_await_ts_format_1_30e65afa() {
 #[test]
 fn test_cast_parentheses_ts_format_1_47807bfc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_cast_parentheses_ts_format_1_47807bfc() {
 #[test]
 fn test_cast_test_ts_format_1_6000ec9f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_cast_test_ts_format_1_6000ec9f() {
 #[test]
 fn test_check_infinite_expansion_termination_ts_format_1_996b7072() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_check_infinite_expansion_termination_ts_format_1_996b7072() {
 #[test]
 fn test_comment_in_namespace_declaration_with_identifier_path_name_ts_format_1_a7bf0779() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_comment_in_namespace_declaration_with_identifier_path_name_ts_format_1_a
 #[test]
 fn test_comments_interface_ts_format_1_7c5d47a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -109,7 +109,7 @@ fn test_comments_interface_ts_format_1_7c5d47a7() {
 #[test]
 fn test_contextual_signature_instantiation_2_ts_format_1_61fa81f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -121,7 +121,7 @@ fn test_contextual_signature_instantiation_2_ts_format_1_61fa81f1() {
 #[test]
 fn test_declare_dotted_module_name_ts_format_1_b780bed0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -132,7 +132,10 @@ fn test_declare_dotted_module_name_ts_format_1_b780bed0() {
 }
 #[test]
 fn test_decrement_and_increment_operators_ts_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -141,7 +144,7 @@ fn test_decrement_and_increment_operators_ts_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_decrement_and_increment_operators_ts_format_1_587118d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -153,7 +156,7 @@ fn test_decrement_and_increment_operators_ts_format_1_587118d5() {
 #[test]
 fn test_es_5_export_default_class_declaration_4_ts_format_1_392bca79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -165,7 +168,7 @@ fn test_es_5_export_default_class_declaration_4_ts_format_1_392bca79() {
 #[test]
 fn test_function_overloads_on_generic_arity_1_ts_format_1_bc0a2247() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -177,7 +180,7 @@ fn test_function_overloads_on_generic_arity_1_ts_format_1_bc0a2247() {
 #[test]
 fn test_global_is_contextual_keyword_ts_format_1_94c77f14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -189,7 +192,7 @@ fn test_global_is_contextual_keyword_ts_format_1_94c77f14() {
 #[test]
 fn test_index_signature_with_initializer_ts_format_1_b0820cc3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -201,7 +204,7 @@ fn test_index_signature_with_initializer_ts_format_1_b0820cc3() {
 #[test]
 fn test_mapped_type_with_combined_type_mappers_ts_format_1_c402ded1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -213,7 +216,7 @@ fn test_mapped_type_with_combined_type_mappers_ts_format_1_c402ded1() {
 #[test]
 fn test_modifiers_on_interface_index_signature_1_ts_format_1_48df6fcb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -225,7 +228,7 @@ fn test_modifiers_on_interface_index_signature_1_ts_format_1_48df6fcb() {
 #[test]
 fn test_privacy_glo_import_ts_format_1_ddd94c90() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

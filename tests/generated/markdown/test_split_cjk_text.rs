@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_chinese_japanese_md_prose_wrapalways_format_1_f88d35ce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_chinese_japanese_md_prose_wrapalways_format_1_f88d35ce() {
 #[test]
 fn test_han_kana_alnum_md_prose_wrapalways_format_1_92a11556() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -31,7 +31,7 @@ fn test_han_kana_alnum_md_prose_wrapalways_format_1_92a11556() {
 #[test]
 fn test_korean_md_prose_wrapalways_format_1_763c15b1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -44,7 +44,7 @@ fn test_korean_md_prose_wrapalways_format_1_763c15b1() {
 #[test]
 fn test_link_md_prose_wrapalways_format_1_44e7f1dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -57,7 +57,7 @@ fn test_link_md_prose_wrapalways_format_1_44e7f1dd() {
 #[test]
 fn test_mixed_md_prose_wrapalways_format_1_5264ed27() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -70,7 +70,7 @@ fn test_mixed_md_prose_wrapalways_format_1_5264ed27() {
 #[test]
 fn test_space_md_prose_wrapalways_format_1_b140f499() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -83,7 +83,7 @@ fn test_space_md_prose_wrapalways_format_1_b140f499() {
 #[test]
 fn test_symbol_space_new_line_md_prose_wrapalways_format_1_854839b0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()

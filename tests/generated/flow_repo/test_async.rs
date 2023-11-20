@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_async_js_format_1_ca0497be() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_async_js_format_1_ca0497be() {
 #[test]
 fn test_async_base_class_js_format_1_f643badc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_async_base_class_js_format_1_f643badc() {
 #[test]
 fn test_async_parse_js_format_1_77443f03() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_async_parse_js_format_1_77443f03() {
 #[test]
 fn test_async_promise_js_format_1_29a796b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_async_promise_js_format_1_29a796b4() {
 #[test]
 fn test_async_return_void_js_format_1_b833b340() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_async_return_void_js_format_1_b833b340() {
 #[test]
 fn test_async_2_js_format_1_4c984d5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_async_2_js_format_1_4c984d5e() {
 #[test]
 fn test_async_3_js_format_1_bc6eb1ab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_async_3_js_format_1_bc6eb1ab() {
 #[test]
 fn test_await_parse_js_format_1_1c53a874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

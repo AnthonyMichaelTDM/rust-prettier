@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_generic_component_tsx_format_1_8be6b91f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_generic_component_tsx_format_1_8be6b91f() {
 #[test]
 fn test_keyword_tsx_format_1_1f24a857() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_keyword_tsx_format_1_1f24a857() {
 #[test]
 fn test_member_expression_tsx_format_1_f5df4608() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_member_expression_tsx_format_1_f5df4608() {
 #[test]
 fn test_not_react_ts_format_1_45f4b7ec() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_not_react_ts_format_1_45f4b7ec() {
 #[test]
 fn test_react_tsx_format_1_75a18212() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_react_tsx_format_1_75a18212() {
 #[test]
 fn test_this_tsx_format_1_9a0444ad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_this_tsx_format_1_9a0444ad() {
 #[test]
 fn test_type_parameters_tsx_format_1_39feef19() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();
@@ -89,7 +89,7 @@ fn test_type_parameters_tsx_format_1_39feef19() {
 #[test]
 fn test_url_tsx_format_1_4ac89751() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .build()
         .unwrap();

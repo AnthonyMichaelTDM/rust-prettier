@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_crlf_css_format_1_1ebcb736() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_crlf_css_format_1_1ebcb736() {
 #[test]
 fn test_at_rules_css_format_1_b7d1e4c3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_at_rules_css_format_1_b7d1e4c3() {
 #[test]
 fn test_block_css_format_1_f658e26b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_block_css_format_1_f658e26b() {
 #[test]
 fn test_bug_css_format_1_7742b546() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_bug_css_format_1_7742b546() {
 #[test]
 fn test_custom_properties_css_format_1_d9f48b0b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_custom_properties_css_format_1_d9f48b0b() {
 #[test]
 fn test_declaration_css_format_1_3e51f647() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_declaration_css_format_1_3e51f647() {
 #[test]
 fn test_prettier_ignore_css_format_1_a4fd5ff7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_prettier_ignore_css_format_1_a4fd5ff7() {
 #[test]
 fn test_selectors_css_format_1_55476360() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_selectors_css_format_1_55476360() {
 #[test]
 fn test_source_map_css_format_1_0581a184() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -121,7 +121,7 @@ fn test_source_map_css_format_1_0581a184() {
 #[test]
 fn test_types_css_format_1_475d0b05() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();

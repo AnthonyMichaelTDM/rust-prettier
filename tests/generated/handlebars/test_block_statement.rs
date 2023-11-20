@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_block_statement_hbs_format_1_42eb9699() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_block_statement_hbs_format_1_42eb9699() {
 #[test]
 fn test_custom_else_hbs_format_1_48938cc3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_custom_else_hbs_format_1_48938cc3() {
 #[test]
 fn test_each_hbs_format_1_51caac3b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_each_hbs_format_1_51caac3b() {
 #[test]
 fn test_if_else_hbs_format_1_8c8a30a0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_if_else_hbs_format_1_8c8a30a0() {
 #[test]
 fn test_loop_hbs_format_1_d490d6b1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();

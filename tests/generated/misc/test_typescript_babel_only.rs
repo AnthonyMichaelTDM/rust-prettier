@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_decorator_auto_accessors_new_line_ts_format_1_da0b4aaf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_decorator_auto_accessors_new_line_ts_format_1_da0b4aaf() {
 #[test]
 fn test_parenthesized_decorators_call_expression_ts_format_1_b2f4d19f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_parenthesized_decorators_call_expression_ts_format_1_b2f4d19f() {
 #[test]
 fn test_parenthesized_decorators_tagged_template_ts_format_1_e0f70504() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_js_experimental_ternariestrue_format_1_db5a0ff2() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -18,7 +18,7 @@ fn test_comments_js_experimental_ternariestrue_format_1_db5a0ff2() {
 #[test]
 fn test_comments_js_format_1_db5a0ff2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -31,7 +31,7 @@ fn test_comments_js_format_1_db5a0ff2() {
 fn test_new_expression_js_experimental_ternariestrue_format_1_c7d17db5() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -43,7 +43,7 @@ fn test_new_expression_js_experimental_ternariestrue_format_1_c7d17db5() {
 #[test]
 fn test_new_expression_js_format_1_c7d17db5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -56,7 +56,7 @@ fn test_new_expression_js_format_1_c7d17db5() {
 fn test_new_ternary_examples_js_experimental_ternariestrue_format_1_343aeb5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -68,7 +68,7 @@ fn test_new_ternary_examples_js_experimental_ternariestrue_format_1_343aeb5b() {
 #[test]
 fn test_new_ternary_examples_js_format_1_343aeb5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_new_ternary_examples_js_format_1_343aeb5b() {
 fn test_new_ternary_spec_js_experimental_ternariestrue_format_1_d76fc43f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_new_ternary_spec_js_experimental_ternariestrue_format_1_d76fc43f() {
 #[test]
 fn test_new_ternary_spec_js_format_1_d76fc43f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -106,7 +106,7 @@ fn test_new_ternary_spec_js_format_1_d76fc43f() {
 fn test_no_confusing_arrow_js_experimental_ternariestrue_format_1_525b932b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -122,7 +122,7 @@ fn test_no_confusing_arrow_js_experimental_ternariestrue_format_1_525b932b() {
 #[test]
 fn test_no_confusing_arrow_js_format_1_525b932b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -139,7 +139,7 @@ fn test_no_confusing_arrow_js_format_1_525b932b() {
 fn test_postfix_ternary_regressions_js_experimental_ternariestrue_format_1_5a834bc9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -151,7 +151,7 @@ fn test_postfix_ternary_regressions_js_experimental_ternariestrue_format_1_5a834
 #[test]
 fn test_postfix_ternary_regressions_js_format_1_5a834bc9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

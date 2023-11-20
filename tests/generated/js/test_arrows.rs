@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_function_expression_js_arrow_parensalways_format_1_de06ef4a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_arrow_function_expression_js_arrow_parensalways_format_1_de06ef4a() {
 fn test_arrow_function_expression_js_arrow_parensavoid_format_1_de06ef4a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_arrow_function_expression_js_arrow_parensavoid_format_1_de06ef4a() {
 fn test_arrow_chain_with_trailing_comments_js_arrow_parensalways_format_1_4d16462d() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -45,7 +45,7 @@ fn test_arrow_chain_with_trailing_comments_js_arrow_parensalways_format_1_4d1646
 fn test_arrow_chain_with_trailing_comments_js_arrow_parensavoid_format_1_4d16462d() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -58,7 +58,7 @@ fn test_arrow_chain_with_trailing_comments_js_arrow_parensavoid_format_1_4d16462
 fn test_assignment_chain_with_arrow_chain_js_arrow_parensalways_format_1_b78e6e3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -71,7 +71,7 @@ fn test_assignment_chain_with_arrow_chain_js_arrow_parensalways_format_1_b78e6e3
 fn test_assignment_chain_with_arrow_chain_js_arrow_parensavoid_format_1_b78e6e3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -84,7 +84,7 @@ fn test_assignment_chain_with_arrow_chain_js_arrow_parensavoid_format_1_b78e6e3c
 fn test_block_like_js_arrow_parensalways_format_1_08b3fecd() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -97,7 +97,7 @@ fn test_block_like_js_arrow_parensalways_format_1_08b3fecd() {
 fn test_block_like_js_arrow_parensavoid_format_1_08b3fecd() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -110,7 +110,7 @@ fn test_block_like_js_arrow_parensavoid_format_1_08b3fecd() {
 fn test_call_js_arrow_parensalways_format_1_2685418f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -123,7 +123,7 @@ fn test_call_js_arrow_parensalways_format_1_2685418f() {
 fn test_call_js_arrow_parensavoid_format_1_2685418f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -136,7 +136,7 @@ fn test_call_js_arrow_parensavoid_format_1_2685418f() {
 fn test_chain_as_arg_js_arrow_parensalways_format_1_5a1fc2de() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -149,7 +149,7 @@ fn test_chain_as_arg_js_arrow_parensalways_format_1_5a1fc2de() {
 fn test_chain_as_arg_js_arrow_parensavoid_format_1_5a1fc2de() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -162,7 +162,7 @@ fn test_chain_as_arg_js_arrow_parensavoid_format_1_5a1fc2de() {
 fn test_chain_in_logical_expression_js_arrow_parensalways_format_1_8d593511() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -175,7 +175,7 @@ fn test_chain_in_logical_expression_js_arrow_parensalways_format_1_8d593511() {
 fn test_chain_in_logical_expression_js_arrow_parensavoid_format_1_8d593511() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -188,7 +188,7 @@ fn test_chain_in_logical_expression_js_arrow_parensavoid_format_1_8d593511() {
 fn test_comment_js_arrow_parensalways_format_1_30d56e1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -201,7 +201,7 @@ fn test_comment_js_arrow_parensalways_format_1_30d56e1a() {
 fn test_comment_js_arrow_parensavoid_format_1_30d56e1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -214,7 +214,7 @@ fn test_comment_js_arrow_parensavoid_format_1_30d56e1a() {
 fn test_curried_js_arrow_parensalways_format_1_056bfff9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -227,7 +227,7 @@ fn test_curried_js_arrow_parensalways_format_1_056bfff9() {
 fn test_curried_js_arrow_parensavoid_format_1_056bfff9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -240,7 +240,7 @@ fn test_curried_js_arrow_parensavoid_format_1_056bfff9() {
 fn test_currying_js_arrow_parensalways_format_1_c0bc103e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -253,7 +253,7 @@ fn test_currying_js_arrow_parensalways_format_1_c0bc103e() {
 fn test_currying_js_arrow_parensavoid_format_1_c0bc103e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -266,7 +266,7 @@ fn test_currying_js_arrow_parensavoid_format_1_c0bc103e() {
 fn test_currying_2_js_arrow_parensalways_format_1_24ed4be0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -279,7 +279,7 @@ fn test_currying_2_js_arrow_parensalways_format_1_24ed4be0() {
 fn test_currying_2_js_arrow_parensavoid_format_1_24ed4be0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -292,7 +292,7 @@ fn test_currying_2_js_arrow_parensavoid_format_1_24ed4be0() {
 fn test_currying_3_js_arrow_parensalways_format_1_e964872f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -305,7 +305,7 @@ fn test_currying_3_js_arrow_parensalways_format_1_e964872f() {
 fn test_currying_3_js_arrow_parensavoid_format_1_e964872f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -318,7 +318,7 @@ fn test_currying_3_js_arrow_parensavoid_format_1_e964872f() {
 fn test_currying_4_js_arrow_parensalways_format_1_a45b6fa0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -331,7 +331,7 @@ fn test_currying_4_js_arrow_parensalways_format_1_a45b6fa0() {
 fn test_currying_4_js_arrow_parensavoid_format_1_a45b6fa0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -344,7 +344,7 @@ fn test_currying_4_js_arrow_parensavoid_format_1_a45b6fa0() {
 fn test_issue_1389_curry_js_arrow_parensalways_format_1_6c98dc66() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -357,7 +357,7 @@ fn test_issue_1389_curry_js_arrow_parensalways_format_1_6c98dc66() {
 fn test_issue_1389_curry_js_arrow_parensavoid_format_1_6c98dc66() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -370,7 +370,7 @@ fn test_issue_1389_curry_js_arrow_parensavoid_format_1_6c98dc66() {
 fn test_issue_4166_curry_js_arrow_parensalways_format_1_54a55a1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -387,7 +387,7 @@ fn test_issue_4166_curry_js_arrow_parensalways_format_1_54a55a1f() {
 fn test_issue_4166_curry_js_arrow_parensavoid_format_1_54a55a1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -404,7 +404,7 @@ fn test_issue_4166_curry_js_arrow_parensavoid_format_1_54a55a1f() {
 fn test_long_call_no_args_js_arrow_parensalways_format_1_073900f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -419,7 +419,7 @@ fn test_long_call_no_args_js_arrow_parensalways_format_1_073900f0() {
 fn test_long_call_no_args_js_arrow_parensavoid_format_1_073900f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -434,7 +434,7 @@ fn test_long_call_no_args_js_arrow_parensavoid_format_1_073900f0() {
 fn test_long_contents_js_arrow_parensalways_format_1_207034d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -447,7 +447,7 @@ fn test_long_contents_js_arrow_parensalways_format_1_207034d5() {
 fn test_long_contents_js_arrow_parensavoid_format_1_207034d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -460,7 +460,7 @@ fn test_long_contents_js_arrow_parensavoid_format_1_207034d5() {
 fn test_parens_js_arrow_parensalways_format_1_33280415() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -473,7 +473,7 @@ fn test_parens_js_arrow_parensalways_format_1_33280415() {
 fn test_parens_js_arrow_parensavoid_format_1_33280415() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -484,7 +484,10 @@ fn test_parens_js_arrow_parensavoid_format_1_33280415() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensalways_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -492,7 +495,10 @@ fn test_tuple_and_record_js_arrow_parensalways_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensalways_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -500,7 +506,10 @@ fn test_tuple_and_record_js_arrow_parensalways_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensalways_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -508,7 +517,10 @@ fn test_tuple_and_record_js_arrow_parensalways_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensalways_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -518,7 +530,7 @@ fn test_tuple_and_record_js_arrow_parensalways_typescript_format_1_d41d8cd9() {
 fn test_tuple_and_record_js_arrow_parensalways_format_1_162a80ac() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -529,7 +541,10 @@ fn test_tuple_and_record_js_arrow_parensalways_format_1_162a80ac() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensavoid_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -537,7 +552,10 @@ fn test_tuple_and_record_js_arrow_parensavoid_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensavoid_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -545,7 +563,10 @@ fn test_tuple_and_record_js_arrow_parensavoid_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensavoid_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -553,7 +574,10 @@ fn test_tuple_and_record_js_arrow_parensavoid_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_arrow_parensavoid_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -563,7 +587,7 @@ fn test_tuple_and_record_js_arrow_parensavoid_typescript_format_1_d41d8cd9() {
 fn test_tuple_and_record_js_arrow_parensavoid_format_1_162a80ac() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["babel", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

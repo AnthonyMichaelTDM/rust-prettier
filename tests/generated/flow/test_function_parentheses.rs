@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_single_js_arrow_parensavoid_format_1_3c8889a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -18,7 +18,7 @@ fn test_single_js_arrow_parensavoid_format_1_3c8889a7() {
 #[test]
 fn test_single_js_trailing_commaall_format_1_3c8889a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -31,7 +31,7 @@ fn test_single_js_trailing_commaall_format_1_3c8889a7() {
 #[test]
 fn test_single_js_trailing_commaes_5_format_1_3c8889a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -45,7 +45,7 @@ fn test_single_js_trailing_commaes_5_format_1_3c8889a7() {
 fn test_test_js_arrow_parensavoid_format_1_4b85d60a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_test_js_arrow_parensavoid_format_1_4b85d60a() {
 #[test]
 fn test_test_js_trailing_commaall_format_1_4b85d60a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -70,7 +70,7 @@ fn test_test_js_trailing_commaall_format_1_4b85d60a() {
 #[test]
 fn test_test_js_trailing_commaes_5_format_1_4b85d60a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()

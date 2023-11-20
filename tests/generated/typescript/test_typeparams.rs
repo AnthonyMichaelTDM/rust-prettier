@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_method_ts_format_1_5feb86b5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_class_method_ts_format_1_5feb86b5() {
 #[test]
 fn test_const_ts_format_1_dd58c448() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_const_ts_format_1_dd58c448() {
 #[test]
 fn test_line_breaking_after_extends_ts_format_1_03d074f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_line_breaking_after_extends_ts_format_1_03d074f8() {
 #[test]
 fn test_line_breaking_after_extends_2_ts_format_1_bdc22bc8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_line_breaking_after_extends_2_ts_format_1_bdc22bc8() {
 #[test]
 fn test_long_function_arg_ts_format_1_862be85e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_long_function_arg_ts_format_1_862be85e() {
 #[test]
 fn test_tagged_template_expression_ts_format_1_2b54be13() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_empty_html_format_1_035236f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_empty_html_format_1_035236f6() {
 #[test]
 fn test_js_html_format_1_176c0134() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_js_html_format_1_176c0134() {
 #[test]
 fn test_simple_html_format_1_972833c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_simple_html_format_1_972833c9() {
 #[test]
 fn test_single_script_html_format_1_51caaeb4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_single_script_html_format_1_51caaeb4() {
 #[test]
 fn test_something_else_html_format_1_e47fe3f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_something_else_html_format_1_e47fe3f1() {
 #[test]
 fn test_template_literal_html_format_1_e80685dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_template_literal_html_format_1_e80685dd() {
 #[test]
 fn test_typescript_html_format_1_65fa3d79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

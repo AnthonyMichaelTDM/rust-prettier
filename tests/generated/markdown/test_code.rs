@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_0_indent_js_md_prose_wrapalways_format_1_221118de() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_0_indent_js_md_prose_wrapalways_format_1_221118de() {
 #[test]
 fn test_additional_space_md_prose_wrapalways_format_1_807673d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -31,7 +31,7 @@ fn test_additional_space_md_prose_wrapalways_format_1_807673d4() {
 #[test]
 fn test_backtick_md_prose_wrapalways_format_1_81c24c48() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -47,7 +47,7 @@ fn test_backtick_md_prose_wrapalways_format_1_81c24c48() {
 #[test]
 fn test_format_md_prose_wrapalways_format_1_fdaae407() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -65,7 +65,7 @@ fn test_format_md_prose_wrapalways_format_1_fdaae407() {
 #[test]
 fn test_indent_md_prose_wrapalways_format_1_90617716() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -78,7 +78,7 @@ fn test_indent_md_prose_wrapalways_format_1_90617716() {
 #[test]
 fn test_lang_md_prose_wrapalways_format_1_a3796652() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -94,7 +94,7 @@ fn test_lang_md_prose_wrapalways_format_1_a3796652() {
 #[test]
 fn test_leading_trailing_newlines_md_prose_wrapalways_format_1_a01864cc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -107,7 +107,7 @@ fn test_leading_trailing_newlines_md_prose_wrapalways_format_1_a01864cc() {
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_4aca1f8e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -120,7 +120,7 @@ fn test_simple_md_prose_wrapalways_format_1_4aca1f8e() {
 #[test]
 fn test_ts_trailing_comma_md_prose_wrapalways_format_1_91ee7e96() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -133,7 +133,7 @@ fn test_ts_trailing_comma_md_prose_wrapalways_format_1_91ee7e96() {
 #[test]
 fn test_tsx_trailing_comma_md_prose_wrapalways_format_1_c0fcb7a5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_generic_ts_trailing_commaall_format_1_8583d589() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_generic_ts_trailing_commaall_format_1_8583d589() {
 #[test]
 fn test_generic_ts_trailing_commaes_5_format_1_8583d589() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_generic_ts_trailing_commaes_5_format_1_8583d589() {
 #[test]
 fn test_generic_ts_format_1_8583d589() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -42,7 +42,10 @@ fn test_generic_ts_format_1_8583d589() {
 }
 #[test]
 fn test_index_signature_ts_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +53,10 @@ fn test_index_signature_ts_babel_ts_format_1_d41d8cd9() {
 }
 #[test]
 fn test_index_signature_ts_trailing_commaall_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -59,7 +65,7 @@ fn test_index_signature_ts_trailing_commaall_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_index_signature_ts_trailing_commaall_format_1_dd20c114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -71,7 +77,10 @@ fn test_index_signature_ts_trailing_commaall_format_1_dd20c114() {
 }
 #[test]
 fn test_index_signature_ts_trailing_commaes_5_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -80,7 +89,7 @@ fn test_index_signature_ts_trailing_commaes_5_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_index_signature_ts_trailing_commaes_5_format_1_dd20c114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -93,7 +102,7 @@ fn test_index_signature_ts_trailing_commaes_5_format_1_dd20c114() {
 #[test]
 fn test_index_signature_ts_format_1_dd20c114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -104,7 +113,10 @@ fn test_index_signature_ts_format_1_dd20c114() {
 }
 #[test]
 fn test_jsdoc_only_types_ts_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -112,7 +124,10 @@ fn test_jsdoc_only_types_ts_babel_ts_format_1_d41d8cd9() {
 }
 #[test]
 fn test_jsdoc_only_types_ts_trailing_commaall_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -121,7 +136,7 @@ fn test_jsdoc_only_types_ts_trailing_commaall_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_jsdoc_only_types_ts_trailing_commaall_format_1_ba28118c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -133,7 +148,10 @@ fn test_jsdoc_only_types_ts_trailing_commaall_format_1_ba28118c() {
 }
 #[test]
 fn test_jsdoc_only_types_ts_trailing_commaes_5_babel_ts_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -142,7 +160,7 @@ fn test_jsdoc_only_types_ts_trailing_commaes_5_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_jsdoc_only_types_ts_trailing_commaes_5_format_1_ba28118c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -155,7 +173,7 @@ fn test_jsdoc_only_types_ts_trailing_commaes_5_format_1_ba28118c() {
 #[test]
 fn test_jsdoc_only_types_ts_format_1_ba28118c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_js_semifalse_format_1_4e9b38cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -18,7 +18,7 @@ fn test_comments_js_semifalse_format_1_4e9b38cf() {
 #[test]
 fn test_comments_js_format_1_4e9b38cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,7 @@ fn test_comments_js_format_1_4e9b38cf() {
 #[test]
 fn test_flow_class_properties_js_semifalse_format_1_fab6bf1c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -43,7 +43,7 @@ fn test_flow_class_properties_js_semifalse_format_1_fab6bf1c() {
 #[test]
 fn test_flow_class_properties_js_format_1_fab6bf1c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -55,7 +55,7 @@ fn test_flow_class_properties_js_format_1_fab6bf1c() {
 #[test]
 fn test_flow_interfaces_js_semifalse_format_1_032b36ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -68,7 +68,7 @@ fn test_flow_interfaces_js_semifalse_format_1_032b36ea() {
 #[test]
 fn test_flow_interfaces_js_format_1_032b36ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -80,7 +80,7 @@ fn test_flow_interfaces_js_format_1_032b36ea() {
 #[test]
 fn test_no_semi_js_semifalse_format_1_9df4c8de() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -93,7 +93,7 @@ fn test_no_semi_js_semifalse_format_1_9df4c8de() {
 #[test]
 fn test_no_semi_js_format_1_9df4c8de() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

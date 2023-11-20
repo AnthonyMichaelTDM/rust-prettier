@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_1_js_format_1_7be30da8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_a_1_js_format_1_7be30da8() {
 #[test]
 fn test_a_2_js_format_1_7d8bf860() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -33,7 +33,7 @@ fn test_a_2_js_format_1_7d8bf860() {
 #[test]
 fn test_a_3_js_format_1_468b2398() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -49,7 +49,7 @@ fn test_a_3_js_format_1_468b2398() {
 #[test]
 fn test_b_0_js_format_1_a17e5154() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_b_0_js_format_1_a17e5154() {
 #[test]
 fn test_b_1_js_format_1_8c084511() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_b_1_js_format_1_8c084511() {
 #[test]
 fn test_b_2_js_format_1_eadf049b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -89,7 +89,7 @@ fn test_b_2_js_format_1_eadf049b() {
 #[test]
 fn test_b_3_js_format_1_2e39fc19() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_b_3_js_format_1_2e39fc19() {
 #[test]
 fn test_c_1_js_format_1_bf61046a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -121,7 +121,7 @@ fn test_c_1_js_format_1_bf61046a() {
 #[test]
 fn test_c_2_js_format_1_1d5008a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -133,7 +133,7 @@ fn test_c_2_js_format_1_1d5008a8() {
 #[test]
 fn test_c_3_js_format_1_dbd0181e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -149,7 +149,7 @@ fn test_c_3_js_format_1_dbd0181e() {
 #[test]
 fn test_d_1_js_format_1_6f8ad4a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -165,7 +165,7 @@ fn test_d_1_js_format_1_6f8ad4a1() {
 #[test]
 fn test_d_2_js_format_1_0b5a8ea9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -181,7 +181,7 @@ fn test_d_2_js_format_1_0b5a8ea9() {
 #[test]
 fn test_e_1_js_format_1_6743ab08() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -193,7 +193,7 @@ fn test_e_1_js_format_1_6743ab08() {
 #[test]
 fn test_e_2_js_format_1_1b9ad34c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -205,7 +205,7 @@ fn test_e_2_js_format_1_1b9ad34c() {
 #[test]
 fn test_f_1_js_format_1_5fa14acc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -217,7 +217,7 @@ fn test_f_1_js_format_1_5fa14acc() {
 #[test]
 fn test_f_2_js_format_1_46134764() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -233,7 +233,7 @@ fn test_f_2_js_format_1_46134764() {
 #[test]
 fn test_g_1_js_format_1_dc39ee2f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -245,7 +245,7 @@ fn test_g_1_js_format_1_dc39ee2f() {
 #[test]
 fn test_g_2_js_format_1_d782c94a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -259,7 +259,7 @@ fn test_g_2_js_format_1_d782c94a() {
 #[test]
 fn test_g_3_js_format_1_e96e7e1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -275,7 +275,7 @@ fn test_g_3_js_format_1_e96e7e1f() {
 #[test]
 fn test_h_1_js_format_1_be68019c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -287,7 +287,7 @@ fn test_h_1_js_format_1_be68019c() {
 #[test]
 fn test_h_2_js_format_1_55bbc7a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -299,7 +299,7 @@ fn test_h_2_js_format_1_55bbc7a1() {
 #[test]
 fn test_i_1_js_format_1_ab883f57() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -315,7 +315,7 @@ fn test_i_1_js_format_1_ab883f57() {
 #[test]
 fn test_i_2_js_format_1_8961d38e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -330,7 +330,7 @@ fn test_i_2_js_format_1_8961d38e() {
 #[test]
 fn test_j_1_js_format_1_f65d2607() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -346,7 +346,7 @@ fn test_j_1_js_format_1_f65d2607() {
 #[test]
 fn test_j_2_js_format_1_3d2f3a75() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -361,7 +361,7 @@ fn test_j_2_js_format_1_3d2f3a75() {
 #[test]
 fn test_k_js_format_1_e3121712() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

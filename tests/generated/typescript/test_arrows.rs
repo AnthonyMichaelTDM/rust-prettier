@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_function_expression_ts_arrow_parensalways_format_1_f3e2773e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_arrow_function_expression_ts_arrow_parensalways_format_1_f3e2773e() {
 fn test_arrow_function_expression_ts_arrow_parensavoid_format_1_f3e2773e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_arrow_function_expression_ts_arrow_parensavoid_format_1_f3e2773e() {
 fn test_short_body_ts_arrow_parensalways_format_1_0c383d7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -45,7 +45,7 @@ fn test_short_body_ts_arrow_parensalways_format_1_0c383d7f() {
 fn test_short_body_ts_arrow_parensavoid_format_1_0c383d7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -58,7 +58,7 @@ fn test_short_body_ts_arrow_parensavoid_format_1_0c383d7f() {
 fn test_type_params_ts_arrow_parensalways_format_1_efdc5259() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -71,7 +71,7 @@ fn test_type_params_ts_arrow_parensalways_format_1_efdc5259() {
 fn test_type_params_ts_arrow_parensavoid_format_1_efdc5259() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

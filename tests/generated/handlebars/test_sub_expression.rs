@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_sub_expressions_hbs_single_quotetrue_format_1_6f920064() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -18,7 +18,7 @@ fn test_sub_expressions_hbs_single_quotetrue_format_1_6f920064() {
 #[test]
 fn test_sub_expressions_hbs_format_1_6f920064() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();

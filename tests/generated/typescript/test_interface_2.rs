@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_ts_trailing_commaes_5_format_1_c2984eef() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -18,7 +18,7 @@ fn test_comments_ts_trailing_commaes_5_format_1_c2984eef() {
 #[test]
 fn test_comments_declare_ts_trailing_commaes_5_format_1_4de68c3a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -35,7 +35,7 @@ fn test_comments_declare_ts_trailing_commaes_5_format_1_4de68c3a() {
 #[test]
 fn test_module_ts_trailing_commaes_5_format_1_1b3e2ab8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_non_nested_combinator_css_format_1_14985b5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();

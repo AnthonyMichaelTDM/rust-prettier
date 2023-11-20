@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_cross_array_json_format_1_0a490f3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(51)
         .range_start(12)
@@ -19,7 +19,7 @@ fn test_cross_array_json_format_1_0a490f3c() {
 #[test]
 fn test_cross_array_2_json_format_1_37b43434() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(36)
         .range_start(11)
@@ -36,7 +36,7 @@ fn test_cross_array_2_json_format_1_37b43434() {
 #[test]
 fn test_cross_object_json_format_1_0aa5b467() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(31)
         .range_start(12)
@@ -50,7 +50,7 @@ fn test_cross_object_json_format_1_0aa5b467() {
 #[test]
 fn test_cross_object_2_json_format_1_7e8b7579() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(28)
         .range_start(11)
@@ -67,7 +67,7 @@ fn test_cross_object_2_json_format_1_7e8b7579() {
 #[test]
 fn test_identifier_json_format_1_35484790() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(4)
         .range_start(1)
@@ -81,7 +81,7 @@ fn test_identifier_json_format_1_35484790() {
 #[test]
 fn test_identifier_2_json_format_1_9265b21b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(3)
         .range_start(2)
@@ -95,7 +95,7 @@ fn test_identifier_2_json_format_1_9265b21b() {
 #[test]
 fn test_inside_array_json_format_1_475cda71() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(30)
         .range_start(11)
@@ -112,7 +112,7 @@ fn test_inside_array_json_format_1_475cda71() {
 #[test]
 fn test_inside_object_json_format_1_4a72980b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(20)
         .range_start(11)
@@ -126,7 +126,7 @@ fn test_inside_object_json_format_1_4a72980b() {
 #[test]
 fn test_issue_4009_json_format_1_21f1fa1c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(19)
         .range_start(1)
@@ -140,7 +140,7 @@ fn test_issue_4009_json_format_1_21f1fa1c() {
 #[test]
 fn test_issue_7116_json_format_1_47c7a53f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(7)
         .range_start(4)
@@ -154,7 +154,7 @@ fn test_issue_7116_json_format_1_47c7a53f() {
 #[test]
 fn test_issue_2297_json_format_1_ea66acb5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(6)
         .range_start(5)
@@ -168,7 +168,7 @@ fn test_issue_2297_json_format_1_ea66acb5() {
 #[test]
 fn test_number_json_format_1_7beded6d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(16)
         .range_start(7)
@@ -183,7 +183,7 @@ fn test_number_json_format_1_7beded6d() {
 #[test]
 fn test_template_literal_json_format_1_b960597d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(7)
         .range_start(6)
@@ -197,7 +197,7 @@ fn test_template_literal_json_format_1_b960597d() {
 #[test]
 fn test_template_literal_2_json_format_1_0cdedaf7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(7)
         .range_start(4)
@@ -214,7 +214,7 @@ fn test_template_literal_2_json_format_1_0cdedaf7() {
 #[test]
 fn test_unary_expression_json_format_1_0d2d11b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(15)
         .range_start(9)
@@ -228,7 +228,7 @@ fn test_unary_expression_json_format_1_0d2d11b2() {
 #[test]
 fn test_unary_expression_2_json_format_1_c0211c49() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .range_end(9)
         .range_start(2)

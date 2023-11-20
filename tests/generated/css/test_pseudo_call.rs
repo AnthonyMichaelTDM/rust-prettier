@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_is_css_format_1_2ea71cdb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_is_css_format_1_2ea71cdb() {
 #[test]
 fn test_pseudo_call_css_format_1_3571c339() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_pseudo_call_css_format_1_3571c339() {
 #[test]
 fn test_where_css_format_1_6c5f61e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();

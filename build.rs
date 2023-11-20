@@ -38,7 +38,7 @@ cfg_if! {
 
         enum ValueType {
             Literal(syn::Lit),
-            Array(syn::ExprArray),
+            Parser(syn::Lit),
             Ident(syn::Ident),
         }
 
@@ -47,12 +47,8 @@ cfg_if! {
                 match self {
                     ValueType::Literal(lit) => lit.to_tokens(tokens),
                     ValueType::Ident(ident) => ident.to_tokens(tokens),
-                    ValueType::Array(array) => {
-                        tokens.append(Punct::new('v', Spacing::Joint));
-                        tokens.append(Punct::new('e', Spacing::Joint));
-                        tokens.append(Punct::new('c', Spacing::Joint));
-                        tokens.append(Punct::new('!', Spacing::Joint));
-                        array.to_tokens(tokens)
+                    ValueType::Parser(lit) => {
+                        lit.to_tokens(tokens)
                     },
                 }
             }
@@ -69,24 +65,21 @@ cfg_if! {
                 let first_line = lines.next().unwrap();
 
                 // parse out the language
-                let langauge = first_line
+                let language = first_line
                     .trim_start_matches(SNAPSHORT_START)
                     .trim_end_matches("`] = `")
-                    .splitn(1, ".")
-                    .collect::<Vec<_>>()
-                    .first()
-                    .unwrap()
-                    .splitn(1, " ")
-                    .collect::<Vec<_>>()
-                    .first()
-                    .unwrap()
-                    .to_owned();
+                    .splitn(2, ".")
+                    .nth(1)
+                    .and_then(|s| s.splitn(2, " ").nth(0));
 
                 //  use the langauge name to determine the parser to use, and add it to the config
-                config.insert(
-                    syn::parse_str::<syn::Ident>(&format!("parser")).unwrap(),
-                    ValueType::Array(syn::parse_str::<syn::Expr>(&format!("\"{}\"", langauge)).unwrap()),
-                );
+                eprintln!("{:?}", language);
+                if let Some(language) = language {
+                    config.insert(
+                        syn::parse_str::<syn::Ident>(&format!("parser")).unwrap(),
+                        ValueType::Parser(syn::parse_str::<syn::Lit>(&format!("\"{}\"", language)).unwrap()),
+                    );
+                }
 
                 // parse out the name
                 let name = first_line
@@ -323,7 +316,7 @@ cfg_if! {
         fn generate_test_module(test_cases: Vec<TestCase>) -> String {
             let imports_and_helpers = quote! {
                 #[allow(unused_imports)]
-                use rust_prettier::PrettyPrinterBuilder;
+                use rust_prettier::{PrettyPrinterBuilder, Parsers};
                 #[allow(dead_code)]
                 static INFINITY: usize = usize::MAX;
             };

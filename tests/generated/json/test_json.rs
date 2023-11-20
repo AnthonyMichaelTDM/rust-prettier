@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_array_json_trailing_commaall_format_1_e3104b1d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -22,7 +22,7 @@ fn test_array_json_trailing_commaall_format_1_e3104b1d() {
 #[test]
 fn test_array_json_trailing_commaall_format_2_e3104b1d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -39,7 +39,7 @@ fn test_array_json_trailing_commaall_format_2_e3104b1d() {
 #[test]
 fn test_array_json_trailing_commaes_5_format_1_e3104b1d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -56,7 +56,7 @@ fn test_array_json_trailing_commaes_5_format_1_e3104b1d() {
 #[test]
 fn test_array_json_trailing_commaes_5_format_2_e3104b1d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -73,7 +73,7 @@ fn test_array_json_trailing_commaes_5_format_2_e3104b1d() {
 #[test]
 fn test_array_json_format_1_e3104b1d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -86,7 +86,7 @@ fn test_array_json_format_1_e3104b1d() {
 #[test]
 fn test_boolean_json_trailing_commaall_format_1_b9954ca3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -99,7 +99,7 @@ fn test_boolean_json_trailing_commaall_format_1_b9954ca3() {
 #[test]
 fn test_boolean_json_trailing_commaall_format_2_b9954ca3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -112,7 +112,7 @@ fn test_boolean_json_trailing_commaall_format_2_b9954ca3() {
 #[test]
 fn test_boolean_json_trailing_commaes_5_format_1_b9954ca3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -125,7 +125,7 @@ fn test_boolean_json_trailing_commaes_5_format_1_b9954ca3() {
 #[test]
 fn test_boolean_json_trailing_commaes_5_format_2_b9954ca3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -138,7 +138,7 @@ fn test_boolean_json_trailing_commaes_5_format_2_b9954ca3() {
 #[test]
 fn test_boolean_json_format_1_b9954ca3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -150,7 +150,7 @@ fn test_boolean_json_format_1_b9954ca3() {
 #[test]
 fn test_json_5_json_trailing_commaall_format_1_dfb12874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -163,7 +163,7 @@ fn test_json_5_json_trailing_commaall_format_1_dfb12874() {
 #[test]
 fn test_json_5_json_trailing_commaall_format_2_dfb12874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -176,7 +176,7 @@ fn test_json_5_json_trailing_commaall_format_2_dfb12874() {
 #[test]
 fn test_json_5_json_trailing_commaes_5_format_1_dfb12874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -189,7 +189,7 @@ fn test_json_5_json_trailing_commaes_5_format_1_dfb12874() {
 #[test]
 fn test_json_5_json_trailing_commaes_5_format_2_dfb12874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -202,7 +202,7 @@ fn test_json_5_json_trailing_commaes_5_format_2_dfb12874() {
 #[test]
 fn test_json_5_json_format_1_dfb12874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -214,7 +214,7 @@ fn test_json_5_json_format_1_dfb12874() {
 #[test]
 fn test_json_6_json_trailing_commaall_format_1_75bfd23c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -227,7 +227,7 @@ fn test_json_6_json_trailing_commaall_format_1_75bfd23c() {
 #[test]
 fn test_json_6_json_trailing_commaall_format_2_75bfd23c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -240,7 +240,7 @@ fn test_json_6_json_trailing_commaall_format_2_75bfd23c() {
 #[test]
 fn test_json_6_json_trailing_commaes_5_format_1_75bfd23c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -253,7 +253,7 @@ fn test_json_6_json_trailing_commaes_5_format_1_75bfd23c() {
 #[test]
 fn test_json_6_json_trailing_commaes_5_format_2_75bfd23c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -266,7 +266,7 @@ fn test_json_6_json_trailing_commaes_5_format_2_75bfd23c() {
 #[test]
 fn test_json_6_json_format_1_75bfd23c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -278,7 +278,7 @@ fn test_json_6_json_format_1_75bfd23c() {
 #[test]
 fn test_key_value_json_trailing_commaall_format_1_2c11060e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -291,7 +291,7 @@ fn test_key_value_json_trailing_commaall_format_1_2c11060e() {
 #[test]
 fn test_key_value_json_trailing_commaall_format_2_2c11060e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -304,7 +304,7 @@ fn test_key_value_json_trailing_commaall_format_2_2c11060e() {
 #[test]
 fn test_key_value_json_trailing_commaes_5_format_1_2c11060e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -317,7 +317,7 @@ fn test_key_value_json_trailing_commaes_5_format_1_2c11060e() {
 #[test]
 fn test_key_value_json_trailing_commaes_5_format_2_2c11060e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -330,7 +330,7 @@ fn test_key_value_json_trailing_commaes_5_format_2_2c11060e() {
 #[test]
 fn test_key_value_json_format_1_2c11060e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -342,7 +342,7 @@ fn test_key_value_json_format_1_2c11060e() {
 #[test]
 fn test_multi_line_json_trailing_commaall_format_1_119b0e00() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -359,7 +359,7 @@ fn test_multi_line_json_trailing_commaall_format_1_119b0e00() {
 #[test]
 fn test_multi_line_json_trailing_commaall_format_2_119b0e00() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -376,7 +376,7 @@ fn test_multi_line_json_trailing_commaall_format_2_119b0e00() {
 #[test]
 fn test_multi_line_json_trailing_commaes_5_format_1_119b0e00() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -393,7 +393,7 @@ fn test_multi_line_json_trailing_commaes_5_format_1_119b0e00() {
 #[test]
 fn test_multi_line_json_trailing_commaes_5_format_2_119b0e00() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -410,7 +410,7 @@ fn test_multi_line_json_trailing_commaes_5_format_2_119b0e00() {
 #[test]
 fn test_multi_line_json_format_1_119b0e00() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -423,7 +423,7 @@ fn test_multi_line_json_format_1_119b0e00() {
 #[test]
 fn test_null_json_trailing_commaall_format_1_ec41de1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -436,7 +436,7 @@ fn test_null_json_trailing_commaall_format_1_ec41de1f() {
 #[test]
 fn test_null_json_trailing_commaall_format_2_ec41de1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -449,7 +449,7 @@ fn test_null_json_trailing_commaall_format_2_ec41de1f() {
 #[test]
 fn test_null_json_trailing_commaes_5_format_1_ec41de1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -462,7 +462,7 @@ fn test_null_json_trailing_commaes_5_format_1_ec41de1f() {
 #[test]
 fn test_null_json_trailing_commaes_5_format_2_ec41de1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -475,7 +475,7 @@ fn test_null_json_trailing_commaes_5_format_2_ec41de1f() {
 #[test]
 fn test_null_json_format_1_ec41de1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -487,7 +487,7 @@ fn test_null_json_format_1_ec41de1f() {
 #[test]
 fn test_number_json_trailing_commaall_format_1_465981b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -500,7 +500,7 @@ fn test_number_json_trailing_commaall_format_1_465981b2() {
 #[test]
 fn test_number_json_trailing_commaall_format_2_465981b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -513,7 +513,7 @@ fn test_number_json_trailing_commaall_format_2_465981b2() {
 #[test]
 fn test_number_json_trailing_commaes_5_format_1_465981b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -526,7 +526,7 @@ fn test_number_json_trailing_commaes_5_format_1_465981b2() {
 #[test]
 fn test_number_json_trailing_commaes_5_format_2_465981b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -539,7 +539,7 @@ fn test_number_json_trailing_commaes_5_format_2_465981b2() {
 #[test]
 fn test_number_json_format_1_465981b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -551,7 +551,7 @@ fn test_number_json_format_1_465981b2() {
 #[test]
 fn test_pass_1_json_trailing_commaall_format_1_15e874f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -564,7 +564,7 @@ fn test_pass_1_json_trailing_commaall_format_1_15e874f0() {
 #[test]
 fn test_pass_1_json_trailing_commaall_format_2_15e874f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -577,7 +577,7 @@ fn test_pass_1_json_trailing_commaall_format_2_15e874f0() {
 #[test]
 fn test_pass_1_json_trailing_commaes_5_format_1_15e874f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -590,7 +590,7 @@ fn test_pass_1_json_trailing_commaes_5_format_1_15e874f0() {
 #[test]
 fn test_pass_1_json_trailing_commaes_5_format_2_15e874f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -603,7 +603,7 @@ fn test_pass_1_json_trailing_commaes_5_format_2_15e874f0() {
 #[test]
 fn test_pass_1_json_format_1_15e874f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -615,7 +615,7 @@ fn test_pass_1_json_format_1_15e874f0() {
 #[test]
 fn test_positive_number_json_trailing_commaall_format_1_0443f321() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -628,7 +628,7 @@ fn test_positive_number_json_trailing_commaall_format_1_0443f321() {
 #[test]
 fn test_positive_number_json_trailing_commaall_format_2_0443f321() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -641,7 +641,7 @@ fn test_positive_number_json_trailing_commaall_format_2_0443f321() {
 #[test]
 fn test_positive_number_json_trailing_commaes_5_format_1_0443f321() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -654,7 +654,7 @@ fn test_positive_number_json_trailing_commaes_5_format_1_0443f321() {
 #[test]
 fn test_positive_number_json_trailing_commaes_5_format_2_0443f321() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -667,7 +667,7 @@ fn test_positive_number_json_trailing_commaes_5_format_2_0443f321() {
 #[test]
 fn test_positive_number_json_format_1_0443f321() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -679,7 +679,7 @@ fn test_positive_number_json_format_1_0443f321() {
 #[test]
 fn test_property_key_json_trailing_commaall_format_1_0b8424b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -692,7 +692,7 @@ fn test_property_key_json_trailing_commaall_format_1_0b8424b6() {
 #[test]
 fn test_property_key_json_trailing_commaall_format_2_0b8424b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -705,7 +705,7 @@ fn test_property_key_json_trailing_commaall_format_2_0b8424b6() {
 #[test]
 fn test_property_key_json_trailing_commaes_5_format_1_0b8424b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -718,7 +718,7 @@ fn test_property_key_json_trailing_commaes_5_format_1_0b8424b6() {
 #[test]
 fn test_property_key_json_trailing_commaes_5_format_2_0b8424b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -731,7 +731,7 @@ fn test_property_key_json_trailing_commaes_5_format_2_0b8424b6() {
 #[test]
 fn test_property_key_json_format_1_0b8424b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -743,7 +743,7 @@ fn test_property_key_json_format_1_0b8424b6() {
 #[test]
 fn test_single_line_json_trailing_commaall_format_1_d51b2a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -760,7 +760,7 @@ fn test_single_line_json_trailing_commaall_format_1_d51b2a4f() {
 #[test]
 fn test_single_line_json_trailing_commaall_format_2_d51b2a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -777,7 +777,7 @@ fn test_single_line_json_trailing_commaall_format_2_d51b2a4f() {
 #[test]
 fn test_single_line_json_trailing_commaes_5_format_1_d51b2a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -794,7 +794,7 @@ fn test_single_line_json_trailing_commaes_5_format_1_d51b2a4f() {
 #[test]
 fn test_single_line_json_trailing_commaes_5_format_2_d51b2a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -811,7 +811,7 @@ fn test_single_line_json_trailing_commaes_5_format_2_d51b2a4f() {
 #[test]
 fn test_single_line_json_format_1_d51b2a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -824,7 +824,7 @@ fn test_single_line_json_format_1_d51b2a4f() {
 #[test]
 fn test_single_quote_json_trailing_commaall_format_1_a7db9251() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -837,7 +837,7 @@ fn test_single_quote_json_trailing_commaall_format_1_a7db9251() {
 #[test]
 fn test_single_quote_json_trailing_commaall_format_2_a7db9251() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -850,7 +850,7 @@ fn test_single_quote_json_trailing_commaall_format_2_a7db9251() {
 #[test]
 fn test_single_quote_json_trailing_commaes_5_format_1_a7db9251() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -863,7 +863,7 @@ fn test_single_quote_json_trailing_commaes_5_format_1_a7db9251() {
 #[test]
 fn test_single_quote_json_trailing_commaes_5_format_2_a7db9251() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -876,7 +876,7 @@ fn test_single_quote_json_trailing_commaes_5_format_2_a7db9251() {
 #[test]
 fn test_single_quote_json_format_1_a7db9251() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -888,7 +888,7 @@ fn test_single_quote_json_format_1_a7db9251() {
 #[test]
 fn test_string_json_trailing_commaall_format_1_ad9f2787() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -901,7 +901,7 @@ fn test_string_json_trailing_commaall_format_1_ad9f2787() {
 #[test]
 fn test_string_json_trailing_commaall_format_2_ad9f2787() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -914,7 +914,7 @@ fn test_string_json_trailing_commaall_format_2_ad9f2787() {
 #[test]
 fn test_string_json_trailing_commaes_5_format_1_ad9f2787() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -927,7 +927,7 @@ fn test_string_json_trailing_commaes_5_format_1_ad9f2787() {
 #[test]
 fn test_string_json_trailing_commaes_5_format_2_ad9f2787() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json5"])
+        .parser("json")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -940,7 +940,7 @@ fn test_string_json_trailing_commaes_5_format_2_ad9f2787() {
 #[test]
 fn test_string_json_format_1_ad9f2787() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["json-stringify"])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();

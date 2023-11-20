@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attr_selector_css_format_1_c60bf547() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();

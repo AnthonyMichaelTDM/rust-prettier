@@ -1,10 +1,13 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_destructuring_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -12,7 +15,10 @@ fn test_destructuring_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_destructuring_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -20,7 +26,10 @@ fn test_destructuring_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_destructuring_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -29,7 +38,7 @@ fn test_destructuring_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_destructuring_js_format_1_7b706c9f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -40,7 +49,10 @@ fn test_destructuring_js_format_1_7b706c9f() {
 }
 #[test]
 fn test_invalid_tuple_holes_js_babel_estree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -48,7 +60,10 @@ fn test_invalid_tuple_holes_js_babel_estree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_invalid_tuple_holes_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -56,7 +71,10 @@ fn test_invalid_tuple_holes_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_invalid_tuple_holes_js_babel_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -64,7 +82,10 @@ fn test_invalid_tuple_holes_js_babel_format_1_d41d8cd9() {
 }
 #[test]
 fn test_invalid_tuple_holes_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -72,7 +93,10 @@ fn test_invalid_tuple_holes_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_invalid_tuple_holes_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -80,7 +104,10 @@ fn test_invalid_tuple_holes_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_syntax_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -88,7 +115,10 @@ fn test_syntax_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_syntax_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -96,7 +126,10 @@ fn test_syntax_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_syntax_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -105,7 +138,7 @@ fn test_syntax_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_syntax_js_format_1_8a4d2bdf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -116,7 +149,10 @@ fn test_syntax_js_format_1_8a4d2bdf() {
 }
 #[test]
 fn test_tuple_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -124,7 +160,10 @@ fn test_tuple_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -132,7 +171,10 @@ fn test_tuple_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -141,7 +183,7 @@ fn test_tuple_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_js_format_1_97a05993() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -152,7 +194,10 @@ fn test_tuple_js_format_1_97a05993() {
 }
 #[test]
 fn test_tuple_trailing_comma_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -160,7 +205,10 @@ fn test_tuple_trailing_comma_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_trailing_comma_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -168,7 +216,10 @@ fn test_tuple_trailing_comma_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_trailing_comma_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -177,7 +228,7 @@ fn test_tuple_trailing_comma_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_trailing_comma_js_format_1_f1d11605() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_binary_js_experimental_ternariestrue_format_1_f002d6a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -18,7 +18,7 @@ fn test_binary_js_experimental_ternariestrue_format_1_f002d6a9() {
 #[test]
 fn test_binary_js_tab_width_4_format_1_f002d6a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -31,7 +31,7 @@ fn test_binary_js_tab_width_4_format_1_f002d6a9() {
 #[test]
 fn test_binary_js_use_tabstrue_format_1_f002d6a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -44,7 +44,7 @@ fn test_binary_js_use_tabstrue_format_1_f002d6a9() {
 #[test]
 fn test_binary_js_format_1_f002d6a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_binary_js_format_1_f002d6a9() {
 fn test_func_call_js_experimental_ternariestrue_format_1_54898dab() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_func_call_js_experimental_ternariestrue_format_1_54898dab() {
 #[test]
 fn test_func_call_js_tab_width_4_format_1_54898dab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -82,7 +82,7 @@ fn test_func_call_js_tab_width_4_format_1_54898dab() {
 #[test]
 fn test_func_call_js_use_tabstrue_format_1_54898dab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -95,7 +95,7 @@ fn test_func_call_js_use_tabstrue_format_1_54898dab() {
 #[test]
 fn test_func_call_js_format_1_54898dab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -108,7 +108,7 @@ fn test_func_call_js_format_1_54898dab() {
 fn test_indent_js_experimental_ternariestrue_format_1_c8377b93() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -120,7 +120,7 @@ fn test_indent_js_experimental_ternariestrue_format_1_c8377b93() {
 #[test]
 fn test_indent_js_tab_width_4_format_1_c8377b93() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -133,7 +133,7 @@ fn test_indent_js_tab_width_4_format_1_c8377b93() {
 #[test]
 fn test_indent_js_use_tabstrue_format_1_c8377b93() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -146,7 +146,7 @@ fn test_indent_js_use_tabstrue_format_1_c8377b93() {
 #[test]
 fn test_indent_js_format_1_c8377b93() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -159,7 +159,7 @@ fn test_indent_js_format_1_c8377b93() {
 fn test_indent_after_paren_js_experimental_ternariestrue_format_1_26da51a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -171,7 +171,7 @@ fn test_indent_after_paren_js_experimental_ternariestrue_format_1_26da51a3() {
 #[test]
 fn test_indent_after_paren_js_tab_width_4_format_1_26da51a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -184,7 +184,7 @@ fn test_indent_after_paren_js_tab_width_4_format_1_26da51a3() {
 #[test]
 fn test_indent_after_paren_js_use_tabstrue_format_1_26da51a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -197,7 +197,7 @@ fn test_indent_after_paren_js_use_tabstrue_format_1_26da51a3() {
 #[test]
 fn test_indent_after_paren_js_format_1_26da51a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -210,7 +210,7 @@ fn test_indent_after_paren_js_format_1_26da51a3() {
 fn test_nested_js_experimental_ternariestrue_format_1_851fa149() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -222,7 +222,7 @@ fn test_nested_js_experimental_ternariestrue_format_1_851fa149() {
 #[test]
 fn test_nested_js_tab_width_4_format_1_851fa149() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -235,7 +235,7 @@ fn test_nested_js_tab_width_4_format_1_851fa149() {
 #[test]
 fn test_nested_js_use_tabstrue_format_1_851fa149() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -248,7 +248,7 @@ fn test_nested_js_use_tabstrue_format_1_851fa149() {
 #[test]
 fn test_nested_js_format_1_851fa149() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -261,7 +261,7 @@ fn test_nested_js_format_1_851fa149() {
 fn test_nested_in_condition_js_experimental_ternariestrue_format_1_5da827b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -273,7 +273,7 @@ fn test_nested_in_condition_js_experimental_ternariestrue_format_1_5da827b7() {
 #[test]
 fn test_nested_in_condition_js_tab_width_4_format_1_5da827b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -286,7 +286,7 @@ fn test_nested_in_condition_js_tab_width_4_format_1_5da827b7() {
 #[test]
 fn test_nested_in_condition_js_use_tabstrue_format_1_5da827b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -299,7 +299,7 @@ fn test_nested_in_condition_js_use_tabstrue_format_1_5da827b7() {
 #[test]
 fn test_nested_in_condition_js_format_1_5da827b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -312,7 +312,7 @@ fn test_nested_in_condition_js_format_1_5da827b7() {
 fn test_parenthesis_js_experimental_ternariestrue_format_1_7d14d1f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -324,7 +324,7 @@ fn test_parenthesis_js_experimental_ternariestrue_format_1_7d14d1f6() {
 #[test]
 fn test_parenthesis_js_tab_width_4_format_1_7d14d1f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -337,7 +337,7 @@ fn test_parenthesis_js_tab_width_4_format_1_7d14d1f6() {
 #[test]
 fn test_parenthesis_js_use_tabstrue_format_1_7d14d1f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -350,7 +350,7 @@ fn test_parenthesis_js_use_tabstrue_format_1_7d14d1f6() {
 #[test]
 fn test_parenthesis_js_format_1_7d14d1f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -363,7 +363,7 @@ fn test_parenthesis_js_format_1_7d14d1f6() {
 fn test_test_js_experimental_ternariestrue_format_1_6093e2b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .experimental_ternaries(true)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -375,7 +375,7 @@ fn test_test_js_experimental_ternariestrue_format_1_6093e2b4() {
 #[test]
 fn test_test_js_tab_width_4_format_1_6093e2b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
@@ -388,7 +388,7 @@ fn test_test_js_tab_width_4_format_1_6093e2b4() {
 #[test]
 fn test_test_js_use_tabstrue_format_1_6093e2b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -401,7 +401,7 @@ fn test_test_js_use_tabstrue_format_1_6093e2b4() {
 #[test]
 fn test_test_js_format_1_6093e2b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

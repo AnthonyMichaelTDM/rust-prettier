@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_type_extendsion_syntax_graphql_format_1_5e4baba0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();

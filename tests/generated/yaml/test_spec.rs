@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_aliases_in_block_sequence_yml_prose_wrapalways_format_1_2292ef49() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_aliases_in_block_sequence_yml_prose_wrapalways_format_1_2292ef49() {
 #[test]
 fn test_aliases_in_block_sequence_yml_use_tabstrue_format_1_2292ef49() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -31,7 +31,7 @@ fn test_aliases_in_block_sequence_yml_use_tabstrue_format_1_2292ef49() {
 #[test]
 fn test_aliases_in_explicit_block_mapping_yml_prose_wrapalways_format_1_145fd1bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -44,7 +44,7 @@ fn test_aliases_in_explicit_block_mapping_yml_prose_wrapalways_format_1_145fd1bc
 #[test]
 fn test_aliases_in_explicit_block_mapping_yml_use_tabstrue_format_1_145fd1bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -57,7 +57,7 @@ fn test_aliases_in_explicit_block_mapping_yml_use_tabstrue_format_1_145fd1bc() {
 #[test]
 fn test_allowed_characters_in_alias_yml_prose_wrapalways_format_1_f2c677c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -70,7 +70,7 @@ fn test_allowed_characters_in_alias_yml_prose_wrapalways_format_1_f2c677c0() {
 #[test]
 fn test_allowed_characters_in_alias_yml_use_tabstrue_format_1_f2c677c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -83,7 +83,7 @@ fn test_allowed_characters_in_alias_yml_use_tabstrue_format_1_f2c677c0() {
 #[test]
 fn test_allowed_characters_in_keys_yml_prose_wrapalways_format_1_d9c6c095() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -96,7 +96,7 @@ fn test_allowed_characters_in_keys_yml_prose_wrapalways_format_1_d9c6c095() {
 #[test]
 fn test_allowed_characters_in_keys_yml_use_tabstrue_format_1_d9c6c095() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -109,7 +109,7 @@ fn test_allowed_characters_in_keys_yml_use_tabstrue_format_1_d9c6c095() {
 #[test]
 fn test_allowed_characters_in_plain_scalars_yml_prose_wrapalways_format_1_8c3a1111() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -122,7 +122,7 @@ fn test_allowed_characters_in_plain_scalars_yml_prose_wrapalways_format_1_8c3a11
 #[test]
 fn test_allowed_characters_in_plain_scalars_yml_use_tabstrue_format_1_8c3a1111() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -135,7 +135,7 @@ fn test_allowed_characters_in_plain_scalars_yml_use_tabstrue_format_1_8c3a1111()
 #[test]
 fn test_allowed_characters_in_quoted_mapping_key_yml_prose_wrapalways_format_1_9c39f69a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -152,7 +152,7 @@ fn test_allowed_characters_in_quoted_mapping_key_yml_prose_wrapalways_format_1_9
 #[test]
 fn test_allowed_characters_in_quoted_mapping_key_yml_use_tabstrue_format_1_9c39f69a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -169,7 +169,7 @@ fn test_allowed_characters_in_quoted_mapping_key_yml_use_tabstrue_format_1_9c39f
 #[test]
 fn test_anchor_before_zero_indented_sequence_yml_prose_wrapalways_format_1_c96e9fc1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -182,7 +182,7 @@ fn test_anchor_before_zero_indented_sequence_yml_prose_wrapalways_format_1_c96e9
 #[test]
 fn test_anchor_before_zero_indented_sequence_yml_use_tabstrue_format_1_c96e9fc1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -195,7 +195,7 @@ fn test_anchor_before_zero_indented_sequence_yml_use_tabstrue_format_1_c96e9fc1(
 #[test]
 fn test_anchor_with_unicode_character_yml_prose_wrapalways_format_1_0f18d56d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -208,7 +208,7 @@ fn test_anchor_with_unicode_character_yml_prose_wrapalways_format_1_0f18d56d() {
 #[test]
 fn test_anchor_with_unicode_character_yml_use_tabstrue_format_1_0f18d56d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -221,7 +221,7 @@ fn test_anchor_with_unicode_character_yml_use_tabstrue_format_1_0f18d56d() {
 #[test]
 fn test_anchors_and_tags_yml_prose_wrapalways_format_1_c5fc8380() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -234,7 +234,7 @@ fn test_anchors_and_tags_yml_prose_wrapalways_format_1_c5fc8380() {
 #[test]
 fn test_anchors_and_tags_yml_use_tabstrue_format_1_c5fc8380() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -247,7 +247,7 @@ fn test_anchors_and_tags_yml_use_tabstrue_format_1_c5fc8380() {
 #[test]
 fn test_anchors_in_mapping_yml_prose_wrapalways_format_1_d4d01cec() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -260,7 +260,7 @@ fn test_anchors_in_mapping_yml_prose_wrapalways_format_1_d4d01cec() {
 #[test]
 fn test_anchors_in_mapping_yml_use_tabstrue_format_1_d4d01cec() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -273,7 +273,7 @@ fn test_anchors_in_mapping_yml_use_tabstrue_format_1_d4d01cec() {
 #[test]
 fn test_anchors_with_colon_in_name_yml_prose_wrapalways_format_1_8e3f210c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -286,7 +286,7 @@ fn test_anchors_with_colon_in_name_yml_prose_wrapalways_format_1_8e3f210c() {
 #[test]
 fn test_anchors_with_colon_in_name_yml_use_tabstrue_format_1_8e3f210c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -299,7 +299,7 @@ fn test_anchors_with_colon_in_name_yml_use_tabstrue_format_1_8e3f210c() {
 #[test]
 fn test_backslashes_in_singlequotes_yml_prose_wrapalways_format_1_6d3047ac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -312,7 +312,7 @@ fn test_backslashes_in_singlequotes_yml_prose_wrapalways_format_1_6d3047ac() {
 #[test]
 fn test_backslashes_in_singlequotes_yml_use_tabstrue_format_1_6d3047ac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -325,7 +325,7 @@ fn test_backslashes_in_singlequotes_yml_use_tabstrue_format_1_6d3047ac() {
 #[test]
 fn test_bare_document_after_document_end_marker_yml_prose_wrapalways_format_1_4ceb495f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -338,7 +338,7 @@ fn test_bare_document_after_document_end_marker_yml_prose_wrapalways_format_1_4c
 #[test]
 fn test_bare_document_after_document_end_marker_yml_use_tabstrue_format_1_4ceb495f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -351,7 +351,7 @@ fn test_bare_document_after_document_end_marker_yml_use_tabstrue_format_1_4ceb49
 #[test]
 fn test_blank_lines_yml_prose_wrapalways_format_1_15747532() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -368,7 +368,7 @@ fn test_blank_lines_yml_prose_wrapalways_format_1_15747532() {
 #[test]
 fn test_blank_lines_yml_use_tabstrue_format_1_15747532() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -385,7 +385,7 @@ fn test_blank_lines_yml_use_tabstrue_format_1_15747532() {
 #[test]
 fn test_block_mapping_with_missing_values_yml_prose_wrapalways_format_1_fc2829f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -398,7 +398,7 @@ fn test_block_mapping_with_missing_values_yml_prose_wrapalways_format_1_fc2829f1
 #[test]
 fn test_block_mapping_with_missing_values_yml_use_tabstrue_format_1_fc2829f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -411,7 +411,7 @@ fn test_block_mapping_with_missing_values_yml_use_tabstrue_format_1_fc2829f1() {
 #[test]
 fn test_block_mapping_with_multiline_scalars_yml_prose_wrapalways_format_1_5c0faab1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -424,7 +424,7 @@ fn test_block_mapping_with_multiline_scalars_yml_prose_wrapalways_format_1_5c0fa
 #[test]
 fn test_block_mapping_with_multiline_scalars_yml_use_tabstrue_format_1_5c0faab1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -437,7 +437,7 @@ fn test_block_mapping_with_multiline_scalars_yml_use_tabstrue_format_1_5c0faab1(
 #[test]
 fn test_block_mappings_in_block_sequence_yml_prose_wrapalways_format_1_36198fa8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -450,7 +450,7 @@ fn test_block_mappings_in_block_sequence_yml_prose_wrapalways_format_1_36198fa8(
 #[test]
 fn test_block_mappings_in_block_sequence_yml_use_tabstrue_format_1_36198fa8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -463,7 +463,7 @@ fn test_block_mappings_in_block_sequence_yml_use_tabstrue_format_1_36198fa8() {
 #[test]
 fn test_block_scalar_indicator_order_yml_prose_wrapalways_format_1_c9bd8bf5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -480,7 +480,7 @@ fn test_block_scalar_indicator_order_yml_prose_wrapalways_format_1_c9bd8bf5() {
 #[test]
 fn test_block_scalar_indicator_order_yml_use_tabstrue_format_1_c9bd8bf5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -497,7 +497,7 @@ fn test_block_scalar_indicator_order_yml_use_tabstrue_format_1_c9bd8bf5() {
 #[test]
 fn test_block_scalar_keep_yml_prose_wrapalways_format_1_33ea4e34() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -510,7 +510,7 @@ fn test_block_scalar_keep_yml_prose_wrapalways_format_1_33ea4e34() {
 #[test]
 fn test_block_scalar_keep_yml_use_tabstrue_format_1_33ea4e34() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -523,7 +523,7 @@ fn test_block_scalar_keep_yml_use_tabstrue_format_1_33ea4e34() {
 #[test]
 fn test_block_scalar_strip_yml_prose_wrapalways_format_1_8f5808e3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -536,7 +536,7 @@ fn test_block_scalar_strip_yml_prose_wrapalways_format_1_8f5808e3() {
 #[test]
 fn test_block_scalar_strip_yml_use_tabstrue_format_1_8f5808e3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -549,7 +549,7 @@ fn test_block_scalar_strip_yml_use_tabstrue_format_1_8f5808e3() {
 #[test]
 fn test_block_sequence_in_block_mapping_yml_prose_wrapalways_format_1_87d4c889() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -562,7 +562,7 @@ fn test_block_sequence_in_block_mapping_yml_prose_wrapalways_format_1_87d4c889()
 #[test]
 fn test_block_sequence_in_block_mapping_yml_use_tabstrue_format_1_87d4c889() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -575,7 +575,7 @@ fn test_block_sequence_in_block_mapping_yml_use_tabstrue_format_1_87d4c889() {
 #[test]
 fn test_block_sequence_in_block_sequence_yml_prose_wrapalways_format_1_20658a26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -588,7 +588,7 @@ fn test_block_sequence_in_block_sequence_yml_prose_wrapalways_format_1_20658a26(
 #[test]
 fn test_block_sequence_in_block_sequence_yml_use_tabstrue_format_1_20658a26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -601,7 +601,7 @@ fn test_block_sequence_in_block_sequence_yml_use_tabstrue_format_1_20658a26() {
 #[test]
 fn test_block_submapping_yml_prose_wrapalways_format_1_920dcb3a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -614,7 +614,7 @@ fn test_block_submapping_yml_prose_wrapalways_format_1_920dcb3a() {
 #[test]
 fn test_block_submapping_yml_use_tabstrue_format_1_920dcb3a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -627,7 +627,7 @@ fn test_block_submapping_yml_use_tabstrue_format_1_920dcb3a() {
 #[test]
 fn test_colon_in_double_quoted_string_yml_prose_wrapalways_format_1_d3c52967() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -640,7 +640,7 @@ fn test_colon_in_double_quoted_string_yml_prose_wrapalways_format_1_d3c52967() {
 #[test]
 fn test_colon_in_double_quoted_string_yml_use_tabstrue_format_1_d3c52967() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -653,7 +653,7 @@ fn test_colon_in_double_quoted_string_yml_use_tabstrue_format_1_d3c52967() {
 #[test]
 fn test_comment_in_flow_sequence_before_comma_yml_prose_wrapalways_format_1_58ec4cd2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -666,7 +666,7 @@ fn test_comment_in_flow_sequence_before_comma_yml_prose_wrapalways_format_1_58ec
 #[test]
 fn test_comment_in_flow_sequence_before_comma_yml_use_tabstrue_format_1_58ec4cd2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -679,7 +679,7 @@ fn test_comment_in_flow_sequence_before_comma_yml_use_tabstrue_format_1_58ec4cd2
 #[test]
 fn test_construct_binary_yml_prose_wrapalways_format_1_c880ae44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -692,7 +692,7 @@ fn test_construct_binary_yml_prose_wrapalways_format_1_c880ae44() {
 #[test]
 fn test_construct_binary_yml_use_tabstrue_format_1_c880ae44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -705,7 +705,7 @@ fn test_construct_binary_yml_use_tabstrue_format_1_c880ae44() {
 #[test]
 fn test_document_start_on_last_line_yml_prose_wrapalways_format_1_e31113f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -718,7 +718,7 @@ fn test_document_start_on_last_line_yml_prose_wrapalways_format_1_e31113f8() {
 #[test]
 fn test_document_start_on_last_line_yml_use_tabstrue_format_1_e31113f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -731,7 +731,7 @@ fn test_document_start_on_last_line_yml_use_tabstrue_format_1_e31113f8() {
 #[test]
 fn test_document_with_footer_yml_prose_wrapalways_format_1_d460397f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -744,7 +744,7 @@ fn test_document_with_footer_yml_prose_wrapalways_format_1_d460397f() {
 #[test]
 fn test_document_with_footer_yml_use_tabstrue_format_1_d460397f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -757,7 +757,7 @@ fn test_document_with_footer_yml_use_tabstrue_format_1_d460397f() {
 #[test]
 fn test_empty_lines_at_end_of_document_yml_prose_wrapalways_format_1_97782dcc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -770,7 +770,7 @@ fn test_empty_lines_at_end_of_document_yml_prose_wrapalways_format_1_97782dcc() 
 #[test]
 fn test_empty_lines_at_end_of_document_yml_use_tabstrue_format_1_97782dcc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -783,7 +783,7 @@ fn test_empty_lines_at_end_of_document_yml_use_tabstrue_format_1_97782dcc() {
 #[test]
 fn test_empty_lines_between_mapping_elements_yml_prose_wrapalways_format_1_b19dc8bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -796,7 +796,7 @@ fn test_empty_lines_between_mapping_elements_yml_prose_wrapalways_format_1_b19dc
 #[test]
 fn test_empty_lines_between_mapping_elements_yml_use_tabstrue_format_1_b19dc8bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -809,7 +809,7 @@ fn test_empty_lines_between_mapping_elements_yml_use_tabstrue_format_1_b19dc8bb(
 #[test]
 fn test_empty_stream_yml_prose_wrapalways_format_1_68b329da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -822,7 +822,7 @@ fn test_empty_stream_yml_prose_wrapalways_format_1_68b329da() {
 #[test]
 fn test_empty_stream_yml_use_tabstrue_format_1_68b329da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -835,7 +835,7 @@ fn test_empty_stream_yml_use_tabstrue_format_1_68b329da() {
 #[test]
 fn test_escaped_slash_in_double_quotes_yml_prose_wrapalways_format_1_1947b750() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -848,7 +848,7 @@ fn test_escaped_slash_in_double_quotes_yml_prose_wrapalways_format_1_1947b750() 
 #[test]
 fn test_escaped_slash_in_double_quotes_yml_use_tabstrue_format_1_1947b750() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -861,7 +861,7 @@ fn test_escaped_slash_in_double_quotes_yml_use_tabstrue_format_1_1947b750() {
 #[test]
 fn test_explicit_non_specific_tag_yml_prose_wrapalways_format_1_7e2db921() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -874,7 +874,7 @@ fn test_explicit_non_specific_tag_yml_prose_wrapalways_format_1_7e2db921() {
 #[test]
 fn test_explicit_non_specific_tag_yml_use_tabstrue_format_1_7e2db921() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -887,7 +887,7 @@ fn test_explicit_non_specific_tag_yml_use_tabstrue_format_1_7e2db921() {
 #[test]
 fn test_flow_mapping_yml_prose_wrapalways_format_1_103170f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -900,7 +900,7 @@ fn test_flow_mapping_yml_prose_wrapalways_format_1_103170f8() {
 #[test]
 fn test_flow_mapping_yml_use_tabstrue_format_1_103170f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -913,7 +913,7 @@ fn test_flow_mapping_yml_use_tabstrue_format_1_103170f8() {
 #[test]
 fn test_flow_mapping_in_block_sequence_yml_prose_wrapalways_format_1_7195d4dc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -926,7 +926,7 @@ fn test_flow_mapping_in_block_sequence_yml_prose_wrapalways_format_1_7195d4dc() 
 #[test]
 fn test_flow_mapping_in_block_sequence_yml_use_tabstrue_format_1_7195d4dc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -939,7 +939,7 @@ fn test_flow_mapping_in_block_sequence_yml_use_tabstrue_format_1_7195d4dc() {
 #[test]
 fn test_flow_sequence_yml_prose_wrapalways_format_1_1a4491d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -952,7 +952,7 @@ fn test_flow_sequence_yml_prose_wrapalways_format_1_1a4491d5() {
 #[test]
 fn test_flow_sequence_yml_use_tabstrue_format_1_1a4491d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -965,7 +965,7 @@ fn test_flow_sequence_yml_use_tabstrue_format_1_1a4491d5() {
 #[test]
 fn test_flow_sequence_in_block_mapping_yml_prose_wrapalways_format_1_053b8339() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -978,7 +978,7 @@ fn test_flow_sequence_in_block_mapping_yml_prose_wrapalways_format_1_053b8339() 
 #[test]
 fn test_flow_sequence_in_block_mapping_yml_use_tabstrue_format_1_053b8339() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -991,7 +991,7 @@ fn test_flow_sequence_in_block_mapping_yml_use_tabstrue_format_1_053b8339() {
 #[test]
 fn test_flow_sequence_in_flow_mapping_yml_prose_wrapalways_format_1_6ba7a48a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1004,7 +1004,7 @@ fn test_flow_sequence_in_flow_mapping_yml_prose_wrapalways_format_1_6ba7a48a() {
 #[test]
 fn test_flow_sequence_in_flow_mapping_yml_use_tabstrue_format_1_6ba7a48a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1017,7 +1017,7 @@ fn test_flow_sequence_in_flow_mapping_yml_use_tabstrue_format_1_6ba7a48a() {
 #[test]
 fn test_flow_sequence_in_flow_sequence_yml_prose_wrapalways_format_1_22eb12b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1030,7 +1030,7 @@ fn test_flow_sequence_in_flow_sequence_yml_prose_wrapalways_format_1_22eb12b7() 
 #[test]
 fn test_flow_sequence_in_flow_sequence_yml_use_tabstrue_format_1_22eb12b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1043,7 +1043,7 @@ fn test_flow_sequence_in_flow_sequence_yml_use_tabstrue_format_1_22eb12b7() {
 #[test]
 fn test_folded_block_scalar_yml_prose_wrapalways_format_1_12114c15() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1056,7 +1056,7 @@ fn test_folded_block_scalar_yml_prose_wrapalways_format_1_12114c15() {
 #[test]
 fn test_folded_block_scalar_yml_use_tabstrue_format_1_12114c15() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1069,7 +1069,7 @@ fn test_folded_block_scalar_yml_use_tabstrue_format_1_12114c15() {
 #[test]
 fn test_implicit_flow_mapping_key_on_one_line_yml_prose_wrapalways_format_1_13bbbc2c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1082,7 +1082,7 @@ fn test_implicit_flow_mapping_key_on_one_line_yml_prose_wrapalways_format_1_13bb
 #[test]
 fn test_implicit_flow_mapping_key_on_one_line_yml_use_tabstrue_format_1_13bbbc2c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1096,7 +1096,7 @@ fn test_implicit_flow_mapping_key_on_one_line_yml_use_tabstrue_format_1_13bbbc2c
 fn test_key_with_anchor_after_missing_explicit_mapping_value_yml_prose_wrapalways_format_1_43c85604(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1109,7 +1109,7 @@ fn test_key_with_anchor_after_missing_explicit_mapping_value_yml_prose_wrapalway
 #[test]
 fn test_key_with_anchor_after_missing_explicit_mapping_value_yml_use_tabstrue_format_1_43c85604() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1122,7 +1122,7 @@ fn test_key_with_anchor_after_missing_explicit_mapping_value_yml_use_tabstrue_fo
 #[test]
 fn test_literal_block_scalar_yml_prose_wrapalways_format_1_f8a2d50c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1135,7 +1135,7 @@ fn test_literal_block_scalar_yml_prose_wrapalways_format_1_f8a2d50c() {
 #[test]
 fn test_literal_block_scalar_yml_use_tabstrue_format_1_f8a2d50c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1148,7 +1148,7 @@ fn test_literal_block_scalar_yml_use_tabstrue_format_1_f8a2d50c() {
 #[test]
 fn test_literal_unicode_yml_prose_wrapalways_format_1_2b7e1146() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1161,7 +1161,7 @@ fn test_literal_unicode_yml_prose_wrapalways_format_1_2b7e1146() {
 #[test]
 fn test_literal_unicode_yml_use_tabstrue_format_1_2b7e1146() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1174,7 +1174,7 @@ fn test_literal_unicode_yml_use_tabstrue_format_1_2b7e1146() {
 #[test]
 fn test_lookahead_test_cases_yml_prose_wrapalways_format_1_9faf3299() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1187,7 +1187,7 @@ fn test_lookahead_test_cases_yml_prose_wrapalways_format_1_9faf3299() {
 #[test]
 fn test_lookahead_test_cases_yml_use_tabstrue_format_1_9faf3299() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1200,7 +1200,7 @@ fn test_lookahead_test_cases_yml_use_tabstrue_format_1_9faf3299() {
 #[test]
 fn test_mapping_key_and_flow_sequence_item_anchors_yml_prose_wrapalways_format_1_bbbaf0ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1213,7 +1213,7 @@ fn test_mapping_key_and_flow_sequence_item_anchors_yml_prose_wrapalways_format_1
 #[test]
 fn test_mapping_key_and_flow_sequence_item_anchors_yml_use_tabstrue_format_1_bbbaf0ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1226,7 +1226,7 @@ fn test_mapping_key_and_flow_sequence_item_anchors_yml_use_tabstrue_format_1_bbb
 #[test]
 fn test_mixed_block_mapping_explicit_to_implicit_yml_prose_wrapalways_format_1_c896f33c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1239,7 +1239,7 @@ fn test_mixed_block_mapping_explicit_to_implicit_yml_prose_wrapalways_format_1_c
 #[test]
 fn test_mixed_block_mapping_explicit_to_implicit_yml_use_tabstrue_format_1_c896f33c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1252,7 +1252,7 @@ fn test_mixed_block_mapping_explicit_to_implicit_yml_use_tabstrue_format_1_c896f
 #[test]
 fn test_mixed_block_mapping_implicit_to_explicit_yml_prose_wrapalways_format_1_98bd8f68() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1265,7 +1265,7 @@ fn test_mixed_block_mapping_implicit_to_explicit_yml_prose_wrapalways_format_1_9
 #[test]
 fn test_mixed_block_mapping_implicit_to_explicit_yml_use_tabstrue_format_1_98bd8f68() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1278,7 +1278,7 @@ fn test_mixed_block_mapping_implicit_to_explicit_yml_use_tabstrue_format_1_98bd8
 #[test]
 fn test_multi_level_mapping_indent_yml_prose_wrapalways_format_1_e5e199b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1291,7 +1291,7 @@ fn test_multi_level_mapping_indent_yml_prose_wrapalways_format_1_e5e199b7() {
 #[test]
 fn test_multi_level_mapping_indent_yml_use_tabstrue_format_1_e5e199b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1304,7 +1304,7 @@ fn test_multi_level_mapping_indent_yml_use_tabstrue_format_1_e5e199b7() {
 #[test]
 fn test_multiline_plain_scalar_with_empty_line_yml_prose_wrapalways_format_1_6a64e9d1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1317,7 +1317,7 @@ fn test_multiline_plain_scalar_with_empty_line_yml_prose_wrapalways_format_1_6a6
 #[test]
 fn test_multiline_plain_scalar_with_empty_line_yml_use_tabstrue_format_1_6a64e9d1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1330,7 +1330,7 @@ fn test_multiline_plain_scalar_with_empty_line_yml_use_tabstrue_format_1_6a64e9d
 #[test]
 fn test_multiline_scalar_at_top_level_yml_prose_wrapalways_format_1_7e99396c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1343,7 +1343,7 @@ fn test_multiline_scalar_at_top_level_yml_prose_wrapalways_format_1_7e99396c() {
 #[test]
 fn test_multiline_scalar_at_top_level_yml_use_tabstrue_format_1_7e99396c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1356,7 +1356,7 @@ fn test_multiline_scalar_at_top_level_yml_use_tabstrue_format_1_7e99396c() {
 #[test]
 fn test_multiline_scalar_in_mapping_yml_prose_wrapalways_format_1_69a5269c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1369,7 +1369,7 @@ fn test_multiline_scalar_in_mapping_yml_prose_wrapalways_format_1_69a5269c() {
 #[test]
 fn test_multiline_scalar_in_mapping_yml_use_tabstrue_format_1_69a5269c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1382,7 +1382,7 @@ fn test_multiline_scalar_in_mapping_yml_use_tabstrue_format_1_69a5269c() {
 #[test]
 fn test_multiline_scalar_that_looks_like_a_yaml_directive_yml_prose_wrapalways_format_1_ab1a4e3e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1395,7 +1395,7 @@ fn test_multiline_scalar_that_looks_like_a_yaml_directive_yml_prose_wrapalways_f
 #[test]
 fn test_multiline_scalar_that_looks_like_a_yaml_directive_yml_use_tabstrue_format_1_ab1a4e3e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1408,7 +1408,7 @@ fn test_multiline_scalar_that_looks_like_a_yaml_directive_yml_use_tabstrue_forma
 #[test]
 fn test_multiple_entry_block_sequence_yml_prose_wrapalways_format_1_f4e3ab46() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1421,7 +1421,7 @@ fn test_multiple_entry_block_sequence_yml_prose_wrapalways_format_1_f4e3ab46() {
 #[test]
 fn test_multiple_entry_block_sequence_yml_use_tabstrue_format_1_f4e3ab46() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1434,7 +1434,7 @@ fn test_multiple_entry_block_sequence_yml_use_tabstrue_format_1_f4e3ab46() {
 #[test]
 fn test_multiple_pair_block_mapping_yml_prose_wrapalways_format_1_bf5a14ad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1447,7 +1447,7 @@ fn test_multiple_pair_block_mapping_yml_prose_wrapalways_format_1_bf5a14ad() {
 #[test]
 fn test_multiple_pair_block_mapping_yml_use_tabstrue_format_1_bf5a14ad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1460,7 +1460,7 @@ fn test_multiple_pair_block_mapping_yml_use_tabstrue_format_1_bf5a14ad() {
 #[test]
 fn test_nested_flow_collections_yml_prose_wrapalways_format_1_8bc100e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1473,7 +1473,7 @@ fn test_nested_flow_collections_yml_prose_wrapalways_format_1_8bc100e6() {
 #[test]
 fn test_nested_flow_collections_yml_use_tabstrue_format_1_8bc100e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1486,7 +1486,7 @@ fn test_nested_flow_collections_yml_use_tabstrue_format_1_8bc100e6() {
 #[test]
 fn test_nested_flow_collections_on_one_line_yml_prose_wrapalways_format_1_2001eeac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1499,7 +1499,7 @@ fn test_nested_flow_collections_on_one_line_yml_prose_wrapalways_format_1_2001ee
 #[test]
 fn test_nested_flow_collections_on_one_line_yml_use_tabstrue_format_1_2001eeac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1512,7 +1512,7 @@ fn test_nested_flow_collections_on_one_line_yml_use_tabstrue_format_1_2001eeac()
 #[test]
 fn test_node_anchor_and_tag_on_seperate_lines_yml_prose_wrapalways_format_1_198ff717() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1525,7 +1525,7 @@ fn test_node_anchor_and_tag_on_seperate_lines_yml_prose_wrapalways_format_1_198f
 #[test]
 fn test_node_anchor_and_tag_on_seperate_lines_yml_use_tabstrue_format_1_198ff717() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1538,7 +1538,7 @@ fn test_node_anchor_and_tag_on_seperate_lines_yml_use_tabstrue_format_1_198ff717
 #[test]
 fn test_node_and_mapping_key_anchors_yml_prose_wrapalways_format_1_2c282907() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1551,7 +1551,7 @@ fn test_node_and_mapping_key_anchors_yml_prose_wrapalways_format_1_2c282907() {
 #[test]
 fn test_node_and_mapping_key_anchors_yml_use_tabstrue_format_1_2c282907() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1564,7 +1564,7 @@ fn test_node_and_mapping_key_anchors_yml_use_tabstrue_format_1_2c282907() {
 #[test]
 fn test_non_specific_tags_on_scalars_yml_prose_wrapalways_format_1_83c3229d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1581,7 +1581,7 @@ fn test_non_specific_tags_on_scalars_yml_prose_wrapalways_format_1_83c3229d() {
 #[test]
 fn test_non_specific_tags_on_scalars_yml_use_tabstrue_format_1_83c3229d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1598,7 +1598,7 @@ fn test_non_specific_tags_on_scalars_yml_use_tabstrue_format_1_83c3229d() {
 #[test]
 fn test_plain_mapping_key_ending_with_colon_yml_prose_wrapalways_format_1_fe33580e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1611,7 +1611,7 @@ fn test_plain_mapping_key_ending_with_colon_yml_prose_wrapalways_format_1_fe3358
 #[test]
 fn test_plain_mapping_key_ending_with_colon_yml_use_tabstrue_format_1_fe33580e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1625,7 +1625,7 @@ fn test_plain_mapping_key_ending_with_colon_yml_use_tabstrue_format_1_fe33580e()
 fn test_plain_scalar_looking_like_key_comment_anchor_and_tag_yml_prose_wrapalways_format_1_6c0ef8c9(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1638,7 +1638,7 @@ fn test_plain_scalar_looking_like_key_comment_anchor_and_tag_yml_prose_wrapalway
 #[test]
 fn test_plain_scalar_looking_like_key_comment_anchor_and_tag_yml_use_tabstrue_format_1_6c0ef8c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1651,7 +1651,7 @@ fn test_plain_scalar_looking_like_key_comment_anchor_and_tag_yml_use_tabstrue_fo
 #[test]
 fn test_plain_scalar_with_backslashes_yml_prose_wrapalways_format_1_0709ff4d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1664,7 +1664,7 @@ fn test_plain_scalar_with_backslashes_yml_prose_wrapalways_format_1_0709ff4d() {
 #[test]
 fn test_plain_scalar_with_backslashes_yml_use_tabstrue_format_1_0709ff4d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1677,7 +1677,7 @@ fn test_plain_scalar_with_backslashes_yml_use_tabstrue_format_1_0709ff4d() {
 #[test]
 fn test_plain_url_in_flow_mapping_yml_prose_wrapalways_format_1_ffb9b1df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1690,7 +1690,7 @@ fn test_plain_url_in_flow_mapping_yml_prose_wrapalways_format_1_ffb9b1df() {
 #[test]
 fn test_plain_url_in_flow_mapping_yml_use_tabstrue_format_1_ffb9b1df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1703,7 +1703,7 @@ fn test_plain_url_in_flow_mapping_yml_use_tabstrue_format_1_ffb9b1df() {
 #[test]
 fn test_scalars_on_line_yml_prose_wrapalways_format_1_ec30f6d9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1716,7 +1716,7 @@ fn test_scalars_on_line_yml_prose_wrapalways_format_1_ec30f6d9() {
 #[test]
 fn test_scalars_on_line_yml_use_tabstrue_format_1_ec30f6d9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1730,7 +1730,7 @@ fn test_scalars_on_line_yml_use_tabstrue_format_1_ec30f6d9() {
 fn test_sequence_entry_that_looks_like_two_with_wrong_indentation_yml_prose_wrapalways_format_1_c8a47f4c(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1744,7 +1744,7 @@ fn test_sequence_entry_that_looks_like_two_with_wrong_indentation_yml_prose_wrap
 fn test_sequence_entry_that_looks_like_two_with_wrong_indentation_yml_use_tabstrue_format_1_c8a47f4c(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1757,7 +1757,7 @@ fn test_sequence_entry_that_looks_like_two_with_wrong_indentation_yml_use_tabstr
 #[test]
 fn test_sequence_indent_yml_prose_wrapalways_format_1_fd4fd10d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1770,7 +1770,7 @@ fn test_sequence_indent_yml_prose_wrapalways_format_1_fd4fd10d() {
 #[test]
 fn test_sequence_indent_yml_use_tabstrue_format_1_fd4fd10d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1783,7 +1783,7 @@ fn test_sequence_indent_yml_use_tabstrue_format_1_fd4fd10d() {
 #[test]
 fn test_sequence_with_same_indentation_as_parent_mapping_yml_prose_wrapalways_format_1_d33d8a8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1796,7 +1796,7 @@ fn test_sequence_with_same_indentation_as_parent_mapping_yml_prose_wrapalways_fo
 #[test]
 fn test_sequence_with_same_indentation_as_parent_mapping_yml_use_tabstrue_format_1_d33d8a8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1809,7 +1809,7 @@ fn test_sequence_with_same_indentation_as_parent_mapping_yml_use_tabstrue_format
 #[test]
 fn test_simple_mapping_indent_yml_prose_wrapalways_format_1_a6fc5dbb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1822,7 +1822,7 @@ fn test_simple_mapping_indent_yml_prose_wrapalways_format_1_a6fc5dbb() {
 #[test]
 fn test_simple_mapping_indent_yml_use_tabstrue_format_1_a6fc5dbb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1835,7 +1835,7 @@ fn test_simple_mapping_indent_yml_use_tabstrue_format_1_a6fc5dbb() {
 #[test]
 fn test_single_entry_block_sequence_yml_prose_wrapalways_format_1_0947182a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1848,7 +1848,7 @@ fn test_single_entry_block_sequence_yml_prose_wrapalways_format_1_0947182a() {
 #[test]
 fn test_single_entry_block_sequence_yml_use_tabstrue_format_1_0947182a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1861,7 +1861,7 @@ fn test_single_entry_block_sequence_yml_use_tabstrue_format_1_0947182a() {
 #[test]
 fn test_single_pair_block_mapping_yml_prose_wrapalways_format_1_f5abb3e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1874,7 +1874,7 @@ fn test_single_pair_block_mapping_yml_prose_wrapalways_format_1_f5abb3e0() {
 #[test]
 fn test_single_pair_block_mapping_yml_use_tabstrue_format_1_f5abb3e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1887,7 +1887,7 @@ fn test_single_pair_block_mapping_yml_use_tabstrue_format_1_f5abb3e0() {
 #[test]
 fn test_spec_example_2_1_sequence_of_scalars_yml_prose_wrapalways_format_1_67795e8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1900,7 +1900,7 @@ fn test_spec_example_2_1_sequence_of_scalars_yml_prose_wrapalways_format_1_67795
 #[test]
 fn test_spec_example_2_1_sequence_of_scalars_yml_use_tabstrue_format_1_67795e8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1913,7 +1913,7 @@ fn test_spec_example_2_1_sequence_of_scalars_yml_use_tabstrue_format_1_67795e8c(
 #[test]
 fn test_spec_example_2_2_mapping_scalars_to_scalars_yml_prose_wrapalways_format_1_de9d2930() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1931,7 +1931,7 @@ fn test_spec_example_2_2_mapping_scalars_to_scalars_yml_prose_wrapalways_format_
 #[test]
 fn test_spec_example_2_2_mapping_scalars_to_scalars_yml_use_tabstrue_format_1_de9d2930() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1949,7 +1949,7 @@ fn test_spec_example_2_2_mapping_scalars_to_scalars_yml_use_tabstrue_format_1_de
 #[test]
 fn test_spec_example_2_3_mapping_scalars_to_sequences_yml_prose_wrapalways_format_1_452d4963() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1962,7 +1962,7 @@ fn test_spec_example_2_3_mapping_scalars_to_sequences_yml_prose_wrapalways_forma
 #[test]
 fn test_spec_example_2_3_mapping_scalars_to_sequences_yml_use_tabstrue_format_1_452d4963() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -1975,7 +1975,7 @@ fn test_spec_example_2_3_mapping_scalars_to_sequences_yml_use_tabstrue_format_1_
 #[test]
 fn test_spec_example_2_4_sequence_of_mappings_yml_prose_wrapalways_format_1_745dc419() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -1991,7 +1991,7 @@ fn test_spec_example_2_4_sequence_of_mappings_yml_prose_wrapalways_format_1_745d
 #[test]
 fn test_spec_example_2_4_sequence_of_mappings_yml_use_tabstrue_format_1_745dc419() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2007,7 +2007,7 @@ fn test_spec_example_2_4_sequence_of_mappings_yml_use_tabstrue_format_1_745dc419
 #[test]
 fn test_spec_example_2_5_sequence_of_sequences_yml_prose_wrapalways_format_1_4b206cf0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2025,7 +2025,7 @@ fn test_spec_example_2_5_sequence_of_sequences_yml_prose_wrapalways_format_1_4b2
 #[test]
 fn test_spec_example_2_5_sequence_of_sequences_yml_use_tabstrue_format_1_4b206cf0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2043,7 +2043,7 @@ fn test_spec_example_2_5_sequence_of_sequences_yml_use_tabstrue_format_1_4b206cf
 #[test]
 fn test_spec_example_2_6_mapping_of_mappings_yml_prose_wrapalways_format_1_c894c183() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2061,7 +2061,7 @@ fn test_spec_example_2_6_mapping_of_mappings_yml_prose_wrapalways_format_1_c894c
 #[test]
 fn test_spec_example_2_6_mapping_of_mappings_yml_use_tabstrue_format_1_c894c183() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2079,7 +2079,7 @@ fn test_spec_example_2_6_mapping_of_mappings_yml_use_tabstrue_format_1_c894c183(
 #[test]
 fn test_spec_example_2_7_two_documents_in_a_stream_yml_prose_wrapalways_format_1_e2b10e9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2092,7 +2092,7 @@ fn test_spec_example_2_7_two_documents_in_a_stream_yml_prose_wrapalways_format_1
 #[test]
 fn test_spec_example_2_7_two_documents_in_a_stream_yml_use_tabstrue_format_1_e2b10e9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2105,7 +2105,7 @@ fn test_spec_example_2_7_two_documents_in_a_stream_yml_use_tabstrue_format_1_e2b
 #[test]
 fn test_spec_example_2_8_play_by_play_feed_from_a_game_yml_prose_wrapalways_format_1_8c7bd218() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2118,7 +2118,7 @@ fn test_spec_example_2_8_play_by_play_feed_from_a_game_yml_prose_wrapalways_form
 #[test]
 fn test_spec_example_2_8_play_by_play_feed_from_a_game_yml_use_tabstrue_format_1_8c7bd218() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2132,7 +2132,7 @@ fn test_spec_example_2_8_play_by_play_feed_from_a_game_yml_use_tabstrue_format_1
 fn test_spec_example_2_9_single_document_with_two_comments_yml_prose_wrapalways_format_1_8cd0c691()
 {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2145,7 +2145,7 @@ fn test_spec_example_2_9_single_document_with_two_comments_yml_prose_wrapalways_
 #[test]
 fn test_spec_example_2_9_single_document_with_two_comments_yml_use_tabstrue_format_1_8cd0c691() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2159,7 +2159,7 @@ fn test_spec_example_2_9_single_document_with_two_comments_yml_use_tabstrue_form
 fn test_spec_example_2_10_node_for_sammy_sosa_appears_twice_in_this_document_yml_prose_wrapalways_format_1_14681139(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2173,7 +2173,7 @@ fn test_spec_example_2_10_node_for_sammy_sosa_appears_twice_in_this_document_yml
 fn test_spec_example_2_10_node_for_sammy_sosa_appears_twice_in_this_document_yml_use_tabstrue_format_1_14681139(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2186,7 +2186,7 @@ fn test_spec_example_2_10_node_for_sammy_sosa_appears_twice_in_this_document_yml
 #[test]
 fn test_spec_example_2_11_mapping_between_sequences_yml_prose_wrapalways_format_1_652c6d10() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2199,7 +2199,7 @@ fn test_spec_example_2_11_mapping_between_sequences_yml_prose_wrapalways_format_
 #[test]
 fn test_spec_example_2_11_mapping_between_sequences_yml_use_tabstrue_format_1_652c6d10() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2212,7 +2212,7 @@ fn test_spec_example_2_11_mapping_between_sequences_yml_use_tabstrue_format_1_65
 #[test]
 fn test_spec_example_2_12_compact_nested_mapping_yml_prose_wrapalways_format_1_cfe2575f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2225,7 +2225,7 @@ fn test_spec_example_2_12_compact_nested_mapping_yml_prose_wrapalways_format_1_c
 #[test]
 fn test_spec_example_2_12_compact_nested_mapping_yml_use_tabstrue_format_1_cfe2575f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2239,7 +2239,7 @@ fn test_spec_example_2_12_compact_nested_mapping_yml_use_tabstrue_format_1_cfe25
 fn test_spec_example_2_13_in_literals_newlines_are_preserved_yml_prose_wrapalways_format_1_0f991bb4(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2255,7 +2255,7 @@ fn test_spec_example_2_13_in_literals_newlines_are_preserved_yml_prose_wrapalway
 #[test]
 fn test_spec_example_2_13_in_literals_newlines_are_preserved_yml_use_tabstrue_format_1_0f991bb4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2272,7 +2272,7 @@ fn test_spec_example_2_13_in_literals_newlines_are_preserved_yml_use_tabstrue_fo
 fn test_spec_example_2_14_in_the_folded_scalars_newlines_become_spaces_yml_prose_wrapalways_format_1_ea00b733(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2290,7 +2290,7 @@ fn test_spec_example_2_14_in_the_folded_scalars_newlines_become_spaces_yml_prose
 fn test_spec_example_2_14_in_the_folded_scalars_newlines_become_spaces_yml_use_tabstrue_format_1_ea00b733(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2308,7 +2308,7 @@ fn test_spec_example_2_14_in_the_folded_scalars_newlines_become_spaces_yml_use_t
 fn test_spec_example_2_15_folded_newlines_are_preserved_for_more_indented_and_blank_lines_yml_prose_wrapalways_format_1_479bbbd6(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2322,7 +2322,7 @@ fn test_spec_example_2_15_folded_newlines_are_preserved_for_more_indented_and_bl
 fn test_spec_example_2_15_folded_newlines_are_preserved_for_more_indented_and_blank_lines_yml_use_tabstrue_format_1_479bbbd6(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2335,7 +2335,7 @@ fn test_spec_example_2_15_folded_newlines_are_preserved_for_more_indented_and_bl
 #[test]
 fn test_spec_example_2_16_indentation_determines_scope_yml_prose_wrapalways_format_1_d45be913() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2348,7 +2348,7 @@ fn test_spec_example_2_16_indentation_determines_scope_yml_prose_wrapalways_form
 #[test]
 fn test_spec_example_2_16_indentation_determines_scope_yml_use_tabstrue_format_1_d45be913() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2361,7 +2361,7 @@ fn test_spec_example_2_16_indentation_determines_scope_yml_use_tabstrue_format_1
 #[test]
 fn test_spec_example_2_17_quoted_scalars_yml_prose_wrapalways_format_1_e27c9de0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2374,7 +2374,7 @@ fn test_spec_example_2_17_quoted_scalars_yml_prose_wrapalways_format_1_e27c9de0(
 #[test]
 fn test_spec_example_2_17_quoted_scalars_yml_use_tabstrue_format_1_e27c9de0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2387,7 +2387,7 @@ fn test_spec_example_2_17_quoted_scalars_yml_use_tabstrue_format_1_e27c9de0() {
 #[test]
 fn test_spec_example_2_18_multi_line_flow_scalars_yml_prose_wrapalways_format_1_add8f696() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2400,7 +2400,7 @@ fn test_spec_example_2_18_multi_line_flow_scalars_yml_prose_wrapalways_format_1_
 #[test]
 fn test_spec_example_2_18_multi_line_flow_scalars_yml_use_tabstrue_format_1_add8f696() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2413,7 +2413,7 @@ fn test_spec_example_2_18_multi_line_flow_scalars_yml_use_tabstrue_format_1_add8
 #[test]
 fn test_spec_example_2_23_various_explicit_tags_yml_prose_wrapalways_format_1_2f108a22() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2426,7 +2426,7 @@ fn test_spec_example_2_23_various_explicit_tags_yml_prose_wrapalways_format_1_2f
 #[test]
 fn test_spec_example_2_23_various_explicit_tags_yml_use_tabstrue_format_1_2f108a22() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2439,7 +2439,7 @@ fn test_spec_example_2_23_various_explicit_tags_yml_use_tabstrue_format_1_2f108a
 #[test]
 fn test_spec_example_2_24_global_tags_yml_prose_wrapalways_format_1_51d9dce9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2452,7 +2452,7 @@ fn test_spec_example_2_24_global_tags_yml_prose_wrapalways_format_1_51d9dce9() {
 #[test]
 fn test_spec_example_2_24_global_tags_yml_use_tabstrue_format_1_51d9dce9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2465,7 +2465,7 @@ fn test_spec_example_2_24_global_tags_yml_use_tabstrue_format_1_51d9dce9() {
 #[test]
 fn test_spec_example_2_25_unordered_sets_yml_prose_wrapalways_format_1_f597d76e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2478,7 +2478,7 @@ fn test_spec_example_2_25_unordered_sets_yml_prose_wrapalways_format_1_f597d76e(
 #[test]
 fn test_spec_example_2_25_unordered_sets_yml_use_tabstrue_format_1_f597d76e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2491,7 +2491,7 @@ fn test_spec_example_2_25_unordered_sets_yml_use_tabstrue_format_1_f597d76e() {
 #[test]
 fn test_spec_example_2_26_ordered_mappings_yml_prose_wrapalways_format_1_4837c909() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2504,7 +2504,7 @@ fn test_spec_example_2_26_ordered_mappings_yml_prose_wrapalways_format_1_4837c90
 #[test]
 fn test_spec_example_2_26_ordered_mappings_yml_use_tabstrue_format_1_4837c909() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2517,7 +2517,7 @@ fn test_spec_example_2_26_ordered_mappings_yml_use_tabstrue_format_1_4837c909() 
 #[test]
 fn test_spec_example_2_27_invoice_yml_prose_wrapalways_format_1_8c45c1b0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2530,7 +2530,7 @@ fn test_spec_example_2_27_invoice_yml_prose_wrapalways_format_1_8c45c1b0() {
 #[test]
 fn test_spec_example_2_27_invoice_yml_use_tabstrue_format_1_8c45c1b0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2543,7 +2543,7 @@ fn test_spec_example_2_27_invoice_yml_use_tabstrue_format_1_8c45c1b0() {
 #[test]
 fn test_spec_example_2_28_log_file_yml_prose_wrapalways_format_1_1aef01c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2556,7 +2556,7 @@ fn test_spec_example_2_28_log_file_yml_prose_wrapalways_format_1_1aef01c4() {
 #[test]
 fn test_spec_example_2_28_log_file_yml_use_tabstrue_format_1_1aef01c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2569,7 +2569,7 @@ fn test_spec_example_2_28_log_file_yml_use_tabstrue_format_1_1aef01c4() {
 #[test]
 fn test_spec_example_5_3_block_structure_indicators_yml_prose_wrapalways_format_1_acc5f2ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2586,7 +2586,7 @@ fn test_spec_example_5_3_block_structure_indicators_yml_prose_wrapalways_format_
 #[test]
 fn test_spec_example_5_3_block_structure_indicators_yml_use_tabstrue_format_1_acc5f2ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2603,7 +2603,7 @@ fn test_spec_example_5_3_block_structure_indicators_yml_use_tabstrue_format_1_ac
 #[test]
 fn test_spec_example_5_4_flow_collection_indicators_yml_prose_wrapalways_format_1_c783d48b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2620,7 +2620,7 @@ fn test_spec_example_5_4_flow_collection_indicators_yml_prose_wrapalways_format_
 #[test]
 fn test_spec_example_5_4_flow_collection_indicators_yml_use_tabstrue_format_1_c783d48b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2637,7 +2637,7 @@ fn test_spec_example_5_4_flow_collection_indicators_yml_use_tabstrue_format_1_c7
 #[test]
 fn test_spec_example_5_5_comment_indicator_yml_prose_wrapalways_format_1_b3a97720() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2650,7 +2650,7 @@ fn test_spec_example_5_5_comment_indicator_yml_prose_wrapalways_format_1_b3a9772
 #[test]
 fn test_spec_example_5_5_comment_indicator_yml_use_tabstrue_format_1_b3a97720() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2663,7 +2663,7 @@ fn test_spec_example_5_5_comment_indicator_yml_use_tabstrue_format_1_b3a97720() 
 #[test]
 fn test_spec_example_5_6_node_property_indicators_yml_prose_wrapalways_format_1_9548acaf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2676,7 +2676,7 @@ fn test_spec_example_5_6_node_property_indicators_yml_prose_wrapalways_format_1_
 #[test]
 fn test_spec_example_5_6_node_property_indicators_yml_use_tabstrue_format_1_9548acaf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2689,7 +2689,7 @@ fn test_spec_example_5_6_node_property_indicators_yml_use_tabstrue_format_1_9548
 #[test]
 fn test_spec_example_5_7_block_scalar_indicators_yml_prose_wrapalways_format_1_780db99c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2705,7 +2705,7 @@ fn test_spec_example_5_7_block_scalar_indicators_yml_prose_wrapalways_format_1_7
 #[test]
 fn test_spec_example_5_7_block_scalar_indicators_yml_use_tabstrue_format_1_780db99c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2721,7 +2721,7 @@ fn test_spec_example_5_7_block_scalar_indicators_yml_use_tabstrue_format_1_780db
 #[test]
 fn test_spec_example_5_8_quoted_scalar_indicators_yml_prose_wrapalways_format_1_9981e54d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2734,7 +2734,7 @@ fn test_spec_example_5_8_quoted_scalar_indicators_yml_prose_wrapalways_format_1_
 #[test]
 fn test_spec_example_5_8_quoted_scalar_indicators_yml_use_tabstrue_format_1_9981e54d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2747,7 +2747,7 @@ fn test_spec_example_5_8_quoted_scalar_indicators_yml_use_tabstrue_format_1_9981
 #[test]
 fn test_spec_example_5_9_directive_indicator_yml_prose_wrapalways_format_1_85010331() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2760,7 +2760,7 @@ fn test_spec_example_5_9_directive_indicator_yml_prose_wrapalways_format_1_85010
 #[test]
 fn test_spec_example_5_9_directive_indicator_yml_use_tabstrue_format_1_85010331() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2773,7 +2773,7 @@ fn test_spec_example_5_9_directive_indicator_yml_use_tabstrue_format_1_85010331(
 #[test]
 fn test_spec_example_5_12_tabs_and_spaces_yml_prose_wrapalways_format_1_aabf9fff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2786,7 +2786,7 @@ fn test_spec_example_5_12_tabs_and_spaces_yml_prose_wrapalways_format_1_aabf9fff
 #[test]
 fn test_spec_example_5_12_tabs_and_spaces_yml_use_tabstrue_format_1_aabf9fff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2799,7 +2799,7 @@ fn test_spec_example_5_12_tabs_and_spaces_yml_use_tabstrue_format_1_aabf9fff() {
 #[test]
 fn test_spec_example_6_1_indentation_spaces_yml_prose_wrapalways_format_1_02c03d21() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2812,7 +2812,7 @@ fn test_spec_example_6_1_indentation_spaces_yml_prose_wrapalways_format_1_02c03d
 #[test]
 fn test_spec_example_6_1_indentation_spaces_yml_use_tabstrue_format_1_02c03d21() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2825,7 +2825,7 @@ fn test_spec_example_6_1_indentation_spaces_yml_use_tabstrue_format_1_02c03d21()
 #[test]
 fn test_spec_example_6_2_indentation_indicators_yml_prose_wrapalways_format_1_53da9a4b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2838,7 +2838,7 @@ fn test_spec_example_6_2_indentation_indicators_yml_prose_wrapalways_format_1_53
 #[test]
 fn test_spec_example_6_2_indentation_indicators_yml_use_tabstrue_format_1_53da9a4b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2851,7 +2851,7 @@ fn test_spec_example_6_2_indentation_indicators_yml_use_tabstrue_format_1_53da9a
 #[test]
 fn test_spec_example_6_3_separation_spaces_yml_prose_wrapalways_format_1_b257510e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2864,7 +2864,7 @@ fn test_spec_example_6_3_separation_spaces_yml_prose_wrapalways_format_1_b257510
 #[test]
 fn test_spec_example_6_3_separation_spaces_yml_use_tabstrue_format_1_b257510e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2877,7 +2877,7 @@ fn test_spec_example_6_3_separation_spaces_yml_use_tabstrue_format_1_b257510e() 
 #[test]
 fn test_spec_example_6_4_line_prefixes_yml_prose_wrapalways_format_1_197a4067() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2894,7 +2894,7 @@ fn test_spec_example_6_4_line_prefixes_yml_prose_wrapalways_format_1_197a4067() 
 #[test]
 fn test_spec_example_6_4_line_prefixes_yml_use_tabstrue_format_1_197a4067() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2911,7 +2911,7 @@ fn test_spec_example_6_4_line_prefixes_yml_use_tabstrue_format_1_197a4067() {
 #[test]
 fn test_spec_example_6_5_empty_lines_yml_prose_wrapalways_format_1_8280f655() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2927,7 +2927,7 @@ fn test_spec_example_6_5_empty_lines_yml_prose_wrapalways_format_1_8280f655() {
 #[test]
 fn test_spec_example_6_5_empty_lines_yml_use_tabstrue_format_1_8280f655() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2943,7 +2943,7 @@ fn test_spec_example_6_5_empty_lines_yml_use_tabstrue_format_1_8280f655() {
 #[test]
 fn test_spec_example_6_6_line_folding_yml_prose_wrapalways_format_1_1f08e0c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2956,7 +2956,7 @@ fn test_spec_example_6_6_line_folding_yml_prose_wrapalways_format_1_1f08e0c5() {
 #[test]
 fn test_spec_example_6_6_line_folding_yml_use_tabstrue_format_1_1f08e0c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2969,7 +2969,7 @@ fn test_spec_example_6_6_line_folding_yml_use_tabstrue_format_1_1f08e0c5() {
 #[test]
 fn test_spec_example_6_7_block_folding_yml_prose_wrapalways_format_1_721da24a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -2982,7 +2982,7 @@ fn test_spec_example_6_7_block_folding_yml_prose_wrapalways_format_1_721da24a() 
 #[test]
 fn test_spec_example_6_7_block_folding_yml_use_tabstrue_format_1_721da24a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -2995,7 +2995,7 @@ fn test_spec_example_6_7_block_folding_yml_use_tabstrue_format_1_721da24a() {
 #[test]
 fn test_spec_example_6_8_flow_folding_yml_prose_wrapalways_format_1_599d8e66() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3008,7 +3008,7 @@ fn test_spec_example_6_8_flow_folding_yml_prose_wrapalways_format_1_599d8e66() {
 #[test]
 fn test_spec_example_6_8_flow_folding_yml_use_tabstrue_format_1_599d8e66() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3021,7 +3021,7 @@ fn test_spec_example_6_8_flow_folding_yml_use_tabstrue_format_1_599d8e66() {
 #[test]
 fn test_spec_example_6_9_separated_comment_yml_prose_wrapalways_format_1_83e9f7c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3034,7 +3034,7 @@ fn test_spec_example_6_9_separated_comment_yml_prose_wrapalways_format_1_83e9f7c
 #[test]
 fn test_spec_example_6_9_separated_comment_yml_use_tabstrue_format_1_83e9f7c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3047,7 +3047,7 @@ fn test_spec_example_6_9_separated_comment_yml_use_tabstrue_format_1_83e9f7c1() 
 #[test]
 fn test_spec_example_6_10_comment_lines_yml_prose_wrapalways_format_1_000deb0c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3060,7 +3060,7 @@ fn test_spec_example_6_10_comment_lines_yml_prose_wrapalways_format_1_000deb0c()
 #[test]
 fn test_spec_example_6_10_comment_lines_yml_use_tabstrue_format_1_000deb0c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3073,7 +3073,7 @@ fn test_spec_example_6_10_comment_lines_yml_use_tabstrue_format_1_000deb0c() {
 #[test]
 fn test_spec_example_6_11_multi_line_comments_yml_prose_wrapalways_format_1_50ad5c62() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3086,7 +3086,7 @@ fn test_spec_example_6_11_multi_line_comments_yml_prose_wrapalways_format_1_50ad
 #[test]
 fn test_spec_example_6_11_multi_line_comments_yml_use_tabstrue_format_1_50ad5c62() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3099,7 +3099,7 @@ fn test_spec_example_6_11_multi_line_comments_yml_use_tabstrue_format_1_50ad5c62
 #[test]
 fn test_spec_example_6_12_separation_spaces_yml_prose_wrapalways_format_1_e0698efc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3112,7 +3112,7 @@ fn test_spec_example_6_12_separation_spaces_yml_prose_wrapalways_format_1_e0698e
 #[test]
 fn test_spec_example_6_12_separation_spaces_yml_use_tabstrue_format_1_e0698efc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3125,7 +3125,7 @@ fn test_spec_example_6_12_separation_spaces_yml_use_tabstrue_format_1_e0698efc()
 #[test]
 fn test_spec_example_6_13_reserved_directives_yml_prose_wrapalways_format_1_2cffa122() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3142,7 +3142,7 @@ fn test_spec_example_6_13_reserved_directives_yml_prose_wrapalways_format_1_2cff
 #[test]
 fn test_spec_example_6_13_reserved_directives_yml_use_tabstrue_format_1_2cffa122() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3159,7 +3159,7 @@ fn test_spec_example_6_13_reserved_directives_yml_use_tabstrue_format_1_2cffa122
 #[test]
 fn test_spec_example_6_14_yaml_directive_yml_prose_wrapalways_format_1_50836328() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3176,7 +3176,7 @@ fn test_spec_example_6_14_yaml_directive_yml_prose_wrapalways_format_1_50836328(
 #[test]
 fn test_spec_example_6_14_yaml_directive_yml_use_tabstrue_format_1_50836328() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3193,7 +3193,7 @@ fn test_spec_example_6_14_yaml_directive_yml_use_tabstrue_format_1_50836328() {
 #[test]
 fn test_spec_example_6_16_tag_directive_yml_prose_wrapalways_format_1_cf1f9bda() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3209,7 +3209,7 @@ fn test_spec_example_6_16_tag_directive_yml_prose_wrapalways_format_1_cf1f9bda()
 #[test]
 fn test_spec_example_6_16_tag_directive_yml_use_tabstrue_format_1_cf1f9bda() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3225,7 +3225,7 @@ fn test_spec_example_6_16_tag_directive_yml_use_tabstrue_format_1_cf1f9bda() {
 #[test]
 fn test_spec_example_6_18_primary_tag_handle_yml_prose_wrapalways_format_1_c1560875() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3238,7 +3238,7 @@ fn test_spec_example_6_18_primary_tag_handle_yml_prose_wrapalways_format_1_c1560
 #[test]
 fn test_spec_example_6_18_primary_tag_handle_yml_use_tabstrue_format_1_c1560875() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3251,7 +3251,7 @@ fn test_spec_example_6_18_primary_tag_handle_yml_use_tabstrue_format_1_c1560875(
 #[test]
 fn test_spec_example_6_19_secondary_tag_handle_yml_prose_wrapalways_format_1_50c7141f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3268,7 +3268,7 @@ fn test_spec_example_6_19_secondary_tag_handle_yml_prose_wrapalways_format_1_50c
 #[test]
 fn test_spec_example_6_19_secondary_tag_handle_yml_use_tabstrue_format_1_50c7141f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3285,7 +3285,7 @@ fn test_spec_example_6_19_secondary_tag_handle_yml_use_tabstrue_format_1_50c7141
 #[test]
 fn test_spec_example_6_20_tag_handles_yml_prose_wrapalways_format_1_32e3ca8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3302,7 +3302,7 @@ fn test_spec_example_6_20_tag_handles_yml_prose_wrapalways_format_1_32e3ca8b() {
 #[test]
 fn test_spec_example_6_20_tag_handles_yml_use_tabstrue_format_1_32e3ca8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3319,7 +3319,7 @@ fn test_spec_example_6_20_tag_handles_yml_use_tabstrue_format_1_32e3ca8b() {
 #[test]
 fn test_spec_example_6_21_local_tag_prefix_yml_prose_wrapalways_format_1_a915f092() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3332,7 +3332,7 @@ fn test_spec_example_6_21_local_tag_prefix_yml_prose_wrapalways_format_1_a915f09
 #[test]
 fn test_spec_example_6_21_local_tag_prefix_yml_use_tabstrue_format_1_a915f092() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3345,7 +3345,7 @@ fn test_spec_example_6_21_local_tag_prefix_yml_use_tabstrue_format_1_a915f092() 
 #[test]
 fn test_spec_example_6_22_global_tag_prefix_yml_prose_wrapalways_format_1_5e5295da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3362,7 +3362,7 @@ fn test_spec_example_6_22_global_tag_prefix_yml_prose_wrapalways_format_1_5e5295
 #[test]
 fn test_spec_example_6_22_global_tag_prefix_yml_use_tabstrue_format_1_5e5295da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3379,7 +3379,7 @@ fn test_spec_example_6_22_global_tag_prefix_yml_use_tabstrue_format_1_5e5295da()
 #[test]
 fn test_spec_example_6_23_node_properties_yml_prose_wrapalways_format_1_33d77bc7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3392,7 +3392,7 @@ fn test_spec_example_6_23_node_properties_yml_prose_wrapalways_format_1_33d77bc7
 #[test]
 fn test_spec_example_6_23_node_properties_yml_use_tabstrue_format_1_33d77bc7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3405,7 +3405,7 @@ fn test_spec_example_6_23_node_properties_yml_use_tabstrue_format_1_33d77bc7() {
 #[test]
 fn test_spec_example_6_24_verbatim_tags_yml_prose_wrapalways_format_1_a95cc689() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3418,7 +3418,7 @@ fn test_spec_example_6_24_verbatim_tags_yml_prose_wrapalways_format_1_a95cc689()
 #[test]
 fn test_spec_example_6_24_verbatim_tags_yml_use_tabstrue_format_1_a95cc689() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3431,7 +3431,7 @@ fn test_spec_example_6_24_verbatim_tags_yml_use_tabstrue_format_1_a95cc689() {
 #[test]
 fn test_spec_example_6_26_tag_shorthands_yml_prose_wrapalways_format_1_3309653f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3449,7 +3449,7 @@ fn test_spec_example_6_26_tag_shorthands_yml_prose_wrapalways_format_1_3309653f(
 #[test]
 fn test_spec_example_6_26_tag_shorthands_yml_use_tabstrue_format_1_3309653f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3467,7 +3467,7 @@ fn test_spec_example_6_26_tag_shorthands_yml_use_tabstrue_format_1_3309653f() {
 #[test]
 fn test_spec_example_6_28_non_specific_tags_yml_prose_wrapalways_format_1_ed7d4482() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3484,7 +3484,7 @@ fn test_spec_example_6_28_non_specific_tags_yml_prose_wrapalways_format_1_ed7d44
 #[test]
 fn test_spec_example_6_28_non_specific_tags_yml_use_tabstrue_format_1_ed7d4482() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3501,7 +3501,7 @@ fn test_spec_example_6_28_non_specific_tags_yml_use_tabstrue_format_1_ed7d4482()
 #[test]
 fn test_spec_example_6_29_node_anchors_yml_prose_wrapalways_format_1_8d25abbf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3518,7 +3518,7 @@ fn test_spec_example_6_29_node_anchors_yml_prose_wrapalways_format_1_8d25abbf() 
 #[test]
 fn test_spec_example_6_29_node_anchors_yml_use_tabstrue_format_1_8d25abbf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3535,7 +3535,7 @@ fn test_spec_example_6_29_node_anchors_yml_use_tabstrue_format_1_8d25abbf() {
 #[test]
 fn test_spec_example_7_1_alias_nodes_yml_prose_wrapalways_format_1_5898cf5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3548,7 +3548,7 @@ fn test_spec_example_7_1_alias_nodes_yml_prose_wrapalways_format_1_5898cf5b() {
 #[test]
 fn test_spec_example_7_1_alias_nodes_yml_use_tabstrue_format_1_5898cf5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3561,7 +3561,7 @@ fn test_spec_example_7_1_alias_nodes_yml_use_tabstrue_format_1_5898cf5b() {
 #[test]
 fn test_spec_example_7_2_empty_content_yml_prose_wrapalways_format_1_899d871d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3574,7 +3574,7 @@ fn test_spec_example_7_2_empty_content_yml_prose_wrapalways_format_1_899d871d() 
 #[test]
 fn test_spec_example_7_2_empty_content_yml_use_tabstrue_format_1_899d871d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3587,7 +3587,7 @@ fn test_spec_example_7_2_empty_content_yml_use_tabstrue_format_1_899d871d() {
 #[test]
 fn test_spec_example_7_3_completely_empty_flow_nodes_yml_prose_wrapalways_format_1_f0c5b5ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3600,7 +3600,7 @@ fn test_spec_example_7_3_completely_empty_flow_nodes_yml_prose_wrapalways_format
 #[test]
 fn test_spec_example_7_3_completely_empty_flow_nodes_yml_use_tabstrue_format_1_f0c5b5ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3613,7 +3613,7 @@ fn test_spec_example_7_3_completely_empty_flow_nodes_yml_use_tabstrue_format_1_f
 #[test]
 fn test_spec_example_7_4_double_quoted_implicit_keys_yml_prose_wrapalways_format_1_6771c930() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3630,7 +3630,7 @@ fn test_spec_example_7_4_double_quoted_implicit_keys_yml_prose_wrapalways_format
 #[test]
 fn test_spec_example_7_4_double_quoted_implicit_keys_yml_use_tabstrue_format_1_6771c930() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3647,7 +3647,7 @@ fn test_spec_example_7_4_double_quoted_implicit_keys_yml_use_tabstrue_format_1_6
 #[test]
 fn test_spec_example_7_5_double_quoted_line_breaks_yml_prose_wrapalways_format_1_47b9d2dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3664,7 +3664,7 @@ fn test_spec_example_7_5_double_quoted_line_breaks_yml_prose_wrapalways_format_1
 #[test]
 fn test_spec_example_7_5_double_quoted_line_breaks_yml_use_tabstrue_format_1_47b9d2dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3681,7 +3681,7 @@ fn test_spec_example_7_5_double_quoted_line_breaks_yml_use_tabstrue_format_1_47b
 #[test]
 fn test_spec_example_7_6_double_quoted_lines_yml_prose_wrapalways_format_1_b152204e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3698,7 +3698,7 @@ fn test_spec_example_7_6_double_quoted_lines_yml_prose_wrapalways_format_1_b1522
 #[test]
 fn test_spec_example_7_6_double_quoted_lines_yml_use_tabstrue_format_1_b152204e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3715,7 +3715,7 @@ fn test_spec_example_7_6_double_quoted_lines_yml_use_tabstrue_format_1_b152204e(
 #[test]
 fn test_spec_example_7_7_single_quoted_characters_yml_prose_wrapalways_format_1_596d6a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3728,7 +3728,7 @@ fn test_spec_example_7_7_single_quoted_characters_yml_prose_wrapalways_format_1_
 #[test]
 fn test_spec_example_7_7_single_quoted_characters_yml_use_tabstrue_format_1_596d6a4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3741,7 +3741,7 @@ fn test_spec_example_7_7_single_quoted_characters_yml_use_tabstrue_format_1_596d
 #[test]
 fn test_spec_example_7_8_single_quoted_implicit_keys_yml_prose_wrapalways_format_1_710257db() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3758,7 +3758,7 @@ fn test_spec_example_7_8_single_quoted_implicit_keys_yml_prose_wrapalways_format
 #[test]
 fn test_spec_example_7_8_single_quoted_implicit_keys_yml_use_tabstrue_format_1_710257db() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3775,7 +3775,7 @@ fn test_spec_example_7_8_single_quoted_implicit_keys_yml_use_tabstrue_format_1_7
 #[test]
 fn test_spec_example_7_9_single_quoted_lines_yml_prose_wrapalways_format_1_13be5fd9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3791,7 +3791,7 @@ fn test_spec_example_7_9_single_quoted_lines_yml_prose_wrapalways_format_1_13be5
 #[test]
 fn test_spec_example_7_9_single_quoted_lines_yml_use_tabstrue_format_1_13be5fd9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3807,7 +3807,7 @@ fn test_spec_example_7_9_single_quoted_lines_yml_use_tabstrue_format_1_13be5fd9(
 #[test]
 fn test_spec_example_7_10_plain_characters_yml_prose_wrapalways_format_1_8802aabf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3820,7 +3820,7 @@ fn test_spec_example_7_10_plain_characters_yml_prose_wrapalways_format_1_8802aab
 #[test]
 fn test_spec_example_7_10_plain_characters_yml_use_tabstrue_format_1_8802aabf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3833,7 +3833,7 @@ fn test_spec_example_7_10_plain_characters_yml_use_tabstrue_format_1_8802aabf() 
 #[test]
 fn test_spec_example_7_11_plain_implicit_keys_yml_prose_wrapalways_format_1_c224e34d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3847,7 +3847,7 @@ fn test_spec_example_7_11_plain_implicit_keys_yml_prose_wrapalways_format_1_c224
 #[test]
 fn test_spec_example_7_11_plain_implicit_keys_yml_use_tabstrue_format_1_c224e34d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3861,7 +3861,7 @@ fn test_spec_example_7_11_plain_implicit_keys_yml_use_tabstrue_format_1_c224e34d
 #[test]
 fn test_spec_example_7_12_plain_lines_yml_prose_wrapalways_format_1_2c723b01() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3874,7 +3874,7 @@ fn test_spec_example_7_12_plain_lines_yml_prose_wrapalways_format_1_2c723b01() {
 #[test]
 fn test_spec_example_7_12_plain_lines_yml_use_tabstrue_format_1_2c723b01() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3887,7 +3887,7 @@ fn test_spec_example_7_12_plain_lines_yml_use_tabstrue_format_1_2c723b01() {
 #[test]
 fn test_spec_example_7_13_flow_sequence_yml_prose_wrapalways_format_1_5ca44a5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3900,7 +3900,7 @@ fn test_spec_example_7_13_flow_sequence_yml_prose_wrapalways_format_1_5ca44a5e()
 #[test]
 fn test_spec_example_7_13_flow_sequence_yml_use_tabstrue_format_1_5ca44a5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3913,7 +3913,7 @@ fn test_spec_example_7_13_flow_sequence_yml_use_tabstrue_format_1_5ca44a5e() {
 #[test]
 fn test_spec_example_7_14_flow_sequence_entries_yml_prose_wrapalways_format_1_970c5881() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3929,7 +3929,7 @@ fn test_spec_example_7_14_flow_sequence_entries_yml_prose_wrapalways_format_1_97
 #[test]
 fn test_spec_example_7_14_flow_sequence_entries_yml_use_tabstrue_format_1_970c5881() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3942,7 +3942,7 @@ fn test_spec_example_7_14_flow_sequence_entries_yml_use_tabstrue_format_1_970c58
 #[test]
 fn test_spec_example_7_15_flow_mappings_yml_prose_wrapalways_format_1_d2f98c58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3959,7 +3959,7 @@ fn test_spec_example_7_15_flow_mappings_yml_prose_wrapalways_format_1_d2f98c58()
 #[test]
 fn test_spec_example_7_15_flow_mappings_yml_use_tabstrue_format_1_d2f98c58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -3976,7 +3976,7 @@ fn test_spec_example_7_15_flow_mappings_yml_use_tabstrue_format_1_d2f98c58() {
 #[test]
 fn test_spec_example_7_16_flow_mapping_entries_yml_prose_wrapalways_format_1_9b01d199() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -3989,7 +3989,7 @@ fn test_spec_example_7_16_flow_mapping_entries_yml_prose_wrapalways_format_1_9b0
 #[test]
 fn test_spec_example_7_16_flow_mapping_entries_yml_use_tabstrue_format_1_9b01d199() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4002,7 +4002,7 @@ fn test_spec_example_7_16_flow_mapping_entries_yml_use_tabstrue_format_1_9b01d19
 #[test]
 fn test_spec_example_7_17_flow_mapping_separate_values_yml_prose_wrapalways_format_1_963bacd8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4019,7 +4019,7 @@ fn test_spec_example_7_17_flow_mapping_separate_values_yml_prose_wrapalways_form
 #[test]
 fn test_spec_example_7_17_flow_mapping_separate_values_yml_use_tabstrue_format_1_963bacd8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4036,7 +4036,7 @@ fn test_spec_example_7_17_flow_mapping_separate_values_yml_use_tabstrue_format_1
 #[test]
 fn test_spec_example_7_18_flow_mapping_adjacent_values_yml_prose_wrapalways_format_1_57b71a8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4053,7 +4053,7 @@ fn test_spec_example_7_18_flow_mapping_adjacent_values_yml_prose_wrapalways_form
 #[test]
 fn test_spec_example_7_18_flow_mapping_adjacent_values_yml_use_tabstrue_format_1_57b71a8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4070,7 +4070,7 @@ fn test_spec_example_7_18_flow_mapping_adjacent_values_yml_use_tabstrue_format_1
 #[test]
 fn test_spec_example_7_19_single_pair_flow_mappings_yml_prose_wrapalways_format_1_4798ef1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4083,7 +4083,7 @@ fn test_spec_example_7_19_single_pair_flow_mappings_yml_prose_wrapalways_format_
 #[test]
 fn test_spec_example_7_19_single_pair_flow_mappings_yml_use_tabstrue_format_1_4798ef1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4096,7 +4096,7 @@ fn test_spec_example_7_19_single_pair_flow_mappings_yml_use_tabstrue_format_1_47
 #[test]
 fn test_spec_example_7_20_single_pair_explicit_entry_yml_prose_wrapalways_format_1_d5f08b8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4109,7 +4109,7 @@ fn test_spec_example_7_20_single_pair_explicit_entry_yml_prose_wrapalways_format
 #[test]
 fn test_spec_example_7_20_single_pair_explicit_entry_yml_use_tabstrue_format_1_d5f08b8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4122,7 +4122,7 @@ fn test_spec_example_7_20_single_pair_explicit_entry_yml_use_tabstrue_format_1_d
 #[test]
 fn test_spec_example_7_21_single_pair_implicit_entries_yml_prose_wrapalways_format_1_893e9c14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4139,7 +4139,7 @@ fn test_spec_example_7_21_single_pair_implicit_entries_yml_prose_wrapalways_form
 #[test]
 fn test_spec_example_7_21_single_pair_implicit_entries_yml_use_tabstrue_format_1_893e9c14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4156,7 +4156,7 @@ fn test_spec_example_7_21_single_pair_implicit_entries_yml_use_tabstrue_format_1
 #[test]
 fn test_spec_example_7_23_flow_content_yml_prose_wrapalways_format_1_fb2b2216() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4169,7 +4169,7 @@ fn test_spec_example_7_23_flow_content_yml_prose_wrapalways_format_1_fb2b2216() 
 #[test]
 fn test_spec_example_7_23_flow_content_yml_use_tabstrue_format_1_fb2b2216() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4182,7 +4182,7 @@ fn test_spec_example_7_23_flow_content_yml_use_tabstrue_format_1_fb2b2216() {
 #[test]
 fn test_spec_example_7_24_flow_nodes_yml_prose_wrapalways_format_1_97eecaeb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4199,7 +4199,7 @@ fn test_spec_example_7_24_flow_nodes_yml_prose_wrapalways_format_1_97eecaeb() {
 #[test]
 fn test_spec_example_7_24_flow_nodes_yml_use_tabstrue_format_1_97eecaeb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4216,7 +4216,7 @@ fn test_spec_example_7_24_flow_nodes_yml_use_tabstrue_format_1_97eecaeb() {
 #[test]
 fn test_spec_example_8_1_block_scalar_header_yml_prose_wrapalways_format_1_2e042a9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4229,7 +4229,7 @@ fn test_spec_example_8_1_block_scalar_header_yml_prose_wrapalways_format_1_2e042
 #[test]
 fn test_spec_example_8_1_block_scalar_header_yml_use_tabstrue_format_1_2e042a9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4242,7 +4242,7 @@ fn test_spec_example_8_1_block_scalar_header_yml_use_tabstrue_format_1_2e042a9a(
 #[test]
 fn test_spec_example_8_2_block_indentation_indicator_yml_prose_wrapalways_format_1_ac3f4a55() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4259,7 +4259,7 @@ fn test_spec_example_8_2_block_indentation_indicator_yml_prose_wrapalways_format
 #[test]
 fn test_spec_example_8_2_block_indentation_indicator_yml_use_tabstrue_format_1_ac3f4a55() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4276,7 +4276,7 @@ fn test_spec_example_8_2_block_indentation_indicator_yml_use_tabstrue_format_1_a
 #[test]
 fn test_spec_example_8_4_chomping_final_line_break_yml_prose_wrapalways_format_1_3aa60445() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4292,7 +4292,7 @@ fn test_spec_example_8_4_chomping_final_line_break_yml_prose_wrapalways_format_1
 #[test]
 fn test_spec_example_8_4_chomping_final_line_break_yml_use_tabstrue_format_1_3aa60445() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4308,7 +4308,7 @@ fn test_spec_example_8_4_chomping_final_line_break_yml_use_tabstrue_format_1_3aa
 #[test]
 fn test_spec_example_8_5_chomping_trailing_lines_yml_prose_wrapalways_format_1_1aaa2b0d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4321,7 +4321,7 @@ fn test_spec_example_8_5_chomping_trailing_lines_yml_prose_wrapalways_format_1_1
 #[test]
 fn test_spec_example_8_5_chomping_trailing_lines_yml_use_tabstrue_format_1_1aaa2b0d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4334,7 +4334,7 @@ fn test_spec_example_8_5_chomping_trailing_lines_yml_use_tabstrue_format_1_1aaa2
 #[test]
 fn test_spec_example_8_6_empty_scalar_chomping_yml_prose_wrapalways_format_1_a558a2fe() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4347,7 +4347,7 @@ fn test_spec_example_8_6_empty_scalar_chomping_yml_prose_wrapalways_format_1_a55
 #[test]
 fn test_spec_example_8_6_empty_scalar_chomping_yml_use_tabstrue_format_1_a558a2fe() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4360,7 +4360,7 @@ fn test_spec_example_8_6_empty_scalar_chomping_yml_use_tabstrue_format_1_a558a2f
 #[test]
 fn test_spec_example_8_7_literal_scalar_yml_prose_wrapalways_format_1_2508d56b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4373,7 +4373,7 @@ fn test_spec_example_8_7_literal_scalar_yml_prose_wrapalways_format_1_2508d56b()
 #[test]
 fn test_spec_example_8_7_literal_scalar_yml_use_tabstrue_format_1_2508d56b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4386,7 +4386,7 @@ fn test_spec_example_8_7_literal_scalar_yml_use_tabstrue_format_1_2508d56b() {
 #[test]
 fn test_spec_example_8_8_literal_content_yml_prose_wrapalways_format_1_48ff2e63() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4399,7 +4399,7 @@ fn test_spec_example_8_8_literal_content_yml_prose_wrapalways_format_1_48ff2e63(
 #[test]
 fn test_spec_example_8_8_literal_content_yml_use_tabstrue_format_1_48ff2e63() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4412,7 +4412,7 @@ fn test_spec_example_8_8_literal_content_yml_use_tabstrue_format_1_48ff2e63() {
 #[test]
 fn test_spec_example_8_9_folded_scalar_yml_prose_wrapalways_format_1_5def84fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4425,7 +4425,7 @@ fn test_spec_example_8_9_folded_scalar_yml_prose_wrapalways_format_1_5def84fc() 
 #[test]
 fn test_spec_example_8_9_folded_scalar_yml_use_tabstrue_format_1_5def84fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4439,7 +4439,7 @@ fn test_spec_example_8_9_folded_scalar_yml_use_tabstrue_format_1_5def84fc() {
 fn test_spec_example_8_10_folded_lines_8_13_final_empty_lines_yml_prose_wrapalways_format_1_593f3286(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4452,7 +4452,7 @@ fn test_spec_example_8_10_folded_lines_8_13_final_empty_lines_yml_prose_wrapalwa
 #[test]
 fn test_spec_example_8_10_folded_lines_8_13_final_empty_lines_yml_use_tabstrue_format_1_593f3286() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4465,7 +4465,7 @@ fn test_spec_example_8_10_folded_lines_8_13_final_empty_lines_yml_use_tabstrue_f
 #[test]
 fn test_spec_example_8_14_block_sequence_yml_prose_wrapalways_format_1_d7264990() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4478,7 +4478,7 @@ fn test_spec_example_8_14_block_sequence_yml_prose_wrapalways_format_1_d7264990(
 #[test]
 fn test_spec_example_8_14_block_sequence_yml_use_tabstrue_format_1_d7264990() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4491,7 +4491,7 @@ fn test_spec_example_8_14_block_sequence_yml_use_tabstrue_format_1_d7264990() {
 #[test]
 fn test_spec_example_8_15_block_sequence_entry_types_yml_prose_wrapalways_format_1_10605a8a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4504,7 +4504,7 @@ fn test_spec_example_8_15_block_sequence_entry_types_yml_prose_wrapalways_format
 #[test]
 fn test_spec_example_8_15_block_sequence_entry_types_yml_use_tabstrue_format_1_10605a8a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4517,7 +4517,7 @@ fn test_spec_example_8_15_block_sequence_entry_types_yml_use_tabstrue_format_1_1
 #[test]
 fn test_spec_example_8_16_block_mappings_yml_prose_wrapalways_format_1_9ae98588() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4530,7 +4530,7 @@ fn test_spec_example_8_16_block_mappings_yml_prose_wrapalways_format_1_9ae98588(
 #[test]
 fn test_spec_example_8_16_block_mappings_yml_use_tabstrue_format_1_9ae98588() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4543,7 +4543,7 @@ fn test_spec_example_8_16_block_mappings_yml_use_tabstrue_format_1_9ae98588() {
 #[test]
 fn test_spec_example_8_17_explicit_block_mapping_entries_yml_prose_wrapalways_format_1_12554a1b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4556,7 +4556,7 @@ fn test_spec_example_8_17_explicit_block_mapping_entries_yml_prose_wrapalways_fo
 #[test]
 fn test_spec_example_8_17_explicit_block_mapping_entries_yml_use_tabstrue_format_1_12554a1b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4569,7 +4569,7 @@ fn test_spec_example_8_17_explicit_block_mapping_entries_yml_use_tabstrue_format
 #[test]
 fn test_spec_example_8_18_implicit_block_mapping_entries_yml_prose_wrapalways_format_1_707b719f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4586,7 +4586,7 @@ fn test_spec_example_8_18_implicit_block_mapping_entries_yml_prose_wrapalways_fo
 #[test]
 fn test_spec_example_8_18_implicit_block_mapping_entries_yml_use_tabstrue_format_1_707b719f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4603,7 +4603,7 @@ fn test_spec_example_8_18_implicit_block_mapping_entries_yml_use_tabstrue_format
 #[test]
 fn test_spec_example_8_19_compact_block_mappings_yml_prose_wrapalways_format_1_1523d5bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4616,7 +4616,7 @@ fn test_spec_example_8_19_compact_block_mappings_yml_prose_wrapalways_format_1_1
 #[test]
 fn test_spec_example_8_19_compact_block_mappings_yml_use_tabstrue_format_1_1523d5bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4629,7 +4629,7 @@ fn test_spec_example_8_19_compact_block_mappings_yml_use_tabstrue_format_1_1523d
 #[test]
 fn test_spec_example_8_20_block_node_types_yml_prose_wrapalways_format_1_ede0177a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4647,7 +4647,7 @@ fn test_spec_example_8_20_block_node_types_yml_prose_wrapalways_format_1_ede0177
 #[test]
 fn test_spec_example_8_20_block_node_types_yml_use_tabstrue_format_1_ede0177a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4665,7 +4665,7 @@ fn test_spec_example_8_20_block_node_types_yml_use_tabstrue_format_1_ede0177a() 
 #[test]
 fn test_spec_example_8_21_block_scalar_nodes_yml_prose_wrapalways_format_1_2cf8efcb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4678,7 +4678,7 @@ fn test_spec_example_8_21_block_scalar_nodes_yml_prose_wrapalways_format_1_2cf8e
 #[test]
 fn test_spec_example_8_21_block_scalar_nodes_yml_use_tabstrue_format_1_2cf8efcb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4691,7 +4691,7 @@ fn test_spec_example_8_21_block_scalar_nodes_yml_use_tabstrue_format_1_2cf8efcb(
 #[test]
 fn test_spec_example_8_22_block_collection_nodes_yml_prose_wrapalways_format_1_8839d194() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4708,7 +4708,7 @@ fn test_spec_example_8_22_block_collection_nodes_yml_prose_wrapalways_format_1_8
 #[test]
 fn test_spec_example_8_22_block_collection_nodes_yml_use_tabstrue_format_1_8839d194() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4725,7 +4725,7 @@ fn test_spec_example_8_22_block_collection_nodes_yml_use_tabstrue_format_1_8839d
 #[test]
 fn test_spec_example_9_2_document_markers_yml_prose_wrapalways_format_1_6a45c035() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4738,7 +4738,7 @@ fn test_spec_example_9_2_document_markers_yml_prose_wrapalways_format_1_6a45c035
 #[test]
 fn test_spec_example_9_2_document_markers_yml_use_tabstrue_format_1_6a45c035() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4751,7 +4751,7 @@ fn test_spec_example_9_2_document_markers_yml_use_tabstrue_format_1_6a45c035() {
 #[test]
 fn test_spec_example_9_3_bare_documents_yml_prose_wrapalways_format_1_cbbf937c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4768,7 +4768,7 @@ fn test_spec_example_9_3_bare_documents_yml_prose_wrapalways_format_1_cbbf937c()
 #[test]
 fn test_spec_example_9_3_bare_documents_yml_use_tabstrue_format_1_cbbf937c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4785,7 +4785,7 @@ fn test_spec_example_9_3_bare_documents_yml_use_tabstrue_format_1_cbbf937c() {
 #[test]
 fn test_spec_example_9_4_explicit_documents_yml_prose_wrapalways_format_1_74f5c941() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4798,7 +4798,7 @@ fn test_spec_example_9_4_explicit_documents_yml_prose_wrapalways_format_1_74f5c9
 #[test]
 fn test_spec_example_9_4_explicit_documents_yml_use_tabstrue_format_1_74f5c941() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4811,7 +4811,7 @@ fn test_spec_example_9_4_explicit_documents_yml_use_tabstrue_format_1_74f5c941()
 #[test]
 fn test_spec_example_9_5_directives_documents_yml_prose_wrapalways_format_1_7dfee48e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4828,7 +4828,7 @@ fn test_spec_example_9_5_directives_documents_yml_prose_wrapalways_format_1_7dfe
 #[test]
 fn test_spec_example_9_5_directives_documents_yml_use_tabstrue_format_1_7dfee48e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4845,7 +4845,7 @@ fn test_spec_example_9_5_directives_documents_yml_use_tabstrue_format_1_7dfee48e
 #[test]
 fn test_spec_example_9_6_stream_yml_prose_wrapalways_format_1_c0e7eedd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4862,7 +4862,7 @@ fn test_spec_example_9_6_stream_yml_prose_wrapalways_format_1_c0e7eedd() {
 #[test]
 fn test_spec_example_9_6_stream_yml_use_tabstrue_format_1_c0e7eedd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4879,7 +4879,7 @@ fn test_spec_example_9_6_stream_yml_use_tabstrue_format_1_c0e7eedd() {
 #[test]
 fn test_tab_after_document_header_yml_prose_wrapalways_format_1_35d0472a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4892,7 +4892,7 @@ fn test_tab_after_document_header_yml_prose_wrapalways_format_1_35d0472a() {
 #[test]
 fn test_tab_after_document_header_yml_use_tabstrue_format_1_35d0472a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4906,7 +4906,7 @@ fn test_tab_after_document_header_yml_use_tabstrue_format_1_35d0472a() {
 fn test_tab_at_beginning_of_line_followed_by_a_flow_mapping_yml_prose_wrapalways_format_1_a2e50682()
 {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4919,7 +4919,7 @@ fn test_tab_at_beginning_of_line_followed_by_a_flow_mapping_yml_prose_wrapalways
 #[test]
 fn test_tab_at_beginning_of_line_followed_by_a_flow_mapping_yml_use_tabstrue_format_1_a2e50682() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4932,7 +4932,7 @@ fn test_tab_at_beginning_of_line_followed_by_a_flow_mapping_yml_use_tabstrue_for
 #[test]
 fn test_tags_for_block_objects_yml_prose_wrapalways_format_1_87efbd48() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4949,7 +4949,7 @@ fn test_tags_for_block_objects_yml_prose_wrapalways_format_1_87efbd48() {
 #[test]
 fn test_tags_for_block_objects_yml_use_tabstrue_format_1_87efbd48() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4966,7 +4966,7 @@ fn test_tags_for_block_objects_yml_use_tabstrue_format_1_87efbd48() {
 #[test]
 fn test_tags_for_flow_objects_yml_prose_wrapalways_format_1_cace071d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -4979,7 +4979,7 @@ fn test_tags_for_flow_objects_yml_prose_wrapalways_format_1_cace071d() {
 #[test]
 fn test_tags_for_flow_objects_yml_use_tabstrue_format_1_cace071d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -4992,7 +4992,7 @@ fn test_tags_for_flow_objects_yml_use_tabstrue_format_1_cace071d() {
 #[test]
 fn test_tags_for_root_objects_yml_prose_wrapalways_format_1_7f1dcb09() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5009,7 +5009,7 @@ fn test_tags_for_root_objects_yml_prose_wrapalways_format_1_7f1dcb09() {
 #[test]
 fn test_tags_for_root_objects_yml_use_tabstrue_format_1_7f1dcb09() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5026,7 +5026,7 @@ fn test_tags_for_root_objects_yml_use_tabstrue_format_1_7f1dcb09() {
 #[test]
 fn test_tags_in_block_sequence_yml_prose_wrapalways_format_1_c570e551() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5039,7 +5039,7 @@ fn test_tags_in_block_sequence_yml_prose_wrapalways_format_1_c570e551() {
 #[test]
 fn test_tags_in_block_sequence_yml_use_tabstrue_format_1_c570e551() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5052,7 +5052,7 @@ fn test_tags_in_block_sequence_yml_use_tabstrue_format_1_c570e551() {
 #[test]
 fn test_tags_in_explicit_mapping_yml_prose_wrapalways_format_1_658ae294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5065,7 +5065,7 @@ fn test_tags_in_explicit_mapping_yml_prose_wrapalways_format_1_658ae294() {
 #[test]
 fn test_tags_in_explicit_mapping_yml_use_tabstrue_format_1_658ae294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5078,7 +5078,7 @@ fn test_tags_in_explicit_mapping_yml_use_tabstrue_format_1_658ae294() {
 #[test]
 fn test_tags_in_implicit_mapping_yml_prose_wrapalways_format_1_592fc6bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5095,7 +5095,7 @@ fn test_tags_in_implicit_mapping_yml_prose_wrapalways_format_1_592fc6bb() {
 #[test]
 fn test_tags_in_implicit_mapping_yml_use_tabstrue_format_1_592fc6bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5112,7 +5112,7 @@ fn test_tags_in_implicit_mapping_yml_use_tabstrue_format_1_592fc6bb() {
 #[test]
 fn test_tags_on_empty_scalars_yml_prose_wrapalways_format_1_8b288569() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5128,7 +5128,7 @@ fn test_tags_on_empty_scalars_yml_prose_wrapalways_format_1_8b288569() {
 #[test]
 fn test_tags_on_empty_scalars_yml_use_tabstrue_format_1_8b288569() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5144,7 +5144,7 @@ fn test_tags_on_empty_scalars_yml_use_tabstrue_format_1_8b288569() {
 #[test]
 fn test_three_dashes_and_content_without_space_yml_prose_wrapalways_format_1_40309137() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5157,7 +5157,7 @@ fn test_three_dashes_and_content_without_space_yml_prose_wrapalways_format_1_403
 #[test]
 fn test_three_dashes_and_content_without_space_yml_use_tabstrue_format_1_40309137() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5170,7 +5170,7 @@ fn test_three_dashes_and_content_without_space_yml_use_tabstrue_format_1_4030913
 #[test]
 fn test_various_combinations_of_tags_and_anchors_yml_prose_wrapalways_format_1_68296301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5183,7 +5183,7 @@ fn test_various_combinations_of_tags_and_anchors_yml_prose_wrapalways_format_1_6
 #[test]
 fn test_various_combinations_of_tags_and_anchors_yml_use_tabstrue_format_1_68296301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5196,7 +5196,7 @@ fn test_various_combinations_of_tags_and_anchors_yml_use_tabstrue_format_1_68296
 #[test]
 fn test_various_location_of_anchors_in_flow_sequence_yml_prose_wrapalways_format_1_543c43af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5213,7 +5213,7 @@ fn test_various_location_of_anchors_in_flow_sequence_yml_prose_wrapalways_format
 #[test]
 fn test_various_location_of_anchors_in_flow_sequence_yml_use_tabstrue_format_1_543c43af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5230,7 +5230,7 @@ fn test_various_location_of_anchors_in_flow_sequence_yml_use_tabstrue_format_1_5
 #[test]
 fn test_various_trailing_comments_yml_prose_wrapalways_format_1_1c764335() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5243,7 +5243,7 @@ fn test_various_trailing_comments_yml_prose_wrapalways_format_1_1c764335() {
 #[test]
 fn test_various_trailing_comments_yml_use_tabstrue_format_1_1c764335() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5256,7 +5256,7 @@ fn test_various_trailing_comments_yml_use_tabstrue_format_1_1c764335() {
 #[test]
 fn test_various_trailing_tabs_yml_prose_wrapalways_format_1_376ca8ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5269,7 +5269,7 @@ fn test_various_trailing_tabs_yml_prose_wrapalways_format_1_376ca8ae() {
 #[test]
 fn test_various_trailing_tabs_yml_use_tabstrue_format_1_376ca8ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5282,7 +5282,7 @@ fn test_various_trailing_tabs_yml_use_tabstrue_format_1_376ca8ae() {
 #[test]
 fn test_whitespace_after_scalars_in_flow_yml_prose_wrapalways_format_1_a1485398() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5299,7 +5299,7 @@ fn test_whitespace_after_scalars_in_flow_yml_prose_wrapalways_format_1_a1485398(
 #[test]
 fn test_whitespace_after_scalars_in_flow_yml_use_tabstrue_format_1_a1485398() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5316,7 +5316,7 @@ fn test_whitespace_after_scalars_in_flow_yml_use_tabstrue_format_1_a1485398() {
 #[test]
 fn test_whitespace_around_colon_in_mappings_yml_prose_wrapalways_format_1_b646ce63() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5329,7 +5329,7 @@ fn test_whitespace_around_colon_in_mappings_yml_prose_wrapalways_format_1_b646ce
 #[test]
 fn test_whitespace_around_colon_in_mappings_yml_use_tabstrue_format_1_b646ce63() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5342,7 +5342,7 @@ fn test_whitespace_around_colon_in_mappings_yml_use_tabstrue_format_1_b646ce63()
 #[test]
 fn test_zero_indented_block_scalar_yml_prose_wrapalways_format_1_743a28f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5355,7 +5355,7 @@ fn test_zero_indented_block_scalar_yml_prose_wrapalways_format_1_743a28f8() {
 #[test]
 fn test_zero_indented_block_scalar_yml_use_tabstrue_format_1_743a28f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()
@@ -5369,7 +5369,7 @@ fn test_zero_indented_block_scalar_yml_use_tabstrue_format_1_743a28f8() {
 fn test_zero_indented_block_scalar_with_line_that_looks_like_a_comment_yml_prose_wrapalways_format_1_c3caf2ef(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -5383,7 +5383,7 @@ fn test_zero_indented_block_scalar_with_line_that_looks_like_a_comment_yml_prose
 fn test_zero_indented_block_scalar_with_line_that_looks_like_a_comment_yml_use_tabstrue_format_1_c3caf2ef(
 ) {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .use_tabs(true)
         .build()

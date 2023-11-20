@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_case_less_format_1_75a9c9bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_case_less_format_1_75a9c9bb() {
 #[test]
 fn test_variable_less_format_1_16825fed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();

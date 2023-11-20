@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_babel_html_format_1_90dae268() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_babel_html_format_1_90dae268() {
 #[test]
 fn test_legacy_html_format_1_aa734793() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -31,7 +31,7 @@ fn test_legacy_html_format_1_aa734793() {
 #[test]
 fn test_module_html_format_1_7d0a01df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -43,7 +43,7 @@ fn test_module_html_format_1_7d0a01df() {
 #[test]
 fn test_module_attributes_html_format_1_b8d97a53() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -59,7 +59,7 @@ fn test_module_attributes_html_format_1_b8d97a53() {
 #[test]
 fn test_script_html_format_1_1a0381ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attributes_html_semifalse_format_1_d45402bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["lwc"])
+        .parser("html")
         .print_width(80)
         .semi(false)
         .build()
@@ -18,7 +18,7 @@ fn test_attributes_html_semifalse_format_1_d45402bb() {
 #[test]
 fn test_attributes_html_trailing_commaes_5_format_1_d45402bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["lwc"])
+        .parser("html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_attributes_html_trailing_commaes_5_format_1_d45402bb() {
 #[test]
 fn test_attributes_html_trailing_commanone_format_1_d45402bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["lwc"])
+        .parser("html")
         .print_width(80)
         .trailing_comma("none")
         .build()

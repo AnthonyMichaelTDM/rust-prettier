@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_createclass_callsite_js_format_1_11c2d590() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_createclass_callsite_js_format_1_11c2d590() {
 #[test]
 fn test_createclass_module_js_format_1_7e117fd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_createclass_module_js_format_1_7e117fd5() {
 #[test]
 fn test_es_6_class_proptypes_callsite_js_format_1_7c18b6f7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_es_6_class_proptypes_callsite_js_format_1_7c18b6f7() {
 #[test]
 fn test_es_6_class_proptypes_module_js_format_1_91c34460() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_es_6_class_proptypes_module_js_format_1_91c34460() {
 #[test]
 fn test_es_6_class_types_callsite_js_format_1_4dc21221() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_es_6_class_types_callsite_js_format_1_4dc21221() {
 #[test]
 fn test_es_6_class_types_module_js_format_1_c15d9078() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_functions_js_single_quotetrue_format_1_6ca951c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -23,7 +23,7 @@ fn test_functions_js_single_quotetrue_format_1_6ca951c6() {
 #[test]
 fn test_functions_js_format_1_6ca951c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -40,7 +40,7 @@ fn test_functions_js_format_1_6ca951c6() {
 #[test]
 fn test_objects_js_single_quotetrue_format_1_e33fe9ff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -57,7 +57,7 @@ fn test_objects_js_single_quotetrue_format_1_e33fe9ff() {
 #[test]
 fn test_objects_js_format_1_e33fe9ff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -73,7 +73,7 @@ fn test_objects_js_format_1_e33fe9ff() {
 #[test]
 fn test_strings_js_single_quotetrue_format_1_74b5ff1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -86,7 +86,7 @@ fn test_strings_js_single_quotetrue_format_1_74b5ff1f() {
 #[test]
 fn test_strings_js_format_1_74b5ff1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_multiline_ts_end_of_linecr_format_1_6f3fdc10() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .end_of_line("cr")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_multiline_ts_end_of_linecr_format_1_6f3fdc10() {
 fn test_multiline_ts_end_of_linecrlf_format_1_6f3fdc10() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .end_of_line("crlf")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_multiline_ts_end_of_linecrlf_format_1_6f3fdc10() {
 fn test_multiline_ts_end_of_linelf_format_1_6f3fdc10() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .end_of_line("lf")
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

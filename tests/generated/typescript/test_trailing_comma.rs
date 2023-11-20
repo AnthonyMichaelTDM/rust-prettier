@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_functions_tsx_trailing_commaall_format_1_e2d9da5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_arrow_functions_tsx_trailing_commaall_format_1_e2d9da5e() {
 #[test]
 fn test_arrow_functions_tsx_trailing_commaes_5_format_1_e2d9da5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_arrow_functions_tsx_trailing_commaes_5_format_1_e2d9da5e() {
 #[test]
 fn test_arrow_functions_tsx_trailing_commanone_format_1_e2d9da5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("tsx")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -44,7 +44,7 @@ fn test_arrow_functions_tsx_trailing_commanone_format_1_e2d9da5e() {
 #[test]
 fn test_trailing_ts_trailing_commaall_format_1_74c56103() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -57,7 +57,7 @@ fn test_trailing_ts_trailing_commaall_format_1_74c56103() {
 #[test]
 fn test_trailing_ts_trailing_commaes_5_format_1_74c56103() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -70,7 +70,7 @@ fn test_trailing_ts_trailing_commaes_5_format_1_74c56103() {
 #[test]
 fn test_trailing_ts_trailing_commanone_format_1_74c56103() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -83,7 +83,7 @@ fn test_trailing_ts_trailing_commanone_format_1_74c56103() {
 #[test]
 fn test_type_arguments_ts_trailing_commaall_format_1_e5d29759() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -96,7 +96,7 @@ fn test_type_arguments_ts_trailing_commaall_format_1_e5d29759() {
 #[test]
 fn test_type_arguments_ts_trailing_commaes_5_format_1_e5d29759() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -109,7 +109,7 @@ fn test_type_arguments_ts_trailing_commaes_5_format_1_e5d29759() {
 #[test]
 fn test_type_arguments_ts_trailing_commanone_format_1_e5d29759() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -122,7 +122,7 @@ fn test_type_arguments_ts_trailing_commanone_format_1_e5d29759() {
 #[test]
 fn test_type_parameters_vs_arguments_ts_trailing_commaall_format_1_59f2ef08() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -135,7 +135,7 @@ fn test_type_parameters_vs_arguments_ts_trailing_commaall_format_1_59f2ef08() {
 #[test]
 fn test_type_parameters_vs_arguments_ts_trailing_commaes_5_format_1_59f2ef08() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -148,7 +148,7 @@ fn test_type_parameters_vs_arguments_ts_trailing_commaes_5_format_1_59f2ef08() {
 #[test]
 fn test_type_parameters_vs_arguments_ts_trailing_commanone_format_1_59f2ef08() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .trailing_comma("none")
         .build()

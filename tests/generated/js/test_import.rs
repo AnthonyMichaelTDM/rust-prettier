@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_brackets_js_bracket_spacingfalse_format_1_47430aa8() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -18,7 +18,7 @@ fn test_brackets_js_bracket_spacingfalse_format_1_47430aa8() {
 #[test]
 fn test_brackets_js_format_1_47430aa8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -31,7 +31,7 @@ fn test_brackets_js_format_1_47430aa8() {
 fn test_comments_js_bracket_spacingfalse_format_1_a55289af() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -43,7 +43,7 @@ fn test_comments_js_bracket_spacingfalse_format_1_a55289af() {
 #[test]
 fn test_comments_js_format_1_a55289af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -56,7 +56,7 @@ fn test_comments_js_format_1_a55289af() {
 fn test_empty_import_js_bracket_spacingfalse_format_1_88610474() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -68,7 +68,7 @@ fn test_empty_import_js_bracket_spacingfalse_format_1_88610474() {
 #[test]
 fn test_empty_import_js_format_1_88610474() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_empty_import_js_format_1_88610474() {
 fn test_inline_js_bracket_spacingfalse_format_1_e33f2b77() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_inline_js_bracket_spacingfalse_format_1_e33f2b77() {
 #[test]
 fn test_inline_js_format_1_e33f2b77() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -106,7 +106,7 @@ fn test_inline_js_format_1_e33f2b77() {
 fn test_long_line_js_bracket_spacingfalse_format_1_041136ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -118,7 +118,7 @@ fn test_long_line_js_bracket_spacingfalse_format_1_041136ae() {
 #[test]
 fn test_long_line_js_format_1_041136ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -131,7 +131,7 @@ fn test_long_line_js_format_1_041136ae() {
 fn test_multiple_standalones_js_bracket_spacingfalse_format_1_9ccab025() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -143,7 +143,7 @@ fn test_multiple_standalones_js_bracket_spacingfalse_format_1_9ccab025() {
 #[test]
 fn test_multiple_standalones_js_format_1_9ccab025() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -156,7 +156,7 @@ fn test_multiple_standalones_js_format_1_9ccab025() {
 fn test_same_local_and_imported_js_bracket_spacingfalse_format_1_1c047fdd() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -170,7 +170,7 @@ fn test_same_local_and_imported_js_bracket_spacingfalse_format_1_1c047fdd() {
 #[test]
 fn test_same_local_and_imported_js_format_1_1c047fdd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

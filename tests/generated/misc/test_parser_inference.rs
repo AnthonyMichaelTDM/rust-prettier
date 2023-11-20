@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_snippet_prettierrc_in_json_format_1_61494137() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("prettierrc")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_snippet_prettierrc_in_json_format_1_61494137() {
 #[test]
 fn test_snippet_prettierrc_in_yaml_format_1_928a7668() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("prettierrc")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_snippet_prettierrc_in_yaml_format_1_928a7668() {
 #[test]
 fn test_test_html_format_1_04464cec() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_test_html_format_1_04464cec() {
 #[test]
 fn test_test_importmap_format_1_e2fefa4a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("importmap")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_test_importmap_format_1_e2fefa4a() {
 #[test]
 fn test_test_js_format_1_a9979391() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_test_js_format_1_a9979391() {
 #[test]
 fn test_test_json_format_1_65ee3d14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("json")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_test_json_format_1_65ee3d14() {
 #[test]
 fn test_test_ts_format_1_db41e511() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -89,7 +89,7 @@ fn test_test_ts_format_1_db41e511() {
 #[test]
 fn test_test_wxs_format_1_4c841e11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("wxs")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_test_wxs_format_1_4c841e11() {
 #[test]
 fn test_test_wxss_format_1_d061219c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("wxss")
         .print_width(80)
         .build()
         .unwrap();
@@ -117,7 +117,7 @@ fn test_test_wxss_format_1_d061219c() {
 #[test]
 fn test_test_yml_format_1_c5ce43e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec![])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();

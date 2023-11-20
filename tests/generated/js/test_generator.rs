@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_anonymous_js_format_1_035f9f52() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_anonymous_js_format_1_035f9f52() {
 #[test]
 fn test_async_js_format_1_f303d11f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_async_js_format_1_f303d11f() {
 #[test]
 fn test_function_name_starts_with_get_js_format_1_79e098d3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript", "flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

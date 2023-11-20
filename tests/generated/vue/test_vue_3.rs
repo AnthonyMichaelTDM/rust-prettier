@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_script_generic_vue_format_1_04a15e2c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_script_generic_vue_format_1_04a15e2c() {
 #[test]
 fn test_script_setup_vue_format_1_a0ef69e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_script_setup_vue_format_1_a0ef69e0() {
 #[test]
 fn test_style_variables_vue_format_1_4617b51c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();

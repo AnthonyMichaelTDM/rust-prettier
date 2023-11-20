@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_ignore_mdx_semifalse_format_1_6696b60b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -18,7 +18,7 @@ fn test_ignore_mdx_semifalse_format_1_6696b60b() {
 #[test]
 fn test_ignore_mdx_format_1_6696b60b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,7 @@ fn test_ignore_mdx_format_1_6696b60b() {
 #[test]
 fn test_import_export_mdx_semifalse_format_1_08365a02() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -43,7 +43,7 @@ fn test_import_export_mdx_semifalse_format_1_08365a02() {
 #[test]
 fn test_import_export_mdx_format_1_08365a02() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -55,7 +55,7 @@ fn test_import_export_mdx_format_1_08365a02() {
 #[test]
 fn test_inline_html_mdx_semifalse_format_1_0da8814c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -68,7 +68,7 @@ fn test_inline_html_mdx_semifalse_format_1_0da8814c() {
 #[test]
 fn test_inline_html_mdx_format_1_0da8814c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -80,7 +80,7 @@ fn test_inline_html_mdx_format_1_0da8814c() {
 #[test]
 fn test_jsx_mdx_semifalse_format_1_4741024f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -93,7 +93,7 @@ fn test_jsx_mdx_semifalse_format_1_4741024f() {
 #[test]
 fn test_jsx_mdx_format_1_4741024f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_jsx_mdx_format_1_4741024f() {
 #[test]
 fn test_jsx_codeblock_mdx_semifalse_format_1_c5c7ba73() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -118,7 +118,7 @@ fn test_jsx_codeblock_mdx_semifalse_format_1_c5c7ba73() {
 #[test]
 fn test_jsx_codeblock_mdx_format_1_c5c7ba73() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -130,7 +130,7 @@ fn test_jsx_codeblock_mdx_format_1_c5c7ba73() {
 #[test]
 fn test_levels_mdx_semifalse_format_1_04ed8301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -143,7 +143,7 @@ fn test_levels_mdx_semifalse_format_1_04ed8301() {
 #[test]
 fn test_levels_mdx_format_1_04ed8301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -155,7 +155,7 @@ fn test_levels_mdx_format_1_04ed8301() {
 #[test]
 fn test_mixed_mdx_semifalse_format_1_7c993d9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .semi(false)
         .build()
@@ -168,7 +168,7 @@ fn test_mixed_mdx_semifalse_format_1_7c993d9a() {
 #[test]
 fn test_mixed_mdx_format_1_7c993d9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();

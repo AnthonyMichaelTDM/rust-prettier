@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_custom_block_lang_vue_embedded_language_formattingoff_format_1_0c08b579() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -22,7 +22,7 @@ fn test_custom_block_lang_vue_embedded_language_formattingoff_format_1_0c08b579(
 #[test]
 fn test_custom_block_lang_vue_format_1_0c08b579() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -39,7 +39,7 @@ fn test_custom_block_lang_vue_format_1_0c08b579() {
 fn test_inline_vue_embedded_language_formattingoff_format_1_dc30219e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -55,7 +55,7 @@ fn test_inline_vue_embedded_language_formattingoff_format_1_dc30219e() {
 #[test]
 fn test_inline_vue_format_1_dc30219e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -72,7 +72,7 @@ fn test_inline_vue_format_1_dc30219e() {
 fn test_script_lang_vue_embedded_language_formattingoff_format_1_3f9e6d87() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -88,7 +88,7 @@ fn test_script_lang_vue_embedded_language_formattingoff_format_1_3f9e6d87() {
 #[test]
 fn test_script_lang_vue_format_1_3f9e6d87() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_script_lang_vue_format_1_3f9e6d87() {
 fn test_style_lang_vue_embedded_language_formattingoff_format_1_00616e63() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -122,7 +122,7 @@ fn test_style_lang_vue_embedded_language_formattingoff_format_1_00616e63() {
 #[test]
 fn test_style_lang_vue_format_1_00616e63() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -140,7 +140,7 @@ fn test_style_lang_vue_format_1_00616e63() {
 fn test_template_lang_vue_embedded_language_formattingoff_format_1_95c23a88() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -156,7 +156,7 @@ fn test_template_lang_vue_embedded_language_formattingoff_format_1_95c23a88() {
 #[test]
 fn test_template_lang_vue_format_1_95c23a88() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -173,7 +173,7 @@ fn test_template_lang_vue_format_1_95c23a88() {
 fn test_whitspace_vue_embedded_language_formattingoff_format_1_d28cef31() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -189,7 +189,7 @@ fn test_whitspace_vue_embedded_language_formattingoff_format_1_d28cef31() {
 #[test]
 fn test_whitspace_vue_format_1_d28cef31() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -206,7 +206,7 @@ fn test_whitspace_vue_format_1_d28cef31() {
 fn test_with_src_vue_embedded_language_formattingoff_format_1_e42a005b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -218,7 +218,7 @@ fn test_with_src_vue_embedded_language_formattingoff_format_1_e42a005b() {
 #[test]
 fn test_with_src_vue_format_1_e42a005b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();

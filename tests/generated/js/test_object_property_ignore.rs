@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_ignore_js_trailing_commaall_format_1_407d03fd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_ignore_js_trailing_commaall_format_1_407d03fd() {
 #[test]
 fn test_ignore_js_trailing_commaes_5_format_1_407d03fd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_ignore_js_trailing_commaes_5_format_1_407d03fd() {
 #[test]
 fn test_ignore_js_trailing_commanone_format_1_407d03fd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -44,7 +44,7 @@ fn test_ignore_js_trailing_commanone_format_1_407d03fd() {
 #[test]
 fn test_issue_5678_js_trailing_commaall_format_1_f2f00d3f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -57,7 +57,7 @@ fn test_issue_5678_js_trailing_commaall_format_1_f2f00d3f() {
 #[test]
 fn test_issue_5678_js_trailing_commaes_5_format_1_f2f00d3f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -70,7 +70,7 @@ fn test_issue_5678_js_trailing_commaes_5_format_1_f2f00d3f() {
 #[test]
 fn test_issue_5678_js_trailing_commanone_format_1_f2f00d3f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("none")
         .build()

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_key_values_scss_trailing_commaes_5_format_1_6a7c6abf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -18,7 +18,7 @@ fn test_key_values_scss_trailing_commaes_5_format_1_6a7c6abf() {
 #[test]
 fn test_key_values_scss_trailing_commanone_format_1_6a7c6abf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -31,7 +31,7 @@ fn test_key_values_scss_trailing_commanone_format_1_6a7c6abf() {
 #[test]
 fn test_keys_scss_trailing_commaes_5_format_1_566e5ada() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -44,7 +44,7 @@ fn test_keys_scss_trailing_commaes_5_format_1_566e5ada() {
 #[test]
 fn test_keys_scss_trailing_commanone_format_1_566e5ada() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()

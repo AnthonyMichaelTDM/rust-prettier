@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_directive_decl_graphql_format_1_73bf5a9b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_directive_decl_graphql_format_1_73bf5a9b() {
 #[test]
 fn test_directives_graphql_format_1_790f3011() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_directives_graphql_format_1_790f3011() {
 #[test]
 fn test_enum_graphql_format_1_126f3173() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_enum_graphql_format_1_126f3173() {
 #[test]
 fn test_fields_graphql_format_1_8e66c31d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_fields_graphql_format_1_8e66c31d() {
 #[test]
 fn test_input_graphql_format_1_f4861a8e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_input_graphql_format_1_f4861a8e() {
 #[test]
 fn test_interface_graphql_format_1_2bfd3eb7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_interface_graphql_format_1_2bfd3eb7() {
 #[test]
 fn test_object_type_def_graphql_format_1_9b3925fe() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_object_type_def_graphql_format_1_9b3925fe() {
 #[test]
 fn test_schema_graphql_format_1_3d9f3c6b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();

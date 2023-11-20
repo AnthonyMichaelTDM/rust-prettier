@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_types_ts_quote_propsas_needed_format_1_49a1ec8e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .quote_props("as-needed")
         .build()
@@ -18,7 +18,7 @@ fn test_types_ts_quote_propsas_needed_format_1_49a1ec8e() {
 #[test]
 fn test_types_ts_quote_propsconsistent_format_1_49a1ec8e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .quote_props("consistent")
         .build()
@@ -31,7 +31,7 @@ fn test_types_ts_quote_propsconsistent_format_1_49a1ec8e() {
 #[test]
 fn test_types_ts_quote_propspreserve_format_1_49a1ec8e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript"])
+        .parser("ts")
         .print_width(80)
         .quote_props("preserve")
         .build()

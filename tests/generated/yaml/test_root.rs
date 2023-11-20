@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_documents_yml_format_1_17d1806a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_documents_yml_format_1_17d1806a() {
 #[test]
 fn test_documents_with_directive_yml_format_1_acbbba49() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_documents_with_directive_yml_format_1_acbbba49() {
 #[test]
 fn test_empty_yml_format_1_68b329da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_empty_yml_format_1_68b329da() {
 #[test]
 fn test_example_yml_format_1_2f95c2b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();

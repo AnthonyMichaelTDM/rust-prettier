@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_postcss_mixins_css_format_1_e848ab1c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_postcss_mixins_css_format_1_e848ab1c() {
 #[test]
 fn test_postcss_nested_css_format_1_93d935d2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_postcss_nested_css_format_1_93d935d2() {
 #[test]
 fn test_postcss_nested_props_css_format_1_8f289b67() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_postcss_nested_props_css_format_1_8f289b67() {
 #[test]
 fn test_postcss_nesting_css_format_1_c0411c5f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_postcss_nesting_css_format_1_c0411c5f() {
 #[test]
 fn test_postcss_simple_vars_css_format_1_ec4bf30d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();

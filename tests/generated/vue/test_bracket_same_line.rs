@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_vue_html_bracket_same_linefalse_format_1_76db7dc4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(false)
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_vue_html_bracket_same_linefalse_format_1_76db7dc4() {
 fn test_vue_html_bracket_same_linetrue_format_1_76db7dc4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["vue"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_vue_html_bracket_same_linetrue_format_1_76db7dc4() {
 fn test_vue_vue_bracket_same_linefalse_format_1_d3219d2a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(false)
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();
@@ -45,7 +45,7 @@ fn test_vue_vue_bracket_same_linefalse_format_1_d3219d2a() {
 fn test_vue_vue_bracket_same_linetrue_format_1_d3219d2a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["vue"])
+        .parser("vue")
         .print_width(80)
         .build()
         .unwrap();

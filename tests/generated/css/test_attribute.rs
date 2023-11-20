@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_custom_selector_css_single_quotetrue_format_1_f656fb35() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -18,7 +18,7 @@ fn test_custom_selector_css_single_quotetrue_format_1_f656fb35() {
 #[test]
 fn test_custom_selector_css_format_1_f656fb35() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -30,7 +30,7 @@ fn test_custom_selector_css_format_1_f656fb35() {
 #[test]
 fn test_insensitive_css_single_quotetrue_format_1_22207acd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -43,7 +43,7 @@ fn test_insensitive_css_single_quotetrue_format_1_22207acd() {
 #[test]
 fn test_insensitive_css_format_1_22207acd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -55,7 +55,7 @@ fn test_insensitive_css_format_1_22207acd() {
 #[test]
 fn test_namespaces_css_single_quotetrue_format_1_d5d522e8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -68,7 +68,7 @@ fn test_namespaces_css_single_quotetrue_format_1_d5d522e8() {
 #[test]
 fn test_namespaces_css_format_1_d5d522e8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -80,7 +80,7 @@ fn test_namespaces_css_format_1_d5d522e8() {
 #[test]
 fn test_quotes_css_single_quotetrue_format_1_b2d8b54a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -93,7 +93,7 @@ fn test_quotes_css_single_quotetrue_format_1_b2d8b54a() {
 #[test]
 fn test_quotes_css_format_1_b2d8b54a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_quotes_css_format_1_b2d8b54a() {
 #[test]
 fn test_spaces_css_single_quotetrue_format_1_1d86c49f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -118,7 +118,7 @@ fn test_spaces_css_single_quotetrue_format_1_1d86c49f() {
 #[test]
 fn test_spaces_css_format_1_1d86c49f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["css"])
+        .parser("css")
         .print_width(80)
         .build()
         .unwrap();

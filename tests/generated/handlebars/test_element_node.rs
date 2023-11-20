@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_element_node_hbs_format_1_3d0fef9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,6 @@ fn test_element_node_hbs_format_1_3d0fef9a() {
 #[test]
 fn test_snippet_basefont_format_1_341b909e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +28,6 @@ fn test_snippet_basefont_format_1_341b909e() {
 #[test]
 fn test_snippet_bgsound_format_1_4b5da402() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +39,6 @@ fn test_snippet_bgsound_format_1_4b5da402() {
 #[test]
 fn test_snippet_frame_format_1_359c31d7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +50,6 @@ fn test_snippet_frame_format_1_359c31d7() {
 #[test]
 fn test_snippet_image_format_1_05640651() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +61,6 @@ fn test_snippet_image_format_1_05640651() {
 #[test]
 fn test_snippet_isindex_format_1_2e3fa7b5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +72,6 @@ fn test_snippet_isindex_format_1_2e3fa7b5() {
 #[test]
 fn test_snippet_menuitem_format_1_3344aed6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -89,7 +83,6 @@ fn test_snippet_menuitem_format_1_3344aed6() {
 #[test]
 fn test_snippet_nextid_format_1_8bc95893() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
         .print_width(80)
         .build()
         .unwrap();
@@ -101,7 +94,7 @@ fn test_snippet_nextid_format_1_8bc95893() {
 #[test]
 fn test_void_elements_hbs_format_1_b3fcd7b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();

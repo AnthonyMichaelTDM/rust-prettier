@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_backslashes_hbs_format_1_72d6de8e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_backslashes_hbs_format_1_72d6de8e() {
 #[test]
 fn test_backslashes_in_attributes_hbs_format_1_64e791cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_backslashes_in_attributes_hbs_format_1_64e791cb() {
 #[test]
 fn test_html_entities_hbs_format_1_d05e734c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -44,7 +44,7 @@ fn test_html_entities_hbs_format_1_d05e734c() {
 #[test]
 fn test_mustache_hbs_format_1_ce3c1b2d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();
@@ -61,7 +61,7 @@ fn test_mustache_hbs_format_1_ce3c1b2d() {
 #[test]
 fn test_numeric_entities_hbs_format_1_84d76e9c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .build()
         .unwrap();

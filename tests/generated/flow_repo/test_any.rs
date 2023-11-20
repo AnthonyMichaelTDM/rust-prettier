@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_any_js_format_1_957d7eb9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_any_js_format_1_957d7eb9() {
 #[test]
 fn test_anyexportflowfile_js_format_1_95c02f6b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_anyexportflowfile_js_format_1_95c02f6b() {
 #[test]
 fn test_flowfixme_js_format_1_b07c796d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -44,7 +44,7 @@ fn test_flowfixme_js_format_1_b07c796d() {
 #[test]
 fn test_flowissue_js_format_1_96c1de6e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -56,7 +56,7 @@ fn test_flowissue_js_format_1_96c1de6e() {
 #[test]
 fn test_nonflowfile_js_format_1_9501635f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -68,7 +68,7 @@ fn test_nonflowfile_js_format_1_9501635f() {
 #[test]
 fn test_propagate_js_format_1_a57f9eae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -80,7 +80,7 @@ fn test_propagate_js_format_1_a57f9eae() {
 #[test]
 fn test_reach_js_format_1_c31c2438() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

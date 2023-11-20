@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_dollar_sign_md_format_1_ea419ff3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_dollar_sign_md_format_1_ea419ff3() {
 #[test]
 fn test_empty_block_md_format_1_6e71d909() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_empty_block_md_format_1_6e71d909() {
 #[test]
 fn test_math_like_md_format_1_b5cf4150() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .build()
         .unwrap();
@@ -46,7 +46,7 @@ fn test_math_like_md_format_1_b5cf4150() {
 #[test]
 fn test_remark_math_md_format_1_a430d167() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .build()
         .unwrap();

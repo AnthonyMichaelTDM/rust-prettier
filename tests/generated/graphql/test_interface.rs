@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_interface_graphql_format_1_f0ebdc18() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_interface_graphql_format_1_f0ebdc18() {
 #[test]
 fn test_object_type_def_graphql_format_1_bd3090a2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_object_type_def_graphql_format_1_bd3090a2() {
 #[test]
 fn test_object_type_def_mixed_syntax_graphql_format_1_118b8080() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_object_type_def_mixed_syntax_graphql_format_1_118b8080() {
 #[test]
 fn test_object_type_def_old_syntax_graphql_format_1_32d6bbb7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_object_type_def_old_syntax_graphql_format_1_32d6bbb7() {
 #[test]
 fn test_separator_detection_graphql_format_1_e16c5aac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();

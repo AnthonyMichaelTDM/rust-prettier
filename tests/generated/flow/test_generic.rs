@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_break_js_trailing_commaall_format_1_4bb09f7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_break_js_trailing_commaall_format_1_4bb09f7f() {
 #[test]
 fn test_break_js_trailing_commaes_5_format_1_4bb09f7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_break_js_trailing_commaes_5_format_1_4bb09f7f() {
 #[test]
 fn test_function_default_type_parameters_js_trailing_commaall_format_1_988f34a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -44,7 +44,7 @@ fn test_function_default_type_parameters_js_trailing_commaall_format_1_988f34a3(
 #[test]
 fn test_function_default_type_parameters_js_trailing_commaes_5_format_1_988f34a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -57,7 +57,7 @@ fn test_function_default_type_parameters_js_trailing_commaes_5_format_1_988f34a3
 #[test]
 fn test_generic_js_trailing_commaall_format_1_65531e0f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -73,7 +73,7 @@ fn test_generic_js_trailing_commaall_format_1_65531e0f() {
 #[test]
 fn test_generic_js_trailing_commaes_5_format_1_65531e0f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -89,7 +89,7 @@ fn test_generic_js_trailing_commaes_5_format_1_65531e0f() {
 #[test]
 fn test_interface_js_trailing_commaall_format_1_d87a9298() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -106,7 +106,7 @@ fn test_interface_js_trailing_commaall_format_1_d87a9298() {
 #[test]
 fn test_interface_js_trailing_commaes_5_format_1_d87a9298() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -123,7 +123,7 @@ fn test_interface_js_trailing_commaes_5_format_1_d87a9298() {
 #[test]
 fn test_nullable_js_trailing_commaall_format_1_a12194cd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -136,7 +136,7 @@ fn test_nullable_js_trailing_commaall_format_1_a12194cd() {
 #[test]
 fn test_nullable_js_trailing_commaes_5_format_1_a12194cd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -149,7 +149,7 @@ fn test_nullable_js_trailing_commaes_5_format_1_a12194cd() {
 #[test]
 fn test_single_identifier_js_trailing_commaall_format_1_cbd3ab26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -164,7 +164,7 @@ fn test_single_identifier_js_trailing_commaall_format_1_cbd3ab26() {
 #[test]
 fn test_single_identifier_js_trailing_commaes_5_format_1_cbd3ab26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -179,7 +179,7 @@ fn test_single_identifier_js_trailing_commaes_5_format_1_cbd3ab26() {
 #[test]
 fn test_trailing_js_trailing_commaall_format_1_86b01db1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -192,7 +192,7 @@ fn test_trailing_js_trailing_commaall_format_1_86b01db1() {
 #[test]
 fn test_trailing_js_trailing_commaes_5_format_1_86b01db1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -205,7 +205,7 @@ fn test_trailing_js_trailing_commaes_5_format_1_86b01db1() {
 #[test]
 fn test_type_js_trailing_commaall_format_1_032ad29e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -221,7 +221,7 @@ fn test_type_js_trailing_commaall_format_1_032ad29e() {
 #[test]
 fn test_type_js_trailing_commaes_5_format_1_032ad29e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -237,7 +237,7 @@ fn test_type_js_trailing_commaes_5_format_1_032ad29e() {
 #[test]
 fn test_union_js_trailing_commaall_format_1_75aefe76() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -250,7 +250,7 @@ fn test_union_js_trailing_commaall_format_1_75aefe76() {
 #[test]
 fn test_union_js_trailing_commaes_5_format_1_75aefe76() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()

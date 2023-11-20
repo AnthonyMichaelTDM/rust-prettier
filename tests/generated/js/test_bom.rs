@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_snippet_cursor_1_js_format_1_8999657b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(27)
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_snippet_cursor_1_js_format_1_8999657b() {
 fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(22)
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .range_end(27)
         .range_start(11)
@@ -36,7 +36,7 @@ fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
 #[test]
 fn test_snippet_range_1_js_format_1_f19ae2ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .range_end(27)
         .range_start(11)
@@ -51,7 +51,7 @@ fn test_snippet_range_1_js_format_1_f19ae2ee() {
 fn test_snippet_range_and_cursor_1_js_format_1_1e50091b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(23)
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .range_end(28)
         .range_start(12)

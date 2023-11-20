@@ -1,10 +1,13 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_optional_chaining_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -12,7 +15,10 @@ fn test_optional_chaining_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_optional_chaining_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -20,7 +26,10 @@ fn test_optional_chaining_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_optional_chaining_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -28,7 +37,10 @@ fn test_optional_chaining_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_optional_chaining_js_semifalse_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -36,7 +48,10 @@ fn test_optional_chaining_js_semifalse_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_optional_chaining_js_semifalse_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -44,7 +59,10 @@ fn test_optional_chaining_js_semifalse_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_optional_chaining_js_semifalse_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -53,7 +71,7 @@ fn test_optional_chaining_js_semifalse_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_optional_chaining_js_semifalse_format_1_85dd90aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -70,7 +88,7 @@ fn test_optional_chaining_js_semifalse_format_1_85dd90aa() {
 #[test]
 fn test_optional_chaining_js_format_1_85dd90aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -86,7 +104,7 @@ fn test_optional_chaining_js_format_1_85dd90aa() {
 #[test]
 fn test_private_fields_js_semifalse_format_1_6ef63b38() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -99,7 +117,7 @@ fn test_private_fields_js_semifalse_format_1_6ef63b38() {
 #[test]
 fn test_private_fields_js_format_1_6ef63b38() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -111,7 +129,7 @@ fn test_private_fields_js_format_1_6ef63b38() {
 #[test]
 fn test_with_comments_js_semifalse_format_1_7c025ab6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .semi(false)
         .build()
@@ -124,7 +142,7 @@ fn test_with_comments_js_semifalse_format_1_7c025ab6() {
 #[test]
 fn test_with_comments_js_format_1_7c025ab6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

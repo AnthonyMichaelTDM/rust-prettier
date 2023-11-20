@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_declare_function_js_trailing_commaall_format_1_8a72d456() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_declare_function_js_trailing_commaall_format_1_8a72d456() {
 #[test]
 fn test_function_declaration_js_trailing_commaall_format_1_efcc594e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -31,7 +31,7 @@ fn test_function_declaration_js_trailing_commaall_format_1_efcc594e() {
 #[test]
 fn test_function_type_js_trailing_commaall_format_1_7ebc0a83() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -44,7 +44,7 @@ fn test_function_type_js_trailing_commaall_format_1_7ebc0a83() {
 #[test]
 fn test_line_break_js_trailing_commaall_format_1_a4c65dc9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -57,7 +57,7 @@ fn test_line_break_js_trailing_commaall_format_1_a4c65dc9() {
 #[test]
 fn test_method_js_trailing_commaall_format_1_1096e939() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -70,7 +70,7 @@ fn test_method_js_trailing_commaall_format_1_1096e939() {
 #[test]
 fn test_union_type_js_trailing_commaall_format_1_854b3c81() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()

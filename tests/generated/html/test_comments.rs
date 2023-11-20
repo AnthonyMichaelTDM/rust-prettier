@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_before_text_html_html_whitespace_sensitivityignore_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_before_text_html_html_whitespace_sensitivityignore_format_1_6e0a6ccf() {
 fn test_before_text_html_html_whitespace_sensitivitystrict_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -31,7 +31,7 @@ fn test_before_text_html_html_whitespace_sensitivitystrict_format_1_6e0a6ccf() {
 #[test]
 fn test_before_text_html_print_width_infinity_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(INFINITY)
         .build()
         .unwrap();
@@ -43,7 +43,7 @@ fn test_before_text_html_print_width_infinity_format_1_6e0a6ccf() {
 #[test]
 fn test_before_text_html_print_width_1_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -55,7 +55,7 @@ fn test_before_text_html_print_width_1_format_1_6e0a6ccf() {
 #[test]
 fn test_before_text_html_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -68,7 +68,7 @@ fn test_before_text_html_format_1_6e0a6ccf() {
 fn test_bogus_html_html_whitespace_sensitivityignore_format_1_1a1a88c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_bogus_html_html_whitespace_sensitivityignore_format_1_1a1a88c9() {
 fn test_bogus_html_html_whitespace_sensitivitystrict_format_1_1a1a88c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_bogus_html_html_whitespace_sensitivitystrict_format_1_1a1a88c9() {
 #[test]
 fn test_bogus_html_print_width_infinity_format_1_1a1a88c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(INFINITY)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_bogus_html_print_width_infinity_format_1_1a1a88c9() {
 #[test]
 fn test_bogus_html_print_width_1_format_1_1a1a88c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -117,7 +117,7 @@ fn test_bogus_html_print_width_1_format_1_1a1a88c9() {
 #[test]
 fn test_bogus_html_format_1_1a1a88c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -130,7 +130,7 @@ fn test_bogus_html_format_1_1a1a88c9() {
 fn test_conditional_html_html_whitespace_sensitivityignore_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -143,7 +143,7 @@ fn test_conditional_html_html_whitespace_sensitivityignore_format_1_52d360b9() {
 fn test_conditional_html_html_whitespace_sensitivitystrict_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -155,7 +155,7 @@ fn test_conditional_html_html_whitespace_sensitivitystrict_format_1_52d360b9() {
 #[test]
 fn test_conditional_html_print_width_infinity_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(INFINITY)
         .build()
         .unwrap();
@@ -167,7 +167,7 @@ fn test_conditional_html_print_width_infinity_format_1_52d360b9() {
 #[test]
 fn test_conditional_html_print_width_1_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -179,7 +179,7 @@ fn test_conditional_html_print_width_1_format_1_52d360b9() {
 #[test]
 fn test_conditional_html_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -192,7 +192,7 @@ fn test_conditional_html_format_1_52d360b9() {
 fn test_for_debugging_html_html_whitespace_sensitivityignore_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -205,7 +205,7 @@ fn test_for_debugging_html_html_whitespace_sensitivityignore_format_1_41d72a6f()
 fn test_for_debugging_html_html_whitespace_sensitivitystrict_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -217,7 +217,7 @@ fn test_for_debugging_html_html_whitespace_sensitivitystrict_format_1_41d72a6f()
 #[test]
 fn test_for_debugging_html_print_width_infinity_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(INFINITY)
         .build()
         .unwrap();
@@ -229,7 +229,7 @@ fn test_for_debugging_html_print_width_infinity_format_1_41d72a6f() {
 #[test]
 fn test_for_debugging_html_print_width_1_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -241,7 +241,7 @@ fn test_for_debugging_html_print_width_1_format_1_41d72a6f() {
 #[test]
 fn test_for_debugging_html_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -254,7 +254,7 @@ fn test_for_debugging_html_format_1_41d72a6f() {
 fn test_hidden_html_html_whitespace_sensitivityignore_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -267,7 +267,7 @@ fn test_hidden_html_html_whitespace_sensitivityignore_format_1_a0cf8294() {
 fn test_hidden_html_html_whitespace_sensitivitystrict_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -279,7 +279,7 @@ fn test_hidden_html_html_whitespace_sensitivitystrict_format_1_a0cf8294() {
 #[test]
 fn test_hidden_html_print_width_infinity_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(INFINITY)
         .build()
         .unwrap();
@@ -291,7 +291,7 @@ fn test_hidden_html_print_width_infinity_format_1_a0cf8294() {
 #[test]
 fn test_hidden_html_print_width_1_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -303,7 +303,7 @@ fn test_hidden_html_print_width_1_format_1_a0cf8294() {
 #[test]
 fn test_hidden_html_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -316,7 +316,7 @@ fn test_hidden_html_format_1_a0cf8294() {
 fn test_surrounding_empty_line_html_html_whitespace_sensitivityignore_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -329,7 +329,7 @@ fn test_surrounding_empty_line_html_html_whitespace_sensitivityignore_format_1_c
 fn test_surrounding_empty_line_html_html_whitespace_sensitivitystrict_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -341,7 +341,7 @@ fn test_surrounding_empty_line_html_html_whitespace_sensitivitystrict_format_1_c
 #[test]
 fn test_surrounding_empty_line_html_print_width_infinity_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(INFINITY)
         .build()
         .unwrap();
@@ -353,7 +353,7 @@ fn test_surrounding_empty_line_html_print_width_infinity_format_1_c2fbc0bb() {
 #[test]
 fn test_surrounding_empty_line_html_print_width_1_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -365,7 +365,7 @@ fn test_surrounding_empty_line_html_print_width_1_format_1_c2fbc0bb() {
 #[test]
 fn test_surrounding_empty_line_html_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

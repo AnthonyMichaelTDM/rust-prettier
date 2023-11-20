@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_multiline_yml_prose_wrapalways_format_1_cdcda6a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_multiline_yml_prose_wrapalways_format_1_cdcda6a8() {
 #[test]
 fn test_multiline_yml_prose_wrapnever_format_1_cdcda6a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -31,7 +31,7 @@ fn test_multiline_yml_prose_wrapnever_format_1_cdcda6a8() {
 #[test]
 fn test_multiline_yml_single_quotetrue_format_1_cdcda6a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -44,7 +44,7 @@ fn test_multiline_yml_single_quotetrue_format_1_cdcda6a8() {
 #[test]
 fn test_multiline_yml_format_1_cdcda6a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -56,7 +56,7 @@ fn test_multiline_yml_format_1_cdcda6a8() {
 #[test]
 fn test_quote_yml_prose_wrapalways_format_1_0e8d34df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -69,7 +69,7 @@ fn test_quote_yml_prose_wrapalways_format_1_0e8d34df() {
 #[test]
 fn test_quote_yml_prose_wrapnever_format_1_0e8d34df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -82,7 +82,7 @@ fn test_quote_yml_prose_wrapnever_format_1_0e8d34df() {
 #[test]
 fn test_quote_yml_single_quotetrue_format_1_0e8d34df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -95,7 +95,7 @@ fn test_quote_yml_single_quotetrue_format_1_0e8d34df() {
 #[test]
 fn test_quote_yml_format_1_0e8d34df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();

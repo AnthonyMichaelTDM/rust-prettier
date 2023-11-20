@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_0_indent_js_prose_wrapalways_format_1_8aab4309() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_0_indent_js_prose_wrapalways_format_1_8aab4309() {
 #[test]
 fn test_codeblock_js_prose_wrapalways_format_1_7207cd2f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -31,7 +31,7 @@ fn test_codeblock_js_prose_wrapalways_format_1_7207cd2f() {
 #[test]
 fn test_escape_js_prose_wrapalways_format_1_1822a523() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -44,7 +44,7 @@ fn test_escape_js_prose_wrapalways_format_1_1822a523() {
 #[test]
 fn test_issue_5021_js_prose_wrapalways_format_1_80bd1de9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -57,7 +57,7 @@ fn test_issue_5021_js_prose_wrapalways_format_1_80bd1de9() {
 #[test]
 fn test_markdown_js_prose_wrapalways_format_1_c81db771() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -70,7 +70,7 @@ fn test_markdown_js_prose_wrapalways_format_1_c81db771() {
 #[test]
 fn test_single_line_js_prose_wrapalways_format_1_0a8b2df4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel"])
+        .parser("js")
         .print_width(80)
         .prose_wrap("always")
         .build()

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_less_format_1_7e5a5dc1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_comments_less_format_1_7e5a5dc1() {
 #[test]
 fn test_function_each_less_format_1_82430fa9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_function_each_less_format_1_82430fa9() {
 #[test]
 fn test_issue_11483_never_append_anything_less_format_1_9afef4b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_issue_11483_never_append_anything_less_format_1_9afef4b6() {
 #[test]
 fn test_less_less_format_1_9ff36876() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_less_less_format_1_9ff36876() {
 #[test]
 fn test_quotes_in_comments_less_format_1_547071eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();

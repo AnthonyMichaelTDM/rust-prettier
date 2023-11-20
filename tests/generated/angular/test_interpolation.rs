@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_computed_optional_member_expression_ng_trailing_commanone_format_1_7e65cf7e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["__ng_interpolation"])
+        .parser("ng")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -18,7 +18,7 @@ fn test_computed_optional_member_expression_ng_trailing_commanone_format_1_7e65c
 #[test]
 fn test_logical_expression_ng_trailing_commanone_format_1_e3f02610() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["__ng_interpolation"])
+        .parser("ng")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -31,7 +31,7 @@ fn test_logical_expression_ng_trailing_commanone_format_1_e3f02610() {
 #[test]
 fn test_optional_chaining_ng_trailing_commanone_format_1_72e856c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["__ng_interpolation"])
+        .parser("ng")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -44,7 +44,7 @@ fn test_optional_chaining_ng_trailing_commanone_format_1_72e856c4() {
 #[test]
 fn test_pipe_expression_ng_trailing_commanone_format_1_f75d9c6e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["__ng_interpolation"])
+        .parser("ng")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -57,7 +57,7 @@ fn test_pipe_expression_ng_trailing_commanone_format_1_f75d9c6e() {
 #[test]
 fn test_pipe_in_object_ng_trailing_commanone_format_1_f1fbf16a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["__ng_interpolation"])
+        .parser("ng")
         .print_width(80)
         .trailing_comma("none")
         .build()

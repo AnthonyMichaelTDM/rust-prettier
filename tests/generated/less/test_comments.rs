@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_crlf_less_format_1_940b6a06() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_crlf_less_format_1_940b6a06() {
 #[test]
 fn test_between_decl_less_format_1_7afc9b11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_between_decl_less_format_1_7afc9b11() {
 #[test]
 fn test_block_less_format_1_945b75f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_block_less_format_1_945b75f8() {
 #[test]
 fn test_block_2_less_format_1_f658e26b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_block_2_less_format_1_f658e26b() {
 #[test]
 fn test_in_value_less_format_1_9139fb64() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_in_value_less_format_1_9139fb64() {
 #[test]
 fn test_issue_8130_less_format_1_edc06c26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_issue_8130_less_format_1_edc06c26() {
 #[test]
 fn test_mixed_less_format_1_a2bbf8f2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -89,7 +89,7 @@ fn test_mixed_less_format_1_a2bbf8f2() {
 #[test]
 fn test_mixed_2_less_format_1_9d388255() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -101,7 +101,7 @@ fn test_mixed_2_less_format_1_9d388255() {
 #[test]
 fn test_mixed_block_less_format_1_eb71963e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -113,7 +113,7 @@ fn test_mixed_block_less_format_1_eb71963e() {
 #[test]
 fn test_places_less_format_1_ea9ad1d7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -129,7 +129,7 @@ fn test_places_less_format_1_ea9ad1d7() {
 #[test]
 fn test_prettier_ignore_less_format_1_18980157() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -141,7 +141,7 @@ fn test_prettier_ignore_less_format_1_18980157() {
 #[test]
 fn test_selectors_less_format_1_8c1e8782() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -153,7 +153,7 @@ fn test_selectors_less_format_1_8c1e8782() {
 #[test]
 fn test_trailing_star_slash_less_format_1_67c36f8a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();
@@ -169,7 +169,7 @@ fn test_trailing_star_slash_less_format_1_67c36f8a() {
 #[test]
 fn test_value_lists_less_format_1_e885fbd4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["less"])
+        .parser("less")
         .print_width(80)
         .build()
         .unwrap();

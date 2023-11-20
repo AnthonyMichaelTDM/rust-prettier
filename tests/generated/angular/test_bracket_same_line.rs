@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_angularjs_html_bracket_same_linefalse_format_1_8d69a13c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(false)
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_angularjs_html_bracket_same_linefalse_format_1_8d69a13c() {
 fn test_angularjs_html_bracket_same_linetrue_format_1_8d69a13c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

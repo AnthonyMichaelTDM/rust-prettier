@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_document_yml_format_1_0b375f97() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -21,7 +21,7 @@ fn test_document_yml_format_1_0b375f97() {
 #[test]
 fn test_leading_comment_yml_format_1_4fc57b84() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -33,7 +33,7 @@ fn test_leading_comment_yml_format_1_4fc57b84() {
 #[test]
 fn test_middle_comment_yml_format_1_22103cb5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -49,7 +49,7 @@ fn test_middle_comment_yml_format_1_22103cb5() {
 #[test]
 fn test_trailing_comma_yml_format_1_c3f777fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -61,7 +61,7 @@ fn test_trailing_comma_yml_format_1_c3f777fc() {
 #[test]
 fn test_trailing_comment_yml_format_1_931584ad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();

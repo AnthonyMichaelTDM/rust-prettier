@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_cjk_md_prose_wrapalways_format_1_44e7f1dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -18,7 +18,7 @@ fn test_cjk_md_prose_wrapalways_format_1_44e7f1dd() {
 #[test]
 fn test_cjk_md_prose_wrapnever_format_1_44e7f1dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -31,7 +31,7 @@ fn test_cjk_md_prose_wrapnever_format_1_44e7f1dd() {
 #[test]
 fn test_collapsed_md_prose_wrapalways_format_1_734309c8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -44,7 +44,7 @@ fn test_collapsed_md_prose_wrapalways_format_1_734309c8() {
 #[test]
 fn test_collapsed_md_prose_wrapnever_format_1_734309c8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -57,7 +57,7 @@ fn test_collapsed_md_prose_wrapnever_format_1_734309c8() {
 #[test]
 fn test_definition_md_prose_wrapalways_format_1_33b8b728() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -70,7 +70,7 @@ fn test_definition_md_prose_wrapalways_format_1_33b8b728() {
 #[test]
 fn test_definition_md_prose_wrapnever_format_1_33b8b728() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -83,7 +83,7 @@ fn test_definition_md_prose_wrapnever_format_1_33b8b728() {
 #[test]
 fn test_full_md_prose_wrapalways_format_1_e68e07d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -96,7 +96,7 @@ fn test_full_md_prose_wrapalways_format_1_e68e07d4() {
 #[test]
 fn test_full_md_prose_wrapnever_format_1_e68e07d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -109,7 +109,7 @@ fn test_full_md_prose_wrapnever_format_1_e68e07d4() {
 #[test]
 fn test_shortcut_md_prose_wrapalways_format_1_c57ed766() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -122,7 +122,7 @@ fn test_shortcut_md_prose_wrapalways_format_1_c57ed766() {
 #[test]
 fn test_shortcut_md_prose_wrapnever_format_1_c57ed766() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -135,7 +135,7 @@ fn test_shortcut_md_prose_wrapnever_format_1_c57ed766() {
 #[test]
 fn test_title_md_prose_wrapalways_format_1_cec5c5ad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
@@ -148,7 +148,7 @@ fn test_title_md_prose_wrapalways_format_1_cec5c5ad() {
 #[test]
 fn test_title_md_prose_wrapnever_format_1_cec5c5ad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()

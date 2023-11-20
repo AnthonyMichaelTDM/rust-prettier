@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_each_scss_format_1_01141d9c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_each_scss_format_1_01141d9c() {
 #[test]
 fn test_for_scss_format_1_47043a8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_for_scss_format_1_47043a8c() {
 #[test]
 fn test_if_else_scss_format_1_f44e9e85() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_if_else_scss_format_1_f44e9e85() {
 #[test]
 fn test_include_scss_format_1_8bc7d08e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_include_scss_format_1_8bc7d08e() {
 #[test]
 fn test_while_scss_format_1_2a5404c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .build()
         .unwrap();

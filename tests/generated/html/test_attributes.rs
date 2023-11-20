@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attributes_html_format_1_95a3b9f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_attributes_html_format_1_95a3b9f4() {
 #[test]
 fn test_boolean_html_format_1_41b1294d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_boolean_html_format_1_41b1294d() {
 #[test]
 fn test_case_sensitive_html_format_1_8f27dd9b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_case_sensitive_html_format_1_8f27dd9b() {
 #[test]
 fn test_class_bem_1_html_format_1_31f63510() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -53,7 +53,7 @@ fn test_class_bem_1_html_format_1_31f63510() {
 #[test]
 fn test_class_bem_2_html_format_1_be67a09d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -65,7 +65,7 @@ fn test_class_bem_2_html_format_1_be67a09d() {
 #[test]
 fn test_class_colon_html_format_1_0885e4f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -77,7 +77,7 @@ fn test_class_colon_html_format_1_0885e4f8() {
 #[test]
 fn test_class_leading_dashes_html_format_1_e7ed1b15() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -89,7 +89,7 @@ fn test_class_leading_dashes_html_format_1_e7ed1b15() {
 #[test]
 fn test_class_many_short_names_html_format_1_622552cd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -101,7 +101,7 @@ fn test_class_many_short_names_html_format_1_622552cd() {
 #[test]
 fn test_class_names_html_format_1_eb416ff6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -113,7 +113,7 @@ fn test_class_names_html_format_1_eb416ff6() {
 #[test]
 fn test_class_print_width_edge_html_format_1_c9e3ac68() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -125,7 +125,7 @@ fn test_class_print_width_edge_html_format_1_c9e3ac68() {
 #[test]
 fn test_dobule_quotes_html_format_1_354b3c8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -140,7 +140,7 @@ fn test_dobule_quotes_html_format_1_354b3c8b() {
 #[test]
 fn test_duplicate_html_format_1_67b111f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -152,7 +152,7 @@ fn test_duplicate_html_format_1_67b111f0() {
 #[test]
 fn test_single_quotes_html_format_1_598fc7f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -167,7 +167,7 @@ fn test_single_quotes_html_format_1_598fc7f6() {
 #[test]
 fn test_smart_quotes_html_format_1_fe3821bd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -179,7 +179,7 @@ fn test_smart_quotes_html_format_1_fe3821bd() {
 #[test]
 fn test_srcset_html_format_1_4c4d6c08() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -191,7 +191,7 @@ fn test_srcset_html_format_1_4c4d6c08() {
 #[test]
 fn test_style_html_format_1_024bffce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -203,7 +203,7 @@ fn test_style_html_format_1_024bffce() {
 #[test]
 fn test_without_quotes_html_format_1_a9d3fa07() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_angularjs_html_bracket_spacingfalse_format_1_e80fcf32() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_angularjs_html_bracket_spacingfalse_format_1_e80fcf32() {
 fn test_angularjs_html_html_whitespace_sensitivityignore_format_1_e80fcf32() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -31,7 +31,7 @@ fn test_angularjs_html_html_whitespace_sensitivityignore_format_1_e80fcf32() {
 #[test]
 fn test_angularjs_html_print_width_1_format_1_e80fcf32() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(1)
         .build()
         .unwrap();
@@ -43,7 +43,7 @@ fn test_angularjs_html_print_width_1_format_1_e80fcf32() {
 #[test]
 fn test_angularjs_html_trailing_commaes_5_format_1_e80fcf32() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -56,7 +56,7 @@ fn test_angularjs_html_trailing_commaes_5_format_1_e80fcf32() {
 #[test]
 fn test_angularjs_html_trailing_commanone_format_1_e80fcf32() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -70,7 +70,7 @@ fn test_angularjs_html_trailing_commanone_format_1_e80fcf32() {
 fn test_attr_name_component_html_bracket_spacingfalse_format_1_6384c2da() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -83,7 +83,7 @@ fn test_attr_name_component_html_bracket_spacingfalse_format_1_6384c2da() {
 fn test_attr_name_component_html_html_whitespace_sensitivityignore_format_1_6384c2da() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -95,7 +95,7 @@ fn test_attr_name_component_html_html_whitespace_sensitivityignore_format_1_6384
 #[test]
 fn test_attr_name_component_html_print_width_1_format_1_6384c2da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -110,7 +110,7 @@ fn test_attr_name_component_html_print_width_1_format_1_6384c2da() {
 #[test]
 fn test_attr_name_component_html_trailing_commaes_5_format_1_6384c2da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -123,7 +123,7 @@ fn test_attr_name_component_html_trailing_commaes_5_format_1_6384c2da() {
 #[test]
 fn test_attr_name_component_html_trailing_commanone_format_1_6384c2da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -137,7 +137,7 @@ fn test_attr_name_component_html_trailing_commanone_format_1_6384c2da() {
 fn test_attributes_component_html_bracket_spacingfalse_format_1_32b37cb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -150,7 +150,7 @@ fn test_attributes_component_html_bracket_spacingfalse_format_1_32b37cb2() {
 fn test_attributes_component_html_html_whitespace_sensitivityignore_format_1_32b37cb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -162,7 +162,7 @@ fn test_attributes_component_html_html_whitespace_sensitivityignore_format_1_32b
 #[test]
 fn test_attributes_component_html_print_width_1_format_1_32b37cb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -174,7 +174,7 @@ fn test_attributes_component_html_print_width_1_format_1_32b37cb2() {
 #[test]
 fn test_attributes_component_html_trailing_commaes_5_format_1_32b37cb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -187,7 +187,7 @@ fn test_attributes_component_html_trailing_commaes_5_format_1_32b37cb2() {
 #[test]
 fn test_attributes_component_html_trailing_commanone_format_1_32b37cb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -201,7 +201,7 @@ fn test_attributes_component_html_trailing_commanone_format_1_32b37cb2() {
 fn test_first_lf_component_html_bracket_spacingfalse_format_1_a16b8ced() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -214,7 +214,7 @@ fn test_first_lf_component_html_bracket_spacingfalse_format_1_a16b8ced() {
 fn test_first_lf_component_html_html_whitespace_sensitivityignore_format_1_a16b8ced() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -226,7 +226,7 @@ fn test_first_lf_component_html_html_whitespace_sensitivityignore_format_1_a16b8
 #[test]
 fn test_first_lf_component_html_print_width_1_format_1_a16b8ced() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -238,7 +238,7 @@ fn test_first_lf_component_html_print_width_1_format_1_a16b8ced() {
 #[test]
 fn test_first_lf_component_html_trailing_commaes_5_format_1_a16b8ced() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -251,7 +251,7 @@ fn test_first_lf_component_html_trailing_commaes_5_format_1_a16b8ced() {
 #[test]
 fn test_first_lf_component_html_trailing_commanone_format_1_a16b8ced() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -265,7 +265,7 @@ fn test_first_lf_component_html_trailing_commanone_format_1_a16b8ced() {
 fn test_ignore_attribute_component_html_bracket_spacingfalse_format_1_11d414cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -278,7 +278,7 @@ fn test_ignore_attribute_component_html_bracket_spacingfalse_format_1_11d414cb()
 fn test_ignore_attribute_component_html_html_whitespace_sensitivityignore_format_1_11d414cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -290,7 +290,7 @@ fn test_ignore_attribute_component_html_html_whitespace_sensitivityignore_format
 #[test]
 fn test_ignore_attribute_component_html_print_width_1_format_1_11d414cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -302,7 +302,7 @@ fn test_ignore_attribute_component_html_print_width_1_format_1_11d414cb() {
 #[test]
 fn test_ignore_attribute_component_html_trailing_commaes_5_format_1_11d414cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -315,7 +315,7 @@ fn test_ignore_attribute_component_html_trailing_commaes_5_format_1_11d414cb() {
 #[test]
 fn test_ignore_attribute_component_html_trailing_commanone_format_1_11d414cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -329,7 +329,7 @@ fn test_ignore_attribute_component_html_trailing_commanone_format_1_11d414cb() {
 fn test_interpolation_component_html_bracket_spacingfalse_format_1_afeae2c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -342,7 +342,7 @@ fn test_interpolation_component_html_bracket_spacingfalse_format_1_afeae2c0() {
 fn test_interpolation_component_html_html_whitespace_sensitivityignore_format_1_afeae2c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -354,7 +354,7 @@ fn test_interpolation_component_html_html_whitespace_sensitivityignore_format_1_
 #[test]
 fn test_interpolation_component_html_print_width_1_format_1_afeae2c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -366,7 +366,7 @@ fn test_interpolation_component_html_print_width_1_format_1_afeae2c0() {
 #[test]
 fn test_interpolation_component_html_trailing_commaes_5_format_1_afeae2c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -379,7 +379,7 @@ fn test_interpolation_component_html_trailing_commaes_5_format_1_afeae2c0() {
 #[test]
 fn test_interpolation_component_html_trailing_commanone_format_1_afeae2c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -393,7 +393,7 @@ fn test_interpolation_component_html_trailing_commanone_format_1_afeae2c0() {
 fn test_real_world_component_html_bracket_spacingfalse_format_1_52c0e328() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -406,7 +406,7 @@ fn test_real_world_component_html_bracket_spacingfalse_format_1_52c0e328() {
 fn test_real_world_component_html_html_whitespace_sensitivityignore_format_1_52c0e328() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -418,7 +418,7 @@ fn test_real_world_component_html_html_whitespace_sensitivityignore_format_1_52c
 #[test]
 fn test_real_world_component_html_print_width_1_format_1_52c0e328() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -430,7 +430,7 @@ fn test_real_world_component_html_print_width_1_format_1_52c0e328() {
 #[test]
 fn test_real_world_component_html_trailing_commaes_5_format_1_52c0e328() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -443,7 +443,7 @@ fn test_real_world_component_html_trailing_commaes_5_format_1_52c0e328() {
 #[test]
 fn test_real_world_component_html_trailing_commanone_format_1_52c0e328() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -457,7 +457,7 @@ fn test_real_world_component_html_trailing_commanone_format_1_52c0e328() {
 fn test_tag_name_component_html_bracket_spacingfalse_format_1_da91f3bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -470,7 +470,7 @@ fn test_tag_name_component_html_bracket_spacingfalse_format_1_da91f3bc() {
 fn test_tag_name_component_html_html_whitespace_sensitivityignore_format_1_da91f3bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .build()
         .unwrap();
@@ -482,7 +482,7 @@ fn test_tag_name_component_html_html_whitespace_sensitivityignore_format_1_da91f
 #[test]
 fn test_tag_name_component_html_print_width_1_format_1_da91f3bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(1)
         .build()
         .unwrap();
@@ -494,7 +494,7 @@ fn test_tag_name_component_html_print_width_1_format_1_da91f3bc() {
 #[test]
 fn test_tag_name_component_html_trailing_commaes_5_format_1_da91f3bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -507,7 +507,7 @@ fn test_tag_name_component_html_trailing_commaes_5_format_1_da91f3bc() {
 #[test]
 fn test_tag_name_component_html_trailing_commanone_format_1_da91f3bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
+        .parser("component.html")
         .print_width(80)
         .trailing_comma("none")
         .build()

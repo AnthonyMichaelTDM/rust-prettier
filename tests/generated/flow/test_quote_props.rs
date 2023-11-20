@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_classes_js_quote_propsas_needed_format_1_3ff08b74() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("as-needed")
         .build()
@@ -18,7 +18,7 @@ fn test_classes_js_quote_propsas_needed_format_1_3ff08b74() {
 #[test]
 fn test_classes_js_quote_propsconsistent_format_1_3ff08b74() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("consistent")
         .build()
@@ -31,7 +31,7 @@ fn test_classes_js_quote_propsconsistent_format_1_3ff08b74() {
 #[test]
 fn test_classes_js_quote_propspreserve_format_1_3ff08b74() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("preserve")
         .build()
@@ -44,7 +44,7 @@ fn test_classes_js_quote_propspreserve_format_1_3ff08b74() {
 #[test]
 fn test_objects_js_quote_propsas_needed_format_1_b0145bb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("as-needed")
         .build()
@@ -57,7 +57,7 @@ fn test_objects_js_quote_propsas_needed_format_1_b0145bb0() {
 #[test]
 fn test_objects_js_quote_propsconsistent_format_1_b0145bb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("consistent")
         .build()
@@ -70,7 +70,7 @@ fn test_objects_js_quote_propsconsistent_format_1_b0145bb0() {
 #[test]
 fn test_objects_js_quote_propspreserve_format_1_b0145bb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("preserve")
         .build()
@@ -83,7 +83,7 @@ fn test_objects_js_quote_propspreserve_format_1_b0145bb0() {
 #[test]
 fn test_with_member_expressions_js_quote_propsas_needed_format_1_ae25f94c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("as-needed")
         .build()
@@ -96,7 +96,7 @@ fn test_with_member_expressions_js_quote_propsas_needed_format_1_ae25f94c() {
 #[test]
 fn test_with_member_expressions_js_quote_propsconsistent_format_1_ae25f94c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("consistent")
         .build()
@@ -109,7 +109,7 @@ fn test_with_member_expressions_js_quote_propsconsistent_format_1_ae25f94c() {
 #[test]
 fn test_with_member_expressions_js_quote_propspreserve_format_1_ae25f94c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("preserve")
         .build()
@@ -122,7 +122,7 @@ fn test_with_member_expressions_js_quote_propspreserve_format_1_ae25f94c() {
 #[test]
 fn test_with_numbers_js_quote_propsas_needed_format_1_e2fe5220() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("as-needed")
         .build()
@@ -135,7 +135,7 @@ fn test_with_numbers_js_quote_propsas_needed_format_1_e2fe5220() {
 #[test]
 fn test_with_numbers_js_quote_propsconsistent_format_1_e2fe5220() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("consistent")
         .build()
@@ -148,7 +148,7 @@ fn test_with_numbers_js_quote_propsconsistent_format_1_e2fe5220() {
 #[test]
 fn test_with_numbers_js_quote_propspreserve_format_1_e2fe5220() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .quote_props("preserve")
         .build()

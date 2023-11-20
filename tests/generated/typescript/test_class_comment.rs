@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_implements_ts_format_1_f019f137() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_class_implements_ts_format_1_f019f137() {
 #[test]
 fn test_declare_ts_format_1_58a58e5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_declare_ts_format_1_58a58e5b() {
 #[test]
 fn test_generic_ts_format_1_c630a59d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -41,7 +41,7 @@ fn test_generic_ts_format_1_c630a59d() {
 #[test]
 fn test_misc_ts_format_1_43265726() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

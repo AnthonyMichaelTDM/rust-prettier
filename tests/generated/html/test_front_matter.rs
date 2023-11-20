@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_custom_parser_html_format_1_a651ce11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -22,7 +22,7 @@ fn test_custom_parser_html_format_1_a651ce11() {
 #[test]
 fn test_empty_html_format_1_97355988() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -34,7 +34,7 @@ fn test_empty_html_format_1_97355988() {
 #[test]
 fn test_empty_2_html_format_1_b92cbb73() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -46,7 +46,7 @@ fn test_empty_2_html_format_1_b92cbb73() {
 #[test]
 fn test_issue_9042_html_format_1_5f38371d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();
@@ -62,7 +62,7 @@ fn test_issue_9042_html_format_1_5f38371d() {
 #[test]
 fn test_issue_9042_no_empty_line_html_format_1_a46b9f91() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
+        .parser("html")
         .print_width(80)
         .build()
         .unwrap();

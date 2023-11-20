@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_html_template_literals_js_html_whitespace_sensitivityignore_format_1_90ff0b43() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -18,7 +18,7 @@ fn test_html_template_literals_js_html_whitespace_sensitivityignore_format_1_90f
 #[test]
 fn test_html_template_literals_js_format_1_90ff0b43() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -31,7 +31,7 @@ fn test_html_template_literals_js_format_1_90ff0b43() {
 fn test_issue_10691_js_html_whitespace_sensitivityignore_format_1_0819a514() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -43,7 +43,7 @@ fn test_issue_10691_js_html_whitespace_sensitivityignore_format_1_0819a514() {
 #[test]
 fn test_issue_10691_js_format_1_0819a514() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -56,7 +56,7 @@ fn test_issue_10691_js_format_1_0819a514() {
 fn test_lit_html_js_html_whitespace_sensitivityignore_format_1_53f6cb4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -68,7 +68,7 @@ fn test_lit_html_js_html_whitespace_sensitivityignore_format_1_53f6cb4f() {
 #[test]
 fn test_lit_html_js_format_1_53f6cb4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();

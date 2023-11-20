@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_long_table_md_prose_wrapnever_format_1_521e427b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .prose_wrap("never")
         .build()
@@ -18,7 +18,7 @@ fn test_long_table_md_prose_wrapnever_format_1_521e427b() {
 #[test]
 fn test_long_table_md_format_1_521e427b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["markdown"])
+        .parser("md")
         .print_width(80)
         .build()
         .unwrap();

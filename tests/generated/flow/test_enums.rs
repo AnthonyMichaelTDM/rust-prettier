@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_enum_boolean_explicit_js_trailing_commaall_format_1_0d35eef3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -22,7 +22,7 @@ fn test_enum_boolean_explicit_js_trailing_commaall_format_1_0d35eef3() {
 #[test]
 fn test_enum_boolean_implicit_js_trailing_commaall_format_1_38227c5d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -38,7 +38,7 @@ fn test_enum_boolean_implicit_js_trailing_commaall_format_1_38227c5d() {
 #[test]
 fn test_enum_comments_js_trailing_commaall_format_1_0e6c3ddc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -51,7 +51,7 @@ fn test_enum_comments_js_trailing_commaall_format_1_0e6c3ddc() {
 #[test]
 fn test_enum_empty_js_trailing_commaall_format_1_1abc680c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -64,7 +64,7 @@ fn test_enum_empty_js_trailing_commaall_format_1_1abc680c() {
 #[test]
 fn test_enum_export_js_trailing_commaall_format_1_90ff4c2f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -81,7 +81,7 @@ fn test_enum_export_js_trailing_commaall_format_1_90ff4c2f() {
 #[test]
 fn test_enum_name_js_trailing_commaall_format_1_1ff594a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -94,7 +94,7 @@ fn test_enum_name_js_trailing_commaall_format_1_1ff594a7() {
 #[test]
 fn test_enum_no_trailing_comma_js_trailing_commaall_format_1_cd7ed882() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -107,7 +107,7 @@ fn test_enum_no_trailing_comma_js_trailing_commaall_format_1_cd7ed882() {
 #[test]
 fn test_enum_number_explicit_js_trailing_commaall_format_1_e02d13ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -123,7 +123,7 @@ fn test_enum_number_explicit_js_trailing_commaall_format_1_e02d13ed() {
 #[test]
 fn test_enum_number_implicit_js_trailing_commaall_format_1_9d6fdff5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -136,7 +136,7 @@ fn test_enum_number_implicit_js_trailing_commaall_format_1_9d6fdff5() {
 #[test]
 fn test_enum_string_explicit_defaulted_js_trailing_commaall_format_1_6b8dd1c2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -149,7 +149,7 @@ fn test_enum_string_explicit_defaulted_js_trailing_commaall_format_1_6b8dd1c2() 
 #[test]
 fn test_enum_string_explicit_initialized_js_trailing_commaall_format_1_b98b1383() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -166,7 +166,7 @@ fn test_enum_string_explicit_initialized_js_trailing_commaall_format_1_b98b1383(
 #[test]
 fn test_enum_string_implicit_defaulted_js_trailing_commaall_format_1_b0270421() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -179,7 +179,7 @@ fn test_enum_string_implicit_defaulted_js_trailing_commaall_format_1_b0270421() 
 #[test]
 fn test_enum_string_implicit_initialized_js_trailing_commaall_format_1_6ff480ef() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -195,7 +195,7 @@ fn test_enum_string_implicit_initialized_js_trailing_commaall_format_1_6ff480ef(
 #[test]
 fn test_enum_symbol_js_trailing_commaall_format_1_6de34511() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()

@@ -1,10 +1,13 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -12,7 +15,10 @@ fn test_comments_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_comments_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -20,7 +26,10 @@ fn test_comments_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_comments_js_flow_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -28,7 +37,10 @@ fn test_comments_js_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_comments_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -36,7 +48,10 @@ fn test_comments_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_comments_js_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -45,7 +60,7 @@ fn test_comments_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_comments_js_format_1_96b7b277() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -58,7 +73,10 @@ fn test_comments_js_format_1_96b7b277() {
 }
 #[test]
 fn test_import_reflection_js_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -66,7 +84,10 @@ fn test_import_reflection_js_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_reflection_js_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -74,7 +95,10 @@ fn test_import_reflection_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_reflection_js_flow_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -82,7 +106,10 @@ fn test_import_reflection_js_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_reflection_js_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -90,7 +117,10 @@ fn test_import_reflection_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_reflection_js_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("js")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -99,7 +129,7 @@ fn test_import_reflection_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_import_reflection_js_format_1_ca41c905() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("js")
         .print_width(80)
         .build()
         .unwrap();
@@ -110,7 +140,10 @@ fn test_import_reflection_js_format_1_ca41c905() {
 }
 #[test]
 fn test_valid_default_import_mjs_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -118,7 +151,10 @@ fn test_valid_default_import_mjs_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_default_import_mjs_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -126,7 +162,10 @@ fn test_valid_default_import_mjs_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_default_import_mjs_flow_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -134,7 +173,10 @@ fn test_valid_default_import_mjs_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_default_import_mjs_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -142,7 +184,10 @@ fn test_valid_default_import_mjs_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_default_import_mjs_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -151,7 +196,7 @@ fn test_valid_default_import_mjs_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_valid_default_import_mjs_format_1_7e4812c8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("mjs")
         .print_width(80)
         .build()
         .unwrap();
@@ -166,7 +211,10 @@ fn test_valid_default_import_mjs_format_1_7e4812c8() {
 }
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -174,7 +222,10 @@ fn test_valid_from_as_default_module_binding_mjs_acorn_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -182,7 +233,10 @@ fn test_valid_from_as_default_module_binding_mjs_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_flow_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -190,7 +244,10 @@ fn test_valid_from_as_default_module_binding_mjs_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -198,7 +255,10 @@ fn test_valid_from_as_default_module_binding_mjs_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -207,7 +267,7 @@ fn test_valid_from_as_default_module_binding_mjs_typescript_format_1_d41d8cd9() 
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_format_1_95a9edfd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("mjs")
         .print_width(80)
         .build()
         .unwrap();
@@ -218,7 +278,10 @@ fn test_valid_from_as_default_module_binding_mjs_format_1_95a9edfd() {
 }
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_acorn_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -226,7 +289,10 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_acorn_format_1_d41d8cd9
 }
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_espree_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -234,7 +300,10 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_espree_format_1_d41d8cd
 }
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_flow_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -242,7 +311,10 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_flow_format_1_d41d8cd9(
 }
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_meriyah_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -250,7 +322,10 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_meriyah_format_1_d41d8c
 }
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("mjs")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -259,7 +334,7 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_typescript_format_1_d41
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_format_1_0fe07d47() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("mjs")
         .print_width(80)
         .build()
         .unwrap();
@@ -271,7 +346,7 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_format_1_0fe07d47() {
 #[test]
 fn test_valid_module_as_default_binding_mjs_format_1_bc39ef68() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("mjs")
         .print_width(80)
         .build()
         .unwrap();
@@ -283,7 +358,7 @@ fn test_valid_module_as_default_binding_mjs_format_1_bc39ef68() {
 #[test]
 fn test_valid_module_as_default_binding_2_mjs_format_1_e2adcd8f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "flow", "typescript"])
+        .parser("mjs")
         .print_width(80)
         .build()
         .unwrap();

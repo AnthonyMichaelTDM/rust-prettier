@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_as_const_ts_format_1_36f880a5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts", "typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_as_const_ts_format_1_36f880a5() {
 #[test]
 fn test_assert_and_assign_ts_format_1_1ce5cfa4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts", "typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_assert_and_assign_ts_format_1_1ce5cfa4() {
 #[test]
 fn test_generic_cast_ts_format_1_e9729711() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts", "typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -44,7 +44,7 @@ fn test_generic_cast_ts_format_1_e9729711() {
 #[test]
 fn test_hug_args_ts_format_1_a57fc7e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts", "typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -56,7 +56,7 @@ fn test_hug_args_ts_format_1_a57fc7e4() {
 #[test]
 fn test_parenthesis_ts_format_1_c72e352e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts", "typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
@@ -67,7 +67,10 @@ fn test_parenthesis_ts_format_1_c72e352e() {
 }
 #[test]
 fn test_tuple_and_record_ts_typescript_format_1_d41d8cd9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parser("ts")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -76,7 +79,7 @@ fn test_tuple_and_record_ts_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_and_record_ts_format_1_c5c206f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel-ts", "typescript"])
+        .parser("ts")
         .print_width(80)
         .build()
         .unwrap();

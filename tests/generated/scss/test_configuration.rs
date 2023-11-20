@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_use_scss_trailing_commanone_format_1_8b229369() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .trailing_comma("none")
         .build()
@@ -18,7 +18,7 @@ fn test_use_scss_trailing_commanone_format_1_8b229369() {
 #[test]
 fn test_use_scss_format_1_8b229369() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["scss"])
+        .parser("scss")
         .print_width(80)
         .build()
         .unwrap();

@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_trailing_graphql_trailing_commaall_format_1_3bd343f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .trailing_comma("all")
         .build()
@@ -18,7 +18,7 @@ fn test_trailing_graphql_trailing_commaall_format_1_3bd343f6() {
 #[test]
 fn test_trailing_graphql_trailing_commaes_5_format_1_3bd343f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .trailing_comma("es5")
         .build()
@@ -31,7 +31,7 @@ fn test_trailing_graphql_trailing_commaes_5_format_1_3bd343f6() {
 #[test]
 fn test_trailing_graphql_trailing_commanone_format_1_3bd343f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .trailing_comma("none")
         .build()

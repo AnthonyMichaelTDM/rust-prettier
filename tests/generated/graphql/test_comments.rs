@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_argument_comment_graphql_format_1_ba2670e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_argument_comment_graphql_format_1_ba2670e4() {
 #[test]
 fn test_fields_graphql_format_1_16ad3a17() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -29,7 +29,7 @@ fn test_fields_graphql_format_1_16ad3a17() {
 #[test]
 fn test_interfaces_graphql_format_1_64422827() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
@@ -44,7 +44,7 @@ fn test_interfaces_graphql_format_1_64422827() {
 #[test]
 fn test_tokens_graphql_format_1_1f9f1e0f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["graphql"])
+        .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();

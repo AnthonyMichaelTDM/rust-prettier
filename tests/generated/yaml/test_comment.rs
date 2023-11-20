@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_collection_yml_format_1_ce52413e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -17,7 +17,7 @@ fn test_collection_yml_format_1_ce52413e() {
 #[test]
 fn test_end_comment_yml_format_1_c30dc1d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -33,7 +33,7 @@ fn test_end_comment_yml_format_1_c30dc1d4() {
 #[test]
 fn test_flow_sequence_mapping_yml_format_1_57293524() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -45,7 +45,7 @@ fn test_flow_sequence_mapping_yml_format_1_57293524() {
 #[test]
 fn test_in_empty_item_without_newlline_yml_format_1_729b95c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -57,7 +57,7 @@ fn test_in_empty_item_without_newlline_yml_format_1_729b95c1() {
 #[test]
 fn test_issue_8378_yml_format_1_4f800cb3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -69,7 +69,7 @@ fn test_issue_8378_yml_format_1_4f800cb3() {
 #[test]
 fn test_issue_9130_yml_format_1_ca9184ce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -81,7 +81,7 @@ fn test_issue_9130_yml_format_1_ca9184ce() {
 #[test]
 fn test_map_yml_format_1_c7da1b84() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -93,7 +93,7 @@ fn test_map_yml_format_1_c7da1b84() {
 #[test]
 fn test_map_2_yml_format_1_4cd67815() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -105,7 +105,7 @@ fn test_map_2_yml_format_1_4cd67815() {
 #[test]
 fn test_map_3_yml_format_1_3a6ab800() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -117,7 +117,7 @@ fn test_map_3_yml_format_1_3a6ab800() {
 #[test]
 fn test_map_4_yml_format_1_f3679c56() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -129,7 +129,7 @@ fn test_map_4_yml_format_1_f3679c56() {
 #[test]
 fn test_object_yml_format_1_aa6c252b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -146,7 +146,7 @@ fn test_object_yml_format_1_aa6c252b() {
 #[test]
 fn test_root_yml_format_1_516fdcb9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -158,7 +158,7 @@ fn test_root_yml_format_1_516fdcb9() {
 #[test]
 fn test_sequence_yml_format_1_ab6ffb45() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -174,7 +174,7 @@ fn test_sequence_yml_format_1_ab6ffb45() {
 #[test]
 fn test_sequence_2_yml_format_1_6bb4e281() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -186,7 +186,7 @@ fn test_sequence_2_yml_format_1_6bb4e281() {
 #[test]
 fn test_set_yml_format_1_f13e16ab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();

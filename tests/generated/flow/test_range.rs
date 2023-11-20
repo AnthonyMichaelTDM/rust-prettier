@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_declare_export_declaration_js_format_1_8060239f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .range_end(277)
         .range_start(273)
@@ -19,7 +19,7 @@ fn test_declare_export_declaration_js_format_1_8060239f() {
 #[test]
 fn test_type_parameter_declaration_js_format_1_72504649() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow"])
+        .parser("js")
         .print_width(80)
         .range_end(48)
         .range_start(39)

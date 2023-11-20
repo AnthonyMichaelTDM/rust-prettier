@@ -1,11 +1,11 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arguments_hbs_single_quotefalse_format_1_18ad1672() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(false)
         .build()
@@ -18,7 +18,7 @@ fn test_arguments_hbs_single_quotefalse_format_1_18ad1672() {
 #[test]
 fn test_arguments_hbs_single_quotetrue_format_1_18ad1672() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -31,7 +31,7 @@ fn test_arguments_hbs_single_quotetrue_format_1_18ad1672() {
 #[test]
 fn test_attributes_hbs_single_quotefalse_format_1_c019b94f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(false)
         .build()
@@ -44,7 +44,7 @@ fn test_attributes_hbs_single_quotefalse_format_1_c019b94f() {
 #[test]
 fn test_attributes_hbs_single_quotetrue_format_1_c019b94f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(true)
         .build()
@@ -57,7 +57,7 @@ fn test_attributes_hbs_single_quotetrue_format_1_c019b94f() {
 #[test]
 fn test_string_literals_hbs_single_quotefalse_format_1_a4399b89() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(false)
         .build()
@@ -70,7 +70,7 @@ fn test_string_literals_hbs_single_quotefalse_format_1_a4399b89() {
 #[test]
 fn test_string_literals_hbs_single_quotetrue_format_1_a4399b89() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["glimmer"])
+        .parser("hbs")
         .print_width(80)
         .single_quote(true)
         .build()

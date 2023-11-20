@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_with_pragma_yml_insert_pragmatrue_format_1_f4bd2e0f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .insert_pragma(true)
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_with_pragma_yml_insert_pragmatrue_format_1_f4bd2e0f() {
 fn test_without_pragma_yml_insert_pragmatrue_format_1_a0991ecd() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .insert_pragma(true)
-        .parsers(vec!["yaml"])
+        .parser("yml")
         .print_width(80)
         .build()
         .unwrap();

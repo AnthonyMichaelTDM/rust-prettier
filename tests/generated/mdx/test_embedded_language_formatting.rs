@@ -1,12 +1,12 @@
 #[allow(unused_imports)]
-use rust_prettier::PrettyPrinterBuilder;
+use rust_prettier::{Parsers, PrettyPrinterBuilder};
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
 fn test_issue_9260_mdx_embedded_language_formattingoff_format_1_dc8de643() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -19,7 +19,7 @@ fn test_issue_9260_mdx_embedded_language_formattingoff_format_1_dc8de643() {
 fn test_multiline_comments_mdx_embedded_language_formattingoff_format_1_e389f99b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
@@ -32,7 +32,7 @@ fn test_multiline_comments_mdx_embedded_language_formattingoff_format_1_e389f99b
 fn test_pull_11563_mdx_embedded_language_formattingoff_format_1_a8d5a200() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .embedded_language_formatting("off")
-        .parsers(vec!["mdx"])
+        .parser("mdx")
         .print_width(80)
         .build()
         .unwrap();
