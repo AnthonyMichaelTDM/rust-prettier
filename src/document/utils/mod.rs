@@ -156,19 +156,23 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
 ///
 /// Returns an `Option<Doc>` representing the first node in the document tree that satisfies
 /// the search criteria, or `None` if no such node is found.
-pub fn find_in_doc(doc: &Doc, f: impl Fn(&Doc) -> bool) -> Option<Doc> {
+pub fn find_in_doc<State>(
+    doc: &Doc,
+    state: &mut State,
+    f: impl Fn(&Doc, &mut State) -> bool,
+) -> Option<Doc> {
     let mut result = None;
     let mut should_skip_further_processing = false;
 
     traverse_doc(
         &mut doc.clone(),
-        &mut (&mut should_skip_further_processing, &mut result),
-        |doc, (should_skip_further_processing, result)| {
+        &mut (&mut should_skip_further_processing, &mut result, state),
+        |doc, (should_skip_further_processing, result, state)| {
             if **should_skip_further_processing {
                 return false;
             }
 
-            if f(doc) {
+            if f(doc, state) {
                 **result = Some(doc.to_owned());
                 **should_skip_further_processing = true;
                 return false;
@@ -184,7 +188,7 @@ pub fn find_in_doc(doc: &Doc, f: impl Fn(&Doc) -> bool) -> Option<Doc> {
 }
 
 pub fn will_break(doc: &Doc) -> bool {
-    find_in_doc(doc, |d| match d {
+    find_in_doc(doc, &mut (), |d, _| match d {
         Doc::DocCommand(DocCommand::Group {
             should_break: Break::Yes,
             ..
@@ -575,8 +579,12 @@ pub fn replace_end_of_line(doc: &Doc, replacement: Doc) -> Doc {
 }
 
 pub fn can_break(doc: &Doc) -> bool {
-    return find_in_doc(doc, |d| matches! {d, Doc::DocCommand(DocCommand::Line(_))})
-        .map_or(false, |_| true);
+    return find_in_doc(
+        doc,
+        &mut (),
+        |d, _| matches! {d, Doc::DocCommand(DocCommand::Line(_))},
+    )
+    .map_or(false, |_| true);
 }
 
 pub fn inherit_label(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
