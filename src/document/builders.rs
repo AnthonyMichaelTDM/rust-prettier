@@ -145,11 +145,7 @@ pub fn indent_if_break(contents: Doc, group_id: ID, negate: bool) -> Doc {
 ///
 /// let doc: Doc = Doc::from(vec!["a".into(), line_suffix(" // comment".into()), ";".into(), hardline()]);
 ///
-/// # assert_eq!(doc.format(PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
-/// ```
-/// will output
-/// ```txt
-/// a; // comment
+/// assert_eq!(doc.format(PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
 /// ```
 pub fn line_suffix(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::LineSuffix {
