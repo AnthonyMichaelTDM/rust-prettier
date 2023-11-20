@@ -9,20 +9,84 @@ use anyhow::Result;
 use derive_builder::Builder;
 
 pub mod common;
+mod config;
 pub mod document;
 pub mod utils;
+pub use config::*;
 
 use common::end_of_line::EndLine;
 
+// TODO AstPath trait or something
+
 pub trait Parser {
-    fn parse(&self, input: impl AsRef<str>) -> String;
+    type AST;
+    type Error;
+
+    fn parse(&self, input: String, options: &PrettyPrinter) -> Result<Self::AST, Self::Error> {
+        todo!()
+    }
+
+    fn print(&self, ast: Self::AST, options: &PrettyPrinter) -> Result<document::Doc, Self::Error> {
+        todo!()
+    }
+
+    // optional, run on the AST before printing
+    fn preprocess(
+        &self,
+        ast: Self::AST,
+        options: &PrettyPrinter,
+    ) -> Option<Result<Self::AST, Self::Error>> {
+        None
+    }
+
+    // optional
+    fn insert_pragma(&self, text: String) -> Option<String> {
+        None
+    }
+
+    // optional
+    fn embed(
+        &self,
+        ast: Self::AST,
+        options: &PrettyPrinter,
+    ) -> Option<Result<document::Doc, Self::Error>> {
+        None
+    }
+}
+
+pub struct JavascriptParser; // TODO: move to its own file, and implement Parser for it
+
+#[derive(Debug, Clone, Copy)]
+pub enum Parsers {
+    Javascript,
+}
+
+impl<T: AsRef<str>> From<T> for Parsers {
+    fn from(s: T) -> Self {
+        match s.as_ref() {
+            "javascript" | "js" => Parsers::Javascript,
+            _ => unimplemented!("no parser for {} is implemented yet", s.as_ref()),
+        }
+    }
+}
+
+impl Parsers {
+    pub fn get_javascript_parser() -> JavascriptParser {
+        todo!()
+    }
+}
+
+impl Default for Parsers {
+    fn default() -> Self {
+        Parsers::Javascript
+    }
 }
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, Builder)]
 pub struct PrettyPrinter {
-    #[builder(default = "vec![\"graphql\"]", setter(into))]
-    parsers: Vec<&'static str>, // TODO make this an enum
+    #[builder(default, setter(into))]
+    parser: Parsers,
     #[builder(default = "80")]
     print_width: usize,
     #[builder(default = "false")]

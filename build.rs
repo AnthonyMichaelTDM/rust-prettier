@@ -65,10 +65,31 @@ cfg_if! {
                 let mut input = String::new();
                 let mut output = String::new();
 
-                // parse out the name
-                let name = lines
-                    .next()
+                // first line
+                let first_line = lines.next().unwrap();
+
+                // parse out the language
+                let langauge = first_line
+                    .trim_start_matches(SNAPSHORT_START)
+                    .trim_end_matches("`] = `")
+                    .splitn(1, ".")
+                    .collect::<Vec<_>>()
+                    .first()
                     .unwrap()
+                    .splitn(1, " ")
+                    .collect::<Vec<_>>()
+                    .first()
+                    .unwrap()
+                    .to_owned();
+
+                //  use the langauge name to determine the parser to use, and add it to the config
+                config.insert(
+                    syn::parse_str::<syn::Ident>(&format!("parser")).unwrap(),
+                    ValueType::Array(syn::parse_str::<syn::Expr>(&format!("\"{}\"", langauge)).unwrap()),
+                );
+
+                // parse out the name
+                let name = first_line
                     .trim_end_matches("`] = `")
                     .replace('.', "_")
                     .replace(['[', ']', '{', '}', '\"', '/', ':'], "")
@@ -97,8 +118,8 @@ cfg_if! {
                     };
                     let value = if let Ok(val) = syn::parse_str::<syn::Lit>(parts.get(1).expect("value").to_owned()) {
                         ValueType::Literal(val)
-                    } else if let Ok(val) = syn::parse_str::<syn::ExprArray>(parts.get(1).expect("value").to_owned()) {
-                        ValueType::Array(val)
+                    // } else if let Ok(val) = syn::parse_str::<syn::ExprArray>(parts.get(1).expect("value").to_owned()) {
+                    //     ValueType::Array(val)
                     } else if let Ok(val) = syn::parse_str::<syn::Ident>(&parts.get(1).expect("value").to_case(Case::UpperSnake)) {
                         ValueType::Ident(val)
                     } else {
