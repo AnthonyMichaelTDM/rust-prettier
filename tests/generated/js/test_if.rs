@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comment_before_else_js_format_1_4fe5ed44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("if (cond) {\n  stuff;\n} /* comment */ else if (cond) {\n  stuff;\n}\n// comment\nelse {\n  stuff;\n}\n\nif (cond) stuff;\n// comment\nelse stuff;") ;
@@ -29,8 +29,8 @@ fn test_else_js_format_1_b6121974() {
 #[test]
 fn test_expr_and_same_line_comments_js_format_1_5eb9ac88() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("     if (a === 0) doSomething(); // comment A1\nelse if (a === 1) doSomethingElse(); // comment B1\nelse if (a === 2) doSomethingElse(); // comment C1\n\n     if (a === 0) doSomething(); /* comment A2 */\nelse if (a === 1) doSomethingElse(); /* comment B2 */\nelse if (a === 2) doSomethingElse(); /* comment C2 */\n\n     if (a === 0) expr; // comment A3\nelse if (a === 1) expr; // comment B3\nelse if (a === 2) expr; // comment C3\n\n     if (a === 0) expr; /* comment A4 */\nelse if (a === 1) expr; /* comment B4 */\nelse if (a === 2) expr; /* comment C4 */\n\n     if (a === 0) looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong; // comment A5\nelse if (a === 1) looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong; // comment B5\nelse if (a === 2) looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong; // comment C5\n\nfunction a() {\n  if (a) return; /* comment 6a */\n  else return 2;\n\n  if (a) return 1; /* comment 6b */\n  else return 2;\n\n  if (a) throw e; /* comment 6d */\n  else return 2;\n\n  // TODO[@fisker]: fix this\n  // if (a) var a = 1; /* comment 6e */\n  // else return 2;\n\n  if (a) if (b); /* comment 6f */\n  else return 2;\n}") ;

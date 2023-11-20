@@ -45,8 +45,8 @@ fn test_super_js_format_1_289bf2ef() {
 #[test]
 fn test_test_js_format_1_aaee8ef3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var D = require('./import');\nclass C extends D {\n  constructor() { return super(); }\n  foo() { return super.foo(); }\n}\nmodule.exports = C;") ;

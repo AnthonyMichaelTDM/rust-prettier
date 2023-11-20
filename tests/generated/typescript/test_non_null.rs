@@ -17,8 +17,8 @@ fn test_braces_ts_format_1_b92efe7d() {
 #[test]
 fn test_member_chain_ts_format_1_83719e1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const { somePropThatHasAReallyLongName, anotherPropThatHasALongName } = this.props.imReallySureAboutThis!;\n\nconst { somePropThatHasAReallyLongName2, anotherPropThatHasALongName2 } = this.props.imReallySureAboutThis!.anotherObject;\n\nthis.foo.get(\"bar\")!.doThings().more();\n\nfoo!.bar().baz().what();") ;
@@ -29,8 +29,8 @@ fn test_member_chain_ts_format_1_83719e1f() {
 #[test]
 fn test_optional_chain_ts_format_1_63d8aa6b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("a?.b!.c;\na?.b!.c.d;\na?.b.c!.d;\na!.b?.c;\na?.b!?.c;\na?.b!.c?.c;\n(a?.b!).c;\n(a?.b)!.c;\n\na?.().b!.c;\na?.().b!.c.d;\na?.().b.c!.d;\na?.().b!?.c;\na?.().b!.c?.c;\n(a?.().b!).c;\n(a?.().b)!.c;\n\n(a?.b)![c?.d!]") ;

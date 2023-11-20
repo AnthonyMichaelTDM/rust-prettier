@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attributes_vue_semifalse_format_1_b687bddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<div\n  v-for=\"({ longLongProp, longLongProp }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp=42, longLongProp='Hello, World!' }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp }) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp=42, anotherLongLongProp, yetAnotherLongLongProp='Hello, World!'], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp, [longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp='Hello, Prettier!', [longLongProp, longLongProp, anotherLongLongProp=[longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([{ longLongProp, longLongProp }, { longLongProp, longLongProp }, [{ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, longLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({firstValue, secondValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue={ longLongProp, longLongProp }, secondValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue: {firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue, seventhValue}, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp={ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, yetAnotherLongLongProp }, sixthValue, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"  item  in  items \"\n  v-for=\"  item  of  items \"\n  v-for=\"(    item    , index)    in    items\"\n  v-for=\"value    in     object\"\n  v-for=\"(value,    key)    in    object\"\n  v-for=\"(value,    key)    of    object\"\n  v-for=\"(value  ,   key,   index)    in   object\"\n  v-for=\"   n    in   evenNumbers\"\n  v-for=\" n in even   ( numbers) \"\n  v-for=\" n    in    10\"\n  v-for=\" { a }    in    [0].map(()=>({a:1}))   \"\n  v-for=\" ({ a }, [c  ])    in    [0].map(()=>1)   \"\n  v-for=\" n in items.map(x => { return x }) \"\n  @click=\"  /* hello */   \"\n  @click=\"   /* 1 */ $emit( /* 2 */ 'click' /* 3 */ ) /* 4 */ ; /* 5 */   \"\n  @click=\"   $emit(   'click'   )   \"\n  @click=\"   $emit(   'click'   )  ;\"\n  @click=\"   $emit(   'click'   )  ;if(something){for(let i=j;i<100;i++){}}else{}\"\n  slot-scope=\"     foo\"\n  slot-scope=\"     {row   }\"\n  slot-scope=\"{destructuring:{   a:{b}}}\"\n  #default=\"     foo\"\n  #default=\"     {row   }\"\n  #default=\"{destructuring:{   a:{b}}}\"\n  v-slot=\"     foo\"\n  v-slot=\"     {row   }\"\n  v-slot=\"{destructuring:{   a:{b}}}\"\n  v-slot:name=\"     foo\"\n  v-slot:name=\"     {row   }\"\n  v-slot:name=\"{destructuring:{   a:{b}}}\"\n  :class=\"{ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong: true }\"\n  :class=\"(() => { return 'hello' })()\"\n  :key=\"index /* hello */ \"\n  :key=\"index // hello \"\n  @click=\"() => {console.log(test)}\"\n  @click=\"\n    () => {\n      console.log(test);\n    }\n  \"\n  @click=\"doSomething()\"\n  @click=\"doSomething;\"\n  @click=\"a.b;\"\n  @click=\"a[1];\"\n  @click=\"a['b'];\"\n  @click=\"a[null];\"\n  #default=\"{foo:{bar:{baz}}}\"\n></div>\n</template>") ;
@@ -18,9 +18,9 @@ fn test_attributes_vue_semifalse_format_1_b687bddd() {
 #[test]
 fn test_attributes_vue_trailing_commaes_5_format_1_b687bddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<div\n  v-for=\"({ longLongProp, longLongProp }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp=42, longLongProp='Hello, World!' }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp }) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp=42, anotherLongLongProp, yetAnotherLongLongProp='Hello, World!'], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp, [longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp='Hello, Prettier!', [longLongProp, longLongProp, anotherLongLongProp=[longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([{ longLongProp, longLongProp }, { longLongProp, longLongProp }, [{ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, longLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({firstValue, secondValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue={ longLongProp, longLongProp }, secondValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue: {firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue, seventhValue}, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp={ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, yetAnotherLongLongProp }, sixthValue, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"  item  in  items \"\n  v-for=\"  item  of  items \"\n  v-for=\"(    item    , index)    in    items\"\n  v-for=\"value    in     object\"\n  v-for=\"(value,    key)    in    object\"\n  v-for=\"(value,    key)    of    object\"\n  v-for=\"(value  ,   key,   index)    in   object\"\n  v-for=\"   n    in   evenNumbers\"\n  v-for=\" n in even   ( numbers) \"\n  v-for=\" n    in    10\"\n  v-for=\" { a }    in    [0].map(()=>({a:1}))   \"\n  v-for=\" ({ a }, [c  ])    in    [0].map(()=>1)   \"\n  v-for=\" n in items.map(x => { return x }) \"\n  @click=\"  /* hello */   \"\n  @click=\"   /* 1 */ $emit( /* 2 */ 'click' /* 3 */ ) /* 4 */ ; /* 5 */   \"\n  @click=\"   $emit(   'click'   )   \"\n  @click=\"   $emit(   'click'   )  ;\"\n  @click=\"   $emit(   'click'   )  ;if(something){for(let i=j;i<100;i++){}}else{}\"\n  slot-scope=\"     foo\"\n  slot-scope=\"     {row   }\"\n  slot-scope=\"{destructuring:{   a:{b}}}\"\n  #default=\"     foo\"\n  #default=\"     {row   }\"\n  #default=\"{destructuring:{   a:{b}}}\"\n  v-slot=\"     foo\"\n  v-slot=\"     {row   }\"\n  v-slot=\"{destructuring:{   a:{b}}}\"\n  v-slot:name=\"     foo\"\n  v-slot:name=\"     {row   }\"\n  v-slot:name=\"{destructuring:{   a:{b}}}\"\n  :class=\"{ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong: true }\"\n  :class=\"(() => { return 'hello' })()\"\n  :key=\"index /* hello */ \"\n  :key=\"index // hello \"\n  @click=\"() => {console.log(test)}\"\n  @click=\"\n    () => {\n      console.log(test);\n    }\n  \"\n  @click=\"doSomething()\"\n  @click=\"doSomething;\"\n  @click=\"a.b;\"\n  @click=\"a[1];\"\n  @click=\"a['b'];\"\n  @click=\"a[null];\"\n  #default=\"{foo:{bar:{baz}}}\"\n></div>\n</template>") ;
@@ -31,9 +31,9 @@ fn test_attributes_vue_trailing_commaes_5_format_1_b687bddd() {
 #[test]
 fn test_attributes_vue_trailing_commanone_format_1_b687bddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<div\n  v-for=\"({ longLongProp, longLongProp }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp=42, longLongProp='Hello, World!' }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp }) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp=42, anotherLongLongProp, yetAnotherLongLongProp='Hello, World!'], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp, [longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp='Hello, Prettier!', [longLongProp, longLongProp, anotherLongLongProp=[longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"([{ longLongProp, longLongProp }, { longLongProp, longLongProp }, [{ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, longLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n  v-for=\"({firstValue, secondValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue={ longLongProp, longLongProp }, secondValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue: {firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, sixthValue, seventhValue}, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"({firstValue, secondValue, thirdValue, fourthValue, fifthValue: { longLongProp, longLongProp, anotherLongLongProp={ longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp }, yetAnotherLongLongProp }, sixthValue, seventhValue}, objectKey, index) in objectWithAVeryVeryVeryVeryLongName\"\n  v-for=\"  item  in  items \"\n  v-for=\"  item  of  items \"\n  v-for=\"(    item    , index)    in    items\"\n  v-for=\"value    in     object\"\n  v-for=\"(value,    key)    in    object\"\n  v-for=\"(value,    key)    of    object\"\n  v-for=\"(value  ,   key,   index)    in   object\"\n  v-for=\"   n    in   evenNumbers\"\n  v-for=\" n in even   ( numbers) \"\n  v-for=\" n    in    10\"\n  v-for=\" { a }    in    [0].map(()=>({a:1}))   \"\n  v-for=\" ({ a }, [c  ])    in    [0].map(()=>1)   \"\n  v-for=\" n in items.map(x => { return x }) \"\n  @click=\"  /* hello */   \"\n  @click=\"   /* 1 */ $emit( /* 2 */ 'click' /* 3 */ ) /* 4 */ ; /* 5 */   \"\n  @click=\"   $emit(   'click'   )   \"\n  @click=\"   $emit(   'click'   )  ;\"\n  @click=\"   $emit(   'click'   )  ;if(something){for(let i=j;i<100;i++){}}else{}\"\n  slot-scope=\"     foo\"\n  slot-scope=\"     {row   }\"\n  slot-scope=\"{destructuring:{   a:{b}}}\"\n  #default=\"     foo\"\n  #default=\"     {row   }\"\n  #default=\"{destructuring:{   a:{b}}}\"\n  v-slot=\"     foo\"\n  v-slot=\"     {row   }\"\n  v-slot=\"{destructuring:{   a:{b}}}\"\n  v-slot:name=\"     foo\"\n  v-slot:name=\"     {row   }\"\n  v-slot:name=\"{destructuring:{   a:{b}}}\"\n  :class=\"{ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong: true }\"\n  :class=\"(() => { return 'hello' })()\"\n  :key=\"index /* hello */ \"\n  :key=\"index // hello \"\n  @click=\"() => {console.log(test)}\"\n  @click=\"\n    () => {\n      console.log(test);\n    }\n  \"\n  @click=\"doSomething()\"\n  @click=\"doSomething;\"\n  @click=\"a.b;\"\n  @click=\"a[1];\"\n  @click=\"a['b'];\"\n  @click=\"a[null];\"\n  #default=\"{foo:{bar:{baz}}}\"\n></div>\n</template>") ;
@@ -58,8 +58,8 @@ fn test_board_card_vue_semifalse_format_1_7b682582() {
 fn test_board_card_vue_trailing_commaes_5_format_1_7b682582() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["vue"])
-        .trailing_comma("es5")
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script>\nimport './issue_card_inner';\nimport eventHub from '../eventhub';\n\nconst Store = gl.issueBoards.BoardsStore;\n\nexport default {\n  name: 'BoardsIssueCard',\n  components: {\n    'issue-card-inner': gl.issueBoards.IssueCardInner,\n  },\n  props: {\n    list: Object,\n    issue: Object,\n    issueLinkBase: String,\n    disabled: Boolean,\n    index: Number,\n    rootPath: String,\n  },\n  data() {\n    return {\n      showDetail: false,\n      detailIssue: Store.detail,\n    };\n  },\n  computed: {\n    issueDetailVisible() {\n      return (\n        this.detailIssue.issue && this.detailIssue.issue.id === this.issue.id\n      );\n    },\n  },\n  methods: {\n    mouseDown() {\n      this.showDetail = true;\n    },\n    mouseMove() {\n      this.showDetail = false;\n    },\n    showIssue(e) {\n      if (e.target.classList.contains('js-no-trigger')) return;\n\n      if (this.showDetail) {\n        this.showDetail = false;\n\n        if (Store.detail.issue && Store.detail.issue.id === this.issue.id) {\n          eventHub.$emit('clearDetailIssue');\n        } else {\n          eventHub.$emit('newDetailIssue', this.issue);\n          Store.detail.list = this.list;\n        }\n      }\n    },\n  },\n};\n</script>\n\n<template>\n  <li class=\"card\"\n    :class=\"{ 'user-can-drag': !disabled && issue.id, 'is-disabled': disabled || !issue.id, 'is-active': issueDetailVisible }\"\n    :index=\"index\"\n    :data-issue-id=\"issue.id\"\n    @mousedown=\"mouseDown\"\n    @mousemove=\"mouseMove\"\n    @mouseup=\"showIssue($event)\">\n    <issue-card-inner\n      :list=\"list\"\n      :issue=\"issue\"\n      :issue-link-base=\"issueLinkBase\"\n      :root-path=\"rootPath\"\n      :update-filters=\"true\" />\n  </li>\n</template>") ;
@@ -70,9 +70,9 @@ fn test_board_card_vue_trailing_commaes_5_format_1_7b682582() {
 #[test]
 fn test_board_card_vue_trailing_commanone_format_1_7b682582() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script>\nimport './issue_card_inner';\nimport eventHub from '../eventhub';\n\nconst Store = gl.issueBoards.BoardsStore;\n\nexport default {\n  name: 'BoardsIssueCard',\n  components: {\n    'issue-card-inner': gl.issueBoards.IssueCardInner,\n  },\n  props: {\n    list: Object,\n    issue: Object,\n    issueLinkBase: String,\n    disabled: Boolean,\n    index: Number,\n    rootPath: String,\n  },\n  data() {\n    return {\n      showDetail: false,\n      detailIssue: Store.detail,\n    };\n  },\n  computed: {\n    issueDetailVisible() {\n      return (\n        this.detailIssue.issue && this.detailIssue.issue.id === this.issue.id\n      );\n    },\n  },\n  methods: {\n    mouseDown() {\n      this.showDetail = true;\n    },\n    mouseMove() {\n      this.showDetail = false;\n    },\n    showIssue(e) {\n      if (e.target.classList.contains('js-no-trigger')) return;\n\n      if (this.showDetail) {\n        this.showDetail = false;\n\n        if (Store.detail.issue && Store.detail.issue.id === this.issue.id) {\n          eventHub.$emit('clearDetailIssue');\n        } else {\n          eventHub.$emit('newDetailIssue', this.issue);\n          Store.detail.list = this.list;\n        }\n      }\n    },\n  },\n};\n</script>\n\n<template>\n  <li class=\"card\"\n    :class=\"{ 'user-can-drag': !disabled && issue.id, 'is-disabled': disabled || !issue.id, 'is-active': issueDetailVisible }\"\n    :index=\"index\"\n    :data-issue-id=\"issue.id\"\n    @mousedown=\"mouseDown\"\n    @mousemove=\"mouseMove\"\n    @mouseup=\"showIssue($event)\">\n    <issue-card-inner\n      :list=\"list\"\n      :issue=\"issue\"\n      :issue-link-base=\"issueLinkBase\"\n      :root-path=\"rootPath\"\n      :update-filters=\"true\" />\n  </li>\n</template>") ;
@@ -84,8 +84,8 @@ fn test_board_card_vue_trailing_commanone_format_1_7b682582() {
 fn test_case_sensitive_tags_vue_semifalse_format_1_6ab445a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["vue"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<template>\n\t<Input></Input>\n</template>");
@@ -96,9 +96,9 @@ fn test_case_sensitive_tags_vue_semifalse_format_1_6ab445a7() {
 #[test]
 fn test_case_sensitive_tags_vue_trailing_commaes_5_format_1_6ab445a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<template>\n\t<Input></Input>\n</template>");
@@ -122,8 +122,8 @@ fn test_case_sensitive_tags_vue_trailing_commanone_format_1_6ab445a7() {
 #[test]
 fn test_custom_block_vue_semifalse_format_1_96430b86() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -135,9 +135,9 @@ fn test_custom_block_vue_semifalse_format_1_96430b86() {
 #[test]
 fn test_custom_block_vue_trailing_commaes_5_format_1_96430b86() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<i18n>\n  en:\n    one: One\n    two: Two\n</i18n>\n\n<html><head></head><body></body></html>") ;
@@ -148,9 +148,9 @@ fn test_custom_block_vue_trailing_commaes_5_format_1_96430b86() {
 #[test]
 fn test_custom_block_vue_trailing_commanone_format_1_96430b86() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<i18n>\n  en:\n    one: One\n    two: Two\n</i18n>\n\n<html><head></head><body></body></html>") ;
@@ -174,8 +174,8 @@ fn test_expression_binding_vue_semifalse_format_1_1096e839() {
 #[test]
 fn test_expression_binding_vue_trailing_commaes_5_format_1_1096e839() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -187,9 +187,9 @@ fn test_expression_binding_vue_trailing_commaes_5_format_1_1096e839() {
 #[test]
 fn test_expression_binding_vue_trailing_commanone_format_1_1096e839() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- #7396 -->\n<template>\n<MyComponent\n:foo=\"\\`loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${foo} template literal value\\`\"\n:bar=\"\\`\\${first} loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${template} \\${literal}\\`\n+\\`\\${second} loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${template} \\${literal}\\`\"\n:baz=\"\\`loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${foo +               bar} template literal value\\`\"\n:src=\"'loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog literal string value'\"\n:add=\"'first loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog' + 'second loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog'\"\n:num=\"100000000000000000000000000000000000000000000000000000000000000000000000000\"\n/>\n</template>") ;
@@ -200,9 +200,9 @@ fn test_expression_binding_vue_trailing_commanone_format_1_1096e839() {
 #[test]
 fn test_expression_binding_ts_vue_semifalse_format_1_f3bac74c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["vue"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- #7396 -->\n<template>\n<MyComponent\n:foo=\"\\`loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${foo} template literal value\\`\"\n:bar=\"\\`\\${first} loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${template} \\${literal}\\`\n+\\`\\${second} loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${template} \\${literal}\\`\"\n:baz=\"\\`loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${foo +               bar} template literal value\\`\"\n:src=\"'loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog literal string value'\"\n:add=\"'first loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog' + 'second loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog'\"\n:num=\"100000000000000000000000000000000000000000000000000000000000000000000000000\"\n/>\n</template>\n<script lang=\"ts\"></script>") ;
@@ -213,8 +213,8 @@ fn test_expression_binding_ts_vue_semifalse_format_1_f3bac74c() {
 #[test]
 fn test_expression_binding_ts_vue_trailing_commaes_5_format_1_f3bac74c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -226,9 +226,9 @@ fn test_expression_binding_ts_vue_trailing_commaes_5_format_1_f3bac74c() {
 #[test]
 fn test_expression_binding_ts_vue_trailing_commanone_format_1_f3bac74c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("none")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- #7396 -->\n<template>\n<MyComponent\n:foo=\"\\`loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${foo} template literal value\\`\"\n:bar=\"\\`\\${first} loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${template} \\${literal}\\`\n+\\`\\${second} loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${template} \\${literal}\\`\"\n:baz=\"\\`loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog \\${foo +               bar} template literal value\\`\"\n:src=\"'loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog literal string value'\"\n:add=\"'first loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog' + 'second loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog'\"\n:num=\"100000000000000000000000000000000000000000000000000000000000000000000000000\"\n/>\n</template>\n<script lang=\"ts\"></script>") ;
@@ -291,9 +291,9 @@ fn test_interpolations_vue_semifalse_format_1_c2882a66() {
 #[test]
 fn test_interpolations_vue_trailing_commaes_5_format_1_c2882a66() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("es5")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<div>Fuga magnam facilis. Voluptatem quaerat porro.{{\n\n\nx => {\n    const hello = 'world'\n    return hello;\n}\n\n\n\n}} Magni consectetur in et molestias neque esse voluptatibus voluptas. {{  \n    \n    \n    some_variable \n\n\n\n}} Eum quia nihil nulla esse. Dolorem asperiores vero est error {{\n\n                    preserve\n\n                    invalid\n                    \n                    interpolation\n\n}} reprehenderit voluptates minus {{console.log(  short_interpolation )}} nemo.</div>\n\n<script type=\"text/jsx\">\n  export default {\n    render (h) {\n      return (\n        <ul\n          class={{\n            'a': b,\n            'c': d,\n            \"e\": f\n          }}\n        >\n          { this.xyz }\n        </ul>\n    )\n  };\n</script>\n\n<div>\n  1234567890123456789012345678901234567890123456789012345678901234567890{{ something }}1234567890\n</div>\n<div>\n  1234567890123456789012345678901234567890123456789012345678901234567890 {{ something }}1234567890\n</div>\n<div>\n  1234567890123456789012345678901234567890123456789012345678901234567890{{ something }} 1234567890\n</div>\n<div>\n  1234567890123456789012345678901234567890123456789012345678901234567890 {{ something }} 1234567890\n</div>\n</template>") ;
@@ -304,8 +304,8 @@ fn test_interpolations_vue_trailing_commaes_5_format_1_c2882a66() {
 #[test]
 fn test_interpolations_vue_trailing_commanone_format_1_c2882a66() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("none")
         .build()
         .unwrap();
@@ -317,8 +317,8 @@ fn test_interpolations_vue_trailing_commanone_format_1_c2882a66() {
 #[test]
 fn test_multiple_template_1_vue_semifalse_format_1_bf438e5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -352,8 +352,8 @@ fn test_multiple_template_1_vue_trailing_commaes_5_format_1_bf438e5a() {
 fn test_multiple_template_1_vue_trailing_commanone_format_1_bf438e5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["vue"])
-        .trailing_comma("none")
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -368,9 +368,9 @@ fn test_multiple_template_1_vue_trailing_commanone_format_1_bf438e5a() {
 #[test]
 fn test_multiple_template_2_vue_semifalse_format_1_30916f11() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -383,8 +383,8 @@ fn test_multiple_template_2_vue_semifalse_format_1_30916f11() {
 #[test]
 fn test_multiple_template_2_vue_trailing_commaes_5_format_1_30916f11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -398,9 +398,9 @@ fn test_multiple_template_2_vue_trailing_commaes_5_format_1_30916f11() {
 #[test]
 fn test_multiple_template_2_vue_trailing_commanone_format_1_30916f11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -413,9 +413,9 @@ fn test_multiple_template_2_vue_trailing_commanone_format_1_30916f11() {
 #[test]
 fn test_nested_template_vue_semifalse_format_1_885d9209() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["vue"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div>\n      <template>\n        <div></div>\n      </template>\n      <div>\n               Do not go out, you'll got yourself cloned by bad bad people.\n      </div>\n  </div>\n</template>") ;
@@ -426,8 +426,8 @@ fn test_nested_template_vue_semifalse_format_1_885d9209() {
 #[test]
 fn test_nested_template_vue_trailing_commaes_5_format_1_885d9209() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -439,9 +439,9 @@ fn test_nested_template_vue_trailing_commaes_5_format_1_885d9209() {
 #[test]
 fn test_nested_template_vue_trailing_commanone_format_1_885d9209() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div>\n      <template>\n        <div></div>\n      </template>\n      <div>\n               Do not go out, you'll got yourself cloned by bad bad people.\n      </div>\n  </div>\n</template>") ;
@@ -468,9 +468,9 @@ fn test_one_line_template_1_vue_semifalse_format_1_71e8ec8b() {
 #[test]
 fn test_one_line_template_1_vue_trailing_commaes_5_format_1_71e8ec8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<template><p>foo</p><div>foo</div></template>");
@@ -500,9 +500,9 @@ fn test_one_line_template_1_vue_trailing_commanone_format_1_71e8ec8b() {
 #[test]
 fn test_one_line_template_2_vue_semifalse_format_1_15b37f58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["vue"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted =
@@ -517,9 +517,9 @@ fn test_one_line_template_2_vue_semifalse_format_1_15b37f58() {
 #[test]
 fn test_one_line_template_2_vue_trailing_commaes_5_format_1_15b37f58() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("es5")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted =
@@ -551,8 +551,8 @@ fn test_one_line_template_2_vue_trailing_commanone_format_1_15b37f58() {
 #[test]
 fn test_pre_child_vue_semifalse_format_1_fbb92ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -564,9 +564,9 @@ fn test_pre_child_vue_semifalse_format_1_fbb92ce4() {
 #[test]
 fn test_pre_child_vue_trailing_commaes_5_format_1_fbb92ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<!-- copied from https://github.com/gitlabhq/gitlabhq/blob/master/app/assets/javascripts/ide/components/jobs/detail.vue -->\n<pre\n  ref=\"buildTrace\"\n  class=\"build-trace mb-0 h-100\"\n  @scroll=\"scrollBuildLog\"\n>\n  <code\n    v-show=\"!detailJob.isLoading\"\n    class=\"bash\"\n    v-html=\"jobOutput\"\n  >\n  </code>\n  <div\n    v-show=\"detailJob.isLoading\"\n    class=\"build-loader-animation\"\n  >\n    <div class=\"dot\"></div>\n    <div class=\"dot\"></div>\n    <div class=\"dot\"></div>\n  </div>\n</pre>\n</template>\n\n<!-- copied from https://github.com/gitlabhq/gitlabhq/blob/master/app/assets/javascripts/vue_shared/components/code_block.vue -->\n<template>\n  <pre class=\"code-block rounded\">\n    <code class=\"d-block\">{{ code }}</code>\n  </pre>\n</template>\n\n<template>\n<pre class='woot'>\n  {{ stuff }}\n  </pre>\n</template>\n\n<template>\n<pre class='woot'>\n  123{{ wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq }}123\n  123{{ wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq }}123\n    </pre>\n</template>") ;
@@ -577,9 +577,9 @@ fn test_pre_child_vue_trailing_commaes_5_format_1_fbb92ce4() {
 #[test]
 fn test_pre_child_vue_trailing_commanone_format_1_fbb92ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("none")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<!-- copied from https://github.com/gitlabhq/gitlabhq/blob/master/app/assets/javascripts/ide/components/jobs/detail.vue -->\n<pre\n  ref=\"buildTrace\"\n  class=\"build-trace mb-0 h-100\"\n  @scroll=\"scrollBuildLog\"\n>\n  <code\n    v-show=\"!detailJob.isLoading\"\n    class=\"bash\"\n    v-html=\"jobOutput\"\n  >\n  </code>\n  <div\n    v-show=\"detailJob.isLoading\"\n    class=\"build-loader-animation\"\n  >\n    <div class=\"dot\"></div>\n    <div class=\"dot\"></div>\n    <div class=\"dot\"></div>\n  </div>\n</pre>\n</template>\n\n<!-- copied from https://github.com/gitlabhq/gitlabhq/blob/master/app/assets/javascripts/vue_shared/components/code_block.vue -->\n<template>\n  <pre class=\"code-block rounded\">\n    <code class=\"d-block\">{{ code }}</code>\n  </pre>\n</template>\n\n<template>\n<pre class='woot'>\n  {{ stuff }}\n  </pre>\n</template>\n\n<template>\n<pre class='woot'>\n  123{{ wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq }}123\n  123{{ wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq || wqeqwwqwqweqweqwewwq }}123\n    </pre>\n</template>") ;
@@ -616,8 +616,8 @@ fn test_script_src_vue_trailing_commaes_5_format_1_72ce1b9d() {
 #[test]
 fn test_script_src_vue_trailing_commanone_format_1_72ce1b9d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("none")
         .build()
         .unwrap();
@@ -629,9 +629,9 @@ fn test_script_src_vue_trailing_commanone_format_1_72ce1b9d() {
 #[test]
 fn test_self_closing_vue_semifalse_format_1_fb2b536a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div />\n</template>\n\n<script>\nfoo( )\n</script>\n\n<template>\n<div class=\"container\">\n  <HomeH />\n  <HomeA />\n  <HomeX />\n  <HomeY />\n</div>\n</template>\n\n<template>\n  <Foo><Bar\n         attr\n                                     /></Foo>\n</template>") ;
@@ -642,9 +642,9 @@ fn test_self_closing_vue_semifalse_format_1_fb2b536a() {
 #[test]
 fn test_self_closing_vue_trailing_commaes_5_format_1_fb2b536a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div />\n</template>\n\n<script>\nfoo( )\n</script>\n\n<template>\n<div class=\"container\">\n  <HomeH />\n  <HomeA />\n  <HomeX />\n  <HomeY />\n</div>\n</template>\n\n<template>\n  <Foo><Bar\n         attr\n                                     /></Foo>\n</template>") ;
@@ -668,9 +668,9 @@ fn test_self_closing_vue_trailing_commanone_format_1_fb2b536a() {
 #[test]
 fn test_self_closing_style_vue_semifalse_format_1_2a01d682() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <span :class=\"$style.root\"><slot /></span>\n</template>\n\n<style src=\"./style.css\" module />") ;
@@ -694,9 +694,9 @@ fn test_self_closing_style_vue_trailing_commaes_5_format_1_2a01d682() {
 #[test]
 fn test_self_closing_style_vue_trailing_commanone_format_1_2a01d682() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("none")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <span :class=\"$style.root\"><slot /></span>\n</template>\n\n<style src=\"./style.css\" module />") ;
@@ -707,9 +707,9 @@ fn test_self_closing_style_vue_trailing_commanone_format_1_2a01d682() {
 #[test]
 fn test_slot_ts_vue_semifalse_format_1_cdba1545() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script lang=\"ts\"></script>\n<template>\n  <comp>\n    <template\n    v-slot=\"x:    unknown   []\"\n    v-slot:named=\"   y  :     never\"\n    slot-scope=\" { des: {truc: tured  } } : any \"\n    #shorthand=\" abc   : string  \"\n    >\n      {{ x[1] }}\n    </template>\n  </comp>\n</template>") ;
@@ -720,8 +720,8 @@ fn test_slot_ts_vue_semifalse_format_1_cdba1545() {
 #[test]
 fn test_slot_ts_vue_trailing_commaes_5_format_1_cdba1545() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -747,8 +747,8 @@ fn test_slot_ts_vue_trailing_commanone_format_1_cdba1545() {
 fn test_style_vue_semifalse_format_1_a038f778() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["vue"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script>\n</script>\n\n<style>\n#foo1{ color: #f00;\n}\n</style>\n<style scoped>\n#foo2{ color: #f00;\n}\n</style>\n\n<style lang=\"css\">\n#foo3{ color: #f00;\n}\n</style>\n<style lang=\"css\" scoped>\n#foo4{ color: #f00;\n}\n</style>\n\n<style lang=\"less\">\n#foo5{ color: #f00;\n}\n</style>\n<style lang=\"less\" scoped>\n#foo6{ \n         @color: #f00;\n  color: @color;\n}\n</style>\n\n\n<style lang=\"scss\">\n#foo8{ \n         $color: #f00;\n  color: $color;\n}\n</style>\n<style lang=\"scss\" scoped>\n#foo8{ \n         $color: #f00;\n  color: $color;\n}\n</style>\n") ;
@@ -759,9 +759,9 @@ fn test_style_vue_semifalse_format_1_a038f778() {
 #[test]
 fn test_style_vue_trailing_commaes_5_format_1_a038f778() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("es5")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script>\n</script>\n\n<style>\n#foo1{ color: #f00;\n}\n</style>\n<style scoped>\n#foo2{ color: #f00;\n}\n</style>\n\n<style lang=\"css\">\n#foo3{ color: #f00;\n}\n</style>\n<style lang=\"css\" scoped>\n#foo4{ color: #f00;\n}\n</style>\n\n<style lang=\"less\">\n#foo5{ color: #f00;\n}\n</style>\n<style lang=\"less\" scoped>\n#foo6{ \n         @color: #f00;\n  color: @color;\n}\n</style>\n\n\n<style lang=\"scss\">\n#foo8{ \n         $color: #f00;\n  color: $color;\n}\n</style>\n<style lang=\"scss\" scoped>\n#foo8{ \n         $color: #f00;\n  color: $color;\n}\n</style>\n") ;
@@ -772,9 +772,9 @@ fn test_style_vue_trailing_commaes_5_format_1_a038f778() {
 #[test]
 fn test_style_vue_trailing_commanone_format_1_a038f778() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script>\n</script>\n\n<style>\n#foo1{ color: #f00;\n}\n</style>\n<style scoped>\n#foo2{ color: #f00;\n}\n</style>\n\n<style lang=\"css\">\n#foo3{ color: #f00;\n}\n</style>\n<style lang=\"css\" scoped>\n#foo4{ color: #f00;\n}\n</style>\n\n<style lang=\"less\">\n#foo5{ color: #f00;\n}\n</style>\n<style lang=\"less\" scoped>\n#foo6{ \n         @color: #f00;\n  color: @color;\n}\n</style>\n\n\n<style lang=\"scss\">\n#foo8{ \n         $color: #f00;\n  color: $color;\n}\n</style>\n<style lang=\"scss\" scoped>\n#foo8{ \n         $color: #f00;\n  color: $color;\n}\n</style>\n") ;
@@ -785,9 +785,9 @@ fn test_style_vue_trailing_commanone_format_1_a038f778() {
 #[test]
 fn test_tag_name_vue_semifalse_format_1_54a88e99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<template>\n  <Table></Table>\n</template>");
@@ -798,8 +798,8 @@ fn test_tag_name_vue_semifalse_format_1_54a88e99() {
 #[test]
 fn test_tag_name_vue_trailing_commaes_5_format_1_54a88e99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -811,9 +811,9 @@ fn test_tag_name_vue_trailing_commaes_5_format_1_54a88e99() {
 #[test]
 fn test_tag_name_vue_trailing_commanone_format_1_54a88e99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("none")
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<template>\n  <Table></Table>\n</template>");
@@ -824,9 +824,9 @@ fn test_tag_name_vue_trailing_commanone_format_1_54a88e99() {
 #[test]
 fn test_template_vue_semifalse_format_1_a1b5b80e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["vue"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!--copied from https://github.com/gitlabhq/gitlabhq/blob/master/app/assets/javascripts/vue_shared/components/content_viewer/viewers/image_viewer.vue-->\n<template>\n  <div class=\"file-container\">\n    <div class=\"file-content image_file\">\n      <img\n        ref=\"contentImg\"\n        :class=\"{ 'is-zoomable': isZoomable, 'is-zoomed': isZoomed }\"\n        :src=\"path\"\n        :alt=\"path\"\n        @load=\"onImgLoad\"\n        @click=\"onImgClick\"/>\n      <p\n        v-if=\"renderInfo\"\n        class=\"file-info prepend-top-10\">\n        <template v-if=\"fileSize>0\">\n          {{ fileSizeReadable }}\n        </template>\n        <template v-if=\"fileSize>0 && width && height\">\n          |\n        </template>\n        <template v-if=\"width && height\">\n          W: {{ width }} | H: {{ height }}\n        </template>\n      </p>\n    </div>\n  </div>\n</template>") ;
@@ -863,9 +863,9 @@ fn test_template_vue_trailing_commanone_format_1_a1b5b80e() {
 #[test]
 fn test_template_dom_html_semifalse_format_1_6ef2e38a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html><html>\n  <body>\n    <div v-if=\"foo ===    'foo'\">\n\n</div>\n    <script>\nnew Vue({el: '#app'})\n    </script>\n  </body>\n</html>") ;
@@ -876,9 +876,9 @@ fn test_template_dom_html_semifalse_format_1_6ef2e38a() {
 #[test]
 fn test_template_dom_html_trailing_commaes_5_format_1_6ef2e38a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html><html>\n  <body>\n    <div v-if=\"foo ===    'foo'\">\n\n</div>\n    <script>\nnew Vue({el: '#app'})\n    </script>\n  </body>\n</html>") ;
@@ -889,9 +889,9 @@ fn test_template_dom_html_trailing_commaes_5_format_1_6ef2e38a() {
 #[test]
 fn test_template_dom_html_trailing_commanone_format_1_6ef2e38a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .trailing_comma("none")
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html><html>\n  <body>\n    <div v-if=\"foo ===    'foo'\">\n\n</div>\n    <script>\nnew Vue({el: '#app'})\n    </script>\n  </body>\n</html>") ;
@@ -902,9 +902,9 @@ fn test_template_dom_html_trailing_commanone_format_1_6ef2e38a() {
 #[test]
 fn test_template_lang_vue_semifalse_format_1_1c55fca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["vue"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template lang=\"pug\">\n  .test\n    #foo\n  .bla\n</template>\n\n<template \n\n\n   \n   lang='pug'>\n  .test\n    #foo\n  .bla\n</template>\n\n<template lang=\"unknown\">\n  #container\n    some-component(tag='<some-tag>')\n</template>\n\n<template lang=\"\">\n  <v-app-bar>\n    <v-menu offset-y>\n      <template></template>\n    </v-menu>\n  </v-app-bar>\n</template>\n\n<template lang>\n  <v-app-bar>\n    <v-menu offset-y>\n      <template></template>\n    </v-menu>\n  </v-app-bar>\n</template>") ;
@@ -915,9 +915,9 @@ fn test_template_lang_vue_semifalse_format_1_1c55fca2() {
 #[test]
 fn test_template_lang_vue_trailing_commaes_5_format_1_1c55fca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
         .parsers(vec!["vue"])
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template lang=\"pug\">\n  .test\n    #foo\n  .bla\n</template>\n\n<template \n\n\n   \n   lang='pug'>\n  .test\n    #foo\n  .bla\n</template>\n\n<template lang=\"unknown\">\n  #container\n    some-component(tag='<some-tag>')\n</template>\n\n<template lang=\"\">\n  <v-app-bar>\n    <v-menu offset-y>\n      <template></template>\n    </v-menu>\n  </v-app-bar>\n</template>\n\n<template lang>\n  <v-app-bar>\n    <v-menu offset-y>\n      <template></template>\n    </v-menu>\n  </v-app-bar>\n</template>") ;
@@ -929,8 +929,8 @@ fn test_template_lang_vue_trailing_commaes_5_format_1_1c55fca2() {
 fn test_template_lang_vue_trailing_commanone_format_1_1c55fca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["vue"])
-        .trailing_comma("none")
         .print_width(80)
+        .trailing_comma("none")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template lang=\"pug\">\n  .test\n    #foo\n  .bla\n</template>\n\n<template \n\n\n   \n   lang='pug'>\n  .test\n    #foo\n  .bla\n</template>\n\n<template lang=\"unknown\">\n  #container\n    some-component(tag='<some-tag>')\n</template>\n\n<template lang=\"\">\n  <v-app-bar>\n    <v-menu offset-y>\n      <template></template>\n    </v-menu>\n  </v-app-bar>\n</template>\n\n<template lang>\n  <v-app-bar>\n    <v-menu offset-y>\n      <template></template>\n    </v-menu>\n  </v-app-bar>\n</template>") ;
@@ -980,9 +980,9 @@ fn test_test_vue_trailing_commanone_format_1_a1e4ec14() {
 #[test]
 fn test_v_if_vue_semifalse_format_1_57152ca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<root>\n  <and v-if=\"\nlong_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 && short_1 && short_2 &&\nlong_long_long_long_long_long_long_condition_3 &&\nlong_long_long_long_long_long_long_condition_4\n\"></and>\n  <and v-if=\"\n(long_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 && (short_1 && short_2) ) &&\nlong_long_long_long_long_long_long_condition_3 &&\nlong_long_long_long_long_long_long_condition_4\n\"></and>\n  <or v-if=\"\nlong_long_long_long_long_long_long_condition_1 || long_long_long_long_long_long_long_condition_2 ||short_1 || short_2 ||\nlong_long_long_long_long_long_long_condition_3 ||\nlong_long_long_long_long_long_long_condition_4\n\"></or>\n  <or v-if=\"\n(long_long_long_long_long_long_long_condition_1 || long_long_long_long_long_long_long_condition_2 || (short_1 || short_2) ||\nlong_long_long_long_long_long_long_condition_3) ||\nlong_long_long_long_long_long_long_condition_4\n\"></or>\n  <mixed v-if=\"\nlong_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 ||  ((short_1 && short_2) &&\nlong_long_long_long_long_long_long_condition_3 &&\nlong_long_long_long_long_long_long_condition_4)\n\"></mixed>\n  <mixed v-if=\"\nlong_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 || short_1 && short_2 &&\nlong_long_long_long_long_long_long_condition_3 ||\nlong_long_long_long_long_long_long_condition_4\n\"></mixed>\n</root>\n</template>") ;
@@ -993,9 +993,9 @@ fn test_v_if_vue_semifalse_format_1_57152ca2() {
 #[test]
 fn test_v_if_vue_trailing_commaes_5_format_1_57152ca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("es5")
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n<root>\n  <and v-if=\"\nlong_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 && short_1 && short_2 &&\nlong_long_long_long_long_long_long_condition_3 &&\nlong_long_long_long_long_long_long_condition_4\n\"></and>\n  <and v-if=\"\n(long_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 && (short_1 && short_2) ) &&\nlong_long_long_long_long_long_long_condition_3 &&\nlong_long_long_long_long_long_long_condition_4\n\"></and>\n  <or v-if=\"\nlong_long_long_long_long_long_long_condition_1 || long_long_long_long_long_long_long_condition_2 ||short_1 || short_2 ||\nlong_long_long_long_long_long_long_condition_3 ||\nlong_long_long_long_long_long_long_condition_4\n\"></or>\n  <or v-if=\"\n(long_long_long_long_long_long_long_condition_1 || long_long_long_long_long_long_long_condition_2 || (short_1 || short_2) ||\nlong_long_long_long_long_long_long_condition_3) ||\nlong_long_long_long_long_long_long_condition_4\n\"></or>\n  <mixed v-if=\"\nlong_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 ||  ((short_1 && short_2) &&\nlong_long_long_long_long_long_long_condition_3 &&\nlong_long_long_long_long_long_long_condition_4)\n\"></mixed>\n  <mixed v-if=\"\nlong_long_long_long_long_long_long_condition_1 && long_long_long_long_long_long_long_condition_2 || short_1 && short_2 &&\nlong_long_long_long_long_long_long_condition_3 ||\nlong_long_long_long_long_long_long_condition_4\n\"></mixed>\n</root>\n</template>") ;
@@ -1006,8 +1006,8 @@ fn test_v_if_vue_trailing_commaes_5_format_1_57152ca2() {
 #[test]
 fn test_v_if_vue_trailing_commanone_format_1_57152ca2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .trailing_comma("none")
         .build()
         .unwrap();

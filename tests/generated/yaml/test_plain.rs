@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_force_singleline_in_mapping_value_yml_prose_wrapalways_format_1_0fc63254() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -19,8 +19,8 @@ fn test_force_singleline_in_mapping_value_yml_prose_wrapalways_format_1_0fc63254
 fn test_force_singleline_in_mapping_value_yml_prose_wrapnever_format_1_0fc63254() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .prose_wrap("never")
         .print_width(80)
+        .prose_wrap("never")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ;
@@ -56,9 +56,9 @@ fn test_middle_comment_yml_prose_wrapalways_format_1_657a1acc() {
 #[test]
 fn test_middle_comment_yml_prose_wrapnever_format_1_657a1acc() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .prose_wrap("never")
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!str # comment\nhello");
@@ -82,8 +82,8 @@ fn test_middle_comment_yml_format_1_657a1acc() {
 fn test_middle_comments_yml_prose_wrapalways_format_1_94999c99() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello");
@@ -94,9 +94,9 @@ fn test_middle_comments_yml_prose_wrapalways_format_1_94999c99() {
 #[test]
 fn test_middle_comments_yml_prose_wrapnever_format_1_94999c99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("never")
         .parsers(vec!["yaml"])
         .print_width(80)
+        .prose_wrap("never")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello");
@@ -119,9 +119,9 @@ fn test_middle_comments_yml_format_1_94999c99() {
 #[test]
 fn test_multiline_yml_prose_wrapalways_format_1_dded7bd1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ;
@@ -132,9 +132,9 @@ fn test_multiline_yml_prose_wrapalways_format_1_dded7bd1() {
 #[test]
 fn test_multiline_yml_prose_wrapnever_format_1_dded7bd1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("never")
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .prose_wrap("never")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ;
@@ -157,9 +157,9 @@ fn test_multiline_yml_format_1_dded7bd1() {
 #[test]
 fn test_true_yml_prose_wrapalways_format_1_14e273e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["yaml"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("hello");
@@ -208,9 +208,9 @@ fn test_verbatim_yml_prose_wrapalways_format_1_5d31d918() {
 #[test]
 fn test_verbatim_yml_prose_wrapnever_format_1_5d31d918() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .prose_wrap("never")
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!<hello> hello");

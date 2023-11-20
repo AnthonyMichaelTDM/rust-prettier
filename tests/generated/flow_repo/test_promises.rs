@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_all_js_format_1_8345a6a2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ndeclare var pstr: Promise<string>;\ndeclare var pnum: Promise<number>;\n\nPromise.all([\n  pstr,\n  pnum,\n  true, // non-Promise values passed through\n]).then((xs) => {\n  // tuple information is preserved\n  let [a,b,c] = xs;\n  (a: number);  // Error: string ~> number\n  (b: boolean); // Error: number ~> boolean\n  (c: string);  // Error: boolean ~> string\n\n  // array element type is (string | number | boolean)\n  xs.forEach(x => {\n    (x: void);  // Errors: string ~> void, number ~> void, boolean ~> void\n  });\n});\n\n// First argument is required\nPromise.all(); // Error: expected array instead of undefined (too few arguments)\n\n// Mis-typed arg\nPromise.all(0); // Error: expected array instead of number\n\n// Promise.all is a function\n(Promise.all : Function);\n\n// Promise.all supports iterables\nfunction test(val: Iterable<Promise<number>>) {\n  const r: Promise<Array<number>> = Promise.all(val);\n}\n\nfunction tes2(val: Map<string, Promise<number>>) {\n  const r: Promise<Array<number>> = Promise.all(val.values());\n}") ;
@@ -41,8 +41,8 @@ fn test_promise_js_format_1_ff5cea53() {
 #[test]
 fn test_resolve_global_js_format_1_95ce023d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * test Promise name resolution\n * @flow\n */\n\n/**\n * 1. introduce shadowing bindings for important names\n */\nclass Promise {}\n\n/**\n * 2. implicit refs to Promise during desugaring should be unaffected\n */\nasync function foo(x: boolean) {\n  if (x) {\n    return {bar: 'baz'};\n  } else {\n    return null;\n  }\n}\n\nasync function run() {\n  console.log(await foo(true));\n  console.log(await foo(false));\n}\n\nrun();\n\n/**\n * 3. but explicit name refs from code and annos resolve\n * using the usual rules\n */\n// error: \\`Promise\\` in return expr is the local binding\nasync function bar() {\n  return Promise.resolve(0);\n}\n\n// error: return type anno is a ref to the local binding\nasync function baz(): Promise<number> {\n  return 0;\n}") ;
@@ -53,8 +53,8 @@ fn test_resolve_global_js_format_1_95ce023d() {
 #[test]
 fn test_resolve_void_js_format_1_fb5bab31() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n(Promise.resolve(): Promise<number>); // error\n\n(Promise.resolve(undefined): Promise<number>); // error") ;

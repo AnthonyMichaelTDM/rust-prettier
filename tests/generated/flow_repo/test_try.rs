@@ -29,8 +29,8 @@ fn test_init_js_format_1_dac4bc8d() {
 #[test]
 fn test_return_js_format_1_97086bf5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nfunction foo(x: ?number): string {\n    try {\n    } catch (e) {\n        return 'bar';\n    }\n    console.log();\n    return 'foo';\n}\n\nfunction bar(): string {\n  try {\n    return 'foo';\n  } catch (e) {\n    return 'bar';\n  }\n}\n\nfunction baz(): string {\n  try {\n    throw new Error(\"foo\");\n  } catch (e) {\n    return \"foo\";\n  }\n  return \"bar\"; // unreachable\n}\n\nfunction qux(): string {\n  try {\n    throw new Error(\"foo\");\n  } catch (e) {\n  }\n  console.log();\n  return 'bar';\n}\n\nfunction quux(): string {\n  try {\n    return qux();\n  } catch (e) {\n  }\n  return 'bar';\n}\n\nfunction bliffl(): string {\n  try {\n    throw new Error(\"foo\");\n  } catch (e) {\n    return \"foo\";\n  } finally {\n    return \"bar\";\n  }\n}\n\nfunction corge(): string {\n  try {\n    return 'foo';\n  } catch (e) {\n    throw new Error('bar');\n  }\n  bar(); // unreachable\n}") ;
@@ -41,8 +41,8 @@ fn test_return_js_format_1_97086bf5() {
 #[test]
 fn test_test_js_format_1_af746adc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/***\n * test env state tracking thru try/catch/finally\n * @flow\n */\n\nfunction foo() {\n    var x = 0;\n    var y;\n    try {\n        x = \"\";\n    } catch(e) {\n        x = false;\n        throw -1;\n    } finally {\n        y = {};\n    }\n    // here via [try; finally] only.\n    x(); // string ~/> function call (no num or bool error)\n    y(); // object ~/> function call (no uninitialized error)\n}\n\nfunction bar(response) {\n    var payload;\n    try {\n        payload = JSON.parse(response);\n    } catch (e) {\n        throw new Error('...');\n    }\n    // here via [try] only.\n    if (payload.error) {    // ok\n        // ...\n    }\n}\n\nfunction qux() {\n    var x = 5;\n    try {\n        throw -1;\n    } finally {\n    }\n    x(); // unreachable\n}") ;

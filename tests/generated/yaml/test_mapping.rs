@@ -18,8 +18,8 @@ fn test_3_style_yml_tab_width_4_format_1_2801d17f() {
 #[test]
 fn test_3_style_yml_format_1_2801d17f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") ;
@@ -47,8 +47,8 @@ fn test_anchor_yml_tab_width_4_format_1_6912f0dc() {
 #[test]
 fn test_anchor_yml_format_1_6912f0dc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -96,8 +96,8 @@ fn test_anchor_2_yml_format_1_38047a46() {
 #[test]
 fn test_anchor_3_yml_tab_width_4_format_1_c60615ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -113,8 +113,8 @@ fn test_anchor_3_yml_tab_width_4_format_1_c60615ea() {
 #[test]
 fn test_anchor_3_yml_format_1_c60615ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -142,8 +142,8 @@ fn test_array_key_yml_tab_width_4_format_1_d739f998() {
 #[test]
 fn test_array_key_yml_format_1_d739f998() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[1, 2, 3]: 123");
@@ -154,9 +154,9 @@ fn test_array_key_yml_format_1_d739f998() {
 #[test]
 fn test_array_value_yml_tab_width_4_format_1_e74cecbe() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("123: [1, 2, 3]");
@@ -167,8 +167,8 @@ fn test_array_value_yml_tab_width_4_format_1_e74cecbe() {
 #[test]
 fn test_array_value_yml_format_1_e74cecbe() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("123: [1, 2, 3]");
@@ -179,9 +179,9 @@ fn test_array_value_yml_format_1_e74cecbe() {
 #[test]
 fn test_comment_yml_tab_width_4_format_1_42f9c3b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("? key\n# comment\n: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong") ;
@@ -204,9 +204,9 @@ fn test_comment_yml_format_1_42f9c3b7() {
 #[test]
 fn test_comment_value_yml_tab_width_4_format_1_442a5eb3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("123: # hello");
@@ -217,8 +217,8 @@ fn test_comment_value_yml_tab_width_4_format_1_442a5eb3() {
 #[test]
 fn test_comment_value_yml_format_1_442a5eb3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("123: # hello");
@@ -230,8 +230,8 @@ fn test_comment_value_yml_format_1_442a5eb3() {
 fn test_common_yml_tab_width_4_format_1_2af5ace0() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .tab_width(4)
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("key1: value\nkey2: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong") ;
@@ -254,9 +254,9 @@ fn test_common_yml_format_1_2af5ace0() {
 #[test]
 fn test_explicit_key_yml_tab_width_4_format_1_529c9a9d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
         .parsers(vec!["yaml"])
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("? key1\n: value\n? key2\n: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n: value\n? solongitshouldbreakbutitcannot_longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n: # Comment\n  foo: bar\n? multiline\n  scalar\n  key\n: value") ;
@@ -279,8 +279,8 @@ fn test_explicit_key_yml_format_1_529c9a9d() {
 #[test]
 fn test_in_sequence_yml_tab_width_4_format_1_04b13794() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -292,8 +292,8 @@ fn test_in_sequence_yml_tab_width_4_format_1_04b13794() {
 #[test]
 fn test_in_sequence_yml_format_1_04b13794() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a: b\n  c: d");
@@ -317,8 +317,8 @@ fn test_key_with_leading_comment_yml_tab_width_4_format_1_c0e337e3() {
 #[test]
 fn test_key_with_leading_comment_yml_format_1_c0e337e3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("? # comment\n  key\n: value");
@@ -354,9 +354,9 @@ fn test_mapping_yml_format_1_beaf606f() {
 #[test]
 fn test_merge_twice_yml_tab_width_4_format_1_58f814cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
         .parsers(vec!["yaml"])
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".anchors:\n  - &anchor1\n    key: value\n  - &anchor2\n    another: prop\n\nfoo:\n  bar: baz\n  <<: *anchor1\n  <<: *anchor2") ;
@@ -367,8 +367,8 @@ fn test_merge_twice_yml_tab_width_4_format_1_58f814cf() {
 #[test]
 fn test_merge_twice_yml_format_1_58f814cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".anchors:\n  - &anchor1\n    key: value\n  - &anchor2\n    another: prop\n\nfoo:\n  bar: baz\n  <<: *anchor1\n  <<: *anchor2") ;
@@ -379,9 +379,9 @@ fn test_merge_twice_yml_format_1_58f814cf() {
 #[test]
 fn test_middle_comment_yml_tab_width_4_format_1_071cfdf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map # comment\na: 123");
@@ -404,9 +404,9 @@ fn test_middle_comment_yml_format_1_071cfdf8() {
 #[test]
 fn test_middle_comments_yml_tab_width_4_format_1_8649b2aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map # comment 1\n# comment 2\na: 123");
@@ -417,8 +417,8 @@ fn test_middle_comments_yml_tab_width_4_format_1_8649b2aa() {
 #[test]
 fn test_middle_comments_yml_format_1_8649b2aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map # comment 1\n# comment 2\na: 123");
@@ -442,8 +442,8 @@ fn test_props_yml_tab_width_4_format_1_2b98eea7() {
 #[test]
 fn test_props_yml_format_1_2b98eea7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("--- !!map &anchor\na: 123");
@@ -454,9 +454,9 @@ fn test_props_yml_format_1_2b98eea7() {
 #[test]
 fn test_props_in_map_yml_tab_width_4_format_1_6cccda99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a: !!map &anchor\n  a: 123");
@@ -467,8 +467,8 @@ fn test_props_in_map_yml_tab_width_4_format_1_6cccda99() {
 #[test]
 fn test_props_in_map_yml_format_1_6cccda99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a: !!map &anchor\n  a: 123");
@@ -479,8 +479,8 @@ fn test_props_in_map_yml_format_1_6cccda99() {
 #[test]
 fn test_quote_key_yml_tab_width_4_format_1_87a70a43() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -529,8 +529,8 @@ fn test_sequence_yml_format_1_7f9c795d() {
 #[test]
 fn test_tag_key_yml_tab_width_4_format_1_8d746a30() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_break_js_format_1_a77fb8c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("h(f(g(() => {\n  a\n})))\n\ndeepCopyAndAsyncMapLeavesA(\n  { source: sourceValue, destination: destination[sourceKey] },\n  { valueMapper, overwriteExistingKeys }\n)\n\ndeepCopyAndAsyncMapLeavesB(\n  1337,\n  { source: sourceValue, destination: destination[sourceKey] },\n  { valueMapper, overwriteExistingKeys }\n)\n\ndeepCopyAndAsyncMapLeavesC(\n  { source: sourceValue, destination: destination[sourceKey] },\n  1337,\n  { valueMapper, overwriteExistingKeys }\n)\n\nfunction someFunction(url) {\n  return get(url)\n    .then(\n      json => dispatch(success(json)),\n      error => dispatch(failed(error))\n    );\n}\n\nconst mapChargeItems = fp.flow(\n  l => l < 10 ? l: 1,\n  l => Immutable.Range(l).toMap()\n);\n\nexpect(new LongLongLongLongLongRange([0, 0], [0, 0])).toEqualAtomLongLongLongLongRange(new LongLongLongRange([0, 0], [0, 0]));\n\n[\"red\", \"white\", \"blue\", \"black\", \"hotpink\", \"rebeccapurple\"].reduce(\n  (allColors, color) => {\n    return allColors.concat(color);\n  },\n  []\n);\n") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_7cc940dc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

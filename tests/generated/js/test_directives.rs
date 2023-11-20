@@ -17,8 +17,8 @@ fn test_escaped_js_format_1_12882c12() {
 #[test]
 fn test_issue_7346_js_format_1_de0615f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("('bar'); // parens should not be removed to avoid becoming a directive\n\\`foo\\`;\n'bar'; // parens should be added, see https://github.com/prettier/prettier/issues/7346#issuecomment-574823604\n'\"';") ;
@@ -81,8 +81,8 @@ fn test_newline_js_format_1_8d79dcdf() {
 #[test]
 fn test_no_newline_js_format_1_2b75afea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\"use strict\";\na");

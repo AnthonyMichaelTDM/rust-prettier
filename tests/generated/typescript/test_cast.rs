@@ -17,8 +17,8 @@ fn test_as_const_ts_format_1_36f880a5() {
 #[test]
 fn test_assert_and_assign_ts_format_1_1ce5cfa4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel-ts", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("(a as number) = 42;\n({ a: (b as any) = 2000 } = x)");
@@ -76,8 +76,8 @@ fn test_tuple_and_record_ts_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_and_record_ts_format_1_c5c206f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel-ts", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("breakAfterCast = <PermissionsChecker<any> | undefined>(<any>permissions)[receiverType];\nbreakAfterCast = <PermissionsChecker<any> | undefined>(<any>permissions)(#[receiverType]);\n\ntestObjLiteral =  <PermissionsChecker<any> | undefined>{ prop1: \"myPropVal\" };\ntestObjLiteral =  <PermissionsChecker<any> | undefined>#{ prop1: \"myPropVal\" };") ;

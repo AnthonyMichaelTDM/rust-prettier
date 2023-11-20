@@ -29,8 +29,8 @@ fn test_property_type_js_format_1_2884a6fb() {
 #[test]
 fn test_union_js_format_1_399a5aa9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var x0: $NonMaybeType<number|string> = 0; // ok, number ~> number|string\nvar x1: $NonMaybeType<number|string> = true; // err, boolean ~> number|string\nvar x2: $PropertyType<{p:number}|{p:string},'p'> = 0; // ok, number ~> number|string\nvar x3: $PropertyType<{p:number}|{p:string},'p'> = true; // err, boolean ~> number|string") ;

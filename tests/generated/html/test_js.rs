@@ -17,8 +17,8 @@ fn test_empty_html_format_1_035236f6() {
 #[test]
 fn test_js_html_format_1_176c0134() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script type=\"text/javascript\">\n  var message = \"Alert!\";\n\n  alert(message);\n</script>\n<script type=\"application/javascript\">\n  var message = \"Alert!\";\n\n  alert(message);\n</script>\n<script>\n  var message = \"Alert!\";\n\n  alert(message);\n</script>\n<script type=\"text/babel\">\n            const    someJS    =   'this should be formatted'\n</script>\n<script type=\"module\">\n      import lib from './lib.js';\n  \n        function myFunction() { return 'foo'; }\n  </script>") ;
@@ -29,8 +29,8 @@ fn test_js_html_format_1_176c0134() {
 #[test]
 fn test_simple_html_format_1_972833c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n  <head>\n    <title>Sample styled page</title>\n    <script>alert('test');</script>\n    <script>\n      var message = \"Alert!\";\n\n      alert(message);\n    </script>\n  </head>\n  <body>\n    <h1>Sample styled page</h1>\n    <p>This page is just a demo.</p>\n  </body>\n</html>") ;
@@ -53,8 +53,8 @@ fn test_single_script_html_format_1_51caaeb4() {
 #[test]
 fn test_something_else_html_format_1_e47fe3f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

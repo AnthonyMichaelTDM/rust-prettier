@@ -45,8 +45,8 @@ fn test_c_js_format_1_4fd47685() {
 #[test]
 fn test_d_js_format_1_5db832ba() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("require('./I');");
@@ -93,8 +93,8 @@ fn test_g_js_format_1_6b7709ba() {
 #[test]
 fn test_h_js_format_1_00d979fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// empty");

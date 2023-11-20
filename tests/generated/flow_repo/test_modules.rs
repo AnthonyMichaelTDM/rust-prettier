@@ -21,8 +21,8 @@ fn test_cli_js_format_1_fa96be43() {
 #[test]
 fn test_cli_2_js_format_1_bb49e254() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_empty_props_less_format_1_89773cf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(

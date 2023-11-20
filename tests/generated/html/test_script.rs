@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_babel_html_format_1_90dae268() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script type=\"text/babel\" data-presets=\"react\" data-type=\"module\">\nimport { h, \n         render } from 'https://unpkg.com/preact?module';\nrender(\n<h1>Hello World!</h1>,\n         document.body\n);\n</script>\n\n<script type=\"text/babel\">\n<!--\nalert(1)\n-->\n</script>") ;
@@ -31,8 +31,8 @@ fn test_legacy_html_format_1_aa734793() {
 #[test]
 fn test_module_html_format_1_7d0a01df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script type=\"module\">\nimport prettier from \"prettier/standalone\";\nimport parserGraphql from \"prettier/parser-graphql\";\n\nprettier.format(\"query { }\", {\n                      parser: \"graphql\",\n  plugins: [\nparserGraphql],\n});\n</script>\n\n<script type=\"module\">\nasync function foo() {\n  let x=10;while(x-->0)console.log(x)\n  await(import('mod'))\n}\n</script>") ;

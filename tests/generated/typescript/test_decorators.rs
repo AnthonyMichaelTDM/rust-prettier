@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_abstract_method_ts_babel_ts_format_1_96c8f469() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -45,8 +45,8 @@ fn test_accessor_ts_format_1_c6804d89() {
 #[test]
 fn test_argument_list_preserve_line_ts_format_1_21b3c0f7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Foo {\n    constructor(\n        @inject(Bar)\n        private readonly bar: IBar,\n\n        @inject(MyProcessor)\n        private readonly myProcessor: IMyProcessor,\n\n        @inject(InjectionTypes.AnotherThing)\n\n        private readonly anotherThing: IAnotherThing | undefined,\n    ) { }\n}") ;
@@ -72,8 +72,8 @@ fn test_comments_ts_format_1_2485ed40() {
 #[test]
 fn test_decorator_type_assertion_ts_format_1_0f7fd148() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@(bind as ClassDecorator)\nclass Decorated {\n\n}\n\n@(<ClassDecorator>bind)\nclass Decorated {\n\n}") ;

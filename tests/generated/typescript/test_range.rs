@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_export_assignment_ts_format_1_eb67cfa4() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
         .print_width(80)
         .range_end(18)
-        .parsers(vec!["typescript"])
         .range_start(15)
         .build()
         .unwrap();
@@ -35,9 +35,9 @@ fn test_issue_4926_ts_format_1_70e90992() {
 fn test_issue_7148_ts_format_1_500513c2() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["typescript"])
+        .print_width(80)
         .range_end(59)
         .range_start(29)
-        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("  1 | export default class Test {\n> 2 |   private obj = { isTest: true }\n    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  3 | }\n  4 ") ;

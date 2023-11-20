@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_text_js_format_1_c3afed7d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("a = {\n  viewer: graphql\\`\n    fragment x on Viewer {\n      y(named: [\n        \"projects_feedback_ids\" # PROJECTS_FEEDBACK_IDS\n      ]) {\n        name\n      }\n    }\n  \\`,\n}") ;

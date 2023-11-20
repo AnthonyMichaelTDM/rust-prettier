@@ -6,8 +6,8 @@ static INFINITY: usize = usize::MAX;
 fn test_declare_export_js_semifalse_format_1_f7524032() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("declare export default 5;");
@@ -56,8 +56,8 @@ fn test_declare_type_js_format_1_779a7df5() {
 fn test_declare_var_js_semifalse_format_1_bafc3123() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("declare var bool: React$PropType$Primitive<boolean>;");
@@ -112,8 +112,8 @@ fn test_long_js_format_1_0a99f4af() {
 fn test_opaque_js_semifalse_format_1_17ea8cc2() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare export opaque type Foo;\ndeclare export opaque type Bar<T>;\ndeclare export opaque type Baz: Foo;\ndeclare export opaque type Foo1<T>: Bar<T>;\ndeclare export opaque type Foo2<T>: Bar;\ndeclare export opaque type Foo3: Bar<T>;\nopaque type ID = string;\nopaque type Foo4<T> = Bar<T>;\nopaque type Maybe<T> = _Maybe<T, *>;\nexport opaque type Foo5 = number;\nopaque type union =\n | {type: \"A\"}\n | {type: \"B\"};\nopaque type overloads =\n  & ((x: string) => number)\n  & ((x: number) => string);") ;
@@ -124,8 +124,8 @@ fn test_opaque_js_semifalse_format_1_17ea8cc2() {
 #[test]
 fn test_opaque_js_format_1_17ea8cc2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare export opaque type Foo;\ndeclare export opaque type Bar<T>;\ndeclare export opaque type Baz: Foo;\ndeclare export opaque type Foo1<T>: Bar<T>;\ndeclare export opaque type Foo2<T>: Bar;\ndeclare export opaque type Foo3: Bar<T>;\nopaque type ID = string;\nopaque type Foo4<T> = Bar<T>;\nopaque type Maybe<T> = _Maybe<T, *>;\nexport opaque type Foo5 = number;\nopaque type union =\n | {type: \"A\"}\n | {type: \"B\"};\nopaque type overloads =\n  & ((x: string) => number)\n  & ((x: number) => string);") ;

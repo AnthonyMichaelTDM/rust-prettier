@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_conditional_types_ts_format_1_d938b3ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export type UnwrappedResultRow<T> = {\n    [P in keyof T]: (\n        T[P] extends Req<infer a> ? (\n            a\n        ) : (\n            T[P] extends Opt<infer b> ? (\n                b\n            ) : (\n                // TEST\n                never\n            )\n        )\n    );\n};") ;

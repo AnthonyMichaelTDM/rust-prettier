@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_regression_ts_semifalse_format_1_f353599e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -30,9 +30,9 @@ fn test_arrow_regression_ts_format_1_f353599e() {
 #[test]
 fn test_comments_ts_semifalse_format_1_2f46ee2e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["typescript"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const fn1 = () => {\n  return;\n} /* foo */;\n\nconst fn2 = () => {\n  return;\n}\n\n// foo\n;") ;

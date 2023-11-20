@@ -41,8 +41,8 @@ fn test_export_js_format_1_210008c2() {
 #[test]
 fn test_generics_js_format_1_4ffe1219() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Generic<X> {\n  clone(): Generic<X> { return this; }\n}\n\nclass Implicit<X> { arg: X; val: X; }\nclass ImplicitNumber extends Implicit { arg: number; }\n\n(new ImplicitNumber().val: string) // error: number ~> string") ;
@@ -89,8 +89,8 @@ fn test_lib_client_js_format_1_b4349f5a() {
 #[test]
 fn test_self_js_format_1_49876064() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A {\n  foo() { return this; } // return of foo is not annotated to get around\n                         // substituting this below\n  bar(): this { return new A().foo(); } // same as returning : A, so error\n  qux(): this { return this.bar(); } // OK (don't cascade errors)\n}") ;

@@ -17,8 +17,8 @@ fn test_chaining_js_format_1_bc341ae9() {
 #[test]
 fn test_comments_js_format_1_1cb34a3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo() {\n  return a\n    .b()\n    .c()\n    // Comment\n    ?.d()\n}\n\nfooBar\n  .doSomething(\"Hello World\")\n  .doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nbigDeal\n\n  .doSomething(\"Hello World\")\n\n  // Hello world\n  ?.doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nfoo.bar.baz\n\n  ?.doSomething(\"Hello World\")\n\n  // Hello world\n  .foo.bar.doAnotherThing(\"Foo\", { foo: bar })\n\n  .doOneMoreThing(config)\n  ?.bar.run(() => console.log(\"Bar\"));\n\n(somethingGood ? thisIsIt : maybeNot)\n\n// Hello world\n.doSomething(\"Hello World\")\n\n  ?.doAnotherThing(\"Foo\", { foo: bar }) // Run this\n  .run(() => console.log(\"Bar\")); // Do this") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_empty_less_format_1_f55e7940() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".ui-syntax-color();\n\ndetails[open] {\n}\n\ndiv {\n  box-sizing: border-box;;\n  color: red;\n}") ;

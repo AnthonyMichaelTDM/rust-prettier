@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_binaryish_js_format_1_8c466efb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function f() {\n  throw (\n    property.isIdentifier() &&\n     FUNCTIONS[property.node.name] &&\n     (object.isIdentifier(JEST_GLOBAL) ||\n       (callee.isMemberExpression() && shouldHoistExpression(object))) &&\n    FUNCTIONS[property.node.name](expr.get('arguments'))\n  );\n\n  throw (\n    chalk.bold(\n      'No tests found related to files changed since last commit.\\\\n',\n    ) +\n    chalk.dim(\n      patternInfo.watch ?\n        'Press \\`a\\` to run all tests, or run Jest with \\`--watchAll\\`.' :\n        'Run Jest without \\`-o\\` to run all tests.',\n    )\n  );\n\n  throw !filePath.includes(coverageDirectory) &&\n    !filePath.endsWith(\\`.\\${SNAPSHOT_EXTENSION}\\`);\n}") ;

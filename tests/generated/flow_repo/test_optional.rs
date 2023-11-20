@@ -17,8 +17,8 @@ fn test_client_optional_js_format_1_b7ae0483() {
 #[test]
 fn test_default_js_format_1_7d13d0ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -49,8 +49,8 @@ fn test_generic_js_format_1_2829341f() {
 #[test]
 fn test_loop_js_format_1_f04e99d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* Regression test. Improper handling of OptionalT repositioning can cause\n * reasons to grow \"optional x\" -> \"optional optional x\" -> \"optional optional\n * optional x\", which thwarts reason-based caches that prevent nontermination.\n */\nfunction f<T:*>(x:T,y?:T) { x = y }") ;
@@ -61,8 +61,8 @@ fn test_loop_js_format_1_f04e99d5() {
 #[test]
 fn test_maybe_js_format_1_f0a2aac5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function foo(x?: string): ?string {\n    return x;\n}");
@@ -100,8 +100,8 @@ fn test_optional_js_format_1_1c3da34c() {
 #[test]
 fn test_optional_param_js_format_1_45e0a2f5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\nfunction foo(x?: string): string {\n    if (x == null) { return 'foo'; }\n    return x;\n}\n\nfunction bar(obj: {x?: string}): string {\n    if (obj.x == null) { return 'foo'; }\n    return obj.x;\n}\n\nfunction baz(bar?) {\n    if (!bar) { return 1; }\n    return bar.duck\n}\n\nfunction testOptionalNullable(x?: ?string): string {\n    if (x == null) { return 'foo'; }\n    return x;\n}\n\nfunction testOptionalNullableDefault(x?: ?string = \"hi\"): string {\n    if (x == null) { return 'foo'; }\n    return x;\n}\n\nfunction testOptionalNullableProperty(obj: {x?: ?string}): string {\n    if (obj.x == null) { return 'foo'; }\n    return obj.x;\n}\n\nfunction testOptionalNullableFlowingToNullable(x?: ?string): ?string {\n  var f = function(y: ?string) {};\n  f(x);\n}") ;
@@ -136,8 +136,8 @@ fn test_optional_param_3_js_format_1_ec60c7c2() {
 #[test]
 fn test_optional_param_4_js_format_1_32417d0a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(x?: number, ...y: Array<string>): [?number, Array<string>] {\n  return [x, y];\n}\n\nfoo(); // OK\nfoo(123), // OK\nfoo(123, 'hello'); // OK\n\n\nfoo(true); // ERROR boolean ~> number\nfoo(123, true); // ERROR boolean ~> string") ;
@@ -160,8 +160,8 @@ fn test_undefined_js_format_1_1d271a2b() {
 #[test]
 fn test_undefined_2_js_format_1_9833d08a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var x;\n\nfunction foo(bar?) {\n    x = bar;\n}\n\nfunction bar() {\n    return x.duck;\n}") ;

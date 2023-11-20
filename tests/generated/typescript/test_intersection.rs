@@ -6,8 +6,8 @@ static INFINITY: usize = usize::MAX;
 fn test_type_arguments_ts_semifalse_format_1_fa10f631() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["typescript"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<ALongNamedInterface1 & ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<ALongNamedInterface1 | ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<ALongNamedInterface1, ALongNamedInterface2> = (props) => {}") ;

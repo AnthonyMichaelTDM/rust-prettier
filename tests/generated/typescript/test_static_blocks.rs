@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_multiple_ts_format_1_2a28cbcd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript", "babel-ts"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Foo {\n  static prop = 1\n  static {\n    console.log(Foo.prop++);\n  }\n  static {\n    console.log(Foo.prop++);\n  }\n  static {\n    console.log(Foo.prop++);\n  }\n}") ;

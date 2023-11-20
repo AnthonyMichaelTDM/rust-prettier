@@ -21,8 +21,8 @@ fn test_invalid_vue_format_1_4df85fe5() {
 #[test]
 fn test_ts_vue_format_1_90911f05() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script lang=\"ts\"></script>\n<template>\n<div\nv-for=\"a:number       of x as number[]\"\nv-for=\"[ a  , b]   : [   string,string ]     of x as Array<     [string, string]>\"\nv-for=\"  a  of list.map( (x:any): unknown     => x.foo.bar)\"\nv-for=\"([longLongProp, longLongProp, [longLongProp, longLongProp='Hello, Prettier!', [longLongProp, longLongProp, anotherLongLongProp=[longLongProp, longLongProp, anotherLongLongProp, yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], yetAnotherLongLongProp], index) of longLongLongLongLongLongLongLongList\"\n>\n</div>\n</template>") ;

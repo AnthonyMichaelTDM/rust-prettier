@@ -17,8 +17,8 @@ fn test_array_js_format_1_458f7394() {
 #[test]
 fn test_optional_js_format_1_3189e013() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n([0, undefined]: [number, ?string]); // Ok, correct arity\n([0]: [number, ?string]); // Error, arity is enforced\n\n([]: [?number, string]); // error, since second element is not marked optional") ;
@@ -37,8 +37,8 @@ fn test_spread_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_spread_js_format_1_47041b98() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("type A = [...S];\n\ntype B = [...foo: S];");
@@ -49,8 +49,8 @@ fn test_spread_js_format_1_47041b98() {
 #[test]
 fn test_too_few_js_format_1_f6d03650() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(a: [Object, Object]) {}\n\nfoo([ {} ]); // error, too few elements in array passed to a tuple") ;

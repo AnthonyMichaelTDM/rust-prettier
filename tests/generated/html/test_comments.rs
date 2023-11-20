@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_before_text_html_html_whitespace_sensitivityignore_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("ignore")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<!-- hello -->\n\n123");
@@ -18,8 +18,8 @@ fn test_before_text_html_html_whitespace_sensitivityignore_format_1_6e0a6ccf() {
 #[test]
 fn test_before_text_html_html_whitespace_sensitivitystrict_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("strict")
+        .parsers(vec!["html"])
         .print_width(80)
         .build()
         .unwrap();
@@ -43,8 +43,8 @@ fn test_before_text_html_print_width_infinity_format_1_6e0a6ccf() {
 #[test]
 fn test_before_text_html_print_width_1_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<!-- hello -->\n\n123");
@@ -55,8 +55,8 @@ fn test_before_text_html_print_width_1_format_1_6e0a6ccf() {
 #[test]
 fn test_before_text_html_format_1_6e0a6ccf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<!-- hello -->\n\n123");
@@ -80,8 +80,8 @@ fn test_bogus_html_html_whitespace_sensitivityignore_format_1_1a1a88c9() {
 #[test]
 fn test_bogus_html_html_whitespace_sensitivitystrict_format_1_1a1a88c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("strict")
+        .parsers(vec!["html"])
         .print_width(80)
         .build()
         .unwrap();
@@ -129,9 +129,9 @@ fn test_bogus_html_format_1_1a1a88c9() {
 #[test]
 fn test_conditional_html_html_whitespace_sensitivityignore_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("ignore")
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n  <body>\n\n    <!--[if IE 5]>This is IE 5<br><![endif]-->\n    <!--[if IE 6]>This is IE 6<br><![endif]-->\n    <!--[if IE 7]>This is IE 7<br><![endif]-->\n    <!--[if IE 8]>This is IE 8<br><![endif]-->\n    <!--[if IE 9]>This is IE 9<br><![endif]-->\n\n  </body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><div><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><div></div><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<body width=\"100%\" align=\"center\">\n  <center  >                                        \n    <!--[if (gte mso 9)|(IE)]><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\" align=\"center\"><tr><td><![endif]-->\n    <div>  </div>\n    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->\n  </center  >\n</body>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9]><!--><html><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9]><!--><html hello><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><head><![endif]-->\n<!--[if gte IE 9]><!--><html><head><!--<![endif]-->\n  </head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9\n]><!--><html><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>") ;
@@ -143,8 +143,8 @@ fn test_conditional_html_html_whitespace_sensitivityignore_format_1_52d360b9() {
 fn test_conditional_html_html_whitespace_sensitivitystrict_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n  <body>\n\n    <!--[if IE 5]>This is IE 5<br><![endif]-->\n    <!--[if IE 6]>This is IE 6<br><![endif]-->\n    <!--[if IE 7]>This is IE 7<br><![endif]-->\n    <!--[if IE 8]>This is IE 8<br><![endif]-->\n    <!--[if IE 9]>This is IE 9<br><![endif]-->\n\n  </body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><div><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><div></div><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<body width=\"100%\" align=\"center\">\n  <center  >                                        \n    <!--[if (gte mso 9)|(IE)]><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\" align=\"center\"><tr><td><![endif]-->\n    <div>  </div>\n    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->\n  </center  >\n</body>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9]><!--><html><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9]><!--><html hello><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><head><![endif]-->\n<!--[if gte IE 9]><!--><html><head><!--<![endif]-->\n  </head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9\n]><!--><html><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>") ;
@@ -179,8 +179,8 @@ fn test_conditional_html_print_width_1_format_1_52d360b9() {
 #[test]
 fn test_conditional_html_format_1_52d360b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n  <body>\n\n    <!--[if IE 5]>This is IE 5<br><![endif]-->\n    <!--[if IE 6]>This is IE 6<br><![endif]-->\n    <!--[if IE 7]>This is IE 7<br><![endif]-->\n    <!--[if IE 8]>This is IE 8<br><![endif]-->\n    <!--[if IE 9]>This is IE 9<br><![endif]-->\n\n  </body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><div><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html lang=\"zh-CN\"><div></div><![endif]-->\n<html lang=\"zh-CN\">\n  <head></head>\n  <body></body>\n</html>\n\n<body width=\"100%\" align=\"center\">\n  <center  >                                        \n    <!--[if (gte mso 9)|(IE)]><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\" align=\"center\"><tr><td><![endif]-->\n    <div>  </div>\n    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->\n  </center  >\n</body>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9]><!--><html><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9]><!--><html hello><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><head><![endif]-->\n<!--[if gte IE 9]><!--><html><head><!--<![endif]-->\n  </head>\n  <body></body>\n</html>\n\n<!DOCTYPE html>\n<!--[if lt IE 9]><html class=\"legacy-ie\"><![endif]-->\n<!--[if gte IE 9\n]><!--><html><!--<![endif]-->\n  <head></head>\n  <body></body>\n</html>") ;
@@ -191,8 +191,8 @@ fn test_conditional_html_format_1_52d360b9() {
 #[test]
 fn test_for_debugging_html_html_whitespace_sensitivityignore_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("ignore")
+        .parsers(vec!["html"])
         .print_width(80)
         .build()
         .unwrap();
@@ -204,9 +204,9 @@ fn test_for_debugging_html_html_whitespace_sensitivityignore_format_1_41d72a6f()
 #[test]
 fn test_for_debugging_html_html_whitespace_sensitivitystrict_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("strict")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n  <body>\n\n<!-- Do not display this at the moment\n<img border=\"0\" src=\"pic_trulli.jpg\" alt=\"Trulli\">\n-->\n\n  <!-- Do not display this at the moment\n  <img border=\"0\" src=\"pic_trulli.jpg\" alt=\"Trulli\">\n  -->\n\n    <!-- Do not display this at the moment\n    <img border=\"0\" src=\"pic_trulli.jpg\" alt=\"Trulli\">\n    -->\n\n  </body>\n</html>") ;
@@ -229,8 +229,8 @@ fn test_for_debugging_html_print_width_infinity_format_1_41d72a6f() {
 #[test]
 fn test_for_debugging_html_print_width_1_format_1_41d72a6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n  <body>\n\n<!-- Do not display this at the moment\n<img border=\"0\" src=\"pic_trulli.jpg\" alt=\"Trulli\">\n-->\n\n  <!-- Do not display this at the moment\n  <img border=\"0\" src=\"pic_trulli.jpg\" alt=\"Trulli\">\n  -->\n\n    <!-- Do not display this at the moment\n    <img border=\"0\" src=\"pic_trulli.jpg\" alt=\"Trulli\">\n    -->\n\n  </body>\n</html>") ;
@@ -291,8 +291,8 @@ fn test_hidden_html_print_width_infinity_format_1_a0cf8294() {
 #[test]
 fn test_hidden_html_print_width_1_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n    <body>\n\n        <!--This is a comment-->\n        <!-- This is a comment -->\n        <!--  This is a comment  -->\n        <!--   This   is   a   comment   -->\n        <p>This is a paragraph.</p>\n        <!-- Comments are not displayed in the browser -->\n\n    </body>\n</html>") ;
@@ -303,8 +303,8 @@ fn test_hidden_html_print_width_1_format_1_a0cf8294() {
 #[test]
 fn test_hidden_html_format_1_a0cf8294() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html>\n    <body>\n\n        <!--This is a comment-->\n        <!-- This is a comment -->\n        <!--  This is a comment  -->\n        <!--   This   is   a   comment   -->\n        <p>This is a paragraph.</p>\n        <!-- Comments are not displayed in the browser -->\n\n    </body>\n</html>") ;
@@ -315,9 +315,9 @@ fn test_hidden_html_format_1_a0cf8294() {
 #[test]
 fn test_surrounding_empty_line_html_html_whitespace_sensitivityignore_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("ignore")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<ul><!-- 123\n--><li>First</li><!-- 123\n456\n   789\n--><li>Second</li><!--\n\n\n    123\n       456\n          789\n\n\n--><li>Second</li><!--\n\n\n           123\n        456\n    789\n\n\n--></ul>\n<span><!--\n--><span>a</span><!--\n--><span>b</span><!--\n--></span>\n\n<span><!-- 1\n--><span>a</span><!-- 2\n--><span>b</span><!-- 3\n--></span>\n\n<span><!--\n1 --><span>a</span><!--\n2 --><span>b</span><!--\n3 --></span>\n\n123<!---->456\n\n123<!--x-->456\n\n<!-- A\n     B -->\n\n<!--\nThe null hero's name is {{nullHero.name}}\n\nSee console log:\n  TypeError: Cannot read property 'name' of null in [null]\n-->\n\n<!--\n    The null hero's name is {{nullHero.name}}\n\n    See console log:\n    TypeError: Cannot read property 'name' of null in [null]\n-->") ;
@@ -329,8 +329,8 @@ fn test_surrounding_empty_line_html_html_whitespace_sensitivityignore_format_1_c
 fn test_surrounding_empty_line_html_html_whitespace_sensitivitystrict_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<ul><!-- 123\n--><li>First</li><!-- 123\n456\n   789\n--><li>Second</li><!--\n\n\n    123\n       456\n          789\n\n\n--><li>Second</li><!--\n\n\n           123\n        456\n    789\n\n\n--></ul>\n<span><!--\n--><span>a</span><!--\n--><span>b</span><!--\n--></span>\n\n<span><!-- 1\n--><span>a</span><!-- 2\n--><span>b</span><!-- 3\n--></span>\n\n<span><!--\n1 --><span>a</span><!--\n2 --><span>b</span><!--\n3 --></span>\n\n123<!---->456\n\n123<!--x-->456\n\n<!-- A\n     B -->\n\n<!--\nThe null hero's name is {{nullHero.name}}\n\nSee console log:\n  TypeError: Cannot read property 'name' of null in [null]\n-->\n\n<!--\n    The null hero's name is {{nullHero.name}}\n\n    See console log:\n    TypeError: Cannot read property 'name' of null in [null]\n-->") ;
@@ -341,8 +341,8 @@ fn test_surrounding_empty_line_html_html_whitespace_sensitivitystrict_format_1_c
 #[test]
 fn test_surrounding_empty_line_html_print_width_infinity_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(INFINITY)
         .parsers(vec!["html"])
+        .print_width(INFINITY)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<ul><!-- 123\n--><li>First</li><!-- 123\n456\n   789\n--><li>Second</li><!--\n\n\n    123\n       456\n          789\n\n\n--><li>Second</li><!--\n\n\n           123\n        456\n    789\n\n\n--></ul>\n<span><!--\n--><span>a</span><!--\n--><span>b</span><!--\n--></span>\n\n<span><!-- 1\n--><span>a</span><!-- 2\n--><span>b</span><!-- 3\n--></span>\n\n<span><!--\n1 --><span>a</span><!--\n2 --><span>b</span><!--\n3 --></span>\n\n123<!---->456\n\n123<!--x-->456\n\n<!-- A\n     B -->\n\n<!--\nThe null hero's name is {{nullHero.name}}\n\nSee console log:\n  TypeError: Cannot read property 'name' of null in [null]\n-->\n\n<!--\n    The null hero's name is {{nullHero.name}}\n\n    See console log:\n    TypeError: Cannot read property 'name' of null in [null]\n-->") ;
@@ -365,8 +365,8 @@ fn test_surrounding_empty_line_html_print_width_1_format_1_c2fbc0bb() {
 #[test]
 fn test_surrounding_empty_line_html_format_1_c2fbc0bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<ul><!-- 123\n--><li>First</li><!-- 123\n456\n   789\n--><li>Second</li><!--\n\n\n    123\n       456\n          789\n\n\n--><li>Second</li><!--\n\n\n           123\n        456\n    789\n\n\n--></ul>\n<span><!--\n--><span>a</span><!--\n--><span>b</span><!--\n--></span>\n\n<span><!-- 1\n--><span>a</span><!-- 2\n--><span>b</span><!-- 3\n--></span>\n\n<span><!--\n1 --><span>a</span><!--\n2 --><span>b</span><!--\n3 --></span>\n\n123<!---->456\n\n123<!--x-->456\n\n<!-- A\n     B -->\n\n<!--\nThe null hero's name is {{nullHero.name}}\n\nSee console log:\n  TypeError: Cannot read property 'name' of null in [null]\n-->\n\n<!--\n    The null hero's name is {{nullHero.name}}\n\n    See console log:\n    TypeError: Cannot read property 'name' of null in [null]\n-->") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_empty_with_no_trailing_newline_hbs_format_1_68b329da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("");
@@ -17,8 +17,8 @@ fn test_empty_with_no_trailing_newline_hbs_format_1_68b329da() {
 #[test]
 fn test_empty_with_trailing_newline_hbs_format_1_e1c06d85() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("");
@@ -29,8 +29,8 @@ fn test_empty_with_trailing_newline_hbs_format_1_e1c06d85() {
 #[test]
 fn test_end_of_line_last_hbs_format_1_5c4dd62a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a bare string to hightlight eol last handling");

@@ -35,9 +35,9 @@ fn test_jsonc_md_trailing_commaall_format_1_e0a09a39() {
 #[test]
 fn test_trailing_comma_md_trailing_commaall_format_1_6911bac1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("all")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .trailing_comma("all")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`json\n{\n  \"foo\": \"bar\"\n}\n\\`\\`\\`");

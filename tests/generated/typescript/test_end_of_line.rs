@@ -6,8 +6,8 @@ static INFINITY: usize = usize::MAX;
 fn test_multiline_ts_end_of_linecr_format_1_6f3fdc10() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .end_of_line("cr")
-        .print_width(80)
         .parsers(vec!["typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type IAmIncredibleLongParameterType = {};<LF>\nconst IAmAnotherFunctionName = (_0: IAmIncredibleLongParameterType) => {};<LF>\nexport const IAmIncredibleLongFunctionName = IAmAnotherFunctionName(<LF>\n  (_0: IAmIncredibleLongParameterType) => {<LF>\n    setTimeout(() => {<LF>\n      /*<LF>\n          Multiline comment<LF>\n          Multiline comment<LF>\n          Multiline comment<LF>\n      */<LF>\n      console.log(<LF>\n        'Multiline string\\\\<LF>\n         Multiline string\\\\<LF>\n         Multiline string'<LF>\n      );<LF>\n      console.log(<LF>\n        \\`Multiline \\\\n string\\\\<LF>\n         Multiline string\\\\<LF>\n         Multiline string\\`<LF>\n      );<LF>\n    });<LF>\n  }<LF>\n);<LF>") ;
@@ -18,9 +18,9 @@ fn test_multiline_ts_end_of_linecr_format_1_6f3fdc10() {
 #[test]
 fn test_multiline_ts_end_of_linecrlf_format_1_6f3fdc10() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .end_of_line("crlf")
         .parsers(vec!["typescript", "flow"])
         .print_width(80)
-        .end_of_line("crlf")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type IAmIncredibleLongParameterType = {};<LF>\nconst IAmAnotherFunctionName = (_0: IAmIncredibleLongParameterType) => {};<LF>\nexport const IAmIncredibleLongFunctionName = IAmAnotherFunctionName(<LF>\n  (_0: IAmIncredibleLongParameterType) => {<LF>\n    setTimeout(() => {<LF>\n      /*<LF>\n          Multiline comment<LF>\n          Multiline comment<LF>\n          Multiline comment<LF>\n      */<LF>\n      console.log(<LF>\n        'Multiline string\\\\<LF>\n         Multiline string\\\\<LF>\n         Multiline string'<LF>\n      );<LF>\n      console.log(<LF>\n        \\`Multiline \\\\n string\\\\<LF>\n         Multiline string\\\\<LF>\n         Multiline string\\`<LF>\n      );<LF>\n    });<LF>\n  }<LF>\n);<LF>") ;
@@ -31,9 +31,9 @@ fn test_multiline_ts_end_of_linecrlf_format_1_6f3fdc10() {
 #[test]
 fn test_multiline_ts_end_of_linelf_format_1_6f3fdc10() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .end_of_line("lf")
         .parsers(vec!["typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type IAmIncredibleLongParameterType = {};<LF>\nconst IAmAnotherFunctionName = (_0: IAmIncredibleLongParameterType) => {};<LF>\nexport const IAmIncredibleLongFunctionName = IAmAnotherFunctionName(<LF>\n  (_0: IAmIncredibleLongParameterType) => {<LF>\n    setTimeout(() => {<LF>\n      /*<LF>\n          Multiline comment<LF>\n          Multiline comment<LF>\n          Multiline comment<LF>\n      */<LF>\n      console.log(<LF>\n        'Multiline string\\\\<LF>\n         Multiline string\\\\<LF>\n         Multiline string'<LF>\n      );<LF>\n      console.log(<LF>\n        \\`Multiline \\\\n string\\\\<LF>\n         Multiline string\\\\<LF>\n         Multiline string\\`<LF>\n      );<LF>\n    });<LF>\n  }<LF>\n);<LF>") ;

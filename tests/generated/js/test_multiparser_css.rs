@@ -17,8 +17,8 @@ fn test_colons_after_substitutions_js_format_1_305ed33b() {
 #[test]
 fn test_colons_after_substitutions_2_js_format_1_aa592faf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Icon = styled.div\\`\n  height: 48px;\n\n  \\${Link}:nth-child(2) {\n    fill: rebeccapurple;\n  }\n\\`;\n\nconst Icon2 = styled.div\\`\n  height: 48px;\n\n  \\${Link}:empty:before{\n    fill: rebeccapurple;\n  }\n\\`;\n\nconst Icon3 = styled.div\\`\n  height: 48px;\n\n  \\${Link}:not(:first-child) {\n    fill: rebeccapurple;\n  }\n\\`;") ;
@@ -29,8 +29,8 @@ fn test_colons_after_substitutions_2_js_format_1_aa592faf() {
 #[test]
 fn test_issue_2636_js_format_1_5492a56c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export const ButtonWrapper = styled.button\\`\n  \\${base}\n  \\${hover}\n  \\${opaque}\n  \\${block}\n  \\${active}\n  \\${disabled}\n  \\${outline}\n  \\${dashed}\n  \\${spacing}\n\\`;\n\nexport const ButtonWrapper2 = styled.button\\`\n  \\${base} \\${hover} \\${opaque} \\${block} \\${active} \\${disabled} \\${outline} \\${dashed} \\${spacing}\n\\`;") ;
@@ -113,8 +113,8 @@ fn test_issue_9072_js_format_1_02207beb() {
 #[test]
 fn test_issue_11797_js_format_1_bed2a6f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const paragraph1 = css\\`\n  font-size: 12px;\n  transform: \\${vert ? 'translateY' : 'translateX'}(\\${translation + handleOffset}px);\n\\`;\n\nconst paragraph2 = css\\`\n  transform: \\${expr}(30px);\n\\`;\n\nconst paragraph3 = css\\`\n  transform: \\${expr} (30px);\n\\`;") ;
@@ -137,8 +137,8 @@ fn test_styled_components_js_format_1_516081b1() {
 #[test]
 fn test_styled_components_multiple_expressions_js_format_1_d544e68f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Header = styled.div\\`\n  \\${something()}\n  & > \\${Child}:not(:first-child) {\nmargin-left:5px;\n}\n\\`\n\nconst Header2 = styled.div\\`\n  \\${something()}\n  & > \\${Child}\\${Child2}:not(:first-child) {\nmargin-left:5px;\n}\n\\`\n\nstyled.div\\`\\${foo}-idle { }\\`\n\nstyled.div\\`\\${foo}-0-idle { }\\`\n\nstyled.div\\`\nfont-family: \"\\${a}\", \"\\${b}\";\n\\`") ;
@@ -149,8 +149,8 @@ fn test_styled_components_multiple_expressions_js_format_1_d544e68f() {
 #[test]
 fn test_url_js_format_1_8adae460() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -165,8 +165,8 @@ fn test_url_js_format_1_8adae460() {
 #[test]
 fn test_var_js_format_1_14aa88cc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Something = styled.div\\`\n  background: var(--\\${one}); /* ... */\n  border: 1px solid var(--\\${two}); /* ... */\n\\`;\n\nconst StyledPurchaseCard = styled(Card)\\`\n  min-width: 200px;\n  background-color: var(--\\${props => props.color});\n  color: #fff;\n\\`;\n\nconst v1 =  css\\`\nprop: var(--global--color--\\${props.variant});\n\\`;\n\nconst v2 = css\\`\n        background-color: var(--global--color--\\${props.variant});\n\n        &:hover {\n          background-color: var(--global--color--\\${props.variant}__one);\n        }\n      \\`\n\nexport const StyledComponent = styled.div\\`\n  grid-area:  area-\\${props => props.propName};\n\\`") ;

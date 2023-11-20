@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_1_js_format_1_7be30da8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nfunction foo(x: number): string { return 5; }\n\nfoo(0);\n\nmodule.exports = foo;") ;
@@ -105,8 +105,8 @@ fn test_b_3_js_format_1_2e39fc19() {
 #[test]
 fn test_c_1_js_format_1_bf61046a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -121,8 +121,8 @@ fn test_c_1_js_format_1_bf61046a() {
 #[test]
 fn test_c_2_js_format_1_1d5008a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nimport { foo } from \"./c1\";\n\nexport function bar(props: { x: number }) {\n  foo({ x: 0 });\n}") ;
@@ -165,8 +165,8 @@ fn test_d_1_js_format_1_6f8ad4a1() {
 #[test]
 fn test_d_2_js_format_1_0b5a8ea9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -205,8 +205,8 @@ fn test_e_2_js_format_1_1b9ad34c() {
 #[test]
 fn test_f_1_js_format_1_5fa14acc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ntype T = { x: number };\ntype S = { x: string };\n\ndeclare var a: T;\ndeclare var b: S;\ndeclare var c: T;\n\nmodule.exports = { a, b, c };") ;
@@ -245,8 +245,8 @@ fn test_g_1_js_format_1_dc39ee2f() {
 #[test]
 fn test_g_2_js_format_1_d782c94a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -259,8 +259,8 @@ fn test_g_2_js_format_1_d782c94a() {
 #[test]
 fn test_g_3_js_format_1_e96e7e1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -275,8 +275,8 @@ fn test_g_3_js_format_1_e96e7e1f() {
 #[test]
 fn test_h_1_js_format_1_be68019c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @flow\n\nexport type Foo = number;");
@@ -299,8 +299,8 @@ fn test_h_2_js_format_1_55bbc7a1() {
 #[test]
 fn test_i_1_js_format_1_ab883f57() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -315,8 +315,8 @@ fn test_i_1_js_format_1_ab883f57() {
 #[test]
 fn test_i_2_js_format_1_8961d38e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @flow\n\nconst foo = require('./i1');\n\nfoo.p = 0;");
@@ -346,8 +346,8 @@ fn test_j_1_js_format_1_f65d2607() {
 #[test]
 fn test_j_2_js_format_1_3d2f3a75() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @flow\n\nconst foo = require('./j1');\n\nfoo.p = 0;");

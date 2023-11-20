@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_annot_js_format_1_bf9e2592() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo(str:string, i:number):string {\n  return str;\n}\nvar bar: (str:number, i:number)=> string = foo;\n\nvar qux = function(str:string, i:number):number { return foo(str,i); }\n\nvar obj: {str:string; i:number; j:boolean} = {str: \"...\", i: \"...\", k: false};\n\nvar arr: Array<number> = [1,2,\"...\"];\n\n// array sugar\nvar array: number[] = [1,2,\"...\"];\n\nvar matrix: number[][] = [[1,2],[3,4]];\nvar matrix_parens: (number[])[] = matrix;\n\nvar nullable_array: ?number[] = null;\nvar nullable_array_parens: ?(number[]) = nullable_array;\n\nvar array_of_nullable: (?number)[] = [null, 3];\n\nvar array_of_tuple: [number, string][] = [[0, \"foo\"], [1, \"bar\"]];\nvar array_of_tuple_parens: ([number, string])[] = array_of_tuple;\n\ntype ObjType = { 'bar-foo': string; 'foo-bar': number; };\nvar test_obj: ObjType = { 'bar-foo': '23' };\n\n// param type annos are strict UBs like var type annos\nfunction param_anno(n:number):void {\n  n = \"hey\"; // error\n}\n\n// another error on param UB, more typical of www (mis)use-cases\n// this one cribbed from API.atlas.js\nfunction param_anno2(\n    batchRequests: Array<{method: string; path: string; params: ?Object}>,\n  ): void {\n\n    // error below, since we're assigning elements to batchRequests\n    // which lack a path property.\n    // just assign result to new var instead of reassigning to param.\n\n    // Transform the requests to the format the Graph API expects.\n    batchRequests = batchRequests.map((request) => {\n      return {\n        method: request.method,\n        params: request.params,\n        relative_url: request.path,\n      };\n    });\n    // ...\n  }\n\nvar toz : null = 3;\n\nvar zer : null = null;\n\nfunction foobar(n : ?number) : number | null | void { return n; }\nfunction barfoo(n : number | null | void) : ?number { return n; }") ;
@@ -29,8 +29,8 @@ fn test_forward_ref_js_format_1_7d7f4d35() {
 #[test]
 fn test_issue_530_js_format_1_1be7fb04() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

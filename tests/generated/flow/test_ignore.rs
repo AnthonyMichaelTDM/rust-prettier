@@ -17,8 +17,8 @@ fn test_ignore_js_format_1_26c794ac() {
 #[test]
 fn test_type_cast_expression_js_format_1_e251dae2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("transform(\n  // prettier-ignore\n  (pointTransformer: T)\n);\n\ntransform(\n  // prettier-ignore\n  (/* comment */pointTransformer: T /* comment */)\n);\n\ntransform(\n  /* prettier-ignore */(/* prettier-ignore */pointTransformer: (Point => Point))\n);") ;

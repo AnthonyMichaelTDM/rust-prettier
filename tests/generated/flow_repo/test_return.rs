@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_function_return_js_format_1_88da8cdc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class C {\n    foo() { }\n    bar() { return; }\n    fn(x:number) { return x; }\n}\n\nfunction f(x): number {\n  if (x > 1) {\n    return 42;\n  }\n}\n\nfunction g(x): ?number {\n  if (x > 1) {\n    return 42;\n  }\n}\n\nfunction h(x): number {\n  if (x > 1) {\n    return 42;\n  }\n  return;\n}\n\nfunction i(x): ?number {\n  if (x > 1) {\n    return 42;\n  }\n  return;\n}\n\nmodule.exports = C;\n\n//function fn(x:number) { return x; }\n//module.exports = fn;") ;

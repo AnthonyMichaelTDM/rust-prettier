@@ -17,8 +17,8 @@ fn test_after_close_tag_html_format_1_5d6c7ee1() {
 #[test]
 fn test_chid_html_format_1_7485573e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -30,8 +30,8 @@ fn test_chid_html_format_1_7485573e() {
 #[test]
 fn test_defer_html_format_1_41bedaba() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@defer (when isCheckedDefer()) {\n<app-c1/>\n}\n@placeholder {\n<span>Placeholder</span>\n}\n@error {\n<span>Error</span>\n}\n@loading(minimum 1s) {\n<span>Loading...</span>\n}\n\n\n@defer (on interaction) {\n<span>Clicked</span>\n}\n@placeholder {\n<span>Placeholder (click on it!)</span>\n}\n\n\n@defer (on hover) {\n<span>Hovered</span>\n}\n@placeholder {\n<span>Placeholder (hover it!)</span>\n}\n\n\n@defer (on idle) {\n<span>Browser has reached an idle state</span>\n}\n@placeholder {\n<span>Placeholder</span>\n}\n\n\n@defer (on timer(5s)) {\n<span>Visible after 5s</span>\n}\n@placeholder {\n<span>Placeholder</span>\n}\n\n\n@defer (on viewport) {\n<app-c2 text=\"The block entered the viewport\"/>\n}\n@placeholder {\n<span>Placeholder</span>\n}\n\n\n@defer (on interaction; prefetch on hover) {\n<app-c3/>\n}\n@placeholder {\n<span>Placeholder (hover it, then click on it!)</span>\n}\n\n\n@defer (on interaction; prefetch on hover) {\n<app-c3/>\n}\n@placeholder {\n<span>Placeholder (hover it, then click on it!)</span>\n}") ;
@@ -54,8 +54,8 @@ fn test_element_tags_html_format_1_5abe714a() {
 #[test]
 fn test_for_html_format_1_9bc1cdc8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<ul>\n@for (\n            let\n\n            item of items;index as\ni;\n            trackBy: trackByFn\n) {\n<li><strong>{{item.name}}</strong></li>\n}\n@empty {\n<span>The collection is empty</span>\n}\n</ul>\n\n\n<li *ngFor=\"\n            let\n\n            item of items;index as\ni;\n            trackBy: trackByFn\n\"></li>\n\n\n\n<ul>\n@for (item of collection; track item.id; let index = $index, first = $first; let last = $last, even = $even, odd = $odd; let count = $count) {\n\n<li><strong>{{item.name}}</strong> index={{index}} first={{first}} last={{last}} even={{even}} odd={{odd}} count={{count}}</li>\n\n}\n</ul>\n\n<ul>\n@for (item of\n emptyCollection; track item.id;) {\n<li><strong>{{item.name}}</strong></li>\n}\n@empty {\n  <span>The collection is empty</span>\n}\n</ul>\n<li *ngFor=\"\nitem of\n emptyCollection; track item.id;\n\"></li>\n\n<div>\n  @for ( item of items; track item){\n  }\n\n  <div *ngFor=\"item of items; track item\"></div>\n</div>") ;
@@ -78,8 +78,8 @@ fn test_if_html_format_1_0c8bf85f() {
 #[test]
 fn test_mix_html_format_1_8ba93dc5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@if (user.isHuman) {\n<human-profile [data]=\"user\" />\n} @else if (user.isRobot) {\n<!-- robot users are rare, so load their profiles lazily -->\n@defer {\n<robot-profile [data]=\"user\" />\n}\n} @else {\n<p>The profile is unknown!</p>\n}") ;
@@ -102,8 +102,8 @@ fn test_switch_html_format_1_bda03d4f() {
 #[test]
 fn test_unclosed_html_format_1_fb198443() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("@empty{}\n\n@else {}");
@@ -126,8 +126,8 @@ fn test_unknown_block_html_format_1_b3bdde1a() {
 #[test]
 fn test_with_comment_html_format_1_39506734() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div>\n  <!-- comment -->\n  <span>Not checked</span>\n</div>\n\n\n<!-- comment -->\n@if (isChecked()) {\n<span>\n  Checked\n  <!-- comment -->\n</span>\n} <!-- comment -->\n@else {\n<span>Not checked</span>\n}\n<!-- comment -->") ;

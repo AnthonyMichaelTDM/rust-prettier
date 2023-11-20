@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_html_template_literals_js_html_whitespace_sensitivityignore_format_1_90ff0b43() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("ignore")
         .parsers(vec!["babel", "flow", "typescript"])
         .print_width(80)
-        .html_whitespace_sensitivity("ignore")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const nestedFun = /* HTML */ \\`\\${outerExpr(1)}\n  <script>\n    const tpl = html\\\\\\`<div>\\\\\\${innerExpr(1)} \\${outerExpr(2)}</div>\\\\\\`;\n  </script>\\`;\n\nconst nestedFun2 = /* HTML */ \\`\\${outerExpr(1)}\n  <script>\n    const tpl = html\\\\\\`\\\\\\\\n<div>\\\\\\${innerExpr(1)} \\${outerExpr(2)}</div>\\\\\\\\n\\\\\\`;\n  </script>\\`;\n\nsetFoo(\n  html\\`<div>one</div>\n    <div>two</div>\n    <div>three</div>\\`,\n  secondArgument\n);\n\nsetFoo(\n  html\\`<div>\n      <div>nested</div>\n    </div>\n    <div>two</div>\n    <div>three</div>\\`,\n  secondArgument\n);\n\nsetFoo(\n  html\\`<div>\n    <div>nested</div>\n  </div>\\`,\n  secondArgument\n);") ;
@@ -30,9 +30,9 @@ fn test_html_template_literals_js_format_1_90ff0b43() {
 #[test]
 fn test_issue_10691_js_html_whitespace_sensitivityignore_format_1_0819a514() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("ignore")
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export default function include_photoswipe(\n\tgallery_selector = \".my-gallery\"\n) {\n\treturn /* HTML */ \\`\n\t\t<script>\n\t\t\twindow.addEventListener(\"load\", () =>\n\t\t\t\tinitPhotoSwipeFromDOM(\"\\${gallery_selector}\")\n\t\t\t);\n\t\t</script>\\`;\n}") ;
@@ -43,8 +43,8 @@ fn test_issue_10691_js_html_whitespace_sensitivityignore_format_1_0819a514() {
 #[test]
 fn test_issue_10691_js_format_1_0819a514() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export default function include_photoswipe(\n\tgallery_selector = \".my-gallery\"\n) {\n\treturn /* HTML */ \\`\n\t\t<script>\n\t\t\twindow.addEventListener(\"load\", () =>\n\t\t\t\tinitPhotoSwipeFromDOM(\"\\${gallery_selector}\")\n\t\t\t);\n\t\t</script>\\`;\n}") ;

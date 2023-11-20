@@ -29,8 +29,8 @@ fn test_function_each_less_format_1_82430fa9() {
 #[test]
 fn test_issue_11483_never_append_anything_less_format_1_9afef4b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("@variable: {\n  field: something;\n};");
@@ -53,8 +53,8 @@ fn test_less_less_format_1_9ff36876() {
 #[test]
 fn test_quotes_in_comments_less_format_1_547071eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// Animation   \n// '\n.a { color: red }\n\n.aa:hover::after { content: \"\\\\\"\"; } // \"\n    \n    \n.b { background:url(http://example.com); }   .b::after { content: \"a\"; }\n\n.bb { background:url('http://example.com/(foo)bar'); }   .bb::after { content: \"'a\"; } // \"\"\"\n\n// Animation   !\n.c { color:red    }\n\n.d { color: red /* // */ }  .d::after { content: \"'\"; }\n\n/*        fff\n   //   */     .d:hover::after {\n     // qw'erty \n    content: \"'''\"; }\n   \n[href]:active  {\n  opacity:   // '!' \"?\"\n    1;\n") ;

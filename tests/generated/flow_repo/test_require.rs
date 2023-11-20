@@ -29,8 +29,8 @@ fn test_c_js_format_1_e3121712() {
 #[test]
 fn test_e_js_format_1_77a6bbe2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n// Local \\`exports\\` var is just a ref to module.exports, so mutating the original\n// value will affect the exports object but re-binding it makes it useless and\n// does not affect the exports value.\nmodule.exports = {\n  numberValue: 42\n};\n\nexports = {stringValue: ''};") ;
@@ -41,8 +41,8 @@ fn test_e_js_format_1_77a6bbe2() {
 #[test]
 fn test_provides_module_a_js_format_1_0316b2ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -85,8 +85,8 @@ fn test_not_builtin_require_js_format_1_fbed2cbb() {
 #[test]
 fn test_not_builtin_require_2_js_format_1_f1d93d21() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -101,8 +101,8 @@ fn test_not_builtin_require_2_js_format_1_f1d93d21() {
 #[test]
 fn test_require_js_format_1_999b9bb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction takesANumber(num: number): void {}\nfunction takesAString(str: string): void {}\n\n// @providesModule\nvar A = require(\"A\");\ntakesANumber(A.numberValue);\ntakesAString(A.numberValue);\n\n// File path\nvar B = require(\"./B\");\ntakesANumber(B.numberValue);\ntakesAString(B.numberValue);\n\n// C.js exists, but not as a providesModule\nrequire(\"C\");\n\n// @providesModule D exists, but not as a filename\nrequire(\"./D\");\n\n// E exports an object with a numVal property\nvar E = require('./E');\nvar e_1: number = E.numberValue;\nE.stringValue; // Error: The E exports obj has no 'stringValue' property\n\n// We require that the param passed to require() be a string literal to support\n// guaranteed static extraction\nvar a = './E';\nrequire(a); // Error: Param must be string literal\nrequire(\\`./E\\`); // template literals are ok...\nrequire(\\`\\${'./E'}\\`); // error: but only if they have no expressions\n\n// require.call is allowed but circumverts Flow's static analysis\nrequire.call(null, \"DoesNotExist\");") ;

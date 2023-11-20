@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_include_scss_format_1_07ae1284() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -37,8 +37,8 @@ fn test_include_2_scss_format_1_56bfbaa1() {
 #[test]
 fn test_url_scss_format_1_63793fd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

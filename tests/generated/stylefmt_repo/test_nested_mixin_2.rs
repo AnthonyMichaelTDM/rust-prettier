@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_nested_mixin_2_css_format_1_08523ec8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@mixin test() {\n  $values: blue red;\n@each $val   in $values {\n  color  : $val;\n  @for $i   from  2   through    10 {\n   background: $i;\n  }\n}\n@for $i from   2 through 10 {\n  color: $i;\n}\n @while $k   >   0 {\n  color: $k;\n}\n\n}") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_accessor_decorator_ts_format_1_3fb672a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Point {\n  private _x: number;\n  private _y: number;\n  constructor(x: number, y: number) {\n    this._x = x;\n    this._y = y;\n  }\n\n  @configurable(false)\n  get x() {\n    return this._x;\n  }\n\n  @configurable(false)\n  get y() {\n    return this._y;\n  }\n}") ;
@@ -17,8 +17,8 @@ fn test_accessor_decorator_ts_format_1_3fb672a3() {
 #[test]
 fn test_angular_ts_format_1_c6068b21() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@Component({\n  selector: 'toh-hero-button',\n  template: \\`<button>{{label}}</button>\\`\n})\nexport class HeroButtonComponent {\n  @Output() change = new EventEmitter<any>();\n  @Input() label: string;\n}") ;
@@ -53,8 +53,8 @@ fn test_method_decorator_ts_format_1_bfc65b8d() {
 #[test]
 fn test_mobx_ts_format_1_c0e32ab7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class X {\n\t@deco x() {\n      return this.count * 2;\n\t}\n\t@deco get x() {\n      return this.count * 2;\n\t}\n}") ;
@@ -77,8 +77,8 @@ fn test_multiple_ts_format_1_afc7b74b() {
 #[test]
 fn test_parameter_decorator_ts_format_1_7807b4c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Greeter {\n  greeting: string;\n\n  constructor(message: string) {\n    this.greeting = message;\n  }\n\n  @validate\n  greet(@required name: string) {\n    return \"Hello \" + name + \", \" + this.greeting;\n  }\n\n  @validate\n  destructured(@required { toString }: Object) {\n    return Function.prototype.toString.apply(toString);\n  }\n}") ;

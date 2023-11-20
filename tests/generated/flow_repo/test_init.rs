@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_hoisted_js_format_1_c27f7c3a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * test initialization tracking in the presence of hoisting\n * @flow\n */\n\nfunction _if(b: () => boolean) {\n  if (b()) {\n    var f = function () {};\n  }\n  f(); // error, possibly undefined\n}\n\nfunction _while(b: () => boolean) {\n  while (b()) {\n    var f = function () {};\n  }\n  f(); // error, possibly undefined\n}\n\nfunction _do_while(b: () => boolean) {\n  do {\n    var f = function () {};\n  } while (b());\n  f(); // ok\n}\n\nfunction _for(n: number) {\n  for (var i = 0; i < n; i++) {\n    var f = function () {};\n  }\n  f(); // error, possibly undefined\n}\n\nfunction _for_in(obj: Object) {\n  for (var p in obj) {\n    var f = function () {};\n  }\n  f(); // error, possibly undefined\n}\n\nfunction _for_of(arr: Array<number>) {\n  for (var x of arr) {\n    var f = function () {};\n  }\n  f(); // error, possibly undefined\n}") ;

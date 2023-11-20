@@ -33,8 +33,8 @@ fn test_end_comment_yml_format_1_c30dc1d4() {
 #[test]
 fn test_flow_sequence_mapping_yml_format_1_57293524() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("    a:\n      [\n        check-format, check-lint,\n        check-spelling,\n        # coverage,\n        # install-and-run-from-git,\n      ]\n\n    b:\n      {\n        a: check-format, b: check-lint,\n        c: check-spelling,\n        # d: coverage,\n        # e: install-and-run-from-git,\n      }\n\n    d:\n      # prettier-ignore\n      [\n        check-format, check-lint,\n        check-spelling,\n        # coverage,\n        # install-and-run-from-git,\n      ]\n\n    e:\n      # prettier-ignore\n      {\n        a: check-format, b: check-lint,\n        c: check-spelling,\n        # d: coverage,\n        # e: install-and-run-from-git,\n      }") ;
@@ -45,8 +45,8 @@ fn test_flow_sequence_mapping_yml_format_1_57293524() {
 #[test]
 fn test_in_empty_item_without_newlline_yml_format_1_729b95c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a:\n  #12");
@@ -117,8 +117,8 @@ fn test_map_3_yml_format_1_3a6ab800() {
 #[test]
 fn test_map_4_yml_format_1_f3679c56() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("before:\n\n  # before.comment\nafter:\n  # after.comment\n\nbefore-after:\n\n  # before-after.comment\n\nnone:\n  # none.comment\nbefore(2 line):\n\n\n  # before.comment\nafter(2 line):\n  # after.comment\n\n\nbefore-after(2 line):\n\n\n  # before-after.comment\n\n\nnone(2):\n  # none.commen") ;
@@ -129,8 +129,8 @@ fn test_map_4_yml_format_1_f3679c56() {
 #[test]
 fn test_object_yml_format_1_aa6c252b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -158,8 +158,8 @@ fn test_root_yml_format_1_516fdcb9() {
 #[test]
 fn test_sequence_yml_format_1_ab6ffb45() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

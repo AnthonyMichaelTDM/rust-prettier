@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_indent_js_format_1_f3102197() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("if (someVeryLongStringA && someVeryLongStringB && someVeryLongStringC && someVeryLongStringD) {}\nwhile (someVeryLongStringA && someVeryLongStringB && someVeryLongStringC && someVeryLongStringD) {}\ndo {}\nwhile (someVeryLongStringA && someVeryLongStringB && someVeryLongStringC && someVeryLongStringD);\n\nif (someVeryLongFunc(someVeryLongArgA, someVeryLongArgB, someVeryLongArgC, someVeryLongArgD)) {}\nwhile (someVeryLongFunc(someVeryLongArgA, someVeryLongArgB, someVeryLongArgC, someVeryLongArgD)) {}\ndo {}\nwhile (someVeryLongFunc(someVeryLongArgA, someVeryLongArgB, someVeryLongArgC, someVeryLongArgD));\n\nwhile (0) 1;\n\ndo 1;\nwhile (0);") ;

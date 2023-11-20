@@ -33,8 +33,8 @@ fn test_b_js_format_1_eb1522a2() {
 #[test]
 fn test_c_js_format_1_17650170() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// This test exports a function whose return type is the class's \\`this\\` type.\n// It should be inferred (no annotation required).\n\nclass Foo {\n  foo(): this {\n    return this;\n  }\n}\n\nexport function f(x: Foo) {\n  return x.foo();\n}") ;

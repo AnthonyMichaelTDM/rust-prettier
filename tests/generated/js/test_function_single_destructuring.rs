@@ -17,8 +17,8 @@ fn test_array_js_format_1_9cb10500() {
 #[test]
 fn test_object_js_format_1_0acba3ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function StatelessFunctionalComponent({\n  isActive,\n  onFiltersUpdated,\n  onSelect,\n  onSubmitAndDeselect,\n  onCancel,\n  searchFilters,\n  title,\n  items,\n}) {\n  return <div />\n}\n\nfunction StatelessFunctionalComponent2({\n  isActive = true,\n  onFiltersUpdated = () => null,\n  onSelect = () => null,\n  onSubmitAndDeselect = () => null,\n  onCancel = () => null,\n  searchFilters = null,\n  title = '',\n  items = [],\n} = {}) {\n  return <div />\n}\n\nfunction StatelessFunctionalComponent3(\n  {\n    isActive,\n    onFiltersUpdated = () => null,\n    onSelect = () => null,\n    onSubmitAndDeselect = () => null,\n    onCancel = () => null,\n    searchFilters = null,\n    title = '',\n    items = [],\n  } = {\n    isActive: true\n  }\n) {\n  return <div />\n}\n\n\nclass C {\n  StatelessFunctionalComponent({\n    isActive,\n    onFiltersUpdated,\n    onSelect,\n    onSubmitAndDeselect,\n    onCancel,\n    searchFilters,\n    title,\n    items,\n  }) {\n    return <div />\n  }\n}") ;

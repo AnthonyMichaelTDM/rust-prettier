@@ -41,8 +41,8 @@ fn test_comment_in_the_middle_js_format_1_45a7060b() {
 #[test]
 fn test_comment_placement_js_format_1_fcccaeef() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const foo1 = /** @type {string} */\n  (value);\n\nconst foo2 =\n  /** @type {string} */\n  (value);\n\nconst foo3 =\n\n  /** @type {string} */\n  (value);\n\n\nconst foo4 =\n  /** @type {string} */(value);\n\nconst foo5 =\n  /** @type {string} */ (\n    value\n  );") ;
@@ -65,8 +65,8 @@ fn test_extra_spaces_and_asterisks_js_format_1_c40480eb() {
 #[test]
 fn test_iife_js_format_1_47ae1e98() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const helpers1 = /** @type {Helpers} */ ((\n  (helpers = {}) => helpers\n)());\n\nconst helpers2 = /** @type {Helpers} */ ((\n  function() { return something }\n)());\n\n// TODO: @param is misplaced https://github.com/prettier/prettier/issues/5850\nconst helpers = /** @type {Helpers} */ ((\n  /** @param {Partial<Helpers>} helpers */\n  (helpers = {}) => helpers\n)());") ;
@@ -77,8 +77,8 @@ fn test_iife_js_format_1_47ae1e98() {
 #[test]
 fn test_iife_issue_5850_isolated_js_format_1_17b71495() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("const a = /** @param {*} b */\n((b) => {})();");
@@ -89,8 +89,8 @@ fn test_iife_issue_5850_isolated_js_format_1_17b71495() {
 #[test]
 fn test_issue_4124_js_format_1_0ced4ce7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/** @type {Object} */(myObject.property).someProp = true;\n(/** @type {Object} */(myObject.property)).someProp = true;\n\nconst prop = /** @type {Object} */(myObject.property).someProp;\n\nconst test = /** @type (function (*): ?|undefined) */\n      (goog.partial(NewThing.onTemplateChange, rationaleField, typeField));\n\nconst test = /** @type (function (*): ?|undefined) */ (goog.partial(NewThing.onTemplateChange, rationaleField, typeField));\n\nconst model = /** @type {?{getIndex: Function}} */ (model);\n\nconst foo = /** @type {string} */\n  (bar);\n\nconst test = /** @type (function (*): ?|undefined) */ (foo);") ;
@@ -137,8 +137,8 @@ fn test_member_js_format_1_3cf6aa14() {
 #[test]
 fn test_nested_js_format_1_73971729() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("foo = /** @type {!Foo} */ (/** @type {!Baz} */ (baz).bar );\n\nconst BarImpl = /** @type {BarConstructor} */ (\n\t/** @type {unknown} */\n\t(function Bar() {\n\t\tthrow new Error(\"Internal error: Illegal constructor\");\n\t})\n);") ;
@@ -161,8 +161,8 @@ fn test_non_casts_js_format_1_71f8336e() {
 #[test]
 fn test_object_with_comment_js_format_1_b21e8bf4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const objectWithComment = /** @type MyType */ (\n  /* comment */\n  {\n    foo: bar\n  }\n);\n\nconst objectWithComment2 = /** @type MyType */ (  /* comment */  {\n    foo: bar\n  }\n);") ;

@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_asterisk_md_prose_wrapalways_format_1_ae78015e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*123*");
@@ -19,8 +19,8 @@ fn test_asterisk_md_prose_wrapalways_format_1_ae78015e() {
 fn test_complex_md_prose_wrapalways_format_1_bb7a0796() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -35,9 +35,9 @@ fn test_complex_md_prose_wrapalways_format_1_bb7a0796() {
 #[test]
 fn test_special_md_prose_wrapalways_format_1_b78ef1d8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("0*1*2\n\n!*1*2\n\n0*1*!\n\n!*1*!\n\n0*1*2\n\n！*1*2\n\n0*1*！\n\n！*1*！\n\n0_1_2\n\n!_1_2\n\n0_1_! <!-- remark-misparsing, should be formatted as \\`0_1\\\\_!\\` -->\n\n!_1_!\n\n0_1_2\n\n！_1_2\n\n0_1_！ <!-- remark-misparsing, should be formatted as \\`0_1\\\\_！\\` -->\n\n！_1_！") ;

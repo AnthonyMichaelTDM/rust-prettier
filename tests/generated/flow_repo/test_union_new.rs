@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_issue_815_js_format_1_76bc0671() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\ntype T = A|B;\nclass U {};\ndeclare var children: U;\n(children: T|U);\nclass A {};\nclass B {};\n\ntype VirtualElement = Thunk|VirtualNode;\ntype Child = VirtualElement;\ntype Children = Array<Child>;\n\n\nclass Thunk {}\nclass VirtualNode {\n  children: Child|Children;\n  constructor(type, children/*:Children*/) {\n    this.children = children.length === 1 ? children[0] :\n      children;\n  }\n}") ;
@@ -17,8 +17,8 @@ fn test_issue_815_js_format_1_76bc0671() {
 #[test]
 fn test_issue_824_js_format_1_643ad0ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import { B, C } from \"./issue-824-helper\";\n\ntype K = B | C;\n\ntype I = {\n  which(): number;\n};\n\nexport default class A {\n  static foo(p: K): bool {\n    return false;\n  }\n  static bar(p: I & K): bool {\n    return this.foo(p);\n  }\n}") ;
@@ -53,8 +53,8 @@ fn test_issue_1349_js_format_1_e76035ce() {
 #[test]
 fn test_issue_1371_js_format_1_9e6f9c45() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function create(a: any): { type: 'B', data: number } | { type: 'A', data: string }\n{\n  return {\n    type: 'A',\n    data: a\n  }\n}") ;
@@ -65,8 +65,8 @@ fn test_issue_1371_js_format_1_9e6f9c45() {
 #[test]
 fn test_issue_1455_js_format_1_d03d6231() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\nimport type {Foobar} from \"./issue-1455-helper\"\n\nfunction create(content: ?Foobar | String | Array<String>) {\n}\n\nfunction node(content: ?Foobar | String | Array<String>) {\n  create(content)\n}") ;
@@ -173,8 +173,8 @@ fn test_test_2_js_format_1_69628aed() {
 #[test]
 fn test_test_3_js_format_1_e7af40a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n/**\n * Test that shows how the implementation of union types is broken\n */\n\n///////////////////////////////\n// example with function types\n///////////////////////////////\n\nfunction fun(a: ((x: number) => void) | ((x: string) => void)) { }\n\nfun((((x) => {}): A1));\n\ntype A1 = (x: B1) => void;\n\ntype B1 = string;\n\n////////////////////////////\n// example with array types\n////////////////////////////\n\nfunction arr(a: number[] | string[]) { }\n\narr(([]: A2));\n\ntype A2 = B2[];\n\ntype B2 = string;") ;
@@ -197,8 +197,8 @@ fn test_test_4_js_format_1_0049b02d() {
 #[test]
 fn test_test_5_js_format_1_a41ac0ce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n/**\n * Test that shows how the implementation of union types is broken\n */\n\n///////////////////////////////\n// example with function types\n///////////////////////////////\n\nfunction fun(a: ((x: number) => number) | ((x: string) => string)) { }\n\nfunction a1(x) { return x; }\nfun(a1);\n\nfunction fun_call(x: string): string { return a1(x); }\n\n/////////////////////////////\n// example with array types\n/////////////////////////////\n\nfunction arr(a: number[] | string[]) { }\n\nvar a2 = [];\narr(a2);\n\nfunction arr_set(x: string, i: number) { a2[i] = x; }") ;
@@ -209,8 +209,8 @@ fn test_test_5_js_format_1_a41ac0ce() {
 #[test]
 fn test_test_6_js_format_1_451f1a0a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n/**\n * Test that shows how the implementation of union types is broken\n */\n\n//////////////////////////////////////////\n// example with generic class inheritance\n//////////////////////////////////////////\n\nfunction inst(a: E<B4>): C<number> | C<string> { return a; }\n\nconst mk_C = () => C;\nconst mk_D = () => D;\nconst mk_E = () => E;\n\ntype B4 = string;\n\nconst _D = mk_D();\nclass E<X> extends _D<X> { }\n\nconst _C = mk_C();\nclass D<X> extends _C<X> { }\n\nclass C<X> { }") ;
@@ -233,8 +233,8 @@ fn test_test_7_js_format_1_636eb9b5() {
 #[test]
 fn test_test_8_js_format_1_329862cd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n/**\n * Test that shows how the implementation of union types is broken\n */\n\n//////////////////////\n// nested union types\n//////////////////////\n\nfunction rec(x: F1 | F2) { }\nrec({ x: 0 });\n\ntype F1 = G1 | G1_;\ntype F2 = G2 | G2_;\ntype G1 = { x: H1 };\ntype G1_ = { x: H1_ };\ntype G2 = { x: H2 };\ntype G2_ = { x: H2_ };\ntype H1 = boolean;\ntype H1_ = string;\ntype H2 = boolean;\ntype H2_ = number;") ;
@@ -245,8 +245,8 @@ fn test_test_8_js_format_1_329862cd() {
 #[test]
 fn test_test_9_js_format_1_5dbd76e9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n/**\n * Test that shows how the implementation of union types is broken\n */\n\n////////////////\n// interference\n////////////////\n\nfunction square(x? = 0) {\n  return x * x;\n}\n\nfunction foo(f: ((_: ?number) => ?number) | (() => void)) { }\nfoo((x): number => square(x))") ;
@@ -281,8 +281,8 @@ fn test_test_11_js_format_1_80dd6983() {
 #[test]
 fn test_test_12_js_format_1_245b67af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n// polymorphic recursive types\n\ntype F<X> = { f: F<X>, x: X }\ntype G = { x: number }\ntype H = { x: string }\n\nfunction rec(x: F<string>): G | H { return x; }") ;
@@ -317,8 +317,8 @@ fn test_test_14_js_format_1_afd89d00() {
 #[test]
 fn test_test_15_js_format_1_76fd0a32() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n// functions as objects\n\nfunction foo<X>(target: EventTarget) {\n  target.addEventListener('click', (e) => {});\n}\n\ndeclare class EventTarget {\n  addEventListener(type: 'foo', listener: KeyboardEventHandler): void;\n  addEventListener(type: string, listener: EventHandler): void;\n}\n\ndeclare class Event { }\ndeclare class KeyboardEvent { }\n\ntype EventHandler = (event: Event) => mixed\ntype KeyboardEventHandler = (event: KeyboardEvent) => mixed\n\n// example where globals are not yet resolved\n\nfunction bar(x: (() => void) | { x: number }) { }\n\nbar(() => { });") ;
@@ -393,8 +393,8 @@ fn test_test_20_js_format_1_d5315a51() {
 #[test]
 fn test_test_21_js_format_1_80bd62b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n// annotations for disjoint unions\n\ntype T =\n  | { type: \"FOO\", x: number }\n  | { type: \"BAR\", x: string }\n\n({ type: (bar(): \"BAR\"), x: str() }: T);\n\n({ type: bar(), x: str() }: T);\n\n({ type: bar(), x: (str(): string) }: T);\n\nfunction bar() {\n  return \"BAR\";\n}\n\nfunction str() {\n  return \"hello\";\n}") ;
@@ -405,8 +405,8 @@ fn test_test_21_js_format_1_80bd62b7() {
 #[test]
 fn test_test_22_js_format_1_0c92e585() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n// refinement of disjoint unions\n\ntype Empty = { }\n\ntype Success = {\n  type: 'SUCCESS';\n  result: string;\n};\n\ntype Error = {\n  type: 'ERROR';\n} & Empty;\n\nexport type T = Success | Error;\n\nfunction foo(x: T) {\n  if (x.type === 'SUCCESS') return x.result;\n  else return x.result;\n}") ;
@@ -453,8 +453,8 @@ fn test_test_25_js_format_1_c6f229fd() {
 #[test]
 fn test_test_26_js_format_1_f955d810() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\ndeclare function foo(x: number): number;\ndeclare function foo(x: string): string;\n\ndeclare var x: number | string;\n\n(foo(x): number | string);\n\ntype T = number | string;\ndeclare var y: T;\n\n(foo(y): T);\n\ndeclare class Record {\n  set(x: 'foo', y: number): void;\n  set(x: 'bar', y: string): void;\n}\n\nnew Record().set('foo', \"42\");") ;
@@ -477,8 +477,8 @@ fn test_test_27_js_format_1_ad0714b2() {
 #[test]
 fn test_test_29_js_format_1_af6bd9a5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n// Make sure caching doesn't cause a spurious successful match (e.g., when a\n// failed match is tried again). This may happen, e.g., when checking\n// polymorphic definitions, where the same code may be checked multiple times\n// with different instantiations.\n\ntype Row = { x: string };\n\ndeclare class D<T> {\n  reduce(\n    callbackfn: (previousValue: T, currentValue: T) => T,\n    initialValue: void\n  ): T;\n  reduce<U>(\n    callbackfn: (previousValue: U, currentValue: T) => U,\n    initialValue: U\n  ): U;\n}\n\nclass C {\n  foo(\n    rows: D<Row>,\n    minWidth: number,\n  ): number {\n    return rows.reduce(\n      (length, row) => 0,\n      minWidth,\n    );\n  }\n}") ;
@@ -501,8 +501,8 @@ fn test_test_30_js_format_1_f0fb81d7() {
 #[test]
 fn test_test_30_helper_js_format_1_764fc7ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -517,8 +517,8 @@ fn test_test_30_helper_js_format_1_764fc7ed() {
 #[test]
 fn test_test_31_js_format_1_23f3d8fb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @noflow\n\n// make sure tuples are type arguments (as used e.g. when viewing maps as\n// key/value iterables) work\n\ninterface SomeIterator<T> { }\n\ninterface SomeIterable<T> {\n  it(): SomeIterator<T>;\n}\n\ndeclare class SomeMap<K,V> {\n  it(): SomeIterator<[K,V]>;\n  set(k: K, v: V): void;\n}\n\ndeclare class ImmutableMap<K,V> { }\n\ndeclare function convert<K,V>(iter: SomeIterable<[K,V]>): ImmutableMap<K,V>;\n\nfunction foo(): ImmutableMap<string, boolean> {\n  const countersGlobalMap = new SomeMap();\n  countersGlobalMap.set(\"\", false);\n  return convert(countersGlobalMap);\n}") ;
@@ -529,8 +529,8 @@ fn test_test_31_js_format_1_23f3d8fb() {
 #[test]
 fn test_test_32_js_format_1_a23bbdba() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// make sure that full resolution jobs don't cache improperly to signal success\n// when they have failed earlier\n\nfunction foo(value: Indirect<string> | number): Indirect<string> | number {\n  const castedValue: number = typeof value === 'number' ? value : 0;\n  return castedValue;\n}") ;

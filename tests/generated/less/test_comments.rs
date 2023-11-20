@@ -41,8 +41,8 @@ fn test_block_less_format_1_945b75f8() {
 #[test]
 fn test_block_2_less_format_1_f658e26b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/* Kikoo */\n/**\n * Kikoo\n */");
@@ -65,8 +65,8 @@ fn test_in_value_less_format_1_9139fb64() {
 #[test]
 fn test_issue_8130_less_format_1_edc06c26() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@import \"../node_modules/foo/bar.less\";\n\n// @index(['./components/**/*.less', '!./**/_demo/**'], f => \\`@import '\\${f.path}\\${f.ext}';\\`)\n@import './components/Button/Button.less';\n@import './components/Form/Form.less';\n@import './components/Input/Input.less';\n// @endindex") ;
@@ -77,8 +77,8 @@ fn test_issue_8130_less_format_1_edc06c26() {
 #[test]
 fn test_mixed_less_format_1_a2bbf8f2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* DO NOT ADD EXTRA CODE TO THIS FILE */\n\n@import \"a\";\n\n// '/*' <-- this breaks formatting\n\n@import 'b';\n// another comment\n//no-space before") ;
@@ -169,8 +169,8 @@ fn test_trailing_star_slash_less_format_1_67c36f8a() {
 #[test]
 fn test_value_lists_less_format_1_e885fbd4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@test-space-separated: #aaaaaa // Start with A\n  #bbbbbb // then some B\n  #cccccc; // and round it out with C\n\n@test-space-separated : #aaaaaa // Start with A\n  #bbbbbb // then some B\n  #cccccc; // and round it out with C\n\n@test-comma-separated: #aaaaaa, // Start with A\n  #bbbbbb, // then some B\n  #cccccc; // and round it out with C") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comment_ts_format_1_62cca1fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\nthis.firebase.object(\\`/shops/\\${shopLocation.shop}\\`)\n  // keep distance info\n  .first((shop: ShopQueryResult, index: number, source: Observable<ShopQueryResult>): any => {\n      // add distance to result\n      const s = shop;\n      s.distance = shopLocation.distance;\n      return s;\n  });") ;

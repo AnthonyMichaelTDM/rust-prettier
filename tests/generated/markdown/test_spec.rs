@@ -31,9 +31,9 @@ fn test_commonmark_0_30_example_329_md_prose_wrapalways_format_1_910f3423() {
 #[test]
 fn test_commonmark_0_30_example_330_md_prose_wrapalways_format_1_2b165875() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\` \\`\\` \\`");
@@ -45,8 +45,8 @@ fn test_commonmark_0_30_example_330_md_prose_wrapalways_format_1_2b165875() {
 fn test_commonmark_0_30_example_331_md_prose_wrapalways_format_1_5a8dd071() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`  \\`\\`  \\`");
@@ -57,9 +57,9 @@ fn test_commonmark_0_30_example_331_md_prose_wrapalways_format_1_5a8dd071() {
 #[test]
 fn test_commonmark_0_30_example_332_md_prose_wrapalways_format_1_261fbe1e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\` a\\`");
@@ -70,8 +70,8 @@ fn test_commonmark_0_30_example_332_md_prose_wrapalways_format_1_261fbe1e() {
 #[test]
 fn test_commonmark_0_30_example_333_md_prose_wrapalways_format_1_5228bd13() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -84,8 +84,8 @@ fn test_commonmark_0_30_example_333_md_prose_wrapalways_format_1_5228bd13() {
 fn test_commonmark_0_30_example_334_md_prose_wrapalways_format_1_82ac97f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\` \\`\n\\`  \\`");
@@ -96,8 +96,8 @@ fn test_commonmark_0_30_example_334_md_prose_wrapalways_format_1_82ac97f1() {
 #[test]
 fn test_commonmark_0_30_example_335_md_prose_wrapalways_format_1_a68acf46() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -109,9 +109,9 @@ fn test_commonmark_0_30_example_335_md_prose_wrapalways_format_1_a68acf46() {
 #[test]
 fn test_commonmark_0_30_example_336_md_prose_wrapalways_format_1_f8f1221d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\nfoo \n\\`\\`");
@@ -122,9 +122,9 @@ fn test_commonmark_0_30_example_336_md_prose_wrapalways_format_1_f8f1221d() {
 #[test]
 fn test_commonmark_0_30_example_337_md_prose_wrapalways_format_1_7cbabf44() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`foo   bar \nbaz\\");
@@ -136,8 +136,8 @@ fn test_commonmark_0_30_example_337_md_prose_wrapalways_format_1_7cbabf44() {
 fn test_example_1_md_prose_wrapalways_format_1_849b62fe() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\tfoo\tbaz\t\tbim");
@@ -148,9 +148,9 @@ fn test_example_1_md_prose_wrapalways_format_1_849b62fe() {
 #[test]
 fn test_example_2_md_prose_wrapalways_format_1_aa560c30() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("  \tfoo\tbaz\t\tbim");
@@ -161,9 +161,9 @@ fn test_example_2_md_prose_wrapalways_format_1_aa560c30() {
 #[test]
 fn test_example_3_md_prose_wrapalways_format_1_1e5d2028() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    a\ta\n    ὐ\ta");
@@ -187,9 +187,9 @@ fn test_example_4_md_prose_wrapalways_format_1_25c7dc10() {
 #[test]
 fn test_example_5_md_prose_wrapalways_format_1_88a4e15a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n\n\t\tbar");
@@ -213,9 +213,9 @@ fn test_example_6_md_prose_wrapalways_format_1_fabddaf7() {
 #[test]
 fn test_example_7_md_prose_wrapalways_format_1_8c04abd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-\t\tfoo");
@@ -240,8 +240,8 @@ fn test_example_8_md_prose_wrapalways_format_1_ea220e05() {
 fn test_example_9_md_prose_wrapalways_format_1_c9ede15d() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(" - foo\n   - bar\n\t - baz");
@@ -252,8 +252,8 @@ fn test_example_9_md_prose_wrapalways_format_1_c9ede15d() {
 #[test]
 fn test_example_10_md_prose_wrapalways_format_1_bf62e2d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -266,8 +266,8 @@ fn test_example_10_md_prose_wrapalways_format_1_bf62e2d6() {
 fn test_example_11_md_prose_wrapalways_format_1_d6ff794d() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- placeholder for continuous thematic breaks not being treated as yaml -->\n\n***\n---\n___") ;
@@ -278,9 +278,9 @@ fn test_example_11_md_prose_wrapalways_format_1_d6ff794d() {
 #[test]
 fn test_example_12_md_prose_wrapalways_format_1_decc3707() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("+++");
@@ -304,8 +304,8 @@ fn test_example_13_md_prose_wrapalways_format_1_57de602f() {
 #[test]
 fn test_example_14_md_prose_wrapalways_format_1_c2ce7512() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -317,9 +317,9 @@ fn test_example_14_md_prose_wrapalways_format_1_c2ce7512() {
 #[test]
 fn test_example_15_md_prose_wrapalways_format_1_c3cfe817() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- placeholder for continuous thematic breaks not being treated as yaml -->\n\n ***\n  ***\n   ***") ;
@@ -330,9 +330,9 @@ fn test_example_15_md_prose_wrapalways_format_1_c3cfe817() {
 #[test]
 fn test_example_16_md_prose_wrapalways_format_1_7815e4a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    ***");
@@ -343,9 +343,9 @@ fn test_example_16_md_prose_wrapalways_format_1_7815e4a9() {
 #[test]
 fn test_example_17_md_prose_wrapalways_format_1_f79d607c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n    ***");
@@ -356,8 +356,8 @@ fn test_example_17_md_prose_wrapalways_format_1_f79d607c() {
 #[test]
 fn test_example_18_md_prose_wrapalways_format_1_8ca779c8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -369,9 +369,9 @@ fn test_example_18_md_prose_wrapalways_format_1_8ca779c8() {
 #[test]
 fn test_example_19_md_prose_wrapalways_format_1_f316afb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format(" - - -");
@@ -382,9 +382,9 @@ fn test_example_19_md_prose_wrapalways_format_1_f316afb0() {
 #[test]
 fn test_example_20_md_prose_wrapalways_format_1_e0dc463c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(" **  * ** * ** * **");
@@ -396,8 +396,8 @@ fn test_example_20_md_prose_wrapalways_format_1_e0dc463c() {
 fn test_example_21_md_prose_wrapalways_format_1_60af7d80() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-     -      -      -");
@@ -408,9 +408,9 @@ fn test_example_21_md_prose_wrapalways_format_1_60af7d80() {
 #[test]
 fn test_example_22_md_prose_wrapalways_format_1_0113d938() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- - - -    ");
@@ -421,8 +421,8 @@ fn test_example_22_md_prose_wrapalways_format_1_0113d938() {
 #[test]
 fn test_example_23_md_prose_wrapalways_format_1_c50320d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -435,8 +435,8 @@ fn test_example_23_md_prose_wrapalways_format_1_c50320d6() {
 fn test_example_25_md_prose_wrapalways_format_1_56180ac3() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n***\n- bar");
@@ -447,9 +447,9 @@ fn test_example_25_md_prose_wrapalways_format_1_56180ac3() {
 #[test]
 fn test_example_26_md_prose_wrapalways_format_1_b8bd3551() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n***\nbar");
@@ -460,9 +460,9 @@ fn test_example_26_md_prose_wrapalways_format_1_b8bd3551() {
 #[test]
 fn test_example_27_md_prose_wrapalways_format_1_2d8ac444() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n---\nbar");
@@ -473,9 +473,9 @@ fn test_example_27_md_prose_wrapalways_format_1_2d8ac444() {
 #[test]
 fn test_example_28_md_prose_wrapalways_format_1_9d914e96() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("* Foo\n* * *\n* Bar");
@@ -487,8 +487,8 @@ fn test_example_28_md_prose_wrapalways_format_1_9d914e96() {
 fn test_example_29_md_prose_wrapalways_format_1_92e6098f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- Foo\n- * * *");
@@ -499,9 +499,9 @@ fn test_example_29_md_prose_wrapalways_format_1_92e6098f() {
 #[test]
 fn test_example_30_md_prose_wrapalways_format_1_e7607693() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -516,9 +516,9 @@ fn test_example_30_md_prose_wrapalways_format_1_e7607693() {
 #[test]
 fn test_example_31_md_prose_wrapalways_format_1_6588dd59() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("####### foo");
@@ -529,8 +529,8 @@ fn test_example_31_md_prose_wrapalways_format_1_6588dd59() {
 #[test]
 fn test_example_32_md_prose_wrapalways_format_1_ed01983c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -542,8 +542,8 @@ fn test_example_32_md_prose_wrapalways_format_1_ed01983c() {
 #[test]
 fn test_example_33_md_prose_wrapalways_format_1_1fd9a9f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -568,9 +568,9 @@ fn test_example_34_md_prose_wrapalways_format_1_4532c196() {
 #[test]
 fn test_example_35_md_prose_wrapalways_format_1_c946094a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# foo *bar* \\\\*baz\\\\*");
@@ -582,8 +582,8 @@ fn test_example_35_md_prose_wrapalways_format_1_c946094a() {
 fn test_example_36_md_prose_wrapalways_format_1_bb8a98e7() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("#                  foo                     ");
@@ -620,9 +620,9 @@ fn test_example_38_md_prose_wrapalways_format_1_2af104be() {
 #[test]
 fn test_example_39_md_prose_wrapalways_format_1_2237e264() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo\n    # bar");
@@ -633,9 +633,9 @@ fn test_example_39_md_prose_wrapalways_format_1_2237e264() {
 #[test]
 fn test_example_40_md_prose_wrapalways_format_1_7bbdee45() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("## foo ##\n  ###   bar    ###");
@@ -646,9 +646,9 @@ fn test_example_40_md_prose_wrapalways_format_1_7bbdee45() {
 #[test]
 fn test_example_41_md_prose_wrapalways_format_1_4fbd2718() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# foo ##################################\n##### foo ##");
@@ -660,8 +660,8 @@ fn test_example_41_md_prose_wrapalways_format_1_4fbd2718() {
 fn test_example_42_md_prose_wrapalways_format_1_1cdc4af1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("### foo ###     ");
@@ -672,9 +672,9 @@ fn test_example_42_md_prose_wrapalways_format_1_1cdc4af1() {
 #[test]
 fn test_example_43_md_prose_wrapalways_format_1_76af64d0() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("### foo ### b");
@@ -686,8 +686,8 @@ fn test_example_43_md_prose_wrapalways_format_1_76af64d0() {
 fn test_example_44_md_prose_wrapalways_format_1_2fc6957c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# foo#");
@@ -698,9 +698,9 @@ fn test_example_44_md_prose_wrapalways_format_1_2fc6957c() {
 #[test]
 fn test_example_45_md_prose_wrapalways_format_1_67c0283e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("### foo \\\\###\n## foo #\\\\##\n# foo \\\\#");
@@ -727,9 +727,9 @@ fn test_example_46_md_prose_wrapalways_format_1_e9e5654f() {
 #[test]
 fn test_example_47_md_prose_wrapalways_format_1_abe45ed2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo bar\n# baz\nBar foo");
@@ -740,8 +740,8 @@ fn test_example_47_md_prose_wrapalways_format_1_abe45ed2() {
 #[test]
 fn test_example_48_md_prose_wrapalways_format_1_a13e1fd5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -753,9 +753,9 @@ fn test_example_48_md_prose_wrapalways_format_1_a13e1fd5() {
 #[test]
 fn test_example_49_md_prose_wrapalways_format_1_2ea5b2d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo *bar*\n=========\n\nFoo *bar*\n---------");
@@ -766,9 +766,9 @@ fn test_example_49_md_prose_wrapalways_format_1_2ea5b2d4() {
 #[test]
 fn test_example_50_md_prose_wrapalways_format_1_21693463() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo *bar\nbaz*\n====");
@@ -792,9 +792,9 @@ fn test_example_51_md_prose_wrapalways_format_1_9e78a4ee() {
 #[test]
 fn test_example_52_md_prose_wrapalways_format_1_7b5330bd() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("   Foo\n---\n\n  Foo\n-----\n\n  Foo\n  ===");
@@ -818,9 +818,9 @@ fn test_example_53_md_prose_wrapalways_format_1_a42b0730() {
 #[test]
 fn test_example_54_md_prose_wrapalways_format_1_cb1375af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n   ----      ");
@@ -831,9 +831,9 @@ fn test_example_54_md_prose_wrapalways_format_1_cb1375af() {
 #[test]
 fn test_example_55_md_prose_wrapalways_format_1_fbe2e253() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n    ---");
@@ -844,9 +844,9 @@ fn test_example_55_md_prose_wrapalways_format_1_fbe2e253() {
 #[test]
 fn test_example_56_md_prose_wrapalways_format_1_81c9870e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n= =\n\nFoo\n--- -");
@@ -857,9 +857,9 @@ fn test_example_56_md_prose_wrapalways_format_1_81c9870e() {
 #[test]
 fn test_example_57_md_prose_wrapalways_format_1_e32f33a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo  \n-----");
@@ -883,9 +883,9 @@ fn test_example_58_md_prose_wrapalways_format_1_b35547a9() {
 #[test]
 fn test_example_59_md_prose_wrapalways_format_1_fcf51c1e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -900,9 +900,9 @@ fn test_example_59_md_prose_wrapalways_format_1_fcf51c1e() {
 #[test]
 fn test_example_60_md_prose_wrapalways_format_1_7e387c98() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> Foo\n---");
@@ -914,8 +914,8 @@ fn test_example_60_md_prose_wrapalways_format_1_7e387c98() {
 fn test_example_61_md_prose_wrapalways_format_1_eb8c1dd7() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> foo\nbar\n===");
@@ -926,9 +926,9 @@ fn test_example_61_md_prose_wrapalways_format_1_eb8c1dd7() {
 #[test]
 fn test_example_62_md_prose_wrapalways_format_1_0bd258cc() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- Foo\n---");
@@ -939,9 +939,9 @@ fn test_example_62_md_prose_wrapalways_format_1_0bd258cc() {
 #[test]
 fn test_example_63_md_prose_wrapalways_format_1_41500752() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\nBar\n---");
@@ -952,8 +952,8 @@ fn test_example_63_md_prose_wrapalways_format_1_41500752() {
 #[test]
 fn test_example_64_md_prose_wrapalways_format_1_aa58f43b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -978,9 +978,9 @@ fn test_example_65_md_prose_wrapalways_format_1_fd0dc24a() {
 #[test]
 fn test_example_66_md_prose_wrapalways_format_1_4b12a98d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\n---");
@@ -991,8 +991,8 @@ fn test_example_66_md_prose_wrapalways_format_1_4b12a98d() {
 #[test]
 fn test_example_67_md_prose_wrapalways_format_1_fa86cc5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1004,9 +1004,9 @@ fn test_example_67_md_prose_wrapalways_format_1_fa86cc5a() {
 #[test]
 fn test_example_68_md_prose_wrapalways_format_1_b46af2c0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    foo\n---");
@@ -1030,9 +1030,9 @@ fn test_example_69_md_prose_wrapalways_format_1_c1abd92f() {
 #[test]
 fn test_example_70_md_prose_wrapalways_format_1_4c8e9ee7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\\\> foo\n------");
@@ -1044,8 +1044,8 @@ fn test_example_70_md_prose_wrapalways_format_1_4c8e9ee7() {
 fn test_example_71_md_prose_wrapalways_format_1_69e40067() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n\nbar\n---\nbaz");
@@ -1056,9 +1056,9 @@ fn test_example_71_md_prose_wrapalways_format_1_69e40067() {
 #[test]
 fn test_example_72_md_prose_wrapalways_format_1_d401f9c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\nbar\n\n---\n\nbaz");
@@ -1082,8 +1082,8 @@ fn test_example_73_md_prose_wrapalways_format_1_e29d2070() {
 #[test]
 fn test_example_74_md_prose_wrapalways_format_1_20490add() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1095,9 +1095,9 @@ fn test_example_74_md_prose_wrapalways_format_1_20490add() {
 #[test]
 fn test_example_75_md_prose_wrapalways_format_1_d713304f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    a simple\n      indented code block");
@@ -1108,9 +1108,9 @@ fn test_example_75_md_prose_wrapalways_format_1_d713304f() {
 #[test]
 fn test_example_76_md_prose_wrapalways_format_1_edcc7d52() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("  - foo\n\n    bar");
@@ -1121,9 +1121,9 @@ fn test_example_76_md_prose_wrapalways_format_1_edcc7d52() {
 #[test]
 fn test_example_77_md_prose_wrapalways_format_1_7446cee5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("1.  foo\n\n    - bar");
@@ -1134,8 +1134,8 @@ fn test_example_77_md_prose_wrapalways_format_1_7446cee5() {
 #[test]
 fn test_example_78_md_prose_wrapalways_format_1_78488ccb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1147,9 +1147,9 @@ fn test_example_78_md_prose_wrapalways_format_1_78488ccb() {
 #[test]
 fn test_example_79_md_prose_wrapalways_format_1_08b9915e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    chunk1\n\n    chunk2\n  \n \n \n    chunk3");
@@ -1173,9 +1173,9 @@ fn test_example_80_md_prose_wrapalways_format_1_b34724f4() {
 #[test]
 fn test_example_81_md_prose_wrapalways_format_1_231b9453() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n    bar");
@@ -1186,8 +1186,8 @@ fn test_example_81_md_prose_wrapalways_format_1_231b9453() {
 #[test]
 fn test_example_82_md_prose_wrapalways_format_1_3c3d90c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1200,8 +1200,8 @@ fn test_example_82_md_prose_wrapalways_format_1_3c3d90c9() {
 fn test_example_83_md_prose_wrapalways_format_1_10e90bc9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# Heading\n    foo\nHeading\n------\n    foo\n----");
@@ -1215,9 +1215,9 @@ fn test_example_83_md_prose_wrapalways_format_1_10e90bc9() {
 #[test]
 fn test_example_84_md_prose_wrapalways_format_1_69851ce7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("        foo\n    bar");
@@ -1228,9 +1228,9 @@ fn test_example_84_md_prose_wrapalways_format_1_69851ce7() {
 #[test]
 fn test_example_85_md_prose_wrapalways_format_1_42fbafd2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\n    \n    foo\n    ");
@@ -1242,8 +1242,8 @@ fn test_example_85_md_prose_wrapalways_format_1_42fbafd2() {
 fn test_example_86_md_prose_wrapalways_format_1_58f0098c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    foo  ");
@@ -1254,9 +1254,9 @@ fn test_example_86_md_prose_wrapalways_format_1_58f0098c() {
 #[test]
 fn test_example_87_md_prose_wrapalways_format_1_07410780() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\n<\n >\n\\`\\`\\`");
@@ -1267,8 +1267,8 @@ fn test_example_87_md_prose_wrapalways_format_1_07410780() {
 #[test]
 fn test_example_88_md_prose_wrapalways_format_1_20487dd8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1319,9 +1319,9 @@ fn test_example_91_md_prose_wrapalways_format_1_34dc9359() {
 #[test]
 fn test_example_92_md_prose_wrapalways_format_1_962895c7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("~~~~\naaa\n~~~\n~~~~");
@@ -1332,8 +1332,8 @@ fn test_example_92_md_prose_wrapalways_format_1_962895c7() {
 #[test]
 fn test_example_93_md_prose_wrapalways_format_1_6bfec7e5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1345,9 +1345,9 @@ fn test_example_93_md_prose_wrapalways_format_1_6bfec7e5() {
 #[test]
 fn test_example_94_md_prose_wrapalways_format_1_cff72e39() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\\`\\`\n\n\\`\\`\\`\naaa");
@@ -1358,9 +1358,9 @@ fn test_example_94_md_prose_wrapalways_format_1_cff72e39() {
 #[test]
 fn test_example_95_md_prose_wrapalways_format_1_e9e25087() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> \\`\\`\\`\n> aaa\n\nbbb");
@@ -1371,9 +1371,9 @@ fn test_example_95_md_prose_wrapalways_format_1_e9e25087() {
 #[test]
 fn test_example_96_md_prose_wrapalways_format_1_90f9a158() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\n\n  \n\\`\\`\\`");
@@ -1411,8 +1411,8 @@ fn test_example_98_md_prose_wrapalways_format_1_1b84e454() {
 fn test_example_99_md_prose_wrapalways_format_1_15e3730a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("  \\`\\`\\`\naaa\n  aaa\naaa\n  \\`\\`\\`");
@@ -1436,8 +1436,8 @@ fn test_example_100_md_prose_wrapalways_format_1_c3b997c2() {
 #[test]
 fn test_example_101_md_prose_wrapalways_format_1_d6de8098() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1450,8 +1450,8 @@ fn test_example_101_md_prose_wrapalways_format_1_d6de8098() {
 fn test_example_102_md_prose_wrapalways_format_1_f1734785() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\naaa\n  \\`\\`\\`");
@@ -1462,9 +1462,9 @@ fn test_example_102_md_prose_wrapalways_format_1_f1734785() {
 #[test]
 fn test_example_103_md_prose_wrapalways_format_1_7a00aeef() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("   \\`\\`\\`\naaa\n  \\`\\`\\`");
@@ -1475,9 +1475,9 @@ fn test_example_103_md_prose_wrapalways_format_1_7a00aeef() {
 #[test]
 fn test_example_104_md_prose_wrapalways_format_1_0b0f85fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\naaa\n    \\`\\`\\`");
@@ -1488,8 +1488,8 @@ fn test_example_104_md_prose_wrapalways_format_1_0b0f85fc() {
 #[test]
 fn test_example_105_md_prose_wrapalways_format_1_31fde435() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1501,8 +1501,8 @@ fn test_example_105_md_prose_wrapalways_format_1_31fde435() {
 #[test]
 fn test_example_106_md_prose_wrapalways_format_1_be7fd741() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1515,8 +1515,8 @@ fn test_example_106_md_prose_wrapalways_format_1_be7fd741() {
 fn test_example_107_md_prose_wrapalways_format_1_4b8cdb62() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo\n\\`\\`\\`\nbar\n\\`\\`\\`\nbaz");
@@ -1528,8 +1528,8 @@ fn test_example_107_md_prose_wrapalways_format_1_4b8cdb62() {
 fn test_example_108_md_prose_wrapalways_format_1_e497f992() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo\n---\n~~~\nbar\n~~~\n# baz");
@@ -1540,9 +1540,9 @@ fn test_example_108_md_prose_wrapalways_format_1_e497f992() {
 #[test]
 fn test_example_109_md_prose_wrapalways_format_1_a9eee036() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`ruby\ndef foo(x)\n  return 3\nend\n\\`\\`\\`");
@@ -1556,9 +1556,9 @@ fn test_example_109_md_prose_wrapalways_format_1_a9eee036() {
 #[test]
 fn test_example_110_md_prose_wrapalways_format_1_23677125() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -1574,8 +1574,8 @@ fn test_example_110_md_prose_wrapalways_format_1_23677125() {
 fn test_example_111_md_prose_wrapalways_format_1_6829adc9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\\`;\n\\`\\`\\`\\`");
@@ -1586,9 +1586,9 @@ fn test_example_111_md_prose_wrapalways_format_1_6829adc9() {
 #[test]
 fn test_example_112_md_prose_wrapalways_format_1_753e214f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\` aa \\`\\`\\`\nfoo");
@@ -1599,9 +1599,9 @@ fn test_example_112_md_prose_wrapalways_format_1_753e214f() {
 #[test]
 fn test_example_113_md_prose_wrapalways_format_1_509d33a6() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\`\n\\`\\`\\` aaa\n\\`\\`\\`");
@@ -1612,9 +1612,9 @@ fn test_example_113_md_prose_wrapalways_format_1_509d33a6() {
 #[test]
 fn test_example_114_md_prose_wrapalways_format_1_ae07affe() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -1629,9 +1629,9 @@ fn test_example_114_md_prose_wrapalways_format_1_ae07affe() {
 #[test]
 fn test_example_115_md_prose_wrapalways_format_1_cb9f3112() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format(" <div>\n  *hello*\n         <foo><a>");
@@ -1642,9 +1642,9 @@ fn test_example_115_md_prose_wrapalways_format_1_cb9f3112() {
 #[test]
 fn test_example_116_md_prose_wrapalways_format_1_79ed9693() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("</div>\n*foo*");
@@ -1656,8 +1656,8 @@ fn test_example_116_md_prose_wrapalways_format_1_79ed9693() {
 fn test_example_117_md_prose_wrapalways_format_1_53aadf01() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<DIV CLASS=\"foo\">\n\n*Markdown*\n\n</DIV>");
@@ -1682,8 +1682,8 @@ fn test_example_118_md_prose_wrapalways_format_1_e19fe95d() {
 fn test_example_119_md_prose_wrapalways_format_1_01bc6289() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<div id=\"foo\" class=\"bar\n  baz\">\n</div>");
@@ -1733,9 +1733,9 @@ fn test_example_122_md_prose_wrapalways_format_1_bfaef784() {
 #[test]
 fn test_example_123_md_prose_wrapalways_format_1_b920394f() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<div *???-&&&-<---\n*foo*");
@@ -1746,9 +1746,9 @@ fn test_example_123_md_prose_wrapalways_format_1_b920394f() {
 #[test]
 fn test_example_124_md_prose_wrapalways_format_1_90faae4b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<div><a href=\"bar\">*foo*</a></div>");
@@ -1772,9 +1772,9 @@ fn test_example_125_md_prose_wrapalways_format_1_520a13ba() {
 #[test]
 fn test_example_126_md_prose_wrapalways_format_1_a4f5edfa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<div></div>\n\\`\\`\\` c\nint x = 33;\n\\`\\`\\`");
@@ -1788,9 +1788,9 @@ fn test_example_126_md_prose_wrapalways_format_1_a4f5edfa() {
 #[test]
 fn test_example_127_md_prose_wrapalways_format_1_49785071() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"foo\">\n*bar*\n</a>");
@@ -1801,9 +1801,9 @@ fn test_example_127_md_prose_wrapalways_format_1_49785071() {
 #[test]
 fn test_example_128_md_prose_wrapalways_format_1_76868681() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<Warning>\n*bar*\n</Warning>");
@@ -1814,8 +1814,8 @@ fn test_example_128_md_prose_wrapalways_format_1_76868681() {
 #[test]
 fn test_example_129_md_prose_wrapalways_format_1_cda09266() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1827,9 +1827,9 @@ fn test_example_129_md_prose_wrapalways_format_1_cda09266() {
 #[test]
 fn test_example_130_md_prose_wrapalways_format_1_42883de8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("</ins>\n*bar*");
@@ -1840,9 +1840,9 @@ fn test_example_130_md_prose_wrapalways_format_1_42883de8() {
 #[test]
 fn test_example_131_md_prose_wrapalways_format_1_db3a50cd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<del>\n*foo*\n</del>");
@@ -1853,8 +1853,8 @@ fn test_example_131_md_prose_wrapalways_format_1_db3a50cd() {
 #[test]
 fn test_example_132_md_prose_wrapalways_format_1_0474d241() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1866,9 +1866,9 @@ fn test_example_132_md_prose_wrapalways_format_1_0474d241() {
 #[test]
 fn test_example_133_md_prose_wrapalways_format_1_d9a2b7c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<del>*foo*</del>");
@@ -1879,9 +1879,9 @@ fn test_example_133_md_prose_wrapalways_format_1_d9a2b7c4() {
 #[test]
 fn test_example_134_md_prose_wrapalways_format_1_0c6bd53a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<pre language=\"haskell\"><code>\nimport Text.HTML.TagSoup\n\nmain :: IO ()\nmain = print $ parseTags tags\n</code></pre>") ;
@@ -1905,9 +1905,9 @@ fn test_example_135_md_prose_wrapalways_format_1_da2b5872() {
 #[test]
 fn test_example_136_md_prose_wrapalways_format_1_bc9be708() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -1923,8 +1923,8 @@ fn test_example_136_md_prose_wrapalways_format_1_bc9be708() {
 fn test_example_137_md_prose_wrapalways_format_1_56a5b218() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<style\n  type=\"text/css\">\n\nfoo");
@@ -1935,9 +1935,9 @@ fn test_example_137_md_prose_wrapalways_format_1_56a5b218() {
 #[test]
 fn test_example_138_md_prose_wrapalways_format_1_92a8c0dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> <div>\n> foo\n\nbar");
@@ -1948,8 +1948,8 @@ fn test_example_138_md_prose_wrapalways_format_1_92a8c0dd() {
 #[test]
 fn test_example_139_md_prose_wrapalways_format_1_8a5d08f5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -1961,9 +1961,9 @@ fn test_example_139_md_prose_wrapalways_format_1_8a5d08f5() {
 #[test]
 fn test_example_140_md_prose_wrapalways_format_1_1c5206af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<style>p{color:red;}</style>\n*foo*");
@@ -1975,8 +1975,8 @@ fn test_example_140_md_prose_wrapalways_format_1_1c5206af() {
 fn test_example_141_md_prose_wrapalways_format_1_f6396171() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<!-- foo -->*bar*\n*baz*");
@@ -2001,8 +2001,8 @@ fn test_example_142_md_prose_wrapalways_format_1_3139a4b3() {
 fn test_example_143_md_prose_wrapalways_format_1_f6d4c9b8() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<!-- Foo\n\nbar\n   baz -->");
@@ -2013,9 +2013,9 @@ fn test_example_143_md_prose_wrapalways_format_1_f6d4c9b8() {
 #[test]
 fn test_example_144_md_prose_wrapalways_format_1_754bd16b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<?php\n\n  echo '>';\n\n?>");
@@ -2039,9 +2039,9 @@ fn test_example_145_md_prose_wrapalways_format_1_ff0248f1() {
 #[test]
 fn test_example_146_md_prose_wrapalways_format_1_5fe81c48() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<![CDATA[\nfunction matchwo(a,b)\n{\n  if (a < b && a < 0) then {\n    return 1;\n\n  } else {\n\n    return 0;\n  }\n}\n]]>") ;
@@ -2052,8 +2052,8 @@ fn test_example_146_md_prose_wrapalways_format_1_5fe81c48() {
 #[test]
 fn test_example_147_md_prose_wrapalways_format_1_996d5908() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2065,9 +2065,9 @@ fn test_example_147_md_prose_wrapalways_format_1_996d5908() {
 #[test]
 fn test_example_148_md_prose_wrapalways_format_1_0ea2cc2e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("  <div>\n\n    <div>");
@@ -2078,9 +2078,9 @@ fn test_example_148_md_prose_wrapalways_format_1_0ea2cc2e() {
 #[test]
 fn test_example_149_md_prose_wrapalways_format_1_f0c611fd() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n<div>\nbar\n</div>");
@@ -2091,9 +2091,9 @@ fn test_example_149_md_prose_wrapalways_format_1_f0c611fd() {
 #[test]
 fn test_example_150_md_prose_wrapalways_format_1_e5a9adc3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<div>\nbar\n</div>\n*foo*");
@@ -2130,9 +2130,9 @@ fn test_example_152_md_prose_wrapalways_format_1_d88160ef() {
 #[test]
 fn test_example_153_md_prose_wrapalways_format_1_ccc78af5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<div>\n*Emphasized* text.\n</div>");
@@ -2143,9 +2143,9 @@ fn test_example_153_md_prose_wrapalways_format_1_ccc78af5() {
 #[test]
 fn test_example_154_md_prose_wrapalways_format_1_edb5e75d() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted =
@@ -2160,9 +2160,9 @@ fn test_example_154_md_prose_wrapalways_format_1_edb5e75d() {
 #[test]
 fn test_example_155_md_prose_wrapalways_format_1_0b3262d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -2177,9 +2177,9 @@ fn test_example_155_md_prose_wrapalways_format_1_0b3262d4() {
 #[test]
 fn test_example_156_md_prose_wrapalways_format_1_e4bb2e2a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]: /url \"title\"\n\n[foo]");
@@ -2190,8 +2190,8 @@ fn test_example_156_md_prose_wrapalways_format_1_e4bb2e2a() {
 #[test]
 fn test_example_157_md_prose_wrapalways_format_1_9ab2cfee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2204,9 +2204,9 @@ fn test_example_157_md_prose_wrapalways_format_1_9ab2cfee() {
 #[test]
 fn test_example_158_md_prose_wrapalways_format_1_9b9b2f74() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -2221,8 +2221,8 @@ fn test_example_158_md_prose_wrapalways_format_1_9b9b2f74() {
 #[test]
 fn test_example_159_md_prose_wrapalways_format_1_11ca5786() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2234,9 +2234,9 @@ fn test_example_159_md_prose_wrapalways_format_1_11ca5786() {
 #[test]
 fn test_example_161_md_prose_wrapalways_format_1_0f33e142() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]: /url 'title\n\nwith blank line'\n\n[foo]");
@@ -2247,9 +2247,9 @@ fn test_example_161_md_prose_wrapalways_format_1_0f33e142() {
 #[test]
 fn test_example_162_md_prose_wrapalways_format_1_46d97ade() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]:\n/url\n\n[foo]");
@@ -2273,9 +2273,9 @@ fn test_example_163_md_prose_wrapalways_format_1_7195a23f() {
 #[test]
 fn test_example_164_md_prose_wrapalways_format_1_10e7a81a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -2291,8 +2291,8 @@ fn test_example_164_md_prose_wrapalways_format_1_10e7a81a() {
 fn test_example_165_md_prose_wrapalways_format_1_1c83f5da() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]\n\n[foo]: url");
@@ -2316,8 +2316,8 @@ fn test_example_166_md_prose_wrapalways_format_1_f8bcbc2b() {
 #[test]
 fn test_example_167_md_prose_wrapalways_format_1_0dca8bce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2330,8 +2330,8 @@ fn test_example_167_md_prose_wrapalways_format_1_0dca8bce() {
 fn test_example_168_md_prose_wrapalways_format_1_941a31f3() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[ΑΓΩ]: /φου\n\n[αγω]");
@@ -2342,8 +2342,8 @@ fn test_example_168_md_prose_wrapalways_format_1_941a31f3() {
 #[test]
 fn test_example_169_md_prose_wrapalways_format_1_09ba42f9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2381,9 +2381,9 @@ fn test_example_171_md_prose_wrapalways_format_1_bd27a418() {
 #[test]
 fn test_example_172_md_prose_wrapalways_format_1_cf9620c2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]: /url\n\"title\" ok");
@@ -2394,9 +2394,9 @@ fn test_example_172_md_prose_wrapalways_format_1_cf9620c2() {
 #[test]
 fn test_example_173_md_prose_wrapalways_format_1_c814f36d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    [foo]: /url \"title\"\n\n[foo]");
@@ -2407,8 +2407,8 @@ fn test_example_173_md_prose_wrapalways_format_1_c814f36d() {
 #[test]
 fn test_example_174_md_prose_wrapalways_format_1_afeeedb4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2433,9 +2433,9 @@ fn test_example_175_md_prose_wrapalways_format_1_4dcfe235() {
 #[test]
 fn test_example_176_md_prose_wrapalways_format_1_14ff9ba0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# [Foo]\n[foo]: /url\n> bar");
@@ -2447,8 +2447,8 @@ fn test_example_176_md_prose_wrapalways_format_1_14ff9ba0() {
 fn test_example_177_md_prose_wrapalways_format_1_ce30c820() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("[foo]: /foo-url \"foo\"\n[bar]: /bar-url\n  \"bar\"\n[baz]: /baz-url\n\n[foo],\n[bar],\n[baz]") ;
@@ -2462,9 +2462,9 @@ fn test_example_177_md_prose_wrapalways_format_1_ce30c820() {
 #[test]
 fn test_example_178_md_prose_wrapalways_format_1_411dd538() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]\n\n> [foo]: /url");
@@ -2475,9 +2475,9 @@ fn test_example_178_md_prose_wrapalways_format_1_411dd538() {
 #[test]
 fn test_example_179_md_prose_wrapalways_format_1_87fa291d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("aaa\n\nbbb");
@@ -2488,8 +2488,8 @@ fn test_example_179_md_prose_wrapalways_format_1_87fa291d() {
 #[test]
 fn test_example_180_md_prose_wrapalways_format_1_44b1f64c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2514,9 +2514,9 @@ fn test_example_181_md_prose_wrapalways_format_1_87367358() {
 #[test]
 fn test_example_182_md_prose_wrapalways_format_1_6ffaeeb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("  aaa\n bbb");
@@ -2554,8 +2554,8 @@ fn test_example_184_md_prose_wrapalways_format_1_186add0d() {
 #[test]
 fn test_example_185_md_prose_wrapalways_format_1_7b305e1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2567,9 +2567,9 @@ fn test_example_185_md_prose_wrapalways_format_1_7b305e1f() {
 #[test]
 fn test_example_186_md_prose_wrapalways_format_1_7f2d9d08() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("aaa     \nbbb     ");
@@ -2580,8 +2580,8 @@ fn test_example_186_md_prose_wrapalways_format_1_7f2d9d08() {
 #[test]
 fn test_example_187_md_prose_wrapalways_format_1_604120aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2593,9 +2593,9 @@ fn test_example_187_md_prose_wrapalways_format_1_604120aa() {
 #[test]
 fn test_example_188_md_prose_wrapalways_format_1_d711d2cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> # Foo\n> bar\n> baz");
@@ -2606,9 +2606,9 @@ fn test_example_188_md_prose_wrapalways_format_1_d711d2cf() {
 #[test]
 fn test_example_189_md_prose_wrapalways_format_1_af5a3880() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("># Foo\n>bar\n> baz");
@@ -2632,9 +2632,9 @@ fn test_example_190_md_prose_wrapalways_format_1_162c2bb1() {
 #[test]
 fn test_example_191_md_prose_wrapalways_format_1_6c171842() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    > # Foo\n    > bar\n    > baz");
@@ -2645,8 +2645,8 @@ fn test_example_191_md_prose_wrapalways_format_1_6c171842() {
 #[test]
 fn test_example_192_md_prose_wrapalways_format_1_f9c48ff4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2671,9 +2671,9 @@ fn test_example_193_md_prose_wrapalways_format_1_5cb4f714() {
 #[test]
 fn test_example_194_md_prose_wrapalways_format_1_28f46b0d() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> foo\n---");
@@ -2684,8 +2684,8 @@ fn test_example_194_md_prose_wrapalways_format_1_28f46b0d() {
 #[test]
 fn test_example_195_md_prose_wrapalways_format_1_00d85718() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2697,9 +2697,9 @@ fn test_example_195_md_prose_wrapalways_format_1_00d85718() {
 #[test]
 fn test_example_196_md_prose_wrapalways_format_1_119bc915() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format(">     foo\n    bar");
@@ -2710,9 +2710,9 @@ fn test_example_196_md_prose_wrapalways_format_1_119bc915() {
 #[test]
 fn test_example_197_md_prose_wrapalways_format_1_f41e3b1e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> \\`\\`\\`\nfoo\n\\`\\`\\`");
@@ -2727,8 +2727,8 @@ fn test_example_197_md_prose_wrapalways_format_1_f41e3b1e() {
 fn test_example_198_md_prose_wrapalways_format_1_44f39f13() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> foo\n    - bar");
@@ -2740,8 +2740,8 @@ fn test_example_198_md_prose_wrapalways_format_1_44f39f13() {
 fn test_example_199_md_prose_wrapalways_format_1_0063a1f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(">");
@@ -2752,9 +2752,9 @@ fn test_example_199_md_prose_wrapalways_format_1_0063a1f4() {
 #[test]
 fn test_example_200_md_prose_wrapalways_format_1_c7d60b96() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format(">\n>  \n> ");
@@ -2765,9 +2765,9 @@ fn test_example_200_md_prose_wrapalways_format_1_c7d60b96() {
 #[test]
 fn test_example_201_md_prose_wrapalways_format_1_a4138a1b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(">\n> foo\n>  ");
@@ -2778,9 +2778,9 @@ fn test_example_201_md_prose_wrapalways_format_1_a4138a1b() {
 #[test]
 fn test_example_202_md_prose_wrapalways_format_1_7d34d0a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> foo\n\n> bar");
@@ -2791,9 +2791,9 @@ fn test_example_202_md_prose_wrapalways_format_1_7d34d0a1() {
 #[test]
 fn test_example_203_md_prose_wrapalways_format_1_bce05d73() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> foo\n> bar");
@@ -2804,9 +2804,9 @@ fn test_example_203_md_prose_wrapalways_format_1_bce05d73() {
 #[test]
 fn test_example_204_md_prose_wrapalways_format_1_3524e6c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> foo\n>\n> bar");
@@ -2843,9 +2843,9 @@ fn test_example_206_md_prose_wrapalways_format_1_84bc1f1d() {
 #[test]
 fn test_example_207_md_prose_wrapalways_format_1_5608c20d() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> bar\nbaz");
@@ -2856,9 +2856,9 @@ fn test_example_207_md_prose_wrapalways_format_1_5608c20d() {
 #[test]
 fn test_example_208_md_prose_wrapalways_format_1_ccc38cf3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> bar\n\nbaz");
@@ -2869,9 +2869,9 @@ fn test_example_208_md_prose_wrapalways_format_1_ccc38cf3() {
 #[test]
 fn test_example_209_md_prose_wrapalways_format_1_fdff58ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> bar\n>\nbaz");
@@ -2895,8 +2895,8 @@ fn test_example_210_md_prose_wrapalways_format_1_06a257a3() {
 #[test]
 fn test_example_211_md_prose_wrapalways_format_1_3b28849e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2939,8 +2939,8 @@ fn test_example_213_md_prose_wrapalways_format_1_15fb8255() {
 fn test_example_214_md_prose_wrapalways_format_1_f70da9d8() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -2956,8 +2956,8 @@ fn test_example_214_md_prose_wrapalways_format_1_f70da9d8() {
 #[test]
 fn test_example_215_md_prose_wrapalways_format_1_8fb9a266() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -2982,9 +2982,9 @@ fn test_example_216_md_prose_wrapalways_format_1_25156c5c() {
 #[test]
 fn test_example_217_md_prose_wrapalways_format_1_544560a6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(" -    one\n\n     two");
@@ -2995,9 +2995,9 @@ fn test_example_217_md_prose_wrapalways_format_1_544560a6() {
 #[test]
 fn test_example_218_md_prose_wrapalways_format_1_9e89a3e9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format(" -    one\n\n      two");
@@ -3021,8 +3021,8 @@ fn test_example_219_md_prose_wrapalways_format_1_b1f056ab() {
 #[test]
 fn test_example_220_md_prose_wrapalways_format_1_4b0c5129() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3060,9 +3060,9 @@ fn test_example_222_md_prose_wrapalways_format_1_6b085cf7() {
 #[test]
 fn test_example_223_md_prose_wrapalways_format_1_a1341125() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -3077,9 +3077,9 @@ fn test_example_223_md_prose_wrapalways_format_1_a1341125() {
 #[test]
 fn test_example_224_md_prose_wrapalways_format_1_1c08aa8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- Foo\n\n      bar\n\n      baz");
@@ -3090,9 +3090,9 @@ fn test_example_224_md_prose_wrapalways_format_1_1c08aa8c() {
 #[test]
 fn test_example_225_md_prose_wrapalways_format_1_4d91cb4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- Foo\n\n      bar\n\n\n      baz");
@@ -3103,9 +3103,9 @@ fn test_example_225_md_prose_wrapalways_format_1_4d91cb4f() {
 #[test]
 fn test_example_226_md_prose_wrapalways_format_1_e207a224() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("123456789. ok");
@@ -3116,9 +3116,9 @@ fn test_example_226_md_prose_wrapalways_format_1_e207a224() {
 #[test]
 fn test_example_227_md_prose_wrapalways_format_1_812a19e9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("1234567890. not ok");
@@ -3129,9 +3129,9 @@ fn test_example_227_md_prose_wrapalways_format_1_812a19e9() {
 #[test]
 fn test_example_228_md_prose_wrapalways_format_1_1849411f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("0. ok");
@@ -3142,9 +3142,9 @@ fn test_example_228_md_prose_wrapalways_format_1_1849411f() {
 #[test]
 fn test_example_229_md_prose_wrapalways_format_1_4d3a31c2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("003. ok");
@@ -3155,9 +3155,9 @@ fn test_example_229_md_prose_wrapalways_format_1_4d3a31c2() {
 #[test]
 fn test_example_230_md_prose_wrapalways_format_1_880b288b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-1. not ok");
@@ -3168,9 +3168,9 @@ fn test_example_230_md_prose_wrapalways_format_1_880b288b() {
 #[test]
 fn test_example_231_md_prose_wrapalways_format_1_43fe2dcd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n\n      bar");
@@ -3194,9 +3194,9 @@ fn test_example_232_md_prose_wrapalways_format_1_571c229e() {
 #[test]
 fn test_example_233_md_prose_wrapalways_format_1_13aa1f65() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("    indented code\n\nparagraph\n\n    more code");
@@ -3207,9 +3207,9 @@ fn test_example_233_md_prose_wrapalways_format_1_13aa1f65() {
 #[test]
 fn test_example_234_md_prose_wrapalways_format_1_7f75eac3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted =
@@ -3224,9 +3224,9 @@ fn test_example_234_md_prose_wrapalways_format_1_7f75eac3() {
 #[test]
 fn test_example_235_md_prose_wrapalways_format_1_6db69f26() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted =
@@ -3254,9 +3254,9 @@ fn test_example_236_md_prose_wrapalways_format_1_9080c5df() {
 #[test]
 fn test_example_237_md_prose_wrapalways_format_1_021d177f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-    foo\n\n  bar");
@@ -3268,8 +3268,8 @@ fn test_example_237_md_prose_wrapalways_format_1_021d177f() {
 fn test_example_238_md_prose_wrapalways_format_1_2a0bc94b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-  foo\n\n   bar");
@@ -3280,9 +3280,9 @@ fn test_example_238_md_prose_wrapalways_format_1_2a0bc94b() {
 #[test]
 fn test_example_240_md_prose_wrapalways_format_1_c67c396a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-\n\n  foo");
@@ -3294,8 +3294,8 @@ fn test_example_240_md_prose_wrapalways_format_1_c67c396a() {
 fn test_example_241_md_prose_wrapalways_format_1_84750dec() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n-\n- bar");
@@ -3307,8 +3307,8 @@ fn test_example_241_md_prose_wrapalways_format_1_84750dec() {
 fn test_example_242_md_prose_wrapalways_format_1_312a9b67() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n-   \n- bar");
@@ -3319,9 +3319,9 @@ fn test_example_242_md_prose_wrapalways_format_1_312a9b67() {
 #[test]
 fn test_example_243_md_prose_wrapalways_format_1_f1248c81() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("1. foo\n2.\n3. bar");
@@ -3332,9 +3332,9 @@ fn test_example_243_md_prose_wrapalways_format_1_f1248c81() {
 #[test]
 fn test_example_244_md_prose_wrapalways_format_1_dc8bcff0() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*");
@@ -3379,9 +3379,9 @@ fn test_example_246_md_prose_wrapalways_format_1_e5978cd4() {
 #[test]
 fn test_example_247_md_prose_wrapalways_format_1_73c3374b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("   1.  A paragraph\n       with two lines.\n\n           indented code\n\n       > A block quote.") ;
@@ -3395,8 +3395,8 @@ fn test_example_247_md_prose_wrapalways_format_1_73c3374b() {
 #[test]
 fn test_example_248_md_prose_wrapalways_format_1_9fe02956() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3423,9 +3423,9 @@ fn test_example_249_md_prose_wrapalways_format_1_43d812d0() {
 #[test]
 fn test_example_250_md_prose_wrapalways_format_1_723c21b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("  1.  A paragraph\n    with two lines.");
@@ -3436,9 +3436,9 @@ fn test_example_250_md_prose_wrapalways_format_1_723c21b2() {
 #[test]
 fn test_example_251_md_prose_wrapalways_format_1_ec0a822b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> 1. > Blockquote\ncontinued here.");
@@ -3449,8 +3449,8 @@ fn test_example_251_md_prose_wrapalways_format_1_ec0a822b() {
 #[test]
 fn test_example_252_md_prose_wrapalways_format_1_07a03e79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3462,8 +3462,8 @@ fn test_example_252_md_prose_wrapalways_format_1_07a03e79() {
 #[test]
 fn test_example_253_md_prose_wrapalways_format_1_b0a9c8b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3489,8 +3489,8 @@ fn test_example_254_md_prose_wrapalways_format_1_e84f2a3c() {
 fn test_example_255_md_prose_wrapalways_format_1_13ea35ff() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("10) foo\n    - bar");
@@ -3501,9 +3501,9 @@ fn test_example_255_md_prose_wrapalways_format_1_13ea35ff() {
 #[test]
 fn test_example_256_md_prose_wrapalways_format_1_063bda84() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("10) foo\n   - bar");
@@ -3514,9 +3514,9 @@ fn test_example_256_md_prose_wrapalways_format_1_063bda84() {
 #[test]
 fn test_example_257_md_prose_wrapalways_format_1_8ad61b92() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- - foo");
@@ -3527,9 +3527,9 @@ fn test_example_257_md_prose_wrapalways_format_1_8ad61b92() {
 #[test]
 fn test_example_258_md_prose_wrapalways_format_1_7568cb65() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("1. - 2. foo");
@@ -3553,9 +3553,9 @@ fn test_example_259_md_prose_wrapalways_format_1_80f155bf() {
 #[test]
 fn test_example_260_md_prose_wrapalways_format_1_b5eb24b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n- bar\n+ baz");
@@ -3579,9 +3579,9 @@ fn test_example_261_md_prose_wrapalways_format_1_163116df() {
 #[test]
 fn test_example_262_md_prose_wrapalways_format_1_345e50d2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n- bar\n- baz");
@@ -3592,9 +3592,9 @@ fn test_example_262_md_prose_wrapalways_format_1_345e50d2() {
 #[test]
 fn test_example_263_md_prose_wrapalways_format_1_48ea86ff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -3610,8 +3610,8 @@ fn test_example_263_md_prose_wrapalways_format_1_48ea86ff() {
 fn test_example_264_md_prose_wrapalways_format_1_9779a752() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n\n- bar\n\n\n- baz");
@@ -3622,8 +3622,8 @@ fn test_example_264_md_prose_wrapalways_format_1_9779a752() {
 #[test]
 fn test_example_265_md_prose_wrapalways_format_1_223ff845() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3635,9 +3635,9 @@ fn test_example_265_md_prose_wrapalways_format_1_223ff845() {
 #[test]
 fn test_example_266_md_prose_wrapalways_format_1_2e89af7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- foo\n  - bar\n    - baz\n\n\n      bim");
@@ -3661,9 +3661,9 @@ fn test_example_267_md_prose_wrapalways_format_1_ff674f4b() {
 #[test]
 fn test_example_268_md_prose_wrapalways_format_1_481edb82() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-   foo\n\n    notcode\n\n-   foo\n\n\n    code");
@@ -3674,9 +3674,9 @@ fn test_example_268_md_prose_wrapalways_format_1_481edb82() {
 #[test]
 fn test_example_269_md_prose_wrapalways_format_1_37337bb4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -3688,9 +3688,9 @@ fn test_example_269_md_prose_wrapalways_format_1_37337bb4() {
 #[test]
 fn test_example_271_md_prose_wrapalways_format_1_37e92052() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a\n- b\n\n- c");
@@ -3714,9 +3714,9 @@ fn test_example_272_md_prose_wrapalways_format_1_0c3a5ccb() {
 #[test]
 fn test_example_273_md_prose_wrapalways_format_1_59edc505() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a\n- b\n\n  c\n- d");
@@ -3727,9 +3727,9 @@ fn test_example_273_md_prose_wrapalways_format_1_59edc505() {
 #[test]
 fn test_example_274_md_prose_wrapalways_format_1_04b3f7b1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a\n- b\n\n  [ref]: /url\n- d");
@@ -3766,9 +3766,9 @@ fn test_example_277_md_prose_wrapalways_format_1_cad68741() {
 #[test]
 fn test_example_278_md_prose_wrapalways_format_1_cda9fba3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a\n  > b\n  \\`\\`\\`\n  c\n  \\`\\`\\`\n- d");
@@ -3780,8 +3780,8 @@ fn test_example_278_md_prose_wrapalways_format_1_cda9fba3() {
 fn test_example_279_md_prose_wrapalways_format_1_49afb8e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a");
@@ -3792,9 +3792,9 @@ fn test_example_279_md_prose_wrapalways_format_1_49afb8e4() {
 #[test]
 fn test_example_280_md_prose_wrapalways_format_1_e057d96b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a\n  - b");
@@ -3831,9 +3831,9 @@ fn test_example_282_md_prose_wrapalways_format_1_554804b5() {
 #[test]
 fn test_example_283_md_prose_wrapalways_format_1_e10a8a35() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- a\n  - b\n  - c\n\n- d\n  - e\n  - f");
@@ -3844,8 +3844,8 @@ fn test_example_283_md_prose_wrapalways_format_1_e10a8a35() {
 #[test]
 fn test_example_284_md_prose_wrapalways_format_1_e5f26a49() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3870,8 +3870,8 @@ fn test_example_285_md_prose_wrapalways_format_1_7ad3b74c() {
 #[test]
 fn test_example_286_md_prose_wrapalways_format_1_e04d1ad8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3883,9 +3883,9 @@ fn test_example_286_md_prose_wrapalways_format_1_e04d1ad8() {
 #[test]
 fn test_example_287_md_prose_wrapalways_format_1_d6f7657a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\\\\*not emphasized*\n\\\\<br/> not a tag\n\\\\[not a link](/foo)\n\\\\\\`not code\\`\n1\\\\. not a list\n\\\\* not a list\n\\\\# not a heading\n\\\\[foo]: /url \"not a reference\"") ;
@@ -3896,8 +3896,8 @@ fn test_example_287_md_prose_wrapalways_format_1_d6f7657a() {
 #[test]
 fn test_example_288_md_prose_wrapalways_format_1_7bbafe9b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3909,9 +3909,9 @@ fn test_example_288_md_prose_wrapalways_format_1_7bbafe9b() {
 #[test]
 fn test_example_289_md_prose_wrapalways_format_1_ba92dbce() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo\\\\\nbar");
@@ -3922,8 +3922,8 @@ fn test_example_289_md_prose_wrapalways_format_1_ba92dbce() {
 #[test]
 fn test_example_290_md_prose_wrapalways_format_1_589c2c2b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -3948,9 +3948,9 @@ fn test_example_291_md_prose_wrapalways_format_1_163a3e14() {
 #[test]
 fn test_example_292_md_prose_wrapalways_format_1_fe6ca467() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("~~~\n\\\\[\\\\]\n~~~");
@@ -3962,8 +3962,8 @@ fn test_example_292_md_prose_wrapalways_format_1_fe6ca467() {
 fn test_example_293_md_prose_wrapalways_format_1_0f5d2c72() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<http://example.com?find=\\\\*>");
@@ -3974,9 +3974,9 @@ fn test_example_293_md_prose_wrapalways_format_1_0f5d2c72() {
 #[test]
 fn test_example_294_md_prose_wrapalways_format_1_077874f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"/bar\\\\/)\">");
@@ -3987,8 +3987,8 @@ fn test_example_294_md_prose_wrapalways_format_1_077874f0() {
 #[test]
 fn test_example_295_md_prose_wrapalways_format_1_370c7517() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4000,9 +4000,9 @@ fn test_example_295_md_prose_wrapalways_format_1_370c7517() {
 #[test]
 fn test_example_296_md_prose_wrapalways_format_1_f6eae3b3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]\n\n[foo]: /bar\\\\* \"ti\\\\*tle\"");
@@ -4014,8 +4014,8 @@ fn test_example_296_md_prose_wrapalways_format_1_f6eae3b3() {
 fn test_example_297_md_prose_wrapalways_format_1_cc7392ac() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\\` foo\\\\+bar\nfoo\n\\`\\`\\`");
@@ -4040,8 +4040,8 @@ fn test_example_298_md_prose_wrapalways_format_1_205a38e4() {
 fn test_example_299_md_prose_wrapalways_format_1_4f754138() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("&#35; &#1234; &#992; &#98765432; &#0;");
@@ -4052,9 +4052,9 @@ fn test_example_299_md_prose_wrapalways_format_1_4f754138() {
 #[test]
 fn test_example_300_md_prose_wrapalways_format_1_ba959753() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("&#X22; &#XD06; &#xcab;");
@@ -4065,9 +4065,9 @@ fn test_example_300_md_prose_wrapalways_format_1_ba959753() {
 #[test]
 fn test_example_301_md_prose_wrapalways_format_1_483fb56e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("&nbsp &x; &#; &#x;\n&ThisIsNotDefined; &hi?;");
@@ -4091,9 +4091,9 @@ fn test_example_302_md_prose_wrapalways_format_1_d2bf5053() {
 #[test]
 fn test_example_303_md_prose_wrapalways_format_1_6bfdabb6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("&MadeUpEntity;");
@@ -4104,9 +4104,9 @@ fn test_example_303_md_prose_wrapalways_format_1_6bfdabb6() {
 #[test]
 fn test_example_304_md_prose_wrapalways_format_1_0955593a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"&ouml;&ouml;.html\">");
@@ -4117,9 +4117,9 @@ fn test_example_304_md_prose_wrapalways_format_1_0955593a() {
 #[test]
 fn test_example_305_md_prose_wrapalways_format_1_8a720c79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")");
@@ -4130,9 +4130,9 @@ fn test_example_305_md_prose_wrapalways_format_1_8a720c79() {
 #[test]
 fn test_example_306_md_prose_wrapalways_format_1_faf5126d() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]\n\n[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\"");
@@ -4143,8 +4143,8 @@ fn test_example_306_md_prose_wrapalways_format_1_faf5126d() {
 #[test]
 fn test_example_307_md_prose_wrapalways_format_1_7b3d3e79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4156,9 +4156,9 @@ fn test_example_307_md_prose_wrapalways_format_1_7b3d3e79() {
 #[test]
 fn test_example_308_md_prose_wrapalways_format_1_64dfcf08() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`f&ouml;&ouml;\\`");
@@ -4169,8 +4169,8 @@ fn test_example_308_md_prose_wrapalways_format_1_64dfcf08() {
 #[test]
 fn test_example_309_md_prose_wrapalways_format_1_89796a9c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4195,8 +4195,8 @@ fn test_example_310_md_prose_wrapalways_format_1_63a4e7d9() {
 #[test]
 fn test_example_311_md_prose_wrapalways_format_1_ecc0847b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4208,9 +4208,9 @@ fn test_example_311_md_prose_wrapalways_format_1_ecc0847b() {
 #[test]
 fn test_example_312_md_prose_wrapalways_format_1_2b165875() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\` \\`\\` \\`");
@@ -4221,9 +4221,9 @@ fn test_example_312_md_prose_wrapalways_format_1_2b165875() {
 #[test]
 fn test_example_313_md_prose_wrapalways_format_1_bc7f6ddd() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`\\`\nfoo\n\\`\\`");
@@ -4247,8 +4247,8 @@ fn test_example_314_md_prose_wrapalways_format_1_ac2931b4() {
 #[test]
 fn test_example_315_md_prose_wrapalways_format_1_18f31b02() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4260,9 +4260,9 @@ fn test_example_315_md_prose_wrapalways_format_1_18f31b02() {
 #[test]
 fn test_example_316_md_prose_wrapalways_format_1_df0e53f9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`foo\\\\\\`bar\\`");
@@ -4274,8 +4274,8 @@ fn test_example_316_md_prose_wrapalways_format_1_df0e53f9() {
 fn test_example_317_md_prose_wrapalways_format_1_2c664857() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo\\`*\\`");
@@ -4299,9 +4299,9 @@ fn test_example_318_md_prose_wrapalways_format_1_7eaf8b83() {
 #[test]
 fn test_example_319_md_prose_wrapalways_format_1_7a916613() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`<a href=\"\\`\">\\`");
@@ -4312,9 +4312,9 @@ fn test_example_319_md_prose_wrapalways_format_1_7a916613() {
 #[test]
 fn test_example_320_md_prose_wrapalways_format_1_ac1f2ff3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"\\`\">\\`");
@@ -4325,8 +4325,8 @@ fn test_example_320_md_prose_wrapalways_format_1_ac1f2ff3() {
 #[test]
 fn test_example_321_md_prose_wrapalways_format_1_c3497c5b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4338,8 +4338,8 @@ fn test_example_321_md_prose_wrapalways_format_1_c3497c5b() {
 #[test]
 fn test_example_322_md_prose_wrapalways_format_1_d9d8fd78() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4364,9 +4364,9 @@ fn test_example_324_md_prose_wrapalways_format_1_60ccf997() {
 #[test]
 fn test_example_325_md_prose_wrapalways_format_1_bb76c0b7() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo bar*");
@@ -4377,9 +4377,9 @@ fn test_example_325_md_prose_wrapalways_format_1_bb76c0b7() {
 #[test]
 fn test_example_326_md_prose_wrapalways_format_1_1bd9bb5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a * foo bar*");
@@ -4403,8 +4403,8 @@ fn test_example_327_md_prose_wrapalways_format_1_6061030f() {
 #[test]
 fn test_example_328_md_prose_wrapalways_format_1_0eb97625() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4416,9 +4416,9 @@ fn test_example_328_md_prose_wrapalways_format_1_0eb97625() {
 #[test]
 fn test_example_329_md_prose_wrapalways_format_1_34d6497f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo*bar*");
@@ -4429,9 +4429,9 @@ fn test_example_329_md_prose_wrapalways_format_1_34d6497f() {
 #[test]
 fn test_example_330_md_prose_wrapalways_format_1_505f0502() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("5*6*78");
@@ -4455,9 +4455,9 @@ fn test_example_331_md_prose_wrapalways_format_1_388afe3e() {
 #[test]
 fn test_example_332_md_prose_wrapalways_format_1_09e2fc9b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ foo bar_");
@@ -4468,9 +4468,9 @@ fn test_example_332_md_prose_wrapalways_format_1_09e2fc9b() {
 #[test]
 fn test_example_333_md_prose_wrapalways_format_1_e9f8d123() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a_\"foo\"_");
@@ -4508,8 +4508,8 @@ fn test_example_335_md_prose_wrapalways_format_1_3f39d393() {
 fn test_example_336_md_prose_wrapalways_format_1_69ab6f61() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("пристаням_стремятся_");
@@ -4520,9 +4520,9 @@ fn test_example_336_md_prose_wrapalways_format_1_69ab6f61() {
 #[test]
 fn test_example_337_md_prose_wrapalways_format_1_7ddbc040() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("aa_\"bb\"_cc");
@@ -4546,9 +4546,9 @@ fn test_example_338_md_prose_wrapalways_format_1_0a876cf6() {
 #[test]
 fn test_example_339_md_prose_wrapalways_format_1_254951b3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo*");
@@ -4560,8 +4560,8 @@ fn test_example_339_md_prose_wrapalways_format_1_254951b3() {
 fn test_example_340_md_prose_wrapalways_format_1_fe02f654() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo bar *");
@@ -4572,9 +4572,9 @@ fn test_example_340_md_prose_wrapalways_format_1_fe02f654() {
 #[test]
 fn test_example_341_md_prose_wrapalways_format_1_9946f0c2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo bar\n*");
@@ -4585,9 +4585,9 @@ fn test_example_341_md_prose_wrapalways_format_1_9946f0c2() {
 #[test]
 fn test_example_342_md_prose_wrapalways_format_1_db5b593c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*(*foo)");
@@ -4598,8 +4598,8 @@ fn test_example_342_md_prose_wrapalways_format_1_db5b593c() {
 #[test]
 fn test_example_343_md_prose_wrapalways_format_1_101e7798() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4612,8 +4612,8 @@ fn test_example_343_md_prose_wrapalways_format_1_101e7798() {
 fn test_example_344_md_prose_wrapalways_format_1_4db6005d() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo*bar");
@@ -4624,9 +4624,9 @@ fn test_example_344_md_prose_wrapalways_format_1_4db6005d() {
 #[test]
 fn test_example_345_md_prose_wrapalways_format_1_cb787ee2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo bar _");
@@ -4650,9 +4650,9 @@ fn test_example_346_md_prose_wrapalways_format_1_62547942() {
 #[test]
 fn test_example_347_md_prose_wrapalways_format_1_a0394b71() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_(_foo_)_");
@@ -4676,9 +4676,9 @@ fn test_example_348_md_prose_wrapalways_format_1_f395844b() {
 #[test]
 fn test_example_349_md_prose_wrapalways_format_1_70f0438e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_пристаням_стремятся");
@@ -4702,9 +4702,9 @@ fn test_example_350_md_prose_wrapalways_format_1_291e422d() {
 #[test]
 fn test_example_351_md_prose_wrapalways_format_1_9d063c62() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_(bar)_.");
@@ -4715,8 +4715,8 @@ fn test_example_351_md_prose_wrapalways_format_1_9d063c62() {
 #[test]
 fn test_example_352_md_prose_wrapalways_format_1_cf08b55d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4741,9 +4741,9 @@ fn test_example_353_md_prose_wrapalways_format_1_c81b6787() {
 #[test]
 fn test_example_354_md_prose_wrapalways_format_1_41814942() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a**\"foo\"**");
@@ -4754,9 +4754,9 @@ fn test_example_354_md_prose_wrapalways_format_1_41814942() {
 #[test]
 fn test_example_355_md_prose_wrapalways_format_1_61d95b1b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo**bar**");
@@ -4767,9 +4767,9 @@ fn test_example_355_md_prose_wrapalways_format_1_61d95b1b() {
 #[test]
 fn test_example_356_md_prose_wrapalways_format_1_9462c999() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo bar__");
@@ -4781,8 +4781,8 @@ fn test_example_356_md_prose_wrapalways_format_1_9462c999() {
 fn test_example_357_md_prose_wrapalways_format_1_a1ea1122() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__ foo bar__");
@@ -4793,9 +4793,9 @@ fn test_example_357_md_prose_wrapalways_format_1_a1ea1122() {
 #[test]
 fn test_example_358_md_prose_wrapalways_format_1_1e7359d1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__\nfoo bar__");
@@ -4806,8 +4806,8 @@ fn test_example_358_md_prose_wrapalways_format_1_1e7359d1() {
 #[test]
 fn test_example_359_md_prose_wrapalways_format_1_62d06a00() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4819,9 +4819,9 @@ fn test_example_359_md_prose_wrapalways_format_1_62d06a00() {
 #[test]
 fn test_example_360_md_prose_wrapalways_format_1_6800ea25() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo__bar__");
@@ -4845,9 +4845,9 @@ fn test_example_361_md_prose_wrapalways_format_1_514aa203() {
 #[test]
 fn test_example_362_md_prose_wrapalways_format_1_90a79bcb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("пристаням__стремятся__");
@@ -4858,8 +4858,8 @@ fn test_example_362_md_prose_wrapalways_format_1_90a79bcb() {
 #[test]
 fn test_example_363_md_prose_wrapalways_format_1_0ab411c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4871,9 +4871,9 @@ fn test_example_363_md_prose_wrapalways_format_1_0ab411c9() {
 #[test]
 fn test_example_364_md_prose_wrapalways_format_1_b253e1ec() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo-__(bar)__");
@@ -4884,9 +4884,9 @@ fn test_example_364_md_prose_wrapalways_format_1_b253e1ec() {
 #[test]
 fn test_example_365_md_prose_wrapalways_format_1_32ad9a89() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo bar **");
@@ -4897,9 +4897,9 @@ fn test_example_365_md_prose_wrapalways_format_1_32ad9a89() {
 #[test]
 fn test_example_366_md_prose_wrapalways_format_1_2e93caa6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**(**foo)");
@@ -4910,9 +4910,9 @@ fn test_example_366_md_prose_wrapalways_format_1_2e93caa6() {
 #[test]
 fn test_example_367_md_prose_wrapalways_format_1_f45e6efd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*(**foo**)*");
@@ -4923,8 +4923,8 @@ fn test_example_367_md_prose_wrapalways_format_1_f45e6efd() {
 #[test]
 fn test_example_368_md_prose_wrapalways_format_1_c09f8c82() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4953,8 +4953,8 @@ fn test_example_369_md_prose_wrapalways_format_1_3541f34c() {
 #[test]
 fn test_example_370_md_prose_wrapalways_format_1_c4e87660() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -4992,9 +4992,9 @@ fn test_example_372_md_prose_wrapalways_format_1_015002c9() {
 #[test]
 fn test_example_373_md_prose_wrapalways_format_1_80fbdf37() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_(__foo__)_");
@@ -5005,8 +5005,8 @@ fn test_example_373_md_prose_wrapalways_format_1_80fbdf37() {
 #[test]
 fn test_example_374_md_prose_wrapalways_format_1_7311063a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5018,9 +5018,9 @@ fn test_example_374_md_prose_wrapalways_format_1_7311063a() {
 #[test]
 fn test_example_375_md_prose_wrapalways_format_1_8a15e7af() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__пристаням__стремятся");
@@ -5031,9 +5031,9 @@ fn test_example_375_md_prose_wrapalways_format_1_8a15e7af() {
 #[test]
 fn test_example_376_md_prose_wrapalways_format_1_7a717895() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo__bar__baz__");
@@ -5045,8 +5045,8 @@ fn test_example_376_md_prose_wrapalways_format_1_7a717895() {
 fn test_example_377_md_prose_wrapalways_format_1_6bca7aa1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__(bar)__.");
@@ -5057,9 +5057,9 @@ fn test_example_377_md_prose_wrapalways_format_1_6bca7aa1() {
 #[test]
 fn test_example_378_md_prose_wrapalways_format_1_928ea6bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo [bar](/url)*");
@@ -5070,8 +5070,8 @@ fn test_example_378_md_prose_wrapalways_format_1_928ea6bb() {
 #[test]
 fn test_example_379_md_prose_wrapalways_format_1_c339d619() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5109,8 +5109,8 @@ fn test_example_381_md_prose_wrapalways_format_1_0c79072d() {
 #[test]
 fn test_example_382_md_prose_wrapalways_format_1_8c3bad77() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5122,8 +5122,8 @@ fn test_example_382_md_prose_wrapalways_format_1_8c3bad77() {
 #[test]
 fn test_example_383_md_prose_wrapalways_format_1_ce5ef326() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5135,9 +5135,9 @@ fn test_example_383_md_prose_wrapalways_format_1_ce5ef326() {
 #[test]
 fn test_example_384_md_prose_wrapalways_format_1_2f445809() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo **bar** baz*");
@@ -5148,9 +5148,9 @@ fn test_example_384_md_prose_wrapalways_format_1_2f445809() {
 #[test]
 fn test_example_385_md_prose_wrapalways_format_1_e86ce213() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo**bar**baz*");
@@ -5161,9 +5161,9 @@ fn test_example_385_md_prose_wrapalways_format_1_e86ce213() {
 #[test]
 fn test_example_386_md_prose_wrapalways_format_1_48a7eeb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("***foo** bar*");
@@ -5174,8 +5174,8 @@ fn test_example_386_md_prose_wrapalways_format_1_48a7eeb2() {
 #[test]
 fn test_example_387_md_prose_wrapalways_format_1_dd604838() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5200,9 +5200,9 @@ fn test_example_388_md_prose_wrapalways_format_1_c584ffc3() {
 #[test]
 fn test_example_390_md_prose_wrapalways_format_1_acd7852c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo [*bar*](/url)*");
@@ -5226,8 +5226,8 @@ fn test_example_391_md_prose_wrapalways_format_1_02330bb7() {
 #[test]
 fn test_example_392_md_prose_wrapalways_format_1_0e03fac8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5242,9 +5242,9 @@ fn test_example_392_md_prose_wrapalways_format_1_0e03fac8() {
 #[test]
 fn test_example_393_md_prose_wrapalways_format_1_f9650c6e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo [bar](/url)**");
@@ -5269,8 +5269,8 @@ fn test_example_394_md_prose_wrapalways_format_1_43cb7ced() {
 fn test_example_395_md_prose_wrapalways_format_1_32b2d944() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo _bar_ baz__");
@@ -5281,9 +5281,9 @@ fn test_example_395_md_prose_wrapalways_format_1_32b2d944() {
 #[test]
 fn test_example_396_md_prose_wrapalways_format_1_1fa80f28() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo __bar__ baz__");
@@ -5295,8 +5295,8 @@ fn test_example_396_md_prose_wrapalways_format_1_1fa80f28() {
 fn test_example_397_md_prose_wrapalways_format_1_b315d53a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____foo__ bar__");
@@ -5320,8 +5320,8 @@ fn test_example_398_md_prose_wrapalways_format_1_eb775d60() {
 #[test]
 fn test_example_399_md_prose_wrapalways_format_1_781888c7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5333,8 +5333,8 @@ fn test_example_399_md_prose_wrapalways_format_1_781888c7() {
 #[test]
 fn test_example_400_md_prose_wrapalways_format_1_16c50860() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5346,9 +5346,9 @@ fn test_example_400_md_prose_wrapalways_format_1_16c50860() {
 #[test]
 fn test_example_401_md_prose_wrapalways_format_1_43f03043() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("***foo* bar**");
@@ -5359,8 +5359,8 @@ fn test_example_401_md_prose_wrapalways_format_1_43f03043() {
 #[test]
 fn test_example_402_md_prose_wrapalways_format_1_0df165a0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5372,9 +5372,9 @@ fn test_example_402_md_prose_wrapalways_format_1_0df165a0() {
 #[test]
 fn test_example_403_md_prose_wrapalways_format_1_cd99a74b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo *bar **baz**\nbim* bop**");
@@ -5385,9 +5385,9 @@ fn test_example_403_md_prose_wrapalways_format_1_cd99a74b() {
 #[test]
 fn test_example_404_md_prose_wrapalways_format_1_ec10d47e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo [*bar*](/url)**");
@@ -5398,9 +5398,9 @@ fn test_example_404_md_prose_wrapalways_format_1_ec10d47e() {
 #[test]
 fn test_example_405_md_prose_wrapalways_format_1_846c954a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__ is not an empty emphasis");
@@ -5411,9 +5411,9 @@ fn test_example_405_md_prose_wrapalways_format_1_846c954a() {
 #[test]
 fn test_example_406_md_prose_wrapalways_format_1_41b7deae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____ is not an empty strong emphasis");
@@ -5427,9 +5427,9 @@ fn test_example_406_md_prose_wrapalways_format_1_41b7deae() {
 #[test]
 fn test_example_407_md_prose_wrapalways_format_1_c160213a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo ***");
@@ -5440,9 +5440,9 @@ fn test_example_407_md_prose_wrapalways_format_1_c160213a() {
 #[test]
 fn test_example_408_md_prose_wrapalways_format_1_d343a51c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo *\\\\**");
@@ -5466,8 +5466,8 @@ fn test_example_410_md_prose_wrapalways_format_1_86332235() {
 #[test]
 fn test_example_411_md_prose_wrapalways_format_1_c169d320() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5479,9 +5479,9 @@ fn test_example_411_md_prose_wrapalways_format_1_c169d320() {
 #[test]
 fn test_example_412_md_prose_wrapalways_format_1_9b63ffad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo **_**");
@@ -5492,8 +5492,8 @@ fn test_example_412_md_prose_wrapalways_format_1_9b63ffad() {
 #[test]
 fn test_example_413_md_prose_wrapalways_format_1_13b0bdc8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5505,8 +5505,8 @@ fn test_example_413_md_prose_wrapalways_format_1_13b0bdc8() {
 #[test]
 fn test_example_414_md_prose_wrapalways_format_1_4ac8262a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5518,9 +5518,9 @@ fn test_example_414_md_prose_wrapalways_format_1_4ac8262a() {
 #[test]
 fn test_example_415_md_prose_wrapalways_format_1_49326a2f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("***foo**");
@@ -5531,9 +5531,9 @@ fn test_example_415_md_prose_wrapalways_format_1_49326a2f() {
 #[test]
 fn test_example_417_md_prose_wrapalways_format_1_d21dc790() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo***");
@@ -5583,9 +5583,9 @@ fn test_example_420_md_prose_wrapalways_format_1_d2f855a1() {
 #[test]
 fn test_example_421_md_prose_wrapalways_format_1_baba90a0() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo _*_");
@@ -5596,8 +5596,8 @@ fn test_example_421_md_prose_wrapalways_format_1_baba90a0() {
 #[test]
 fn test_example_422_md_prose_wrapalways_format_1_a11aa384() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5609,8 +5609,8 @@ fn test_example_422_md_prose_wrapalways_format_1_a11aa384() {
 #[test]
 fn test_example_423_md_prose_wrapalways_format_1_f49d6338() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5622,9 +5622,9 @@ fn test_example_423_md_prose_wrapalways_format_1_f49d6338() {
 #[test]
 fn test_example_424_md_prose_wrapalways_format_1_fcddf6df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo __*__");
@@ -5635,9 +5635,9 @@ fn test_example_424_md_prose_wrapalways_format_1_fcddf6df() {
 #[test]
 fn test_example_425_md_prose_wrapalways_format_1_9c138e66() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo_");
@@ -5661,9 +5661,9 @@ fn test_example_426_md_prose_wrapalways_format_1_071f67fa() {
 #[test]
 fn test_example_427_md_prose_wrapalways_format_1_b1407bd4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("___foo__");
@@ -5674,9 +5674,9 @@ fn test_example_427_md_prose_wrapalways_format_1_b1407bd4() {
 #[test]
 fn test_example_428_md_prose_wrapalways_format_1_7e25d28a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____foo_");
@@ -5687,9 +5687,9 @@ fn test_example_428_md_prose_wrapalways_format_1_7e25d28a() {
 #[test]
 fn test_example_429_md_prose_wrapalways_format_1_4ee66bcf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo___");
@@ -5700,9 +5700,9 @@ fn test_example_429_md_prose_wrapalways_format_1_4ee66bcf() {
 #[test]
 fn test_example_430_md_prose_wrapalways_format_1_ac34c57a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo____");
@@ -5726,9 +5726,9 @@ fn test_example_431_md_prose_wrapalways_format_1_880c9c3e() {
 #[test]
 fn test_example_432_md_prose_wrapalways_format_1_6d70b16c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*_foo_*");
@@ -5739,9 +5739,9 @@ fn test_example_432_md_prose_wrapalways_format_1_6d70b16c() {
 #[test]
 fn test_example_433_md_prose_wrapalways_format_1_5f97f64b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo__");
@@ -5752,9 +5752,9 @@ fn test_example_433_md_prose_wrapalways_format_1_5f97f64b() {
 #[test]
 fn test_example_434_md_prose_wrapalways_format_1_6c5c2986() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_*foo*_");
@@ -5778,9 +5778,9 @@ fn test_example_435_md_prose_wrapalways_format_1_1d394616() {
 #[test]
 fn test_example_436_md_prose_wrapalways_format_1_ae628fe6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____foo____");
@@ -5792,8 +5792,8 @@ fn test_example_436_md_prose_wrapalways_format_1_ae628fe6() {
 fn test_example_437_md_prose_wrapalways_format_1_ff5567e1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("******foo******");
@@ -5804,8 +5804,8 @@ fn test_example_437_md_prose_wrapalways_format_1_ff5567e1() {
 #[test]
 fn test_example_438_md_prose_wrapalways_format_1_2af1b646() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5817,8 +5817,8 @@ fn test_example_438_md_prose_wrapalways_format_1_2af1b646() {
 #[test]
 fn test_example_439_md_prose_wrapalways_format_1_f12ef610() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5830,9 +5830,9 @@ fn test_example_439_md_prose_wrapalways_format_1_f12ef610() {
 #[test]
 fn test_example_440_md_prose_wrapalways_format_1_84283087() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo _bar* baz_");
@@ -5843,9 +5843,9 @@ fn test_example_440_md_prose_wrapalways_format_1_84283087() {
 #[test]
 fn test_example_441_md_prose_wrapalways_format_1_ac46b3cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo*bar**");
@@ -5856,8 +5856,8 @@ fn test_example_441_md_prose_wrapalways_format_1_ac46b3cb() {
 #[test]
 fn test_example_442_md_prose_wrapalways_format_1_180d65c7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5882,9 +5882,9 @@ fn test_example_443_md_prose_wrapalways_format_1_89a48b68() {
 #[test]
 fn test_example_444_md_prose_wrapalways_format_1_86f44837() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo *bar baz*");
@@ -5895,8 +5895,8 @@ fn test_example_444_md_prose_wrapalways_format_1_86f44837() {
 #[test]
 fn test_example_445_md_prose_wrapalways_format_1_db0dee5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5934,9 +5934,9 @@ fn test_example_447_md_prose_wrapalways_format_1_9d20f270() {
 #[test]
 fn test_example_448_md_prose_wrapalways_format_1_cbe70e4c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**<a href=\"**\">");
@@ -5960,8 +5960,8 @@ fn test_example_449_md_prose_wrapalways_format_1_b3756390() {
 #[test]
 fn test_example_450_md_prose_wrapalways_format_1_9aa68977() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -5974,8 +5974,8 @@ fn test_example_450_md_prose_wrapalways_format_1_9aa68977() {
 fn test_example_451_md_prose_wrapalways_format_1_9ce23543() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_a \\`_\\`_");
@@ -5986,9 +5986,9 @@ fn test_example_451_md_prose_wrapalways_format_1_9ce23543() {
 #[test]
 fn test_example_452_md_prose_wrapalways_format_1_2522e15b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**a<http://foo.bar/?q=**>");
@@ -6012,8 +6012,8 @@ fn test_example_453_md_prose_wrapalways_format_1_a712711c() {
 #[test]
 fn test_example_454_md_prose_wrapalways_format_1_5c0d8372() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6077,9 +6077,9 @@ fn test_example_458_md_prose_wrapalways_format_1_725d5309() {
 #[test]
 fn test_example_459_md_prose_wrapalways_format_1_edec73c7() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link](</my uri>)");
@@ -6117,8 +6117,8 @@ fn test_example_461_md_prose_wrapalways_format_1_c7b7fb38() {
 fn test_example_462_md_prose_wrapalways_format_1_a6a6a876() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link](\\\\(foo\\\\))");
@@ -6155,9 +6155,9 @@ fn test_example_464_md_prose_wrapalways_format_1_21fddabf() {
 #[test]
 fn test_example_465_md_prose_wrapalways_format_1_e79cf989() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link](foo(and\\\\(bar\\\\)))");
@@ -6168,9 +6168,9 @@ fn test_example_465_md_prose_wrapalways_format_1_e79cf989() {
 #[test]
 fn test_example_466_md_prose_wrapalways_format_1_e647d3d8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link](<foo(and(bar))>)");
@@ -6194,9 +6194,9 @@ fn test_example_467_md_prose_wrapalways_format_1_25335ec2() {
 #[test]
 fn test_example_468_md_prose_wrapalways_format_1_66568c90() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("[link](#fragment)\n\n[link](http://example.com#fragment)\n\n[link](http://example.com?foo=3#frag)") ;
@@ -6220,9 +6220,9 @@ fn test_example_469_md_prose_wrapalways_format_1_e6e6d268() {
 #[test]
 fn test_example_470_md_prose_wrapalways_format_1_f3b9cf49() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link](foo%20b&auml;)");
@@ -6233,9 +6233,9 @@ fn test_example_470_md_prose_wrapalways_format_1_f3b9cf49() {
 #[test]
 fn test_example_471_md_prose_wrapalways_format_1_2457c38b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link](\"title\")");
@@ -6246,9 +6246,9 @@ fn test_example_471_md_prose_wrapalways_format_1_2457c38b() {
 #[test]
 fn test_example_472_md_prose_wrapalways_format_1_27fe4b0e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -6263,8 +6263,8 @@ fn test_example_472_md_prose_wrapalways_format_1_27fe4b0e() {
 #[test]
 fn test_example_473_md_prose_wrapalways_format_1_80eaec33() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6276,8 +6276,8 @@ fn test_example_473_md_prose_wrapalways_format_1_80eaec33() {
 #[test]
 fn test_example_474_md_prose_wrapalways_format_1_059f924f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6315,9 +6315,9 @@ fn test_example_476_md_prose_wrapalways_format_1_02e2d1d0() {
 #[test]
 fn test_example_477_md_prose_wrapalways_format_1_aab09571() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link] (/uri)");
@@ -6328,9 +6328,9 @@ fn test_example_477_md_prose_wrapalways_format_1_aab09571() {
 #[test]
 fn test_example_478_md_prose_wrapalways_format_1_b0ef3eb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link [foo [bar]]](/uri)");
@@ -6342,8 +6342,8 @@ fn test_example_478_md_prose_wrapalways_format_1_b0ef3eb2() {
 fn test_example_479_md_prose_wrapalways_format_1_2ebb5947() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link] bar](/uri)");
@@ -6354,9 +6354,9 @@ fn test_example_479_md_prose_wrapalways_format_1_2ebb5947() {
 #[test]
 fn test_example_480_md_prose_wrapalways_format_1_941e0772() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link [bar](/uri)");
@@ -6368,8 +6368,8 @@ fn test_example_480_md_prose_wrapalways_format_1_941e0772() {
 fn test_example_481_md_prose_wrapalways_format_1_9c0a05e5() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link \\\\[bar](/uri)");
@@ -6380,9 +6380,9 @@ fn test_example_481_md_prose_wrapalways_format_1_9c0a05e5() {
 #[test]
 fn test_example_482_md_prose_wrapalways_format_1_156d57e3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link *foo **bar** \\`#\\`*](/uri)");
@@ -6393,9 +6393,9 @@ fn test_example_482_md_prose_wrapalways_format_1_156d57e3() {
 #[test]
 fn test_example_483_md_prose_wrapalways_format_1_4cb6459d() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[![moon](moon.jpg)](/uri)");
@@ -6419,9 +6419,9 @@ fn test_example_484_md_prose_wrapalways_format_1_469a115c() {
 #[test]
 fn test_example_485_md_prose_wrapalways_format_1_868c0f96() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo *[bar [baz](/uri)](/uri)*](/uri)");
@@ -6432,9 +6432,9 @@ fn test_example_485_md_prose_wrapalways_format_1_868c0f96() {
 #[test]
 fn test_example_486_md_prose_wrapalways_format_1_d37950d3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![[[foo](uri1)](uri2)](uri3)");
@@ -6446,8 +6446,8 @@ fn test_example_486_md_prose_wrapalways_format_1_d37950d3() {
 fn test_example_487_md_prose_wrapalways_format_1_41f51741() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*[foo*](/uri)");
@@ -6458,9 +6458,9 @@ fn test_example_487_md_prose_wrapalways_format_1_41f51741() {
 #[test]
 fn test_example_488_md_prose_wrapalways_format_1_2fac866f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo *bar](baz*)");
@@ -6471,8 +6471,8 @@ fn test_example_488_md_prose_wrapalways_format_1_2fac866f() {
 #[test]
 fn test_example_489_md_prose_wrapalways_format_1_71da007a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6484,9 +6484,9 @@ fn test_example_489_md_prose_wrapalways_format_1_71da007a() {
 #[test]
 fn test_example_490_md_prose_wrapalways_format_1_2e8490dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo <bar attr=\"](baz)\">");
@@ -6497,9 +6497,9 @@ fn test_example_490_md_prose_wrapalways_format_1_2e8490dd() {
 #[test]
 fn test_example_491_md_prose_wrapalways_format_1_d865055c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo\\`](/uri)\\`");
@@ -6510,9 +6510,9 @@ fn test_example_491_md_prose_wrapalways_format_1_d865055c() {
 #[test]
 fn test_example_492_md_prose_wrapalways_format_1_9fef3838() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo<http://example.com/?search=](uri)>");
@@ -6536,8 +6536,8 @@ fn test_example_493_md_prose_wrapalways_format_1_9726a0f1() {
 #[test]
 fn test_example_494_md_prose_wrapalways_format_1_9a4db51d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6549,8 +6549,8 @@ fn test_example_494_md_prose_wrapalways_format_1_9a4db51d() {
 #[test]
 fn test_example_495_md_prose_wrapalways_format_1_ea448480() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6562,9 +6562,9 @@ fn test_example_495_md_prose_wrapalways_format_1_ea448480() {
 #[test]
 fn test_example_496_md_prose_wrapalways_format_1_16b4b490() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[link *foo **bar** \\`#\\`*][ref]\n\n[ref]: /uri");
@@ -6578,9 +6578,9 @@ fn test_example_496_md_prose_wrapalways_format_1_16b4b490() {
 #[test]
 fn test_example_497_md_prose_wrapalways_format_1_1225d1fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[![moon](moon.jpg)][ref]\n\n[ref]: /uri");
@@ -6591,9 +6591,9 @@ fn test_example_497_md_prose_wrapalways_format_1_1225d1fc() {
 #[test]
 fn test_example_498_md_prose_wrapalways_format_1_3defde95() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo [bar](/uri)][ref]\n\n[ref]: /uri");
@@ -6604,9 +6604,9 @@ fn test_example_498_md_prose_wrapalways_format_1_3defde95() {
 #[test]
 fn test_example_499_md_prose_wrapalways_format_1_880e782f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo *bar [baz][ref]*][ref]\n\n[ref]: /uri");
@@ -6630,9 +6630,9 @@ fn test_example_500_md_prose_wrapalways_format_1_8a890422() {
 #[test]
 fn test_example_501_md_prose_wrapalways_format_1_148c1736() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo *bar][ref]\n\n[ref]: /uri");
@@ -6643,9 +6643,9 @@ fn test_example_501_md_prose_wrapalways_format_1_148c1736() {
 #[test]
 fn test_example_502_md_prose_wrapalways_format_1_6efec0ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo <bar attr=\"][ref]\">\n\n[ref]: /uri");
@@ -6656,9 +6656,9 @@ fn test_example_502_md_prose_wrapalways_format_1_6efec0ea() {
 #[test]
 fn test_example_503_md_prose_wrapalways_format_1_d59849d2() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo\\`][ref]\\`\n\n[ref]: /uri");
@@ -6669,9 +6669,9 @@ fn test_example_503_md_prose_wrapalways_format_1_d59849d2() {
 #[test]
 fn test_example_504_md_prose_wrapalways_format_1_5a09cf61() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo<http://example.com/?search=][ref]>\n\n[ref]: /uri");
@@ -6699,8 +6699,8 @@ fn test_example_505_md_prose_wrapalways_format_1_3117696f() {
 fn test_example_506_md_prose_wrapalways_format_1_102e4445() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[Толпой][Толпой] is a Russian word.\n\n[ТОЛПОЙ]: /url");
@@ -6728,8 +6728,8 @@ fn test_example_507_md_prose_wrapalways_format_1_b8af7524() {
 fn test_example_508_md_prose_wrapalways_format_1_13de9aed() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo] [bar]\n\n[bar]: /url \"title\"");
@@ -6740,9 +6740,9 @@ fn test_example_508_md_prose_wrapalways_format_1_13de9aed() {
 #[test]
 fn test_example_509_md_prose_wrapalways_format_1_8759469a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]\n[bar]\n\n[bar]: /url \"title\"");
@@ -6753,9 +6753,9 @@ fn test_example_509_md_prose_wrapalways_format_1_8759469a() {
 #[test]
 fn test_example_510_md_prose_wrapalways_format_1_4668d004() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]: /url1\n\n[foo]: /url2\n\n[bar][foo]");
@@ -6766,9 +6766,9 @@ fn test_example_510_md_prose_wrapalways_format_1_4668d004() {
 #[test]
 fn test_example_511_md_prose_wrapalways_format_1_532e16d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[bar][foo\\\\!]\n\n[foo!]: /url");
@@ -6779,9 +6779,9 @@ fn test_example_511_md_prose_wrapalways_format_1_532e16d6() {
 #[test]
 fn test_example_512_md_prose_wrapalways_format_1_ca6d9093() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][ref[]\n\n[ref[]: /uri");
@@ -6805,9 +6805,9 @@ fn test_example_513_md_prose_wrapalways_format_1_2d16742b() {
 #[test]
 fn test_example_514_md_prose_wrapalways_format_1_87efc012() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[[[foo]]]\n\n[[[foo]]]: /url");
@@ -6818,9 +6818,9 @@ fn test_example_514_md_prose_wrapalways_format_1_87efc012() {
 #[test]
 fn test_example_515_md_prose_wrapalways_format_1_a3639bb1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][ref\\\\[]\n\n[ref\\\\[]: /uri");
@@ -6831,9 +6831,9 @@ fn test_example_515_md_prose_wrapalways_format_1_a3639bb1() {
 #[test]
 fn test_example_516_md_prose_wrapalways_format_1_c7cc3f0e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[bar\\\\\\\\]: /uri\n\n[bar\\\\\\\\]");
@@ -6857,9 +6857,9 @@ fn test_example_517_md_prose_wrapalways_format_1_967ee3ac() {
 #[test]
 fn test_example_518_md_prose_wrapalways_format_1_a86c5fe0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[\n ]\n\n[\n ]: /uri");
@@ -6870,9 +6870,9 @@ fn test_example_518_md_prose_wrapalways_format_1_a86c5fe0() {
 #[test]
 fn test_example_519_md_prose_wrapalways_format_1_c7333121() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][]\n\n[foo]: /url \"title\"");
@@ -6883,8 +6883,8 @@ fn test_example_519_md_prose_wrapalways_format_1_c7333121() {
 #[test]
 fn test_example_520_md_prose_wrapalways_format_1_257be9dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -6896,9 +6896,9 @@ fn test_example_520_md_prose_wrapalways_format_1_257be9dd() {
 #[test]
 fn test_example_521_md_prose_wrapalways_format_1_a62d3275() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[Foo][]\n\n[foo]: /url \"title\"");
@@ -6909,9 +6909,9 @@ fn test_example_521_md_prose_wrapalways_format_1_a62d3275() {
 #[test]
 fn test_example_522_md_prose_wrapalways_format_1_76758922() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo] \n[]\n\n[foo]: /url \"title\"");
@@ -6922,9 +6922,9 @@ fn test_example_522_md_prose_wrapalways_format_1_76758922() {
 #[test]
 fn test_example_523_md_prose_wrapalways_format_1_a9e8faa8() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo]\n\n[foo]: /url \"title\"");
@@ -6935,9 +6935,9 @@ fn test_example_523_md_prose_wrapalways_format_1_a9e8faa8() {
 #[test]
 fn test_example_524_md_prose_wrapalways_format_1_2fc5e76a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[*foo* bar]\n\n[*foo* bar]: /url \"title\"");
@@ -6948,9 +6948,9 @@ fn test_example_524_md_prose_wrapalways_format_1_2fc5e76a() {
 #[test]
 fn test_example_525_md_prose_wrapalways_format_1_409b12c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[[*foo* bar]]\n\n[*foo* bar]: /url \"title\"");
@@ -6961,9 +6961,9 @@ fn test_example_525_md_prose_wrapalways_format_1_409b12c4() {
 #[test]
 fn test_example_526_md_prose_wrapalways_format_1_8cf82231() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[[bar [foo]\n\n[foo]: /url");
@@ -7000,9 +7000,9 @@ fn test_example_528_md_prose_wrapalways_format_1_ddc28f12() {
 #[test]
 fn test_example_529_md_prose_wrapalways_format_1_7a83dc15() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\\\[foo]\n\n[foo]: /url \"title\"");
@@ -7027,8 +7027,8 @@ fn test_example_530_md_prose_wrapalways_format_1_4905b106() {
 fn test_example_531_md_prose_wrapalways_format_1_46237e8f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][bar]\n\n[foo]: /url1\n[bar]: /url2");
@@ -7039,9 +7039,9 @@ fn test_example_531_md_prose_wrapalways_format_1_46237e8f() {
 #[test]
 fn test_example_532_md_prose_wrapalways_format_1_81b29ff6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][bar][baz]\n\n[baz]: /url");
@@ -7052,9 +7052,9 @@ fn test_example_532_md_prose_wrapalways_format_1_81b29ff6() {
 #[test]
 fn test_example_533_md_prose_wrapalways_format_1_e58987f9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][bar][baz]\n\n[baz]: /url1\n[bar]: /url2");
@@ -7065,9 +7065,9 @@ fn test_example_533_md_prose_wrapalways_format_1_e58987f9() {
 #[test]
 fn test_example_534_md_prose_wrapalways_format_1_0e32b66b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo][bar][baz]\n\n[baz]: /url1\n[foo]: /url2");
@@ -7078,9 +7078,9 @@ fn test_example_534_md_prose_wrapalways_format_1_0e32b66b() {
 #[test]
 fn test_example_535_md_prose_wrapalways_format_1_13e462c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo](/url \"title\")");
@@ -7091,8 +7091,8 @@ fn test_example_535_md_prose_wrapalways_format_1_13e462c1() {
 #[test]
 fn test_example_536_md_prose_wrapalways_format_1_a10351c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7108,9 +7108,9 @@ fn test_example_536_md_prose_wrapalways_format_1_a10351c1() {
 #[test]
 fn test_example_537_md_prose_wrapalways_format_1_88151b95() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo ![bar](/url)](/url2)");
@@ -7121,9 +7121,9 @@ fn test_example_537_md_prose_wrapalways_format_1_88151b95() {
 #[test]
 fn test_example_538_md_prose_wrapalways_format_1_f6e1623b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo [bar](/url)](/url2)");
@@ -7152,8 +7152,8 @@ fn test_example_539_md_prose_wrapalways_format_1_d2cd30ba() {
 fn test_example_540_md_prose_wrapalways_format_1_37e47977() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted =
@@ -7168,9 +7168,9 @@ fn test_example_540_md_prose_wrapalways_format_1_37e47977() {
 #[test]
 fn test_example_541_md_prose_wrapalways_format_1_98bb67bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo](train.jpg)");
@@ -7181,9 +7181,9 @@ fn test_example_541_md_prose_wrapalways_format_1_98bb67bb() {
 #[test]
 fn test_example_542_md_prose_wrapalways_format_1_4f9c8014() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("My ![foo bar](/path/to/train.jpg  \"title\"   )");
@@ -7194,9 +7194,9 @@ fn test_example_542_md_prose_wrapalways_format_1_4f9c8014() {
 #[test]
 fn test_example_543_md_prose_wrapalways_format_1_c42fe64c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo](<url>)");
@@ -7207,9 +7207,9 @@ fn test_example_543_md_prose_wrapalways_format_1_c42fe64c() {
 #[test]
 fn test_example_544_md_prose_wrapalways_format_1_73cb9be1() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![](/url)");
@@ -7220,9 +7220,9 @@ fn test_example_544_md_prose_wrapalways_format_1_73cb9be1() {
 #[test]
 fn test_example_545_md_prose_wrapalways_format_1_b1ba6215() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo][bar]\n\n[bar]: /url");
@@ -7233,9 +7233,9 @@ fn test_example_545_md_prose_wrapalways_format_1_b1ba6215() {
 #[test]
 fn test_example_546_md_prose_wrapalways_format_1_bef2c415() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo][bar]\n\n[BAR]: /url");
@@ -7246,9 +7246,9 @@ fn test_example_546_md_prose_wrapalways_format_1_bef2c415() {
 #[test]
 fn test_example_547_md_prose_wrapalways_format_1_e7ffd2eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo][]\n\n[foo]: /url \"title\"");
@@ -7259,9 +7259,9 @@ fn test_example_547_md_prose_wrapalways_format_1_e7ffd2eb() {
 #[test]
 fn test_example_548_md_prose_wrapalways_format_1_53406bd7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![*foo* bar][]\n\n[*foo* bar]: /url \"title\"");
@@ -7272,9 +7272,9 @@ fn test_example_548_md_prose_wrapalways_format_1_53406bd7() {
 #[test]
 fn test_example_549_md_prose_wrapalways_format_1_029f3afe() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![Foo][]\n\n[foo]: /url \"title\"");
@@ -7285,9 +7285,9 @@ fn test_example_549_md_prose_wrapalways_format_1_029f3afe() {
 #[test]
 fn test_example_550_md_prose_wrapalways_format_1_c3ba35ca() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo] \n[]\n\n[foo]: /url \"title\"");
@@ -7298,9 +7298,9 @@ fn test_example_550_md_prose_wrapalways_format_1_c3ba35ca() {
 #[test]
 fn test_example_551_md_prose_wrapalways_format_1_4241d567() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![foo]\n\n[foo]: /url \"title\"");
@@ -7311,9 +7311,9 @@ fn test_example_551_md_prose_wrapalways_format_1_4241d567() {
 #[test]
 fn test_example_552_md_prose_wrapalways_format_1_a5f873b9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![*foo* bar]\n\n[*foo* bar]: /url \"title\"");
@@ -7324,9 +7324,9 @@ fn test_example_552_md_prose_wrapalways_format_1_a5f873b9() {
 #[test]
 fn test_example_553_md_prose_wrapalways_format_1_112b8606() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![[foo]]\n\n[[foo]]: /url \"title\"");
@@ -7338,8 +7338,8 @@ fn test_example_553_md_prose_wrapalways_format_1_112b8606() {
 fn test_example_554_md_prose_wrapalways_format_1_9855495e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("![Foo]\n\n[foo]: /url \"title\"");
@@ -7350,8 +7350,8 @@ fn test_example_554_md_prose_wrapalways_format_1_9855495e() {
 #[test]
 fn test_example_555_md_prose_wrapalways_format_1_0e1004a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7377,8 +7377,8 @@ fn test_example_556_md_prose_wrapalways_format_1_cb15089e() {
 fn test_example_557_md_prose_wrapalways_format_1_51be872e() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<http://foo.bar.baz>");
@@ -7390,8 +7390,8 @@ fn test_example_557_md_prose_wrapalways_format_1_51be872e() {
 fn test_example_558_md_prose_wrapalways_format_1_86dc15eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<http://foo.bar.baz/test?q=hello&id=22&boolean>");
@@ -7402,9 +7402,9 @@ fn test_example_558_md_prose_wrapalways_format_1_86dc15eb() {
 #[test]
 fn test_example_559_md_prose_wrapalways_format_1_68316275() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<irc://foo.bar:2233/baz>");
@@ -7415,9 +7415,9 @@ fn test_example_559_md_prose_wrapalways_format_1_68316275() {
 #[test]
 fn test_example_560_md_prose_wrapalways_format_1_ab655ad8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<MAILTO:FOO@BAR.BAZ>");
@@ -7441,9 +7441,9 @@ fn test_example_561_md_prose_wrapalways_format_1_9e440c52() {
 #[test]
 fn test_example_562_md_prose_wrapalways_format_1_02ffcf5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<made-up-scheme://foo,bar>");
@@ -7467,9 +7467,9 @@ fn test_example_563_md_prose_wrapalways_format_1_f2ef15e1() {
 #[test]
 fn test_example_564_md_prose_wrapalways_format_1_c4f495ab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<localhost:5001/foo>");
@@ -7493,9 +7493,9 @@ fn test_example_565_md_prose_wrapalways_format_1_35298842() {
 #[test]
 fn test_example_566_md_prose_wrapalways_format_1_b66c1a5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<http://example.com/\\\\[\\\\>");
@@ -7519,9 +7519,9 @@ fn test_example_567_md_prose_wrapalways_format_1_3243da52() {
 #[test]
 fn test_example_568_md_prose_wrapalways_format_1_58beaf7a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<foo+special@Bar.baz-bar0.com>");
@@ -7532,9 +7532,9 @@ fn test_example_568_md_prose_wrapalways_format_1_58beaf7a() {
 #[test]
 fn test_example_569_md_prose_wrapalways_format_1_dbc9dd0e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<foo\\\\+@bar.example.com>");
@@ -7545,9 +7545,9 @@ fn test_example_569_md_prose_wrapalways_format_1_dbc9dd0e() {
 #[test]
 fn test_example_570_md_prose_wrapalways_format_1_4baba3be() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<>");
@@ -7558,9 +7558,9 @@ fn test_example_570_md_prose_wrapalways_format_1_4baba3be() {
 #[test]
 fn test_example_571_md_prose_wrapalways_format_1_c6f39887() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("< http://foo.bar >");
@@ -7571,9 +7571,9 @@ fn test_example_571_md_prose_wrapalways_format_1_c6f39887() {
 #[test]
 fn test_example_572_md_prose_wrapalways_format_1_30af2663() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<m:abc>");
@@ -7597,8 +7597,8 @@ fn test_example_573_md_prose_wrapalways_format_1_3fd5b56e() {
 #[test]
 fn test_example_574_md_prose_wrapalways_format_1_f43e2e83() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7623,8 +7623,8 @@ fn test_example_575_md_prose_wrapalways_format_1_623a0657() {
 #[test]
 fn test_example_576_md_prose_wrapalways_format_1_a232c84e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7636,9 +7636,9 @@ fn test_example_576_md_prose_wrapalways_format_1_a232c84e() {
 #[test]
 fn test_example_577_md_prose_wrapalways_format_1_4f004699() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a/><b2/>");
@@ -7649,8 +7649,8 @@ fn test_example_577_md_prose_wrapalways_format_1_4f004699() {
 #[test]
 fn test_example_578_md_prose_wrapalways_format_1_7066ed5f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7662,9 +7662,9 @@ fn test_example_578_md_prose_wrapalways_format_1_7066ed5f() {
 #[test]
 fn test_example_579_md_prose_wrapalways_format_1_e25613d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -7679,9 +7679,9 @@ fn test_example_579_md_prose_wrapalways_format_1_e25613d5() {
 #[test]
 fn test_example_580_md_prose_wrapalways_format_1_5b4e1845() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo <responsive-image src=\"foo.jpg\" />");
@@ -7692,9 +7692,9 @@ fn test_example_580_md_prose_wrapalways_format_1_5b4e1845() {
 #[test]
 fn test_example_581_md_prose_wrapalways_format_1_03773f2c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<33> <__>");
@@ -7718,9 +7718,9 @@ fn test_example_582_md_prose_wrapalways_format_1_00c02070() {
 #[test]
 fn test_example_583_md_prose_wrapalways_format_1_f03442e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"hi'> <a href=hi'>");
@@ -7732,8 +7732,8 @@ fn test_example_583_md_prose_wrapalways_format_1_f03442e4() {
 fn test_example_584_md_prose_wrapalways_format_1_758f73ab() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("< a><\nfoo><bar/ >");
@@ -7757,8 +7757,8 @@ fn test_example_585_md_prose_wrapalways_format_1_8c528e32() {
 #[test]
 fn test_example_586_md_prose_wrapalways_format_1_d12b4478() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7797,8 +7797,8 @@ fn test_example_588_md_prose_wrapalways_format_1_149ea60d() {
 fn test_example_589_md_prose_wrapalways_format_1_ed082330() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo <!-- not a comment -- two hyphens -->");
@@ -7810,8 +7810,8 @@ fn test_example_589_md_prose_wrapalways_format_1_ed082330() {
 fn test_example_590_md_prose_wrapalways_format_1_3b40ffa6() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo <!--> foo -->\n\nfoo <!-- foo--->");
@@ -7822,9 +7822,9 @@ fn test_example_590_md_prose_wrapalways_format_1_3b40ffa6() {
 #[test]
 fn test_example_591_md_prose_wrapalways_format_1_5cefe37d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo <?php echo $a; ?>");
@@ -7848,8 +7848,8 @@ fn test_example_592_md_prose_wrapalways_format_1_7d039f6b() {
 #[test]
 fn test_example_593_md_prose_wrapalways_format_1_c9a2c063() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7861,8 +7861,8 @@ fn test_example_593_md_prose_wrapalways_format_1_c9a2c063() {
 #[test]
 fn test_example_594_md_prose_wrapalways_format_1_0e388cae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7874,9 +7874,9 @@ fn test_example_594_md_prose_wrapalways_format_1_0e388cae() {
 #[test]
 fn test_example_595_md_prose_wrapalways_format_1_c565b477() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo <a href=\"\\\\*\">");
@@ -7887,9 +7887,9 @@ fn test_example_595_md_prose_wrapalways_format_1_c565b477() {
 #[test]
 fn test_example_596_md_prose_wrapalways_format_1_5b28bdac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"\\\\\"\">");
@@ -7913,8 +7913,8 @@ fn test_example_597_md_prose_wrapalways_format_1_a64146d9() {
 #[test]
 fn test_example_598_md_prose_wrapalways_format_1_7e8eaeae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -7926,9 +7926,9 @@ fn test_example_598_md_prose_wrapalways_format_1_7e8eaeae() {
 #[test]
 fn test_example_599_md_prose_wrapalways_format_1_811ddbb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo       \nbaz");
@@ -7939,9 +7939,9 @@ fn test_example_599_md_prose_wrapalways_format_1_811ddbb0() {
 #[test]
 fn test_example_600_md_prose_wrapalways_format_1_367fba40() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo  \n     bar");
@@ -7965,9 +7965,9 @@ fn test_example_601_md_prose_wrapalways_format_1_41c10565() {
 #[test]
 fn test_example_602_md_prose_wrapalways_format_1_52611e04() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo  \nbar*");
@@ -7978,9 +7978,9 @@ fn test_example_602_md_prose_wrapalways_format_1_52611e04() {
 #[test]
 fn test_example_603_md_prose_wrapalways_format_1_2b0592d3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo\\\\\nbar*");
@@ -7992,8 +7992,8 @@ fn test_example_603_md_prose_wrapalways_format_1_2b0592d3() {
 fn test_example_604_md_prose_wrapalways_format_1_6e2e55a4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`code  \nspan\\`");
@@ -8005,8 +8005,8 @@ fn test_example_604_md_prose_wrapalways_format_1_6e2e55a4() {
 fn test_example_605_md_prose_wrapalways_format_1_43bcf31a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\\`code\\\\\nspan\\`");
@@ -8017,9 +8017,9 @@ fn test_example_605_md_prose_wrapalways_format_1_43bcf31a() {
 #[test]
 fn test_example_606_md_prose_wrapalways_format_1_ae89856e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"foo  \nbar\">");
@@ -8031,8 +8031,8 @@ fn test_example_606_md_prose_wrapalways_format_1_ae89856e() {
 fn test_example_607_md_prose_wrapalways_format_1_d37da033() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a href=\"foo\\\\\nbar\">");
@@ -8044,8 +8044,8 @@ fn test_example_607_md_prose_wrapalways_format_1_d37da033() {
 fn test_example_608_md_prose_wrapalways_format_1_80b9eafa() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo\\\\");
@@ -8056,9 +8056,9 @@ fn test_example_608_md_prose_wrapalways_format_1_80b9eafa() {
 #[test]
 fn test_example_609_md_prose_wrapalways_format_1_6140adac() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo  ");
@@ -8069,9 +8069,9 @@ fn test_example_609_md_prose_wrapalways_format_1_6140adac() {
 #[test]
 fn test_example_610_md_prose_wrapalways_format_1_9f62088d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("### foo\\\\");
@@ -8095,8 +8095,8 @@ fn test_example_611_md_prose_wrapalways_format_1_069a9125() {
 #[test]
 fn test_example_612_md_prose_wrapalways_format_1_2b755fd7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -8109,8 +8109,8 @@ fn test_example_612_md_prose_wrapalways_format_1_2b755fd7() {
 fn test_example_613_md_prose_wrapalways_format_1_fd68b4d9() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo \n baz");
@@ -8121,8 +8121,8 @@ fn test_example_613_md_prose_wrapalways_format_1_fd68b4d9() {
 #[test]
 fn test_example_614_md_prose_wrapalways_format_1_92e34d30() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -8134,9 +8134,9 @@ fn test_example_614_md_prose_wrapalways_format_1_92e34d30() {
 #[test]
 fn test_example_615_md_prose_wrapalways_format_1_bd8fbc68() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo χρῆν");
@@ -8148,8 +8148,8 @@ fn test_example_615_md_prose_wrapalways_format_1_bd8fbc68() {
 fn test_example_616_md_prose_wrapalways_format_1_d6f1ff02() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Multiple     spaces");

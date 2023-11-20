@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_for_await_js_format_1_7677d32b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("async function foo() {\n  for await (num of asyncIterable) {\n    console.log(num);\n  }\n  for await (num of asyncGeneratorFunc()) {\n    console.log(num);\n  }\n}\n\n(async () => {\n  for await (num of asyncIterable) {\n    console.log(num);\n  }\n  for await (const x of delegate_yield()) {\n    x;\n  }\n})();") ;

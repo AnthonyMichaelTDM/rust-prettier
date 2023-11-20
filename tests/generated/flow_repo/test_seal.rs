@@ -21,8 +21,8 @@ fn test_imp_js_format_1_8f9afb45() {
 #[test]
 fn test_obj_annot_js_format_1_0156e882() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(param: { name: string; }): number {\n    return param.id;\n}\n\nfoo({ name: \"test\" });\n\nmodule.exports = foo;") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_broken_html_html_format_1_8bf60b99() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- \n#7241, \nreproduction:\ntwo different element,\nlinebreak\n\\`<\\`\nextra space(s)\n-->\n<div><span>\n\n\n\n<                                           ") ;
@@ -69,8 +69,8 @@ fn test_form_html_format_1_db01a4e0() {
 #[test]
 fn test_hello_world_html_format_1_6b32a0d1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n</head>\n<body>\n    <!-- A comment -->\n    <h1>Hello World</h1>\n</body>\n</html>\n") ;
@@ -81,8 +81,8 @@ fn test_hello_world_html_format_1_6b32a0d1() {
 #[test]
 fn test_html_comments_html_format_1_78ffce31() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- htmlhint attr-lowercase: false -->\n<html>\n  <body>\n    <a href=\"#\">Anchor</a>\n    <div hidden class=\"foo\" id=bar></div>\n  </body>\n</html>") ;
@@ -105,8 +105,8 @@ fn test_html_5_boilerplate_html_format_1_fe8bb766() {
 #[test]
 fn test_issue_9368_html_format_1_4ca688fc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<strong>a</strong>-&gt;<strong>b</strong>-&gt;");
@@ -129,8 +129,8 @@ fn test_issue_9368_2_html_format_1_3fedb30e() {
 #[test]
 fn test_issue_9368_3_html_format_1_dc423d5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -145,8 +145,8 @@ fn test_issue_9368_3_html_format_1_dc423d5e() {
 #[test]
 fn test_more_html_html_format_1_29d9bc23() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<html>\n<head></head>\n<body>\n    <a href=\"#\">Anchor</a>\n    <div hidden class=\"foo\" id=bar></div>\n</body>\n</html>") ;
@@ -181,8 +181,8 @@ fn test_void_elements_2_html_format_1_984d7ae4() {
 #[test]
 fn test_with_colon_html_format_1_e4060f1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- unknown tag with colon -->\n<div>\n<foo:bar>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo:bar>\n</div>\n\n<!-- block tag with colon -->\n<div>\n<foo:div>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo:div>\n</div>\n\n<!-- inline tag with colon -->\n<div>\n<foo:span>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo:span>\n</div>\n\n<!-- unknown -->\n<div>\n<foo-bar>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo-bar>\n</div>\n\n<!-- without colon -->\n<div>\n<div>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></div>\n</div>\n\n<!-- #7236 -->\n<with:colon>\n  <div><h1> text  text  text  text  text  text  text  text  text  text  text  text  text  text </h1></div>\n  <script>\n  const func = function() { console.log('Hello, there');}\n  </script>\n  </with:colon>\n\n<!-- script like -->\n<with:colon>\n<style>.a{color:#f00}</style>\n  <SCRIPT>\n  const func = function() { console.log('Hello, there');}\n  </SCRIPT>\n<STYLE>.A{COLOR:#F00}</STYLE>\n<html:script>const func = function() { console.log('Hello, there');}</html:script>\n<html:style>.a{color:#f00}</html:style>\n<svg><style>.a{color:#f00}</style></svg>\n<svg><style>.a{color:#f00}</style></svg>\n</with:colon>\n<html:script>const func = function() { console.log('Hello, there');}</html:script>\n<html:style>.a{color:#f00}</html:style>") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_font_shorthand_css_format_1_9dce291d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".class {\n  font: normal normal 24px/1 \"myfont\";font: normal normal normal 12px/20px myfont;\n  font:normal 300 0.875em/1.3  \"myfont\", sans-serif;\n}") ;

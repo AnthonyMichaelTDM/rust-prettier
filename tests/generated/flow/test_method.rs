@@ -17,8 +17,8 @@ fn test_comment_js_format_1_6885ce6a() {
 #[test]
 fn test_consistent_breaking_js_format_1_605ad57b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Foo1 {\n  flowParseFunctionTypeParams(\n    params: N.FlowFunctionTypeParam[] = [],\n  ): { params: N.FlowFunctionTypeParam[], rest: ?N.FlowFunctionTypeParam } {\n    // ...\n  }\n}\n\ntype Foo2 = {\n  flowParseFunctionTypeParams(\n    params: N.FlowFunctionTypeParam[]\n  ): { params: N.FlowFunctionTypeParam[], rest: ?N.FlowFunctionTypeParam }\n}\n\n{\n  function flowParseFunctionTypeParams(\n    params: N.FlowFunctionTypeParam[]\n  ): { params: N.FlowFunctionTypeParam[], rest: ?N.FlowFunctionTypeParam } {\n    // ...\n  }\n}") ;

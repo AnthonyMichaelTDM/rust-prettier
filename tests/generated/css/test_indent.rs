@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_indent_css_format_1_7bedeec0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("div {\n  background: var(fig-light-02) url(/images/inset-shadow-east-ltr.png) 100% 0 repeat-y;\n  box-shadow: 0 0 1px 2px rgba(88, 144, 255, 0.75), 0 1px 1px rgba(0, 0, 0, 0.15);\n  padding-bottom: calc(var(ads-help-tray-footer-with-support-link-height) + var(ads-help-tray-header-height-new));\n}") ;

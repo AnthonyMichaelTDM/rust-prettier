@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_0_indent_js_prose_wrapalways_format_1_8aab4309() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["babel"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("md\\`\nThis line shouldn't be indented at all in the resulting output.\n\\`\n\nif (true) {\n  md\\`\ntext1\n- 123\n  - 456\n\ntext2\n- 123\n  - 456\n\ntext3\n- 123\n  - 456\n\\`;\n}") ;
@@ -19,8 +19,8 @@ fn test_0_indent_js_prose_wrapalways_format_1_8aab4309() {
 fn test_codeblock_js_prose_wrapalways_format_1_7207cd2f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("md\\`\n\\\\\\`\\\\\\`\\\\\\`js\nmarkdown\\\\\\`\n    \\\\\\\\\\\\\\`\\\\\\\\\\\\\\`\\\\\\\\\\\\\\`js\n    console.log('hi');\n    \\\\\\\\\\\\\\`\\\\\\\\\\\\\\`\\\\\\\\\\\\\\`\n\\\\\\`\n\\\\\\`\\\\\\`\\\\\\`\n\\`;") ;
@@ -31,8 +31,8 @@ fn test_codeblock_js_prose_wrapalways_format_1_7207cd2f() {
 #[test]
 fn test_escape_js_prose_wrapalways_format_1_1822a523() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
@@ -71,8 +71,8 @@ fn test_markdown_js_prose_wrapalways_format_1_c81db771() {
 fn test_single_line_js_prose_wrapalways_format_1_0a8b2df4() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("markdown\\`# hello\\`");

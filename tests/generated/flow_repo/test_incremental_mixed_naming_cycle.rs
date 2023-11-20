@@ -41,8 +41,8 @@ fn test_c_js_format_1_14d1835b() {
 #[test]
 fn test_d_js_format_1_14dbbd17() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule D\n * @flow\n */\n\n(require('./b'): void);\n\nmodule.exports = 'D';") ;
@@ -53,8 +53,8 @@ fn test_d_js_format_1_14dbbd17() {
 #[test]
 fn test_root_js_format_1_2ee46486() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

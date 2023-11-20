@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_asi_js_format_1_42a3fea1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://github.com/facebook/flow/commit/78f657e8da014e16ff509ad34f8178b158c47af7\nclass C {\n  foo\n    () {}\n}") ;
@@ -29,8 +29,8 @@ fn test_assignment_js_format_1_fcf6713f() {
 #[test]
 fn test_binary_js_format_1_654acb55() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("(class {}) + 1;\n(class a {}) + 1;\n(class extends b {}) + 1;\n(class a extends b {}) + 1;") ;
@@ -41,8 +41,8 @@ fn test_binary_js_format_1_654acb55() {
 #[test]
 fn test_call_js_format_1_002e596c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("(class {})(class {});");
@@ -65,8 +65,8 @@ fn test_class_fields_features_js_format_1_912a0d31() {
 #[test]
 fn test_empty_js_format_1_3edf787d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A1 {\n  // comment\n}\n\nclass A2 { // comment\n}\n\nclass A3 {\n}\n\nclass A4 {\n  m() {}\n}") ;
@@ -77,8 +77,8 @@ fn test_empty_js_format_1_3edf787d() {
 #[test]
 fn test_member_js_format_1_9d72cf85() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("(class {})[1];\n(class {}).a;");
@@ -146,8 +146,8 @@ fn test_super_js_format_1_d194035c() {
 #[test]
 fn test_ternary_js_format_1_be6e16e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("if (1) (class {}) ? 1 : 2;");

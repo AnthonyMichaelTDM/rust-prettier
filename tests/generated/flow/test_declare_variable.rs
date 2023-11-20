@@ -13,8 +13,8 @@ fn test_decare_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_decare_js_format_1_16ff7f1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare var a: string;\ndeclare let b: string;\ndeclare const c: string;\ndeclare export var a: string;\ndeclare export let b: string;\ndeclare export const c: string;") ;

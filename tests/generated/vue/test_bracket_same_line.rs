@@ -31,8 +31,8 @@ fn test_vue_html_bracket_same_linetrue_format_1_76db7dc4() {
 #[test]
 fn test_vue_vue_bracket_same_linefalse_format_1_d3219d2a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["vue"])
         .bracket_same_line(false)
+        .parsers(vec!["vue"])
         .print_width(80)
         .build()
         .unwrap();
@@ -44,9 +44,9 @@ fn test_vue_vue_bracket_same_linefalse_format_1_d3219d2a() {
 #[test]
 fn test_vue_vue_bracket_same_linetrue_format_1_d3219d2a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .bracket_same_line(true)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div>\n<div :long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</div>\n<div v-on:long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"></div>\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"></span>\n<img long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"/>\n<div class=\"a\">\ntext\n</div>\n<span  class=\"a\">\ntext\n</span>\n<img class=\"a\"/>\n  </div>\n</template>\n\n<script long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">export default {}</script>\n<style  long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">.a {color: #f00}</style>") ;

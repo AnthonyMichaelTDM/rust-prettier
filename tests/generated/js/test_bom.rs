@@ -18,11 +18,11 @@ fn test_snippet_cursor_1_js_format_1_8999657b() {
 #[test]
 fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .range_start(11)
-        .parsers(vec!["babel"])
         .cursor_offset(22)
-        .range_end(27)
+        .parsers(vec!["babel"])
         .print_width(80)
+        .range_end(27)
+        .range_start(11)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
@@ -36,10 +36,10 @@ fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
 #[test]
 fn test_snippet_range_1_js_format_1_f19ae2ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel"])
+        .print_width(80)
         .range_end(27)
         .range_start(11)
-        .print_width(80)
-        .parsers(vec!["babel"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
@@ -50,11 +50,11 @@ fn test_snippet_range_1_js_format_1_f19ae2ee() {
 #[test]
 fn test_snippet_range_and_cursor_1_js_format_1_1e50091b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["babel"])
-        .range_start(12)
         .cursor_offset(23)
+        .parsers(vec!["babel"])
+        .print_width(80)
         .range_end(28)
+        .range_start(12)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;

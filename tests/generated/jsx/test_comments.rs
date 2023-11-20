@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_eslint_disable_js_bracket_same_linetrue_format_1_31e7aee1() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_same_line(true)
         .parsers(vec!["flow", "babel", "typescript"])
         .print_width(80)
-        .bracket_same_line(true)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const render = items => (\n  <div>{ /* eslint-disable */\n    \t items.map(item => null)\n      /* eslint-enable */    }</div>\n)") ;
@@ -18,9 +18,9 @@ fn test_eslint_disable_js_bracket_same_linetrue_format_1_31e7aee1() {
 #[test]
 fn test_in_attributes_js_bracket_same_linetrue_format_1_c12d59a4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .bracket_same_line(true)
         .parsers(vec!["flow", "babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div\n  attr=/* comment */\"foo\"\n></div>;\n\n<div\n  attr=\n  /* comment */\n  \"foo\"\n></div>;\n\n<div\n  attr= /* comment */\n  \"foo\"\n></div>;\n\n<div\n  attr=\n  /* comment */ \"foo\"\n></div>;\n\n<div\n  attr=\n  // comment\n  \"foo\"\n></div>;\n\n<div\n  attr= // comment\n  \"foo\"\n></div>;") ;
@@ -47,8 +47,8 @@ fn test_in_end_tag_js_bracket_same_linetrue_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_in_end_tag_js_bracket_same_linetrue_format_1_db3189b1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["flow", "babel", "typescript"])
         .bracket_same_line(true)
+        .parsers(vec!["flow", "babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -60,9 +60,9 @@ fn test_in_end_tag_js_bracket_same_linetrue_format_1_db3189b1() {
 #[test]
 fn test_in_tags_js_bracket_same_linetrue_format_1_e5d6a89f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["flow", "babel", "typescript"])
         .bracket_same_line(true)
+        .parsers(vec!["flow", "babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div\n  // comment\n>\n  {foo}\n</div>;\n\n<div\n  // comment\n  attr=\"foo\"\n>\n  {foo}\n</div>;\n\n<div\n  attr=\"foo\" // comment\n>\n  {foo}\n</div>;\n\n<div\n  attr=\"foo\"\n  // comment\n>\n  {foo}\n</div>;\n\n<br // comment\n/>;") ;
@@ -73,9 +73,9 @@ fn test_in_tags_js_bracket_same_linetrue_format_1_e5d6a89f() {
 #[test]
 fn test_jsx_tag_comment_after_prop_js_bracket_same_linetrue_format_1_2a639ce4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["flow", "babel", "typescript"])
         .bracket_same_line(true)
+        .parsers(vec!["flow", "babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://github.com/typescript-eslint/typescript-eslint/pull/703\n\nconst pure = () => {\n  return (\n      <Foo\n        // one\n        foo={123}\n        // two\n        bar=\"woof\"\n      />\n  );\n") ;

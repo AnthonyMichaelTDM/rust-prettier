@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_override_modifier_ts_format_1_22def4bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class MyClass extends BaseClass {\n  override show() {}\n  public override show() {}\n  override size = 5;\n  override readonly size = 5;\n  abstract override foo: string;\n  static override foo: string;\n}") ;

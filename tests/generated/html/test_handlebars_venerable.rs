@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_template_html_single_quotetrue_format_1_91a30dc4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .single_quote(true)
         .parsers(vec!["html"])
         .print_width(80)
+        .single_quote(true)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script id=\"entry-template\" type=\"text/x-handlebars-template\">\n<div class=\"entry\">\n<h1>{{title}}</h1>\n<div class=\"body\">{{body}}</div></div>\n</script>\n\n<script type=\"text/x-handlebars-template\">\n  {{component arg1='hey' arg2=(helper this.arg7 this.arg4) arg3=anotherone arg6=this.arg8}}\n</script>") ;
@@ -18,8 +18,8 @@ fn test_template_html_single_quotetrue_format_1_91a30dc4() {
 #[test]
 fn test_template_html_format_1_91a30dc4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script id=\"entry-template\" type=\"text/x-handlebars-template\">\n<div class=\"entry\">\n<h1>{{title}}</h1>\n<div class=\"body\">{{body}}</div></div>\n</script>\n\n<script type=\"text/x-handlebars-template\">\n  {{component arg1='hey' arg2=(helper this.arg7 this.arg4) arg3=anotherone arg6=this.arg8}}\n</script>") ;

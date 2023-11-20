@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_constructors_js_format_1_79e4c3cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// Foo is a class-like function\nfunction Foo() {\n  this.x = 0; // constructs objects with property x\n}\nFoo.y = 0; // has static property y\nFoo.prototype = { m() { return 0; } };\n\n// exporting Foo directly doesn't work\n// Foo's instance and static props are not picked up\nexports.Foo = Foo;\n\n// so you want to type Foo, by declaring it as a class\ninterface IFooPrototype {\n  m: () => number;\n}\ninterface IFoo extends IFooPrototype {\n  x: boolean; // error, should have declared x: number instead\n  static (): void;\n  constructor(): void;\n}\nexports.Foo2 = (Foo: Class<IFoo>);") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_function_js_format_1_f4aad13a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction Bar(x: number) {\n  this.x = x;\n}\nBar.prototype.getX = function() { return this.x; }\nBar.prototype.getY = function(): string { return this.y; }\n\nmodule.exports = Bar;") ;
@@ -17,8 +17,8 @@ fn test_function_js_format_1_f4aad13a() {
 #[test]
 fn test_proto_js_format_1_0081bdc7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function Foo() { }\nvar o = new Foo();\nvar x:number = o.x;\n\nFoo.prototype.m = function() { return this.x; }\n\nvar y:number = o.m();\no.x = \"...\";\n\nFoo.prototype = { m: function() { return false; } }\n\nvar export_o: { x:any; } = o; // awkward type cast\n\nmodule.exports = export_o;") ;
@@ -29,8 +29,8 @@ fn test_proto_js_format_1_0081bdc7() {
 #[test]
 fn test_sealed_js_format_1_67a32026() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var o = require('./proto');\n\no.z = 0;\nvar x:string = o.x;\n\nvar Bar = require('./function');\nvar a = new Bar(234);\na.x = 123;\na.y = 'abc'; // error, needs to be declared in Bar's constructor\n(a.getX(): number);\n(a.getY(): string);") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_2_scss_format_1_63a36c10() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("$icons: (\n  cal-day-group:\n    (\n      left: 253,\n      top: 73,\n    ),\n\n\n  /* Should preserve empty lines */\n  cal-week-group:\n    (\n      left: 1,\n      top: 169,\n    )\n);") ;

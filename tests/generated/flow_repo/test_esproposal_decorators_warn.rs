@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_6a9fd477() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n@decorator4\nclass Foo {\n  @decorator1\n  method1() {}\n\n  @decorator2\n  @decorator3\n  method2() {}\n}") ;

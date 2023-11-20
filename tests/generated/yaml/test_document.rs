@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_directives_and_comments_yml_format_1_8a6dde22() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# 123\n%YAML 1.2\n# 456\n---\n# 789\ntest\n# 000");
@@ -36,8 +36,8 @@ fn test_separator_yml_format_1_8a0f565b() {
 #[test]
 fn test_with_document_head_yml_format_1_cd892de7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\n123");
@@ -60,8 +60,8 @@ fn test_with_document_head_like_yml_format_1_b940c45a() {
 #[test]
 fn test_without_document_head_yml_format_1_b481bb58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("123");

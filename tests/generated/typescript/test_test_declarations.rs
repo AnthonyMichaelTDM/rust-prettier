@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_declarations_ts_arrow_parensavoid_format_1_d89393f6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
         .arrow_parens("avoid")
+        .parsers(vec!["typescript", "flow"])
         .print_width(80)
         .build()
         .unwrap();

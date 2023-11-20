@@ -70,8 +70,8 @@ fn test_optional_chaining_js_semifalse_format_1_85dd90aa() {
 #[test]
 fn test_optional_chaining_js_format_1_85dd90aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -86,8 +86,8 @@ fn test_optional_chaining_js_format_1_85dd90aa() {
 #[test]
 fn test_private_fields_js_semifalse_format_1_6ef63b38() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -99,8 +99,8 @@ fn test_private_fields_js_semifalse_format_1_6ef63b38() {
 #[test]
 fn test_private_fields_js_format_1_6ef63b38() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A { #x; #y; }\nclass B { #x = 0; #y = 1; }\n\nclass C {\n  static #x;\n  static #y = 1;\n}\n\nclass D {\n  #x\n  #y\n}\n\nclass Point {\n  #x = 1;\n  #y = 2;\n\n  constructor(x = 0, y = 0) {\n    this.#x = +x;\n    this.#y = +y;\n  }\n\n  get x() { return this.#x }\n  set x(value) { this.#x = +value }\n\n  get y() { return this.#y }\n  set y(value) { this.#y = +value }\n\n  equals(p) { return this.#x === p.#x && this.#y === p.#y }\n\n  toString() { return \\`Point<\\${ this.#x },\\${ this.#y }>\\` }\n}\n\nclass E {\n  async #a() {}\n  #b() {}\n  get #c() {}\n  set #c(bar) {}\n  *#d() {}\n  async *#e() {}\n  get #f() {}\n  set #f(taz) {}\n}\n\nclass F {\n  #func(id, { blog: { title } }) {\n    return id + title;\n  }\n}") ;
@@ -124,8 +124,8 @@ fn test_with_comments_js_semifalse_format_1_7c025ab6() {
 #[test]
 fn test_with_comments_js_format_1_7c025ab6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A {\n  #foobar =\n    // comment to break\n    1 +\n    // comment to break again\n    2;\n}") ;

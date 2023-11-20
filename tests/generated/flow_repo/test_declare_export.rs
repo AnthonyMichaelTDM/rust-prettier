@@ -17,8 +17,8 @@ fn test_b_js_format_1_d525903c() {
 #[test]
 fn test_c_js_format_1_e3121712() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/* @flow */");
@@ -29,8 +29,8 @@ fn test_c_js_format_1_e3121712() {
 #[test]
 fn test_common_js_clobbering_class_js_format_1_e58001ae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule CommonJS_Clobbering_Class\n * @flow\n */\n\nclass Base {\n  static baseProp: number;\n}\n\nclass Test extends Base {\n  static childProp: number;\n\n  static staticNumber1():number { return 1; }\n  static staticNumber2():number { return 2; }\n  static staticNumber3():number { return 3; }\n\n  instNumber1():number { return 1; }\n  instNumber2():number { return 2; }\n};\n\nmodule.exports = Test;") ;
@@ -41,8 +41,8 @@ fn test_common_js_clobbering_class_js_format_1_e58001ae() {
 #[test]
 fn test_common_js_clobbering_lit_js_format_1_5b46daa6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule CommonJS_Clobbering_Lit\n * @flow\n */\n\nmodule.exports = {\n  numberValue1: 1,\n  numberValue2: 2,\n  numberValue3: 3,\n  numberValue4: 4,\n  numberValue5: 5\n};") ;
@@ -65,8 +65,8 @@ fn test_common_js_named_js_format_1_b3c229d0() {
 #[test]
 fn test_es_6_default_anon_function_1_js_format_1_07bc6c11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6_Default_AnonFunction1\n * @flow\n */\n\ndeclare export default () => number;") ;
@@ -89,8 +89,8 @@ fn test_es_6_default_anon_function_2_js_format_1_c34a71f1() {
 #[test]
 fn test_es_6_default_named_class_1_js_format_1_ef8d826f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6_Default_NamedClass1\n * @flow\n */\n\ndeclare export default class FooImpl { givesANum(): number; };\n\n// Regression test for https://github.com/facebook/flow/issues/511\n//\n// Default-exported class should also be available in local scope\ndeclare export { FooImpl as Foo }\ndeclare export function getAFoo(): FooImpl;") ;
@@ -101,8 +101,8 @@ fn test_es_6_default_named_class_1_js_format_1_ef8d826f() {
 #[test]
 fn test_es_6_default_named_class_2_js_format_1_eb928d58() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6_Default_NamedClass2\n * @flow\n */\n\ndeclare export default class Foo { givesANum(): number; };") ;
@@ -165,8 +165,8 @@ fn test_es_6_export_all_from_intermediary_1_js_format_1_873217e7() {
 #[test]
 fn test_es_6_export_all_from_intermediary_2_js_format_1_d62c4095() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6_ExportAllFrom_Intermediary2\n * @flow\n */\n\ndeclare export * from \"ES6_ExportAllFrom_Source2\";") ;
@@ -225,8 +225,8 @@ fn test_es_6_export_from_intermediary_1_js_format_1_1ab4cdfe() {
 #[test]
 fn test_es_6_export_from_intermediary_2_js_format_1_e6d9ac52() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6_ExportFrom_Intermediary2\n * @flow\n */\n\ndeclare export {\n  numberValue1,\n  numberValue2 as numberValue2_renamed2\n} from \"ES6_ExportFrom_Source2\";") ;
@@ -249,8 +249,8 @@ fn test_es_6_export_from_source_1_js_format_1_126cab82() {
 #[test]
 fn test_es_6_export_from_source_2_js_format_1_e86525e1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6_ExportFrom_Source2\n * @flow\n */\n\ndeclare export var numberValue1: number;\ndeclare export var numberValue2: number;") ;
@@ -285,8 +285,8 @@ fn test_es_6_named_2_js_format_1_1b28aa44() {
 #[test]
 fn test_provides_module_a_js_format_1_9401784a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule A\n * @flow\n */\n\nexports.numberValue1 = 42;\nexports.numberValue2 = 42;\nexports.numberValue3 = 42;\nexports.numberValue4 = 42;\nexports.stringValue = \"str\";") ;
@@ -321,8 +321,8 @@ fn test_provides_module_d_js_format_1_acd1bf89() {
 #[test]
 fn test_provides_module_es_6_default_js_format_1_bf09781d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @providesModule ES6Default\n * @flow\n */\n\n/*\nexport default {\n  numberValue: 42,\n};\n*/") ;

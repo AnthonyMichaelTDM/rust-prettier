@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_variable_selector_less_format_1_df5c2d6b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("@{selector}{}");

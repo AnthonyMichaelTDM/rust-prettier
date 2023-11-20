@@ -29,8 +29,8 @@ fn test_import_defer_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_import_defer_js_format_1_20806599() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import defer * as ns from \"x\";");

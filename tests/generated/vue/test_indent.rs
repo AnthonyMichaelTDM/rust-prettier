@@ -44,9 +44,9 @@ fn test_vue_tag_indent_vue_vue_indent_script_and_stylefalse_format_1_299ab9e0() 
 #[test]
 fn test_vue_tag_indent_vue_vue_indent_script_and_styletrue_format_1_299ab9e0() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["vue"])
         .print_width(80)
         .vue_indent_script_and_style(true)
-        .parsers(vec!["vue"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script>\n  console.log('hello');\nconsole.log('hello');\n</script>\n\n<style lang=\"scss\">\n  footer {\n    background: #00abc9;\n  }\n\nfooter {\n  background: #00abc9;\n}\n</style>\n\n<template>\n  <br />\n  <footer>\n    foo\n    <br/>\n  </footer>\n</template>") ;

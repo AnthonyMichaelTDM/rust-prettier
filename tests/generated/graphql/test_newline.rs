@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_directive_decl_graphql_format_1_73bf5a9b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("directive @dir(\n  # comment\n  arg1: String\n\n\n  # comment\n  arg2: String\n  arg3: String\n\n) on QUERY") ;
@@ -29,8 +29,8 @@ fn test_directives_graphql_format_1_790f3011() {
 #[test]
 fn test_enum_graphql_format_1_126f3173() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("enum State {\n  # pending state\n  PENDING\n\n  # visible states\n  VISIBLE\n  INVISIBLE\n\n  # archive state\n  ARCHIVED\n}") ;
@@ -69,8 +69,8 @@ fn test_input_graphql_format_1_f4861a8e() {
 #[test]
 fn test_interface_graphql_format_1_2bfd3eb7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface Actor {\n  # Id\n  id: ID\n\n  # Actor fields\n  name: String\n  kind: String\n\n}") ;

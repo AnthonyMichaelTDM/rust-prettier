@@ -29,8 +29,8 @@ fn test_bracket_0_js_format_1_aa691ea0() {
 #[test]
 fn test_bracket_0_1_js_format_1_a0ca8034() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -55,8 +55,8 @@ fn test_break_last_call_js_format_1_6d70c544() {
 #[test]
 fn test_break_last_member_js_format_1_9752c5ca() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("SomeVeryLongUpperCaseConstant.someVeryLongCallExpression().some_very_long_member_expression\nweNeedToReachTheEightyCharacterLimitXXXXXXXXXXXXXXXXX.someNode\n  .childrenInAnArray[0];\nsuperSupersuperSupersuperSupersuperSupersuperSuperLong.exampleOfOrderOfGetterAndSetterReordered;\nsuperSupersuperSupersuperSupersuperSupersuperSuperLong.exampleOfOrderOfGetterAndSetterReordered[0];\n\nexpect(\n  findDOMNode(component.instance()).getElementsByClassName(styles.inner)[0].style.paddingRight\n).toBe('1000px');\n\nconst { course, conflicts = [], index, scheduleId, studentId, something } = a.this.props;\n\nconst { course2, conflicts2 = [], index2, scheduleId2, studentId2, something2 } = this.props;\n\nconst {\n  updated,\n  author: { identifier: ownerId },\n  location,\n  category: categories,\n} = rawAd.entry;") ;
@@ -119,8 +119,8 @@ fn test_computed_js_format_1_6c288839() {
 #[test]
 fn test_computed_merge_js_format_1_831ea3a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("[].forEach(key => {\n  data[key]('foo')\n    .then(() => console.log('bar'))\n    .catch(() => console.log('baz'));\n});\n\n[].forEach(key => {\n  data('foo')\n    [key]('bar')\n    .then(() => console.log('bar'))\n    .catch(() => console.log('baz'));\n});\n\nwindow.Data[key](\"foo\")\n  .then(() => a)\n  .catch(() => b);") ;
@@ -131,8 +131,8 @@ fn test_computed_merge_js_format_1_831ea3a3() {
 #[test]
 fn test_conditional_js_format_1_ee40f47c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("(a ? b : c).d();\n\n(a ? b : c).d().e();\n\n(a ? b : c).d().e().f();\n\n(valid\n  ? helper.responseBody(this.currentUser)\n  : helper.responseBody(this.defaultUser))\n.map();\n\n(valid\n  ? helper.responseBody(this.currentUser)\n  : helper.responseBody(this.defaultUser))\n.map().filter();\n\n(valid\n  ? helper.responseBody(this.currentUser)\n  : helper.responseBody(defaultUser))\n.map();\n\nobject[valid\n  ? helper.responseBody(this.currentUser)\n  : helper.responseBody(defaultUser)]\n.map();") ;
@@ -155,8 +155,8 @@ fn test_cypress_js_format_1_7fbf1473() {
 #[test]
 fn test_d_3_js_format_1_1f68be64() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("d3.select('body')\n  .append('circle')\n  .at({ width: 30, fill: '#f0f' })\n  .st({ fontWeight: 600 })\n\nconst myScale = d3.scaleLinear()\n  .domain([1950, 1980])\n  .range([0, width])\n\nnot.d3.select('body')\n  .append('circle')\n  .at({ width: 30, fill: '#f0f' })\n  .st({ fontWeight: 600 })\n\nnot.d3.scaleLinear()\n  .domain([1950, 1980])\n  .range([0, width])") ;
@@ -203,8 +203,8 @@ fn test_inline_merge_js_format_1_7662eb31() {
 #[test]
 fn test_issue_3594_js_format_1_5e86d515() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const fetched = fetch(\"/foo\");\nfetched\n\t.then(response => response.json())\n\t.then(json => processThings(json.data.things));\n\nlet column = new Column(null, conn)\n    .table(data.table)\n    .json(data.column);") ;
@@ -215,8 +215,8 @@ fn test_issue_3594_js_format_1_5e86d515() {
 #[test]
 fn test_issue_3621_js_format_1_e5e853b8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const palindrome = str => {\n  const s = str.toLowerCase().replace(/[\\\\W_]/g, '');\n  return s === s.split('').reverse().join('');\n};\n\nconst apiCurrencies = api().currencies().all()\n\nexpect(cells.at(1).render().text()).toBe('link text1')\nexpect(cells.at(2).render().text()).toBe('link text2')\nexpect(cells.at(3).render().text()).toBe('link text3')\nexpect(cells.at(4).render().text()).toBe('link text4')") ;
@@ -264,8 +264,8 @@ fn test_logical_js_format_1_7448747f() {
 #[test]
 fn test_multiple_members_js_format_1_88f341e1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("if (testConfig.ENABLE_ONLINE_TESTS === \"true\") {\n  describe(\"POST /users/me/pet\", function() {\n    it(\"saves pet\", function() {\n      function assert(pet) {\n        expect(pet).to.have.property(\"OwnerAddress\").that.deep.equals({\n          AddressLine1: \"Alexanderstrasse\",\n          AddressLine2: \"\",\n          PostalCode: \"10999\",\n          Region: \"Berlin\",\n          City: \"Berlin\",\n          Country: \"DE\"\n        });\n      }\n    });\n  });\n}\n\nwrapper.find('SomewhatLongNodeName').prop('longPropFunctionName')().then(function() {\n  doSomething();\n});\n\nwrapper.find('SomewhatLongNodeName').prop('longPropFunctionName')('argument').then(function() {\n  doSomething();\n});\n\nwrapper.find('SomewhatLongNodeName').prop('longPropFunctionName', 'second argument that pushes this group past 80 characters')('argument').then(function() {\n  doSomething();\n});\n\nwrapper.find('SomewhatLongNodeName').prop('longPropFunctionName')('argument', 'second argument that pushes this group past 80 characters').then(function() {\n  doSomething();\n});") ;
@@ -288,8 +288,8 @@ fn test_object_literal_js_format_1_c3ae3918() {
 #[test]
 fn test_pr_7889_js_format_1_3f8d25d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Profile = view.with({ name: (state) => state.name }).as((props) => (\n  <div>\n    <h1>Hello, {props.name}</h1>\n  </div>\n))\n\nconst Profile2 = view.with({ name }).as((props) => (\n  <div>\n    <h1>Hello, {props.name}</h1>\n  </div>\n))") ;
@@ -324,8 +324,8 @@ fn test_simple_args_js_format_1_293ae6fd() {
 #[test]
 fn test_square_0_js_format_1_d378aa74() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const version = someLongString\n  .split('jest version =')\n  .pop()\n  .split(EOL)[0]\n  .trim();\n\nconst component = find('.org-lclp-edit-copy-url-banner__link')[0]\n  .getAttribute('href')\n  .indexOf(this.landingPageLink);") ;
@@ -336,8 +336,8 @@ fn test_square_0_js_format_1_d378aa74() {
 #[test]
 fn test_test_js_format_1_30e0346e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("method().then(x => x)\n  [\"abc\"](x => x)\n  [abc](x => x);\n\n({}.a().b());\n({}).a().b();") ;
@@ -400,8 +400,8 @@ fn test_tuple_and_record_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_and_record_js_format_1_636c064c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("foo.a().b().c([n, o])\nfoo.a().b().c(#[n, o])\n\nfoo.a().b().c({n, o})\nfoo.a().b().c(#{n, o})") ;

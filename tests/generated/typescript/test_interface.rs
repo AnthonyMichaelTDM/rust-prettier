@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_ts_semifalse_format_1_ed0df114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["typescript"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface ScreenObject {\n\t// I make things weird.\n\tat(point: Point): Screen | undefined;\n}") ;
@@ -18,8 +18,8 @@ fn test_comments_ts_semifalse_format_1_ed0df114() {
 #[test]
 fn test_comments_ts_format_1_ed0df114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface ScreenObject {\n\t// I make things weird.\n\tat(point: Point): Screen | undefined;\n}") ;
@@ -30,9 +30,9 @@ fn test_comments_ts_format_1_ed0df114() {
 #[test]
 fn test_comments_generic_ts_semifalse_format_1_a480cec7() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["typescript"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface ReallyReallyLongName<\n  TypeArgumentNumberOne,\n  TypeArgumentNumberTwo,\n  TypeArgumentNumberThree\n> // 1\nextends BaseInterface {}\n\ninterface ReallyReallyLongName2<\n  TypeArgumentNumberOne,\n  TypeArgumentNumberTwo,\n  TypeArgumentNumberThree\n> // 1\n// 2\nextends BaseInterface {}\n\ninterface ReallyReallyLongName3<\n  TypeArgumentNumberOne,\n  TypeArgumentNumberTwo,\n  TypeArgumentNumberThree\n> // 1\n// 2\nextends BaseInterface // 3\n{}\n\ninterface Foo<\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO,\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO,\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO\n> // comments\n  extends Foo {}") ;
@@ -55,9 +55,9 @@ fn test_comments_generic_ts_format_1_a480cec7() {
 #[test]
 fn test_generic_ts_semifalse_format_1_b0342a9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["typescript"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface Foo<FOOOOOOOOOOOOOOOOOOOOOOOOOO,FOOOOOOOOOOOOOOOOOOOOOOO>\n  extends Foo {}\n\ninterface Foo<\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO,\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO,\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO\n> extends Foo {}") ;
@@ -68,8 +68,8 @@ fn test_generic_ts_semifalse_format_1_b0342a9a() {
 #[test]
 fn test_generic_ts_format_1_b0342a9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface Foo<FOOOOOOOOOOOOOOOOOOOOOOOOOO,FOOOOOOOOOOOOOOOOOOOOOOO>\n  extends Foo {}\n\ninterface Foo<\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO,\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO,\n  FOOOOOOOOOOOOOOOOOOOOOOOOOO\n> extends Foo {}") ;
@@ -80,8 +80,8 @@ fn test_generic_ts_format_1_b0342a9a() {
 #[test]
 fn test_ignore_ts_semifalse_format_1_b475b9ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -93,8 +93,8 @@ fn test_ignore_ts_semifalse_format_1_b475b9ee() {
 #[test]
 fn test_ignore_ts_format_1_b475b9ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface Interface {\n  // prettier-ignore\n  prop: type\n  // prettier-ignore\n  prop: type;\n  prop: type;\n}\n\n// Last element\ninterface Interface {\n  // prettier-ignore\n  prop: type\n  prop: type\n}\n\ninterface foo extends bar {\n  // prettier-ignore\n  f(): void;\n  // prettier-ignore\n  g(): void;\n  h(): void;\n}\n\ninterface T<T> {\n  // prettier-ignore\n  new<T>(): T<T>;\n  new<T>(): T<T>;\n}\n\ninterface I {\n  // prettier-ignore\n  x: y;\n}\n\ninterface I {\n  // prettier-ignore\n  x: y,\n}\n\ninterface I {\n  // prettier-ignore\n  x: y\n}\n\ninterface I {\n  // prettier-ignore\n  x: y;\n  y: x\n}\n\ninterface I {\n  // prettier-ignore\n  x: y,\n  y: x\n}\n\ninterface I {\n  // prettier-ignore\n  x: y\n  y: x\n}\n\ninterface I {\n  // prettier-ignore\n  (): void;\n}\n\ninterface I {\n  // prettier-ignore\n  (): void,\n}\n\ninterface I {\n  // prettier-ignore\n  (): void\n}\n\ninterface I {\n  // prettier-ignore\n  foo(): void;\n}\n\ninterface I {\n  // prettier-ignore\n  foo(): void,\n}\n\ninterface I {\n  // prettier-ignore\n  foo(): void\n}\n\ninterface I {\n  // prettier-ignore\n  new ();\n}\n\ninterface I {\n  // prettier-ignore\n  new (),\n}\n\ninterface I {\n  // prettier-ignore\n  new ()\n}") ;
@@ -105,8 +105,8 @@ fn test_ignore_ts_format_1_b475b9ee() {
 #[test]
 fn test_long_extends_ts_semifalse_format_1_e441be6c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -155,9 +155,9 @@ fn test_pattern_parameters_ts_format_1_b2376cee() {
 #[test]
 fn test_separator_ts_semifalse_format_1_995f1dfa() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["typescript"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare module 'selenium-webdriver' {\n  export const until: {\n    ableToSwitchToFrame(frame: number | WebElement | By): Condition<boolean>;\n    alertIsPresent(): Condition<Alert>;\n  };\n}\n\nexport interface Edge {\n  cursor: {};\n  node: {\n    id: {};\n  };\n}\n\ninterface Test { one: string, two: any[] }") ;
@@ -168,8 +168,8 @@ fn test_separator_ts_semifalse_format_1_995f1dfa() {
 #[test]
 fn test_separator_ts_format_1_995f1dfa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare module 'selenium-webdriver' {\n  export const until: {\n    ableToSwitchToFrame(frame: number | WebElement | By): Condition<boolean>;\n    alertIsPresent(): Condition<Alert>;\n  };\n}\n\nexport interface Edge {\n  cursor: {};\n  node: {\n    id: {};\n  };\n}\n\ninterface Test { one: string, two: any[] }") ;

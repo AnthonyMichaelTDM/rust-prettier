@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_angularjs_html_bracket_same_linefalse_format_1_8d69a13c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["angular"])
         .bracket_same_line(false)
+        .parsers(vec!["angular"])
         .print_width(80)
         .build()
         .unwrap();
@@ -19,8 +19,8 @@ fn test_angularjs_html_bracket_same_linefalse_format_1_8d69a13c() {
 fn test_angularjs_html_bracket_same_linetrue_format_1_8d69a13c() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(true)
-        .print_width(80)
         .parsers(vec!["angular"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div ng-if=\"$ctrl .shouldShowWarning&&!$ctrl.loading\"\n    bindon-target=\" a | b : c \"\n    (event)=\"  foo == $event  \"\n    *ngIf=\" something?true:false    \" [(ngModel)]=\"canSave\">Warning!</div>\n<span ng-if=\"$ctrl .shouldShowWarning&&!$ctrl.loading\"\n    bindon-target=\" a | b : c \"\n    (event)=\"  foo == $event  \"\n    *ngIf=\" something?true:false    \" [(ngModel)]=\"canSave\">Warning!</span>\n<img ng-if=\"$ctrl .shouldShowWarning&&!$ctrl.loading\"\n    bindon-target=\" a | b : c \"\n    (event)=\"  foo == $event  \"\n    *ngIf=\" something?true:false    \" [(ngModel)]=\"canSave\"/>\n<script long-attribute=\"long_long_long_long_long_long_long_long_long_long_long_long_long_value\">alert(1)</script>\n<div (event)=\"  foo == $event  \">Warning!</div>\n<span (event)=\"  foo == $event  \">Warning!</span>\n<img (event)=\"  foo == $event  \"/>\n<script>alert(1)</script>") ;

@@ -41,8 +41,8 @@ fn test_return_js_format_1_c3e908e7() {
 #[test]
 fn test_throw_js_format_1_05d81d64() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("async function *catch_return() {\n  try {\n    yield 0;\n  } catch (e) {\n    return e;\n  }\n}\n\n(async () => {\n  catch_return().throw(\"\").then(({value}) => {\n    if (value !== undefined) {\n      (value: void); // error: number ~> void\n    }\n  });\n});\n\nasync function *yield_return() {\n  try {\n    yield 0;\n    return;\n  } catch (e) {\n    yield e;\n  }\n}\n\n(async () => {\n  yield_return().throw(\"\").then(({value}) => {\n    if (value !== undefined) {\n      (value: void); // error: number ~> void\n    }\n  });\n});") ;

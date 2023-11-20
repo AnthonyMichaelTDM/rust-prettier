@@ -17,8 +17,8 @@ fn test_attribute_hbs_format_1_4e9f7525() {
 #[test]
 fn test_class_name_hbs_format_1_76790309() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div class='class and other'></div>\n<div class=' class and other '></div>\n<div CLASs=' class and other '></div>\n<p class=\" a list of\n\n\nweirdly formatted\n\n\nclasses\">String</p>\n<p class=\" a list of\n\n\nweirdly formatted\n\n\n{{this.classes}}\">String</p>\n<p CLASS=\" a list of\n\n\nweirdly formatted\n\n\n{{this.classes}}\">String</p>\n\n<Foo class=\"\n\"/>") ;
@@ -29,8 +29,8 @@ fn test_class_name_hbs_format_1_76790309() {
 #[test]
 fn test_order_hbs_format_1_3bf15b5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<MyComponent\n  {{! this is a comment for arg 1}}\n  @arg1=\"hello\"\n  {{on \"clik\" this.modify}}\n  @arg2=\"hello\"\n  {{! this is a comment for arg 3}}\n  @arg3=\"hello\"\n  @arg4=\"hello\"\n  {{! this is a comment for arg 5}}\n  @arg5=\"hello\"\n  ...arguments\n/>") ;
@@ -41,8 +41,8 @@ fn test_order_hbs_format_1_3bf15b5e() {
 #[test]
 fn test_quotes_hbs_format_1_980a1b89() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

@@ -17,8 +17,8 @@ fn test_consistent_ts_format_1_e7f4bcc1() {
 #[test]
 fn test_single_parameter_ts_format_1_645a1145() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type X = (options:{ a: string; b: AbstractCompositeThingamabobberFactoryProvider}) => {};\ntype Y = new (options:{ a: string; b: AbstractCompositeThingamabobberFactoryProvider}) => {}") ;
@@ -29,8 +29,8 @@ fn test_single_parameter_ts_format_1_645a1145() {
 #[test]
 fn test_type_annotation_ts_format_1_080d14ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const foo = (): () => void => (): void => null;\nconst bar = (): (() => void) => (): void => null;\nconst baz = (): ((() => void)) => (): void => null;") ;

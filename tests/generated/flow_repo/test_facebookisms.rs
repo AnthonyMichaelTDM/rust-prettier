@@ -41,8 +41,8 @@ fn test_invariant_js_format_1_e29d8637() {
 #[test]
 fn test_lib_js_format_1_71c7ff7b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare module \"copyProperties\" {\n  declare var exports: Object$Assign;\n}\n\ndeclare module \"mergeInto\" {\n  declare var exports: $Facebookism$MergeInto;\n}\n\ndeclare module \"mixin\" {\n  declare var exports: $Facebookism$Mixin;\n}") ;
@@ -53,8 +53,8 @@ fn test_lib_js_format_1_71c7ff7b() {
 #[test]
 fn test_merge_into_js_format_1_356cc7eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // global\n  function() {\n    (mergeInto()); // error, unknown global\n  },\n\n  // annotation\n  function(mergeInto: $Facebookism$MergeInto) {\n    let result = {};\n    result.baz = false;\n    (mergeInto(result, { foo: 'a' }, { bar: 123 }): void);\n    (result: { foo: string, bar: number, baz: boolean });\n  },\n\n  // module from lib\n  function() {\n    const mergeInto = require('mergeInto');\n    let result: { foo?: string, bar?: number, baz: boolean } = { baz: false };\n    (mergeInto(result, { foo: 'a' }, { bar: 123 }): void);\n  },\n\n  // too few args\n  function(mergeInto: $Facebookism$MergeInto) {\n    mergeInto();\n  },\n\n  // passed as a function\n  function(mergeInto: $Facebookism$MergeInto) {\n    function x(cb: Function) {}\n    x(mergeInto);\n  }\n];") ;

@@ -53,8 +53,8 @@ fn test_last_js_format_1_f32ea45b() {
 #[test]
 fn test_nested_js_format_1_08890127() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("[[]];\n[[], []];\n[[], [], []];\n[[], [0], []];\n[[], [0], [0]];\n[[], [0, 1], [0]];\n[[], [0, 1], [0, 1]];\n[[0]];\n[[0], []];\n[[0], [], []];\n[[0], [0], []];\n[[0], [0], [0]];\n[[0], [0, 1], [0]];\n[[0], [0, 1], [0, 1]];\n[[0, 1]];\n[[0, 1], []];\n[[0, 1], [], []];\n[[0, 1], [0], []];\n[[0, 1], [0], [0]];\n[[0, 1], [0, 1], [0]];\n[[0, 1], [0, 1], [0, 1]];\n[[], [1, 2, 3]];\n[[1], [1]];\n[[1, 2], [1, 2, 3]];\n[[1, 0], [1, 0]];\n[{}];\n[{}, {}];\n[{}, {}, {}];\n[{}, { a }];\n[{}, { a, b }];\n[{}, { a, b, c }];\n[{ a }];\n[{ a }, { a }];\n[{ a }, { a }, { a }];\n[{ a }, { a, b }];\n[{ a }, { a, b, c}];\n[{ a, b }];\n[{ a, b }, { a }];\n[{ a, b }, { a }, { a }];\n[{ a, b }, { a, b }];\n[{ a, b }, { a, b, c }];") ;
@@ -101,8 +101,8 @@ fn test_numbers_negative_js_format_1_baabc3ad() {
 #[test]
 fn test_numbers_negative_comment_after_minus_js_format_1_a7b066e5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const numbers = [-2017,-506252,-744011292,-7224,-70.4,-83353.6,-708.4,-174023963.52,-40385,-// comment1\n380014,\n-253951682,-728,-15.84,-2058467564.56,-43,-33,-85134845,-67092,-1,-78820379,-2371.6,-16,7,\n// comment2\n-62454,-4282239912,\n-10816495.36,0.88,-100622682,8.8,-67087.68000000001,-3758276,-25.5211,-54,-1184265243,-46073628,-280423.44,\n-41833463,-27961.12,-305.36,-199875.28];\n\nc = [\n  - /**/ 66, 66, 57, 45, 47, 33, 53, 82, 81, 76, 66, 57, 45, 47, 33, 53, 82, 81, 223323\n];") ;
@@ -113,8 +113,8 @@ fn test_numbers_negative_comment_after_minus_js_format_1_a7b066e5() {
 #[test]
 fn test_numbers_trailing_comma_js_format_1_ea88b84f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// --------------- print-width -------------------------------------------------\nc = [\n  66, 66, 57, 45, 47, 33, 53, 82, 81, 76, 66, 57, 45, 47, 33, 53, 82, 81, 223323,\n];") ;
@@ -137,8 +137,8 @@ fn test_numbers_with_holes_js_format_1_701198b4() {
 #[test]
 fn test_numbers_with_trailing_comments_js_format_1_a634f02a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function isUnusedDiagnostic(code) {\n  return [\n    6133, // '{0}' is declared but never used.\n    6138, // Property '{0}' is declared but its value is never read.\n    6192, // All imports in import declaration are unused.\n    6196, // '{0}' is declared but its value is never read.\n    6198,\n    6199,\n    6205, // All type parameters are unused.\n  ].includes(code);\n}") ;
@@ -173,8 +173,8 @@ fn test_numbers_1_js_format_1_dc78deac() {
 #[test]
 fn test_numbers_2_js_format_1_476dd0bf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const userIds1 = [\n  7234932941,\n  7234932722,\n  7234932312,\n  7234932933,\n];\n\nconst userIds2 = [\n  7234932941,\n  7234932722,\n  7234932312,\n  7234932933,\n  7234932841,\n  7234932166,\n  7234932843,\n  7234932978,\n  7234932436,\n];\n\nconst userIds3 = [\n  7234932941,\n  7234932722,\n  7234932312,\n  7234932933,\n  7234932841,\n  7234932166,\n  7234932843,\n\n  7234932978,\n  7234932436,\n];\n\nconst userIds4 = [\n  7234932941,\n  7234932722,\n  7234932312,\n  7234932933,\n  7234932841,\n  7234932166,\n  // comment 1\n  7234932843,\n\n  7234932978,\n\n  // comment 2\n  7234932436,\n  // comment 3\n];\n") ;
@@ -197,8 +197,8 @@ fn test_numbers_3_js_format_1_dc50360b() {
 #[test]
 fn test_preserve_empty_lines_js_format_1_8e5732d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("a = [\n\n  1,\n  2,\n\n  3,\n\n\n  4,\n\n\n]\n\nb = [\n  100,\n\n  (200)\n  ,\n\n  300\n  ,\n\n  1\n  ,\n  2, 3\n]\n\nc = [\n  \"apple\",\n  \"banana\",\n  \"blueberry\",\n\n  \"red\",\n  \"blue\"\n  ,\n  \"yellow\",\n\n  \"broccoli\",\n  \"celery\",\n  \"lettuce\"\n  ,\n\n  \"green\"\n  ,\n  \"green\",\n  \"green\",\n\n  //an egg\n  \"egg\",\n  //a bigger egg\n  \"big egg\"\n  //the biggest egg\n  ,\n  \"huge egg\"\n  ,\n\n  //not an egg\n  \"lasagna\"\n\n]\n\n_ = [\n  a,\n\n  b //\n]\n\n_ = [\n  (a),\n\n  b, //\n];\n\n_ = [\n  (((((\n    a = b/* comment */))/* comment */))),\n\n  c //\n]\n\n_ = [\n  (((((\n    (a = b)/* comment */))/* comment */))),\n\n  c //\n]\n\n_ = [\n  (a=b\n\n  ),\n  b, //\n];") ;

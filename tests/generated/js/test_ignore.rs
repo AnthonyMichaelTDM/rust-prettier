@@ -29,8 +29,8 @@ fn test_class_expression_decorator_js_flow_format_1_d41d8cd9() {
 #[test]
 fn test_class_expression_decorator_js_format_1_9190b171() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("(\n  // prettier-ignore\n  @decorator\n  class {}\n);");
@@ -120,8 +120,8 @@ fn test_issue_9877_js_format_1_3e7b9730() {
 #[test]
 fn test_issue_10661_js_format_1_e510d18a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("verylongidentifierthatwillwrap123123123123123(\n  a.b\n    // prettier-ignore\n    // Some other comment here\n    .c\n);\n\ncall(\n  // comment\n  a.\n    // prettier-ignore\n    b\n)\n\ncall(\n  a(\n/*\nthis won't get formatted too,\nbecause the prettier-ignore comment is attached as MemberExpression leading comment\n*/\n1,\n2.0000, 3\n)\n    // prettier-ignore\n    .c\n)") ;
@@ -132,8 +132,8 @@ fn test_issue_10661_js_format_1_e510d18a() {
 #[test]
 fn test_issue_11077_js_format_1_e1f8e1cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function HelloWorld(x) {\n\n  (\n    // prettier-ignore\n    // eslint-disable-next-line\n    x.a |\n    x.b\n  ).call(null)\n\n}\n\nfunction HelloWorld(x) {\n  // prettier-ignore\n  (\n    // eslint-disable-next-line\n    x.a |\n    x.b\n  ).call(null)\n\n}") ;

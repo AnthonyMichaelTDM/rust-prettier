@@ -22,8 +22,8 @@ fn test_issue_9874_ts_format_1_4dc95293() {
 #[test]
 fn test_issue_100857_ts_format_1_87b994fd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type FieldLayoutWith<\n  T extends string,\n  S extends unknown = { width: string }\n> = {\n  type: T;\n  code: string;\n  size: S;\n};\n\ntype FieldLayoutWith<\n  T extends string,\n  S extends unknown,\n> = {\n  type: T;\n  code: string;\n  size: S;\n};\n\ntype FieldLayoutWith<\n  S extends unknown = { width: string }\n> = {\n  type: T;\n  code: string;\n  size: S;\n};\n\ntype FieldLayoutWith<\n  T extends stringggggggggggg,\n  T extends stringggggggggggg\n> = {\n  type: T;\n  code: string;\n  size: S;\n};\n\ntype FieldLayoutWith<\n  T extends stringggggggggggg,\n  S = stringggggggggggggggggg\n> = {\n  type: T;\n  code: string;\n  size: S;\n};") ;
@@ -34,8 +34,8 @@ fn test_issue_100857_ts_format_1_87b994fd() {
 #[test]
 fn test_pattern_parameter_ts_format_1_710ec194() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type C = {\n  foo([]?): void;\n  bar({}, []?): any;\n  baz(a: string, b: number, []?): void;\n};") ;

@@ -17,8 +17,8 @@ fn test_combinator_css_format_1_5d88cca7() {
 #[test]
 fn test_leading_css_format_1_e1ce6bce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a {\n  > * {\n  }\n  &, > * {\n  }\n  + * {\n  }\n}");

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_component_hbs_format_1_05027681() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<UserGreeting @name=\"Ricardo\" @greeting=\"Olá\" />\n{{@greeting}}, {{@name}}!\n\n<div>\n  <UserGreeting\n    @aVeryLongArgumentNameThatIsStillGoing={{@alsoAVeryLongArgument}}\n  />\n</div>\n\n<Form as |f|>\n  <f.input @title=\"hello\" />\n  <f.input>hello</f.input>\n</Form>\n\n<this.label @title=\"hello\" />\n\n<button onclick={{action next}}>Next</button>\n\n<button disabled class=\"disabled\"></button>\n\n<button disabled=disabled class=\"disabled\"></button>\n\n<img alt=\"\" />\n\n<div ...attributes>Hello</div>\n\n<ul class=\"list-unstyled\n  one-tab\">\n</ul") ;
@@ -17,8 +17,8 @@ fn test_component_hbs_format_1_05027681() {
 #[test]
 fn test_literals_hbs_format_1_4fd29d7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{{mustache true}}\n{{mustache 5}}\n{{mustache undefined}}\n{{mustache null}}\n<!-- hello world -->\n{{! Mustache Comment}}\n{{!-- Mustache Comment }} --}}") ;
@@ -53,8 +53,8 @@ fn test_nested_path_hbs_format_1_90cb90bf() {
 #[test]
 fn test_raw_hbs_format_1_96e82d97() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<p>{{{raw}}}</p>");

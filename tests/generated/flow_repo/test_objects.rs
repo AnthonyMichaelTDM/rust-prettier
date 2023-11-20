@@ -41,8 +41,8 @@ fn test_objects_js_format_1_92f360d5() {
 #[test]
 fn test_unaliased_assign_js_format_1_d9f78bcd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * test handling of unaliased value assignment.\n *\n * An unaliased object rvalue may be assigned to a supertype lvalue,\n * because later widening mutations on the rvalue can't break assumptions\n * made by other lvalues.\n *\n * However, upon assignment the rvalue must take on the type of the\n * lvalue, to avoid both false positives and false negatives\n * (unsoundness), as shown below.\n *\n * @flow\n */\n\nvar glob: { x: string } = { x: \"hey\" };\n\nfunction assign_then_alias() {\n  var obj: { x: string | number };\n  obj = { x: \"hey\" };\n  glob = obj;    // error: subsequent assignment might make glob.x a number\n}\n\nfunction assign_then_widen() {\n  var obj: { x: string | number };\n  obj = { x: \"hey\" };\n  obj.x = 10;  // ok, by lvalue's given type\n}") ;

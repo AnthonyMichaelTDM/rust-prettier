@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_crlf_scss_format_1_85c8b3b5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("$nice-blue: #5B83AD;\n$light-blue: $nice-blue + #111;\n\n// Comment 1\n/*\n * Comment 2\n */\n#header {\n    // Comment 3\n    /*\n     * Comment 4\n     */\n    color: @light-blue;\n}\n\n@media only screen and (max-width: 600px) {\n    // Comment 1\n    /*\n     * Comment 5\n     */\n    body {\n        background-color: lightblue; // Comment 6\n        color: red; /* Comment 7 */\n    }\n}\n\n@mixin create-rules($padding) {\n    //\n    // Comment 8\n    //\n    .abc {\n        padding: $padding;\n    }\n    /**\n     * Comment 9\n     */\n    .def {\n        padding: $padding;\n    }\n}") ;
@@ -17,8 +17,8 @@ fn test_crlf_scss_format_1_85c8b3b5() {
 #[test]
 fn test_at_rule_scss_format_1_574c4f4b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -33,8 +33,8 @@ fn test_at_rule_scss_format_1_574c4f4b() {
 #[test]
 fn test_between_decl_scss_format_1_c0c24f69() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("selector {\nprop: // comment\nvalue;\n\nprop: /* block */ value;\n\nprop\n: value;\n}\n\n// #5603\n.grid {\n        grid-template-areas: //\n          \"header header header\" //\n          \"sidebar content content\" //\n          \"footer footer footer\";\n\n        grid-template-areas:\n          \"header header header\" //\n          \"sidebar content content\" //\n          \"footer footer footer\";\n }\n\n// #8052\n$font-family-rich:\n  // custom\n  'Noto Sans TC', 'Noto Sans SC', 'Noto Sans JP',\n  // Safari for OS X and iOS (San Francisco)\n  -apple-system, BlinkMacSystemFont,\n  // fallback\n  Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif,\n  // emoji\n  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;\n\n// #7109\n.test {\n    background:\n        /////// foo\n        // bar\n\n        radial-gradient(circle farthest-corner at 5% 10%, #000000, transparent 50%);\n}\n\n// TODO: make these pretty\nselector {\nprop:\n/* block */\nvalue;\n\nprop\n// inline\n:\nvalue;\n\nprop/* block */:\nvalue;\n\nprop\n/* block */\n:\nvalue;\n\nprop/* before */: // after\nvalue;\n\n\nprop/* before */: /* after*/\nvalue;\n}") ;
@@ -81,8 +81,8 @@ fn test_if_eslit_at_rule_decloration_scss_format_1_28304628() {
 #[test]
 fn test_in_value_scss_format_1_9139fb64() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".real-world-example {\n  background: radial-gradient(\n      circle at left 0% bottom $position,\n      transparent,\n      transparent $diameter,\n      #fbfbfb calc(#{$diameter} + 1px) // Add 1px for edge-smoothing.\n    );\n}\n\n.simplification { \n  foo: (\n    calc() // not a comment anymore\n  );\n}") ;
@@ -109,8 +109,8 @@ fn test_lists_scss_format_1_2d21ed44() {
 #[test]
 fn test_maps_scss_format_1_c043009c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("$my-map: (\n  'foo': 1, // Foo\n  'bar': 2, // Bar\n);");
@@ -124,8 +124,8 @@ fn test_maps_scss_format_1_c043009c() {
 #[test]
 fn test_mixed_scss_format_1_a2bbf8f2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* DO NOT ADD EXTRA CODE TO THIS FILE */\n\n@import \"a\";\n\n// '/*' <-- this breaks formatting\n\n@import 'b';\n// another comment\n//no-space before") ;
@@ -136,8 +136,8 @@ fn test_mixed_scss_format_1_a2bbf8f2() {
 #[test]
 fn test_mixed_2_scss_format_1_9d388255() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* DO NOT ADD EXTRA CODE TO THIS FILE */\n@import \"a\";\n//*\n@import 'b';\n/* block */\n/*no-space block*/") ;
@@ -148,8 +148,8 @@ fn test_mixed_2_scss_format_1_9d388255() {
 #[test]
 fn test_mixed_block_scss_format_1_eb71963e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* DO NOT ADD EXTRA CODE TO THIS FILE */\n\n@import \"a\";\n\n// '/*' <-- this breaks formatting\n\n@import 'b';\n/* block */\n/*no-space block*/") ;
@@ -160,8 +160,8 @@ fn test_mixed_block_scss_format_1_eb71963e() {
 #[test]
 fn test_prettier_ignore_scss_format_1_ef5e979b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -176,8 +176,8 @@ fn test_prettier_ignore_scss_format_1_ef5e979b() {
 #[test]
 fn test_selectors_scss_format_1_1b4452e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".powerPathNavigator .helm button.pressedButton, // comment 1\n.powerPathNavigator .helm button:active:not(.disabledButton),\n.powerPathNavigator table.powerPathInfo th:active,\n.powerPathNavigator table.powerPathInfo th:active + th:last-child {\n}\n\n// comment 2\n.powerPathNavigator .helm button.pressedButton,\n.powerPathNavigator .helm button:active:not(.disabledButton) {\n}\n\n.foo,\n// comment 3\n.bar {\n  display: block;\n}\n\n.field\n  {\n  &[data-field-id=\"1\"], // comment 4\n  &[data-field-id=\"2\"], // comment 5\n  &[data-field-id=\"3\"], // comment 6\n  {\n    background: green;\n  }\n}\n\n// comment 7\n.field\n// comment 8\n{ // comment 9\n  // comment 10\n  &[data-field-id=\"1\"], // comment 11\n  // comment 12\n  &[data-field-id=\"2\"] // comment 13\n  // comment 14\n  , // comment 15\n  // comment 16\n  &[data-field-id=\"3\"], // comment 17\n  // comment 18\n  { // comment 19\n    // comment 20\n    background: green;\n    // comment 21\n  } // comment 22\n  // comment 23\n}\n// comment 24\n\n.foo\n// comment 25\n.bar\n// comment 26\n{}\n\n.foo\n// comment 27\n+\n// comment 28\n.bar\n// comment 29\n{}") ;

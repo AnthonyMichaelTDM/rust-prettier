@@ -17,8 +17,8 @@ fn test_more_switch_js_format_1_b02c9209() {
 #[test]
 fn test_switch_js_format_1_b285d22f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\nfunction foo(\n): number {\n    switch ('foo') {\n    case 'foo':\n        return 1;\n    }\n    return 2;\n}\n\nfunction bar() {\n    switch ('bar') {\n    case 'bar':\n        break;\n    default:\n        break;\n    }\n}\n\nfunction qux(b) {\n    var x = b? 0: \"\";\n    switch('qux') {\n    case '':\n        x = 0;\n    case 'qux':\n        x = x*x;\n    }\n}") ;
@@ -29,8 +29,8 @@ fn test_switch_js_format_1_b285d22f() {
 #[test]
 fn test_switch_default_fallthrough_js_format_1_92ab5963() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\nfunction foo(x : mixed): string {\n    var a = \"\";\n    var b = \"\";\n\n    switch (x) {\n      case \"foo\":\n        a = 0;\n      default:\n        b = 0;\n    }\n\n    // a is now string | number\n    (a : string); // error, string | number ~/> string\n    (a : number); // error, string | number ~/> number\n\n    // b is now number\n    (b : number); // ok\n    return b; // error, number ~/> string\n}\n\nfunction baz(x: mixed): number {\n    var a = \"\";\n    var b = \"\";\n\n    switch (x) {\n      case \"baz\":\n        a = 0;\n        break;\n      case \"bar\":\n        a = \"\";\n      default:\n        b = 0;\n    }\n\n    // a is now string | number\n    (a : string); // error, string | number ~/> string\n    (a : number); // error, string | number ~/> number\n\n    // b is now string | number\n    (b : string); // error, string | number ~/> string\n    (b : number); // error, string | number ~/> number\n\n    return a+b; // error, string ~/> number\n}") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_interpolation_less_format_1_a26f1ab7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://github.com/shellscape/postcss-less/pull/159\n@{selector}-title{ @{prop}-size: @{color} }") ;

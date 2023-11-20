@@ -77,8 +77,8 @@ fn test_orig_string_tag_check_js_format_1_ac4e3661() {
 #[test]
 fn test_sanity_fall_through_js_format_1_cd05cf1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Sanity check:\n// - we should still be getting an error at the second return statement\n\ndeclare function pred<T>(x: T): boolean;\n\nfunction foo(s: Array<string>): string {\n  if (pred(s)) {\n    return \"1\";\n  }\n  return 1;\n}") ;
@@ -89,8 +89,8 @@ fn test_sanity_fall_through_js_format_1_cd05cf1a() {
 #[test]
 fn test_sanity_invalid_calls_js_format_1_99390154() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Sanity check:\n// - invalid calls at predicate positions\n\ndeclare function pred<T>(x: T): boolean;\n\nfunction foo(s: Array<string>): string {\n\n  if ((1)(s)) {\n    return \"1\";\n  }\n\n  if ((pred + 1)(\"s\")) {\n    return \"1\";\n  }\n\n  return \"1\"\n}") ;

@@ -46,8 +46,8 @@ fn test_forward_with_scss_single_quotetrue_format_1_77d4cc60() {
 #[test]
 fn test_forward_with_scss_format_1_77d4cc60() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("@forward 'foo.scss' with ($components: red);");

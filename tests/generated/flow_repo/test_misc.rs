@@ -29,8 +29,8 @@ fn test_b_js_format_1_d2b1e28d() {
 #[test]
 fn test_c_js_format_1_7bd1fcd2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule C */\n\nvar B = require('B');\nvar f = require('A').fn;\n\nfunction C() {\n  var o = new B();\n  f(o.b);\n  f(o.s);\n  o.fn();\n}\n\nmodule.exports = C;") ;
@@ -65,8 +65,8 @@ fn test_e_js_format_1_79fda66a() {
 #[test]
 fn test_f_js_format_1_24fa6d3b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function fn2(x) { return x.length * 4; }\nfn2({length: 'hi'});\n\nfunction foo(x: Array<number>): string {\n  return x.length;\n}") ;

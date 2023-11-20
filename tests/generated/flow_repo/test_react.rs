@@ -41,8 +41,8 @@ fn test_create_class_initial_state_sealed_js_format_1_fd9e8cbb() {
 #[test]
 fn test_create_class_statics_sealed_js_format_1_0a4271dc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import React from \"react\";\n\n// statics = None\nconst A = React.createClass({ p: 0 });\n(A.bar: empty); // number ~> empty (inflow below)\nA.bar = 0;\n\n// statics = Some (exact & sealed) [lit]\nconst B = React.createClass({\n  statics: { foo: 0 },\n});\n(B.foo: empty); // number ~> empty\n(B.bar: empty); // number ~> empty (inflow below)\nB.bar = 0;\n\n// statics = Some (exact & sealed) [annot]\nconst C = React.createClass({\n  statics: ({ foo: 0 }: {| foo: number |}),\n});\n(C.foo: empty); // number ~> empty\n(C.bar: empty); // number ~> empty (inflow below)\nC.bar = 0;\n\n// statics = Some (inexact & sealed) [annot]\nconst D = React.createClass({\n  statics: ({ foo: 0 }: { foo: number }),\n});\n(D.foo: empty); // number ~> empty\n(D.bar: empty); // property \\`bar\\` not found\nD.bar = 0; // property \\`bar\\` not found\n\n// mixins: (exact & sealed) + (exact & sealed)\nconst E = React.createClass({\n  mixins: [{\n    statics: { foo: 0 },\n  }],\n  statics: { bar: 0 },\n});\n(E.foo: empty); // number ~> empty\n(E.bar: empty); // number ~> empty\n(E.baz: empty); // number ~> empty (inflow below)\nE.baz = 0;\n\n// mixins: (exact & sealed) + (inexact & sealed)\nconst F = React.createClass({\n  mixins: [{\n    statics: ({ foo: 0 }: { foo: number }),\n  }],\n  statics: { bar: 0 },\n});\n(F.foo: empty); // number ~> empty\n(F.bar: empty); // number ~> empty\n(F.baz: empty); // number ~> empty (inflow below)\nF.baz = 0;") ;
@@ -77,8 +77,8 @@ fn test_create_element_required_prop_string_js_format_1_a239dad3() {
 #[test]
 fn test_import_react_js_format_1_581d556f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nimport react from \"react\";\nimport {Component} from \"react\";\n\nvar a: Component<*,*,*> = new react.Component();\nvar b: number = new react.Component(); // Error: ReactComponent ~> number") ;
@@ -185,8 +185,8 @@ fn test_proptype_missing_js_format_1_5fbe8210() {
 #[test]
 fn test_proptype_object_js_format_1_57660c98() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nvar React = require('react');\nvar Example = React.createClass({\n  propTypes: {\n    object: React.PropTypes.object.isRequired\n  },\n});\n\nvar ok_empty = <Example object={{}} />;\nvar ok_props = <Example object={{foo: \"bar\"}} />;\n\nvar fail_mistyped = <Example object={2} />") ;
@@ -197,8 +197,8 @@ fn test_proptype_object_js_format_1_57660c98() {
 #[test]
 fn test_proptype_object_of_js_format_1_9bb74b3e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nvar React = require('react');\nvar Example = React.createClass({\n  propTypes: {\n    obj: React.PropTypes.objectOf(React.PropTypes.number).isRequired\n  },\n});\n\nvar ok_empty = <Example obj={{}} />\nvar ok_numbers = <Example obj={{foo: 1, bar: 2}} />\n\nvar fail_missing = <Example />\nvar fail_not_object = <Example obj={2} />\nvar fail_mistyped_props = <Example obj={{foo: \"foo\"}} />\n\n/* Since the \\`number\\` proptype argument is not required, React will actually\n   allow \\`null\\` and \\`undefined\\` elements in the \\`obj\\` prop, but Flow has\n   currently ignores the innter prop type's required flag. */\nvar todo_required = <Example obj={{p:null}} />\n\nvar OptionalExample = React.createClass({\n  propTypes: {\n    obj: React.PropTypes.objectOf(React.PropTypes.number),\n  }\n});\n\n(<OptionalExample />); // OK\n(<OptionalExample obj={{p:0}} />); // OK\n(<OptionalExample obj={{p:\"\"}} />); // error: string ~> number\n\nvar AnyExample = React.createClass({\n  propTypes: {\n    obj: React.PropTypes.objectOf((0:any)), // OK\n  },\n});\n\n(<AnyExample obj={0} />); // error: still needs to be an object\n(<AnyExample obj={{p:0}} />); // OK\n\nvar InvalidExample = React.createClass({\n  propTypes: {\n    obj: React.PropTypes.objectOf(0), // error: number not a prop type\n  },\n});") ;
@@ -221,8 +221,8 @@ fn test_proptype_one_of_js_format_1_42499253() {
 #[test]
 fn test_proptype_one_of_type_js_format_1_16310aee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nvar React = require('react');\nvar Example = React.createClass({\n  propTypes: {\n    prop: React.PropTypes.oneOfType([\n      React.PropTypes.string,\n      React.PropTypes.number\n    ]).isRequired\n  },\n  render() {\n    if (typeof this.props.prop === \"string\") {\n      return <div>{this.props.prop}</div>\n    } else {\n      return <div>{this.props.prop.toFixed(2)}</div>\n    }\n  }\n});\n\nvar ok_number = <Example prop={42} />;\nvar ok_string = <Example prop=\"bar\" />;\n\nvar fail_missing = <Example />;\nvar fail_bool = <Example prop={true} />;\n\n/* Since the proptype arguments are not required, React will actually allow\n   \\`null\\` and \\`undefined\\` elements in the \\`prop\\` prop, but Flow has currently\n   ignores the innter prop types' required flags. */\nvar todo_required = <Example prop={null} />;\n\nvar OptionalExample = React.createClass({\n  propTypes: {\n    p: React.PropTypes.oneOfType([\n      React.PropTypes.string,\n    ]),\n  },\n});\n\n(<OptionalExample />); // OK\n(<OptionalExample p=\"\" />); // OK\n(<OptionalExample p={0} />); // error: number ~> string\n\nvar EmptyExample = React.createClass({\n  propTypes: {\n    nil: React.PropTypes.oneOfType([]), // i.e., \\`empty\\`\n  },\n});\n\n(<EmptyExample nil={0} />); // number ~> empty\n\nvar AnyArrayExample = React.createClass({\n  propTypes: {\n    any: React.PropTypes.oneOfType((0:any)),\n  },\n});\n\n(<AnyArrayExample any={0} />); // OK\n\nvar AnyElemExample = React.createClass({\n  propTypes: {\n    any: React.PropTypes.oneOfType([\n      React.PropTypes.string,\n      (0:any),\n    ]),\n  },\n});\n\n(<AnyElemExample any={0} />); // OK\n\nvar DynamicArrayExample = React.createClass({\n  propTypes: {\n    dyn: React.PropTypes.oneOfType(([]: Array<Function>)),\n  },\n});\n\n(<DynamicArrayExample dyn={0} />); // OK\n\nvar DynamicElemExample = React.createClass({\n  propTypes: {\n    dyn: React.PropTypes.oneOfType([\n      React.PropTypes.string,\n      (() => {}: Function),\n    ]),\n  },\n});\n\n(<DynamicElemExample dyn={0} />); // OK\n\nvar InvalidArrayExample = React.createClass({\n  propTypes: {\n    p: React.PropTypes.oneOfType(0), // error: expected array, got 0\n  },\n});\n\n(<InvalidArrayExample p={0} />); // OK, don't cascade errors\n\nvar InvalidElemExample = React.createClass({\n  propTypes: {\n    p: React.PropTypes.oneOfType([{}]), // error: expected prop type, got {}\n  },\n});\n\n(<InvalidElemExample p={0} />); // OK, don't cascade errors") ;
@@ -233,8 +233,8 @@ fn test_proptype_one_of_type_js_format_1_16310aee() {
 #[test]
 fn test_proptype_shape_js_format_1_3a223253() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* Shape should be a sealed, inexact object just like a type annotation. The\n * below component's \\`foo\\` property should be equivalent to \\`{ bar: string }\\`,\n * which would forbid reads/writes on an unknown \\`baz\\` property.\n *\n * If you see a single \"number incompatible with string\" error instead of two\n * separate \"property \\`baz\\` not found\" errors, this is broken and we are\n * treating the shape like an unsealed object and performing shadow read/writes.\n */\n\nimport React from \"react\";\n\nReact.createClass({\n  propTypes: {\n    foo: React.PropTypes.shape({\n      bar: React.PropTypes.string.isRequired,\n    }).isRequired,\n  },\n\n  f() {\n    (this.props.foo.baz: string);\n  },\n\n  g() {\n    this.props.foo.baz = 0;\n  }\n});\n\nReact.createClass({\n  propTypes: {\n    foo: React.PropTypes.shape(({}: {[string]: any})).isRequired,\n  },\n  f() {\n    (this.props.foo.bar: empty); // OK\n  },\n});") ;

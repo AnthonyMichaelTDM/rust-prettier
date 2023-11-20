@@ -41,8 +41,8 @@ fn test_obj_js_format_1_94096ecb() {
 #[test]
 fn test_optional_js_format_1_45780b70() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\ninterface HasOptional {\n  a: string,\n  b?: number,\n};\n\nvar test1: HasOptional = { a: \"hello\" }\n\nvar test2: HasOptional = {}; // Error: missing property a\n\nvar test3: HasOptional = { a: \"hello\", b: true }; // Error: boolean ~> number") ;

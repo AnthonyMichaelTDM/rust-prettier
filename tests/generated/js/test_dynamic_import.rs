@@ -53,8 +53,8 @@ fn test_assertions_js_format_1_c70cf81a() {
 #[test]
 fn test_test_js_format_1_fb22c766() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

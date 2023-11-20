@@ -38,8 +38,8 @@ fn test_basic_js_semifalse_espree_format_1_d41d8cd9() {
 fn test_basic_js_semifalse_format_1_eb9df261() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel", "typescript", "babel-flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  accessor bar;\n}");
@@ -110,8 +110,8 @@ fn test_comments_js_semifalse_format_1_42e7a5f1() {
 #[test]
 fn test_comments_js_format_1_42e7a5f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class A {\n  @dec()\n  // comment\n  accessor b;\n}");
@@ -158,8 +158,8 @@ fn test_computed_js_semifalse_espree_format_1_d41d8cd9() {
 fn test_computed_js_semifalse_format_1_1f099dd1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel", "typescript", "babel-flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  accessor [\"bar\"];\n}");
@@ -182,9 +182,9 @@ fn test_computed_js_format_1_1f099dd1() {
 #[test]
 fn test_not_accessor_method_js_semifalse_format_1_43f7ad7c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript", "babel-flow"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["babel", "typescript", "babel-flow"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  accessor() {}\n}");
@@ -207,8 +207,8 @@ fn test_not_accessor_method_js_format_1_43f7ad7c() {
 #[test]
 fn test_not_accessor_property_js_semifalse_format_1_20e6882a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -265,8 +265,8 @@ fn test_private_js_semifalse_espree_format_1_d41d8cd9() {
 fn test_private_js_semifalse_format_1_4c4ffc55() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel", "typescript", "babel-flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  accessor #bar;\n}");
@@ -321,8 +321,8 @@ fn test_static_js_semifalse_espree_format_1_d41d8cd9() {
 #[test]
 fn test_static_js_semifalse_format_1_faa8aac8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -334,8 +334,8 @@ fn test_static_js_semifalse_format_1_faa8aac8() {
 #[test]
 fn test_static_js_format_1_faa8aac8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  static accessor bar;\n}");
@@ -378,9 +378,9 @@ fn test_static_computed_js_semifalse_espree_format_1_d41d8cd9() {
 #[test]
 fn test_static_computed_js_semifalse_format_1_15d1e9ce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["babel", "typescript", "babel-flow"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  static accessor [\"bar\"];\n}");
@@ -435,9 +435,9 @@ fn test_static_private_js_semifalse_espree_format_1_d41d8cd9() {
 #[test]
 fn test_static_private_js_semifalse_format_1_9b964ce9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["babel", "typescript", "babel-flow"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class Foo {\n  static accessor #bar;\n}");
@@ -492,8 +492,8 @@ fn test_with_semicolon_1_js_semifalse_espree_format_1_d41d8cd9() {
 #[test]
 fn test_with_semicolon_1_js_semifalse_format_1_09da948b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -509,8 +509,8 @@ fn test_with_semicolon_1_js_semifalse_format_1_09da948b() {
 #[test]
 fn test_with_semicolon_1_js_format_1_09da948b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -557,8 +557,8 @@ fn test_with_semicolon_2_js_semifalse_espree_format_1_d41d8cd9() {
 #[test]
 fn test_with_semicolon_2_js_semifalse_format_1_fa35d76a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -574,8 +574,8 @@ fn test_with_semicolon_2_js_semifalse_format_1_fa35d76a() {
 #[test]
 fn test_with_semicolon_2_js_format_1_fa35d76a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

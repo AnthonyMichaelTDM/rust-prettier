@@ -6,8 +6,8 @@ static INFINITY: usize = usize::MAX;
 fn test_block_html_bracket_same_linefalse_format_1_548aa6c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(false)
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</div>\n<div long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"></div>\n<div class=\"a\">\ntext\n</div>\n<div class=\"a\">text</div>") ;
@@ -18,9 +18,9 @@ fn test_block_html_bracket_same_linefalse_format_1_548aa6c5() {
 #[test]
 fn test_block_html_bracket_same_linetrue_format_1_548aa6c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .bracket_same_line(true)
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</div>\n<div long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"></div>\n<div class=\"a\">\ntext\n</div>\n<div class=\"a\">text</div>") ;
@@ -32,8 +32,8 @@ fn test_block_html_bracket_same_linetrue_format_1_548aa6c5() {
 fn test_embed_html_bracket_same_linefalse_format_1_c1da19d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_same_line(false)
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\nalert(1)</script>\n<style long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\n.a{color: #f00}</style>\n<script>\nalert(1)</script>\n<style>\n.a{color: #f00}</style>") ;
@@ -57,9 +57,9 @@ fn test_embed_html_bracket_same_linetrue_format_1_c1da19d6() {
 #[test]
 fn test_inline_html_bracket_same_linefalse_format_1_acf1a3d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .bracket_same_line(false)
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"></span>\n<span  class=\"a\">text</span>\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span  class=\"a\">text</span><span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span  class=\"a\">text</span><span  class=\"a\">text</span><span  class=\"a\">text</span><span  class=\"a\">text</span><span  class=\"a\">text</span>") ;
@@ -70,9 +70,9 @@ fn test_inline_html_bracket_same_linefalse_format_1_acf1a3d6() {
 #[test]
 fn test_inline_html_bracket_same_linetrue_format_1_acf1a3d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_same_line(true)
         .parsers(vec!["html"])
         .print_width(80)
-        .bracket_same_line(true)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\"></span>\n<span  class=\"a\">text</span>\n<span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span  class=\"a\">text</span><span long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\">\ntext\n</span>\n<span  class=\"a\">text</span><span  class=\"a\">text</span><span  class=\"a\">text</span><span  class=\"a\">text</span><span  class=\"a\">text</span>") ;
@@ -83,9 +83,9 @@ fn test_inline_html_bracket_same_linetrue_format_1_acf1a3d6() {
 #[test]
 fn test_void_elements_html_bracket_same_linefalse_format_1_2fc07cc5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .bracket_same_line(false)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<img long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\" src=\"./1.jpg\"/>\n<img src=\"./1.jpg\"/><img src=\"./1.jpg\"/><img src=\"./1.jpg\"/><img src=\"./1.jpg\"/><img src=\"./1.jpg\"/>") ;
@@ -96,9 +96,9 @@ fn test_void_elements_html_bracket_same_linefalse_format_1_2fc07cc5() {
 #[test]
 fn test_void_elements_html_bracket_same_linetrue_format_1_2fc07cc5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .bracket_same_line(true)
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<img long_long_attribute=\"long_long_long_long_long_long_long_long_long_long_long_value\" src=\"./1.jpg\"/>\n<img src=\"./1.jpg\"/><img src=\"./1.jpg\"/><img src=\"./1.jpg\"/><img src=\"./1.jpg\"/><img src=\"./1.jpg\"/>") ;

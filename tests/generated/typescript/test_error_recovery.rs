@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_generic_ts_trailing_commaall_format_1_8583d589() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("all")
         .parsers(vec!["typescript"])
         .print_width(80)
+        .trailing_comma("all")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("f1<>();\n\nnew f2<>();\n\nfunction f3<>() {}\n\nclass f4 {\n    constructor<>() {}\n}\n\nconst f5 = function<>() {}\n\ninterface f6<> {\n    test<>();\n}\n\nclass f7<> {\n    test<>() {}\n}") ;
@@ -19,8 +19,8 @@ fn test_generic_ts_trailing_commaall_format_1_8583d589() {
 fn test_generic_ts_trailing_commaes_5_format_1_8583d589() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["typescript"])
-        .trailing_comma("es5")
         .print_width(80)
+        .trailing_comma("es5")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("f1<>();\n\nnew f2<>();\n\nfunction f3<>() {}\n\nclass f4 {\n    constructor<>() {}\n}\n\nconst f5 = function<>() {}\n\ninterface f6<> {\n    test<>();\n}\n\nclass f7<> {\n    test<>() {}\n}") ;
@@ -59,9 +59,9 @@ fn test_index_signature_ts_trailing_commaall_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_index_signature_ts_trailing_commaall_format_1_dd20c114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("all")
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
+        .trailing_comma("all")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type A = { [key: string] };\n\ntype TwoParams = {\n  [a: string, b: string]: string;\n};\ntype ThreeParams = {\n  [a: string, b: string, c: string]: string;\n};\n\ntype TooLong = {\n  [loooooooooooooooooooooooooong: string, looooooooooooooooooooooooooooooooooooooong: string]: string;\n}\ntype TooLong81 = { [loooooooooooooooooooooooooong: string, loooooooooooooooooong: string]: string; }\ntype TooLong80 = { [loooooooooooooooooooooooooong: string, looooooooooooooooong: string]: string; }\n\n// note lack of trailing comma in the index signature\ntype TooLongSingleParam = {\n  [looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong: string]: string;\n}") ;
@@ -80,8 +80,8 @@ fn test_index_signature_ts_trailing_commaes_5_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_index_signature_ts_trailing_commaes_5_format_1_dd20c114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
@@ -93,8 +93,8 @@ fn test_index_signature_ts_trailing_commaes_5_format_1_dd20c114() {
 #[test]
 fn test_index_signature_ts_format_1_dd20c114() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type A = { [key: string] };\n\ntype TwoParams = {\n  [a: string, b: string]: string;\n};\ntype ThreeParams = {\n  [a: string, b: string, c: string]: string;\n};\n\ntype TooLong = {\n  [loooooooooooooooooooooooooong: string, looooooooooooooooooooooooooooooooooooooong: string]: string;\n}\ntype TooLong81 = { [loooooooooooooooooooooooooong: string, loooooooooooooooooong: string]: string; }\ntype TooLong80 = { [loooooooooooooooooooooooooong: string, looooooooooooooooong: string]: string; }\n\n// note lack of trailing comma in the index signature\ntype TooLongSingleParam = {\n  [looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong: string]: string;\n}") ;
@@ -121,8 +121,8 @@ fn test_jsdoc_only_types_ts_trailing_commaall_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_jsdoc_only_types_ts_trailing_commaall_format_1_ba28118c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .trailing_comma("all")
         .build()
         .unwrap();
@@ -142,9 +142,9 @@ fn test_jsdoc_only_types_ts_trailing_commaes_5_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_jsdoc_only_types_ts_trailing_commaes_5_format_1_ba28118c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
         .print_width(80)
         .trailing_comma("es5")
-        .parsers(vec!["typescript"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("let a: *;\nfunction b(x: ?) {}\nlet c: ?string;\nlet d: string?;\nlet e: ?(string | number);\nlet f: !string;\nlet g: string!;\nlet h: !(string | number);") ;

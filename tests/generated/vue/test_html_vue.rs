@@ -17,8 +17,8 @@ fn test_elastic_header_html_format_1_2015e17d() {
 #[test]
 fn test_hello_world_html_format_1_458df905() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- Hello World example from https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html -->\n<!DOCTYPE html>\n<html>\n<head>\n  <title>My first Vue app</title>\n  <script src=\"https://unpkg.com/vue\"></script>\n</head>\n<body>\n  <div id=\"app\">\n    {{ message }}\n  </div>\n\n  <script>\n    var app = new Vue({\n      el: '#app',\n      data: {\n        message: 'Hello Vue!'\n      }\n    })\n  </script>\n</body>\n</html>") ;
@@ -29,8 +29,8 @@ fn test_hello_world_html_format_1_458df905() {
 #[test]
 fn test_upper_case_2_html_format_1_39092d61() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!-- issue #8162 -->\n\n<!DOCTYPE html><HTML>\n    <body>\n      <div v-if=\"foo ===    'foo'\">\n  \n  </div>\n      <script>\n  new Vue({el: '#app'})\n      </script>\n    </body>\n  </HTML>") ;
@@ -41,8 +41,8 @@ fn test_upper_case_2_html_format_1_39092d61() {
 #[test]
 fn test_upper_case_html_tag_html_format_1_9a2d9078() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<!doctype html><HTML></HTML>");
@@ -65,8 +65,8 @@ fn test_upper_case_html_tag_2_html_format_1_0a6a2668() {
 #[test]
 fn test_upper_case_html_tag_3_html_format_1_4a71015a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<HTML><head></head><body></body></HTML>");
@@ -80,8 +80,8 @@ fn test_upper_case_html_tag_3_html_format_1_4a71015a() {
 #[test]
 fn test_upper_case_html_tag_4_html_format_1_b0754683() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<hTml>\n    <body>\n      <div v-if=\"foo ===    'foo'\">\n\n  </div>\n      <script>\n  new Vue({el: '#app'})\n      </script>\n    </body>\n  </hTml>") ;
@@ -92,8 +92,8 @@ fn test_upper_case_html_tag_4_html_format_1_b0754683() {
 #[test]
 fn test_void_element_html_format_1_dc93e493() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<img>");

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_description_graphql_format_1_d79cbaf0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\"\"\" Customer \"\"\"\ntype Person {name: String}\n\n\"\"\" Customer \"\"\"\ntype Person {name: String}\n\n\"\"\"\n\n    Customer\n\n\n\"\"\"\ntype Person {name: String}\n\n\"\"\"\"\"\"\ntype Person {name: String}\n\n\"\"\"    \"\"\"\ntype Person {name: String}\n\n\"\"\"\n    1\n  2\n\"\"\"\ntype Person {name: String}\n\n\n\"\"\"\n\n\nEmpty lines before\n\"\"\"\ntype Person {name: String}\n\n\"\"\"\nEmpty lines after\n\n\n\"\"\"\ntype Person {name: String}\n\n\"\"\"\n\n\nEmpty lines around\n\n\n\"\"\"\ntype Person {name: String}\n\n\"\"\"\nFirst line\n\nSecond Line\n\"\"\"\ntype Person {name: String}\n\n\"\"\"\n\n\nFirst line\n\nSecond Line\n\"\"\"\ntype Person {name: String}\n\n\"\"\"\nFirst line\n\nSecond Line\n\n\n\"\"\"\ntype Person {name: String}") ;

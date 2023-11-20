@@ -41,8 +41,8 @@ fn test_generic_js_format_1_6806714c() {
 #[test]
 fn test_mult_js_format_1_ed8f4ae9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction num(x:number) { }\n\nnum(null * 1);\nnum(1 * null);\n\nlet x: number = 2 * 3;\nx *= 4;\n\nlet y: string = \"123\";\ny *= 2; // error") ;

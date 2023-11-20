@@ -17,8 +17,8 @@ fn test_argument_expansion_js_format_1_f02b4b24() {
 #[test]
 fn test_expression_js_format_1_d213ea43() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("let x: string = (foo: string);\n\n// https://github.com/prettier/prettier/issues/3936\nconst foo = ((1?2:3): number);") ;

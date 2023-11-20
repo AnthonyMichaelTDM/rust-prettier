@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_case_sensitive_html_html_whitespace_sensitivityignore_format_1_72ff2414() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("ignore")
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -22,9 +22,9 @@ fn test_case_sensitive_html_html_whitespace_sensitivityignore_format_1_72ff2414(
 #[test]
 fn test_case_sensitive_html_html_whitespace_sensitivitystrict_format_1_72ff2414() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -87,8 +87,8 @@ fn test_case_sensitive_html_format_1_72ff2414() {
 #[test]
 fn test_closing_at_start_html_html_whitespace_sensitivityignore_format_1_176e521b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("ignore")
+        .parsers(vec!["html"])
         .print_width(80)
         .build()
         .unwrap();
@@ -100,9 +100,9 @@ fn test_closing_at_start_html_html_whitespace_sensitivityignore_format_1_176e521
 #[test]
 fn test_closing_at_start_html_html_whitespace_sensitivitystrict_format_1_176e521b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("strict")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div>\n    aaaaaaaaaa\n    <a\n      href=\"longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\"\n      >bbbbbbbbbb</a\n    >\n    cccccccccc\n</div>\n<div>\n    aaaaaaaaaa\n    <a\n      href=\"longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\"\n      >bbbbbbbbbb</a\n    >cccccccccc\n</div>") ;
@@ -150,8 +150,8 @@ fn test_closing_at_start_html_format_1_176e521b() {
 fn test_custom_element_html_html_whitespace_sensitivityignore_format_1_e5bb73dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<app-foo></app-foo>\n<app-bar></app-bar>");
@@ -175,8 +175,8 @@ fn test_custom_element_html_html_whitespace_sensitivitystrict_format_1_e5bb73dd(
 #[test]
 fn test_custom_element_html_print_width_infinity_format_1_e5bb73dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(INFINITY)
         .parsers(vec!["html"])
+        .print_width(INFINITY)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<app-foo></app-foo>\n<app-bar></app-bar>");
@@ -187,8 +187,8 @@ fn test_custom_element_html_print_width_infinity_format_1_e5bb73dd() {
 #[test]
 fn test_custom_element_html_print_width_1_format_1_e5bb73dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<app-foo></app-foo>\n<app-bar></app-bar>");
@@ -211,9 +211,9 @@ fn test_custom_element_html_format_1_e5bb73dd() {
 #[test]
 fn test_marquee_html_html_whitespace_sensitivityignore_format_1_d74f564c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("ignore")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<marquee>This text will scroll from right to left</marquee>\n\n<marquee direction=\"up\">This text will scroll from bottom to top</marquee>\n\n<marquee\n  direction=\"down\"\n  width=\"250\"\n  height=\"200\"\n  behavior=\"alternate\"\n  style=\"border:solid\">\n  <marquee behavior=\"alternate\"> This text will bounce </marquee>\n</marquee>") ;
@@ -224,9 +224,9 @@ fn test_marquee_html_html_whitespace_sensitivityignore_format_1_d74f564c() {
 #[test]
 fn test_marquee_html_html_whitespace_sensitivitystrict_format_1_d74f564c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<marquee>This text will scroll from right to left</marquee>\n\n<marquee direction=\"up\">This text will scroll from bottom to top</marquee>\n\n<marquee\n  direction=\"down\"\n  width=\"250\"\n  height=\"200\"\n  behavior=\"alternate\"\n  style=\"border:solid\">\n  <marquee behavior=\"alternate\"> This text will bounce </marquee>\n</marquee>") ;
@@ -274,8 +274,8 @@ fn test_marquee_html_format_1_d74f564c() {
 fn test_menu_html_html_whitespace_sensitivityignore_format_1_edfa239a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<menu>\n  <li><button onclick=\"copy()\">Copy</button></li>\n  <li><button onclick=\"cut()\">Cut</button></li>\n  <li><button onclick=\"paste()\">Paste</button></li>\n</menu>") ;
@@ -286,9 +286,9 @@ fn test_menu_html_html_whitespace_sensitivityignore_format_1_edfa239a() {
 #[test]
 fn test_menu_html_html_whitespace_sensitivitystrict_format_1_edfa239a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("strict")
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<menu>\n  <li><button onclick=\"copy()\">Copy</button></li>\n  <li><button onclick=\"cut()\">Cut</button></li>\n  <li><button onclick=\"paste()\">Paste</button></li>\n</menu>") ;
@@ -323,8 +323,8 @@ fn test_menu_html_print_width_1_format_1_edfa239a() {
 #[test]
 fn test_menu_html_format_1_edfa239a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<menu>\n  <li><button onclick=\"copy()\">Copy</button></li>\n  <li><button onclick=\"cut()\">Cut</button></li>\n  <li><button onclick=\"paste()\">Paste</button></li>\n</menu>") ;
@@ -336,8 +336,8 @@ fn test_menu_html_format_1_edfa239a() {
 fn test_openging_at_end_html_html_whitespace_sensitivityignore_format_1_b8eccaf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("ignore")
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<p\n  >Want to write us a letter? Use our<a\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n  href1=\"contacts.html#Mailing_address\"\n  href2=\"contacts.html#Mailing_address\"\n  href3=\"contacts.html#Mailing_address\"\n  href4=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>") ;
@@ -348,9 +348,9 @@ fn test_openging_at_end_html_html_whitespace_sensitivityignore_format_1_b8eccaf8
 #[test]
 fn test_openging_at_end_html_html_whitespace_sensitivitystrict_format_1_b8eccaf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<p\n  >Want to write us a letter? Use our<a\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n  href1=\"contacts.html#Mailing_address\"\n  href2=\"contacts.html#Mailing_address\"\n  href3=\"contacts.html#Mailing_address\"\n  href4=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>") ;
@@ -361,8 +361,8 @@ fn test_openging_at_end_html_html_whitespace_sensitivitystrict_format_1_b8eccaf8
 #[test]
 fn test_openging_at_end_html_print_width_infinity_format_1_b8eccaf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(INFINITY)
         .parsers(vec!["html"])
+        .print_width(INFINITY)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<p\n  >Want to write us a letter? Use our<a\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n  href1=\"contacts.html#Mailing_address\"\n  href2=\"contacts.html#Mailing_address\"\n  href3=\"contacts.html#Mailing_address\"\n  href4=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>") ;
@@ -373,8 +373,8 @@ fn test_openging_at_end_html_print_width_infinity_format_1_b8eccaf8() {
 #[test]
 fn test_openging_at_end_html_print_width_1_format_1_b8eccaf8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<p\n  >Want to write us a letter? Use our<a\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>\n\n<p\n  >Want to write us a letter? Use our<a\n  href=\"contacts.html#Mailing_address\"\n  href1=\"contacts.html#Mailing_address\"\n  href2=\"contacts.html#Mailing_address\"\n  href3=\"contacts.html#Mailing_address\"\n  href4=\"contacts.html#Mailing_address\"\n    ><b\n      ><a>mailing address</a></b\n    ></a\n  >.</p\n>") ;
@@ -397,9 +397,9 @@ fn test_openging_at_end_html_format_1_b8eccaf8() {
 #[test]
 fn test_option_html_html_whitespace_sensitivityignore_format_1_ac49371e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("ignore")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<select><option>Blue</option><option>Green</option><optgroup label=\"Darker\"><option>Dark Blue</option><option>Dark Green</option></optgroup></select>\n<input list=colors>\n<datalist id=colors><option>Blue</option><option>Green</option></datalist>") ;
@@ -410,8 +410,8 @@ fn test_option_html_html_whitespace_sensitivityignore_format_1_ac49371e() {
 #[test]
 fn test_option_html_html_whitespace_sensitivitystrict_format_1_ac49371e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("strict")
+        .parsers(vec!["html"])
         .print_width(80)
         .build()
         .unwrap();
@@ -459,9 +459,9 @@ fn test_option_html_format_1_ac49371e() {
 #[test]
 fn test_pre_html_html_whitespace_sensitivityignore_format_1_9f800772() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("ignore")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<pre>\n--------------------------------------------------------------------------------\n\n\n                                      *         *       *\n                                     **        **      ***\n                                     **        **       *\n   ****    ***  ****               ********  ********                   ***  ****\n  * ***  *  **** **** *    ***    ********  ********  ***        ***     **** **** *\n *   ****    **   ****    * ***      **        **      ***      * ***     **   ****\n**    **     **          *   ***     **        **       **     *   ***    **\n**    **     **         **    ***    **        **       **    **    ***   **\n**    **     **         ********     **        **       **    ********    **\n**    **     **         *******      **        **       **    *******     **\n**    **     **         **           **        **       **    **          **\n*******      ***        ****    *    **        **       **    ****    *   ***\n******        ***        *******      **        **      *** *  *******     ***\n**                        *****                          ***    *****\n**\n**\n **\n\n--------------------------------------------------------------------------------\n</pre>\n<pre>\n\n        Text in a pre element\n\n    is displayed in a fixed-width\n\n   font, and it preserves\n\n   both             spaces and\n\n   line breaks\n\n</pre>\n<pre>     Foo     Bar     </pre>\n<pre>\n     Foo     Bar\n</pre>\n<pre>Foo     Bar\n</pre>\n<pre>\n     Foo     Bar</pre>\n<figure role=\"img\" aria-labelledby=\"cow-caption\">\n  <pre>\n___________________________\n< I'm an expert in my field. >\n---------------------------\n     \\\\   ^__^\n      \\\\  (oo)\\\\_______\n         (__)\\\\       )\\\\/\\\\\n             ||----w |\n             ||     ||\n___________________________\n  </pre>\n  <figcaption id=\"cow-caption\">\n    A cow saying, \"I'm an expert in my field.\" The cow is illustrated using preformatted text characters.\n  </figcaption>\n</figure>\n<pre data-attr-1=\"foo\" data-attr-2=\"foo\" data-attr-3=\"foo\" data-attr-4=\"foo\" data-attr-5=\"foo\" data-attr-6=\"foo\">\n     Foo     Bar\n</pre>\n<div>\n  <div>\n    <div>\n      <div>\n        <pre>\n          ______\n          STRING\n          ______\n        </pre>\n      </div>\n    </div>\n  </div>\n</div>\n<pre></pre>\n\n<pre><code #foo></code></pre>\n\n<details>\n  <pre><!--Comments-->\n  </pre></details>\n\n<details><pre>\n  <!--Comments-->\n</pre>\n</details>\n\n<!-- #6028 -->\n<pre><br></pre>\n<PRE><HR></PRE>\n<pre><br/></pre>\n<PRE><HR/></PRE>\n<pre><br /></pre>\n<PRE><HR /></PRE>\n<pre><span></span></pre>\n<PRE><DIV></DIV></PRE>\n<pre><br/>long long long text long long long text long long long text long long long text <br></pre>\n<pre><br>long long long text long long long text long long long text long long long text <BR/></pre>") ;
@@ -473,8 +473,8 @@ fn test_pre_html_html_whitespace_sensitivityignore_format_1_9f800772() {
 fn test_pre_html_html_whitespace_sensitivitystrict_format_1_9f800772() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .html_whitespace_sensitivity("strict")
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<pre>\n--------------------------------------------------------------------------------\n\n\n                                      *         *       *\n                                     **        **      ***\n                                     **        **       *\n   ****    ***  ****               ********  ********                   ***  ****\n  * ***  *  **** **** *    ***    ********  ********  ***        ***     **** **** *\n *   ****    **   ****    * ***      **        **      ***      * ***     **   ****\n**    **     **          *   ***     **        **       **     *   ***    **\n**    **     **         **    ***    **        **       **    **    ***   **\n**    **     **         ********     **        **       **    ********    **\n**    **     **         *******      **        **       **    *******     **\n**    **     **         **           **        **       **    **          **\n*******      ***        ****    *    **        **       **    ****    *   ***\n******        ***        *******      **        **      *** *  *******     ***\n**                        *****                          ***    *****\n**\n**\n **\n\n--------------------------------------------------------------------------------\n</pre>\n<pre>\n\n        Text in a pre element\n\n    is displayed in a fixed-width\n\n   font, and it preserves\n\n   both             spaces and\n\n   line breaks\n\n</pre>\n<pre>     Foo     Bar     </pre>\n<pre>\n     Foo     Bar\n</pre>\n<pre>Foo     Bar\n</pre>\n<pre>\n     Foo     Bar</pre>\n<figure role=\"img\" aria-labelledby=\"cow-caption\">\n  <pre>\n___________________________\n< I'm an expert in my field. >\n---------------------------\n     \\\\   ^__^\n      \\\\  (oo)\\\\_______\n         (__)\\\\       )\\\\/\\\\\n             ||----w |\n             ||     ||\n___________________________\n  </pre>\n  <figcaption id=\"cow-caption\">\n    A cow saying, \"I'm an expert in my field.\" The cow is illustrated using preformatted text characters.\n  </figcaption>\n</figure>\n<pre data-attr-1=\"foo\" data-attr-2=\"foo\" data-attr-3=\"foo\" data-attr-4=\"foo\" data-attr-5=\"foo\" data-attr-6=\"foo\">\n     Foo     Bar\n</pre>\n<div>\n  <div>\n    <div>\n      <div>\n        <pre>\n          ______\n          STRING\n          ______\n        </pre>\n      </div>\n    </div>\n  </div>\n</div>\n<pre></pre>\n\n<pre><code #foo></code></pre>\n\n<details>\n  <pre><!--Comments-->\n  </pre></details>\n\n<details><pre>\n  <!--Comments-->\n</pre>\n</details>\n\n<!-- #6028 -->\n<pre><br></pre>\n<PRE><HR></PRE>\n<pre><br/></pre>\n<PRE><HR/></PRE>\n<pre><br /></pre>\n<PRE><HR /></PRE>\n<pre><span></span></pre>\n<PRE><DIV></DIV></PRE>\n<pre><br/>long long long text long long long text long long long text long long long text <br></pre>\n<pre><br>long long long text long long long text long long long text long long long text <BR/></pre>") ;
@@ -497,8 +497,8 @@ fn test_pre_html_print_width_infinity_format_1_9f800772() {
 #[test]
 fn test_pre_html_print_width_1_format_1_9f800772() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<pre>\n--------------------------------------------------------------------------------\n\n\n                                      *         *       *\n                                     **        **      ***\n                                     **        **       *\n   ****    ***  ****               ********  ********                   ***  ****\n  * ***  *  **** **** *    ***    ********  ********  ***        ***     **** **** *\n *   ****    **   ****    * ***      **        **      ***      * ***     **   ****\n**    **     **          *   ***     **        **       **     *   ***    **\n**    **     **         **    ***    **        **       **    **    ***   **\n**    **     **         ********     **        **       **    ********    **\n**    **     **         *******      **        **       **    *******     **\n**    **     **         **           **        **       **    **          **\n*******      ***        ****    *    **        **       **    ****    *   ***\n******        ***        *******      **        **      *** *  *******     ***\n**                        *****                          ***    *****\n**\n**\n **\n\n--------------------------------------------------------------------------------\n</pre>\n<pre>\n\n        Text in a pre element\n\n    is displayed in a fixed-width\n\n   font, and it preserves\n\n   both             spaces and\n\n   line breaks\n\n</pre>\n<pre>     Foo     Bar     </pre>\n<pre>\n     Foo     Bar\n</pre>\n<pre>Foo     Bar\n</pre>\n<pre>\n     Foo     Bar</pre>\n<figure role=\"img\" aria-labelledby=\"cow-caption\">\n  <pre>\n___________________________\n< I'm an expert in my field. >\n---------------------------\n     \\\\   ^__^\n      \\\\  (oo)\\\\_______\n         (__)\\\\       )\\\\/\\\\\n             ||----w |\n             ||     ||\n___________________________\n  </pre>\n  <figcaption id=\"cow-caption\">\n    A cow saying, \"I'm an expert in my field.\" The cow is illustrated using preformatted text characters.\n  </figcaption>\n</figure>\n<pre data-attr-1=\"foo\" data-attr-2=\"foo\" data-attr-3=\"foo\" data-attr-4=\"foo\" data-attr-5=\"foo\" data-attr-6=\"foo\">\n     Foo     Bar\n</pre>\n<div>\n  <div>\n    <div>\n      <div>\n        <pre>\n          ______\n          STRING\n          ______\n        </pre>\n      </div>\n    </div>\n  </div>\n</div>\n<pre></pre>\n\n<pre><code #foo></code></pre>\n\n<details>\n  <pre><!--Comments-->\n  </pre></details>\n\n<details><pre>\n  <!--Comments-->\n</pre>\n</details>\n\n<!-- #6028 -->\n<pre><br></pre>\n<PRE><HR></PRE>\n<pre><br/></pre>\n<PRE><HR/></PRE>\n<pre><br /></pre>\n<PRE><HR /></PRE>\n<pre><span></span></pre>\n<PRE><DIV></DIV></PRE>\n<pre><br/>long long long text long long long text long long long text long long long text <br></pre>\n<pre><br>long long long text long long long text long long long text long long long text <BR/></pre>") ;
@@ -509,8 +509,8 @@ fn test_pre_html_print_width_1_format_1_9f800772() {
 #[test]
 fn test_pre_html_format_1_9f800772() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<pre>\n--------------------------------------------------------------------------------\n\n\n                                      *         *       *\n                                     **        **      ***\n                                     **        **       *\n   ****    ***  ****               ********  ********                   ***  ****\n  * ***  *  **** **** *    ***    ********  ********  ***        ***     **** **** *\n *   ****    **   ****    * ***      **        **      ***      * ***     **   ****\n**    **     **          *   ***     **        **       **     *   ***    **\n**    **     **         **    ***    **        **       **    **    ***   **\n**    **     **         ********     **        **       **    ********    **\n**    **     **         *******      **        **       **    *******     **\n**    **     **         **           **        **       **    **          **\n*******      ***        ****    *    **        **       **    ****    *   ***\n******        ***        *******      **        **      *** *  *******     ***\n**                        *****                          ***    *****\n**\n**\n **\n\n--------------------------------------------------------------------------------\n</pre>\n<pre>\n\n        Text in a pre element\n\n    is displayed in a fixed-width\n\n   font, and it preserves\n\n   both             spaces and\n\n   line breaks\n\n</pre>\n<pre>     Foo     Bar     </pre>\n<pre>\n     Foo     Bar\n</pre>\n<pre>Foo     Bar\n</pre>\n<pre>\n     Foo     Bar</pre>\n<figure role=\"img\" aria-labelledby=\"cow-caption\">\n  <pre>\n___________________________\n< I'm an expert in my field. >\n---------------------------\n     \\\\   ^__^\n      \\\\  (oo)\\\\_______\n         (__)\\\\       )\\\\/\\\\\n             ||----w |\n             ||     ||\n___________________________\n  </pre>\n  <figcaption id=\"cow-caption\">\n    A cow saying, \"I'm an expert in my field.\" The cow is illustrated using preformatted text characters.\n  </figcaption>\n</figure>\n<pre data-attr-1=\"foo\" data-attr-2=\"foo\" data-attr-3=\"foo\" data-attr-4=\"foo\" data-attr-5=\"foo\" data-attr-6=\"foo\">\n     Foo     Bar\n</pre>\n<div>\n  <div>\n    <div>\n      <div>\n        <pre>\n          ______\n          STRING\n          ______\n        </pre>\n      </div>\n    </div>\n  </div>\n</div>\n<pre></pre>\n\n<pre><code #foo></code></pre>\n\n<details>\n  <pre><!--Comments-->\n  </pre></details>\n\n<details><pre>\n  <!--Comments-->\n</pre>\n</details>\n\n<!-- #6028 -->\n<pre><br></pre>\n<PRE><HR></PRE>\n<pre><br/></pre>\n<PRE><HR/></PRE>\n<pre><br /></pre>\n<PRE><HR /></PRE>\n<pre><span></span></pre>\n<PRE><DIV></DIV></PRE>\n<pre><br/>long long long text long long long text long long long text long long long text <br></pre>\n<pre><br>long long long text long long long text long long long text long long long text <BR/></pre>") ;
@@ -521,9 +521,9 @@ fn test_pre_html_format_1_9f800772() {
 #[test]
 fn test_seach_html_html_whitespace_sensitivityignore_format_1_f566638a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n</head>\n<body>\n<header>\n  <h1><a href=\"/\">My fancy blog</a></h1>\n  ...\n  <search>\n    <form action=\"search.php\">\n      <label for=\"query\">Find an article</label>\n      <input id=\"query\" name=\"q\" type=\"search\">\n      <button type=\"submit\">Go!</button>\n    </form>\n  </search>\n\n  <SEARCH></SEARCH>\n</header>\n</body>\n</html>") ;
@@ -534,9 +534,9 @@ fn test_seach_html_html_whitespace_sensitivityignore_format_1_f566638a() {
 #[test]
 fn test_seach_html_html_whitespace_sensitivitystrict_format_1_f566638a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("strict")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n</head>\n<body>\n<header>\n  <h1><a href=\"/\">My fancy blog</a></h1>\n  ...\n  <search>\n    <form action=\"search.php\">\n      <label for=\"query\">Find an article</label>\n      <input id=\"query\" name=\"q\" type=\"search\">\n      <button type=\"submit\">Go!</button>\n    </form>\n  </search>\n\n  <SEARCH></SEARCH>\n</header>\n</body>\n</html>") ;
@@ -547,8 +547,8 @@ fn test_seach_html_html_whitespace_sensitivitystrict_format_1_f566638a() {
 #[test]
 fn test_seach_html_print_width_infinity_format_1_f566638a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(INFINITY)
         .parsers(vec!["html"])
+        .print_width(INFINITY)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n</head>\n<body>\n<header>\n  <h1><a href=\"/\">My fancy blog</a></h1>\n  ...\n  <search>\n    <form action=\"search.php\">\n      <label for=\"query\">Find an article</label>\n      <input id=\"query\" name=\"q\" type=\"search\">\n      <button type=\"submit\">Go!</button>\n    </form>\n  </search>\n\n  <SEARCH></SEARCH>\n</header>\n</body>\n</html>") ;
@@ -571,8 +571,8 @@ fn test_seach_html_print_width_1_format_1_f566638a() {
 #[test]
 fn test_seach_html_format_1_f566638a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n</head>\n<body>\n<header>\n  <h1><a href=\"/\">My fancy blog</a></h1>\n  ...\n  <search>\n    <form action=\"search.php\">\n      <label for=\"query\">Find an article</label>\n      <input id=\"query\" name=\"q\" type=\"search\">\n      <button type=\"submit\">Go!</button>\n    </form>\n  </search>\n\n  <SEARCH></SEARCH>\n</header>\n</body>\n</html>") ;
@@ -596,9 +596,9 @@ fn test_tags_html_html_whitespace_sensitivityignore_format_1_3dd5858b() {
 #[test]
 fn test_tags_html_html_whitespace_sensitivitystrict_format_1_3dd5858b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
         .print_width(80)
-        .html_whitespace_sensitivity("strict")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<br/>\n<br />\n<br  />\n<br\n/>\n<br attribute-a />\n<br very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute />\n<br attribute-a=\"value\" />\n<br\n  attribute-a=\"value\"\n/>\n<br very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute=\"value\" />\n<br very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute=\"very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-value\" />\n<br attribute-a=\"value\" attribute-b=\"value\" attribute-c=\"value\" attribute-d=\"value\" attribute-e=\"value\" attribute-f=\"value\" />\n<div>string</div>\n<div>very very very very very very very very very very very very very very very very long string</div>\n<div very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute>string</div>\n<div very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute=\"value\">string</div>\n<div attribute=\"very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-value\">string</div>\n<div attribute=\"value\">very very very very very very very very very very very very very very very very long string</div>\n<div attribute=\"value\" attributea=\"value\" attributeb=\"value\" attributec=\"value\" attributed=\"value\" attributef=\"value\">string</div>\n<div attribute=\"value\" attributea=\"value\" attributeb=\"value\" attributec=\"value\" attributed=\"value\" attributef=\"value\">very very very very very very very very very very very very very very very very long string</div>\n<video width=\"320\" height=\"240\" controls>\n  <source src=\"movie.mp4\" type=\"video/mp4\">\n  <source src=\"movie.ogg\" type=\"video/ogg\">\n  Your browser does not support the video tag.\n</video>\n<div><div>string</div></div>\n<div><div>string</div><div>string</div></div>\n<div><div><div>string</div></div><div>string</div></div>\n<div><div>string</div><div><div>string</div></div></div>\n<div><div></div></div>\n<div><div></div><div></div></div>\n<div><div><div><div><div><div><div>string</div></div></div></div></div></div></div>\n<div>\n  <div>string</div>\n</div>\n<div>\n\n  <div>string</div>\n\n</div>\n<div>\n\n  <div>string</div>\n\n  <div>string</div>\n\n</div>\n<ul\n  >123<li\n    class=\"foo\"\n    id=\"bar\"\n  >First</li\n  >456<li\n    class=\"baz\"\n  >Second</li\n  >789</ul\n>\n<span>*<b>200</b></span>\n<img src=\"longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\" />123\n<div>123<meta attr/>456</div>\n<p>x<span a=\"b\"></span></p>\n<p>x<meta a></p>\n<p>x<meta></p>\n<span></span>\n\n<label aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa></label> |\n<span></span>\n<br />\n<button xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n  >12345678901234567890</button\n> <br /><br />\n\n<button bind-disabled=\"isUnchanged\" on-click=\"onSave($event)\"\n  >Disabled Cancel</button\n>\n<br /><br />\n<button xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n  >12345678901234567890</button\n> <br /><br />\n\n<button bind-disabled=\"isUnchanged\" on-click=\"onSave($event)\"\n  >Disabled Cancel</button\n>\n<br /><br />\n<p>\"<span [innerHTML]=\"title\"></span>\" is the <i>property bound</i> title.</p>\n<li>12345678901234567890123456789012345678901234567890123456789012345678901234567890</li>\n<div>\n<app-nav></app-nav>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n\n<app-nav [input]=\"something\"></app-nav>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n\n<app-primary-navigation></app-primary-navigation>\n<router-outlet></router-outlet>\n<app-footer [input]=\"something\"></app-footer>\n</div>\n<x:root><SPAN>tag name in other namespace should also lower cased</SPAN></x:root>\n<div>\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n  \"<strong>seddoeiusmod</strong>\".\n</div>\n<div>\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n  <strong>seddoeiusmod</strong>.\n</div>\n<span>\n  <i class=\"fa fa-refresh fa-spin\" />\n  <i class=\"fa fa-refresh fa-spin\" />\n  <i class=\"fa fa-refresh fa-spin\" />\n</span>\n\n<!-- #5810 -->\n<table><tr>\n</tr>\n</table><div>Should not insert empty line before this div</div>\n\n<!-- self-closing -->\n<span><input type=\"checkbox\"/> </span>\n<span><span><input type=\"checkbox\"/></span></span>\n<span><input type=\"checkbox\"/></span>") ;
@@ -609,8 +609,8 @@ fn test_tags_html_html_whitespace_sensitivitystrict_format_1_3dd5858b() {
 #[test]
 fn test_tags_html_print_width_infinity_format_1_3dd5858b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(INFINITY)
         .parsers(vec!["html"])
+        .print_width(INFINITY)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<br/>\n<br />\n<br  />\n<br\n/>\n<br attribute-a />\n<br very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute />\n<br attribute-a=\"value\" />\n<br\n  attribute-a=\"value\"\n/>\n<br very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute=\"value\" />\n<br very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute=\"very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-value\" />\n<br attribute-a=\"value\" attribute-b=\"value\" attribute-c=\"value\" attribute-d=\"value\" attribute-e=\"value\" attribute-f=\"value\" />\n<div>string</div>\n<div>very very very very very very very very very very very very very very very very long string</div>\n<div very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute>string</div>\n<div very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-attribute=\"value\">string</div>\n<div attribute=\"very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-value\">string</div>\n<div attribute=\"value\">very very very very very very very very very very very very very very very very long string</div>\n<div attribute=\"value\" attributea=\"value\" attributeb=\"value\" attributec=\"value\" attributed=\"value\" attributef=\"value\">string</div>\n<div attribute=\"value\" attributea=\"value\" attributeb=\"value\" attributec=\"value\" attributed=\"value\" attributef=\"value\">very very very very very very very very very very very very very very very very long string</div>\n<video width=\"320\" height=\"240\" controls>\n  <source src=\"movie.mp4\" type=\"video/mp4\">\n  <source src=\"movie.ogg\" type=\"video/ogg\">\n  Your browser does not support the video tag.\n</video>\n<div><div>string</div></div>\n<div><div>string</div><div>string</div></div>\n<div><div><div>string</div></div><div>string</div></div>\n<div><div>string</div><div><div>string</div></div></div>\n<div><div></div></div>\n<div><div></div><div></div></div>\n<div><div><div><div><div><div><div>string</div></div></div></div></div></div></div>\n<div>\n  <div>string</div>\n</div>\n<div>\n\n  <div>string</div>\n\n</div>\n<div>\n\n  <div>string</div>\n\n  <div>string</div>\n\n</div>\n<ul\n  >123<li\n    class=\"foo\"\n    id=\"bar\"\n  >First</li\n  >456<li\n    class=\"baz\"\n  >Second</li\n  >789</ul\n>\n<span>*<b>200</b></span>\n<img src=\"longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\" />123\n<div>123<meta attr/>456</div>\n<p>x<span a=\"b\"></span></p>\n<p>x<meta a></p>\n<p>x<meta></p>\n<span></span>\n\n<label aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa></label> |\n<span></span>\n<br />\n<button xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n  >12345678901234567890</button\n> <br /><br />\n\n<button bind-disabled=\"isUnchanged\" on-click=\"onSave($event)\"\n  >Disabled Cancel</button\n>\n<br /><br />\n<button xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n  >12345678901234567890</button\n> <br /><br />\n\n<button bind-disabled=\"isUnchanged\" on-click=\"onSave($event)\"\n  >Disabled Cancel</button\n>\n<br /><br />\n<p>\"<span [innerHTML]=\"title\"></span>\" is the <i>property bound</i> title.</p>\n<li>12345678901234567890123456789012345678901234567890123456789012345678901234567890</li>\n<div>\n<app-nav></app-nav>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n\n<app-nav [input]=\"something\"></app-nav>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n\n<app-primary-navigation></app-primary-navigation>\n<router-outlet></router-outlet>\n<app-footer [input]=\"something\"></app-footer>\n</div>\n<x:root><SPAN>tag name in other namespace should also lower cased</SPAN></x:root>\n<div>\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n  \"<strong>seddoeiusmod</strong>\".\n</div>\n<div>\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n  <strong>seddoeiusmod</strong>.\n</div>\n<span>\n  <i class=\"fa fa-refresh fa-spin\" />\n  <i class=\"fa fa-refresh fa-spin\" />\n  <i class=\"fa fa-refresh fa-spin\" />\n</span>\n\n<!-- #5810 -->\n<table><tr>\n</tr>\n</table><div>Should not insert empty line before this div</div>\n\n<!-- self-closing -->\n<span><input type=\"checkbox\"/> </span>\n<span><span><input type=\"checkbox\"/></span></span>\n<span><input type=\"checkbox\"/></span>") ;
@@ -645,9 +645,9 @@ fn test_tags_html_format_1_3dd5858b() {
 #[test]
 fn test_tags_2_html_html_whitespace_sensitivityignore_format_1_a136d9fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("ignore")
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div>before<noscript>noscript long long long long long long long long</noscript>after</div>\n\n<div>before<details><summary>summary long long long long </summary>details</details>after</div>\n\n<div>before<dialog open>dialog long long long long  long long long long </dialog>after</div>\n\n<div>before<object data=\"horse.wav\"><param name=\"autoplay\" value=\"true\"/><param name=\"autoplay\" value=\"true\"/></object>after</div>\n\n<div>before<meter min=\"0\" max=\"1\" low=\".4\" high=\".7\" optimum=\".5\" value=\".2\"></meter>after</div>\n\n<div>before<progress value=\".5\" max=\"1\"></progress>after</div>") ;
@@ -658,9 +658,9 @@ fn test_tags_2_html_html_whitespace_sensitivityignore_format_1_a136d9fa() {
 #[test]
 fn test_tags_2_html_html_whitespace_sensitivitystrict_format_1_a136d9fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("strict")
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div>before<noscript>noscript long long long long long long long long</noscript>after</div>\n\n<div>before<details><summary>summary long long long long </summary>details</details>after</div>\n\n<div>before<dialog open>dialog long long long long  long long long long </dialog>after</div>\n\n<div>before<object data=\"horse.wav\"><param name=\"autoplay\" value=\"true\"/><param name=\"autoplay\" value=\"true\"/></object>after</div>\n\n<div>before<meter min=\"0\" max=\"1\" low=\".4\" high=\".7\" optimum=\".5\" value=\".2\"></meter>after</div>\n\n<div>before<progress value=\".5\" max=\"1\"></progress>after</div>") ;
@@ -683,8 +683,8 @@ fn test_tags_2_html_print_width_infinity_format_1_a136d9fa() {
 #[test]
 fn test_tags_2_html_print_width_1_format_1_a136d9fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div>before<noscript>noscript long long long long long long long long</noscript>after</div>\n\n<div>before<details><summary>summary long long long long </summary>details</details>after</div>\n\n<div>before<dialog open>dialog long long long long  long long long long </dialog>after</div>\n\n<div>before<object data=\"horse.wav\"><param name=\"autoplay\" value=\"true\"/><param name=\"autoplay\" value=\"true\"/></object>after</div>\n\n<div>before<meter min=\"0\" max=\"1\" low=\".4\" high=\".7\" optimum=\".5\" value=\".2\"></meter>after</div>\n\n<div>before<progress value=\".5\" max=\"1\"></progress>after</div>") ;
@@ -707,9 +707,9 @@ fn test_tags_2_html_format_1_a136d9fa() {
 #[test]
 fn test_textarea_html_html_whitespace_sensitivityignore_format_1_8f29dac6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .html_whitespace_sensitivity("ignore")
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div>\n  <div>\n    <div>\n      <div>\n        <div>\n          <div>\n            <div>\n              <div>\n                <div>\n                  <div>\n                    <div>\n                      <div>\n                        <textarea rows=\"10\" cols=\"45\" name=\"text\">\n                        String\n                        </textarea>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<textarea></textarea>\n\n<div><textarea>lorem ipsum</textarea></div>") ;
@@ -782,9 +782,9 @@ fn test_unsupported_html_html_whitespace_sensitivityignore_format_1_7c2c4310() {
 #[test]
 fn test_unsupported_html_html_whitespace_sensitivitystrict_format_1_7c2c4310() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["html"])
         .html_whitespace_sensitivity("strict")
+        .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<center></center>");
@@ -807,8 +807,8 @@ fn test_unsupported_html_print_width_infinity_format_1_7c2c4310() {
 #[test]
 fn test_unsupported_html_print_width_1_format_1_7c2c4310() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(1)
         .parsers(vec!["html"])
+        .print_width(1)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<center></center>");
@@ -819,8 +819,8 @@ fn test_unsupported_html_print_width_1_format_1_7c2c4310() {
 #[test]
 fn test_unsupported_html_format_1_7c2c4310() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<center></center>");

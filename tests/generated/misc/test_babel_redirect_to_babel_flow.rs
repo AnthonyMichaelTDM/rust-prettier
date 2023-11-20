@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_block_comment_js_format_1_3f1b8171() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -21,8 +21,8 @@ fn test_block_comment_js_format_1_3f1b8171() {
 #[test]
 fn test_block_comment_2_js_format_1_84c08625() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -37,8 +37,8 @@ fn test_block_comment_2_js_format_1_84c08625() {
 #[test]
 fn test_filename_js_flow_format_1_59180d29() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo = {\"1\":bar} // \"1\" should quoted");
@@ -80,8 +80,8 @@ fn test_inline_comment_2_js_format_1_587077dd() {
 #[test]
 fn test_inline_comment_3_js_format_1_41a32dfb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("//  another comment\n//                     @flow\n\nfoo = {\"1\":bar} // \"1\" should quoted") ;
@@ -108,8 +108,8 @@ fn test_like_a_pragma_js_format_1_46ac9249() {
 #[test]
 fn test_not_flow_js_format_1_452ab1aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo = {\"1\":bar} // \"1\" should unquoted");
@@ -136,8 +136,8 @@ fn test_not_flow_2_js_format_1_c5c1f8a1() {
 #[test]
 fn test_not_flow_3_js_format_1_f6f50f7f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -229,8 +229,8 @@ fn test_pragma_react_js_format_1_da8de405() {
 #[test]
 fn test_shebang_inline_comment_js_format_1_52b014c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("#!/usr/bin/env node\n//  another comment\n//                     @flow\n\nfoo = {\"1\":bar} // \"1\" should quoted") ;
@@ -241,8 +241,8 @@ fn test_shebang_inline_comment_js_format_1_52b014c4() {
 #[test]
 fn test_shebang_pragma_js_format_1_ec1bef51() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("#!/usr/bin/env node\n/**\n * @format\n *                      @noflow\n */\n\nfoo = {\"1\":bar} // \"1\" should quoted") ;

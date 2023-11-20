@@ -33,8 +33,8 @@ fn test_optional_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_optional_js_format_1_ef69d145() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type A = [a?: string, +b?: number, -c?: boolean];\n\n// Unaffected\ntype B = [?string, [?string], (?string) => boolean];") ;
@@ -53,8 +53,8 @@ fn test_variance_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_variance_js_format_1_d97fd206() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("type T = [a: string, +b: number, -c: boolean];");

@@ -29,8 +29,8 @@ fn test_comments_2_js_format_1_56c750f3() {
 #[test]
 fn test_empty_lines_js_format_1_4bcc0658() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("switch (foo) {\n  case \"bar\":\n    doSomething();\n\n  case \"baz\":\n    doOtherThing();\n}\n\nswitch (foo) {\n\n  case \"bar\":\n    doSomething();\n\n  case \"baz\":\n    doOtherThing();\n}\n\nswitch (foo) {\n  case \"bar\":\n    doSomething();\n\n  case \"baz\":\n    doOtherThing();\n\n}\n\nswitch (foo) {\n  case \"bar\":\n    doSomething();\n\n\n\n  case \"baz\":\n    doOtherThing();\n}\n\nswitch (x) {\n  case y:\n    call();\n\n    break;\n\n  case z:\n    call();\n\n    break;\n}\n\nswitch (a) {\n  case b:\n    if (1) {};\n    c;\n}\n\nswitch (a) {\n  case x:\n  case y:\n    call();\n\n  case z:\n    call();\n}\n\nswitch (a) {\n  case x: case y:\n    call();\n\n  case z:\n    call();\n}") ;
@@ -53,8 +53,8 @@ fn test_empty_statement_js_format_1_d05c9fa8() {
 #[test]
 fn test_empty_switch_js_format_1_a3c5267a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("switch (1) { default:; }\nswitch (1) {}");

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_lex_js_format_1_c9c6f09b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function switch_scope(x: mixed) {\n  let a = \"\";\n  let b = \"\";\n  switch (x) {\n    case \"foo\":\n      let a;\n      a = 0; // doesn't add lower bound to outer a\n      b = 0;\n  }\n  (a : string); // OK\n  (b : string); // error: number ~> string\n}\n\nfunction try_scope_finally() {\n  let a;\n  let b;\n  try {\n    a = \"\";\n    b = \"\";\n  } finally {\n    let a;\n    a = 0; // doesn't add lower bound to outer a\n    b = 0;\n  }\n  (a : string); // ok\n  (b : string); // error: number ~> string\n}\n\nfunction for_scope() {\n  let a = \"\";\n  let b = \"\";\n  for (let a;;) {\n    a = 0; // doesn't add lower bound to outer a\n    b = 0;\n  }\n  (a : string);\n  (b : string); // error: number ~> string\n}\n\nfunction for_in_scope(o: Object) {\n  let a = 0;\n  let b = 0;\n  for (let a in o) {\n    a = \"\"; // doesn't add lower bound to outer a\n    b = \"\";\n  }\n  (a : number);\n  (b : number); // error: string ~> number\n}\n\nfunction for_of_scope(xs: number[]) {\n  let a = \"\";\n  let b = \"\";\n  for (let a of xs) {\n    a = 0; // doesn't add lower bound to outer a\n    b = 0;\n  }\n  (a : string);\n  (b : string); // error: number ~> string\n}") ;

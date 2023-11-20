@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_dupe_1_js_format_1_52636103() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * Dupe provider 1/2\n * @providesModule Dupe\n * @flow\n */\nmodule.exports = \"dupe1\";") ;

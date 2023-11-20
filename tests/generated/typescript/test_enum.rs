@@ -13,8 +13,8 @@ fn test_computed_members_ts_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_computed_members_ts_format_1_7612997c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("enum A {\n  [i++],\n}\n\nconst bar = \"bar\"\nenum B {\n  [bar] = 2,\n}\n\nconst foo = () => \"foo\";\nenum C {\n  [foo()] = 2,\n}") ;

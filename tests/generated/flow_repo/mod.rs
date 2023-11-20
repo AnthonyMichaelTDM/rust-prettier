@@ -21,7 +21,7 @@ mod test_more_path;
 #[cfg(test)]
 mod test_for;
 #[cfg(test)]
-mod test_type_param_variance2;
+mod test_type_param_variance_2;
 #[cfg(test)]
 mod test_constructor_annots;
 #[cfg(test)]
@@ -49,13 +49,13 @@ mod test_fetch;
 #[cfg(test)]
 mod test_librec;
 #[cfg(test)]
-mod test_requireLazy;
+mod test_require_lazy;
 #[cfg(test)]
 mod test_libconfig;
 #[cfg(test)]
 mod test_import_typeof;
 #[cfg(test)]
-mod test_config_munging_underscores2;
+mod test_config_munging_underscores_2;
 #[cfg(test)]
 mod test_keys;
 #[cfg(test)]
@@ -89,7 +89,7 @@ mod test_type_guards;
 #[cfg(test)]
 mod test_window;
 #[cfg(test)]
-mod test_get_def2;
+mod test_get_def_2;
 #[cfg(test)]
 mod test_esproposal_class_instance_fields_warn;
 #[cfg(test)]
@@ -121,7 +121,7 @@ mod test_esproposal_class_instance_fields_ignore;
 #[cfg(test)]
 mod test_config_all_false;
 #[cfg(test)]
-mod test_annot2;
+mod test_annot_2;
 #[cfg(test)]
 mod test_class_type;
 #[cfg(test)]
@@ -151,7 +151,7 @@ mod test_esproposal_decorators_ignore;
 #[cfg(test)]
 mod test_incremental_delete;
 #[cfg(test)]
-mod test_call_caching1;
+mod test_call_caching_1;
 #[cfg(test)]
 mod test_strict_requires;
 #[cfg(test)]
@@ -193,7 +193,7 @@ mod test_malformed_code;
 #[cfg(test)]
 mod test_qualified;
 #[cfg(test)]
-mod test_config_module_name_mapper_PROJECT_ROOT_1_0;
+mod test_config_module_name_mapper_project_root_1_0;
 #[cfg(test)]
 mod test_type_at_pos;
 #[cfg(test)]
@@ -271,7 +271,7 @@ mod test_get_imports;
 #[cfg(test)]
 mod test_incremental_json;
 #[cfg(test)]
-mod test_es6modules;
+mod test_es_6_modules;
 #[cfg(test)]
 mod test_suggest;
 #[cfg(test)]
@@ -491,7 +491,7 @@ mod test_declaration_files_incremental_haste;
 #[cfg(test)]
 mod test_suppress;
 #[cfg(test)]
-mod test_call_caching2;
+mod test_call_caching_2;
 #[cfg(test)]
 mod test_class_subtyping;
 #[cfg(test)]

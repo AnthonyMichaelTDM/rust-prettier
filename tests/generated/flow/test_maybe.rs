@@ -20,8 +20,8 @@ fn test_maybe_return_js_format_1_bdc0c197() {
 #[test]
 fn test_prettier_ignore_js_format_1_5455fae1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("type A = {\n  // prettier-ignore\n  +input: ?(?B),\n}");

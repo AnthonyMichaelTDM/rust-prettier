@@ -17,8 +17,8 @@ fn test_case_css_format_1_595cf37e() {
 #[test]
 fn test_custom_selectors_css_format_1_70298188() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(

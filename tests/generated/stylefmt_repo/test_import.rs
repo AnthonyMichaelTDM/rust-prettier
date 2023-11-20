@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_import_css_format_1_8fc2400c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("        @import         \"./settings\"    ;\n\n\n@import      \"./components\" ;@import \"./themes\";\n.class{float: left;\n}") ;

@@ -77,8 +77,8 @@ fn test_module_blocks_js_format_1_6a0c70aa() {
 #[test]
 fn test_non_module_blocks_js_format_1_90ab8ae5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("const m = module\n{}");
@@ -115,8 +115,8 @@ fn test_range_js_format_1_f5f4bf48() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel"])
         .print_width(80)
-        .range_start(28)
         .range_end(52)
+        .range_start(28)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("> 1 | let moduleBlock = module {  export let y = 1;\n    |                             ^^^^^^^^^^^^^^^^^\n> 2 | };\n    | ^^\n> 3 |\n    | ^^\n> 4 | foo(module { export let foo = \"foo\"; })\n    | ^^\n  5 ") ;

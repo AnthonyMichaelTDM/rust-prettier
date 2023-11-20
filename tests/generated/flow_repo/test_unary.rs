@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_unary_js_format_1_0766bcd2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction x0(y: string): number {\n  return +y; // ok, + exists solely for coercion\n}\n\nfunction x1(y: string): number {\n  return -y; // error, we don't allow coercion here\n}\n\nfunction x3(y: string) {\n  return ~y;  // error, we don't allow coercion here\n}\n\nfunction x4(y: string): boolean {\n  return !y; // ok, coercion is allowed\n}\n\n(-1: void); // error, number ~> void") ;

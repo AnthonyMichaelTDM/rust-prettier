@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_functional_compose_js_format_1_e366f24a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("compose(\n  sortBy(x => x),\n  flatten,\n  map(x => [x, x*2])\n);\n\nsomelib.compose(\n  sortBy(x => x),\n  flatten,\n  map(x => [x, x*2])\n);\n\ncomposeFlipped(\n  sortBy(x => x),\n  flatten,\n  map(x => [x, x*2])\n);\n\nsomelib.composeFlipped(\n  sortBy(x => x),\n  flatten,\n  map(x => [x, x*2])\n);\n\n// no regression (#4602)\nconst hasValue = hasOwnProperty(a, b);\n\nthis.compose(sortBy(x => x), flatten);\nthis.a.b.c.compose(sortBy(x => x), flatten);\nsomeObj.someMethod(this.field.compose(a, b));\n\nclass A extends B {\n  compose() {\n    super.compose(sortBy(x => x), flatten);\n  }\n}\n\nthis.subscriptions.add(\n            this.componentUpdates\n                .pipe(startWith(this.props), distinctUntilChanged(isEqual))\n                .subscribe(props => {\n\n                })\n        )") ;
@@ -29,8 +29,8 @@ fn test_gobject_connect_js_format_1_3620be42() {
 #[test]
 fn test_lodash_flow_js_format_1_ccd1f0aa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import { flow } from \"lodash\";\n\nconst foo = flow(\n  x => x + 1,\n  x => x * 3,\n  x => x - 6,\n);\n\nfoo(6);\n\nimport * as _ from \"lodash\";\n\nconst bar = _.flow(\n  x => x + 1,\n  x => x * 3,\n  x => x - 6,\n);\n\nbar(6);") ;
@@ -53,8 +53,8 @@ fn test_lodash_flow_right_js_format_1_973d73e2() {
 #[test]
 fn test_mongo_connect_js_format_1_e63a6796() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("MongoClient.connect(\n  \"mongodb://localhost:27017/posts\",\n  (err, db) => {\n    assert.equal(null, err);\n    db.close();\n  }\n);") ;
@@ -65,8 +65,8 @@ fn test_mongo_connect_js_format_1_e63a6796() {
 #[test]
 fn test_pipe_function_calls_js_format_1_aa5881b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("(() => {\n  pipe(\n    timelines,\n    everyCommitTimestamps,\n    A.sort(ordDate),\n    A.head\n  );\n\n  pipe(\n    serviceEventFromMessage(msg),\n    TE.chain(\n      flow(\n        publishServiceEvent(analytics),\n        TE.mapLeft(nackFromError)\n      )\n    )\n  )()\n    .then(messageResponse(logger, msg))\n    .catch((err) => {\n      logger.error(\n        pipe(\n          O.fromNullable(err.stack),\n          O.getOrElse(constant(err.message))\n        )\n      );\n      process.exit(1);\n    });\n\n  pipe(\n    Changelog.timestampOfFirstCommit([[commit]]),\n    O.toUndefined\n  );\n\n  chain(\n    flow(\n      getUploadUrl,\n      E.mapLeft(Errors.unknownError),\n      TE.fromEither\n    )\n  );\n})();") ;
@@ -151,8 +151,8 @@ fn test_reselect_createselector_js_format_1_a0b77bbb() {
 #[test]
 fn test_rxjs_pipe_js_format_1_5aaecd29() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import { range } from 'rxjs/observable/range';\nimport { map, filter, scan } from 'rxjs/operators';\n\nconst source$ = range(0, 10);\n\nsource$.pipe(\n  filter(x => x % 2 === 0),\n  map(x => x + x),\n  scan((acc, x) => acc + x, 0)\n)\n.subscribe(x => console.log(x))") ;

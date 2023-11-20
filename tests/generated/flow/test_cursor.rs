@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_declare_module_exports_js_format_1_1b40e244() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .cursor_offset(22)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("declare module.exports<|>: A;");
@@ -18,9 +18,9 @@ fn test_declare_module_exports_js_format_1_1b40e244() {
 #[test]
 fn test_function_predicate_js_format_1_b2251ee2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .cursor_offset(12)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function a()<|>: %checks(a) {}");
@@ -31,9 +31,9 @@ fn test_function_predicate_js_format_1_b2251ee2() {
 #[test]
 fn test_function_predicate_2_js_format_1_ead1be6d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .cursor_offset(12)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function a()<|>: %checks {}");
@@ -44,8 +44,8 @@ fn test_function_predicate_2_js_format_1_ead1be6d() {
 #[test]
 fn test_function_return_type_js_format_1_5a37a184() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function a(): boolean {}");
@@ -56,9 +56,9 @@ fn test_function_return_type_js_format_1_5a37a184() {
 #[test]
 fn test_function_return_type_and_predicate_js_format_1_8b7bcdc4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .cursor_offset(12)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function a()<|>: boolean %checks(a) {}");
@@ -69,9 +69,9 @@ fn test_function_return_type_and_predicate_js_format_1_8b7bcdc4() {
 #[test]
 fn test_function_return_type_and_predicate_2_js_format_1_3b33c345() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["flow"])
         .cursor_offset(12)
+        .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function a()<|>: boolean %checks {}");
@@ -95,9 +95,9 @@ fn test_function_type_parameter_bound_js_format_1_e05e1c2d() {
 #[test]
 fn test_type_cast_expression_js_format_1_7876a101() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["flow"])
         .cursor_offset(2)
+        .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("(a<|>: A);");

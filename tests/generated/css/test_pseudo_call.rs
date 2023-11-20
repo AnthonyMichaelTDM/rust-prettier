@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_is_css_format_1_2ea71cdb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (":is(ol, ul, menu:unsupported) :is(ol, ul) {\n    color: green;\n}\n\n:is(ol, ul) :is(ol, ul) ol {\n    list-style-type: lower-greek;\n    color: chocolate;\n}\n\n:is(ol, ul, menu, dir) :is(ol, ul, menu, dir) :is(ul, menu, dir) {\n  list-style-type: square;\n}\n\n/* Level 0 */\nh1 {\n  font-size: 30px;\n}\n/* Level 1 */\n:is(section, article, aside, nav) h1 {\n  font-size: 25px;\n}\n/* Level 2 */\n:is(section, article, aside, nav) :is(section, article, aside, nav) h1 {\n  font-size: 20px;\n}\n/* Level 3 */\n:is(section, article, aside, nav)  :is(section, article, aside, nav)  :is(section, article, aside, nav)  h1 {\n  font-size: 15px;\n}\n\nsome-element:is(::before, ::after) {\n  display: block;\n}") ;

@@ -53,8 +53,8 @@ fn test_regexp_modifiers_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_regexp_modifiers_js_format_1_5daeaa9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -97,8 +97,8 @@ fn test_v_flag_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_v_flag_js_format_1_b3692630() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/a/v;");

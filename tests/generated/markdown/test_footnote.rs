@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_footnote_md_prose_wrapalways_format_1_cfbc39d3() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("^[inline]");

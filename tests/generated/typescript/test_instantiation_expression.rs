@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_basic_ts_format_1_5f8d059e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// basic\nconst foo = bar<T>;");
@@ -81,8 +81,8 @@ fn test_property_access_ts_format_1_f218477e() {
 #[test]
 fn test_typeof_ts_format_1_9df6bc3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("let x: typeof y.z<w>;");

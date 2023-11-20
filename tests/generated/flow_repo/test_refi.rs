@@ -41,8 +41,8 @@ fn test_lex_js_format_1_3877f582() {
 #[test]
 fn test_local_js_format_1_e8678c2c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var paths =\n[\n  function() {\n    var x : ?string = \"xxx\";\n    var y : string = x;  // not ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x == null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x == null)\n      return;\n    var y : string = x;  // ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (!(x != null)) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n      alert(\"\");\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {}\n    var y : string = x;  // not ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n    } else {\n      var y : string = x;  // not ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    var y : string = x != null ? x : \"\"; // ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    var y : string = x || \"\"; // ok\n  },\n\n  function() {\n    var x : string | string[] = [\"xxx\"];\n    if (Array.isArray(x)) {\n      var y : string[] = x; // ok\n    } else {\n      var z : string = x; // ok\n    }\n  },\n\n  function() {\n    var x : ?string = null;\n    if (!x) {\n      x = \"xxx\";\n    }\n    var y : string = x;\n  },\n];") ;
@@ -89,8 +89,8 @@ fn test_typeof_tests_js_format_1_21e74476() {
 #[test]
 fn test_undef_tests_js_format_1_07d41402() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var undef_tests =\n[\n  // NOTE: not (yet?) supporting non-strict eq test for undefined\n\n  // expr !== undefined\n  function() {\n    var x : ?string = \"xxx\";\n    if (x !== undefined && x !== null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (undefined !== x && x !== null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p !== undefined && x.p !== null) {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q !== undefined && x.p.q !== null) {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // expr === undefined\n  function() {\n    var x : ?string = \"xxx\";\n    if (x === undefined || x === null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p === undefined || x.p === null) {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q === undefined || x.p.q === null) {} else {\n      var y : string = x.p.q;  // ok\n    }\n  },\n];\n\n// this.p op undefined\nclass A {\n  p: ?string;\n\n  ensure0(): string {\n    if (this.p !== undefined && this.p !== null)\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure1(): string {\n    if (this.p === undefined || this.p === null)\n      return \"\";\n    else\n      return this.p;\n  }\n}") ;

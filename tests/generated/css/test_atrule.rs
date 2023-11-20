@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_at_root_css_format_1_2caa615f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".parent {\n    @at-root {\n        .child1 {\n            width: 100px;\n        }\n        .child2 {\n            width: 200px;\n        }\n    }\n}\n.parent {\n@at-root {\n.child1 {\nwidth: 100px;\n}\n.child2 {\nwidth: 200px;\n}\n}\n}\n.parent {\n    @at-root  {\n        .child1 {\n            width: 100px;\n        }\n        .child2 {\n            width: 200px;\n        }\n    }\n}\n.parent  {\n    @at-root  {\n        .child1  {\n            width: 100px;\n        }\n        .child2  {\n            width: 200px;\n        }\n    }\n}\n.parent\n{\n@at-root\n{\n.child1\n{\nwidth\n:\n100px\n;\n}\n.child2\n{\nwidth\n:\n200px\n;\n}\n}\n}\n.parent\n\n{\n\n@at-root\n\n{\n\n.child1\n\n{\n\nwidth\n\n:\n\n100px\n\n;\n\n}\n.child2\n\n{\n\nwidth\n\n:\n\n200px\n\n;\n\n}\n\n}\n\n}\n.parent {\n    @at-root .child {\n        width: 100px;\n    }\n}\n.parent {\n@at-root .child {\nwidth: 100px;\n}\n}\n.parent{\n    @at-root .child{\n        width: 100px;\n    }\n}\n.parent  {\n    @at-root  .child  {\n        width: 100px;\n    }\n}\n.parent\n{\n@at-root\n.child\n{\nwidth\n:\n100px\n;\n}\n}\n.parent\n\n{\n\n@at-root\n\n.child\n\n{\n\nwidth\n\n:\n\n100px\n\n;\n\n}\n\n}\n.parent {\n@at-root\ninput[\ntype\n=\n'radio'\n]\n{\ncolor\n:\nred\n;\n}\n}\n@media print {\n    .page {\n        width: 8in;\n\n        @at-root (with: media) {\n            color: red;\n        }\n    }\n}\n@media print {\n.page {\nwidth: 8in;\n\n@at-root (with: media) {\ncolor: red;\n}\n}\n}\n@media print{\n    .page{\n        width: 8in;\n\n        @at-root (with:media){\n            color: red;\n        }\n    }\n}\n@media print {\n    .page {\n        width: 8in;\n\n        @at-root ( with : media ) {\n            color: red;\n        }\n    }\n}\n@media print  {\n    .page  {\n        width: 8in;\n\n        @at-root  (  with  :  media  ) {\n            color: red;\n        }\n    }\n}\n@media print  {\n    .page  {\n        width: 8in;\n\n    @at-root\n        (with: media) {\n            color: red;\n        }\n    }\n}\n@media print\n{\n.page\n{\nwidth\n:\n8in\n;\n@at-root\n(\nwith\n:\nmedia\n)\n{\ncolor\n:\nred\n;\n}\n}\n}\n@media print\n\n{\n\n.page\n\n{\n\nwidth\n\n:\n\n8in\n\n;\n\n@at-root\n\n(\n\nwith\n\n:\n\nmedia\n\n)\n\n{\n\ncolor\n:\n\nred\n\n;\n\n}\n\n}\n\n}\n@media print {\n    .page {\n        width: 8in;\n\n        @at-root (without: media) {\n            color: red;\n        }\n    }\n}") ;
@@ -17,8 +17,8 @@ fn test_at_root_css_format_1_2caa615f() {
 #[test]
 fn test_charset_css_format_1_6150bfe7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@charset \"UTF-8\";\n@charset \"iso-8859-15\";\n@charset 'iso-8859-15'; /* Invalid, wrong quoting style used */\n@charset  \"UTF-8\"; /* Invalid, more than one space */\n@charset \"UTF-8\"; /* Invalid, there is a character (a space) before the at-rule */\n@charset UTF-8; /* Invalid, without ' or \", the charset is not a CSS <string> */") ;
@@ -41,8 +41,8 @@ fn test_counter_style_css_format_1_82356618() {
 #[test]
 fn test_custom_media_css_format_1_6eddaeae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@custom-media --small-viewport (max-width: 30em);\n@custom-media --small-viewport (max-width:30em);\n@custom-media  --small-viewport  (  max-width  :  30em  )  ;\n@custom-media --small-viewport\n    (max-width: 30em);\n@custom-media\n    --small-viewport\n    (\n        max-width: 30em\n    );\n@custom-media\n--small-viewport\n(\nmax-width\n:\n30em\n)\n;\n@custom-media\n\n--small-viewport\n\n(\n\nmax-width\n\n:\n\n30em\n\n)\n\n;\n@custom-media --none not all;\n@custom-media  --none  not  all  ;\n@custom-media  --none\n    not all;\n@custom-media  --none\n    not\n    all;\n@custom-media\n--none\nnot\nall\n;\n@custom-media\n\n--none\n\nnot\n\nall\n\n;\n@custom-media --tablet (min-width: 768px) and (max-width: 1279px);\n@custom-media --tablet (min-width:768px) and (max-width:1279px);\n@custom-media  --tablet  (  min-width  :  768px  )  and  (  max-width  :  1279px  )  ;\n@custom-media --tablet\n    (min-width: 768px) and (max-width: 1279px);\n@custom-media\n    --tablet\n    (min-width: 768px) and\n    (max-width: 1279px);\n@custom-media\n--tablet\n(\nmin-width\n:\n768px\n)\nand\n(\nmax-width\n:\n1279px\n)\n;\n@custom-media\n\n--tablet\n\n(\n\nmin-width\n\n:\n\n768px\n\n)\n\nand\n\n(\n\nmax-width\n\n:\n\n1279px\n\n)\n\n;") ;
@@ -89,8 +89,8 @@ fn test_each_css_format_1_01141d9c() {
 #[test]
 fn test_extend_css_format_1_532d0fb8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".master {\n    color:  black;\n    font-size: 12px;\n}\n.emphasis {\n    @extend .master;\n    font-weight: bold;\n}\n.emphasis {\n@extend .master;\nfont-weight: bold;\n}\n.emphasis {\n    @extend  .master ;\n    font-weight: bold;\n}\n.emphasis {\n    @extend   .master  ;\n    font-weight: bold;\n}\n.emphasis\n{\n@extend\n.master\n;\nfont-weight\n:\nbold\n;\n}\n.emphasis\n\n{\n\n@extend\n\n.master\n\n;\n\nfont-weight\n\n:\n\nbold\n\n;\n\n}\n%message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n.message {\n    @extend %message-shared;\n}\n.message {\n@extend %message-shared;\n}\n.message {\n    @extend  %message-shared ;\n}\n.message {\n    @extend   %message-shared  ;\n}\n.message {\n@extend\n%message-shared;\n}\n.message {\n\n@extend\n\n%message-shared;\n\n}\na.important {\n    @extend .notice !optional;\n}\na.important {\n@extend .notice !optional;\n}\na.important {\n    @extend  .notice !optional ;\n}\na.important {\n    @extend  .notice  !optional  ;\n}\na.important\n{\n@extend\n.notice\n!optional\n;\n}\na.important\n\n{\n\n@extend\n\n.notice\n\n!optional\n\n;\n\n}\n.message-error {\n    @extend .message, .important;\n}\n.message-error {\n    @extend .message , .important ;\n}\n.message-error {\n    @extend   .message  ,  .important  ;\n}\n.message-error {\n    @extend .message,\n        .important;\n}\n.message-error {\n    @extend\n        .message,\n        .important;\n}\n.message-error\n{\n@extend\n.message\n,\n.important\n;\n}\n.message-error\n\n{\n\n@extend\n\n.message\n\n,\n\n.important;\n\n}\n.message-error {\n    @extend .very-very-very-very-very-very-very-very-very-very-very-very-very-long-selector, .very-very-very-very-very-very-very-very-very-very-very-very-very-long-selector;\n}") ;
@@ -101,8 +101,8 @@ fn test_extend_css_format_1_532d0fb8() {
 #[test]
 fn test_font_face_css_format_1_0a7625b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@font-face {\n    font-family: \"Open Sans\";\n    src: url(\"/fonts/OpenSans-Regular-webfont.woff2\") format(\"woff2\"),\n        url(\"/fonts/OpenSans-Regular-webfont.woff\") format(\"woff\");\n}\n@font-face {\nfont-family: \"Open Sans\";\nsrc: url(\"/fonts/OpenSans-Regular-webfont.woff2\") format(\"woff2\"),\nurl(\"/fonts/OpenSans-Regular-webfont.woff\") format(\"woff\");\n}\n@font-face{\n    font-family: \"Open Sans\";\n    src: url(\"/fonts/OpenSans-Regular-webfont.woff2\") format(\"woff2\"),\n        url(\"/fonts/OpenSans-Regular-webfont.woff\") format(\"woff\");\n}\n@font-face  {\n    font-family: \"Open Sans\";\n    src: url(\"/fonts/OpenSans-Regular-webfont.woff2\") format(\"woff2\"),\n        url(\"/fonts/OpenSans-Regular-webfont.woff\") format(\"woff\");\n}\n@font-face\n{\nfont-family\n:\n\"Open Sans\"\n;\nsrc\n:\nurl(\n\"/fonts/OpenSans-Regular-webfont.woff2\"\n)\nformat(\n\"woff2\"\n)\n,\nurl(\n\"/fonts/OpenSans-Regular-webfont.woff\"\n)\nformat(\n\"woff\"\n)\n;\n}\n@font-face\n\n{\n\nfont-family\n\n:\n\n\"Open Sans\"\n\n;\n\nsrc\n\n:\n\nurl(\n\n\"/fonts/OpenSans-Regular-webfont.woff2\"\n\n)\n\nformat(\n\n\"woff2\"\n\n)\n\n,\n\nurl(\n\n\"/fonts/OpenSans-Regular-webfont.woff\"\n\n)\n\nformat(\n\n\n\"woff\"\n\n)\n\n;\n\n}") ;
@@ -113,8 +113,8 @@ fn test_font_face_css_format_1_0a7625b2() {
 #[test]
 fn test_font_feature_values_css_format_1_cbac816e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@font-feature-values Font One {\n    @styleset {\n        nice-style: 12;\n    }\n}\n@font-feature-values Font One {\n@styleset {\nnice-style: 12;\n}\n}\n@font-feature-values Font One{\n    @styleset{\n        nice-style: 12;\n    }\n}\n@font-feature-values  Font One  {\n    @styleset  {\n        nice-style: 12;\n    }\n}\n@font-feature-values\nFont One\n{\n@styleset\n{\nnice-style\n:\n12\n;\n}\n}\n\n@font-feature-values\n\nFont One\n\n{\n\n@styleset\n{\n\nnice-style\n\n:\n\n12\n\n;\n\n}\n\n}") ;
@@ -125,8 +125,8 @@ fn test_font_feature_values_css_format_1_cbac816e() {
 #[test]
 fn test_for_css_format_1_47043a8c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@for $i from 1 through 8 {}\n@for $i from 1 through 8{}\n@for  $i  from  1  through  8  {}\n@for  $i\nfrom\n1\nthrough\n8\n{}\n@for\n$i\nfrom\n1\nthrough\n8\n{}\n@for\n$i\nfrom\n1\nthrough\n8\n{}\n@for\n\n$i\n\nfrom\n\n1\n\nthrough\n\n8\n\n{}\n@for $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var from 1 through 5 {}\n@for $i from $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var1 through 5 {}\n@for $i from 1 through $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var-2 {}\n@for $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var from $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var1 through $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var-2 {}\n@for $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var from $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var1 end $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var-2 {}\n@for $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var from ($var1 + $var1) through ($var-2 + $var-2) {}\n@for $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var from ($very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var1 + $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var1) through ($very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var-2 + $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var-2) {}") ;
@@ -149,8 +149,8 @@ fn test_function_css_format_1_3551bfd3() {
 #[test]
 fn test_if_else_css_format_1_f44e9e85() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@if $media == phonePortrait {\n    $k: .15625;\n} @else if $media == phoneLandscape {\n    $k: .08803;\n} @else if $media == tabletPortrait {\n    $k: .065106;\n}\np {\n    @if $type == ocean {}\n    @if $type==ocean{}\n    @if  $type  ==  ocean  {}\n    @if $type\n        == ocean {}\n    @if\n    $type\n    ==\n    ocean\n    {\n    }\n    @if\n\n    $type\n\n    ==\n\n    ocean\n\n    {\n\n    }\n    @if (($type) == (ocean)) {}\n    @if (($type)==(ocean)){}\n    @if  (  (  $type  )  ==  (  ocean  )  )  {}\n    @if (($type)\n        == (ocean)) {}\n    @if\n    (\n    (\n    $type\n    )\n    ==\n    (\n    ocean\n    )\n    )\n    {\n    }\n    @if\n\n    (\n\n    (\n\n    $type\n\n    )\n\n    ==\n\n    (\n\n    ocean\n\n    )\n\n    )\n\n    {\n\n    }\n    @if $type == ocean {\n        color: blue;\n    } @else if $type == matador {\n        color: red;\n    } @else if $type == monster {\n        color: green;\n    } @else {\n        color: black;\n    }\n    @if $type == ocean {\n    } @else if $type == matador {\n    }\n    @if $type==ocean{}@else if $type==matador{}\n    @if  $type  ==  ocean  {  }  @else  if  $type  ==  matador  {  }\n    @if $type == ocean {}\n    @else if $type == matador {}\n    @if\n        $type == ocean {}\n    @else if\n        $type == matador {}\n    @if\n        $type\n        ==\n        ocean\n        {\n        }\n    @else\n        if\n        $type\n        ==\n        matador\n        {\n        }\n    @if\n\n        $type\n\n        ==\n\n        ocean\n\n        {\n\n        }\n\n    @else\n\n        if\n\n        $type\n\n        ==\n\n        matador\n\n        {\n\n        }\n    @if $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-variables == $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-variables {\n        color: blue;\n    } @else if $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-variables == $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-variables {\n        color: red;\n    } @else if $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-variables == $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-variables {\n        color: green;\n    } @else {\n        color: black;\n    }\n    @if $very-very-very-long-var == 0 and $very-very-very-long-var == 0 {}\n    @if $very-very-very-very-very-very-long-var == 0 and $very-very-very-long-var == 0 {}\n    @if $very-very-very-very-very-very-very-very-very-very-very-long-var == 0 and $very-very-very-very-very-very-very-very-very-very-very-long-var == 0 {}\n    @if $base-font-size != 16px or $base-line-height != 24px or $base-unit != 'em' or $h1-font-size != 2 * $base-font-size or $h2-font-size != 1.5 * $base-font-size or $h3-font-size != 1.17 * $base-font-size or $h4-font-size != 1 * $base-font-size or $h5-font-size != 0.83 * $base-font-size or $h6-font-size != 0.67 * $base-font-size or $indent-amount != 40px {}\n    @if (str-slice($item, 0, 1) == \":\") {}\n    @if (str-slice($item, 0, 3) == \" : \") {}\n    @if ($type == ocean) {} @else if ($type == matador) {} @else {}\n}") ;
@@ -161,8 +161,8 @@ fn test_if_else_css_format_1_f44e9e85() {
 #[test]
 fn test_import_css_format_1_02484fc3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@import url(\"fineprint.css\") print;\n@import url(\"bluish.css\") projection, tv;\n@import 'custom.css';\n@import url(\"chrome://communicator/skin/\");\n@import \"common.css\" screen, projection;\n@import \"common.css\" screen projection;\n@import url('landscape.css') screen and (orientation:landscape);\n\n@import (multiple) \"foo.less\";\n\n/* This isn't valid CSS, SCSS or Less, but we should be lenient and make sure\n/* that nothing is lost when printing. */\n@import \"one\" two \"three\";\n\n#main {\n    @import \"example\";\n}\n#main {\n@import \"example\";\n}\n#main {\n    @import \"example\" ;\n}\n#main {\n    @import  \"example\"  ;\n}\n#main {\n    @import\n        \"example\";\n}\n#main\n{\n@import\n\"example\";\n}\n#main\n\n{\n\n@import\n\n\"example\";\n\n}\n\n@import \"test.less\" {}\n@import \"test.less\" {\n    a: b;\n    c: d;\n}\n\n@import url('foo');\n$dir: 'fonts';\n\n@import url(\"foo.css\");\n@import url('foo.css');\n@import  url(\"foo.css\");\n@import   url(\"foo.css\");\n@import url(\"fineprint.css\")print;\n@import url(\"fineprint.css\") print;\n@import url(\"fineprint.css\")  print;\n@import url(\"fineprint.css\")\n  print;\n@import url(\"bluish.css\") projection,tv;\n@import url(\"bluish.css\") projection, tv;\n@import url(\"bluish.css\") projection ,tv;\n@import url(\"bluish.css\") projection , tv;\n@import url(\"bluish.css\") projection  ,  tv;\n@import url(\"bluish.css\")\n  projection,\n  tv;\n@import url(\"very-very-very-very-very-very-very-very-very-very-long-name.css\") projection,tv;\n@import url(\"very-very-very-very-very-very-very-very-very-very-long-name.css\") projection tv;\n@import url('landscape.css') screen and (orientation:landscape);\n@import \"rounded-corners\", \"text-shadow\";\n@import 'rounded-corners', 'text-shadow';\n$family: unquote(\"Droid+Sans\");\n@import url(\"http://fonts.googleapis.com/css?family=#{$family}\");\n@import url( \"foo.css\");\n@import url(\"foo.css\" );\n@import url( \"foo.css\" );\n@import url(  \"foo.css\"  );\n@import url(\"foo bar baz.css\");\n@import url(  \"foo bar baz.css\"  );\n@import url(\"foo  bar  baz.css\");\n@import url(\n\"foo.css\"\n);\n@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600';\n@import url(\n\"foo.css,800\"\n);") ;
@@ -185,8 +185,8 @@ fn test_include_css_format_1_8bc7d08e() {
 #[test]
 fn test_keyframes_css_format_1_77409e8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@keyframes identifier {\n  0% {\n    top: 0;\n    left: 0;\n  }\n  30% {\n    top: 50px;\n  }\n  68%,\n  72% {\n    left: 50px;\n  }\n  100% {\n    top: 100px;\n    left: 100%;\n  }\n}\n@keyframes identifier {\n0%{top:0;left:0;}\n30%{top: 50px;}\n68%,72%{left: 50px;}\n100%{top: 100px; left: 100%;}\n}\n@keyframes identifier{\n    0% {\n        top:0;\n        left:0;\n    }\n    30% {\n        top: 50px;\n    }\n    68%, 72% {\n        left: 50px;\n    }\n    100% {\n        top: 100px;\n        left: 100%;\n    }\n}\n@keyframes  identifier  {\n    0% {\n        top:0;\n        left:0;\n    }\n    30% {\n        top: 50px;\n    }\n    68%, 72% {\n        left: 50px;\n    }\n    100% {\n        top: 100px;\n        left: 100%;\n    }\n}\n@keyframes\nidentifier\n{\n0%\n{\ntop\n:\n0;\nleft\n:\n0\n;\n}\n30%\n{\ntop\n:\n50px\n;\n}\n68%\n,\n72%\n{\nleft\n:\n50px\n;\n}\n100%\n{\ntop\n:\n100px\n;\nleft\n:\n100%\n;\n}\n}\n@keyframes\n\nidentifier\n\n{\n\n0%\n\n{\n\ntop\n\n:\n\n0\n\n;\n\nleft\n\n:\n\n0\n\n;\n\n}\n\n30%\n\n{\n\ntop\n\n:\n\n50px\n\n;\n\n}\n\n68%\n\n,\n\n72%\n\n{\n\nleft\n\n:\n\n50px\n\n;\n\n}\n\n100%\n\n{\n\ntop\n\n:\n\n100px\n\n;\n\nleft\n\n:\n\n100%\n\n;\n\n}\n\n}\n@keyframes identifier {\n  from {\n    margin-top: 50px;\n  }\n  to {\n    margin-top: 100px;\n  }\n}\n@keyframes\nidentifier\n{\nfrom\n{\nmargin-top: 50px;\n}\nto\n{\nmargin-top: 100px;\n}\n}\n@keyframes\n\nidentifier\n\n{\n\nfrom\n\n{\n\nmargin-top: 50px;\n\n}\n\nto\n\n{\n\nmargin-top: 100px;\n\n}\n\n}\n@-webkit-keyframes identifier {\n  0%   { opacity: 0; top: 4rem; }\n  100% { opacity: 1; top: 0; }\n}") ;
@@ -209,8 +209,8 @@ fn test_media_css_format_1_356a7dd3() {
 #[test]
 fn test_mixin_css_format_1_9a810dab() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@mixin clearfix {}\n@mixin clearfix{}\n@mixin  clearfix  {}\n@mixin clearfix\n  {}\n@mixin\n  clearfix\n  {}\n@mixin\nclearfix\n{\n}\n@mixin\n\nclearfix\n\n{\n\n}\n\n@mixin mix($arg, $arg1, $arg2: 10, $args...) {}\n@mixin mix($arg,$arg1,$arg2:10,$args...){}\n@mixin mix ( $arg , $arg1 , $arg2 : 10 , $args ... ) {}\n@mixin  mix  (  $arg  ,  $arg1  ,  $arg2  :  10  ,  $args  ...  )  {}\n@mixin mix(\n    $arg,\n    $arg1,\n    $arg2: 10,\n    $args...\n) {}\n@mixin\nmix(\n    $arg,\n    $arg1,\n    $arg2: 10,\n    $args...\n    ) {}\n@mixin\nmix\n(\n$arg\n,\n$arg1\n,\n$arg2\n:\n10\n,\n$args\n...\n)\n{\n}\n@mixin\n\nmix\n\n(\n\n$arg\n\n,\n\n$arg1\n\n,\n\n$arg2\n\n:\n\n10\n\n,\n\n$args\n\n...\n\n)\n\n{\n}\n@mixin mix($very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-arg, $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-arg1, $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-arg2: 10, $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-args...) {}\n@mixin component($conf: ()) {}\n@mixin component($conf: ( )) {}\n@mixin button-variant($hover-background: darken($background, 7.5%)) {}\n@mixin button-variant( $hover-background : darken( $background , 7.5% ) ) {}\n@mixin button-variant($hover-background:darken($background,7.5%)) {}\n@mixin button-variant(\n    $hover-background: darken($background, 7.5%)\n) {}\n@mixin\nbutton-variant(\n$hover-background\n:\ndarken(\n$background\n,\n7.5%\n)\n)\n{}\n@mixin button-variant($foo: \"...\") {}\n@mixin button-variant($foo: \" ... \") {}\n@mixin button-variant($foo: \"  ...  \") {}\n@mixin sexy-border($color, $width, $foo: (color: red)) {}\n\n@mixin selector($param: \"value\") {}") ;
@@ -233,8 +233,8 @@ fn test_namespaces_css_format_1_f2adec2e() {
 #[test]
 fn test_page_css_format_1_fec87cfc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@page {\n    margin: 1cm;\n}\n@page {\nmargin: 1cm;\n}\n@page{\nmargin: 1cm;\n}\n@page  {\n    margin: 1cm;\n}\n@page\n{\nmargin\n:\n1cm\n;\n}\n@page\n\n{\n\nmargin\n:\n\n1cm\n\n;\n\n}\n@page :first {\n    margin: 2cm;\n}\n@page :first {\nmargin: 2cm;\n}\n@page :first{\n    margin: 2cm;\n}\n@page  :first  {\n    margin: 2cm;\n}\n@page\n:first\n{\nmargin\n:\n2cm\n;\n}\n@page\n\n:first\n\n{\n\nmargin\n\n:\n\n2cm\n\n;\n\n}\n@page vertical {\n    size: A4 portrait;\n}") ;
@@ -269,8 +269,8 @@ fn test_supports_css_format_1_9cfe5c18() {
 #[test]
 fn test_viewport_css_format_1_b6ed7f10() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@viewport {\n  min-width: 640px;\n  max-width: 800px;\n}\n\n@viewport {\nmin-width: 640px;\nmax-width: 800px;\n}\n\n@viewport{\n  min-width: 640px;\n  max-width: 800px;\n}\n\n@viewport  {\n  min-width: 640px;\n  max-width: 800px;\n}\n\n@viewport\n{\nmin-width\n:\n640px\n;\nmax-width\n:\n800px\n;\n}\n\n@viewport\n\n{\n\nmin-width\n\n:\n\n640px\n\n;\n\nmax-width\n\n:\n\n800px\n\n;\n\n}") ;
@@ -281,8 +281,8 @@ fn test_viewport_css_format_1_b6ed7f10() {
 #[test]
 fn test_while_css_format_1_2a5404c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@while $i > 0 {}\n@while $i>0{}\n@while  $i  >  0  {}\n@while $i\n    >\n    0\n    {}\n@while\n    $i\n    >\n    0\n    {}\n@while\n$i\n>\n0\n{\n}\n@while\n\n$i\n\n>\n\n0\n\n{\n\n}\n@while ($i > 0) {}\n@while ($i>0){}\n@while ( $i > 0 ) {}\n@while  (  $i  >  0  )  {}\n@while (\n    $i > 0\n) {}\n@while\n    ($i > 0) {}\n@while\n(\n$i\n>\n0\n)\n{\n}\n@while\n\n(\n\n$i\n\n>\n\n0\n\n)\n\n{\n\n}\n@while $very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var > 1 {}\n@while 1 > $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var {}\n@while $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var > $other-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var {}\n@while (($i) > (0)) {}\n@while (($i)>(0)){}\n@while  (  (  $i  )  >  (  0  )  )  {}\n@while (($i)\n    >\n    (0)\n) {}\n@while\n(\n(\n$i\n)\n>\n(\n0\n)\n)\n{\n}\n@while\n\n(\n\n(\n\n$i\n\n)\n\n>\n\n(\n\n0\n\n)\n\n)\n\n{\n\n}\n@while ($very-very-very-very-very-very-very-very-very-very-very-very-long-var > 1) {}\n@while (1 > $very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var) {}\n@while ($very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var > 1) {}\n@while ($very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var > $other-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-var) {}") ;

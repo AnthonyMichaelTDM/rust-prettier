@@ -41,8 +41,8 @@ fn test_call_js_format_1_f9dfec3d() {
 #[test]
 fn test_function_js_format_1_e74697c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\n// Previously we represented Function as (...rest: any) => any\n// This means the following wouldn't pass, because that arrow function\n// can only be called with 3 arguments.\nvar a: Function = (a, b, c) => 123;\n\nvar b: Function = function(a: number, b: number): number { return a + b; };\n\nclass C {}\n\nvar c: Function = C;\n\nfunction good(x: Function, MyThing: Function): number {\n  var o: Object = x; // Function is an Object\n  x.foo = 123;\n  x['foo'] = 456;\n  x();\n  <MyThing />;\n  var {...something} = x;\n  Object.assign(x, {hi: 'there'});\n  Object.keys(x);\n  return x.bar + x['bar'] + x.lala();\n}\n\nfunction bad(x: Function, y: Object): void {\n  var a: number = x; // Error\n  var b: string = x; // Error\n  var c: Function = y; // Object is not a Function\n}\n\nlet tests = [\n  function(y: () => void, z: Function) {\n    function x() {}\n    (x.length: void); // error, it's a number\n    (y.length: void); // error, it's a number\n    (z.length: void); // error, it's a number\n\n    (x.name: void); // error, it's a string\n    (y.name: void); // error, it's a string\n    (z.name: void); // error, it's a string\n  },\n\n  function(y: () => void, z: Function) {\n    function x() {}\n    x.length = 'foo'; // error, it's a number\n    y.length = 'foo'; // error, it's a number\n    z.length = 'foo'; // error, it's a number\n\n    x.name = 123; // error, it's a string\n    y.name = 123; // error, it's a string\n    z.name = 123; // error, it's a string\n\n    // Non-(Function.prototype) properties on a \\`Function\\` type should be \\`any\\`\n    (z.foo: number);\n    (z.foo: string);\n  },\n];\n\n// \\`Function\\` types can be bound (resulting in a \\`Function\\` type)\nvar d: Function = () => 1;\nvar e = (d.bind(1): Function)();\n(e: number);\n(e: string);") ;
@@ -65,8 +65,8 @@ fn test_rest_js_format_1_c1f22ed1() {
 #[test]
 fn test_rest_type_js_format_1_46a04f3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* regression tests */\n\ntype rest_array = <T>(...xs: Array<T>) => T; // Ok, arrays can be rest params\n\ntype rest_tuple = <T>(...xs: [T]) => T; // Ok, tuples can be rest params\n\ntype rest_ro_array = <T>(...xs: $ReadOnlyArray<T>) => T;  // Ok\n\ntype rest_any = (...xs: any) => any; // Ok, any can be a rest param\n\ntype rest_t = <U, T: Array<U>>(...xs: T) => U; // Ok, bounded targ can be rest\n\ntype unbound_rest_t = <T>(...xs: T) => void; // Should be error but no way to check yet :(\nfunction test_unbound_rest(f: <T>(x: T, ...xs: T) => void) {\n  f(123); // Error - number ~> array - luckily this errors\n}\n\ntype string_rest_t = (...xs: string) => void; // Should be error but no way to check yet :(\nfunction test_string_rest(f: string_rest_t) {\n  f('hello'); // Error - string ~> array - luckily this errors\n}\n\ntype Rest = Array<string>;\ntype rest_alias = (...xs: Rest) => void; // Ok\n\ntype rest_union = (...xs: [1,2] | Array<number>) => number; // OK\n\ntype rest_intersection = (...xs: { x: number } & [1,2]) => number; // OK\n\ntype empty_rest = <T:Array<mixed>>(...xs: T) => T; // OK\n((f: empty_rest) => (f(): empty)); // Error Array ~> empty") ;

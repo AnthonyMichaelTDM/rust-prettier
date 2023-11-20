@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_js_format_1_dba31140() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -21,8 +21,8 @@ fn test_a_js_format_1_dba31140() {
 #[test]
 fn test_b_js_format_1_ba6d0b53() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var A = require('./A');\n\nclass B extends A { }\n\nlet b = new B();\n(b.foo: number); // error, number !~> function\n\nmodule.exports = B;") ;
@@ -69,8 +69,8 @@ fn test_class_shapes_js_format_1_e13d89e3() {
 #[test]
 fn test_expr_js_format_1_8c166f51() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var Bar = class Foo {\n  static factory(): Foo { // OK: Foo is a type in this scope\n    return new Foo()      // OK: Foo is a runtime binding in this scope\n  }\n};\n\nvar bar1: Bar = new Bar() // OK\nvar bar2: Bar = Bar.factory() // OK\n\n// NB: Don't write expected errors using Foo to avoid error collapse hiding an\n// unexpected failure in the above code.\n\nvar B = class Baz { }\nvar b = new Baz(); // error: Baz is not a runtime binding in this scope\n\nvar C = class Qux { }\nvar c: Qux = new C(); // error: Qux is not a type in this scope\n\n// OK: anon classes create no binding, but can be bound manually\nvar Anon = class { }\nvar anon: Anon = new Anon();\n\nclass Alias { }\nvar _Alias = class Alias {\n  static factory(): Alias {\n    return new Alias();\n  }\n}\nvar alias1: Alias = new _Alias(); // error: bad pun\nvar alias2: Alias = _Alias.factory(); // error: bad pun") ;
@@ -109,8 +109,8 @@ fn test_loc_js_format_1_5db3ba46() {
 #[test]
 fn test_statics_js_format_1_898cba7a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nclass C {\n  static p: string;\n}\nC.p = \"hi\";\n\n// Class static fields are compatible with object types\n(C: {p:string}); // ok\n(C: {p:number}); // errors, string ~> number & vice versa (unify)\n\ndeclare var o: {p:number};\n(o: Class<C>); // error, object type incompatible with class type") ;

@@ -17,8 +17,8 @@ fn test_element_node_hbs_format_1_3d0fef9a() {
 #[test]
 fn test_snippet_basefont_format_1_341b909e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["glimmer"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<basefont> text </basefont");

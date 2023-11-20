@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comment_js_format_1_ef7ca4db() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const myValue = (callcallcallcallcallcall(87689769876876897698768768976987687689769876):\n                 // Comment\n                 one | two| thre | jdkxhflksjdhfglkjsdhfglkjhsdkfljghskdjhfgkljshdfgkjhsdkljfhgkljshdfgjdfklgjhklj );") ;
@@ -29,8 +29,8 @@ fn test_comments_js_format_1_9906b5bd() {
 #[test]
 fn test_union_js_format_1_4e88b271() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface RelayProps {\n  articles: Array<{\n    __id: string,\n  } | null> | null | void | 1,\n}\n\ninterface RelayProps2 {\n  articles: Array<{\n    __id: string,\n  } | null> | null | void,\n}\n\nexport function aPrettyLongFunction(aRatherLongParamName: string | null): string {}\n\nexport function aPrettyLongFunctionA(aRatherLongParameterName: {} | null): string[] {}\nexport function aPrettyLongFunctionB(aRatherLongParameterName: Function | null): string[] {}\nexport interface MyInterface {}\nexport function aPrettyLongFunctionC(aRatherLongParameterName: MyInterface | null): string[] {}\nexport type MyType = MyInterface\nexport function aPrettyLongFunctionD(aRatherLongParameterName: MyType | null): string[] {}\n\nexport function aShortFn(aShortParmName: MyType | null): string[] {}\n\nexport function aPrettyLongFunctionE(aRatherLongParameterName: Array<{\n  __id: string,\n} | null> | null | void): string[] {}") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_bar_js_format_1_90aa8a23() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule Bar */\n\nvar Qux = require('Qux');\n\nclass Bar {\n  y:number;\n  self:Bar;\n  constructor(y:number) {\n    this.y = y;\n    this.self = this;\n  }\n\n  bar(z:string,u:string):string {\n    new Qux().w = \"?\";\n    return z;\n  }\n}\n\nmodule.exports = Bar;") ;
@@ -29,8 +29,8 @@ fn test_foo_js_format_1_a5398e31() {
 #[test]
 fn test_qux_js_format_1_3d4724cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule Qux */\n\nclass Qux {\n  w:number;\n\n  qux() { return this.w; }\n\n  fooqux(x:number) { }\n}\n\nmodule.exports = Qux;") ;

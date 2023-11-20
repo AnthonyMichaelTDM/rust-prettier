@@ -18,9 +18,9 @@ fn test_arrow_function_expression_js_arrow_parensalways_format_1_de06ef4a() {
 #[test]
 fn test_arrow_function_expression_js_arrow_parensavoid_format_1_de06ef4a() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("avoid")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("(a => {}).length\ntypeof (() => {});\nexport default (() => {})();\n(() => {})()\\`\\`;\n(() => {})\\`\\`;\nnew (() => {});\nif ((() => {}) ? 1 : 0) {}\nlet f = () => ({}())\nlet a = () => ({} instanceof a);\na = () => ({} && a);\na = () => ({}() && a);\na = () => ({} && a && b);\na = () => ({} + a);\na = () => ({}()() && a);\na = () => ({}.b && a);\na = () => ({}[b] && a);\na = () => ({}\\`\\` && a);\na = () => ({} = 0);\na = () => ({}, a);\na => a instanceof {};\na => ({}().b && 0)\na => ({}().c = 0)\nx => ({}()())\nx => ({}()\\`\\`)\nx => ({}().b);\na = b => c;\nx => (y = z);\nx => (y += z);\nf(a => ({})) + 1;\n(a => ({})) || 0;\na = b => c;\na = b => {\n  return c\n};") ;
@@ -31,9 +31,9 @@ fn test_arrow_function_expression_js_arrow_parensavoid_format_1_de06ef4a() {
 #[test]
 fn test_arrow_chain_with_trailing_comments_js_arrow_parensalways_format_1_4d16462d() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("always")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("x = (bifornCringerMoshedPerplexSawder) => ((askTrovenaBeenaDependsRowans, glimseGlyphsHazardNoopsTieTie) => (f00) => {\n  averredBathersBoxroomBuggyNurl();\n} // BOOM\n)\n\nx2 = (a) => ((askTrovenaBeenaDependsRowans1, askTrovenaBeenaDependsRowans2, askTrovenaBeenaDependsRowans3) => {\n  c();\n} /* ! */ // KABOOM\n)") ;
@@ -44,9 +44,9 @@ fn test_arrow_chain_with_trailing_comments_js_arrow_parensalways_format_1_4d1646
 #[test]
 fn test_arrow_chain_with_trailing_comments_js_arrow_parensavoid_format_1_4d16462d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("x = (bifornCringerMoshedPerplexSawder) => ((askTrovenaBeenaDependsRowans, glimseGlyphsHazardNoopsTieTie) => (f00) => {\n  averredBathersBoxroomBuggyNurl();\n} // BOOM\n)\n\nx2 = (a) => ((askTrovenaBeenaDependsRowans1, askTrovenaBeenaDependsRowans2, askTrovenaBeenaDependsRowans3) => {\n  c();\n} /* ! */ // KABOOM\n)") ;
@@ -70,9 +70,9 @@ fn test_assignment_chain_with_arrow_chain_js_arrow_parensalways_format_1_b78e6e3
 #[test]
 fn test_assignment_chain_with_arrow_chain_js_arrow_parensavoid_format_1_b78e6e3c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("bifornCringer = askTrovenaBeenaDepends = glimseGlyphs = (\n  argumentOne,\n  argumentTwo,\n) => restOfTheArguments12345678 => {\n  return \"baz\";\n};\n\nbifornCringer = askTrovenaBeenaDepends = glimseGlyphs = (\n  argumentOne,\n  argumentTwo,\n  argumentThree\n) => restOfTheArguments12345678 => {\n  return \"baz\";\n};\n\nbifornCringer = askTrovenaBeenaDepends = glimseGlyphs = (\n  argumentOne,\n  argumentTwo,\n  argumentThree\n) => {\n  return \"baz\";\n};\n\nconst bifornCringer1 =\n  askTrovenaBeenaDepends =\n  glimseGlyphs =\n    (argumentOne, argumentTwo) => (restOfTheArguments12345678) => {\n      return \"baz\";\n    };\n\nconst bifornCringer2 =\n  askTrovenaBeenaDepends =\n  glimseGlyphs =\n    (argumentOne, argumentTwo, argumentThree) =>\n    (restOfTheArguments12345678) => {\n      return \"baz\";\n    };\n\nconst bifornCringer3 =\n  askTrovenaBeenaDepends =\n  glimseGlyphs =\n    (argumentOne, argumentTwo, argumentThree) => {\n      return \"baz\";\n    };") ;
@@ -83,9 +83,9 @@ fn test_assignment_chain_with_arrow_chain_js_arrow_parensavoid_format_1_b78e6e3c
 #[test]
 fn test_block_like_js_arrow_parensalways_format_1_08b3fecd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("always")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a = () => ({} = this);");
@@ -96,9 +96,9 @@ fn test_block_like_js_arrow_parensalways_format_1_08b3fecd() {
 #[test]
 fn test_block_like_js_arrow_parensavoid_format_1_08b3fecd() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("avoid")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a = () => ({} = this);");
@@ -109,9 +109,9 @@ fn test_block_like_js_arrow_parensavoid_format_1_08b3fecd() {
 #[test]
 fn test_call_js_arrow_parensalways_format_1_2685418f() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("always")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("Seq(typeDef.interface.groups).forEach(group =>\n  Seq(group.members).forEach((member, memberName) =>\n    markdownDoc(\n      member.doc,\n      { typePath: typePath.concat(memberName.slice(1)),\n       signatures: member.signatures }\n    )\n  )\n)\n\nconst promiseFromCallback = fn =>\n  new Promise((resolve, reject) =>\n    fn((err, result) => {\n      if (err) return reject(err);\n      return resolve(result);\n    })\n  );\n\nruntimeAgent.getProperties(\n  objectId,\n  false, // ownProperties\n  false, // accessorPropertiesOnly\n  false, // generatePreview\n  (error, properties, internalProperties) => {\n    return 1\n  },\n);\n\nfunction render() {\n  return (\n    <View>\n      <Image\n        onProgress={(e) => this.setState({progress: Math.round(100 * e.nativeEvent.loaded / e.nativeEvent.total)})}\n      />\n    </View>\n  );\n}\n\nfunction render() {\n  return (\n    <View>\n      <Image\n        onProgress={e =>\n          this.setState({\n            progress: Math.round(\n              100 * e.nativeEvent.loaded / e.nativeEvent.total,\n            ),\n          })}\n      />\n    </View>\n  );\n}\n\nfunction render() {\n  return (\n    <View>\n      <Image\n        onProgress={e =>\n          this.setState({\n            progress: Math.round(\n              100 * e.nativeEvent.loaded / e.nativeEvent.total,\n            ),\n          })}\n      />\n    </View>\n  );\n}\n\njest.mock(\n  '../SearchSource',\n  () => class {\n    findMatchingTests(pattern) {\n      return {paths: []};\n    }\n  },\n);\n\nfooooooooooooooooooooooooooooooooooooooooooooooooooo(action => next =>\n    dispatch(action),\n);\n\nfoo(\n  ({\n    a,\n\n    b\n  }) => {}\n);\n\nfoo(\n  ({\n    a,\n    b\n\n  }) => {}\n);\n\nfoo(\n  ({\n    a,\n    b\n  }) => {}\n);\n\nfoo(\n  a,\n  ({\n    a,\n\n    b\n  }) => {}\n)\n\nfoo(\n  ({\n    a,\n\n    b\n  }) => a\n);\n\nfoo(\n  ({\n    a,\n    b\n  }) => a\n);\n\nfoo(\n  ({\n    a,\n    b\n\n  }) => a\n);\n\nfoo(\n  ({\n    a: {\n      a,\n\n      b\n    }\n  }) => {}\n);\n\nfoo(\n  ({\n    a: {\n      b: {\n        c,\n\n        d\n      }\n    }\n  }) => {}\n);\n\nfoo(\n  ({\n    a: {\n      b: {\n        c: {\n          d,\n\n          e\n        }\n      }\n    }\n  }) => {}\n);\n\nfoo(\n  ({\n    a: {\n      a,\n\n      b\n    }\n  }) => a\n);\n\nfoo(\n  ({\n    a: {\n      b: {\n        c,\n\n        d\n      }\n    }\n  }) => a\n);\n\nfoo(\n  ({\n    a: {\n      b: {\n        c: {\n          d,\n\n          e\n        }\n      }\n    }\n  }) => a\n);\n\nfoo(\n  ([\n    {\n      a: {\n        b: {\n          c: {\n            d,\n\n            e\n          }\n        }\n      }\n    }\n  ]) => {}\n);\n\nfoo(\n  ([\n    ...{\n      a: {\n        b: {\n          c: {\n            d,\n\n            e\n          }\n        }\n      }\n    }\n  ]) => {}\n);\n\nfoo(\n  (\n    n = {\n      a: {\n        b: {\n          c: {\n            d,\n\n            e\n          }\n        }\n      }\n    }\n  ) => {}\n);\n\nfoo(\n  ({\n    x: [\n      {\n        a,\n\n        b\n      }\n    ]\n  }) => {}\n);\n\nfoo(\n  (\n    a = [\n      {\n        a,\n\n        b\n      }\n    ]\n  ) => a\n);\n\nfoo(\n  ([\n    [\n      {\n        a,\n\n        b\n      }\n    ]\n  ]) => {}\n);\n\nfoo(\n  ([\n    [\n      [\n        [\n          {\n            a,\n            b: {\n              c,\n              d: {\n                e,\n\n                f\n              }\n            }\n          }\n        ]\n      ]\n    ]\n  ]) => {}\n);\n\nfoo(\n  (\n    ...{\n      a,\n\n      b\n    }\n  ) => {}\n);\n\nfoo(\n  (\n    ...[\n      {\n        a,\n\n        b\n      }\n    ]\n  ) => {}\n);\n\nfoo(\n  ([\n    ...[\n      {\n        a,\n\n        b\n      }\n    ]\n  ]) => {}\n);\n\nfoo(\n  (\n    a = [{\n      a,\n\n      b\n    }]\n  ) => {}\n);\n\nfoo(\n  (\n    a = (({\n      a,\n\n      b\n    }) => {})()\n  ) => {}\n);\n\nfoo(\n  (\n    a = f({\n      a,\n\n      b\n    })\n  ) => {}\n);\n\nfoo(\n  (\n    a = ({\n      a,\n\n      b\n    }) => {}\n  ) => {}\n);\n\nfoo(\n  (\n    a = 1 +\n      f({\n        a,\n\n        b\n      })\n  ) => {}\n);") ;
@@ -135,9 +135,9 @@ fn test_call_js_arrow_parensavoid_format_1_2685418f() {
 #[test]
 fn test_chain_as_arg_js_arrow_parensalways_format_1_5a1fc2de() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("always")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const w = a.b(\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n);\n\nconst x = a.b(\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n)(x);\n\nconst y = a.b(\n  1,\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n)(x);\n\nconst z = a.b(\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0,\n  2\n)(x);\n") ;
@@ -148,9 +148,9 @@ fn test_chain_as_arg_js_arrow_parensalways_format_1_5a1fc2de() {
 #[test]
 fn test_chain_as_arg_js_arrow_parensavoid_format_1_5a1fc2de() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("avoid")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const w = a.b(\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n);\n\nconst x = a.b(\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n)(x);\n\nconst y = a.b(\n  1,\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n)(x);\n\nconst z = a.b(\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0,\n  2\n)(x);\n") ;
@@ -161,9 +161,9 @@ fn test_chain_as_arg_js_arrow_parensavoid_format_1_5a1fc2de() {
 #[test]
 fn test_chain_in_logical_expression_js_arrow_parensalways_format_1_8d593511() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("always")
+        .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const x = a.b ?? (\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n);") ;
@@ -175,8 +175,8 @@ fn test_chain_in_logical_expression_js_arrow_parensalways_format_1_8d593511() {
 fn test_chain_in_logical_expression_js_arrow_parensavoid_format_1_8d593511() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const x = a.b ?? (\n  (\n    c = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\",\n    d = \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef\"\n  ) =>\n  (e) =>\n    0\n);") ;
@@ -187,8 +187,8 @@ fn test_chain_in_logical_expression_js_arrow_parensavoid_format_1_8d593511() {
 #[test]
 fn test_comment_js_arrow_parensalways_format_1_30d56e1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("always")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -200,8 +200,8 @@ fn test_comment_js_arrow_parensalways_format_1_30d56e1a() {
 #[test]
 fn test_comment_js_arrow_parensavoid_format_1_30d56e1a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("avoid")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -213,9 +213,9 @@ fn test_comment_js_arrow_parensavoid_format_1_30d56e1a() {
 #[test]
 fn test_curried_js_arrow_parensalways_format_1_056bfff9() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("always")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const fn1 = a => 3;\nconst fn2 = a => b => 3;\nconst fn3 = a => b => c => 3;\nconst fn4 = a => b => c => d => 3;\nconst fn5 = a => b => c => d => e => 3;\nconst fn6 = a => b => c => d => e => g => 3;\nconst fn7 = a => b => c => d => e => g => f => 3;\n\nconst fn8 = a => ({ foo: bar, bar: baz, baz: foo });\nconst fn9 = a => b => ({ foo: bar, bar: baz, baz: foo });\nconst fn10 = a => b => c => ({ foo: bar, bar: baz, baz: foo });\nconst fn11 = a => b => c => d => ({ foo: bar, bar: baz, baz: foo });\nconst fn12 = a => b => c => d => e => ({ foo: bar, bar: baz, baz: foo });\nconst fn13 = a => b => c => d => e => g => ({ foo: bar, bar: baz, baz: foo });\nconst fn14 = a => b => c => d => e => g => f => ({ foo: bar, bar: baz, baz: foo });\n\nconst curryTest =\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) =>\n      ({\n        foo: argument1,\n        bar: argument2,\n      });\n\nlet curryTest2 =\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    };\n\ncurryTest2 =\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    };\n\nthrow (argument1) =>\n(argument2) =>\n(argument3) =>\n(argument4) =>\n(argument5) =>\n(argument6) =>\n(argument7) =>\n(argument8) =>\n(argument9) =>\n(argument10) =>\n(argument11) =>\n(argument12) => {\n  const foo = \"foo\";\n  return foo + \"bar\";\n};\n\nfoo((argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => 3);\n\nfoo((argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => ({\n        foo: bar,\n        bar: baz,\n        baz: foo\n    }));\n\nfoo(\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    }\n);\n\n((argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => 3)(3);\n\nbar(\n  foo(\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => ({\n      foo: bar,\n      bar: baz,\n    })\n  )\n);\n\nconst baaaz = (aaaaa1, bbbbb1) => (aaaaa2, bbbbb2) => (aaaaa3, bbbbb3) => (aaaaa4, bbbbb4) => ({\n  foo: bar\n});\n\nnew Fooooooooooooooooooooooooooooooooooooooooooooooooooo(\n  (action) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    dispatch(action)\n);\n\nfoo?.Fooooooooooooooooooooooooooooooooooooooooooooooooooo(\n  (action) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    dispatch(action)\n);\n\nfoo(action => action => action);\n\nimport( (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    });") ;
@@ -226,9 +226,9 @@ fn test_curried_js_arrow_parensalways_format_1_056bfff9() {
 #[test]
 fn test_curried_js_arrow_parensavoid_format_1_056bfff9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const fn1 = a => 3;\nconst fn2 = a => b => 3;\nconst fn3 = a => b => c => 3;\nconst fn4 = a => b => c => d => 3;\nconst fn5 = a => b => c => d => e => 3;\nconst fn6 = a => b => c => d => e => g => 3;\nconst fn7 = a => b => c => d => e => g => f => 3;\n\nconst fn8 = a => ({ foo: bar, bar: baz, baz: foo });\nconst fn9 = a => b => ({ foo: bar, bar: baz, baz: foo });\nconst fn10 = a => b => c => ({ foo: bar, bar: baz, baz: foo });\nconst fn11 = a => b => c => d => ({ foo: bar, bar: baz, baz: foo });\nconst fn12 = a => b => c => d => e => ({ foo: bar, bar: baz, baz: foo });\nconst fn13 = a => b => c => d => e => g => ({ foo: bar, bar: baz, baz: foo });\nconst fn14 = a => b => c => d => e => g => f => ({ foo: bar, bar: baz, baz: foo });\n\nconst curryTest =\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) =>\n      ({\n        foo: argument1,\n        bar: argument2,\n      });\n\nlet curryTest2 =\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    };\n\ncurryTest2 =\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    };\n\nthrow (argument1) =>\n(argument2) =>\n(argument3) =>\n(argument4) =>\n(argument5) =>\n(argument6) =>\n(argument7) =>\n(argument8) =>\n(argument9) =>\n(argument10) =>\n(argument11) =>\n(argument12) => {\n  const foo = \"foo\";\n  return foo + \"bar\";\n};\n\nfoo((argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => 3);\n\nfoo((argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => ({\n        foo: bar,\n        bar: baz,\n        baz: foo\n    }));\n\nfoo(\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    }\n);\n\n((argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => 3)(3);\n\nbar(\n  foo(\n    (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => ({\n      foo: bar,\n      bar: baz,\n    })\n  )\n);\n\nconst baaaz = (aaaaa1, bbbbb1) => (aaaaa2, bbbbb2) => (aaaaa3, bbbbb3) => (aaaaa4, bbbbb4) => ({\n  foo: bar\n});\n\nnew Fooooooooooooooooooooooooooooooooooooooooooooooooooo(\n  (action) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    dispatch(action)\n);\n\nfoo?.Fooooooooooooooooooooooooooooooooooooooooooooooooooo(\n  (action) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    (next) =>\n    dispatch(action)\n);\n\nfoo(action => action => action);\n\nimport( (argument1) =>\n    (argument2) =>\n    (argument3) =>\n    (argument4) =>\n    (argument5) =>\n    (argument6) =>\n    (argument7) =>\n    (argument8) =>\n    (argument9) =>\n    (argument10) =>\n    (argument11) =>\n    (argument12) => {\n      const foo = \"foo\";\n      return foo + \"bar\";\n    });") ;
@@ -239,9 +239,9 @@ fn test_curried_js_arrow_parensavoid_format_1_056bfff9() {
 #[test]
 fn test_currying_js_arrow_parensalways_format_1_c0bc103e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("always")
+        .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const fn = b => c => d => {\n  return 3;\n};\n\nconst foo = (a, b) => c => d => {\n  return 3;\n};\n\nconst bar = a => b => c => a + b + c\n\nconst mw = store => next => action => {\n  return next(action)\n}\n\nconst middleware = options => (req, res, next) => {\n  // ...\n};") ;
@@ -291,9 +291,9 @@ fn test_currying_2_js_arrow_parensavoid_format_1_24ed4be0() {
 #[test]
 fn test_currying_3_js_arrow_parensalways_format_1_e964872f() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("always")
         .parsers(vec!["babel", "typescript"])
         .print_width(80)
-        .arrow_parens("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("((b) => (c) => (d) => {\n  return 3;\n})(x);\n\nfunction f(\n  a = (fooLorem) => (bazIpsum) => (barLorem) => {\n    return 3;\n  }\n) {}\n\n(\n  (fooLoremIpsumFactory) =>\n  (bazLoremIpsumFactory) =>\n  (barLoremIpsumServiceFactory) => {\n    return 3;\n  }\n)(x);\n\n(\n  (b) => (c) => (d) =>\n    b + fooLoremIpsumFactory(c) - bazLoremIpsumFactory(b + d)\n)(x, fooLoremIpsumFactory, fooLoremIpsumFactory);\n\n(\n  (fooLorem) => (bazIpsum) => (barLorem) =>\n    b + fooLoremIpsumFactory(c) - bazLoremIpsumFactory(b + d)\n)(boo);\n\n(\n  (fooLoremIpsumFactory) =>\n  (bazLoremIpsumFactory) =>\n  (barLoremIpsumServiceFactory) =>\n    b + fooLoremIpsumFactory(c) - bazLoremIpsumFactory(b + d)\n)(x)") ;
@@ -304,9 +304,9 @@ fn test_currying_3_js_arrow_parensalways_format_1_e964872f() {
 #[test]
 fn test_currying_3_js_arrow_parensavoid_format_1_e964872f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("((b) => (c) => (d) => {\n  return 3;\n})(x);\n\nfunction f(\n  a = (fooLorem) => (bazIpsum) => (barLorem) => {\n    return 3;\n  }\n) {}\n\n(\n  (fooLoremIpsumFactory) =>\n  (bazLoremIpsumFactory) =>\n  (barLoremIpsumServiceFactory) => {\n    return 3;\n  }\n)(x);\n\n(\n  (b) => (c) => (d) =>\n    b + fooLoremIpsumFactory(c) - bazLoremIpsumFactory(b + d)\n)(x, fooLoremIpsumFactory, fooLoremIpsumFactory);\n\n(\n  (fooLorem) => (bazIpsum) => (barLorem) =>\n    b + fooLoremIpsumFactory(c) - bazLoremIpsumFactory(b + d)\n)(boo);\n\n(\n  (fooLoremIpsumFactory) =>\n  (bazLoremIpsumFactory) =>\n  (barLoremIpsumServiceFactory) =>\n    b + fooLoremIpsumFactory(c) - bazLoremIpsumFactory(b + d)\n)(x)") ;
@@ -317,8 +317,8 @@ fn test_currying_3_js_arrow_parensavoid_format_1_e964872f() {
 #[test]
 fn test_currying_4_js_arrow_parensalways_format_1_a45b6fa0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("always")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -330,8 +330,8 @@ fn test_currying_4_js_arrow_parensalways_format_1_a45b6fa0() {
 #[test]
 fn test_currying_4_js_arrow_parensavoid_format_1_a45b6fa0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("avoid")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -344,8 +344,8 @@ fn test_currying_4_js_arrow_parensavoid_format_1_a45b6fa0() {
 fn test_issue_1389_curry_js_arrow_parensalways_format_1_6c98dc66() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const foobar = (argumentOne, argumentTwo, argumentThree) =>\n  (...restOfTheArguments) => {\n    return \"baz\";\n  };\n\nconst foobaz = (argumentOne, argumentTwo, argumentThree) =>\n  (restOfTheArguments123, j) => {\n    return \"baz\";\n  };\n\n\nconst makeSomeFunction =\n  (services = {logger:null}) =>\n    (a, b, c) =>\n      services.logger(a,b,c)\n\nconst makeSomeFunction2 =\n  (services = {\n    logger: null\n  }) =>\n    (a, b, c) =>\n      services.logger(a, b, c)") ;
@@ -386,8 +386,8 @@ fn test_issue_4166_curry_js_arrow_parensalways_format_1_54a55a1f() {
 #[test]
 fn test_issue_4166_curry_js_arrow_parensavoid_format_1_54a55a1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("avoid")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -403,8 +403,8 @@ fn test_issue_4166_curry_js_arrow_parensavoid_format_1_54a55a1f() {
 #[test]
 fn test_long_call_no_args_js_arrow_parensalways_format_1_073900f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("always")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -418,9 +418,9 @@ fn test_long_call_no_args_js_arrow_parensalways_format_1_073900f0() {
 #[test]
 fn test_long_call_no_args_js_arrow_parensavoid_format_1_073900f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -434,8 +434,8 @@ fn test_long_call_no_args_js_arrow_parensavoid_format_1_073900f0() {
 fn test_long_contents_js_arrow_parensalways_format_1_207034d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("always")
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const foo = () => {\n  expect(arg1, arg2, arg3).toEqual({message: 'test', messageType: 'SMS', status: 'Unknown', created: '11/01/2017 13:36'});\n};") ;
@@ -446,8 +446,8 @@ fn test_long_contents_js_arrow_parensalways_format_1_207034d5() {
 #[test]
 fn test_long_contents_js_arrow_parensavoid_format_1_207034d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("avoid")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -472,8 +472,8 @@ fn test_parens_js_arrow_parensalways_format_1_33280415() {
 #[test]
 fn test_parens_js_arrow_parensavoid_format_1_33280415() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["babel", "typescript"])
         .arrow_parens("avoid")
+        .parsers(vec!["babel", "typescript"])
         .print_width(80)
         .build()
         .unwrap();
@@ -563,8 +563,8 @@ fn test_tuple_and_record_js_arrow_parensavoid_typescript_format_1_d41d8cd9() {
 fn test_tuple_and_record_js_arrow_parensavoid_format_1_162a80ac() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .arrow_parens("avoid")
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const fn12 = (a) => (b) => (c) => (d) => (e) =>\n  ({ foo: bar, bar: baz, baz: foo });\n\nconst fn12 = (a) => (b) => (c) => (d) => (e) =>\n  (#{ foo: bar, bar: baz, baz: foo });\n\nmap(() => ([\n  // comment\n  foo\n]));\n\nmap(() => (#[\n  // comment\n  foo\n]));\n\nmap(() => ({\n  // comment\n  foo\n}));\n\nmap(() => (#{\n  // comment\n  foo\n}));") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_ast_js_format_1_32b420a4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nexport type InferredType =\n  | 'unknown'\n  | 'gender'\n  | 'enum'\n  | 'number-or-string'\n  | 'number'\n  | 'string'\n  | 'error'\n;\n\nexport type Pos = {\n  firstLine: number,\n  firstColumn: number,\n  lastLine: number,\n  lastColumn: number,\n};\n\nexport type TypedBinaryOpNode = {\n  exprNodeType: 'binary_op',\n  binaryOp: 'plus' | 'multiply' | 'divide' | 'minus',\n  lhs: TypedNode,\n  rhs: TypedNode,\n  pos: Pos,\n  exprType: InferredType,\n  typed: true,\n}\n\nexport type TypedUnaryMinusNode = {\n  exprNodeType: 'unary_minus',\n  op: TypedNode,\n  pos: Pos,\n  exprType: InferredType,\n  typed: true,\n}\n\nexport type TypedNumberNode = {\n  exprNodeType: 'number',\n  value: number,\n  pos: Pos,\n  exprType: 'number',\n  typed: true,\n}\n\nexport type TypedStringLiteralNode = {\n  exprNodeType: 'string_literal',\n  value: string,\n  pos: Pos,\n  exprType: 'string',\n  typed: true,\n}\n\nexport type TypedVariableNode = {\n  exprNodeType: 'variable',\n  name: string,\n  pos: Pos,\n  exprType: InferredType,\n  typed: true,\n};\n\nexport type TypedFunctionInvocationNode = {\n  exprNodeType: 'function_invocation',\n  name: string,\n  parameters: TypedNode[],\n  pos: Pos,\n  exprType: 'error' | 'string',\n  typed: true,\n}\n\nexport type TypedNode =\n  | TypedBinaryOpNode\n  | TypedUnaryMinusNode\n  | TypedNumberNode\n  | TypedStringLiteralNode\n  | TypedVariableNode\n  | TypedFunctionInvocationNode\n;") ;
@@ -17,8 +17,8 @@ fn test_ast_js_format_1_32b420a4() {
 #[test]
 fn test_emit_js_format_1_faa56e80() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\nimport * as t from './jsAst';\n\nconst b = t.builders;\n\nimport type {\n        TypedNode\n} from './ast';\n\nfunction getBinaryOp(op: 'plus' | 'minus' | 'divide' | 'multiply') : '+' | '-' | '*' | '/' {\n  switch (op) {\n  case 'plus':\n    return '+';\n  case 'minus':\n    return '-';\n  case 'divide':\n    return '/';\n  case 'multiply':\n    return '*';\n  default:\n    throw new Error('Invalid binary operator: ' + op);\n  }\n}\n\nexport function emitExpression(node: TypedNode) : t.Expression {\n  switch (node.exprNodeType) {\n  case 'string_literal': // FALLTHROUGH\n  case 'number':\n    return b.literal(node.value);\n  case 'variable':\n    return b.memberExpression(\n      b.identifier('vars'),\n      b.identifier(node.name),\n      false\n    );\n  case 'binary_op': {\n    const lhs = emitExpression(node.lhs);\n    const rhs = emitExpression(node.rhs);\n\n    const op = getBinaryOp(node.binaryOp);\n    return b.binaryExpression(op, lhs, rhs);\n  }\n  case 'unary_minus': {\n    const operand = emitExpression(node.op);\n    return b.unaryExpression('-', operand, true);\n  }\n  case 'function_invocation': {\n    const callee = b.memberExpression(\n      b.identifier('fns'),\n      b.identifier(node.name),\n      false\n    );\n\n    const args = node.parameters.map(\n      (n) => emitExpression(n)\n    );\n\n    return b.callExpression(callee, args);\n  }\n  default:\n    throw new Error('Unknown expression type: ' + node.type);\n  }\n}") ;

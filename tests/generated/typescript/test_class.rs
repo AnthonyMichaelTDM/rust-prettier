@@ -65,8 +65,8 @@ fn test_dunder_ts_format_1_59621879() {
 #[test]
 fn test_duplicates_access_modifier_ts_format_1_632ae58f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Foo {\n  public public a;\n  private public b;\n  protected private c;\n  public protected d;\n  public protected private e;\n}") ;
@@ -152,8 +152,8 @@ fn test_parameter_properties_ts_format_1_6d9de4f0() {
 #[test]
 fn test_quoted_property_ts_format_1_eaff5941() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("class User {\n    \"username\": string;\n}");
@@ -164,8 +164,8 @@ fn test_quoted_property_ts_format_1_eaff5941() {
 #[test]
 fn test_standard_private_fields_ts_format_1_9ba3022a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Square {\n    #sideLength: number;\n    readonly #area: number;\n    #unit?: string;\n\n    constructor(sideLength: number, unit?: string) {\n        this.#sideLength = sideLength;\n        this.#area = this.#sideLength ** 2;\n        if (unit) {\n          this.#unit = unit;\n        }\n    }\n\n    equals(other: any) {\n        return this.#sideLength === other.#sideLength;\n    }\n\n    getArea() {\n      return this.#area + (this.#unit ?? 'px') + '²';\n    }\n}") ;

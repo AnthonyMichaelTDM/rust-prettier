@@ -108,8 +108,8 @@ fn test_async_arrow_params_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_async_arrow_params_js_format_1_f268dfce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-flow", "babel-ts"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -188,8 +188,8 @@ fn test_for_lhs_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_for_lhs_js_format_1_61a6614b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-flow", "babel-ts"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

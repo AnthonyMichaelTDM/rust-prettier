@@ -57,8 +57,8 @@ fn test_test_2_js_format_1_f5bc3f89() {
 #[test]
 fn test_test_3_js_format_1_3853f2b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo() {\n  this.m();\n}\n\nfunction bar(f: () => void) {\n  f(); // passing global object as \\`this\\`\n  ({ f }).f(); // passing container object as \\`this\\`\n}\n\nbar(foo); // error, since \\`this\\` is used non-trivially in \\`foo\\`\n\nfunction qux(o: { f: () => void }) {\n  o.f(); // passing o as \\`this\\`\n}\n\nqux({ f: foo });  // error, since \\`this\\` is used non-trivially in \\`foo\\`") ;

@@ -73,8 +73,8 @@ fn test_multiple_provides_module_1_js_format_1_f6210eb3() {
 #[test]
 fn test_multiple_provides_module_2_js_format_1_5649bb3a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -89,8 +89,8 @@ fn test_multiple_provides_module_2_js_format_1_5649bb3a() {
 #[test]
 fn test_use_strict_with_flow_js_format_1_18e50e09() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\"use strict\";\n/* @flow */\n\n(\"\": void); // error");
@@ -104,8 +104,8 @@ fn test_use_strict_with_flow_js_format_1_18e50e09() {
 #[test]
 fn test_with_flow_js_format_1_3c2a4ad6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/* @flow */\n\n(\"\": void); // error");

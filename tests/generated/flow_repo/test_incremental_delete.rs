@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_js_format_1_ccdd8e05() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @flow\nvar a: string = 0;\nmodule.exports = a;");
@@ -36,8 +36,8 @@ fn test_b_js_format_1_1837df07() {
 #[test]
 fn test_c_js_format_1_fbec86c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

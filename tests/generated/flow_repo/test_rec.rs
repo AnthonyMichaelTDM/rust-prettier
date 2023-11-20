@@ -17,8 +17,8 @@ fn test_issue_598_js_format_1_3673ff8d() {
 #[test]
 fn test_issue_1228_js_format_1_7bf8b861() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\ntype Task <error, value>\n  = { chain<tagged>(next:(input:value) => Task<error, tagged>):\n          Task<error, tagged>\n    }\n\nfunction id(x: Task<any,any>): Task<any,any> { return x; }") ;
@@ -81,8 +81,8 @@ fn test_test_4_js_format_1_7d7f810f() {
 #[test]
 fn test_test_5_js_format_1_88b185d4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\ntype NestedArray<T> = Array<T | NestedArray<T>>;\n\nfunction flatten<T>(arrArg: NestedArray<T>) {\n  let arr = arrArg;\n  while (true) {\n    arr = Array.prototype.concat.apply([], arr);\n  }\n}") ;

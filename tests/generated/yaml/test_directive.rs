@@ -17,8 +17,8 @@ fn test_with_parameters_yml_format_1_61cf25df() {
 #[test]
 fn test_without_parameters_yml_format_1_85c72d90() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("%SOMETHING\n---");

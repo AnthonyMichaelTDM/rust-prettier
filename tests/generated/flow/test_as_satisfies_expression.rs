@@ -13,8 +13,8 @@ fn test_as_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_as_js_format_1_73341263() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst name = (description as Description).name || (description as string);\nthis.isTabActionBar((e.target || e.srcElement) as HTMLElement);\n(originalError ? wrappedError(errMsg, originalError) : Error(errMsg)) as InjectionError;\n'current' in (props.pagination as {...});\n('current' in props.pagination) as {...};\nstart + (yearSelectTotal as number);\n(start + yearSelectTotal) as number;\nscrollTop > (visibilityHeight as number);\n(scrollTop > visibilityHeight) as number;\nexport default class Column<T> extends (RcTable.Column as Long.Thing<ColumnProps<T>,ColumnProps<T>,ColumnProps<T>,ColumnProps<T>>) {}\n({}) as {};\nfunction*g() {\n  const test = (yield 'foo') as number;\n}\nasync function g1() {\n  const test = (await 'foo') as number;\n}\n({}) as X;\n() => ({}) as X;\nconst state = JSON.stringify({\n  next: window.location.href,\n  nonce,\n} as State);\n\n(bValue as boolean) ? 0 : -1;\n\nconst value1 = thisIsAReallyReallyReallyReallyReallyLongIdentifier as SomeInterface;\nconst value2 = thisIsAnIdentifier as thisIsAReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongInterface;\nconst value3 = thisIsAReallyLongIdentifier as (SomeInterface | SomeOtherInterface);\nconst value4 = thisIsAReallyLongIdentifier as { prop1: string, prop2: number, prop3: number }[];\nconst value5 = thisIsAReallyReallyReallyReallyReallyReallyReallyReallyReallyLongIdentifier as [string, number];\n\nconst iter1 = createIterator(this.controller, child, this.tag as BlahFunctionComponent);\nconst iter2 = createIterator(self.controller, child, self.tag as BlahFunctionComponent);\n\nx as any as T;\n\n(type) as T;") ;
@@ -53,8 +53,8 @@ fn test_assignment_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_assignment_js_format_1_76154220() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst TYPE_MAP = {\n    'character device': 'special',\n    'character special file': 'special',\n    directory: 'directory',\n    'regular file': 'file',\n    socket: 'socket',\n    'symbolic link': 'link',\n} as Foo;\n\nthis.previewPlayerHandle = (setInterval(async () => {\n  if (this.previewIsPlaying) {\n    await this.fetchNextPreviews();\n    this.currentPreviewIndex++;\n  }\n}, this.refreshDelay) as any);\n\nthis.intervalID = (setInterval(() => {\n  self.step();\n}, 30) as any);") ;
@@ -97,8 +97,8 @@ fn test_long_identifiers_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_long_identifiers_js_format_1_b9f0d436() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst bifornCringerMoshedPerplexSawder =\n  askTrovenaBeenaDependsRowans as glimseGlyphsHazardNoopsTieTie;\n\naverredBathersBoxroomBuggyNurl.anodyneCondosMalateOverateRetinol =\n  annularCooeedSplicesWalksWayWay as kochabCooieGameOnOboleUnweave;\n\naverredBathersBoxroomBuggyNurl = {\n  anodyneCondosMalateOverateRetinol:\n    annularCooeedSplicesWalksWayWay as kochabCooieGameOnOboleUnweave\n};\n\naverredBathersBoxroomBuggyNurl(\n  anodyneCondosMalateOverateRetinol.annularCooeedSplicesWalksWayWay as\n    kochabCooieGameOnOboleUnweave\n);") ;

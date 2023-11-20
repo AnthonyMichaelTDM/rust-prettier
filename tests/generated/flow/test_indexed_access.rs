@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_indexed_access_js_trailing_commaall_format_1_640c83a0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .trailing_comma("all")
         .parsers(vec!["flow"])
         .print_width(80)
+        .trailing_comma("all")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const x: Obj['bar'] = 1;\n\ntype A = (T & S)['bar'];\ntype B = (T | S)['bar'];\ntype C = (?T)['bar'];\ntype D = (typeof x)['bar'];\ntype E = (string => void)['bar'];") ;

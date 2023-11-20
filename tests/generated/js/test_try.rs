@@ -17,8 +17,8 @@ fn test_catch_js_format_1_2e08dfa9() {
 #[test]
 fn test_empty_js_format_1_20b8ad19() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

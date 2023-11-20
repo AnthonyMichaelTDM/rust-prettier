@@ -17,8 +17,8 @@ fn test_a_js_format_1_4941b22d() {
 #[test]
 fn test_b_js_format_1_614ddba3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/* @flow */\nmodule.exports = { foo: \"\" }");
@@ -41,8 +41,8 @@ fn test_c_js_format_1_69a03374() {
 #[test]
 fn test_d_js_format_1_2ab470b8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\nvar C = require('./C');\nvar x: number = C.foo;\nvar y: string = C.A;\nC.A = false;") ;

@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_alias_key_yml_bracket_spacingfalse_format_1_bacc9171() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .bracket_spacing(false)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{&123 foo, *123 : 456}");
@@ -18,9 +18,9 @@ fn test_alias_key_yml_bracket_spacingfalse_format_1_bacc9171() {
 #[test]
 fn test_alias_key_yml_tab_width_4_format_1_bacc9171() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
         .parsers(vec!["yaml"])
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{&123 foo, *123 : 456}");
@@ -31,8 +31,8 @@ fn test_alias_key_yml_tab_width_4_format_1_bacc9171() {
 #[test]
 fn test_alias_key_yml_format_1_bacc9171() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{&123 foo, *123 : 456}");
@@ -44,8 +44,8 @@ fn test_alias_key_yml_format_1_bacc9171() {
 fn test_array_key_yml_bracket_spacingfalse_format_1_f73a8c32() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong]}") ;
@@ -56,9 +56,9 @@ fn test_array_key_yml_bracket_spacingfalse_format_1_f73a8c32() {
 #[test]
 fn test_array_key_yml_tab_width_4_format_1_f73a8c32() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
         .parsers(vec!["yaml"])
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong]}") ;
@@ -69,8 +69,8 @@ fn test_array_key_yml_tab_width_4_format_1_f73a8c32() {
 #[test]
 fn test_array_key_yml_format_1_f73a8c32() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],? [longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong]}") ;
@@ -81,8 +81,8 @@ fn test_array_key_yml_format_1_f73a8c32() {
 #[test]
 fn test_array_key_array_value_yml_bracket_spacingfalse_format_1_7df4c1b6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
         .bracket_spacing(false)
+        .parsers(vec!["yaml"])
         .print_width(80)
         .build()
         .unwrap();
@@ -119,9 +119,9 @@ fn test_array_key_array_value_yml_format_1_7df4c1b6() {
 #[test]
 fn test_array_plain_yml_bracket_spacingfalse_format_1_cea947c9() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{[longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],[longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong],[longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong, longlonglonglonglonglonglonglonglonglonglong]}") ;
@@ -157,8 +157,8 @@ fn test_array_plain_yml_format_1_cea947c9() {
 #[test]
 fn test_array_value_yml_bracket_spacingfalse_format_1_cd2b9cb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["yaml"])
         .bracket_spacing(false)
+        .parsers(vec!["yaml"])
         .print_width(80)
         .build()
         .unwrap();
@@ -170,8 +170,8 @@ fn test_array_value_yml_bracket_spacingfalse_format_1_cd2b9cb0() {
 #[test]
 fn test_array_value_yml_tab_width_4_format_1_cd2b9cb0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -195,9 +195,9 @@ fn test_array_value_yml_format_1_cd2b9cb0() {
 #[test]
 fn test_comment_between_yml_bracket_spacingfalse_format_1_13363d0b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{\n? 123\n# comment\n: 456\n}");
@@ -208,9 +208,9 @@ fn test_comment_between_yml_bracket_spacingfalse_format_1_13363d0b() {
 #[test]
 fn test_comment_between_yml_tab_width_4_format_1_13363d0b() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{\n? 123\n# comment\n: 456\n}");
@@ -233,9 +233,9 @@ fn test_comment_between_yml_format_1_13363d0b() {
 #[test]
 fn test_comment_trailing_yml_bracket_spacingfalse_format_1_9ccf3005() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{123, # comment\n}");
@@ -246,9 +246,9 @@ fn test_comment_trailing_yml_bracket_spacingfalse_format_1_9ccf3005() {
 #[test]
 fn test_comment_trailing_yml_tab_width_4_format_1_9ccf3005() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{123, # comment\n}");
@@ -284,9 +284,9 @@ fn test_empty_yml_bracket_spacingfalse_format_1_5ad5cc4d() {
 #[test]
 fn test_empty_yml_tab_width_4_format_1_5ad5cc4d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{}");
@@ -297,8 +297,8 @@ fn test_empty_yml_tab_width_4_format_1_5ad5cc4d() {
 #[test]
 fn test_empty_yml_format_1_5ad5cc4d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{}");
@@ -310,8 +310,8 @@ fn test_empty_yml_format_1_5ad5cc4d() {
 fn test_empty_item_colon_yml_bracket_spacingfalse_format_1_7ec795ea() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{ : }");
@@ -347,9 +347,9 @@ fn test_empty_item_colon_yml_format_1_7ec795ea() {
 #[test]
 fn test_empty_line_yml_bracket_spacingfalse_format_1_a85be7af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .bracket_spacing(false)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, \n\nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb }") ;
@@ -360,9 +360,9 @@ fn test_empty_line_yml_bracket_spacingfalse_format_1_a85be7af() {
 #[test]
 fn test_empty_line_yml_tab_width_4_format_1_a85be7af() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, \n\nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb }") ;
@@ -398,8 +398,8 @@ fn test_empty_line_collapse_yml_bracket_spacingfalse_format_1_5285a77a() {
 #[test]
 fn test_empty_line_collapse_yml_tab_width_4_format_1_5285a77a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -423,9 +423,9 @@ fn test_empty_line_collapse_yml_format_1_5285a77a() {
 #[test]
 fn test_long_key_yml_bracket_spacingfalse_format_1_00ceeb12() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1,? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2,? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3}") ;
@@ -437,8 +437,8 @@ fn test_long_key_yml_bracket_spacingfalse_format_1_00ceeb12() {
 fn test_long_key_yml_tab_width_4_format_1_00ceeb12() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .tab_width(4)
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1,? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2,? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3}") ;
@@ -449,8 +449,8 @@ fn test_long_key_yml_tab_width_4_format_1_00ceeb12() {
 #[test]
 fn test_long_key_yml_format_1_00ceeb12() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1,? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2,? longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3}") ;
@@ -462,8 +462,8 @@ fn test_long_key_yml_format_1_00ceeb12() {
 fn test_long_key_long_value_yml_bracket_spacingfalse_format_1_6cdfc861() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong,longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong,longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong}") ;
@@ -474,9 +474,9 @@ fn test_long_key_long_value_yml_bracket_spacingfalse_format_1_6cdfc861() {
 #[test]
 fn test_long_key_long_value_yml_tab_width_4_format_1_6cdfc861() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong,longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong,longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong}") ;
@@ -525,8 +525,8 @@ fn test_long_plain_yml_tab_width_4_format_1_54f749ee() {
 #[test]
 fn test_long_plain_yml_format_1_54f749ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1,longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2,longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3}") ;
@@ -537,9 +537,9 @@ fn test_long_plain_yml_format_1_54f749ee() {
 #[test]
 fn test_long_value_yml_bracket_spacingfalse_format_1_2820d57d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["yaml"])
         .bracket_spacing(false)
+        .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{1: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong,2: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong,3: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglong}") ;
@@ -575,9 +575,9 @@ fn test_long_value_yml_format_1_2820d57d() {
 #[test]
 fn test_middle_comment_yml_bracket_spacingfalse_format_1_70fc5beb() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map #comment\n{}");
@@ -601,8 +601,8 @@ fn test_middle_comment_yml_tab_width_4_format_1_70fc5beb() {
 #[test]
 fn test_middle_comment_yml_format_1_70fc5beb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map #comment\n{}");
@@ -613,9 +613,9 @@ fn test_middle_comment_yml_format_1_70fc5beb() {
 #[test]
 fn test_middle_comments_yml_bracket_spacingfalse_format_1_bb9680b8() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map # comment 1\n# comment 2\n{}");
@@ -626,8 +626,8 @@ fn test_middle_comments_yml_bracket_spacingfalse_format_1_bb9680b8() {
 #[test]
 fn test_middle_comments_yml_tab_width_4_format_1_bb9680b8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -639,8 +639,8 @@ fn test_middle_comments_yml_tab_width_4_format_1_bb9680b8() {
 #[test]
 fn test_middle_comments_yml_format_1_bb9680b8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map # comment 1\n# comment 2\n{}");
@@ -651,9 +651,9 @@ fn test_middle_comments_yml_format_1_bb9680b8() {
 #[test]
 fn test_next_empty_line_yml_bracket_spacingfalse_format_1_3e1edef1() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: 123, bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb: 123, \n\nc: 123\n}") ;
@@ -664,9 +664,9 @@ fn test_next_empty_line_yml_bracket_spacingfalse_format_1_3e1edef1() {
 #[test]
 fn test_next_empty_line_yml_tab_width_4_format_1_3e1edef1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: 123, bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb: 123, \n\nc: 123\n}") ;
@@ -677,8 +677,8 @@ fn test_next_empty_line_yml_tab_width_4_format_1_3e1edef1() {
 #[test]
 fn test_next_empty_line_yml_format_1_3e1edef1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: 123, bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb: 123, \n\nc: 123\n}") ;
@@ -689,9 +689,9 @@ fn test_next_empty_line_yml_format_1_3e1edef1() {
 #[test]
 fn test_props_yml_bracket_spacingfalse_format_1_5e7feb57() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["yaml"])
         .bracket_spacing(false)
+        .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map &anchor {a: 1}");
@@ -715,8 +715,8 @@ fn test_props_yml_tab_width_4_format_1_5e7feb57() {
 #[test]
 fn test_props_yml_format_1_5e7feb57() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!map &anchor {a: 1}");
@@ -727,9 +727,9 @@ fn test_props_yml_format_1_5e7feb57() {
 #[test]
 fn test_props_in_map_yml_bracket_spacingfalse_format_1_16191fe8() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a: !!map &anchor {a: 1}");
@@ -765,9 +765,9 @@ fn test_props_in_map_yml_format_1_16191fe8() {
 #[test]
 fn test_short_key_yml_bracket_spacingfalse_format_1_dc9bb665() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{? 1,? 2,? 3}");
@@ -779,8 +779,8 @@ fn test_short_key_yml_bracket_spacingfalse_format_1_dc9bb665() {
 fn test_short_key_yml_tab_width_4_format_1_dc9bb665() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .tab_width(4)
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{? 1,? 2,? 3}");
@@ -803,9 +803,9 @@ fn test_short_key_yml_format_1_dc9bb665() {
 #[test]
 fn test_short_key_short_value_yml_bracket_spacingfalse_format_1_ef558fcf() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .bracket_spacing(false)
         .parsers(vec!["yaml"])
         .print_width(80)
-        .bracket_spacing(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{1: a,2: b,3: c}");
@@ -816,9 +816,9 @@ fn test_short_key_short_value_yml_bracket_spacingfalse_format_1_ef558fcf() {
 #[test]
 fn test_short_key_short_value_yml_tab_width_4_format_1_ef558fcf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
         .parsers(vec!["yaml"])
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{1: a,2: b,3: c}");
@@ -829,8 +829,8 @@ fn test_short_key_short_value_yml_tab_width_4_format_1_ef558fcf() {
 #[test]
 fn test_short_key_short_value_yml_format_1_ef558fcf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{1: a,2: b,3: c}");
@@ -842,8 +842,8 @@ fn test_short_key_short_value_yml_format_1_ef558fcf() {
 fn test_short_plain_yml_bracket_spacingfalse_format_1_2ffb5454() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .bracket_spacing(false)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{1,2,3}");
@@ -893,8 +893,8 @@ fn test_short_value_yml_bracket_spacingfalse_format_1_ff51024b() {
 fn test_short_value_yml_tab_width_4_format_1_ff51024b() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .tab_width(4)
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{1: 1,2: 2,3: 3}");
@@ -905,8 +905,8 @@ fn test_short_value_yml_tab_width_4_format_1_ff51024b() {
 #[test]
 fn test_short_value_yml_format_1_ff51024b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{1: 1,2: 2,3: 3}");
@@ -930,8 +930,8 @@ fn test_very_long_value_yml_bracket_spacingfalse_format_1_a24a60e5() {
 #[test]
 fn test_very_long_value_yml_tab_width_4_format_1_a24a60e5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();

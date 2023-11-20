@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_export_star_js_format_1_e1d889ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("export * from \"mod\";\n");
@@ -41,8 +41,8 @@ fn test_export_star_as_default_js_format_1_9380d522() {
 #[test]
 fn test_export_star_as_reserved_word_js_format_1_bf8dc141() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export * as function from 'foo'\nexport * as const from 'foo'\nexport * as as from 'foo'\nexport * as from from 'foo'") ;
@@ -69,8 +69,8 @@ fn test_export_star_as_string_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_export_star_as_string_js_format_1_e3ecf295() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("export * as 'foo' from 'foo'");

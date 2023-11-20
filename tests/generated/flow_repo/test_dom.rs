@@ -17,8 +17,8 @@ fn test_canvas_rendering_context_2_d_js_format_1_f01977ce() {
 #[test]
 fn test_custom_event_js_format_1_3d7c93e7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // CustomEvent\n  function(document: Document) {\n    const event = document.createEvent('CustomEvent');\n    event.initCustomEvent('butts', true, false, { nice: 42 });\n  }\n];") ;
@@ -41,8 +41,8 @@ fn test_document_js_format_1_aa924157() {
 #[test]
 fn test_element_js_format_1_11bd3a44() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // scrollIntoView\n  function(element: Element) {\n    element.scrollIntoView();\n    element.scrollIntoView(false);\n    element.scrollIntoView({});\n    element.scrollIntoView({ behavior: 'smooth', block: 'end' });\n    element.scrollIntoView({ block: 'end' });\n    element.scrollIntoView({ behavior: 'smooth' });\n\n    // fails\n    element.scrollIntoView({ behavior: 'invalid' });\n    element.scrollIntoView({ block: 'invalid' });\n    element.scrollIntoView(1);\n  }\n];") ;
@@ -77,8 +77,8 @@ fn test_html_element_js_format_1_8017e7f5() {
 #[test]
 fn test_html_input_element_js_format_1_909b42fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // setRangeText\n  function(el: HTMLInputElement) {\n    el.setRangeText('foo');\n    el.setRangeText('foo', 123); // end is required\n    el.setRangeText('foo', 123, 234);\n    el.setRangeText('foo', 123, 234, 'select');\n    el.setRangeText('foo', 123, 234, 'bogus'); // invalid value\n  }\n];") ;
@@ -113,8 +113,8 @@ fn test_eventtarget_js_format_1_69489c5b() {
 #[test]
 fn test_path_2_d_js_format_1_fbf6ccad() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // arcTo\n  function() {\n    let path = new Path2D();\n    (path.arcTo(0, 0, 0, 0, 10): void); // valid\n    (path.arcTo(0, 0, 0, 0, 10, 20, 5): void); // valid\n    (path.arcTo(0, 0, 0, 0, 10, '20', 5): void); // invalid\n  },\n];") ;
@@ -125,8 +125,8 @@ fn test_path_2_d_js_format_1_fbf6ccad() {
 #[test]
 fn test_register_element_js_format_1_3d6e78b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // should work with Object.create()\n  function() {\n    document.registerElement('custom-element', {\n      prototype: Object.create(HTMLElement.prototype, {\n        createdCallback: { value: function createdCallback () {\n        }},\n        attachedCallback: { value: function attachedCallback () {\n        }},\n        detachedCallback: { value: function detachedCallback () {\n        }},\n        attributeChangedCallback: {\n          value: function attributeChangedCallback (\n            attributeLocalName,\n            oldAttributeValue,\n            newAttributeValue,\n            attributeNamespace\n          ) {\n          }\n        }\n      })\n    })\n  },\n  // or with Object.assign()\n  function() {\n    document.registerElement('custom-element', {\n      prototype: Object.assign(Object.create(HTMLElement.prototype), {\n        createdCallback () {\n        },\n        attachedCallback () {\n        },\n        detachedCallback () {\n        },\n        attributeChangedCallback (\n          attributeLocalName,\n          oldAttributeValue,\n          newAttributeValue,\n          attributeNamespace\n        ) {\n        }\n      })\n    })\n  },\n  // should complain about invalid callback parameters\n  function() {\n    document.registerElement('custom-element', {\n      prototype: {\n        attributeChangedCallback(\n          localName: string,\n          oldVal: string, // Error: This might be null\n          newVal: string, // Error: This might be null\n          namespace: string) {}\n      },\n    });\n  },\n];") ;

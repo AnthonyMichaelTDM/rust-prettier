@@ -129,7 +129,7 @@ mod test_private_fields_in_in;
 #[cfg(test)]
 mod test_cast;
 #[cfg(test)]
-mod test_interface2;
+mod test_interface_2;
 #[cfg(test)]
 mod test_definite;
 #[cfg(test)]

@@ -127,8 +127,8 @@ fn test_bind_parens_js_semifalse_meriyah_format_1_d41d8cd9() {
 fn test_bind_parens_js_semifalse_format_1_d3662bf1() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("(a || b)::c;\na || (b::c);\n::obj.prop;\n(void 0)::func();\n(+0)::is(-0);\na::(b.c);\na::(b.c());\na::b.c();\na::(b.c()());\na::((b.c())());\na::(b.c())();\na::(b.c().d);\na::(c().d.e);\na::(b());\na::(b::c());\na::(b()::c);\na::(b().c::d);\na::(b.c::d);\na::(b::c.d);\na::(b.c::d::e);\na::(b::c::d);\na::(b::c::d.e);\na::((b::c::d).e);\na::(void 0);\na::(b.c()::d.e);\na::(b.c::d.e);\na::(b.c::d.e)::f.g;\nb.c::d.e;\n(b.c::d).e;\n(b::c::d).e;\nnew (a::b)();\nnew f(a::b);\nf[a::b];\nf[a::b()];") ;
@@ -358,8 +358,8 @@ fn test_short_name_method_js_semifalse_format_1_f17408f0() {
 #[test]
 fn test_short_name_method_js_format_1_f17408f0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class X {\n  constructor() {\n    this.shortMethod = ::this.shortMethod;\n  }\n  \n  shortMethod() {\n    return true;\n  }\n") ;
@@ -419,8 +419,8 @@ fn test_unary_js_semifalse_meriyah_format_1_d41d8cd9() {
 fn test_unary_js_semifalse_format_1_d59680a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("!x::y;\n!(x::y /* foo */);\n!(/* foo */ x::y);\n!(\n  /* foo */\n  x::y\n);\n!(\n  x::y\n  /* foo */\n);\n!(\n  x::y // foo\n);") ;
@@ -431,8 +431,8 @@ fn test_unary_js_semifalse_format_1_d59680a7() {
 #[test]
 fn test_unary_js_format_1_d59680a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("!x::y;\n!(x::y /* foo */);\n!(/* foo */ x::y);\n!(\n  /* foo */\n  x::y\n);\n!(\n  x::y\n  /* foo */\n);\n!(\n  x::y // foo\n);") ;

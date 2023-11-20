@@ -17,8 +17,8 @@ fn test_test_js_format_1_32d32507() {
 #[test]
 fn test_test_2_js_format_1_c1071b0c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var { ColorId, ColorNumber } = require('./test');\nvar ColorIdToNumber = {\n  [ColorId.RED]: ColorNumber.RED,\n  [ColorId.GREEN]: ColorNumber.GREEN,\n  [ColorId.BLUE]: ColorNumber.BLUE,\n};\n\n(ColorIdToNumber[ColorId.GREEN]: 'ffffff'); // oops\n\nmodule.exports = ColorIdToNumber;") ;
@@ -29,8 +29,8 @@ fn test_test_2_js_format_1_c1071b0c() {
 #[test]
 fn test_test_3_js_format_1_5a7caf19() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var { ColorId } = require('./test');\nvar ColorIdToNumber = require('./test2');\n\n(ColorIdToNumber[ColorId.BLUE]: 'ffffff'); // oops") ;
@@ -41,8 +41,8 @@ fn test_test_3_js_format_1_5a7caf19() {
 #[test]
 fn test_test_4_js_format_1_6f3b07fb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("module.exports = 'hello';");

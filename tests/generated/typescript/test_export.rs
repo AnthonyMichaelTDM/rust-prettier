@@ -49,8 +49,8 @@ fn test_export_ts_format_1_c4414b49() {
 #[test]
 fn test_export_as_ns_ts_format_1_92a42b90() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("export * as utilities from \"./utilities.js\";");
@@ -61,8 +61,8 @@ fn test_export_as_ns_ts_format_1_92a42b90() {
 #[test]
 fn test_export_class_ts_format_1_0f2b979a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export class A {}\nexport default class B {}\nexport abstract class C {}\nexport default abstract class D {}") ;
@@ -89,8 +89,8 @@ fn test_export_type_star_from_ts_format_1_1a5f5104() {
 #[test]
 fn test_export_type_star_from_2_ts_babel_ts_format_1_dfeb050b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// Note: TSC doesn't support string module specifiers yet,\n// but it's easier for us to support them than not.\nexport type * as \"ns2\" from './mod';") ;

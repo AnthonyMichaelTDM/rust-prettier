@@ -41,8 +41,8 @@ fn test_cast_of_await_ts_format_1_30e65afa() {
 #[test]
 fn test_cast_parentheses_ts_format_1_47807bfc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\u{feff}class a {\n    static b: any;\n}\n\nvar b = (<any>a);\nvar b = (<any>a).b;\nvar b = (<any>a.b).c;\nvar b = (<any>a.b()).c;\nvar b = (<any>new a);\nvar b = (<any>new a.b);\nvar b = (<any>new a).b") ;
@@ -93,8 +93,8 @@ fn test_comment_in_namespace_declaration_with_identifier_path_name_ts_format_1_a
 #[test]
 fn test_comments_interface_ts_format_1_7c5d47a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -121,8 +121,8 @@ fn test_contextual_signature_instantiation_2_ts_format_1_61fa81f1() {
 #[test]
 fn test_declare_dotted_module_name_ts_format_1_b780bed0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @declaration: true\nmodule M {\n    module P.Q { } // This shouldnt be emitted\n}\n\nmodule M {\n    export module R.S { }  //This should be emitted\n}\n\nmodule T.U { // This needs to be emitted\n") ;
@@ -141,8 +141,8 @@ fn test_decrement_and_increment_operators_ts_babel_ts_format_1_d41d8cd9() {
 #[test]
 fn test_decrement_and_increment_operators_ts_format_1_587118d5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var x = 0;\n\n// errors\n1 ++;\n\n(1)++;\n(1)--;\n\n++(1);\n--(1);\n\n(1 + 2)++;\n(1 + 2)--;\n\n++(1 + 2);\n--(1 + 2);\n\n(x + x)++;\n(x + x)--;\n\n++(x + x);\n--(x + x);\n\n//OK\nx++;\nx--;\n\n++x;\n--x;\n\n(x)++;\n--(x);\n\n((x))++;\n((x))--;\n\nx[x++]++;") ;
@@ -153,8 +153,8 @@ fn test_decrement_and_increment_operators_ts_format_1_587118d5() {
 #[test]
 fn test_es_5_export_default_class_declaration_4_ts_format_1_392bca79() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @target: es5\n// @module: commonjs\n// @declaration: true\n\ndeclare module \"foo\" {\n    export var before: C;\n\n    export default class C {\n        method(): C;\n    }\n\n    export var after: C;\n\n    export var t: typeof C;\n}\n") ;
@@ -189,8 +189,8 @@ fn test_global_is_contextual_keyword_ts_format_1_94c77f14() {
 #[test]
 fn test_index_signature_with_initializer_ts_format_1_b0820cc3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// These used to be indexers, now they are computed properties\ninterface I {\n    [x = '']: string;\n}\n\nclass C {\n    [x = 0]: string\n") ;
@@ -225,8 +225,8 @@ fn test_modifiers_on_interface_index_signature_1_ts_format_1_48df6fcb() {
 #[test]
 fn test_privacy_glo_import_ts_format_1_ddd94c90() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("//@declaration: true\nmodule m1 {\n    export module m1_M1_public {\n        export class c1 {\n        }\n        export function f1() {\n            return new c1;\n        }\n        export var v1 = c1;\n        export var v2: c1;\n    }\n\n    module m1_M2_private {\n        export class c1 {\n        }\n        export function f1() {\n            return new c1;\n        }\n        export var v1 = c1;\n        export var v2: c1;\n    }\n\n    //export declare module \"m1_M3_public\" {\n    //    export function f1();\n    //    export class c1 {\n    //    }\n    //    export var v1: { new (): c1; };\n    //    export var v2: c1;\n    //}\n\n    //declare module \"m1_M4_private\" {\n    //    export function f1();\n    //    export class c1 {\n    //    }\n    //    export var v1: { new (): c1; };\n    //    export var v2: c1;\n    //}\n\n    import m1_im1_private = m1_M1_public;\n    export var m1_im1_private_v1_public = m1_im1_private.c1;\n    export var m1_im1_private_v2_public = new m1_im1_private.c1();\n    export var m1_im1_private_v3_public = m1_im1_private.f1;\n    export var m1_im1_private_v4_public = m1_im1_private.f1();\n    var m1_im1_private_v1_private = m1_im1_private.c1;\n    var m1_im1_private_v2_private = new m1_im1_private.c1();\n    var m1_im1_private_v3_private = m1_im1_private.f1;\n    var m1_im1_private_v4_private = m1_im1_private.f1();\n\n\n    import m1_im2_private = m1_M2_private;\n    export var m1_im2_private_v1_public = m1_im2_private.c1;\n    export var m1_im2_private_v2_public = new m1_im2_private.c1();\n    export var m1_im2_private_v3_public = m1_im2_private.f1;\n    export var m1_im2_private_v4_public = m1_im2_private.f1();\n    var m1_im2_private_v1_private = m1_im2_private.c1;\n    var m1_im2_private_v2_private = new m1_im2_private.c1();\n    var m1_im2_private_v3_private = m1_im2_private.f1;\n    var m1_im2_private_v4_private = m1_im2_private.f1();\n\n    //import m1_im3_private = require(\"m1_M3_public\");\n    //export var m1_im3_private_v1_public = m1_im3_private.c1;\n    //export var m1_im3_private_v2_public = new m1_im3_private.c1();\n    //export var m1_im3_private_v3_public = m1_im3_private.f1;\n    //export var m1_im3_private_v4_public = m1_im3_private.f1();\n    //var m1_im3_private_v1_private = m1_im3_private.c1;\n    //var m1_im3_private_v2_private = new m1_im3_private.c1();\n    //var m1_im3_private_v3_private = m1_im3_private.f1;\n    //var m1_im3_private_v4_private = m1_im3_private.f1();\n\n    //import m1_im4_private = require(\"m1_M4_private\");\n    //export var m1_im4_private_v1_public = m1_im4_private.c1;\n    //export var m1_im4_private_v2_public = new m1_im4_private.c1();\n    //export var m1_im4_private_v3_public = m1_im4_private.f1;\n    //export var m1_im4_private_v4_public = m1_im4_private.f1();\n    //var m1_im4_private_v1_private = m1_im4_private.c1;\n    //var m1_im4_private_v2_private = new m1_im4_private.c1();\n    //var m1_im4_private_v3_private = m1_im4_private.f1;\n    //var m1_im4_private_v4_private = m1_im4_private.f1();\n\n    export import m1_im1_public = m1_M1_public;\n    export import m1_im2_public = m1_M2_private;\n    //export import m1_im3_public = require(\"m1_M3_public\");\n    //export import m1_im4_public = require(\"m1_M4_private\");\n}\n\nmodule glo_M1_public {\n    export class c1 {\n    }\n    export function f1() {\n        return new c1;\n    }\n    export var v1 = c1;\n    export var v2: c1;\n}\n\ndeclare module \"glo_M2_public\" {\n    export function f1();\n    export class c1 {\n    }\n    export var v1: { new (): c1; };\n    export var v2: c1;\n}\n\ndeclare module \"use_glo_M1_public\" {\n    import use_glo_M1_public = glo_M1_public;\n    export var use_glo_M1_public_v1_public: { new (): use_glo_M1_public.c1; };\n    export var use_glo_M1_public_v2_public: typeof use_glo_M1_public;\n    export var use_glo_M1_public_v3_public: ()=> use_glo_M1_public.c1;\n    var use_glo_M1_public_v1_private: { new (): use_glo_M1_public.c1; };\n    var use_glo_M1_public_v2_private: typeof use_glo_M1_public;\n    var use_glo_M1_public_v3_private: () => use_glo_M1_public.c1;\n\n    import use_glo_M2_public = require(\"glo_M2_public\");\n    export var use_glo_M2_public_v1_public: { new (): use_glo_M2_public.c1; };\n    export var use_glo_M2_public_v2_public: typeof use_glo_M2_public;\n    export var use_glo_M2_public_v3_public: () => use_glo_M2_public.c1;\n    var use_glo_M2_public_v1_private: { new (): use_glo_M2_public.c1; };\n    var use_glo_M2_public_v2_private: typeof use_glo_M2_public;\n    var use_glo_M2_public_v3_private: () => use_glo_M2_public.c1;\n\n    module m2 {\n        //import errorImport = require(\"glo_M2_public\");\n        import nonerrorImport = glo_M1_public;\n\n        module m5 {\n            //import m5_errorImport = require(\"glo_M2_public\");\n            import m5_nonerrorImport = glo_M1_public;\n        }\n    }\n}\n\ndeclare module \"anotherParseError\" {\n    module m2 {\n        //declare module \"abc\" {\n        //}\n    }\n\n    module m2 {\n        //module \"abc2\" {\n        //}\n    }\n    //module \"abc3\" {\n    //}\n}\n\nmodule m2 {\n    //import m3 = require(\"use_glo_M1_public\");\n    module m4 {\n        var a = 10;\n        //import m2 = require(\"use_glo_M1_public\");\n    }\n\n") ;

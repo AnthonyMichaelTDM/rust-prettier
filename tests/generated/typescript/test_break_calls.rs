@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_type_args_ts_format_1_7c93dd95() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const response = something.$http.get<ThingamabobService.DetailsData>(\n  \\`api/foo.ashx/foo-details/\\${myId}\\`,\n  { cache: quux.httpCache, timeout }\n);") ;

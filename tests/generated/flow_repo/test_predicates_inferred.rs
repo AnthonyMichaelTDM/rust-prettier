@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_sanity_js_format_1_5cf6d528() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Sanity check: shouldn't be allowed to declare a predicate AND use \\`chekcs\\`\n\nfunction check(y): %checks(typeof y === \"string\") {\n  return typeof y === \"number\";\n}\n\ndeclare var y: number | boolean;\n\nif (check(y)) {\n  (y: number);\n}\n\n// Sanity: disallowed body\nfunction indirect_is_number(y): %checks {\n  var y = 1;\n  return typeof y === \"number\";\n}\n\nfunction bak(z: string | number): number {\n  if (indirect_is_number(z)) {\n    return z;\n  } else {\n    return z.length;\n  }\n}") ;
@@ -17,8 +17,8 @@ fn test_sanity_js_format_1_5cf6d528() {
 #[test]
 fn test_sanity_multi_params_js_format_1_c806ac42() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Feature: multi params\nfunction multi_param(w,x,y,z): %checks {\n  return typeof z === \"string\";\n}\n\nfunction foo(x: string | Array<string>): string {\n  if (multi_param(\"1\", \"2\", x, \"3\")) {\n    return x;\n  } else {\n    return x.join();\n  }\n}") ;
@@ -29,8 +29,8 @@ fn test_sanity_multi_params_js_format_1_c806ac42() {
 #[test]
 fn test_sanity_ordering_js_format_1_c1b6556f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ndeclare var key: string;\ndeclare var obj: { page: ?Object; };\n\nif (dotAccess(obj)) {\n  (obj.page: Object);\n}\n\nfunction dotAccess(head, create) {\n  const path = 'path.location';\n  const stack = path.split('.');\n  do {\n    const key = stack.shift();\n    head = head[key] || create && (head[key] = {});\n  } while (stack.length && head);\n  return head;\n}") ;
@@ -65,8 +65,8 @@ fn test_simple_predicate_func_js_format_1_0315b95d() {
 #[test]
 fn test_simple_predicate_func_post_js_format_1_bebbeb6b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Feature check:\n// The predicate function is defined after the conditional check\n\nfunction foo(x: string | Array<string>): string {\n  if (is_string(x)) {\n    // The use of \\`is_string\\` as a conditional check\n    // should guarantee the narrowing of the type of \\`x\\`\n    // to string.\n    return x;\n  } else {\n    // Accordingly the negation of the above check\n    // guarantees that \\`x\\` here is an Array<string>\n    return x.join();\n  }\n}\n\nfunction is_string(x): %checks {\n  return typeof x === \"string\";\n}") ;

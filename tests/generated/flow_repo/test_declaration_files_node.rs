@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_js_format_1_53b4040f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -33,8 +33,8 @@ fn test_cjs_js_format_1_1c211780() {
 #[test]
 fn test_test_absolute_js_format_1_47f6ea7e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n// This will require ./node_modules/B.js.flow\nvar B1 = require('B');\n(B1.fun(): string); // Error number ~> string\n\n// This will require ./node_modules/B.js.flow\nvar B2 = require('B.js');\n(B2.fun(): string); // Error number ~> string\n\nvar C = require('package_with_full_main');\n(C.fun(): string); // Error number ~> string\n\nvar D = require('package_with_partial_main');\n(D.fun(): string); // Error number ~> string\n\nvar E = require('package_with_no_package_json');\n(E.fun(): string); // Error number ~> string\n\nvar F = require('package_with_dir_main');\n(F.fun(): string); // Error number ~> string") ;

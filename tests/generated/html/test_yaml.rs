@@ -21,8 +21,8 @@ fn test_invalid_html_format_1_a113b104() {
 #[test]
 fn test_yaml_html_format_1_9f228366() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

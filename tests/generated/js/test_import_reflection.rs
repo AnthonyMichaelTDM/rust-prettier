@@ -271,8 +271,8 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_format_1_0fe07d47() {
 #[test]
 fn test_valid_module_as_default_binding_mjs_format_1_bc39ef68() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import module from \"./module.wasm\";");

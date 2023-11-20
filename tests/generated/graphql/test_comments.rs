@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_argument_comment_graphql_format_1_ba2670e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\nquery (\n  $string: String, # Some variable comment\n  $bool: Boolean # Some comment\n ) {\n   someField\n }") ;
@@ -17,8 +17,8 @@ fn test_argument_comment_graphql_format_1_ba2670e4() {
 #[test]
 fn test_fields_graphql_format_1_16ad3a17() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("query { \n  someField # Trailing comment\n}\n\n");

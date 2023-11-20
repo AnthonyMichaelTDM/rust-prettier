@@ -17,8 +17,8 @@ fn test_case_less_format_1_75a9c9bb() {
 #[test]
 fn test_variable_less_format_1_16825fed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// Do not change case of property name if inside a variable declaration\n\n@var: {\n  notVar: 0;\n  @notVarNested: {\n    notVar: 1;\n    notVar2: 2;\n  };\n};\n\n@var    :    {\n  preserveCase: 5;\n};\n\n@var:    {\n  preserveCase: 5;\n};\n\n@var    :{\n  preserveCase: 5;\n};\n\n@var /* comment */ : /* comment */ {\n  preserveCase: 5;\n};\n\n@var: /* comment */ {\n  preserveCase: 5;\n};\n\n@var /* comment */ :{\n  preserveCase: 5;\n};\n\n@var // comment\n: // comment\n{\n  /* FIXME: should not change case */\n  preserveCase: 5;\n};\n\n@var: // comment\n{\n  preserveCase: 5;\n};\n\n@var // comment\n:{\n  /* FIXME: should not change case */\n  preserveCase: 5;\n};\n\n// Known css properties\n@var: {\n  COLoR: RED;\n};\n\n@not-var {\n  canChangeCase: @var[@notVarNested][notVar];\n  canChangeCase: @var[    @notVarNested][notVar];\n  canChangeCase: @var[@notVarNested    ][notVar];\n  canChangeCase: @var[    @notVarNested    ][notVar];\n  canChangeCase: @var[@notVarNested][notVar];\n  canChangeCase: @var[@notVarNested][    notVar];\n  canChangeCase: @var[@notVarNested][notVar    ];\n  canChangeCase: @var[@notVarNested][    notVar    ];\n  canChangeCase: @var[notVar];\n  canChangeCase: @var[    notVar];\n  canChangeCase: @var[notVar    ];\n  canChangeCase: @var[    notVar    ];\n}") ;

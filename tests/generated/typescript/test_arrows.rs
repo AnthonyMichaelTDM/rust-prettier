@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_function_expression_ts_arrow_parensalways_format_1_f3e2773e() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("always")
         .parsers(vec!["typescript", "flow"])
         .print_width(80)
-        .arrow_parens("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a = (b?) => c;");
@@ -18,9 +18,9 @@ fn test_arrow_function_expression_ts_arrow_parensalways_format_1_f3e2773e() {
 #[test]
 fn test_arrow_function_expression_ts_arrow_parensavoid_format_1_f3e2773e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a = (b?) => c;");
@@ -57,8 +57,8 @@ fn test_short_body_ts_arrow_parensavoid_format_1_0c383d7f() {
 #[test]
 fn test_type_params_ts_arrow_parensalways_format_1_efdc5259() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["typescript", "flow"])
         .arrow_parens("always")
+        .parsers(vec!["typescript", "flow"])
         .print_width(80)
         .build()
         .unwrap();
@@ -70,9 +70,9 @@ fn test_type_params_ts_arrow_parensalways_format_1_efdc5259() {
 #[test]
 fn test_type_params_ts_arrow_parensavoid_format_1_efdc5259() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .arrow_parens("avoid")
         .parsers(vec!["typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<T>(a) => { }");

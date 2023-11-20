@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_filter_js_format_1_ab7b2024() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Filter the contents of an array\n\ndeclare function my_filter<T, P: $Pred<1>>(v: Array<T>, cb: P): Array<$Refine<T,P,1>>;\n\ndeclare var arr: Array<mixed>;\nconst barr = my_filter(arr, is_string);\n(barr: Array<string>);\n\nfunction is_string(x): %checks {\n  return typeof x === \"string\";\n}") ;
@@ -17,8 +17,8 @@ fn test_filter_js_format_1_ab7b2024() {
 #[test]
 fn test_filter_union_js_format_1_6a127e64() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Filter the contents of an array\n\n\ndeclare function my_filter<T, P: $Pred<1>>(v: Array<T>, cb: P): Array<$Refine<T,P,1>>;\n\ntype A = { kind: 'A', u: number }\ntype B = { kind: 'B', v: string }\ntype C = { kind: 'C', y: boolean }\ntype D = { kind: 'D', x: boolean }\ntype E = { kind: 'E', y: boolean }\n\ndeclare var ab: Array<A|B|C>;\n\n(my_filter(ab, (x): %checks => x.kind === 'A'): Array<A>);    // OK\n(my_filter(ab, (x): %checks => x.kind !== 'A'): Array<B|C>);  // OK") ;
@@ -53,8 +53,8 @@ fn test_sanity_filter_js_format_1_e83f1c92() {
 #[test]
 fn test_sanity_filter_union_js_format_1_71f7d250() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Filter the contents of an array\n\n\ndeclare function my_filter<T, P: $Pred<1>>(v: Array<T>, cb: P): Array<$Refine<T,P,1>>;\n\ntype A = { kind: 'A', u: number }\ntype B = { kind: 'B', v: string }\ntype C = { kind: 'C', y: boolean }\ntype D = { kind: 'D', x: boolean }\ntype E = { kind: 'E', y: boolean }\n\ndeclare var ab: Array<A|B|C>;\n\n(my_filter(ab, (x): %checks => x.kind === 'A'): Array<B>);    // ERROR\n(my_filter(ab, (x): %checks => x.kind !== 'A'): Array<A|C>);  // ERROR") ;

@@ -18,9 +18,9 @@ fn test_code_md_prose_wrapalways_format_1_b57902b3() {
 #[test]
 fn test_ignore_code_md_prose_wrapalways_format_1_41b9dcf9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("> \\`\\`\\`\\`md\n> <!-- prettier-ignore -->\n> \\`\\`\\`js\n> ugly   ( code ) ;\n> \\`\\`\\`\n> \\`\\`\\`\\`\n\n> \\`\\`\\`md\n> <!-- prettier-ignore -->\n> - This is a long long\n>   long long long long\n>   long long paragraph.\n> \\`\\`\\`\n\n> - test\n>   \\`\\`\\`md\n>   <!-- prettier-ignore -->\n>   - This is a long long\n>     long long long long\n>     long long paragraph.\n>   \\`\\`\\`\n\n\\`\\`\\`\\`md\n> \\`\\`\\`md\n> <!-- prettier-ignore -->\n> - This is a long long\n>   long long long long\n>   long long paragraph.\n> \\`\\`\\`\n\\`\\`\\`\\`\n\n> \\`\\`\\`\\`md\n> > \\`\\`\\`md\n> > <!-- prettier-ignore -->\n> > - This is a long long\n> >   long long long long\n> >   long long paragraph.\n> > \\`\\`\\`\n> \\`\\`\\`\\`\n\n> \n> <!-- prettier-ignore -->\n> - This is a long long\n>   long long long long\n>   long long paragraph.\n> \n\n> \\`\\`\\`\\`js\n> // prettier-ignore\n> const x = 1,\n> b = 2\n> \\`\\`\\`\\`") ;
@@ -58,8 +58,8 @@ fn test_paragraph_md_prose_wrapalways_format_1_146e0aee() {
 fn test_simple_md_prose_wrapalways_format_1_7c4e633a() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("> 123");

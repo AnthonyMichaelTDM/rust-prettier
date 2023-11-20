@@ -17,8 +17,8 @@ fn test_array_js_format_1_55200b14() {
 #[test]
 fn test_genericfoo_js_format_1_7dcfd301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Foo<T> {\n    x:T;\n    self():Foo<T> { return this; }\n    map<U>(callbackfn: () => U): Foo<U> { return new Foo(); }\n    set(x:T): void { }\n    get(): T { return this.x; }\n}\n\nmodule.exports = Foo;") ;

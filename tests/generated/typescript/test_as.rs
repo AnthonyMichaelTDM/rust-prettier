@@ -93,8 +93,8 @@ fn test_expression_statement_ts_format_1_ee28fbf9() {
 #[test]
 fn test_long_identifiers_ts_format_1_0f3beef2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const bifornCringerMoshedPerplexSawder =\n  askTrovenaBeenaDependsRowans as glimseGlyphsHazardNoopsTieTie;\n\naverredBathersBoxroomBuggyNurl.anodyneCondosMalateOverateRetinol =\n  annularCooeedSplicesWalksWayWay as kochabCooieGameOnOboleUnweave;\n\naverredBathersBoxroomBuggyNurl = {\n  anodyneCondosMalateOverateRetinol:\n    annularCooeedSplicesWalksWayWay as kochabCooieGameOnOboleUnweave\n};\n\naverredBathersBoxroomBuggyNurl(\n  anodyneCondosMalateOverateRetinol.annularCooeedSplicesWalksWayWay as\n    kochabCooieGameOnOboleUnweave\n);") ;

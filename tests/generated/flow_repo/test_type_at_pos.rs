@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_destructuring_js_format_1_06f6ae34() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet [x, y] = [1, 2];\n\n/**\n * Test what happens when the destructuring is unevaluated. In this case,\n * \\`this\\` in a function is unbound, so we never actually find out the type of\n * \\`this.returnsATuple()\\` is; thus, we never evaluate \\`b\\` and so type-at-pos\n * returns EmptyT.\n */\nexport const X = {\n  returnsATuple: function(): [number, number] {\n    return [1, 2];\n  },\n\n  test: function() {\n    let [a, b] = this.returnsATuple();\n  }\n};") ;
@@ -29,8 +29,8 @@ fn test_function_expressions_js_format_1_83a0f200() {
 #[test]
 fn test_generics_js_format_1_c78f9899() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nclass C<X> { }\nvar cn: C<number> = new C;\ncn;\n\nfunction foo() { return C; }\nvar D = foo();\nvar dn: D<number> = new C;\ndn;\n\ntype E<X> = C<X>;\nvar en: E<number> = new C;\nen;\n\ntype F<X> = C<void>;\nvar fn: F<number> = new C;\nfn;\n\ntype O<X> = { x: X };\nvar on: O<number> = { x: 0 };\non;\n\ntype Mono = C<void>;\nvar mn: Mono<number> = new C; // error: application of non-poly type\nmn;") ;
@@ -41,8 +41,8 @@ fn test_generics_js_format_1_c78f9899() {
 #[test]
 fn test_import_js_format_1_bb0bf1a8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -57,8 +57,8 @@ fn test_import_js_format_1_bb0bf1a8() {
 #[test]
 fn test_object_special_cases_js_format_1_153689cb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nlet tests = [\n  function() {\n    let x = {};\n    Object.defineProperty(x, 'foo', { value: '' });\n  },\n];") ;
@@ -69,8 +69,8 @@ fn test_object_special_cases_js_format_1_153689cb() {
 #[test]
 fn test_optional_js_format_1_789b7ea1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nfunction foo(x?: string) {\n  return x;\n}\n\nfoo();\n\nfunction bar(obj: { x?: string }) {\n  return obj.x;\n}\n\nfunction qux(x?) {\n  return x;\n}") ;
@@ -81,8 +81,8 @@ fn test_optional_js_format_1_789b7ea1() {
 #[test]
 fn test_predicates_js_format_1_2d77edff() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nlet x = 0;\nif (x == null) {}\nif (x == undefined) {}\nif (Array.isArray(x)) {}") ;

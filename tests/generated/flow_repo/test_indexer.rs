@@ -17,8 +17,8 @@ fn test_a_js_format_1_c9676e8b() {
 #[test]
 fn test_multiple_js_format_1_19c60e96() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  function() {\n    ({}: {\n      [k1: string]: string,\n      [k2: number]: number, // error: not supported (yet)\n    });\n  }\n];") ;

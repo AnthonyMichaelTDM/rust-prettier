@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_fail_0_js_format_1_0f28f4fb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Error: 'declare', 'checks' but missing predicate\n\ndeclare function f2(x: mixed): boolean %checks;") ;
@@ -17,8 +17,8 @@ fn test_fail_0_js_format_1_0f28f4fb() {
 #[test]
 fn test_fail_1_js_format_1_37c490f8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Error: no return statement\n\nfunction f6(x: mixed): %checks (x !== null) {  }") ;

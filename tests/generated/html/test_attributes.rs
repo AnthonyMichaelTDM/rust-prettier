@@ -89,8 +89,8 @@ fn test_class_leading_dashes_html_format_1_e7ed1b15() {
 #[test]
 fn test_class_many_short_names_html_format_1_622552cd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div aria-hidden=\"true\" class=\"border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none d-on-nav-focus js-jump-to-badge-jump\">\n  Jump to\n  <span class=\"d-inline-block ml-1 v-align-middle\">x</span>\n</div>") ;
@@ -101,8 +101,8 @@ fn test_class_many_short_names_html_format_1_622552cd() {
 #[test]
 fn test_class_names_html_format_1_eb416ff6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<img class=\"\n                     foo\nbar\n\">\n\n<img class=\"  \">\n<img class>\n\n<img class=\"\nlooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\na-long-long-long-long-long-class-name\nanother-long-long-long-class-name\n                     foo bar\nfoo bar\n                     foo bar\nfoo bar\n                     foo bar\nfoo bar\n                     foo bar\nfoo bar\n                     foo bar\nfoo bar\n                     foo bar\nfoo bar\n                     foo bar\n\">\n\n<img\nclass=\"{{ ...classes }}\">\n<img\nclass=\"foo bar {{ otherClass }}\">\n\n<!-- escaped -->\n<!-- from: https://developer.mozilla.org/en-US/docs/Web/API/CSS/escape#Basic_results -->\n<img class=\"\n\\\\.foo\\\\#bar\n\\\\(\\\\)\\\\[\\\\]\\\\{\\\\}\n--a\n\\\\30\n\\\\ufffd\n\">\n\n<!-- from yahoo website -->\n<div id=\"header-wrapper\" class=\"Bgc(#fff) Bdbc(t) Bdbs(s) Bdbw(1px) D(tb) Pos(f) Tbl(f) W(100%) Z(4)\nhas-scrolled_Bdc($c-fuji-grey-d) Scrolling_Bdc($c-fuji-grey-d) has-scrolled_Bxsh($headerShadow)\nScrolling_Bxsh($headerShadow) \">\n<div class=\"Bgc(#fff) M(a) Maw(1301px) Miw(1000px) Pb(12px) Pt(22px) Pos(r) TranslateZ(0) Z(6)\"\n><h1 class=\"Fz(0) Pstart(15px) Pos(a)\"><a id=\"header-logo\"\nhref=\"https://www.yahoo.com/\" class=\"D(b) Pos(r)\" data-ylk=\"elm:img;elmt:logo;sec:hd;slk:logo\">\n<img class=\"H(27px)!--sm1024 Mt(9px)!--sm1024 W(90px)!--sm1024\"\nsrc=\"https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_205x58_frontpage_2x.png\" height=\"58px\"\nwidth=\"205px\" alt=\"Yahoo\"/></a></h1></div></div>") ;
@@ -113,8 +113,8 @@ fn test_class_names_html_format_1_eb416ff6() {
 #[test]
 fn test_class_print_width_edge_html_format_1_c9e3ac68() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div aria-hidden=\"true\" class=\"border rounded-1 flex-shrink-0 bg-gray px-1 loooooooooooooooooooooooong\">\n</div>") ;
@@ -167,8 +167,8 @@ fn test_single_quotes_html_format_1_598fc7f6() {
 #[test]
 fn test_smart_quotes_html_format_1_fe3821bd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<div \n    smart-quotes='123 \" 456'\n    smart-quotes=\"123 ' 456\"\n    smart-quotes='123 &apos;&quot; 456'\n></div>") ;

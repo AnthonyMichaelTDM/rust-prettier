@@ -41,8 +41,8 @@ fn test_call_js_format_1_57f33ffa() {
 #[test]
 fn test_comment_js_format_1_be97a20f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("a = (\n  // Comment 1\n  (Math.random() * (yRange * (1 - minVerticalFraction)))\n  + (minVerticalFraction * yRange)\n) - offset;\n\na +\n a +\n a + // comment\n a +\n a;\n\na &&\n  longLongLongLongLongLongLongLongLong &&\n  longLongLongLongLongLongLongLongLong &&  // comment\n  longLongLongLongLongLongLongLongLong &&\n  longLongLongLongLongLongLongLongLong\n\na ||\n  longLongLongLongLongLongLongLongLong ||\n  longLongLongLongLongLongLongLongLong ||  // comment\n  longLongLongLongLongLongLongLongLong ||\n  longLongLongLongLongLongLongLongLong\n\nvar a = x(abifornCringerMoshedPerplexSawder\n+ kochabCooieGameOnOboleUnweave // f\n+ glimseGlyphsHazardNoopsTieTie+bifornCringerMoshedPerplexSawder);\n\nfoo[\n  a +\n  a + // comment\n  a +\n  bar[\n    b +\n    b +\n    b + // comment\n    b +\n    b\n  ]\n];\n\n!(\n  a +\n  a + // comment\n  a +\n  !(\n    b +\n    b +\n    b + // comment\n    b +\n    b\n  )\n);") ;
@@ -101,8 +101,8 @@ fn test_in_instanceof_js_format_1_f909266c() {
 #[test]
 fn test_inline_jsx_js_format_1_7dc75589() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const user = renderedUser || <div><User name={this.state.user.name} age={this.state.user.age} /></div>;\n\nconst user2 = renderedUser || shouldRenderUser && <div><User name={this.state.user.name} age={this.state.user.age} /></div>;\n\nconst avatar = hasAvatar && <Gravatar user={author} size={size} />;\n\nconst avatar2 = (hasAvatar || showPlaceholder) && <Gravatar user={author} size={size} />;") ;
@@ -113,8 +113,8 @@ fn test_inline_jsx_js_format_1_7dc75589() {
 #[test]
 fn test_inline_object_array_js_format_1_f1cf1cb8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("prevState = prevState || {\n  catalogs: [],\n  loadState: LOADED,\n  opened: false,\n  searchQuery: '',\n  selectedCatalog: null,\n};\n\nprevState = prevState ||\n  defaultState || {\n    catalogs: [],\n    loadState: LOADED,\n    opened: false,\n    searchQuery: '',\n    selectedCatalog: null,\n  };\n\nprevState = prevState ||\n  defaultState && {\n    catalogs: [],\n    loadState: LOADED,\n    opened: false,\n    searchQuery: '',\n    selectedCatalog: null,\n  };\n\nprevState = prevState || useDefault && defaultState || {\n    catalogs: [],\n    loadState: LOADED,\n    opened: false,\n    searchQuery: '',\n    selectedCatalog: null,\n  };\n\nthis.steps = steps || [\n  {\n    name: 'mock-module',\n    path: '/nux/mock-module',\n  },\n];\n\nthis.steps = steps || checkStep && [\n  {\n    name: 'mock-module',\n    path: '/nux/mock-module',\n  },\n];\n\nthis.steps = steps && checkStep || [\n  {\n    name: 'mock-module',\n    path: '/nux/mock-module',\n  },\n];\n\nconst create = () => {\n  const result = doSomething();\n  return (\n    shouldReturn &&\n    result.ok && {\n      status: \"ok\",\n      createdAt: result.createdAt,\n      updatedAt: result.updatedAt\n    }\n  );\n}\n\nconst create2 = () => {\n  const result = doSomething();\n  return (\n    shouldReturn && result.ok && result || {\n      status: \"ok\",\n      createdAt: result.createdAt,\n      updatedAt: result.updatedAt\n    }\n  );\n}\n\nconst obj = {\n  state: shouldHaveState &&\n    stateIsOK && {\n      loadState: LOADED,\n      opened: false\n    },\n  loadNext: stateIsOK && hasNext || {\n      skipNext: true\n    },\n  loaded: true\n}") ;
@@ -137,8 +137,8 @@ fn test_jsx_parent_js_format_1_4ddcd601() {
 #[test]
 fn test_like_regexp_js_format_1_c03bae13() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("0 ? a : { b : 1 }/2;");
@@ -161,8 +161,8 @@ fn test_math_js_format_1_7250df2e() {
 #[test]
 fn test_return_js_format_1_a8188107() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo() {\n  return this.hasPlugin(\"dynamicImports\") && this.lookahead().type === tt.parenLeft.right;\n}\n\nfunction foo2() {\n  return this.hasPlugin(\"dynamicImports\") && this.lookahead().type === tt.parenLeft.right\n    ? true\n    : false;\n}\n\nfunction foo3() {\n  return this.calculate().compute().first.numberOfThings > this.calculate().compute().last.numberOfThings\n    ? true\n    : false;\n}") ;

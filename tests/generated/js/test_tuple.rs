@@ -141,8 +141,8 @@ fn test_tuple_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_js_format_1_97a05993() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const tuple1 = #[1, 2, 3];\n\nassert(tuple1[0] === 1);\n\nconst tuple2 = tuple1.with(0, 2);\nassert(tuple1 !== tuple2);\nassert(tuple2 === #[2, 2, 3]);\n\nconst tuple3 = #[1, ...tuple2];\nassert(tuple3 === #[1, 2, 2, 3]);\n\nconst tuple4 = tuple3.pushed(4);\nassert(tuple4 === #[1, 2, 2, 3, 4]);\n\nassert(tuple4.first() === 1);\nconst tuple5 = tuple4.popped();\nassert(tuple5 === #[2, 2, 3, 4]);") ;
@@ -177,8 +177,8 @@ fn test_tuple_trailing_comma_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_tuple_trailing_comma_js_format_1_f1d11605() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("#[1,]");

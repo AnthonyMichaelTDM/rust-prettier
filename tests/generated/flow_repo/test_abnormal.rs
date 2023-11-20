@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_break_continue_js_format_1_0d34b19f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo() {\n    while(true) { break; }\n}\n\nfunction bar() {\n    L: do { continue L; } while(false)\n}") ;
@@ -17,8 +17,8 @@ fn test_break_continue_js_format_1_0d34b19f() {
 #[test]
 fn test_return_js_format_1_da42602d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function bar(x:number) { }\nfunction foo() {\n    var x = null;\n    if (x == null) return;\n    bar(x);\n}") ;

@@ -44,8 +44,8 @@ fn test_b_1_js_format_1_4db10796() {
 #[test]
 fn test_b_3_js_format_1_057908e8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =

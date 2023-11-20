@@ -29,8 +29,8 @@ fn test_basic_vue_format_1_5e122296() {
 #[test]
 fn test_comment_vue_format_1_b5d45a9e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div v-if=\"\n            // leading comment\n    isFolder(   /* NOTE: I like pizza */file)\n    // trailing comment\n    \"\n  :format=\"   /* leading comment */ myFunc( /* NOTE: I like banana */ o as unknown ) /* trailing comment */\"\n  >{{ /* leading comment */ (   file as /* NOTE: I like sushi */   mymodule.Folder   ).deadline /* trailing comment */    }}</div>\n</template>\n\n<script lang=\"ts\"></script>") ;
@@ -41,8 +41,8 @@ fn test_comment_vue_format_1_b5d45a9e() {
 #[test]
 fn test_filter_vue_format_1_856c9210() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<script setup lang=\"ts\"></script>\n\n<!-- vue filters are only allowed in v-bind and interpolation -->\n<template>\n  <div>\n    <div class=\"allowed\">{{\n      value | thisIsARealSuperLongFilterPipe(\"arg1\", arg2 as unknown) | anotherPipeLongJustForFun | pipeTheThird\n    }}</div>\n    <div class=\"allowed\" v-bind:something='\n      value | thisIsARealSuperLongFilterPipe(\"arg1\", arg2 as unknown) | anotherPipeLongJustForFun | pipeTheThird\n    '></div>\n    <div class=\"allowed\" :class='\n      value | thisIsARealSuperLongFilterPipe(\"arg1\", arg2 as unknown) | anotherPipeLongJustForFun | pipeTheThird'\n    ></div>\n    <div class=\"not-allowed\" v-if='\n      value | thisIsARealSuperLongBitwiseOr(\"arg1\", arg2 as unknown) | anotherBitwiseOrLongJustForFun | bitwiseOrTheThird\n    '></div>\n  </div>\n</template>") ;
@@ -53,8 +53,8 @@ fn test_filter_vue_format_1_856c9210() {
 #[test]
 fn test_not_working_with_non_ts_script_vue_format_1_a2121d7d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["vue"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <p v-if=\"isFolder(file)\">{{ (   file as   mymodule.Folder    ).deadline }}</p>\n  <prettier :format=\" myFunc(  o as unknown )\" />\n</template>\n\n<script></script>") ;

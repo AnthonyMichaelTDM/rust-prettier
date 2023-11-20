@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_body_js_format_1_dd686c89() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("with (a);\nif (1); else if (2); else;\nfor (;;);\nwhile (1);\nfor (var i in o);\nfor (var i of o);\ndo; while(1);") ;
@@ -17,8 +17,8 @@ fn test_body_js_format_1_dd686c89() {
 #[test]
 fn test_no_newline_js_format_1_9cc36922() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("if (a) {\n  b;\n\n\n  ;\n}");

@@ -57,8 +57,8 @@ fn test_object_assign_js_format_1_5687dd0f() {
 #[test]
 fn test_object_create_js_format_1_059ed901() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nclass C { foo: string; }\n\n// OK, \\`instanceof C\\` would be true\n(Object.create(C.prototype): C);\n\n// OK, \\`instanceof C\\` would be true\n(Object.create(new C): C);\n\n// error, object literals don't structurally match instances\n({ foo: \"foo\" }: C);\n\n// error, object types don't structurally match instances\ntype O = { foo: string; }\ndeclare var o: O;\n(o: C);") ;
@@ -93,8 +93,8 @@ fn test_object_keys_js_format_1_83e10af2() {
 #[test]
 fn test_object_missing_js_format_1_a4fb5c9a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -109,8 +109,8 @@ fn test_object_missing_js_format_1_a4fb5c9a() {
 #[test]
 fn test_object_prototype_js_format_1_60c95de3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction takesABool(x: boolean) {}\nfunction takesAString(x: string) {}\nfunction takesANumber(x: number) {}\nfunction takesAnObject(x: Object) {}\n\nclass Foo {}\n\nvar a = { foo: 'bar' };\nvar b = { foo: 'bar', ...{}};\nvar c = { foo: 'bar', toString: function(): number { return 123; }};\nvar d : { [key: string]: string } = { foo: 'bar' };\nvar x = new Date();\nvar y = new Foo();\n\n//\n// toString\n//\n\n// call\ntakesAString(a.toString());\nd.toString(); // ok, even though dict specifies strings, this is a function\n\n// get\nvar aToString : () => string = a.toString;\nvar aToString2 = a.toString;\ntakesAString(aToString2());\n\n// set\nb.toString = function(): string { return 'foo'; };\nc.toString = function(): number { return 123; };\n\n// override\nvar cToString : () => number = c.toString;\n\n// ... on a built-in instance\nvar xToString : number = x.toString; // error\nvar xToString2 : () => number = x.toString; // error\ntakesAString(x.toString());\n\n// ... on an instance\nvar yToString : number = y.toString; // error\ntakesAString(y.toString());\n\n// ... on a primitive\n(123).toString();\n(123).toString;\n(123).toString = function() {}; // error\n(123).toString(2);\n(123).toString('foo'); // error\n(123).toString(null); // error\n\n\n//\n// hasOwnProperty\n//\n\n// call\ntakesABool(a.hasOwnProperty('foo'));\n\n// get\nvar aHasOwnProperty : (prop: string) => boolean = a.hasOwnProperty;\nvar aHasOwnProperty2 = a.hasOwnProperty;\ntakesABool(aHasOwnProperty2('bar'));\n\n// set\nb.hasOwnProperty = function() { return false; };\n\n// ... on a built-in instance\nvar xHasOwnProperty : number = x.hasOwnProperty; // error\nvar xHasOwnProperty2 : (prop: string) => number = x.hasOwnProperty; // error\ntakesABool(x.hasOwnProperty('foo'));\n\n// ... on an instance\nvar yHasOwnProperty : number = y.hasOwnProperty; // error\ntakesABool(y.hasOwnProperty('foo'));\n\n\n//\n// propertyIsEnumerable\n//\n\n// call\ntakesABool(a.propertyIsEnumerable('foo'));\n\n// get\nvar aPropertyIsEnumerable : (prop: string) => boolean = a.propertyIsEnumerable;\nvar aPropertyIsEnumerable2 = a.propertyIsEnumerable;\ntakesABool(aPropertyIsEnumerable2('bar'));\n\n// set\nb.propertyIsEnumerable = function() { return false; };\n\n// ... on a built-in instance\nvar xPropertyIsEnumerable : number = x.propertyIsEnumerable; // error\nvar xPropertyIsEnumerable2 : (prop: string) => number =\n  x.propertyIsEnumerable; // error\ntakesABool(x.propertyIsEnumerable('foo'));\n\n// ... on an instance\nvar yPropertyIsEnumerable : number = y.propertyIsEnumerable; // error\ntakesABool(y.propertyIsEnumerable('foo'));\n\n\n//\n// valueOf\n//\n\n// call\ntakesAnObject(a.valueOf());\n\n// get\nvar aValueOf : () => Object = a.valueOf;\nvar aValueOf2 = a.valueOf;\ntakesAnObject(aValueOf2());\n\n// set\nb.valueOf = function() { return {}; };\n\n// ... on a built-in instance\nvar xValueOf : number = x.valueOf; // error\ntakesANumber(x.valueOf());\n\n// ... on an instance\nvar yValueOf : number = y.valueOf; // error\ntakesAnObject(y.valueOf());\n\n// ... on a literal\nvar strValueOf : string = (\"foo\").valueOf();\nvar numValueOf : number = (123).valueOf();\nvar boolValueOf : boolean = (true).valueOf();\n\n//\n// toLocaleString\n//\n\n// call\ntakesAString(a.toLocaleString());\n\n// get\nvar aToLocaleString : () => string = a.toLocaleString;\nvar aToLocaleString2 = a.toLocaleString;\ntakesAString(aToLocaleString2());\n\n// set\nb.toLocaleString = function() { return 'derp'; };\n\n// ... on a built-in instance\nvar xToLocaleString : number = x.toLocaleString; // error\nvar xToLocaleString2 : () => number = x.toLocaleString; // error\ntakesAString(x.toLocaleString());\n\n// ... on an instance\nvar yToLocaleString : number = y.toLocaleString; // error\ntakesAString(y.toLocaleString());\n\n\n//\n// constructor\n//\n\nvar k : Object = a.constructor;\n(123).constructor;") ;

@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_ignore_mdx_semifalse_format_1_6696b60b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nNo comment:\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`") ;
@@ -18,8 +18,8 @@ fn test_ignore_mdx_semifalse_format_1_6696b60b() {
 #[test]
 fn test_ignore_mdx_format_1_6696b60b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nNo comment:\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`") ;
@@ -30,8 +30,8 @@ fn test_ignore_mdx_format_1_6696b60b() {
 #[test]
 fn test_import_export_mdx_semifalse_format_1_08365a02() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
         .semi(false)
         .build()
         .unwrap();
@@ -43,8 +43,8 @@ fn test_import_export_mdx_semifalse_format_1_08365a02() {
 #[test]
 fn test_import_export_mdx_format_1_08365a02() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import D from 'd'\nimport {A,B,C}    from \"hello-world\"\nimport {AAAAAAAAAAAAAAAAAAAAAAAA, BBBBBBBBBBBBBBBBBBBBBB, CCCCCCCCCCCCCCCCCCCCCCC}   from  'xyz';\n\n---\n\nimport D from 'd'\n\n\nimport {A,B,C}    from \"hello-world\"\n\n\nimport {AAAAAAAAAAAAAAAAAAAAAAAA, BBBBBBBBBBBBBBBBBBBBBB, CCCCCCCCCCCCCCCCCCCCCCC}   from  'xyz';\n\n---\n\nexport const meta = {\nauthors: [fred, sue],\nlayout: Layout\n}\n\nexport default () =>\n  <Doc     components={{\n        h1: ui.Heading,\n         p:    ui.Text,\n      code:     ui.Code\n         }}\n      />\n\n---\n\nexport const a = 1;\nexport const b = 1;") ;
@@ -55,9 +55,9 @@ fn test_import_export_mdx_format_1_08365a02() {
 #[test]
 fn test_inline_html_mdx_semifalse_format_1_0da8814c() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["mdx"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["mdx"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("This is an example of a component _being used in some italic markdown with some <Bolded />, \nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1 | Column 2 |\n| -- | -- |\n| **\\`Row 1 Code\\`** | Some text. |\n| **<code>Row 2 Code</code>** | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |") ;
@@ -68,8 +68,8 @@ fn test_inline_html_mdx_semifalse_format_1_0da8814c() {
 #[test]
 fn test_inline_html_mdx_format_1_0da8814c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("This is an example of a component _being used in some italic markdown with some <Bolded />, \nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1 | Column 2 |\n| -- | -- |\n| **\\`Row 1 Code\\`** | Some text. |\n| **<code>Row 2 Code</code>** | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |") ;
@@ -105,9 +105,9 @@ fn test_jsx_mdx_format_1_4741024f() {
 #[test]
 fn test_jsx_codeblock_mdx_semifalse_format_1_c5c7ba73() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["mdx"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["mdx"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\\`\\`\\`jsx\n<div>foo</div>\n\\`\\`\\`\n\n\\`\\`\\`jsx\nconst a = 1;\n<div>foo</div>;\n\\`\\`\\`") ;
@@ -118,8 +118,8 @@ fn test_jsx_codeblock_mdx_semifalse_format_1_c5c7ba73() {
 #[test]
 fn test_jsx_codeblock_mdx_format_1_c5c7ba73() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\\`\\`\\`jsx\n<div>foo</div>\n\\`\\`\\`\n\n\\`\\`\\`jsx\nconst a = 1;\n<div>foo</div>;\n\\`\\`\\`") ;
@@ -130,9 +130,9 @@ fn test_jsx_codeblock_mdx_format_1_c5c7ba73() {
 #[test]
 fn test_levels_mdx_semifalse_format_1_04ed8301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["mdx"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import     {     Foo,  Bar } from     './Fixture'\n\n# Hello,    world!\n\n<Foo bg='red'>\n   <div style={{   display:   'block'}   }>\n      <Bar    >hi    </Bar>\n       {  hello       }\n       {     /* another comment */}\n       </div>\n</Foo>\n\nasdfsdf <strong style={{fontWeight: 'bolder'}}>asdfasdf</strong>\n\n<Foo/>\ntest\n\n<ul>\n      <li   >item    {' '} </li>\n      <li/>\n        </ul >\n") ;
@@ -143,8 +143,8 @@ fn test_levels_mdx_semifalse_format_1_04ed8301() {
 #[test]
 fn test_levels_mdx_format_1_04ed8301() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["mdx"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import     {     Foo,  Bar } from     './Fixture'\n\n# Hello,    world!\n\n<Foo bg='red'>\n   <div style={{   display:   'block'}   }>\n      <Bar    >hi    </Bar>\n       {  hello       }\n       {     /* another comment */}\n       </div>\n</Foo>\n\nasdfsdf <strong style={{fontWeight: 'bolder'}}>asdfasdf</strong>\n\n<Foo/>\ntest\n\n<ul>\n      <li   >item    {' '} </li>\n      <li/>\n        </ul >\n") ;

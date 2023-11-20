@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_no_pragma_html_insert_pragmatrue_format_1_25429724() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .insert_pragma(true)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -22,9 +22,9 @@ fn test_no_pragma_html_insert_pragmatrue_format_1_25429724() {
 #[test]
 fn test_no_pragma_html_require_pragmatrue_format_1_25429724() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .require_pragma(true)
         .parsers(vec!["html"])
         .print_width(80)
+        .require_pragma(true)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -39,9 +39,9 @@ fn test_no_pragma_html_require_pragmatrue_format_1_25429724() {
 #[test]
 fn test_with_pragma_html_insert_pragmatrue_format_1_e4f75b98() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .insert_pragma(true)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -73,8 +73,8 @@ fn test_with_pragma_html_require_pragmatrue_format_1_e4f75b98() {
 #[test]
 fn test_with_pragma_2_html_insert_pragmatrue_format_1_2aea0308() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .parsers(vec!["html"])
         .insert_pragma(true)
+        .parsers(vec!["html"])
         .print_width(80)
         .build()
         .unwrap();
@@ -90,9 +90,9 @@ fn test_with_pragma_2_html_insert_pragmatrue_format_1_2aea0308() {
 #[test]
 fn test_with_pragma_2_html_require_pragmatrue_format_1_2aea0308() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
         .print_width(80)
         .require_pragma(true)
-        .parsers(vec!["html"])
         .build()
         .unwrap();
     let formatted = pretty_printer

@@ -70,8 +70,8 @@ fn test_graphql_js_format_1_55a22759() {
 #[test]
 fn test_graphql_tag_js_format_1_6bdd2dd6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import gql from \"graphql-tag\";\n\nconst query = gql\\`\n      {\n    user(   id :   5  )  {\n      firstName\n\n      lastName\n    }\n  }\n\\`;\n\n\n// With interpolations:\n\ngql\\`\nquery User {\n  user(id:5){\n    ...UserDetails\n    ...Friends\n  }\n}\n\n\\${USER_DETAILS_FRAGMENT}\\${FRIENDS_FRAGMENT}\n\\`\n\n\n// Skip if non-toplevel interpolation:\n\ngql\\`\nquery User {\n  user(id:\\${id}){ name }\n}\n\\`\n\n\n// Skip if top-level interpolation within comment:\n\ngql\\`\nquery User {\n  user(id:5){ name }\n}\n#\\${test}\n\\`\n\n\n// Comment on last line:\n\ngql\\`\nquery User {\n  user(id:5){ name }\n}\n# comment\\`\n// \\` <-- editor syntax highlighting workaround\n\n\n// Preserve up to one blank line between things and enforce linebreak between\n// interpolations:\n\ngql\\`\n# comment\n\\${one}\\${two}  \\${three}\n\\${four}\n\n\\${five}\n# comment\n\\${six}\n\n# comment\n\\${seven}\n# comment\n\n\\${eight}\n\n  # comment with trailing whitespace      \n\n\n# blank line above this comment\n\n\n\\`\n\n\n// Interpolation directly before and after query:\n\ngql\\`\\${one} query Test { test }\\${two}\\`\n\n\n// Only interpolation:\n\ngql\\`\\${test}\\`\n\n\n// Only comment:\n\ngql\\`# comment\\`\n// \\` <-- editor syntax highlighting workaround\n\n\n// Only whitespace:\n\ngql\\`   \\`\n\n\n// Empty:\n\ngql\\`\\`\n\n\n// Comments after other things:\n// Currently, comments after interpolations are moved to the next line.\n// We might want to keep them on the next line in the future.\n\ngql\\`\n  \\${test} # comment\n\n  query Test { # comment\n    test # comment\n  } # comment\n  \\${test} # comment\n  \\${test} # comment\n\n  \\${test} # comment\n\n  # comment\n  \\${test} # comment\n\\`\n\n\n// Larger mixed test:\n\ngql\\`\n\n\n\nquery User {\n  test\n}\n\n    \n\t\n\\${USER_DETAILS_FRAGMENT}\n\n   # Comment    \n   # that continues on a new line\n\n    \n   # and has a blank line in the middle\n\n    \\${FRIENDS_FRAGMENT}\n  \\${generateFragment({\n     totally:  \"a good idea\"\n    })}\n\n\\${fragment}#comment\n\nfragment another on User { name\n}\\${ fragment }\\`") ;
@@ -94,8 +94,8 @@ fn test_invalid_js_format_1_fd645794() {
 #[test]
 fn test_react_relay_js_format_1_711441bd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const { graphql } = require(\"react-relay\");\n\ngraphql\\`\n mutation     MarkReadNotificationMutation(\n    $input\n    : MarkReadNotificationData!\n  )\n{ markReadNotification(data: $input ) { notification {seenState} } }\n\\`;\n\ngraphql.experimental\\`\n mutation     MarkReadNotificationMutation(\n    $input\n    : MarkReadNotificationData!\n  )\n{ markReadNotification(data: $input ) { notification {seenState} } }\n\\`;") ;

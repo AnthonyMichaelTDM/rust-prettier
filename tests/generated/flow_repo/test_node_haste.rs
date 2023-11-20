@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_client_js_format_1_b23fb329() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("var md5 = require('./md5');");
@@ -17,8 +17,8 @@ fn test_client_js_format_1_b23fb329() {
 #[test]
 fn test_md_5_js_format_1_b084b9fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/* @providesModule md5 */");

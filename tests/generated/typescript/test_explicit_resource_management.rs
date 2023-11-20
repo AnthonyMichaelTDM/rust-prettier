@@ -17,8 +17,8 @@ fn test_await_using_with_type_declaration_ts_format_1_c6d58c26() {
 #[test]
 fn test_using_with_type_declaration_ts_format_1_c56a45c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("{\n    using     foo: Foo =    new Foo();\n}");

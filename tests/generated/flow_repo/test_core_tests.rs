@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_boolean_js_format_1_e03a9c6f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Boolean (the class) tests. booleans (the literals) are not part of core.js\n\nlet tests = [\n  // constructor\n  function() {\n    new Boolean();\n    new Boolean(0);\n    new Boolean(-0);\n    new Boolean(null);\n    new Boolean(false);\n    new Boolean(NaN);\n    new Boolean(undefined);\n    new Boolean(\"\");\n  },\n\n  // toString\n  function() {\n    (true).toString();\n    let x: boolean = false;\n    x.toString();\n    (new Boolean(true)).toString();\n  },\n\n  // valueOf\n  function() {\n    ((new Boolean(0)).valueOf(): boolean);\n  },\n\n  // casting\n  function() {\n    Boolean();\n    Boolean(0);\n    Boolean(-0);\n    Boolean(null);\n    Boolean(false);\n    Boolean(NaN);\n    Boolean(undefined);\n    Boolean(\"\");\n  },\n];") ;

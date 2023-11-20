@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_complex_md_prose_wrapalways_format_1_01facc8f() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted =
@@ -32,9 +32,9 @@ fn test_empty_md_prose_wrapalways_format_1_4b12a98d() {
 #[test]
 fn test_empty_2_md_prose_wrapalways_format_1_00327d87() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\n---\n\nContent");
@@ -45,9 +45,9 @@ fn test_empty_2_md_prose_wrapalways_format_1_00327d87() {
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_d199ddb9() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\nhello: world\n---");

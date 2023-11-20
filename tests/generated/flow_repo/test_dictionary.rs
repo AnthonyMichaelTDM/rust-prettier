@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_any_js_format_1_84a02aec() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nconst dict: {[key: string]: number} = {}\nconst k: any = 'foo'\nconst val: string = dict[k] // error: number incompatible with string") ;
@@ -41,8 +41,8 @@ fn test_dictionary_js_format_1_b7f4bec4() {
 #[test]
 fn test_incompatible_js_format_1_7f427ba8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nvar x : {[key: string]: string} = {};\nvar y : {[key: string]: number} = x; // 2 errors, number !~> string & vice versa\nvar z : {[key: number]: string} = x; // 2 errors, string !~> number & vice versa\n\nvar a : {[key: string]: ?string} = {};\nvar b : {[key: string]: string} = a; // 2 errors (null & undefined)\nvar c : {[key: string]: ?string} = b; // 2 errors, since c['x'] = null updates b\n\n// 2 errors (number !~> string, string !~> number)\nfunction foo0(x: Array<{[key: string]: number}>): Array<{[key: string]: string}> {\n  return x;\n}\n\n// error, fooBar:string !~> number (x's dictionary)\nfunction foo1(\n  x: Array<{[key: string]: number}>\n): Array<{[key: string]: number, fooBar: string}> {\n  return x;\n}\n\nfunction foo2(\n  x: Array<{[key: string]: mixed}>\n): Array<{[key: string]: mixed, fooBar: string}> {\n  x[0].fooBar = 123; // OK, since number ~> mixed (x elem's dictionary)\n  return x; // error: mixed ~> string\n}\n\n// OK, since we assume dictionaries have every key\nfunction foo3(x: {[key: string]: number}): {foo: number} {\n  return x;\n}\n\n// error: foo can't exist in x\nfunction foo4(x: {[key: string]: number}): {[key: string]: number, foo: string} {\n  return x;\n}\n\n// error, some prop in x could be incompatible (covariance)\nfunction foo5(x: Array<{[key: string]: number}>): Array<{foo: number}> {\n  return x;\n}\n\n// error, some prop in return could be incompatible\nfunction foo6(x: Array<{foo: number}>): Array<{[key: string]: number}> {\n  return x;\n}\n\nfunction foo7(x: {bar: string, [key: string]: number}) {\n  (x.bar: string);\n}\n\nfunction foo8(x: {[key: string]: number}) {\n  (x.foo: string); // error\n  (x.foo: number);\n}") ;
@@ -53,8 +53,8 @@ fn test_incompatible_js_format_1_7f427ba8() {
 #[test]
 fn test_issue_1745_js_format_1_210a2c6a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nclass A {\n  x: {[k:string]: number};\n\n  m1() {\n    this.x = { bar: 0 }; // no error\n  }\n\n  m2() {\n    this.x.foo = 0; // no error\n  }\n}\n\nclass B {\n  x: {[k:string]: number};\n\n  m2() {\n    this.x.foo = 0; // no error\n  }\n\n  m1() {\n    this.x = { bar: 0 }; // no error\n  }\n}") ;

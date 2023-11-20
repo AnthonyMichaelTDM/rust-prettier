@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_abstract_class_ts_format_1_d53c510f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("abstract class AbstractRule {\n    /**\n     * @deprecated\n     * Failures will be filtered based on \\`tslint:disable\\` comments by tslint.\n     * This method now does nothing.\n     */\n    filterFailures() {}\n}") ;
@@ -29,8 +29,8 @@ fn test_abstract_methods_ts_format_1_60fc9244() {
 #[test]
 fn test_after_jsx_generic_tsx_format_1_d46197ce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("let comp = (\n  <>\n    <Component<number> /* comment1 */></Component>\n    <Component<number> foo /* comment2 */></Component>\n    <Component<number> /* comment3 */ bar></Component>\n    <Component<number> foo /* comment4 */ bar></Component>\n\n    <Component<number>\n      // comment5\n    ></Component>\n    <Component<number>\n      foo\n      // comment6\n    ></Component>\n    <Component<number>\n      // comment7\n      foo\n    ></Component>\n    <Component<number>\n      foo\n      // comment8\n      bar\n    ></Component>\n  </>\n);") ;
@@ -77,8 +77,8 @@ fn test_issues_ts_format_1_a8ecf1c4() {
 #[test]
 fn test_jsx_tsx_format_1_05b16103() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var example1 = <div>\n\thttps://test\n</div>;\n\nvar example2 = <div>\n\t/*test*/\n</div>;") ;
@@ -104,8 +104,8 @@ fn test_location_ts_format_1_d88a3da9() {
 #[test]
 fn test_mapped_types_ts_format_1_2708cb8b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type A = {\n  // commentA\n  [a in A]: string;\n}\n\ntype B = {\n  /* commentB */ [b in B]: string\n}\n\ntype C = {\n  [/* commentC */ c in C]: string\n}\n\ntype D = {\n  [d /* commentD */ in D]: string\n}\n\ntype E = {\n  [e in /* commentE */ E]: string\n}\n\ntype F = {\n  [f in F /* commentF */]: string\n}\n\ntype G = {\n  [g in G] /* commentG */: string\n}\n\ntype H = { /* commentH */ [h in H]: string }\n\ntype I = { [/* commentI */ i in I]: string }\n\ntype J = { [j /* commentJ */ in J]: string }\n\ntype K = { [k in /* commentK */ K]: string }\n\ntype L = { [l in L /* commentL */]: string }\n\ntype M = { [m in M] /* commentG */: string }") ;
@@ -116,8 +116,8 @@ fn test_mapped_types_ts_format_1_2708cb8b() {
 #[test]
 fn test_method_types_ts_format_1_f8c37203() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface foo1 {\n  bar3/* foo */ (/* baz */) // bat\n  bar/* foo */ ? /* bar */ (/* baz */) /* bat */;\n  bar2/* foo */ (/* baz */) /* bat */\n}\n\ninterface foo2 {\n  bar/* foo */ ? /* bar */ (bar: /* baz */ string): /* bat */ string;\n}\n\ninterface foo3 {\n  /* foo */ (/* bar */): /* baz */ string;\n}\n\ninterface foo4 {\n  /* foo */ (bar: /* bar */ string): /* baz */ string;\n}\n\ninterface foo5 {\n  /* foo */ new /* bar */  (a: /* baz */ string): /* bat */ string\n}\n\ninterface foo6 {\n  /* foo */ new /* bar */ (/* baz */): /* bat */ string\n}\n\ntype foo7 = /* foo */ (/* bar */) /* baz */ => void\n\ntype foo8 = /* foo */ (a: /* bar */ string) /* baz */ => void\n\nlet foo9: new /* foo */ (/* bar */) /* baz */ => string;\n\nlet foo10: new /* foo */ (a: /* bar */ string) /* baz */ => string;\n\nabstract class Test {\n  abstract foo12 /* foo */ (a: /* bar */ string): /* baz */ void\n\n  abstract foo13 /* foo */ (/* bar */) /* baz */\n}") ;
@@ -140,8 +140,8 @@ fn test_methods_ts_format_1_cdedc3fc() {
 #[test]
 fn test_ts_parameter_proerty_ts_format_1_289ee52f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A {\n  constructor(\n      private readonly paramProp: Type,\n    // comment\n  ) {\n  }\n}") ;
@@ -152,8 +152,8 @@ fn test_ts_parameter_proerty_ts_format_1_289ee52f() {
 #[test]
 fn test_type_literals_ts_format_1_6e3afe7a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type Props1 = // (DispatchProps & StateProps); WHY DON'T YOU WORK FLOW!!!!!!!!!\n{\n  isPlaying: boolean,\n};\n\ntype Props2 = { // (DispatchProps & StateProps); WHY DON'T YOU WORK FLOW!!!!!!!!!\n  isPlaying: boolean\n};\n\ntype Props3 = {\n  // (DispatchProps & StateProps); WHY DON'T YOU WORK FLOW!!!!!!!!!\n  isPlaying: boolean\n};") ;
@@ -193,8 +193,8 @@ fn test_types_ts_format_1_af342ffc() {
 #[test]
 fn test_union_ts_format_1_78e1e38f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type UploadState<E, EM, D>\n  // The upload hasnt begun yet\n  = {type: \"Not_begun\"}\n  // The upload timed out\n  | {type: \"Timed_out\"}\n  // Failed somewhere on the line\n  | {type: \"Failed\", error: E, errorMsg: EM}\n  // Uploading to aws3 and CreatePostMutation succeeded\n  | {type: \"Success\", data: D};\n\ntype UploadState2<E, EM, D>\n  // The upload hasnt begun yet\n  = A\n  // The upload timed out\n  | B\n  // Failed somewhere on the line\n  | C\n  // Uploading to aws3 and CreatePostMutation succeeded\n  | D;") ;

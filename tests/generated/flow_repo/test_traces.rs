@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_traces_js_format_1_bbdae1ed() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// arg/param type mismatch on arg 0\nfunction g0(y:string) { }\nfunction f0(x) { g0(x) }\nf0(0);\n\n// ...on arg n\nfunction g1(a:string, b:string) { }\nfunction f1(x, y) { g1(x, y) }\nf1(\"hey\", 0);\n\n// h/o call with function expr\nfunction g2(ylam: (s:string) => number) { }\nfunction f2(xlam) { g2(xlam) }\nf2(function(x) { return x * x });\n\n// h/o call with function def\nfunction g3(ylam: (s:string) => number) { }\nfunction f3(xlam) { g3(xlam) }\nfunction double(n) { return n * 2 }\nf3(double);") ;

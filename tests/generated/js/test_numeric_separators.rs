@@ -13,8 +13,8 @@ fn test_number_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_number_js_format_1_7d75c180() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

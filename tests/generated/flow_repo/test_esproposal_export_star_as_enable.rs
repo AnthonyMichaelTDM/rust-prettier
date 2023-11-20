@@ -33,8 +33,8 @@ fn test_source_js_format_1_c687bd04() {
 #[test]
 fn test_test_js_format_1_653fb46a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @flow\n\nexport * as source from \"./source\";");

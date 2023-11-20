@@ -11,11 +11,11 @@ mod test_long_table;
 #[cfg(test)]
 mod test_html;
 #[cfg(test)]
-mod test_imageReference;
+mod test_image_reference;
 #[cfg(test)]
 mod test_math;
 #[cfg(test)]
-mod test_footnoteDefinition;
+mod test_footnote_definition;
 #[cfg(test)]
 mod test_ignore;
 #[cfg(test)]
@@ -43,27 +43,27 @@ mod test_link;
 #[cfg(test)]
 mod test_footnote;
 #[cfg(test)]
-mod test_splitCjkText;
+mod test_split_cjk_text;
 #[cfg(test)]
 mod test_multiparser_js;
 #[cfg(test)]
-mod test_footnoteReference;
+mod test_footnote_reference;
 #[cfg(test)]
 mod test_auto_link;
 #[cfg(test)]
 mod test_indentation;
 #[cfg(test)]
-mod test_inlineCode;
+mod test_inline_code;
 #[cfg(test)]
 mod test_broken_plugins;
 #[cfg(test)]
 mod test_front_matter;
 #[cfg(test)]
-mod test_linkReference;
+mod test_link_reference;
 #[cfg(test)]
 mod test_image;
 #[cfg(test)]
-mod test_thematicBreak;
+mod test_thematic_break;
 #[cfg(test)]
 mod test_list;
 #[cfg(test)]

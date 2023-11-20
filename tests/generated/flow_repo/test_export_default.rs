@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_p_js_format_1_cc03cbee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("module.exports = require('M');");
@@ -17,8 +17,8 @@ fn test_p_js_format_1_cc03cbee() {
 #[test]
 fn test_test_js_format_1_5f83bfc5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var M = require('M');\nvar N = require('N');\nN.x = M(N.x);\nvar P = require('./P'); // implementation of P redirects to module M\nN.y = P(N.y);\nvar Q = require('Q'); // declaration of Q redirects to module M\nN.z = Q(N.z);") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_date_js_format_1_785adfce() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var d = new Date(0);\nvar x:string = d.getTime();\n\nvar y:number = d;\n\n// valid constructors\nnew Date();\nnew Date(1234567890);\nnew Date('2015/06/18');\nnew Date(2015, 6);\nnew Date(2015, 6, 18);\nnew Date(2015, 6, 18, 11);\nnew Date(2015, 6, 18, 11, 55);\nnew Date(2015, 6, 18, 11, 55, 42);\nnew Date(2015, 6, 18, 11, 55, 42, 999);\n\n// invalid constructors\nnew Date({});\nnew Date(2015, '6');\nnew Date(2015, 6, '18');\nnew Date(2015, 6, 18, '11');\nnew Date(2015, 6, 18, 11, '55');\nnew Date(2015, 6, 18, 11, 55, '42');\nnew Date(2015, 6, 18, 11, 55, 42, '999');\nnew Date(2015, 6, 18, 11, 55, 42, 999, 'hahaha');\nnew Date('2015', 6);") ;

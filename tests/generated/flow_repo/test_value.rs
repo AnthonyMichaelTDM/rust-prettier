@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_value_js_format_1_ab5855fd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var o = {};\no[\"x\"] = 4;\nvar y:string = o[\"x\"];\n\nvar table: { [_: string]: number } = {};\ntable[\"x\"] = \"hello\";") ;

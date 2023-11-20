@@ -41,8 +41,8 @@ fn test_c_js_format_1_01f60f2e() {
 #[test]
 fn test_d_js_format_1_2678d60b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("declare var x: {\n  x: { foo: string }\n};\ndeclare var y: {\n  // $FlowFixMe - this location is only mentioned in the extra section\n  x: { bar: number }\n};\nx = y;") ;

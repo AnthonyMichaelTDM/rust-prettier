@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_custom_parser_md_format_1_8c835e39() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -21,8 +21,8 @@ fn test_custom_parser_md_format_1_8c835e39() {
 #[test]
 fn test_empty_md_format_1_7bf837f2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\n---\n\n__123__\n**456**");

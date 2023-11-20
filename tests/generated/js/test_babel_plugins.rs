@@ -29,8 +29,8 @@ fn test_async_do_expressions_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_async_do_expressions_js_format_1_41658069() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("async do { await requestAPI().json() };");
@@ -41,8 +41,8 @@ fn test_async_do_expressions_js_format_1_41658069() {
 #[test]
 fn test_async_generators_js_format_1_eba74089() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions\n\nasync function* agf() {\n  await 1;\n  yield 2;\n}") ;
@@ -65,8 +65,8 @@ fn test_bigint_js_format_1_d70fcd72() {
 #[test]
 fn test_class_properties_js_format_1_9d9a3f60() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-class-properties\n\nclass Bork {\n    //Property initializer syntax\n    instanceProperty = \"bork\";\n    boundFunction = () => {\n      return this.instanceProperty;\n    };\n\n    //Static class properties\n    static staticProperty = \"babelIsCool\";\n    static staticFunction = function() {\n      return Bork.staticProperty;\n    };\n  }\n\n  let myBork = new Bork;\n\n  //Property initializers are not on the prototype.\n  console.log(myBork.__proto__.boundFunction); // > undefined\n\n  //Bound functions are bound to the class instance.\n  console.log(myBork.boundFunction.call(undefined)); // > \"bork\"\n\n  //Static function exists on the class.\n  console.log(Bork.staticFunction()); // > \"babelIsCool\"") ;
@@ -77,8 +77,8 @@ fn test_class_properties_js_format_1_9d9a3f60() {
 #[test]
 fn test_class_static_block_js_format_1_ff536fae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class C {\n  static #x = 42;\n  static y;\n  static {\n    try {\n      this.y = doSomethingWith(this.#x);\n    } catch {\n      this.y = \"unknown\";\n    }\n  }\n}") ;
@@ -141,8 +141,8 @@ fn test_decorator_auto_accessors_js_espree_format_1_d41d8cd9() {
 #[test]
 fn test_decorator_auto_accessors_js_format_1_407125f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -281,8 +281,8 @@ fn test_do_expressions_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_do_expressions_js_format_1_bbd44dcf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressions\n\nlet a = do {\n  if(x > 10) {\n    'big';\n  } else {\n    'small';\n  }\n};\n// is equivalent to:\nlet a = x > 10 ? 'big' : 'small';") ;
@@ -329,8 +329,8 @@ fn test_explicit_resource_management_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_explicit_resource_management_js_format_1_067ac2a9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function * g() {\n  using handle = acquireFileHandle(); // block-scoped critical resource\n} // cleanup\n\n{\n  using obj = g(); // block-scoped declaration\n  const r = obj.next();\n} // calls finally blocks in \\`g\\`\n\n{\n  await using obj = g();\n}") ;
@@ -477,8 +477,8 @@ fn test_function_bind_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_function_bind_js_format_1_ae628d65() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-function-bind\n\nobj::func\n// is equivalent to:\nfunc.bind(obj)\n\n::obj.func\n// is equivalent to:\nobj.func.bind(obj)\n\nobj::func(val)\n// is equivalent to:\nfunc.call(obj, val)\n\n::obj.func(val)\n// is equivalent to:\nobj.func.call(obj, val)") ;
@@ -513,8 +513,8 @@ fn test_function_sent_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_function_sent_js_format_1_b35c6cb2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-function-sent\n\nfunction* generator() {\n    console.log(\"Sent\", function.sent);\n    console.log(\"Yield\", yield);\n}\n\nconst iterator = generator();\niterator.next(1); // Logs \"Sent 1\"\niterator.next(2); // Logs \"Yield 2\"") ;
@@ -589,8 +589,8 @@ fn test_import_assertions_static_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_import_assertions_static_js_format_1_cb2c9c31() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -629,8 +629,8 @@ fn test_import_attributes_dynamic_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_import_attributes_dynamic_js_format_1_6a8fb020() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import(\"./foo.json\", { with: { type: \"json\" } });");
@@ -684,8 +684,8 @@ fn test_import_attributes_static_js_format_1_d213dee3() {
 #[test]
 fn test_import_meta_js_format_1_4e73fb53() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-syntax-import-meta\n\n// Enabled by default https://github.com/babel/babel/pull/11406\n\n// from https://github.com/tc39/proposal-import-meta\n\n(async () => {\n  const response = await fetch(new URL(\"../hamsters.jpg\", import.meta.url));\n  const blob = await response.blob();\n\n  const size = import.meta.scriptElement.dataset.size || 300;\n\n  const image = new Image();\n  image.src = URL.createObjectURL(blob);\n  image.width = image.height = size;\n\n  document.body.appendChild(image);\n})();") ;
@@ -744,8 +744,8 @@ fn test_jsx_js_format_1_64779c95() {
 #[test]
 fn test_logical_assignment_operators_js_format_1_f8bed0dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators\n\na ||= b;\nobj.a.b ||= c;\n\na &&= b;\nobj.a.b &&= c;") ;
@@ -936,8 +936,8 @@ fn test_partial_application_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_partial_application_js_format_1_f9d9d611() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-partial-application\n\nfunction add(x, y) { return x + y; }\n\nconst addOne = add(1, ?); // apply from the left\naddOne(2); // 3\n\nconst addTen = add(?, 10); // apply from the right\naddTen(2); // 12\n\nlet newScore = player.score\n  |> add(7, ?)\n  |> clamp(0, 100, ?); // shallow stack, the pipe to \\`clamp\\` is the same frame as the pipe to \\`add\\`.\n\nf(x, ?)           // partial application from left\nf(?, x)           // partial application from right\nf(?, x, ?)        // partial application for any arg\no.f(x, ?)         // partial application from left\no.f(?, x)         // partial application from right\no.f(?, x, ?)      // partial application for any arg\nsuper.f(?)        // partial application allowed for call on |SuperProperty|") ;
@@ -1056,8 +1056,8 @@ fn test_pipeline_operator_minimal_js_format_1_7e468963() {
 #[test]
 fn test_private_fields_in_in_js_format_1_890e6a97() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://github.com/tc39/proposal-private-fields-in-in\n\nclass C {\n  #brand;\n\n  static isC(obj) {\n    try {\n      obj.#brand;\n      return true;\n    } catch {\n      return false;\n    }\n  }\n}\n\nclass C2 {\n  #data = null; // populated later\n\n  get #getter() {\n    if (!this.#data) {\n      throw new Error('no data yet!');\n    }\n    return this.#data;\n  }\n\n  static isC(obj) {\n    try {\n      obj.#getter;\n      return true;\n    } catch {\n      return false; // oops! might have gotten here because \\`#getter\\` threw :-(\n    }\n  }\n}\n\nclass C3 {\n  #brand;\n\n  #method() {}\n\n  get #getter() {}\n\n  static isC(obj) {\n    return #brand in obj && #method in obj && #getter in obj;\n  }\n}\n\n// Invalid https://github.com/tc39/proposal-private-fields-in-in#try-statement\n// class C {\n//   #brand;\n\n//   static isC(obj) {\n//     return try obj.#brand;\n//   }\n// }") ;
@@ -1068,8 +1068,8 @@ fn test_private_fields_in_in_js_format_1_890e6a97() {
 #[test]
 fn test_private_methods_js_format_1_e9581d9e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// https://babeljs.io/docs/en/babel-plugin-proposal-private-methods\n\n// Test for \\`classPrivateProperties\\` and \\`classPrivateMethods\\`\n\nclass Counter extends HTMLElement {\n  #xValue = 0;\n  #render() {}\n\n  get #x() { return this.#xValue; }\n  set #x(value) {\n    this.#xValue = value;\n    window.requestAnimationFrame(\n      this.#render.bind(this));\n  }\n\n  #clicked() {\n    this.#x++;\n  }\n}") ;
@@ -1140,8 +1140,8 @@ fn test_record_tuple_tuple_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_record_tuple_tuple_js_format_1_ddd9b2bc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("const tuple1 = #[1, 2, 3];");
@@ -1196,8 +1196,8 @@ fn test_regexp_modifiers_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_regexp_modifiers_js_format_1_96351ebb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "babel-ts", "babel-flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("const re = /^(?i:[a-z])[a-z]$/;");

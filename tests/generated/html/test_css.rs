@@ -29,8 +29,8 @@ fn test_less_html_format_1_7c8c7840() {
 #[test]
 fn test_postcss_html_format_1_a3ddc168() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<style type=\"text/css\">\n  body { background: navy; color: yellow; }\n</style>\n\n<style lang=\"postcss\">\n  body { background: navy; color: yellow; }\n</style>") ;

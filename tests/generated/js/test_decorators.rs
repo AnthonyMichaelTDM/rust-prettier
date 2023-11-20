@@ -49,8 +49,8 @@ fn test_comments_js_espree_format_1_d41d8cd9() {
 #[test]
 fn test_comments_js_format_1_2da35880() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var x = 100\n\n@Hello({\n  a: 'a', // Comment is in the wrong place\n  // test\n  b: '2'\n})\nclass X {\n\n}\n\n\n@NgModule({\n  // Imports.\n  imports: [\n    // Angular modules.\n    BrowserModule,\n\n    // App modules.\n    CoreModule,\n    SharedModule,\n  ],\n})\nexport class AppModule {}\n\n// A\n@Foo()\n// B\n@Bar()\n// C\nexport class Bar{}\n\nclass Something {\n    @Annotateme()\n    property;\n}") ;
@@ -105,8 +105,8 @@ fn test_methods_js_espree_format_1_d41d8cd9() {
 #[test]
 fn test_methods_js_format_1_59dddbd8() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\nclass Yo {\n  @foo(\"hello\")\n  async plop() {}\n\n  @anotherDecoratorWithALongName(\"and a very long string as a first argument\")\n  async plip() {}\n\n  @anotherDecoratorWithALongName(\"another very long string, but now inline\") async plip() {}\n}") ;
@@ -161,8 +161,8 @@ fn test_mobx_js_espree_format_1_d41d8cd9() {
 #[test]
 fn test_mobx_js_format_1_90ddb0eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import {observable} from \"mobx\";\n\n@observer class OrderLine {\n  @observable price = 0;\n  @observable amount = 1;\n\n  constructor(price) {\n    this.price = price;\n  }\n\n  @computed get total() {\n    return this.price * this.amount;\n  }\n\n  @action.bound setPrice(price) {\n    this.price = price;\n  }\n\n  @computed\n  get total() {\n    return this.price * this.amount;\n  }\n\n  @action.bound\n  setPrice(price) {\n    this.price = price;\n  }\n\n  @computed @computed @computed @computed @computed @computed @computed get total() {\n    return this.price * this.amount;\n  }\n\n  @action handleDecrease = (event) => this.count--;\n\n  @action handleSomething = (event) => doSomething();\n}") ;
@@ -273,8 +273,8 @@ fn test_redux_js_espree_format_1_d41d8cd9() {
 #[test]
 fn test_redux_js_format_1_3de2e328() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("@connect(mapStateToProps, mapDispatchToProps)\nexport class MyApp extends React.Component {}\n\n@connect(state => ({ todos: state.todos }))\nexport class Home extends React.Component {}") ;

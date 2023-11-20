@@ -76,8 +76,8 @@ fn test_empty_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_empty_js_format_1_7f9214eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export * as foo from \"foo.json\"\nexport * as bar from \"bar.json\" with { }\nexport * as baz from \"baz.json\" with { /* comment */ }\n\nimport * as foo from \"foo.json\"\nimport * as bar from \"bar.json\" with { }\nimport * as baz from \"baz.json\" with { /* comment */ }") ;
@@ -168,8 +168,8 @@ fn test_non_type_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_non_type_js_format_1_49d234e9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import foo from \"foo.json\" with { lazy: \"true\" };");
@@ -215,8 +215,8 @@ fn test_re_export_js_typescript_format_1_d41d8cd9() {
 #[test]
 fn test_re_export_js_format_1_840dcd71() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export { default as foo2 } from \"foo.json\" with { type: \"json\" };\nexport * from \"foo.json\" with { type: \"json\" };\nexport * as foo3 from \"foo.json\" with { type: \"json\" };") ;

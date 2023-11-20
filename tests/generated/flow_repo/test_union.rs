@@ -17,8 +17,8 @@ fn test_blowup_js_format_1_2317bbab() {
 #[test]
 fn test_fields_js_format_1_1d1fbe1f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -145,8 +145,8 @@ fn test_issue_326_js_format_1_22507602() {
 #[test]
 fn test_issue_582_js_format_1_b0adba88() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/***\n * nested unions\n * @flow\n */\n\n// inline\nvar nested1: ('foo' | 'bar') | 'baz' = 'baz';\n\n// through tvars\ntype FooBar = 'foo' | 'bar';\ntype Baz = 'baz';\ntype FooBarBaz = FooBar | Baz;\n\nvar nested2: FooBarBaz = 'baz';") ;
@@ -181,8 +181,8 @@ fn test_test_js_format_1_5dce1dad() {
 #[test]
 fn test_test_lib_js_format_1_5dc62d07() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -197,8 +197,8 @@ fn test_test_lib_js_format_1_5dc62d07() {
 #[test]
 fn test_type_app_js_format_1_d22bb377() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nclass LocalClass<T> {}\n\nvar a: LocalClass<number> | number = 123;\n\n// Iterator is defined in a lib file, so the speculative algorithm for the\n// union type would incorrectly succeed for Iterator<number>. Only later during\n// the merge would we fine the error, but it would be too late. The diff that\n// introduces this test fixes this such that the speculative algorithm is\n// correctly delayed upon encountering a non-concrete TypeAppT\nvar b: Iterator<number> | number = 123;") ;

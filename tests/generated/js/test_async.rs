@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_async_iteration_js_format_1_71888016() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\nasync function * a() {\n    yield* b();\n}\n\nclass X {\n    async * b() {\n        yield* a();\n    }\n}") ;
@@ -53,8 +53,8 @@ fn test_conditional_expression_js_format_1_0723f3f4() {
 #[test]
 fn test_exponentiation_js_format_1_a5e8a41b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("async () => (await 5) ** 6;");
@@ -65,8 +65,8 @@ fn test_exponentiation_js_format_1_a5e8a41b() {
 #[test]
 fn test_inline_await_js_format_1_815e1e5e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("async function f() {\n  const admins = (await(db.select('*').from('admins').leftJoin('bla').where('id', 'in', [1,2,3,4]))).map(({id, name})=>({id, name}))\n}") ;
@@ -101,8 +101,8 @@ fn test_nested_2_js_format_1_d296cd2e() {
 #[test]
 fn test_parens_js_format_1_2693d21d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(

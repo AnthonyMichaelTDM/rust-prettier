@@ -29,8 +29,8 @@ fn test_color_level_4_css_format_1_75a67dc1() {
 #[test]
 fn test_current_color_css_format_1_53db9028() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -70,8 +70,8 @@ fn test_hexcolor_css_format_1_aedb2458() {
 #[test]
 fn test_whitespace_syntax_css_format_1_1ede3259() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".foo {\n    color: rgba(51 170 51 / 0.4);\n    color: rgba(51 170 51 / 40%);\n    color: hsl(270 60% 50% / .15);\n    color: hsla(240 100% 50% / .05);\n    color: hsla(240 100% 50% / 5%);\n}") ;

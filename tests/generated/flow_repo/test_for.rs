@@ -17,8 +17,8 @@ fn test_abnormal_js_format_1_aa827120() {
 #[test]
 fn test_abnormal_for_in_js_format_1_c9d057c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo(x: boolean) {\n  var obj = { a: 1, b: 2};\n  for (var prop in obj) {\n    if (x) {\n      continue;\n    }\n    return;\n  }\n  console.log('this is still reachable');\n}\n\nfunction bar(x: boolean) {\n  for (var prop in {}) {\n    return;\n  }\n  console.log('this is still reachable');\n}\n\nfunction baz(x: boolean) {\n  for (var prop in {}) {\n    continue;\n  }\n  console.log('this is still reachable');\n}\n\nfunction bliffl(x: boolean) {\n  var obj = { a: 1, b: 2};\n  loop1: for (var prop1 in obj) {\n    loop2: for (var prop2 in obj) {\n      break loop1;\n    }\n    console.log('this is still reachable');\n  }\n  console.log('this is still reachable');\n}\n\nfunction corge(x: boolean) {\n  for (var prop in {}) {\n    break;\n  }\n  console.log('this is still reachable');\n}") ;

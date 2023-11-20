@@ -17,8 +17,8 @@ fn test_explicit_provides_module_different_name_js_format_1_a843989f() {
 #[test]
 fn test_explicit_provides_module_same_name_js_format_1_30b08278() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/*\n * @providesModule ExplicitProvidesModuleSameName\n * @flow\n */\n\nmodule.exports.fun = (): string => \"hello there\";") ;
@@ -41,8 +41,8 @@ fn test_implicit_provides_module_js_format_1_b3376373() {
 #[test]
 fn test_md_5_js_format_1_b084b9fa() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("/* @providesModule md5 */");

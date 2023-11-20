@@ -17,8 +17,8 @@ fn test_overload_js_format_1_26b1bfd0() {
 #[test]
 fn test_test_js_format_1_34f00059() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo() {\n  var output = new FakeUint8Array();\n  output.set(new FakeUint8Array(), 0); // matches one of the overloads of set\n}") ;
@@ -41,8 +41,8 @@ fn test_test_2_js_format_1_eebe52d3() {
 #[test]
 fn test_test_3_js_format_1_52e8e9d2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// passing a union-like thing into an overload is ok\n// if overload handles each branch of union-like thing\n\n// unions\ndeclare function f(x: string): void;\ndeclare function f(x: number): void;\ndeclare var x_f: string | number;\nf(x_f); // ok\n\n// maybe\ndeclare function g(x: null): void;\ndeclare function g(x: void): void;\ndeclare function g(x: string): void;\ndeclare var x_g: ?string;\ng(x_g); // ok\n\n// optional\ndeclare function h(x: void): void;\ndeclare function h(x: string): void;\ndeclare var x_h: {p?: string};\nh(x_h.p); // ok") ;
@@ -53,8 +53,8 @@ fn test_test_3_js_format_1_52e8e9d2() {
 #[test]
 fn test_union_js_format_1_3777ad5c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo<U> (x: $Either<Array<U>,U>): Array<U> { return []; }\n\nvar x1:number = foo(0)[0];\nvar x2:string = foo([\"\"])[0];") ;

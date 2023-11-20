@@ -17,8 +17,8 @@ fn test_gen_big_disjoint_union_js_format_1_93692026() {
 #[test]
 fn test_test_js_format_1_30335c5c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type A = {a: number};\ntype B = {b: number};\ntype C = {c: number};\n\ntype T1 = (A | B) & C;\nfunction f1(x: T1): T1 { return x; }\n\ntype T2 = (A & B) | C;\nfunction f2(x: T2): T2 { return x; }\n\ntype T3 = (A & C) | (B & C);\nfunction f3(x: T3): T3 { return x; }\n\ntype T4 = (A | C) & (B | C);\nfunction f4(x: T4): T4 { return x; }") ;

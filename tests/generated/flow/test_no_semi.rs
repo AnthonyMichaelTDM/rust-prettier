@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_js_semifalse_format_1_4e9b38cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
         .print_width(80)
         .semi(false)
-        .parsers(vec!["flow"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("let error = new Error(response.statusText);\n// comment\n(error: any).response = response\n\nx;\n\n/* comment */ (error: any).response = response\n\nx;\n\n(error: any).response = response; /* comment */") ;
@@ -30,9 +30,9 @@ fn test_comments_js_format_1_4e9b38cf() {
 #[test]
 fn test_flow_class_properties_js_semifalse_format_1_fab6bf1c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .semi(false)
         .parsers(vec!["flow"])
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A {\n  +one = function() {};\n  -two = val();\n  static +three = val();\n  +#privOne = val();\n  static +#privTwo = val();\n  +[computed] = val();\n}") ;
@@ -81,8 +81,8 @@ fn test_flow_interfaces_js_format_1_032b36ea() {
 fn test_no_semi_js_semifalse_format_1_9df4c8de() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["flow"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// flow\n\n(x: void);\n(y: void)");
@@ -93,8 +93,8 @@ fn test_no_semi_js_semifalse_format_1_9df4c8de() {
 #[test]
 fn test_no_semi_js_format_1_9df4c8de() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// flow\n\n(x: void);\n(y: void)");

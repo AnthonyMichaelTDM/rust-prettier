@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_default_binding_js_format_1_60e02ad7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import source from \"x\";");
@@ -77,8 +77,8 @@ fn test_import_source_attributes_declaration_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_import_source_attributes_declaration_js_format_1_3dedd0bf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import source s from \"x\" with { attr: \"val\" };");
@@ -116,8 +116,8 @@ fn test_import_source_attributes_expression_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_import_source_attributes_expression_js_format_1_6be33cf2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import.source(\"x\", { with: { attr: \"val\" } });");

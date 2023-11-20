@@ -6,8 +6,8 @@ static INFINITY: usize = usize::MAX;
 fn test_with_pragma_yml_require_pragmatrue_format_1_f4bd2e0f() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .require_pragma(true)
         .print_width(80)
+        .require_pragma(true)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("# @prettier\n\n    123");
@@ -18,8 +18,8 @@ fn test_with_pragma_yml_require_pragmatrue_format_1_f4bd2e0f() {
 #[test]
 fn test_without_pragma_yml_require_pragmatrue_format_1_a0991ecd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .require_pragma(true)
         .build()
         .unwrap();

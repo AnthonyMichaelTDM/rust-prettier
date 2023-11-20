@@ -17,8 +17,8 @@ fn test_destructuring_js_format_1_351f740c() {
 #[test]
 fn test_issue_5988_js_format_1_e89a8a16() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(

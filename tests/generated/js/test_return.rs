@@ -17,8 +17,8 @@ fn test_binaryish_js_format_1_5fe10847() {
 #[test]
 fn test_comment_js_format_1_08d5dbc9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function f() {\n  return /* a */;\n}\n\nfunction f() {\n  return // a\n  ;\n}\n\nfunction f() {\n  return // a\n  /* b */;\n}\n\nfunction f() {\n  return /* a */\n  // b\n  ;\n}\n\nfunction x() {\n  return func2\n      //comment\n      .bar();\n}\n\nfunction f() {\n  return (\n    foo\n      // comment\n      .bar()\n  );\n}\n\nfn(function f() {\n  return (\n    foo\n      // comment\n      .bar()\n  );\n});") ;

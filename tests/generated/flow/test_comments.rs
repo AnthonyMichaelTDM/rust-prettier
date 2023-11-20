@@ -17,8 +17,8 @@ fn test_arrow_js_format_1_75edbbf0() {
 #[test]
 fn test_cast_js_format_1_fc48097d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("(a /* b */ /*: c */);\n(a /* b */   : c   );\n(a /* b */ /*  : c */);\n(a /* b */ /*:: : c */);\n(a /* b */ /*  :: : c */);\n\n(a : /* b */ c );\n(a : c /* b */ );") ;
@@ -45,8 +45,8 @@ fn test_class_js_format_1_318517fd() {
 #[test]
 fn test_functions_js_format_1_58c9e67c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -58,8 +58,8 @@ fn test_functions_js_format_1_58c9e67c() {
 #[test]
 fn test_functions_2_js_format_1_aaed2574() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function f1(a /* b */ /*: c */){}\nfunction f2(a /* b */   : c   ){}\nfunction f3(a /* b */ /*  : c */){}\nfunction f4(a /* b */ /*:: : c */){}\n\nfunction f2(a : /* b */ c ){}\nfunction f2(a : c /* b */ ){}") ;
@@ -70,8 +70,8 @@ fn test_functions_2_js_format_1_aaed2574() {
 #[test]
 fn test_generics_js_format_1_852b1843() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Component = branch/*::     <Props, ExternalProps> */(\n  ({ src }) => !src,\n  // $FlowFixMe\n  renderNothing,\n)(BaseComponent);\n\nconst C = b/*:: <A> */(foo) + c/*:: <B> */(bar);\n\nfoo/*::<bar>*/(baz);\n\nfoo/*::<bar>*/();") ;
@@ -82,8 +82,8 @@ fn test_generics_js_format_1_852b1843() {
 #[test]
 fn test_interface_js_format_1_7a96c874() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("interface Foo {\n  bar(\n    currentRequest: {a: number},\n    // TODO this is a very very very very long comment that makes it go > 80 columns\n  ): number;\n}") ;
@@ -119,8 +119,8 @@ fn test_let_js_format_1_f56e014e() {
 #[test]
 fn test_object_type_annotation_js_format_1_6e3afe7a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type Props1 = // (DispatchProps & StateProps); WHY DON'T YOU WORK FLOW!!!!!!!!!\n{\n  isPlaying: boolean,\n};\n\ntype Props2 = { // (DispatchProps & StateProps); WHY DON'T YOU WORK FLOW!!!!!!!!!\n  isPlaying: boolean\n};\n\ntype Props3 = {\n  // (DispatchProps & StateProps); WHY DON'T YOU WORK FLOW!!!!!!!!!\n  isPlaying: boolean\n};") ;
@@ -171,8 +171,8 @@ fn test_type_annotations_3_js_format_1_78fd4f58() {
 #[test]
 fn test_union_js_format_1_78e1e38f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type UploadState<E, EM, D>\n  // The upload hasnt begun yet\n  = {type: \"Not_begun\"}\n  // The upload timed out\n  | {type: \"Timed_out\"}\n  // Failed somewhere on the line\n  | {type: \"Failed\", error: E, errorMsg: EM}\n  // Uploading to aws3 and CreatePostMutation succeeded\n  | {type: \"Success\", data: D};\n\ntype UploadState2<E, EM, D>\n  // The upload hasnt begun yet\n  = A\n  // The upload timed out\n  | B\n  // Failed somewhere on the line\n  | C\n  // Uploading to aws3 and CreatePostMutation succeeded\n  | D;") ;

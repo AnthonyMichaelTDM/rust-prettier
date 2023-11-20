@@ -17,8 +17,8 @@ fn test_arrays_js_format_1_1cc13883() {
 #[test]
 fn test_numeric_elem_js_format_1_036a22c5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var arr = [];\nvar day = new Date;\n\n// Date instances are numeric (see Flow_js.numeric) and thus can index into\n// arrays.\narr[day] = 0;\n(arr[day]: string); // error: number ~> string") ;

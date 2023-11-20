@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_inline_comment_css_format_1_c96a675f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["scss"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("\n  // inline comments\n\n\n\n    .class {color: red;}");

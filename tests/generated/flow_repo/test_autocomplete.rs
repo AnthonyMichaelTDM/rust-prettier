@@ -17,8 +17,8 @@ fn test_customfun_js_format_1_12ead5b4() {
 #[test]
 fn test_unknown_js_format_1_d5af9ad4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @noflow\nmodule.exports = { x: { y: \"\" } };");

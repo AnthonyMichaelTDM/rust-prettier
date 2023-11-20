@@ -39,9 +39,9 @@ fn test_trailing_comma_notjson_trailing_commaall_format_2_02e9caad() {
 #[test]
 fn test_trailing_comma_notjson_trailing_commaes_5_format_1_02e9caad() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["json"])
         .print_width(80)
         .trailing_comma("es5")
-        .parsers(vec!["json"])
         .build()
         .unwrap();
     let formatted =

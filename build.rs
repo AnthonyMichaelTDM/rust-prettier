@@ -197,7 +197,7 @@ cfg_if! {
                                 .to_str()?
                                 .to_owned()
                                 .replace("-", "_")
-                                .replace(".", "_");
+                                .replace(".", "_").to_case(Case::Snake);
                             Some((format!("test_{rule}",), entry.path()))
                         })
                         .collect::<Vec<_>>();
@@ -312,8 +312,12 @@ cfg_if! {
                 .filter_map(|test_case| {
                     let name = syn::parse_str::<syn::Ident>(&test_case.name).ok()?;
                     let config = &test_case.config;
-                    let config_keys = config.keys();
-                    let config_values = config.values();
+                    let mut config_keys = config.keys().collect::<Vec<_>>();
+                    config_keys.sort();
+                    let config_values = config_keys
+                        .iter()
+                        .map(|key| config.get(key).unwrap())
+                        .collect::<Vec<_>>();
                     let input = &test_case.input;
                     let output = &test_case.output;
 

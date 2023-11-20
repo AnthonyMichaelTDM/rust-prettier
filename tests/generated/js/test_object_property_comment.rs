@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_after_key_js_format_1_7d53dd76() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("let a = {\n   a /* comment */: () => 1\n};\n\nlet b = {\n   \"a\" /* comment */: () => 1\n};") ;

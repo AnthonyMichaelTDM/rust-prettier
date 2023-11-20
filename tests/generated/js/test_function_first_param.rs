@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_function_expression_js_format_1_0c13f1e7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("//https://github.com/prettier/prettier/issues/3002\nbeep.boop().baz(\"foo\",\n{\n  some: {\n    thing: {\n      nested: true\n    }\n  }\n},\n{ another: { thing: true } },\n() => {});\n\n\n//https://github.com/prettier/prettier/issues/2984\ndb.collection('indexOptionDefault').createIndex({ a: 1 }, {\n  indexOptionDefaults: true,\n  w: 2,\n  wtimeout: 1000\n}, function(err) {\n  test.equal(null, err);\n  test.deepEqual({ w: 2, wtimeout: 1000 }, commandResult.writeConcern);\n\n  client.close();\n  done();\n})") ;

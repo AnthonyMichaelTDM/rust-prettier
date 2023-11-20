@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comment_js_format_1_433939b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("for (x\n/*a*/\nin //b\ny) //c\n;\n\nfor (x in /*a*/ //b\ny); //c\n\nfor (x /*a*/ in y); //b //c\n\nfor (x\n//a\nin y);\n\nfor(x in\n//a\ny);\n\nfor (x\n/*a*/\nof //b\ny) //c\n;\n\nfor (x of /*a*/ //b\ny); //c\n\nfor (x /*a*/ of y); //b //c\n\nfor (x\n//a\nof y);\n\nfor(x of\n//a\ny);") ;
@@ -53,8 +53,8 @@ fn test_continue_and_break_comment_without_blocks_js_format_1_6dc49c71() {
 #[test]
 fn test_for_js_format_1_1eaefa5d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("for (;;) {}\nfor (var i = 0; i < 10; ++i) {}\n\nfor (;;) 0;\nfor (var i = 0; i < 10; ++i) 0;") ;

@@ -13,8 +13,8 @@ fn test_comments_in_type_annotation_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_comments_in_type_annotation_js_format_1_13b8853e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("type A = () => infer R extends/* comment */ string");
@@ -36,8 +36,8 @@ fn test_conditional_types_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_conditional_types_js_format_1_7bcca032() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nexport type DeepReadonly<T> = T extends any[] ? DeepReadonlyArray<T[number]> : T extends object ? DeepReadonlyObject<T> : T;\n\ninterface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}\n\ntype TypeName<T> =\n  T extends string ? \"string\" :\n  T extends number ? \"number\" :\n  T extends boolean ? \"boolean\" :\n  T extends undefined ? \"undefined\" :\n  T extends Function ? \"function\" :\n  \"object\";\n\ntype Type01 = 0 extends (1 extends 2  ? 3 : 4) ? 5 : 6;\ntype Type02 = 0 extends ((1 extends 2  ? 3 : 4)) ? 5 : 6;\ntype Type03 = 0 extends (((1 extends 2  ? 3 : 4))) ? 5 : 6;\ntype Type04 = 0 extends ((((1 extends 2  ? 3 : 4)))) ? 5 : 6;\ntype Type05 = (0 extends 1 ? 2 : 3) extends 4 ? 5 : 6;\ntype Type06 = ((0 extends 1 ? 2 : 3)) extends 4 ? 5 : 6;\ntype Type07 = (((0 extends 1 ? 2 : 3))) extends 4 ? 5 : 6;\ntype Type08 = ((((0 extends 1 ? 2 : 3)))) extends 4 ? 5 : 6;\n\ntype T1 = () => void extends T ? U : V;\ntype T1a = () => (void extends T ? U : V);\ntype T1b = () => (void) extends T ? U : V;\ntype T2 = (() => void) extends T ? U : V;") ;
@@ -77,8 +77,8 @@ fn test_infer_type_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_infer_type_js_format_1_4997590a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ntype TestReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : any;\n\ntype Unpacked<T> =\n  T extends (infer U)[] ? U :\n  T extends (...args: any[]) => infer U ? U :\n  T extends Promise<infer U> ? U :\n  T;") ;
@@ -97,8 +97,8 @@ fn test_nested_in_condition_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_nested_in_condition_js_format_1_c59e250f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ntype Foo =\n  (ThingamabobberFactory extends AbstractThingamabobberFactory ? GobbledygookProvider : CompositeGobbledygookProvider) extends\n  DoubleGobbledygookProvider\n    ? UniqueDalgametreService\n    : CompositeZamazingoResolver;\n\ntype Foo2 =\n  DoubleGobbledygookProvider extends\n  (ThingamabobberFactory extends AbstractThingamabobberFactory ? GobbledygookProvider : CompositeGobbledygookProvider)\n    ? UniqueDalgametreService\n    : CompositeZamazingoResolver;\n\ntype Foo3 =\n  (ThingamabobberFactory extends AbstractThingamabobberFactory ? GobbledygookProvider : CompositeGobbledygookProvider) extends\n  (DoubleGobbledygookProvider extends MockGobbledygookProvider ? MockThingamabobberFactory : ThingamabobberFactory)\n    ? UniqueDalgametreService\n    : CompositeZamazingoResolver;") ;
@@ -117,8 +117,8 @@ fn test_new_ternary_spec_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_new_ternary_spec_js_format_1_68b6ed64() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// TypeScript examples:\ntype TypeName<T> =\n  T extends string ? \"string\"\n  : T extends number ? \"number\"\n  : T extends boolean ? \"boolean\"\n  : T extends undefined ? \"undefined\"\n  : T extends Function ? \"function\"\n  : \"object\";\n\ntype Unpacked<T> =\n  T extends (infer U)[] ? U\n  : T extends (...args: any[]) => infer U ?\n    SomeReallyLongThingThatBreaksTheLine<U>\n  : T extends Promise<infer U> ? U\n  : T;") ;

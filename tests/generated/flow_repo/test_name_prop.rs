@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_js_format_1_8bebd345() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A {}\n\nvar test1 = A.bar; // Error bar doesn't exist\nvar test2: string = A.name;\nvar test3: number = A.name; // Error string ~> number\n\nvar a = new A();\nvar test4 = a.constructor.bar; // Error bar doesn't exist\nvar test5: string = a.constructor.name;\nvar test6: number = a.constructor.name; // Error string ~> number") ;

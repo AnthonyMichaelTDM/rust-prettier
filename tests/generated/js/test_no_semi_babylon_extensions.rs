@@ -54,8 +54,8 @@ fn test_no_semi_js_semifalse_meriyah_format_1_d41d8cd9() {
 fn test_no_semi_js_semifalse_format_1_315250df() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel"])
-        .semi(false)
         .print_width(80)
+        .semi(false)
         .build()
         .unwrap();
     let formatted = pretty_printer

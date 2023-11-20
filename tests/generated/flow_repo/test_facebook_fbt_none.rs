@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_main_js_format_1_a8c7d48d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\nvar React = require('react');\n(<fbt />: React.Element<*>);\n(<fbt />: number); // Error: ReactElement ~> number") ;

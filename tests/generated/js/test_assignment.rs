@@ -17,8 +17,8 @@ fn test_binaryish_js_format_1_74bdbd65() {
 #[test]
 fn test_call_with_template_js_format_1_81cc5902() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const result = template(\\`\n  if (SOME_VAR === \"\") {}\n\\`)({\n  SOME_VAR: value,\n});\n\nconst output =\n template(\\`function f() %%A%%\\`)({\n   A: t.blockStatement([]),\n });") ;
@@ -41,8 +41,8 @@ fn test_chain_js_format_1_c1b46d45() {
 #[test]
 fn test_chain_two_segments_js_format_1_0ff83fd9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("tt.parenR.updateContext = tt.braceR.updateContext = function () {\n  if (this.state.context.length === 1) {\n    return;\n  }\n}") ;
@@ -65,8 +65,8 @@ fn test_destructuring_js_format_1_b61abff9() {
 #[test]
 fn test_destructuring_array_js_format_1_4dee8726() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const [\n  width= nextWidth,\n  height= nextHeight,\n  baseline= nextBaseline,\n] = measureText(nextText, getFontString(element));") ;
@@ -125,8 +125,8 @@ fn test_issue_1966_js_format_1_6ffcd05d() {
 #[test]
 fn test_issue_2184_js_format_1_aeded06a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const areaPercentageDiff = (\n    topRankedZoneFit.areaPercentageRemaining\n  - previousZoneFitNow.areaPercentageRemaining\n).toFixed(2)") ;
@@ -137,8 +137,8 @@ fn test_issue_2184_js_format_1_aeded06a() {
 #[test]
 fn test_issue_2482_1_js_format_1_f32856a3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("aParticularlyLongAndObnoxiousNameForIllustrativePurposes =\n  anotherVeryLongNameForIllustrativePurposes;\n\naParticularlyLongAndObnoxiousNameForIllustrativePurposes =\n  'a very long string for illustrative purposes'.length;\n\naParticularlyLongAndObnoxiousNameForIllustrativePurposes =\n  anotherVeryLongNameForIllustrativePurposes();\n\naParticularlyLongAndObnoxiousNameForIllustrativePurposes =\n  anotherVeryLongNameForIllustrativePurposes.length;\n\naParticularlyLongAndObnoxiousNameForIllustrativePurposes =\n  anotherVeryLongNameForIllustrativePurposes + 1;\n") ;
@@ -161,8 +161,8 @@ fn test_issue_2482_2_js_format_1_2383b5fb() {
 #[test]
 fn test_issue_2540_js_format_1_3d7eb43e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("manifestCache[templateId] = readFileSync(\\`\\${MANIFESTS_PATH}/\\${templateId}.json\\`, { encoding: 'utf-8' });") ;
@@ -173,8 +173,8 @@ fn test_issue_2540_js_format_1_3d7eb43e() {
 #[test]
 fn test_issue_3819_js_format_1_bad674a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("this.dummy.type1.dummyPropertyFunction\n      = this.dummy.type2.dummyPropertyFunction\n      = this.dummy.type3.dummyPropertyFunction\n      = this.dummy.type4.dummyPropertyFunction\n      = this.dummy.type5.dummyPropertyFunction\n      = this.dummy.type6.dummyPropertyFunction\n      = this.dummy.type7.dummyPropertyFunction\n      = this.dummy.type8.dummyPropertyFunction\n      = () => {\n        return 'dummy';\n      };") ;
@@ -209,8 +209,8 @@ fn test_issue_5610_js_format_1_10fd0cfd() {
 #[test]
 fn test_issue_6922_js_format_1_530552df() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("async function f() {\n  const { data, status } = await request.delete(\n    \\`/account/\\${accountId}/documents/\\${type}/\\${documentNumber}\\`,\n    { validateStatus: () => true }\n  );\n  return { data, status };\n}\n\nconst data1 = request.delete(\n  '----------------------------------------------',\n  { validateStatus: () => true }\n);\n\nconst data2 = request.delete(\n  '----------------------------------------------x',\n  { validateStatus: () => true }\n);\n\nconst data3 = request.delete(\n  '----------------------------------------------xx',\n  { validateStatus: () => true }\n);\n\nconst data4 = request.delete(\n  '----------------------------------------------xxx',\n  { validateStatus: () => true }\n);") ;
@@ -221,8 +221,8 @@ fn test_issue_6922_js_format_1_530552df() {
 #[test]
 fn test_issue_7091_js_format_1_5684637b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -250,8 +250,8 @@ fn test_issue_7572_js_format_1_372aa1a0() {
 #[test]
 fn test_issue_7961_js_format_1_81bcea49() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// works as expected\nsomething.veeeeeery.looooooooooooooooooooooooooong = some.other.rather.long.chain;\n\n// does not work if it ends with a function call\nsomething.veeeeeery.looooooooooooooooooooooooooong = some.other.rather.long.chain.functionCall();") ;
@@ -310,8 +310,8 @@ fn test_lone_arg_js_format_1_e822fdaf() {
 #[test]
 fn test_sequence_js_format_1_3d8377c4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("for ((i = 0), (len = arr.length); i < len; i++) {\n  console.log(arr[i])\n}\n\nfor (i = 0, len = arr.length; i < len; i++) {\n  console.log(arr[i])\n}") ;

@@ -41,8 +41,8 @@ fn test_function_js_format_1_34384db3() {
 #[test]
 fn test_identifier_js_format_1_6880df30() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const kochabCooieGameOnOboleUnweave = // ???\n      annularCooeedSplicesWalksWayWay;\n\nconst bifornCringerMoshedPerplexSawder = // !!!\n  glimseGlyphsHazardNoopsTieTie +\n  averredBathersBoxroomBuggyNurl -\n  anodyneCondosMalateOverateRetinol;") ;
@@ -53,8 +53,8 @@ fn test_identifier_js_format_1_6880df30() {
 #[test]
 fn test_number_js_format_1_b2f227a1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("fnNumber =\n  // Comment\n  3;\n\nfnNumber =\n\n  // Comment\n\n  3;\n\nfnNumber =\n  // Comment0\n  // Comment1\n  3;\n\nfnNumber = /* comment */\n  3;\n\nfnNumber = /* comments0 */\n  /* comments1 */\n  3;\n\nfnNumber =\n  // Comment\n  3;\n\nvar fnNumber =\n\n  // Comment\n\n  3;\n\nvar fnNumber =\n  // Comment0\n  // Comment1\n  3;\n\nvar fnNumber = /* comment */\n  3;\n\nvar fnNumber = /* comments0 */\n  /* comments1 */\n  3;") ;

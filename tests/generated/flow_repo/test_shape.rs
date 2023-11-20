@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_shadow_js_format_1_e430cb4f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("var o = {};\n(o.p: string);\n(o: $Shape<{p:string}>);");
@@ -20,8 +20,8 @@ fn test_shadow_js_format_1_e430cb4f() {
 #[test]
 fn test_test_js_format_1_291edaf6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("type Foo = {\n  field: number,\n}\n\nvar x: {field?: number} = {};\nvar y: $Shape<Foo> = x;\n(y.field: number)") ;

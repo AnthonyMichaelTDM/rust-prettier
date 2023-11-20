@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_decorator_auto_accessors_new_line_ts_format_1_da0b4aaf() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel-ts"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class Foo {\n  accessor\n  [\"bar\"];\n}\n\nclass Foo {\n  static accessor\n  bar;\n}\n\nclass Foo {\n  accessor\n  bar;\n}") ;
@@ -17,8 +17,8 @@ fn test_decorator_auto_accessors_new_line_ts_format_1_da0b4aaf() {
 #[test]
 fn test_parenthesized_decorators_call_expression_ts_format_1_b2f4d19f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel-ts"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("@(test().x(\"global\").y())\nclass X {}");

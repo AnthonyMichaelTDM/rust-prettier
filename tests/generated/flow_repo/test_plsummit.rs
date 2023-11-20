@@ -17,8 +17,8 @@ fn test_arrays_js_format_1_808ca406() {
 #[test]
 fn test_export_class_js_format_1_0b91c587() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class C {\n    x: number;\n    constructor(x: number) { this.x = x; }\n}\n\nmodule.exports = C;") ;
@@ -45,8 +45,8 @@ fn test_generics_js_format_1_129c24ef() {
 #[test]
 fn test_import_class_js_format_1_cd6b8549() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -73,8 +73,8 @@ fn test_locals_js_format_1_243ce8ca() {
 #[test]
 fn test_objects_js_format_1_e3bf55f9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function C() { this.x = 0; }\nC.prototype.foo = function() { return this.x; }\n\nvar c = new C();\nvar x: string = c.foo();\n\nfunction foo() { return this.y; }\nfunction bar() { return this.foo(); }\nvar o = { y: \"\", foo: foo, bar: bar };\nvar o2 = { y: 0, foo: foo, bar: bar };\n\no.bar();\nvar y: number = o2.bar();") ;

@@ -6,8 +6,8 @@ static INFINITY: usize = usize::MAX;
 fn test_indented_md_prose_wrapalways_format_1_a9ca9e80() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["markdown"])
-        .prose_wrap("always")
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("- 123\n- 456\n- 789\n  <!-- prettier-ignore -->\n  - This is a long long\n    long long long long\n    long long paragraph.") ;
@@ -18,8 +18,8 @@ fn test_indented_md_prose_wrapalways_format_1_a9ca9e80() {
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_9a85c1b2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();

@@ -45,8 +45,8 @@ fn test_ufi_like_count_react_js_format_1_e864ec94() {
 #[test]
 fn test_bad_default_props_js_format_1_b349b577() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var React = require('React');\n\ntype T1 = { }\ntype T2 = { x: number }\ntype T3 = { x: number, y: number }\n\nclass C1 extends React.Component<T1, T2, any> { // error\n}\n\nclass C2 extends React.Component<void, T2, any> { // OK\n}\n\n// no need to add type arguments to React.Component\nclass C3 extends React.Component { // OK\n  static defaultProps: T1;\n  props: T2;\n}\n\nclass C4 extends React.Component { // OK, recommended\n  // no need to declare defaultProps unless necessary\n  props: T2;\n}\n\nclass C5 extends React.Component<T2, T3, any> { // error\n}\n\nclass C6 extends React.Component { // OK, recommended\n  static defaultProps: T2;\n  props: T3;\n}") ;
@@ -93,8 +93,8 @@ fn test_new_react_js_format_1_39bf4352() {
 #[test]
 fn test_prop_types_js_format_1_dc5ec592() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var React = require('react');\nvar PropTypes = React.PropTypes;\n\nvar C = React.createClass({\n  propTypes: {\n    statistics: PropTypes.arrayOf(PropTypes.shape({\n      label: PropTypes.string.isRequired,\n      value: PropTypes.number,\n    })).isRequired,\n  }\n});\n\n<C statistics={[\n  {},\n  {label:\"\",value:undefined},\n]}/>; // error (label is required, value not required)\n\nvar props: Array<{label: string, value?: number}> = [\n  {},\n  {label:\"\",value:undefined},\n]; // error (same as ^)") ;
@@ -165,8 +165,8 @@ fn test_props_5_js_format_1_abffba53() {
 #[test]
 fn test_state_js_format_1_2331c816() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nvar React = require('react');\n\ntype State = {\n    bar: ?{ qux: string; };\n};\n\nvar ReactClass = React.createClass({\n    getInitialState: function():State {\n        return { bar: null };\n    },\n\n    render: function(): any {\n        // Any state access here seems to make state any\n        this.state;\n        return (\n        <div>\n                {this.state.bar.qux}\n        </div>\n        );\n    }\n});") ;
@@ -213,8 +213,8 @@ fn test_state_4_js_format_1_d66a0244() {
 #[test]
 fn test_state_5_js_format_1_dea0a683() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("var React = require('React');\n\nclass C extends React.Component {\n  foo(): number {\n    return this.state.x; // error: need to declare type of state\n  }\n}") ;

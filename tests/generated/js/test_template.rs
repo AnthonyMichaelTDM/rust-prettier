@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_js_format_1_74d2b2ca() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("() => a\\`\n\ta\n\\`;\n\n() => \\`\n\ta\n\\`;");
@@ -17,8 +17,8 @@ fn test_arrow_js_format_1_74d2b2ca() {
 #[test]
 fn test_call_js_format_1_61c263e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("insertRule(\\`*, *:before, *:after {\n  box-sizing: inherit;\n}\\`);\n\ninsertRule\\`*, *:before, *:after {\n  box-sizing: inherit;\n}\\`;\n\nnew Error(formatErrorMessage\\`\n  This a really bad error.\n  Which has more than one line.\n\\`);") ;
@@ -29,8 +29,8 @@ fn test_call_js_format_1_61c263e4() {
 #[test]
 fn test_comment_js_format_1_b4c75e03() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\\`\n(?:\\${escapeChar}[\\\\\\\\S\\\\\\\\s]|(?:(?!\\${// Using \\`XRegExp.union\\` safely rewrites backreferences in \\`left\\` and \\`right\\`.\n// Intentionally not passing \\`basicFlags\\` to \\`XRegExp.union\\` since any syntax\n// transformation resulting from those flags was already applied to \\`left\\` and\n// \\`right\\` when they were passed through the XRegExp constructor above.\nXRegExp.union([left, right], '', {conjunction: 'or'}).source})[^\\${escapeChar}])+)+\n\\`;\n\n\\`a\\${/* b */c/* d */}e\\${// f\ng\n// h\n}\\`;") ;

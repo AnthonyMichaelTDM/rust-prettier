@@ -76,8 +76,8 @@ fn test_ignore_css_format_1_cb2176e2() {
 #[test]
 fn test_malformed_css_format_1_f9a8e381() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\naaa\nb---\n\na {\n    color: red;\n");
@@ -88,8 +88,8 @@ fn test_malformed_css_format_1_f9a8e381() {
 #[test]
 fn test_malformed_2_css_format_1_d1f261de() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -148,8 +148,8 @@ fn test_without_newline_after_css_format_1_0f0fa0cf() {
 #[test]
 fn test_yaml_css_format_1_56103c4d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_import_require_ts_format_1_97b01819() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("import { IModel } from 'vs/editor/common/editorCommon';\nimport JSONContributionRegistry = require('vs/platform/jsonschemas/common/jsonContributionRegistry');") ;

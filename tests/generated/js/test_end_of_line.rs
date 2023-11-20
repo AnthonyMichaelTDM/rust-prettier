@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_example_js_end_of_linecr_format_1_575aaa40() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .end_of_line("cr")
         .parsers(vec!["babel"])
         .print_width(80)
-        .end_of_line("cr")
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -23,8 +23,8 @@ fn test_example_js_end_of_linecr_format_1_575aaa40() {
 fn test_example_js_end_of_linecrlf_format_1_575aaa40() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .end_of_line("crlf")
-        .print_width(80)
         .parsers(vec!["babel"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

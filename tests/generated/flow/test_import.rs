@@ -17,8 +17,8 @@ fn test_import_as_as_js_format_1_da07b00e() {
 #[test]
 fn test_type_import_as_as_js_format_1_e7c4881a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("import {type foo as as} from \"foo\";");

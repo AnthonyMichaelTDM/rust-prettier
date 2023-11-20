@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_beginning_tag_after_a_list_item_md_prose_wrapalways_format_1_542ae1de() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
         .print_width(80)
         .prose_wrap("always")
-        .parsers(vec!["markdown"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("- A list item.\n<details><summary>Summary</summary>\n<p>\n\n- A list item.\n\n</p>\n</details>\n\n- A list item.\n<blockquote>\n\n<p>quoted sentence1<br>\nquoted sentence2</p>\n</blockquote>\n\n- indented html is formatted as it is\n  <blockquote>asdf</blockquote>") ;
@@ -18,9 +18,9 @@ fn test_beginning_tag_after_a_list_item_md_prose_wrapalways_format_1_542ae1de() 
 #[test]
 fn test_blank_line_between_htmls_md_prose_wrapalways_format_1_5115987e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .prose_wrap("always")
         .parsers(vec!["markdown"])
         .print_width(80)
+        .prose_wrap("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<!--lint disable no-html-->\n<p align=\"center\"><img src=\"logo/vertical.png\" alt=\"labelify\" height=\"150px\"></p>\n<!--lint enable no-html-->") ;
@@ -31,8 +31,8 @@ fn test_blank_line_between_htmls_md_prose_wrapalways_format_1_5115987e() {
 #[test]
 fn test_multiline_md_prose_wrapalways_format_1_89315fa6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();

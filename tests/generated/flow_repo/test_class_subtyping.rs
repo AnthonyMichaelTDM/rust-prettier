@@ -33,8 +33,8 @@ fn test_test_2_js_format_1_49f6569d() {
 #[test]
 fn test_test_3_js_format_1_51103871() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class A<X, Y, Z> {}\nclass B extends A<string, number, bool> {}\nclass C<X, Y, Z> extends B {}\n\nvar c: C<number, string, Array<bool>> = new C; // none of the type args matter\nvar a: A<string, number, Array<bool>> = c; // the third type arg is incorrect") ;

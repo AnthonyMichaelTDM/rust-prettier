@@ -17,8 +17,8 @@ fn test_empty_mjml_format_1_8bb12296() {
 #[test]
 fn test_head_mjml_format_1_7a39d5c6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<mjml>\n  <mj-head>\n    <mj-title>\n    \n    \n    The green fix eats mango.\n    \n    \n    </mj-title>\n    <mj-breakpoint width=\"600px\" />\n    <mj-preview>Do \n    \n    you like cheese? We do!</mj-preview>\n    <mj-attributes>\n      <mj-text \n      \n      \n      \n      align=\"left\" color=\"#000\"\n      \n      \n         font-family=\"-apple-system,BlinkMacSystemFont,Helvetica,sans-serif\" />\n    </mj-attributes>\n  </mj-head>\n</mjml>") ;

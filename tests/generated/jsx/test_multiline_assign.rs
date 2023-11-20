@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_5d1cb46c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const comp1 = (\n  <div style={styles} key=\"something\">\n    Keep the wrapping parens.\n  </div>\n);\n\nconst comp2 = <div style={styles} key=\"something\">\n  Create wrapping parens.\n</div>;\n\ncomp2A = <div style={styles} key=\"something\">\n  Create wrapping parens.\n</div>;\n\nconst comp3 = <div style={styles} key=\"something\">Bump to next line without parens</div>;\n\nconst comp4 = <div style={styles} key=\"something\">Create wrapping parens and indent <strong>all the things</strong>.</div>;\n\nconst comp5 = <div>Keep it on one line.</div>;") ;

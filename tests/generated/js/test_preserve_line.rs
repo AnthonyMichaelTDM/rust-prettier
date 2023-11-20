@@ -29,8 +29,8 @@ fn test_comments_js_format_1_e9548baa() {
 #[test]
 fn test_member_chain_js_format_1_c82ac243() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("fooBar.doSomething('Hello World').doAnotherThing('Foo', { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  .run(() => console.log('Bar'));\n\nbigDeal\n\n  .doSomething('Hello World')\n\n  // Hello world\n  .doAnotherThing('Foo', { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  .run(() => console.log('Bar'));\n\n\nfoo.bar.baz\n\n  .doSomething('Hello World')\n\n  // Hello world\n  .foo.bar.doAnotherThing('Foo', { foo: bar })\n\n  .doOneMoreThing(config)\n  .bar.run(() => console.log('Bar'));\n\n(\n  somethingGood ? thisIsIt : maybeNot\n)\n\n  // Hello world\n  .doSomething('Hello World')\n\n  .doAnotherThing('Foo', { foo: bar }) // Run this\n  .run(() => console.log('Bar')); // Do this\n\nhelloWorld\n\n  .text()\n\n  .then(t => t);\n\n(veryLongVeryLongVeryLong ||\n anotherVeryLongVeryLongVeryLong ||\n veryVeryVeryLongError\n)\n\n  .map(tickets => TicketRecord.createFromSomeLongString())\n\n  .filter(obj => !!obj);\n\nconst sel = this.connections\n\n  .concat(this.activities.concat(this.operators))\n  .filter(x => x.selected);") ;

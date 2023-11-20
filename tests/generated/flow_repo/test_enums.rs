@@ -33,8 +33,8 @@ fn test_lib_js_babel_flow_format_1_d41d8cd9() {
 #[test]
 fn test_lib_js_format_1_0b7e8224() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ndeclare module 'declared-module' {\n  declare enum G {\n    J,\n    K,\n  }\n  declare export enum H {\n    X,\n    Y,\n  }\n}") ;

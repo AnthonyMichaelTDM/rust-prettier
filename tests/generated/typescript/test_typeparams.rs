@@ -65,8 +65,8 @@ fn test_long_function_arg_ts_format_1_862be85e() {
 #[test]
 fn test_tagged_template_expression_ts_format_1_2b54be13() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export const RedBox = styled.div<{foo: string}>\\`\n  background: red;\n  \\${props => props.foo}\n\\`;") ;

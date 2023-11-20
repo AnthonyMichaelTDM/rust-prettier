@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_fun_js_format_1_ec9623a7() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule Fun */\n\nfunction eq(x:number,y:number) { return true };\nfunction sub(x:number,y:number) { return 0; }\nfunction mul(x:number,y:number) { return 0; }\n\nfunction fix(fold) {\n  var delta = function(delta) {\n    return fold(\n      function(x) { var eta = delta(delta); return eta(x); }\n    );\n  };\n  return delta(delta);\n}\n\nfunction mk_factorial() {\n  return fix(function(factorial) {\n    return function(n) {\n      if (eq (n, 1)) { return 1; }\n      return mul (factorial (sub (n, 1)), n);\n    };\n  });\n}\n\n\nvar factorial = mk_factorial();\nfactorial(\"...\");\n\nmodule.exports = {fn: fix};") ;
@@ -17,8 +17,8 @@ fn test_fun_js_format_1_ec9623a7() {
 #[test]
 fn test_ycombinator_js_format_1_fd37ef31() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule Ycombinator */\n\nfunction Y(f) {\n  function g(x) { return f(x(x)); }\n  g(g);\n}\n\nfunction func1(f) {\n  function fix_f(x:number):number { return f(x); }\n  return fix_f;\n}\nfunction func2(f) {\n  function fix_f(x:string):string { return f(x); }\n  return fix_f;\n}\n\nY(func1);\nY(func2);\n\nmodule.exports = Y;") ;

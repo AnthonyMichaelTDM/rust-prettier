@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_const_js_format_1_c79a14c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const x = 0;\n\n// errors: const cannot be reassigned\nx++;\nx--;\nx += 0;\nx -= 0;\nx /= 0;\nx %= 0;\nx <<= 0\nx >>= 0;\nx >>>= 0;\nx |= 0;\nx ^= 0;\nx &= 0;\n\n// regression tests -- OK to assign consts like this:\n\nconst { foo } = { foo: \"foo\" }\nconst [ bar ] = [\"bar\"];\n(foo: number); // error: string ~> number\n(bar: number); // error: string ~> number\n\ndeclare var bazzes: { baz: string }[];\nfor (const { baz } of bazzes) {\n  (baz: number); // error: string ~> number\n}") ;
@@ -29,8 +29,8 @@ fn test_rebinding_js_format_1_c4f6c5df() {
 #[test]
 fn test_scope_js_format_1_6c2845dd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function block_scope() {\n  let a: number = 0;\n  var b: number = 0;\n  {\n    let a = \"\"; // ok: local to block\n    var b = \"\"; // error: string ~> number\n  }\n}\n\nfunction switch_scope(x: string) {\n  let a: number = 0;\n  var b: number = 0;\n  switch (x) {\n    case \"foo\":\n      let a = \"\"; // ok: local to switch\n      var b = \"\"; // error: string ~> number\n      break;\n    case \"bar\":\n      let a = \"\"; // error: a already bound in switch\n      break;\n  }\n}\n\n// a switch is a single lexical scope, so lets and non-disjoint\n// cases can mix in odd ways. our support for edge cases is not\n// yet perfect.\nfunction switch_scope2(x: number) {\n  switch (x) {\n    case 0:\n     a = \"\";     // error: assign before declaration\n     break;\n    case 1:\n     var b = a;  // error: use before declaration\n     break;\n    case 2:\n      let a = \"\";\n      break;\n    case 3:\n      a = \"\";     // error: skipped initializer\n      break;\n    case 4:\n      var c:string = a;  // error: skipped initializer\n      break;\n  }\n  a = \"\"; // error: a no longer in scope\n}\n\nfunction try_scope() {\n  let a: number = 0;\n  try {\n    let a = \"\"; // ok\n  } catch (e) {\n    let a = \"\"; // ok\n  } finally {\n    let a = \"\"; // ok\n  }\n}\n\nfunction for_scope_let() {\n  let a: number = 0;\n  for (let a = \"\" /* ok: local to init */;;) {}\n}\n\nfunction for_scope_var() {\n  var a: number = 0;\n  for (var a = \"\" /* error: string ~> number */;;) {}\n}\n\nfunction for_in_scope_let(o: Object) {\n  let a: number = 0;\n  for (let a /* ok: local to init */ in o) {}\n}\n\nfunction for_in_scope_var(o: Object) {\n  var a: number = 0;\n  for (var a /* error: string ~> number */ in o) {}\n}\n\nfunction for_of_scope_let(xs: string[]) {\n  let a: number = 0;\n  for (let a /* ok: local to init */ of xs) {}\n}\n\nfunction for_of_scope_var(xs: string[]) {\n  var a: number = 0;\n  for (var a /* error: string ~> number */ of xs) {}\n}\n\nfunction default_param_1() {\n  // function binding in scope in default expr\n  function f(\n    x: () => string = f // error: number ~> string\n  ): number {\n    return 0;\n  }\n}\n\nfunction default_param_2() {\n  // fn body bindings not visible from param scope\n  let a = \"\";\n  function f0(x = () => a): number {\n    let a = 0;\n    return x(); // error: string ~> number\n  }\n  function f1(x = b /* error: cannot resolve b */): number {\n    let b = 0;\n    return x;\n  }\n}") ;

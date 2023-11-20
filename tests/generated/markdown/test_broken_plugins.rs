@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_missing_comments_md_format_1_dd29e688() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["markdown"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\\`\\`\\`\\`\\`\\`missing-comments\n        This should not be replaced.\n\\`\\`\\`\\`\\`\\`") ;

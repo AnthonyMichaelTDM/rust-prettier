@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_custom_parser_html_format_1_a651ce11() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -34,8 +34,8 @@ fn test_empty_html_format_1_97355988() {
 #[test]
 fn test_empty_2_html_format_1_b92cbb73() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\n---\n\n<div>\n---\n</div>");

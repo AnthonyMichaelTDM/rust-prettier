@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_with_munging_js_format_1_56b06937() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nclass Foo {\n  _method(): string {\n    return 'this is private';\n  }\n}\n\nclass Bar extends Foo {\n  test() {\n    (this._method(): string); // error\n  }\n}") ;

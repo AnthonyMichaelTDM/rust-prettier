@@ -17,8 +17,8 @@ fn test_custom_parser_css_format_1_b14a6c04() {
 #[test]
 fn test_empty_css_format_1_750c7f52() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css", "scss", "less"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("---\n---\n/* comment */\n.something\n{}");

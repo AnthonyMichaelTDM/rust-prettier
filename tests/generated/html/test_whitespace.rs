@@ -17,8 +17,8 @@ fn test_break_tags_html_format_1_82ca4616() {
 #[test]
 fn test_display_inline_block_html_format_1_3a1c9255() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<button>Click here! Click here! Click here! Click here! Click here! Click here!</button>\n<button>\nClick here! Click here! Click here! Click here! Click here! Click here!\n</button>\n<div>\n<button>Click here! Click here! Click here! Click here! Click here! Click here!</button><button>Click here! Click here! Click here! Click here! Click here! Click here!</button>\n</div>\n<div>\n<button>Click here! Click here! Click here! Click here! Click here! Click here!</button>\n<button>Click here! Click here! Click here! Click here! Click here! Click here!</button>\n</div>\n<video src=\"brave.webm\"><track kind=subtitles src=brave.en.vtt srclang=en label=\"English\"><track kind=subtitles src=brave.en.vtt srclang=en label=\"English\"></video>") ;
@@ -41,8 +41,8 @@ fn test_display_none_html_format_1_4b498e50() {
 #[test]
 fn test_fill_html_format_1_a51f7b7e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<p>\n  <img\n    src=\"/images/pansies.jpg\"\n    alt=\"about fedco bottom image\"\n    style=\"float: left;\"\n  /><strong>We are a cooperative</strong>, one of the few seed companies so organized\n  in the United States. Because we do not have an individual owner or beneficiary,\n  profit is not our primary goal. Consumers own 60% of the cooperative and worker\n  members 40%. Consumer and worker members share proportionately in the cooperative&#8217;s\n  profits through our annual patronage dividends.\n</p>") ;
@@ -53,8 +53,8 @@ fn test_fill_html_format_1_a51f7b7e() {
 #[test]
 fn test_inline_leading_trailing_spaces_html_format_1_e652d2b4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<span> 321 </span>\n\n<span> <a>321</a> </span>");
@@ -113,8 +113,8 @@ fn test_surrounding_linebreak_html_format_1_2c745e6f() {
 #[test]
 fn test_table_html_format_1_2b5f20f4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["html"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<table>\n  <thead>\n    <tr>\n      <th>A</th>\n      <th>B</th>\n      <th>C</th>\n    </tr>\n  </thead>\n</table>\n\n<table><thead><tr><th>A</th><th>B</th><th>C</th></tr></thead></table>\n\n<table> <thead> <tr> <th> A </th> <th> B </th> <th> C </th> </tr> </thead> </table>\n\n<table>\n  <thead>\n    <tr>\n    </tr>\n  </thead>\n</table>") ;

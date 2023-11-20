@@ -17,8 +17,8 @@ fn test_issue_2322_ts_format_1_c135436b() {
 #[test]
 fn test_issue_2482_ts_format_1_8f4fef30() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export function countriesReceived(countries: Array<Country>): CountryActionType {\n  return {\n    type: ActionTypes.COUNTRIES_RECEIVED,\n    countries: countries,\n  };\n}") ;
@@ -29,8 +29,8 @@ fn test_issue_2482_ts_format_1_8f4fef30() {
 #[test]
 fn test_issue_2485_ts_format_1_ae3d3d5a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("class x {\n  private readonly rawConfigFromFile$: BehaviorSubject<\n    any\n  > = new BehaviorSubject(notRead);\n}") ;
@@ -41,8 +41,8 @@ fn test_issue_2485_ts_format_1_ae3d3d5a() {
 #[test]
 fn test_issue_3122_ts_format_1_c39b29f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export const findByDate: Resolver<void, Recipe[], { date: Date }> =\n  (_, { date }, { req } ) => {\n    const repo = req.getRepository(Recipe);\n    return repo.find({ createDate: date });\n  }\n\nexport const findByDate: Resolver<void, Recipe[], { date: Date }> =\n  (_, { date }, { req } ) => Recipe.find({ createDate: date });") ;
@@ -53,8 +53,8 @@ fn test_issue_3122_ts_format_1_c39b29f1() {
 #[test]
 fn test_issue_5370_ts_format_1_7c47efc2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const durabilityMetricsSelectable: Immutable.OrderedSet<\n  SomeReportingMetric,\n> = myExperienceSelectable.concat(otherDurabilityMetricsSelectable);") ;
@@ -65,8 +65,8 @@ fn test_issue_5370_ts_format_1_7c47efc2() {
 #[test]
 fn test_issue_6783_ts_format_1_919f7389() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export const enviromentProdValues: EnvironmentValues = assign<EnvironmentValues>(\n  {\n    apiURL: '/api',\n  },\n  enviromentBaseValues\n);") ;
@@ -89,8 +89,8 @@ fn test_issue_8619_ts_format_1_39af8bab() {
 #[test]
 fn test_issue_9172_ts_format_1_edee03e2() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -103,8 +103,8 @@ fn test_issue_9172_ts_format_1_edee03e2() {
 #[test]
 fn test_issue_10846_ts_format_1_e0e40c20() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const foo = call<{\n  prop1: string;\n  prop2: string;\n  prop3: string;\n}>();\n\nexport const CallRecorderContext =\n  createContext<{\n    deleteRecording: (id: string) => void;\n    deleteAll: () => void;\n  } | null>(null);\n\nexport const CallRecorderContext =\n  createContext<{\n    deleteRecording: (id: string) => void;\n    deleteAll: () => void;\n  } | null>(null, \"useless\");\n\nconst foo =\n  call<Foooooo, Foooooo, Foooooo, Foooooo, Foooooo, Foooooo, Foooooo>();\n\nconst foo =\n  call<\n    | Foooooooooooo\n    | Foooooooooooo\n    | Foooooooooooo\n    | Foooooooooooo\n    | Foooooooooooo\n  >();\n\nconst foo =\n  call<\n    Foooooooooooo &\n      Foooooooooooo &\n      Foooooooooooo &\n      Foooooooooooo &\n      Foooooooooooo\n  >();") ;
@@ -127,8 +127,8 @@ fn test_issue_10848_tsx_format_1_9521f999() {
 #[test]
 fn test_issue_10850_ts_format_1_f43d9368() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const map: Map<Function, Map<string | void, { value: UnloadedDescriptor }>> =\n  new Map();\n\nconst map: Map<Function, Condition extends Foo ? FooFooFoo : BarBarBar> =\n  new Map();\n\nconst map: Map<Function, FunctionFunctionFunctionFunctionffFunction> =\n  new Map();\n\nconst map: Map<Function, Foo<S>> = new Map();") ;

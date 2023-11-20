@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_0a8ad5f1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function parseTimestamp(timestamp: string): number {\n    return 0;\n}\n\nfunction parseCounter(line: string): number {\n    return 0;\n}\n\nfunction parseGroup(lines: Array<string>): {\n    counter: number;\n    begin: number;\n    end: number;\n    text: string;\n} {\n    var counter = parseCounter(lines[0]);\n    var timeframe = parseTimeframe(lines[1]);\n    return {\n        counter,\n        ...timeframe,\n        text: lines[2]\n    };\n}\n\nfunction parseTimeframe(line: string): { begin: number; end: number } {\n    var timestamps = line.split('-->');\n    return {\n        begin: parseTimestamp(timestamps[0].trim()),\n        end: parseTimestamp(timestamps[1].trim())\n    };\n}") ;
@@ -17,8 +17,8 @@ fn test_test_js_format_1_0a8ad5f1() {
 #[test]
 fn test_test_2_js_format_1_363e8b30() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nfunction foo(o) {\n    bar({...o});\n}\nfunction bar(_: {foo:number}) { }\nfoo({foo: 42});") ;
@@ -41,8 +41,8 @@ fn test_test_3_js_format_1_08635423() {
 #[test]
 fn test_test_4_js_format_1_33adaeba() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -81,8 +81,8 @@ fn test_test_6_js_format_1_d2d008c4() {
 #[test]
 fn test_test_7_js_format_1_c5f0e188() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  function(x: Object) {\n    ({...x}: Object);\n    ({...x}: void); // error, Object\n  },\n];") ;

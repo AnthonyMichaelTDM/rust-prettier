@@ -17,8 +17,8 @@ fn test_any_js_format_1_957d7eb9() {
 #[test]
 fn test_anyexportflowfile_js_format_1_95c02f6b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("// @flow\n\nmodule.exports = ((x: any) => x: any);");
@@ -68,8 +68,8 @@ fn test_nonflowfile_js_format_1_9501635f() {
 #[test]
 fn test_propagate_js_format_1_a57f9eae() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ndeclare class C {\n  bar(n1: number, n2: number): number;\n  bar(s1: string, s2: string): string;\n}\n\nfunction foo(c: C, x: any): string {\n  let y = x.y;\n  return c.bar(0, y); // should be able to select first case and error\n}\n\nvar any_fun1 = require('./nonflowfile');\nfunction bar1(x: mixed) {\n  if (any_fun1(x)) {\n    (x: boolean);\n  }\n}\n\nvar any_fun2 = require('./anyexportflowfile');\nfunction bar2(x: mixed) {\n  if (any_fun2(x)) {\n    (x: boolean);\n  }\n}") ;

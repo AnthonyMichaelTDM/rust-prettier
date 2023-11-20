@@ -18,9 +18,9 @@ fn test_arrow_call_js_arrow_parensalways_format_1_c84100cf() {
 #[test]
 fn test_arrow_call_js_trailing_commaall_format_1_c84100cf() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
         .print_width(80)
         .trailing_comma("all")
-        .parsers(vec!["babel", "flow", "typescript"])
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const testResults = results.testResults.map(testResult =>\n  formatResult(testResult, formatter, reporter)\n);\n\nit('mocks regexp instances', () => {\n  expect(\n    () => moduleMocker.generateFromMetadata(moduleMocker.getMetadata(/a/)),\n  ).not.toThrow();\n});\n\nexpect(() => asyncRequest({ url: \"/test-endpoint\" }))\n  .toThrowError(/Required parameter/);\n\nexpect(() => asyncRequest({ url: \"/test-endpoint-but-with-a-long-url\" }))\n  .toThrowError(/Required parameter/);\n\nexpect(() => asyncRequest({ url: \"/test-endpoint-but-with-a-suuuuuuuuper-long-url\" }))\n  .toThrowError(/Required parameter/);\n\nexpect(() => asyncRequest({ type: \"foo\", url: \"/test-endpoint\" }))\n  .not.toThrowError();\n\nexpect(() => asyncRequest({ type: \"foo\", url: \"/test-endpoint-but-with-a-long-url\" }))\n  .not.toThrowError();\n\nconst a = Observable\n  .fromPromise(axiosInstance.post('/carts/mine'))\n  .map((response) => response.data)\n\nconst b = Observable.fromPromise(axiosInstance.get(url))\n  .map((response) => response.data)\n\nfunc(\n  veryLoooooooooooooooooooooooongName,\n  veryLooooooooooooooooooooooooongName =>\n    veryLoooooooooooooooongName.something()\n);\n\npromise.then(result => result.veryLongVariable.veryLongPropertyName > someOtherVariable ? \"ok\" : \"fail\");") ;
@@ -44,9 +44,9 @@ fn test_arrow_call_js_trailing_commaes_5_format_1_c84100cf() {
 #[test]
 fn test_class_property_js_arrow_parensalways_format_1_af0c3ec6() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("always")
         .parsers(vec!["babel", "flow", "typescript"])
         .print_width(80)
-        .arrow_parens("always")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const composition = (ViewComponent, ContainerComponent) =>\n  class extends React.Component {\n    static propTypes = {};\n  };") ;
@@ -58,8 +58,8 @@ fn test_class_property_js_arrow_parensalways_format_1_af0c3ec6() {
 fn test_class_property_js_trailing_commaall_format_1_af0c3ec6() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["babel", "flow", "typescript"])
-        .trailing_comma("all")
         .print_width(80)
+        .trailing_comma("all")
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const composition = (ViewComponent, ContainerComponent) =>\n  class extends React.Component {\n    static propTypes = {};\n  };") ;

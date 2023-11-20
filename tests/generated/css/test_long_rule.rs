@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_long_rule_css_format_1_ce7be55e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["css"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format (".nuclide-resize-sensitive-container-sensor,\n.nuclide-resize-sensitive-container-expand,\n.nuclide-resize-sensitive-container-shrink {\n}") ;

@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_named_amd_module_js_format_1_da62af10() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("define(\"foo/title\",\n    [\"my/cart\", \"my/inventory\"],\n    function(cart, inventory) {\n        //Define foo/title object in here.\n   }\n)") ;
@@ -17,8 +17,8 @@ fn test_named_amd_module_js_format_1_da62af10() {
 #[test]
 fn test_non_amd_define_js_format_1_f5e8b9d6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const someVariable = define(\n  \"some string literal\",\n  anotherVariable,\n  yetAnotherVariable\n);") ;

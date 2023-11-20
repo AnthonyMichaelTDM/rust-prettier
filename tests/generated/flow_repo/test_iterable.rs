@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_array_js_format_1_d6ca3f0e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n(([1, 2]: Array<number>): Iterable<number>);\n([1,2,\"hi\"]: Iterable<number | string>);\n([1,2,3]: Iterable<*>);\n\n([\"hi\"]: Iterable<number>); // Error string ~> number\n([\"hi\", 1]: Iterable<string>); // Error number ~> string") ;
@@ -41,8 +41,8 @@ fn test_iter_js_format_1_850e8b2e() {
 #[test]
 fn test_iterator_result_js_format_1_0b769ef4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction makeIterator(coin_flip: () => boolean ): Iterator<string> {\n  return {\n    \"@@iterator\"() { return makeIterator(coin_flip); },\n    next(): IteratorResult<string, void> {\n      var done = coin_flip();\n      if (!done) {\n        return { done, value: \"still going...\" };\n      } else {\n        return { done };\n      }\n    }\n  }\n}\n\nfunction makeIterator(coin_flip: () => boolean ): Iterator<string> {\n  return {\n    \"@@iterator\"() { return makeIterator(coin_flip); },\n    next(): IteratorResult<string, void> {\n      var done = coin_flip();\n      if (done) { // Whoops, made a mistake and forgot to negate done\n        return { done, value: \"still going...\" }; // Error string ~> void\n      } else {\n        return { done }; // Error void ~> string\n      }\n    }\n  }\n}") ;
@@ -65,8 +65,8 @@ fn test_map_js_format_1_ab10a8b7() {
 #[test]
 fn test_set_js_format_1_688e0770() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction setTest1(set: Set<string>): Iterable<string> {\n  return set;\n}\nfunction setTest2<T>(set: Set<T>): Iterable<T> {\n  return set;\n};\nfunction setTest3(set: Set<string>): Iterable<*> {\n  return set;\n}\n// Error string ~> number\nfunction setTest4(set: Set<string>): Iterable<number> {\n  return set;\n}") ;

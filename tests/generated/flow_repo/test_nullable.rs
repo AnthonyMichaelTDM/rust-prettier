@@ -17,8 +17,8 @@ fn test_maybe_js_format_1_bdb03925() {
 #[test]
 fn test_nullable_js_format_1_181d2d62() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function foo():string { return null; }\n\nfunction bar():?string { return null; }\n\nfunction qux(x:string) { }\n\nfunction corge(x:number) { }\n\nvar x = bar(); // x: ?string\nif (x != null) qux(x); // x: ?string | null\nif (x != null) corge(x); // x: ?string | null\n\nfunction grault() { x = null; }\nif (x != null) {\n  grault(); qux(x);\n}\n\nvar array_of_nullable: Array<?number> = [null, 3];") ;

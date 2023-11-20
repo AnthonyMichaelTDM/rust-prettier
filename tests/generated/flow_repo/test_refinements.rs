@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_assignment_js_format_1_a5a07298() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(x : ?number) {\n  var y;\n  if (y = x) {\n    var z = y * 1000;\n  }\n}\n\ntype Bar = {\n  parent: ?Bar;\n  doStuff: () => void\n}\n\nfunction bar0(x : Bar) {\n  while (x = x.parent) { // can't assign x to ?Bar\n    x.doStuff();\n  }\n}\n\nfunction bar1(x : ?Bar) {\n  while (x = x.parent) { // x.parent might be null\n    x.doStuff();\n  }\n}\n\nfunction bar2(x : Bar) {\n  var y = x;\n  while (y = y.parent) {\n    y.doStuff();\n  }\n}") ;
@@ -65,8 +65,8 @@ fn test_cond_prop_js_format_1_24b46ef2() {
 #[test]
 fn test_constants_js_format_1_bfcd9389() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nexport const SUCCESS: 'SUCCESS' = 'SUCCESS';\nexport const ERROR: 'ERROR' = 'ERROR';") ;
@@ -77,8 +77,8 @@ fn test_constants_js_format_1_bfcd9389() {
 #[test]
 fn test_eq_js_format_1_07b2d2ba() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nlet tests = [\n  function(x: string, y: number) {\n    if (x == y) {} // error, string & number are not comparable (unsafe casting)\n    if (x === y) {} // no error, to match \\`let z = (x === y)\\` which is allowed\n  },\n\n  function(x: string) {\n    if (x == undefined) {} // ok\n    if (x == void 0) {} // ok\n  },\n\n  function(x: string) {\n    if (x == null) {} // ok\n  },\n\n  function(x: { y: 'foo' } | { y: 'bar' }) {\n    if (x.y == 123) {} // error\n    if (x.y === 123) {} // ok\n  },\n]") ;
@@ -101,8 +101,8 @@ fn test_exists_js_format_1_ecd71477() {
 #[test]
 fn test_func_call_js_format_1_5110a56d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  function(x: { y?: string }, z: () => string) {\n    if (x.y) {\n      // make sure we visit the AST in the correct order. if we visit z() before\n      // x.y, then the function call will invalidate the refinement of x.y\n      // incorrectly.\n      x.y.indexOf(z()); // no error\n    }\n  },\n];") ;
@@ -113,8 +113,8 @@ fn test_func_call_js_format_1_5110a56d() {
 #[test]
 fn test_has_own_property_js_format_1_26f6ea1b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(x:{y?:() => void}) {\n  x.y(); // error: could be undefined\n  if (x.hasOwnProperty('y')) {\n    x.y(); // error: still could be undefined\n  }\n  if (x.hasOwnProperty('z')) {\n    x.z(); // error: unreachable, but we don't help you here\n  }\n}\n\nfunction bar(x:Object) {\n  x.y(); // treated as \\`any\\`, so allowed\n  if (x.hasOwnProperty('y')) {\n    x.y(); // still treated as \\`any\\`, so allowed\n  }\n  if (x.hasOwnProperty('z')) {\n    x.z(); // also treated as \\`any\\`, so allowed\n  }\n}") ;
@@ -137,8 +137,8 @@ fn test_heap_defassign_js_format_1_55136232() {
 #[test]
 fn test_lib_js_format_1_d1bc9a75() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
@@ -177,8 +177,8 @@ fn test_mixed_js_format_1_c042295e() {
 #[test]
 fn test_node_1_js_format_1_9c5d76b5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("module.exports = 'Node1';");
@@ -189,8 +189,8 @@ fn test_node_1_js_format_1_9c5d76b5() {
 #[test]
 fn test_not_js_format_1_d8e36fb3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(x: ?bool) {\n  if (!x) {\n    x++; // should error for null, void and bool (false)\n  }\n}\n\nfunction bar(x: ?number) {\n  if (!x) {\n    x[0]; // should error for null, void and number (0)\n  }\n}\n\nfunction baz (x: ?number) {\n  if (x === null || x === undefined) {\n    return;\n  }\n\n  if (!x) {\n    x[0]; // should error for number (0)\n  }\n}\n\nclass TestClass {}\n\nlet tests = [\n  function() {\n    var y = true;\n    while (y) {\n      y = !y;\n    }\n  },\n  function(x: Function) {\n    (!x: false); // ok, functions are always truthy\n  },\n  function(x: Object) {\n    (!x: false); // ok, objects are always truthy\n  },\n  function(x: string) {\n    (!x: false); // error, strings are not always truthy\n  },\n  function(x: number) {\n    (!x: false); // error, numbers are not always truthy\n  },\n  function(x: boolean) {\n    (!x: false); // error, bools are not always truthy\n  },\n  function(x: TestClass) {\n    (!x: false); // ok, classes are always truthy\n  },\n];") ;
@@ -225,8 +225,8 @@ fn test_number_js_format_1_935717db() {
 #[test]
 fn test_property_js_format_1_c2d1ce61() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction a(x: {[key: string]: ?string}, y: string): string {\n  if (x[y]) {\n    return x[y];\n  }\n  return \"\";\n}\n\nfunction b(x: {y: {[key: string]: ?string}}, z: string): string {\n  if (x.y[z]) {\n    return x.y[z];\n  }\n  return \"\";\n}\n\nfunction c(x: {[key: string]: ?string}, y: {z: string}): string {\n  if (x[y.z]) {\n    return x[y.z];\n  }\n  return \"\";\n}\n\nfunction d(x: {y: {[key: string]: ?string}}, a: {b: string}): string {\n  if (x.y[a.b]) {\n    return x.y[a.b];\n  }\n  return \"\";\n}\n\nfunction a_array(x: Array<?string>, y: number): string {\n  if (x[y]) {\n    return x[y];\n  }\n  return \"\";\n}\n\nfunction b_array(x: {y: Array<?string>}, z: number): string {\n  if (x.y[z]) {\n    return x.y[z];\n  }\n  return \"\";\n}\n\nfunction c_array(x: Array<?string>, y: {z: number}): string {\n  if (x[y.z]) {\n    return x[y.z];\n  }\n  return \"\";\n}\n\nfunction d_array(x: {y: Array<?string>}, a: {b: number}): string {\n  if (x.y[a.b]) {\n    return x.y[a.b];\n  }\n  return \"\";\n}\n\nfunction e_array(x: Array<?string>): string {\n  if (x[0]) {\n    return x[0];\n  }\n  return \"\";\n}\n\n// --- name-sensitive havoc ---\n\nfunction c2(x: {[key: string]: ?string}, y: {z: string}): string {\n  if (x[y.z]) {\n    y.z = \"HEY\";\n    return x[y.z];  // error\n  }\n  return \"\";\n}\n\nfunction c3(x: {[key: string]: ?string}, y: {z: string, a: string}): string {\n  if (x[y.z]) {\n    y.a = \"HEY\";\n    return x[y.z];  // ok\n  }\n  return \"\";\n}") ;
@@ -249,8 +249,8 @@ fn test_refinements_js_format_1_c3a157dd() {
 #[test]
 fn test_string_js_format_1_28496ae0() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ntype Mode = \"a\" | \"b\" | \"c\";\n\nlet tests = [\n  function(x: string) {\n    if (x === 'foo') {\n      (x: void); // error\n    }\n    (x: 'foo'); // error\n  },\n\n  function(x: string) {\n    if (x !== 'foo') {\n      (x: 'foo'); // error\n    }\n    (x: void); // error\n  },\n\n  function(x: 'bar'): 'foo' {\n    if (x === 'foo') {\n      return x; // unreachable, no error\n    }\n    return 'foo';\n  },\n\n  function(x: 'foo'): string {\n    if (x === 'bar') {\n      return x;\n    }\n    return x;\n  },\n\n  function(x: 'foo') {\n    if (x !== 'bar') {\n      (x: 'foo');\n    }\n    (x: 'foo');\n  },\n\n  function(x: 'foo'): string {\n    if (x === 'foo') {\n      return x;\n    }\n    return x;\n  },\n\n  function(x: 'foo' | 'bar') {\n    if (x === 'foo') {\n      (x: 'foo');\n      (x: void); // error\n    }\n    if (x === 'bar') {\n      (x: 'bar');\n      (x: void); // error\n    }\n  },\n\n  function(x: { foo: string }): 'foo' {\n    if (x.foo === 'foo') {\n      return x.foo;\n    }\n    return x.foo; // error\n  },\n\n  function(\n    x: { kind: 'foo', foo: string } | { kind: 'bar', bar: string }\n  ): string {\n    if (x.kind === 'foo') {\n      return x.foo;\n    } else {\n      return x.bar;\n    }\n  },\n\n  function(str: string, obj: { foo: string }) {\n    if (str === obj.bar) { // ok, typos allowed in conditionals\n    }\n  },\n\n  function(str: string, obj: {[key: string]: string}) {\n    if (str === obj.bar) { // ok\n    }\n  },\n\n  function(str: string): Mode {\n    var ch = str[0];\n    if (ch !== \"a\" && ch !== \"b\" && ch !== \"c\") {\n      throw new Error(\"Wrong string passed\");\n    }\n    return ch;\n  },\n\n  function(s: string): ?Mode {\n    if (s === \"a\") {\n      return s;\n    } else if (s === \"d\") {\n      return s; // error\n    }\n  },\n\n  function(mode: Mode) {\n    switch (mode) {\n      case \"a\":\n        (mode: \"a\");\n        break;\n\n      case \"b\":\n      case \"c\":\n        (mode: \"b\" | \"c\");\n        break;\n    }\n  },\n\n  function(x: string): \"\" {\n    if (x) {\n      return x; // error\n    } else {\n      return x; // no error, inferred to be \"\"\n    }\n  },\n\n  // Simple template literals are ok\n  function(x: string): 'foo' {\n    if (x === \\`foo\\`) {\n      return x;\n    }\n    if (\\`foo\\` === x) {\n      return x;\n    }\n    return 'foo';\n  },\n];") ;
@@ -273,8 +273,8 @@ fn test_super_member_js_format_1_f6be5f68() {
 #[test]
 fn test_switch_js_format_1_4521bfcc() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo(text: string | number): string {\n  switch (typeof text) {\n\u{3000}\u{3000}case 'string':\n\u{3000}\u{3000}\u{3000}return text;\n    case 'number':\n      return text; // error, should return string\n\u{3000}\u{3000}default:\n\u{3000}\u{3000}\u{3000}return 'wat';\n\u{3000}}\n}\n\nfunction bar(text: string | number): string {\n  switch (typeof text) {\n    case 'string':\n      return text[0];\n  \u{3000}default:\n      return (text++) + '';\n\u{3000}}\n}\n\nfunction baz1(text: string | number): string {\n  switch (typeof text) {\n    case 'number':\n    case 'string':\n      return text[0]; // error, [0] on number\n  \u{3000}default:\n      return 'wat';\n\u{3000}}\n}\n\nfunction baz2(text: string | number): string {\n  switch (typeof text) {\n    case 'string':\n    case 'number':\n      return text[0]; // error, [0] on number\n  \u{3000}default:\n      return 'wat';\n\u{3000}}\n}\n\nfunction corge(text: string | number | Array<string>): string {\n  switch (typeof text) {\n    case 'object':\n      return text[0];\n    case 'string':\n    case 'number':\n      // using ++ since it isn't valid on arrays or strings.\n      // should only error for string since Array was filtered out.\n      return (text++) + '';\n  \u{3000}default:\n      return 'wat';\n\u{3000}}\n}") ;
@@ -285,8 +285,8 @@ fn test_switch_js_format_1_4521bfcc() {
 #[test]
 fn test_tagged_union_js_format_1_df7e2d12() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("// example 1\n\ntype Type = Name | ListType;\ntype Name = {kind: 'Name', value: string};\ntype ListType = {kind: 'ListType', name: string};\n\nfunction getTypeASTName(typeAST: Type): string {\n  if (typeAST.kind === 'Name') {\n    return typeAST.value; // OK, since typeAST: Name\n  } else {\n    return typeAST.name; // OK, since typeAST: ListType\n  }\n}\n\n// example 2\nimport type {ASTNode} from './ast_node';\nvar Node = require('./node1'); // Node = \"Node1\"\nfunction foo(x: ASTNode) {\n  if (x.kind === Node) {\n    return x.prop1.charAt(0); // typeAST: Node1, but x.prop1 may be undefined\n  }\n  return null;\n}\n\n// example 3\ntype Apple = { kind: 'Fruit', taste: 'Bad' }\ntype Orange = { kind: 'Fruit', taste: 'Good' }\ntype Broccoli = { kind: 'Veg', taste: 'Bad', raw: 'No' }\ntype Carrot = { kind: 'Veg', taste: 'Good', raw: 'Maybe' }\n\ntype Breakfast = Apple | Orange | Broccoli | Carrot\n\nfunction bar(x: Breakfast) {\n  if (x.kind === 'Fruit') { (x.taste: 'Good'); } // error, Apple.taste = Bad\n  else (x.raw: 'No'); // error, Carrot.raw = Maybe\n}\n\nfunction qux(x: Breakfast) {\n  if (x.taste === 'Good') {\n    (x.raw: 'Yes' | 'No'); // 2 errors:\n                           // Orange.raw doesn't exist\n                           // Carrot.raw is neither Yes nor No\n  }\n}\n\n// example 4\nfunction list(n) {\n  if (n > 0) return { kind: \"cons\", next: list(n-1) };\n  return { kind: \"nil\" };\n}\nfunction length(l) {\n  switch (l.kind) {\n  case \"cons\": return 1 + length(l.next);\n  default: return 0;\n  }\n}\nfunction check(n) {\n  if (n >= 0) return (n === (length(list(n))));\n  return true;\n}\n\n\n// example 5\nvar EnumKind = { A: 1, B: 2, C: 3};\ntype A = { kind: 1, A: number };\ntype B = { kind: 2, B: number };\ntype C = { kind: 3, C: number };\nfunction kind(x: A | B | C): number {\n  switch (x.kind) {\n  case EnumKind.A: return x.A;\n  case EnumKind.B: return x.B;\n  default: return x.A; // error, x: C and property A not found in type C\n  }\n}\nkind({ kind: EnumKind.A, A: 1 });\n\n// example 6\ntype Citizen = { citizen: true };\ntype NonCitizen = { citizen: false, nationality: string }\nfunction nationality(x: Citizen | NonCitizen) {\n  if (x.citizen) return \"Shire\"\n  else return x.nationality;\n}\n\nlet tests = [\n  // non-existent props\n  function test7(x: A) {\n    if (x.kindTypo === 1) { // typos are allowed to be tested\n      (x.kindTypo: string); // typos can't be used, though\n    }\n  },\n\n  // nested objects\n  function test8(x: {foo: {bar: 1}}) {\n    if (x.foo.bar === 1) {}\n    if (x.fooTypo.bar === 1) {} // error, fooTypo doesn't exist\n  },\n\n  // invalid RHS\n  function(x: A) {\n    if (x.kind === (null).toString()) {} // error, method on null\n    if ({kind: 1}.kind === (null).toString()) {} // error, method on null\n  },\n\n  // non-objects on LHS\n  function(\n    x: Array<string>, y: string, z: number, q: boolean,\n    r: Object, s: Function, t: () => void\n  ) {\n    if (x.length === 0) {}\n    if (x.legnth === 0) { // typos are allowed to be tested\n      (x.legnth: number); // inside the block, it's a number\n      (x.legnth: string); // error: number literal 0 !~> string\n    }\n    if (y.length === 0) {}\n    if (y.legnth === 0) { // typos are allowed to be tested\n      (y.legnth: number); // inside the block, it's a number\n      (y.legnth: string); // error: number literal 0 !~> string\n    }\n    if (z.toString === 0) {}\n    if (z.toStirng === 0) { // typos are allowed to be tested\n      (z.toStirng: number); // inside the block, it's a number\n      (z.toStirng: string); // error: number literal 0 !~> string\n    }\n    if (q.valueOf === 0) {}\n    if (q.valeuOf === 0) { // typos are allowed to be tested\n      (q.valeuOf: number); // inside the block, it's a number\n      (q.valeuOf: string); // error: number literal 0 !~> string\n    }\n    if (r.toStirng === 0) { // typos are allowed to be tested\n      (r.toStirng: empty); // props on AnyObjT are \\`any\\`\n    }\n    if (s.call === 0) {}\n    if (s.calll === 0) { // typos are allowed to be tested\n      (t.calll: empty); // ok, props on functions are \\`any\\` :/\n    }\n    if (t.call === 0) {}\n    if (t.calll === 0) { // typos are allowed to be tested\n      (t.calll: empty); // ok, props on functions are \\`any\\` :/\n    }\n  },\n\n  // sentinel props become the RHS\n  function(x: { str: string, num: number, bool: boolean }) {\n    if (x.str === 'str') {\n      (x.str: 'not str'); // error: 'str' !~> 'not str'\n    }\n    if (x.num === 123) {\n      (x.num: 456); // error: 123 !~> 456\n    }\n    if (x.bool === true) {\n      (x.bool: false); // error: true !~> false\n    }\n    // even if it doesn't exist...\n    if (x.badStr === 'bad') {\n      (x.badStr: empty); // error: 'bad' !~> empty\n    }\n    if (x.badNum === 123) {\n      (x.badNum: empty); // error: 123 !~> empty\n    }\n    if (x.badBool === true) {\n      (x.badBool: empty); // error: true !~> empty\n    }\n  },\n\n  // type mismatch\n  function(x: { foo: 123, y: string } | { foo: 'foo', z: string }) {\n    if (x.foo === 123) {\n      (x.y: string);\n      x.z; // error\n    } else {\n      (x.z: string);\n      x.y; // error\n    }\n    if (x.foo === 'foo') {\n      (x.z: string);\n      x.y; // error\n    } else {\n      (x.y: string);\n      x.z; // error\n    }\n  },\n\n  // type mismatch, but one is not a literal\n  function(x: { foo: number, y: string } | { foo: 'foo', z: string }) {\n    if (x.foo === 123) {\n      (x.y: string); // ok, because 123 !== 'foo'\n      x.z; // error\n    } else {\n      x.y; // error: x.foo could be a string\n      x.z; // error: could still be either case (if foo was a different number)\n    }\n\n    if (x.foo === 'foo') {\n      (x.z: string);\n      x.y; // error\n    } else {\n      (x.y: string);\n      x.z; // error\n    }\n  },\n\n  // type mismatch, neither is a literal\n  function(x: { foo: number, y: string } | { foo: string, z: string }) {\n    if (x.foo === 123) {\n      (x.y: string); // ok, because 123 !== string\n      x.z; // error\n    } else {\n      x.y; // error: x.foo could be a string\n      x.z; // error: could still be either case (if foo was a different number)\n    }\n\n    if (x.foo === 'foo') {\n      (x.z: string);\n      x.y; // error\n    } else {\n      x.y; // error: x.foo could be a different string\n      x.z; // error: x.foo could be a number\n    }\n  },\n\n  // type mismatch, neither is a literal, test is not a literal either\n  function(\n    x: { foo: number, y: string } | { foo: string, z: string },\n    num: number\n  ) {\n    if (x.foo === num) {\n      x.y; // error: flow isn't smart enough to figure this out yet\n      x.z; // error\n    }\n  },\n\n  // null\n  function(x: { foo: null, y: string } | { foo: 'foo', z: string }) {\n    if (x.foo === null) {\n      (x.y: string);\n      x.z; // error\n    } else {\n      (x.z: string);\n      x.y; // error\n    }\n    if (x.foo === 'foo') {\n      (x.z: string);\n      x.y; // error\n    } else {\n      (x.y: string);\n      x.z; // error\n    }\n  },\n\n  // void\n  function(x: { foo: void, y: string } | { foo: 'foo', z: string }) {\n    if (x.foo === undefined) {\n      (x.y: string);\n      x.z; // error\n    } else {\n      (x.z: string);\n      x.y; // error\n    }\n    if (x.foo === 'foo') {\n      (x.z: string);\n      x.y; // error\n    } else {\n      (x.y: string);\n      x.z; // error\n    }\n  },\n];") ;
@@ -321,8 +321,8 @@ fn test_typeof_js_format_1_2dd33ecc() {
 #[test]
 fn test_undef_js_format_1_221825ee() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction undef_var(x: ?number) {\n  if (x !== null && x !== undefined) {\n    var y = x * 1000;\n  }\n}\n\nfunction undef_var_rev(x: ?number) {\n  if (x === null || x === undefined) {\n  } else {\n    var y = x * 1000;\n  }\n}\n\nfunction undef_prop(x: { x: ?number }) {\n  if (x.x !== null && x.x !== undefined) {\n    var y = x.x * 1000;\n  }\n}\n\nfunction undef_prop_rev(x: { x: ?number }) {\n  if (x.x === null || x.x === undefined) {\n  } else {\n    var y = x.x * 1000;\n  }\n}\n\nfunction undef_var_fail(x: ?number) {\n  if (x !== undefined) {\n    var y = x * 1000;\n  }\n}\n\nfunction undef_var_fail_rev(x: ?number) {\n  if (x === undefined) {\n  } else {\n    var y = x * 1000;\n  }\n}\n\nfunction undef_prop_fail(x: { x: ?number }) {\n  if (x.x !== undefined) {\n    var y = x.x * 1000;\n  }\n}\n\nfunction undef_prop_fail_rev(x: { x: ?number }) {\n  if (x.x === undefined) {\n  } else {\n    var y = x.x * 1000;\n  }\n}\n\nfunction undef_unreachable(x: number) {\n  if (x === undefined) {\n    var y = x * 1000; // unreachable\n  }\n  if (x == undefined) {\n    var z = x * 1000; // unreachable\n  }\n}\n\nfunction undef_var_nonstrict(x: ?number, y: ?number) {\n  if (x != undefined) {\n    var a = x * 1000;\n  }\n  if (y == undefined){\n    var b = y * 1000; // error\n  }\n}\n\nfunction undef_bogus_comparison() {\n  if (100 * undefined) {\n    return;\n  }\n  if (undefined * 100) {\n    return;\n  }\n}") ;

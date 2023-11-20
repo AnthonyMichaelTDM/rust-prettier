@@ -30,9 +30,9 @@ fn test_items_yml_format_1_54f3cb90() {
 #[test]
 fn test_middle_comment_yml_tab_width_4_format_1_8054a673() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!set # comment\n- 123");
@@ -55,9 +55,9 @@ fn test_middle_comment_yml_format_1_8054a673() {
 #[test]
 fn test_middle_comments_yml_tab_width_4_format_1_d0c2d195() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("!!set # comment 1\n# comment 2\n- 123");
@@ -80,9 +80,9 @@ fn test_middle_comments_yml_format_1_d0c2d195() {
 #[test]
 fn test_nested_yml_tab_width_4_format_1_2f1dfd53() {
     let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
         .print_width(80)
         .tab_width(4)
-        .parsers(vec!["yaml"])
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- 1\n- - 2-1\n  - 2-2\n- - - 3-1-1\n    - 3-2-1");
@@ -93,8 +93,8 @@ fn test_nested_yml_tab_width_4_format_1_2f1dfd53() {
 #[test]
 fn test_nested_yml_format_1_2f1dfd53() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("- 1\n- - 2-1\n  - 2-2\n- - - 3-1-1\n    - 3-2-1");
@@ -106,8 +106,8 @@ fn test_nested_yml_format_1_2f1dfd53() {
 fn test_null_item_yml_tab_width_4_format_1_ac859d67() {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parsers(vec!["yaml"])
-        .tab_width(4)
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("-");
@@ -130,9 +130,9 @@ fn test_null_item_yml_format_1_ac859d67() {
 #[test]
 fn test_props_yml_tab_width_4_format_1_37406e03() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .tab_width(4)
         .parsers(vec!["yaml"])
         .print_width(80)
+        .tab_width(4)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("--- !!set &anchor\n- 123\n- 456");
@@ -155,8 +155,8 @@ fn test_props_yml_format_1_37406e03() {
 #[test]
 fn test_props_in_map_yml_tab_width_4_format_1_4c9feb5d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
@@ -168,8 +168,8 @@ fn test_props_in_map_yml_tab_width_4_format_1_4c9feb5d() {
 #[test]
 fn test_props_in_map_yml_format_1_4c9feb5d() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("a: !!set &anchor\n- 123\n- 456");

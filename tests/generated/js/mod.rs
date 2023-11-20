@@ -117,7 +117,7 @@ mod test_multiparser_graphql;
 #[cfg(test)]
 mod test_for_await;
 #[cfg(test)]
-mod test_v8_intrinsic;
+mod test_v_8_intrinsic;
 #[cfg(test)]
 mod test_member;
 #[cfg(test)]
@@ -141,7 +141,7 @@ mod test_template_literals;
 #[cfg(test)]
 mod test_tab_width;
 #[cfg(test)]
-mod test_es6modules;
+mod test_es_6_modules;
 #[cfg(test)]
 mod test_no_semi_babylon_extensions;
 #[cfg(test)]

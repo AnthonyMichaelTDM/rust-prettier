@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_fetch_js_format_1_d707f575() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n// most of the details are tested in the separate file\n// here I test the basic usage\n\nconst myRequest = new Request('http://google.com');\n\nconst a: Promise<string> =\n  fetch(myRequest)\n  .then(response => response.text());\n\nconst b: Promise<string> = fetch(myRequest); // incorrect\n\nvar myInit = { method: 'GET',\n               headers: {\n                   'Content-Type': 'image/jpeg'\n               },\n               mode: 'cors',\n               cache: 'default' };\n\nconst c: Promise<Blob> =\n  fetch('image.png')\n  .then(response => response.blob()); // correct\n\nconst d: Promise<Blob> = fetch('image.png'); // incorrect") ;
@@ -29,8 +29,8 @@ fn test_headers_js_format_1_c003c448() {
 #[test]
 fn test_request_js_format_1_b5447aa9() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\nconst a: Request = new Request(); // incorrect\nconst b: Request = new Request('http://example.org'); // correct\nconst c: Request = new Request(b); // correct\nconst d: Request = new Request(c.clone()); // correct (doesn't make much sense though)\nconst e: Request = new Request(b, c); // incorrect\n\nconst f: Request = new Request({}) // incorrect\nconst g: Request = new Request('http://example.org', {}) // correct\nnew Request(new URL('http://example.org')); // correct\n\nconst h: Request = new Request('http://example.org', {\n  method: 'GET',\n  headers: {\n    'Content-Type': 'image/jpeg'\n  },\n  mode: 'cors',\n  cache: 'default'\n}) // correct\n\nvar bodyUsed: boolean = h.bodyUsed;\n\nh.text().then((t: string) => t); // correct\nh.text().then((t: Buffer) => t); // incorrect\nh.arrayBuffer().then((ab: ArrayBuffer) => ab); // correct\nh.arrayBuffer().then((ab: Buffer) => ab); // incorrect\n\nconst i: Request = new Request('http://example.org', {\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/octet-stream'\n  },\n  body: new ArrayBuffer(10),\n}); // correct\n\nconst j: Request = new Request('http://example.org', {\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/octet-stream'\n  },\n  body: new Uint8Array(10),\n}); // correct\n\nconst k: Request = new Request('http://example.org', {\n  method: 'POST',\n  headers: {\n    'Content-Type': 'image/jpeg'\n  },\n  body: new URLSearchParams(\"key=value\"),\n  mode: 'cors',\n  cache: 'default'\n}) // correct\n\nconst l: Request = new Request('http://example.org', {\n  method: 'GET',\n  headers: 'Content-Type: image/jpeg',\n  mode: 'cors',\n  cache: 'default'\n}) // incorrect - headers is string\n\nnew Request('/', { method: 'post' }); // correct\nnew Request('/', { method: 'hello' }); // correct\nnew Request('/', { method: null }); // incorrect") ;
@@ -41,8 +41,8 @@ fn test_request_js_format_1_b5447aa9() {
 #[test]
 fn test_response_js_format_1_77cb30eb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\nconst a: Response = new Response(); // correct\nconst b: Response = new Response(new Blob()); // correct\nconst c: Response = new Response(new FormData()); // correct\n\nnew Response(\"\", { status: 404 }); // correct\nnew Response(null, { status: 204 }); // correct\nnew Response(\"\", { status: \"404\" }); // incorrect\nnew Response(\"\", { status: null }); // incorrect\n\nconst f: Response = new Response(\"responsebody\", {\n    status: 404,\n    headers: \"'Content-Type': 'image/jpeg'\"\n}); // incorrect\n\nconst g: Response = new Response(\"responsebody\", {\n    status: 404,\n    headers: {\n        'Content-Type': 'image/jpeg'\n    }\n}); // correct\n\nconst h: Response = new Response(\"responsebody\", {\n    status: 404,\n    headers: new Headers({\n        'Content-Type': 'image/jpeg'\n    })\n}); // correct, if verbose\n\nconst i: Response = new Response({\n    status: 404,\n    headers: new Headers({\n        'Content-Type': 'image/jpeg'\n    })\n}); // incorrect\n\nconst ok: boolean = h.ok;\nconst redirected: boolean = h.redirected;\nconst status: number = h.status;\n\nh.text().then((t: string) => t); // correct\nh.text().then((t: Buffer) => t); // incorrect\nh.arrayBuffer().then((ab: ArrayBuffer) => ab); // correct\nh.arrayBuffer().then((ab: Buffer) => ab); // incorrect") ;

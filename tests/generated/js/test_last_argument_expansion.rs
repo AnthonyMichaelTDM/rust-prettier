@@ -5,8 +5,8 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrow_js_format_1_426c2092() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export default function searchUsers(action$) {\n  return action$.ofType(ActionTypes.SEARCHED_USERS)\n    .map(action => action.payload.query)\n    .filter(q => !!q)\n    .switchMap(q =>\n      Observable.timer(800) // debounce\n        .takeUntil(action$.ofType(ActionTypes.CLEARED_SEARCH_RESULTS))\n        .mergeMap(() => Observable.merge(\n          Observable.of(replace(\\`?q=\\${q}\\`)),\n          ajax.getJSON(\\`https://api.github.com/search/users?q=\\${q}\\`)\n            .map(res => res.items)\n            .map(receiveUsers)\n        ))\n    );\n};") ;
@@ -30,8 +30,8 @@ fn test_assignment_pattern_js_format_1_4c710d58() {
 #[test]
 fn test_break_parent_js_format_1_b78e4c28() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("({\n  processors: [\n    require(\"autoprefixer\", {\n      browsers: [\"> 1%\", \"last 2 versions\", \"ie >= 11\", \"Firefox ESR\"]\n    }),\n    require(\"postcss-url\")({\n      url: url =>\n        url.startsWith(\"/\") || /^[a-z]+:/.test(url) ? url : \\`/static/\\${url}\\`\n    })\n  ]\n});\n\ntrue\n  ? test({\n      a: 1\n    })\n  : <div\n      a={123412342314}\n      b={123412341234}\n      c={123412341234}\n      d={123412341234}\n      e={123412341234}\n      f={123412341234}\n      g={123412341234}\n    />;") ;
@@ -42,8 +42,8 @@ fn test_break_parent_js_format_1_b78e4c28() {
 #[test]
 fn test_dangling_comment_in_arrow_function_js_format_1_cd54bb2b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo(\n  (\n    // foo\n  ) => {}\n);");
@@ -102,8 +102,8 @@ fn test_empty_object_js_format_1_7e3ee37a() {
 #[test]
 fn test_function_body_in_mode_break_js_format_1_b18867b1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("fs.readdirSync(suiteLoc).forEach(function (testName) {\n  (skip ? it.skip : it)(\n    testName,\n    buildTest(binName, testName, opts),\n    2_000_000,\n  );\n});\n\n{\n  (skip ? it.skip : it)(\n    testName,\n    buildTest(binName, testName, opts),\n    2_000_000,\n  );\n}") ;
@@ -114,8 +114,8 @@ fn test_function_body_in_mode_break_js_format_1_b18867b1() {
 #[test]
 fn test_function_expression_js_format_1_ccba622e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("function* mySagas() {\n  yield effects.takeEvery(\n    rexpress.actionTypes.REQUEST_START,\n    function*({ id }) {\n      console.log(id);\n      yield rexpress.actions(store).writeHead(id, 400);\n      yield rexpress.actions(store).end(id, 'pong');\n      console.log('pong');\n    }\n  );\n}\n\nfunction mySagas2() {\n  return effects.takeEvery(\n    rexpress.actionTypes.REQUEST_START,\n    function({ id }) {\n      console.log(id);\n    }\n  );\n}") ;
@@ -150,8 +150,8 @@ fn test_issue_7518_js_format_1_4f97f087() {
 #[test]
 fn test_issue_10708_js_format_1_ef9a97da() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -176,8 +176,8 @@ fn test_jsx_js_format_1_7d07eb33() {
 #[test]
 fn test_number_only_array_js_format_1_3463f89e() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("instantiate(game, [\n  transform([-0.7, 0.5, 0]),\n  render_colored_diffuse(game.MaterialDiffuse, game.Meshes[\"monkey_flat\"], [1, 1, 0.3, 1]),\n]);") ;
@@ -200,8 +200,8 @@ fn test_object_js_format_1_7d3c79b9() {
 #[test]
 fn test_overflow_js_format_1_9f458c14() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("SuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLongCall((err, result) => {\n  // comment\n});\n\nfunc(one, two, three, four, five, six, seven, eig, is, this, too, long, no, []);\nfunc(one, two, three, four, five, six, seven, eig, is, this, too, long, yes, []);\nfunc(one, two, three, four, five, six, seven, eig, is, this, too, long, yes, [\n  // Comments\n]);\nfunc(five, six, seven, eig, is, this, too, long, yes, [\n  // Comments\n]);\n\nfunc(one, two, three, four, five, six, seven, eig, is, this, too, long, no, {});\nfunc(one, two, three, four, five, six, seven, eig, is, this, too, long, yes, {});\nfunc(one, two, three, four, five, six, seven, eig, is, this, too, long, yes, {\n  // Comments\n});\n\nfoo(\n  (\n    one,\n    two,\n    three,\n    four,\n    five,\n    six,\n    seven,\n    eight,\n    nine,\n    ten,\n    eleven,\n    twelve,\n    thirteen,\n    fourteen,\n  ) => {},\n);\n\nconst contentTypes = function(tile, singleSelection) {\n  return compute(\n    function contentTypesContentTypes(\n      tile,\n      searchString = '',\n      filteredContentTypes = [],\n      contentTypesArray = [],\n      selectedGroup,\n      singleSelection) {\n      selectedGroup = (tile.state && tile.state.group) || selectedGroup;\n    }\n  );\n};") ;

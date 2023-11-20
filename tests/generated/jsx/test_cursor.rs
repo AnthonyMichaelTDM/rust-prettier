@@ -5,9 +5,9 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_in_jsx_text_js_format_1_0759ce22() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
-        .parsers(vec!["babel", "typescript", "flow"])
         .cursor_offset(3)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<>a<|>\n  <div>hi</div>\n</>");

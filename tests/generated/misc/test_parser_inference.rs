@@ -17,8 +17,8 @@ fn test_snippet_prettierrc_in_json_format_1_61494137() {
 #[test]
 fn test_snippet_prettierrc_in_yaml_format_1_928a7668() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec![])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("# comment\nprintWidth: 100\noverrides:\n  - files: '.prettierrc'\n    options:\n      parser: \"json") ;
@@ -29,8 +29,8 @@ fn test_snippet_prettierrc_in_yaml_format_1_928a7668() {
 #[test]
 fn test_test_html_format_1_04464cec() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec![])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<foo>\n                 <bar/>\n</foo>");
@@ -41,8 +41,8 @@ fn test_test_html_format_1_04464cec() {
 #[test]
 fn test_test_importmap_format_1_e2fefa4a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec![])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("{\"imports\": {\n    \"prettier\": \"https://unpkg.com/prettier@2.6.2/esm/standalone.mjs\",\n    \"prettier/\": \"https://unpkg.com/prettier@2.6.2/\"\n  }\n}") ;
@@ -105,8 +105,8 @@ fn test_test_wxs_format_1_4c841e11() {
 #[test]
 fn test_test_wxss_format_1_d061219c() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec![])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("view.foo {font-size: 14rpx;\n}");
@@ -117,8 +117,8 @@ fn test_test_wxss_format_1_d061219c() {
 #[test]
 fn test_test_yml_format_1_c5ce43e6() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec![])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo:\n                 - 'bar'");

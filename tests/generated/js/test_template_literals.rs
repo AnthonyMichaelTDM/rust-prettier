@@ -17,8 +17,8 @@ fn test_binary_exporessions_js_format_1_71bb35fe() {
 #[test]
 fn test_conditional_expressions_js_format_1_d1af7407() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("\\`111111111 222222222 333333333 444444444 555555555 666666666 777777777 \\${\n  1 ? 1 : 2\n}\\`;") ;
@@ -53,8 +53,8 @@ fn test_expressions_js_format_1_028a28f5() {
 #[test]
 fn test_indention_js_format_1_867621fb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("[\n  \\`\n      1. Go to \"-{chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n  \\`,\n  \\`\n      2. Go to \"\\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n  \\`,\n  \\`\n      1. Go to \"-{chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n      2. Go to \"\\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n  \\`,\n  \\`\n      2. Go to \"\\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n      1. Go to \"-{chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n  \\`,\n  \\`\n          1. Go to \"-{chalk.green.underline(\n            \"https://www.example.com/drupedalKangarooTransformer\"\n          )}\" \\${chalk.green.underline(\n            \"https://www.example.com/drupedalKangarooTransformer\"\n          )}\n      2. Go to \"\\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n  \\`,\n  \\`\n      1. Go to \"-{chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\" \\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\"\n      )}\n          2. Go to \"\\${chalk.green.underline(\n            \"https://www.example.com/drupedalKangarooTransformer\"\n          )}\" \\${chalk.green.underline(\n            \"https://www.example.com/drupedalKangarooTransformer\"\n          )}\n  \\`,\n\\`\n# blabla \\${a} \\${chalk.green.underline(\"https://www.example.com/drupedalKangarooTransformer\")}\n\n    2. Go to \"\\${chalk.green.underline(\n      \"https://www.example.com/drupedalKangarooTransformer\",\n    )}\"\n\n# blabla \\${a} \\${chalk.green.underline(\"https://www.example.com/drupedalKangarooTransformer\")}\n\\`,\n  \\`\n  # blabla \\${a} \\${chalk.green.underline(\"https://www.example.com/drupedalKangarooTransformer\")}\n\n      2. Go to \"\\${chalk.green.underline(\n        \"https://www.example.com/drupedalKangarooTransformer\",\n      )}\"\n\n  # blabla \\${a} \\${chalk.green.underline(\"https://www.example.com/drupedalKangarooTransformer\")}\n  \\`,\n]") ;
@@ -77,8 +77,8 @@ fn test_logical_expressions_js_format_1_952985f9() {
 #[test]
 fn test_sequence_expressions_js_format_1_1e8f821f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format(
@@ -91,8 +91,8 @@ fn test_sequence_expressions_js_format_1_1e8f821f() {
 #[test]
 fn test_styled_components_with_expressions_js_format_1_93b6c826() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Button = styled.a\\`\n/* Comment */\n\tdisplay: \\${props=>props.display};\n\\`;\n\nstyled.div\\`\n\tdisplay: \\${props=>props.display};\n\tborder: \\${props=>props.border}px;\n\tmargin: 10px \\${props=>props.border}px ;\n\\`;\n\nconst EqualDivider = styled.div\\`\nmargin: 0.5rem;\n\t\tpadding: 1rem;\n\tbackground: papayawhip    ;\n\n\t> * {\n\tflex: 1;\n\n\t&:not(:first-child) {\n\t\t\t\\${props => props.vertical ? 'margin-top' : 'margin-left'}: 1rem;\n\t\t}\n\t}\n\\`;\n\nconst header = css\\`\n.top-bar {background:black;\nmargin: 0;\n    position: fixed;\n\ttop: 0;left:0;\n\twidth: 100%;\n    text-align: center     ;\n\tpadding: 15px  0  0  1em;\n\t\tz-index: 9999;\n}\n\n.top-bar .logo {\n  height: 30px;\n  margin: auto; \n    position: absolute;\n\tleft: 0;right: 0;\n}\n\\`;") ;
@@ -103,8 +103,8 @@ fn test_styled_components_with_expressions_js_format_1_93b6c826() {
 #[test]
 fn test_styled_jsx_js_format_1_1391943f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("<style jsx>{\\`\n\t/* a comment */\n\tdiv :global(.react-select) {\n\t\tcolor: red; display: none\n\t}\n\\`}</style>;\n\n<div>\n<style jsx>{\\`\n\t/* a comment */\ndiv :global(.react-select) {\ncolor: red; display: none\n}\\`}</style>\n</div>;\n\n<div>\n<style jsx>{\\`div{color:red}\\`}</style>\n</div>;\n\n<div>\n<style jsx>{\\`This is invalid css. \n      Shouldn't fail.\n            Shouldn't be formatted.\\`}</style>\n</div>;\n\nconst header = css\\`\n.top-bar {background:black;\nmargin: 0;\n    position: fixed;\n\ttop: 0;left:0;\n\twidth: 100%;\n    text-align: center     ;\n\tpadding: 15px  0  0  1em;\n\t\tz-index: 9999;\n}\n\n.top-bar .logo {\n  height: 30px;\n  margin: auto; \n    position: absolute;\n\tleft: 0;right: 0;\n}\n\\`;\n\nconst headerResolve = css.resolve\\`\n.top-bar {background:black;\nmargin: 0;\n    position: fixed;\n\ttop: 0;left:0;\n\twidth: 100%;\n    text-align: center     ;\n\tpadding: 15px  0  0  1em;\n\t\tz-index: 9999;\n}\n\n.top-bar .logo {\n  height: 30px;\n  margin: auto; \n    position: absolute;\n\tleft: 0;right: 0;\n}\n\\`;\n\nconst headerGlobal = css.global\\`\n.top-bar {background:black;\nmargin: 0;\n    position: fixed;\n\ttop: 0;left:0;\n\twidth: 100%;\n    text-align: center     ;\n\tpadding: 15px  0  0  1em;\n\t\tz-index: 9999;\n}\n\n.top-bar .logo {\n  height: 30px;\n  margin: auto; \n    position: absolute;\n\tleft: 0;right: 0;\n}\n\\`;") ;

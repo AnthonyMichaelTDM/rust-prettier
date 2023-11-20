@@ -80,8 +80,8 @@ fn test_input_graphql_format_1_271f33b7() {
 #[test]
 fn test_object_type_def_graphql_format_1_089b8268() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["graphql"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer

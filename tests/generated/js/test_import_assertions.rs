@@ -29,8 +29,8 @@ fn test_dynamic_import_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_dynamic_import_js_format_1_c70cf81a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -69,8 +69,8 @@ fn test_empty_js_meriyah_format_1_d41d8cd9() {
 #[test]
 fn test_empty_js_format_1_0583d1e4() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("export * as foo from \"foo.json\"\nexport * as bar from \"bar.json\" assert { }\nexport * as baz from \"baz.json\" assert { /* comment */ }\n\nimport * as foo from \"foo.json\"\nimport * as bar from \"bar.json\" assert { }\nimport * as baz from \"baz.json\" assert { /* comment */ ") ;

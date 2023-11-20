@@ -17,8 +17,8 @@ fn test_classes_js_format_1_4c71f451() {
 #[test]
 fn test_interfaces_neg_js_format_1_c43ce1bb() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\ndeclare interface IDataBase {\n  id: string,\n  name: string,\n}\n\ndeclare interface IUserData extends IDataBase {\n  kind: \"user\",\n}\n\ndeclare interface ISystemData extends IDataBase {\n  kind: \"system\",\n}\n\ndeclare type IData = IUserData | ISystemData;\n\nconst data: IData = {\n  id: \"\",\n  name: \"\",\n  kind: \"system\",\n}\n\nif (data.kind === \"user\") {\n  (data: ISystemData);\n}") ;
@@ -53,8 +53,8 @@ fn test_type_decls_neg_js_format_1_be0965e6() {
 #[test]
 fn test_type_decls_pos_js_format_1_c88669c1() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["flow"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\ntype DataBase = {\n  id: string,\n  name: string,\n};\n\ntype UserData = {\n  id: string,\n  name: string,\n  kind: \"user\",\n}\n\ntype SystemData = {\n  id: string,\n  name: string,\n  kind: \"system\",\n}\n\ndeclare type Data = UserData | SystemData;\n\nconst data: Data = {\n  id: \"\",\n  name: \"\",\n  kind: \"system\",\n}\n\nif (data.kind === \"system\") {\n  (data: SystemData);\n}") ;

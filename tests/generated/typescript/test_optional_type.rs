@@ -17,8 +17,8 @@ fn test_complex_ts_format_1_78f4bce1() {
 #[test]
 fn test_simple_ts_format_1_d84b091b() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("type X = [number, string?];");

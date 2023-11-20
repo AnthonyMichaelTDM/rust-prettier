@@ -20,8 +20,8 @@ fn test_delete_variable_js_format_1_e90281c6() {
 #[test]
 fn test_eval_arguments_js_format_1_0d73a9e3() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted =
@@ -36,8 +36,8 @@ fn test_eval_arguments_js_format_1_0d73a9e3() {
 #[test]
 fn test_eval_arguments_binding_js_format_1_e957d00a() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("function myfunc() {\n  var eval\n  var arguments;\n}");
@@ -107,8 +107,8 @@ fn test_function_declaration_in_while_js_format_1_3f60482f() {
 #[test]
 fn test_labeled_function_declaration_js_format_1_c36ca52f() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo: function bar() {}");

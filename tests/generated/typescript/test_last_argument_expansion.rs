@@ -17,8 +17,8 @@ fn test_break_ts_format_1_b2105a4c() {
 #[test]
 fn test_decorated_function_tsx_format_1_fa933373() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["typescript"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer . format ("const Counter = decorator(\"my-counter\")(\n  (props: { initialCount?: number; label?: string }) => {\n    const p = useDefault(props, {\n      initialCount: 0,\n      label: \"Counter\",\n    });\n\n    const [s, set] = useState({ count: p.initialCount });\n    const onClick = () => set(\"count\", (it) => it + 1);\n\n    return () => (\n      <button onclick={onClick}>\n        {p.label}: {s.count}\n      </button>\n    );\n  }\n);\n\nconst Counter2 = decorators.decorator(\"my-counter\")(\n  (props: { initialCount?: number; label?: string }) => {\n    return () => (\n      <button onclick={onClick}>\n        {p.label}: {s.count}\n      </button>\n    );\n  }\n);\n\nexport default decorators.decorator(\"my-counter\")(\n  (props: { initialCount?: number; label?: string }) => {\n    return foo;\n  }\n);\n\nexport = decorators.decorator(\"my-counter\")(\n  (props: { initialCount?: number; label?: string }) => {\n    return foo;\n  }\n);\n\nmodule.exports = decorators.decorator(\"my-counter\")(\n  (props: { initialCount?: number; label?: string }) => {\n    return foo;\n  }\n);\n\nconst Counter =\n  decorator(\"foo\")(\n  decorator(\"bar\")(\n  (props: {\n    loremFoo1: Array<Promise<any>>,\n    ipsumBarr2: Promise<number>,\n  }) => {\n    return <div/>;\n  }));") ;

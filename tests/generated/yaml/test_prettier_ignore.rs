@@ -33,8 +33,8 @@ fn test_leading_comment_yml_format_1_4fc57b84() {
 #[test]
 fn test_middle_comment_yml_format_1_22103cb5() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .print_width(80)
         .parsers(vec!["yaml"])
+        .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
