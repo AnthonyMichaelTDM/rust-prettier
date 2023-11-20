@@ -1,11 +1,11 @@
 use cfg_if::cfg_if;
-use proc_macro2::{Punct, Spacing};
-use quote::{ToTokens, TokenStreamExt};
 
 cfg_if! {
-    if #[cfg(not(debug_assertions))] {
+    if #[cfg(not(all(debug_assertions, feature = "generated_tests")))] {
         fn main() {}
     } else {
+        use proc_macro2::{Punct, Spacing};
+        use quote::{ToTokens, TokenStreamExt};
         use convert_case::{Case, Casing};
         use quote::quote;
         use std::{collections::HashMap, io::Write};
