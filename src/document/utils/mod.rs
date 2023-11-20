@@ -196,6 +196,60 @@ pub fn will_break(doc: &Doc) -> bool {
     .is_some()
 }
 
+fn break_parent_group(group_stack: &mut [Doc]) {
+    if !group_stack.is_empty() {
+        let parent_group = group_stack.last_mut().unwrap();
+        // Breaks are not propagated through conditional groups because
+        // the user is expected to manually handle what breaks.
+        if let Doc::DocCommand(DocCommand::Group {
+            expanded_states,
+            should_break,
+            ..
+        }) = parent_group
+        {
+            if (expanded_states.is_none() || expanded_states.as_ref().unwrap().is_empty())
+                && *should_break == Break::Never
+            {
+                // An alternative truthy value allows to distinguish propagated group breaks
+                // and not to print them as `group(..., { break: true })` in `--debug-print-doc`.
+                *should_break = Break::Propagated;
+            }
+        }
+    }
+}
+
+pub fn propagate_breaks(doc: &mut Doc) {
+    let mut already_visited = HashSet::new();
+    let mut group_stack = Vec::new();
+
+    traverse_doc_mut(
+        doc,
+        &mut (&mut group_stack, &mut already_visited),
+        |d, (group_stack, already_visited)| {
+            if let Doc::DocCommand(DocCommand::BreakParent) = d {
+                break_parent_group(group_stack);
+            }
+            if let Doc::DocCommand(DocCommand::Group { .. }) = d {
+                group_stack.push(d.clone());
+                if already_visited.contains(&*d) {
+                    return false;
+                }
+                already_visited.insert(d.clone());
+            }
+            true
+        },
+        Some(Box::new(|d, (group_stack, _)| {
+            if let Doc::DocCommand(DocCommand::Group { should_break, .. }) = d {
+                group_stack.pop();
+                if *should_break != Break::Yes {
+                    break_parent_group(group_stack);
+                }
+            }
+        })),
+        Some(true),
+    );
+}
+
 pub fn remove_lines(doc: &Doc) -> Doc {
     return map_doc(doc, |d| match d {
         // Force this doc into flat mode by statically converting all
