@@ -24,11 +24,11 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
 /// A group is forced to break if it's created with the should_break option set to true or if it includes breakParent. A hard and literal line breaks automatically include this so they always break parent groups. Breaks are propagated to all parent groups, so if a deeply nested expression has a hard break, everything will break. This only matters for "hard" breaks, i.e. newlines that are printed no matter what and can be statically analyzed.
 ///
 /// For example, an array will try to fit on one line:
-/// ```no_run
+/// ```js
 /// [1, "foo", { bar: 2 }];
 /// ```
 /// However, if any of the items inside the array have a hard break, the array will always break as well:
-/// ```no_run
+/// ```js
 /// [
 ///   1,
 ///   function () {
@@ -109,7 +109,9 @@ pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
 /// Print something if the current group or the current element of fill breaks and something else if it doesn't.
 ///
 /// ```no_run
-/// if_break(Doc::from(";"), Doc::from(" "));
+/// use rust_prettier::document::{Doc, if_break};
+///
+/// if_break(Doc::from(";"), Some(Doc::from(" ")), None);
 /// ```
 ///  
 /// group_id can be used to check another *already printed* group instead of the current group.
@@ -137,11 +139,16 @@ pub fn indent_if_break(contents: Doc, group_id: ID, negate: bool) -> Doc {
 
 /// This is used to implement trailing comments. It's not practical to constantly check where the line ends to avoid accidentally printing some code at the end of a comment. lineSuffix buffers docs passed to it and flushes them before any new line.
 /// For example,
-/// ```no_run
-/// ["a", lineSuffix(" // comment"), ";", hardline];
+/// ```
+/// use rust_prettier::document::{Doc, line_suffix, hardline};
+/// # use rust_prettier::{PrettyPrinter, PrettyPrinterBuilder};
+///
+/// let doc: Doc = Doc::from(vec!["a".into(), line_suffix(" // comment".into()), ";".into(), hardline()]);
+///
+/// # assert_eq!(doc.format(PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
 /// ```
 /// will output
-/// ```no_run
+/// ```txt
 /// a; // comment
 /// ```
 pub fn line_suffix(contents: Doc) -> Doc {
