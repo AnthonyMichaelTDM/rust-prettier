@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_break_ts_format_1_ccf2bb37() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class MyContractSelectionWidget extends React.Component<void,  MyContractSelectionWidgetPropsType, void> implements SomethingLarge {\n  method() {}\n}\n\nclass DisplayObject1\n  extends utils.EventEmitter\n  implements interaction_InteractiveTarget {\n}\n\nclass DisplayObject2 extends utils.EventEmitter\n  implements interaction_InteractiveTarget {\n}\n\nclass DisplayObject3 extends utils.EventEmitter\n  implements interaction_InteractiveTarget,\n    somethingElse_SomeOtherThing,\n    somethingElseAgain_RunningOutOfNames {\n}\n\nclass DisplayObject4 extends utils.EventEmitter implements interaction_InteractiveTarget {}\nclass Readable extends events.EventEmitter implements NodeJS_ReadableStream {}\nclass InMemoryAppender extends log4javascript.Appender implements ICachedLogMessageProvider {}\n\nclass Foo extends Immutable.Record({\n  ipaddress: '',\n}) {\n  ipaddress: string;\n}\n\nexport class VisTimelineComponent\n\timplements AfterViewInit, OnChanges, OnDestroy {\n}\nexport class VisTimelineComponent2\n\timplements AfterViewInit, OnChanges, OnDestroy, AndSomethingReallyReallyLong {\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_break_ts_format_1_ccf2bb37() {
 }
 #[test]
 fn test_break_heritage_ts_format_1_9dbcf9e4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class loooooooooooooooooooong extends looooooooooooooooooong implements loooooooooooooooooooong {\n  // leading comment\n  property: string;\n}\n\nclass loooooooooooooooooooong extends looooooooooooooooooong implements loooooooooooooooooooong {\n  property: string;\n}\n\nclass loooooooooooooooooooong extends looooooooooooooooooong implements loooooooooooooooooooong {\n\n  property: string;\n}\n\nclass loooooooooooooooooooong extends looooooooooooooooooong implements loooooooooooooooooooong, loooooooooooooooooooong, loooooooooooooooooooong {\n  property: string;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

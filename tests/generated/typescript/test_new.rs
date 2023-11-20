@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_new_signature_ts_format_1_d2397e1d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("interface FooConstructor {\n  new (\n    a: number,\n    b: number,\n    c: number,\n    d: number,\n    e: number,\n    f: number,\n    g: number,\n    h: number\n  ): Foo;\n}\n\ninterface BarConstructor {\n  new <A, B, C>(\n    a: number,\n    b: number,\n    c: number,\n    d: number,\n    e: number,\n    f: number,\n    g: number,\n    h: number\n  ): Foo;\n}\n\ntype BazConstructor = {\n  new (\n    a: number,\n    b: number,\n    c: number,\n    d: number,\n    e: number,\n    f: number,\n    g: number,\n    h: number\n  ): Foo;\n}\n\n\ninterface ConstructorBigGenerics {\n  // comment\n  new <AAAAAAAAAAAAAAAAAAAAAAAA, AAAAAAAAAAAAAAAAAAAAAAAA, AAAAAAAAAAAAAAAAAAAAAAAA>(\n    a: number,\n    b: number,\n    c: number,\n    d: number,\n    e: number,\n    f: number,\n    g: number,\n    h: number\n  ): Foo;\n}\n\ninterface ConstructorInline {\n  // https://github.com/prettier/prettier/issues/2163\n  (i): any;\n}\n\ninterface TimerConstructor {\n  // Line-splitting comment\n  new (interval: number, callback: (handler: Timer) => void): Timer;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

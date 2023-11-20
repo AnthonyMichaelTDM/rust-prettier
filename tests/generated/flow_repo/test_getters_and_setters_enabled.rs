@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_js_format_1_698960ae() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nvar z: number = 123;\n\nclass Foo {\n  get goodGetterNoAnnotation() { return 4; }\n  get goodGetterWithAnnotation(): number { return 4; }\n\n  set goodSetterNoAnnotation(x) { z = x; }\n  set goodSetterWithAnnotation(x: number) { z = x; }\n\n  get propWithMatchingGetterAndSetter(): number { return 4; }\n  set propWithMatchingGetterAndSetter(x: number) { }\n\n  // The getter and setter need not have the same type - no error\n  get propWithSubtypingGetterAndSetter(): ?number { return 4; }\n  set propWithSubtypingGetterAndSetter(x: number) { }\n\n  // The getter and setter need not have the same type - no error\n  set propWithSubtypingGetterAndSetterReordered(x: number) { }\n  get propWithSubtypingGetterAndSetterReordered(): ?number { return 4; }\n\n  get propWithMismatchingGetterAndSetter(): number { return 4; }\n  set propWithMismatchingGetterAndSetter(x: string) { } // doesn't match getter (OK)\n\n  propOverriddenWithGetter: number;\n  get propOverriddenWithGetter() { return \"hello\"; }\n\n  propOverriddenWithSetter: number;\n  set propOverriddenWithSetter(x: string) { }\n\n  set [z](x: string) {}\n  get [z](): string { return string; }\n};\n\nvar foo = new Foo();\n\n// Test getting properties with getters\nvar testGetterNoError1: number = foo.goodGetterNoAnnotation;\nvar testGetterNoError2: number = foo.goodGetterWithAnnotation;\n\nvar testGetterWithError1: string = foo.goodGetterNoAnnotation; // Error number ~> string\nvar testGetterWithError2: string = foo.goodGetterWithAnnotation; // Error number ~> string\n\n// Test setting properties with getters\nfoo.goodSetterNoAnnotation = 123;\nfoo.goodSetterWithAnnotation = 123;\n\n// TODO: Why does no annotation mean no error?\nfoo.goodSetterNoAnnotation = \"hello\"; // Error string ~> number\nfoo.goodSetterWithAnnotation = \"hello\"; // Error string ~> number\n\nvar testSubtypingGetterAndSetter: number = foo.propWithSubtypingGetterAndSetter; // Error ?number ~> number\n\nvar testPropOverridenWithGetter: number = foo.propOverriddenWithGetter; // Error string ~> number\nfoo.propOverriddenWithSetter = 123; // Error number ~> string") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_class_js_format_1_698960ae() {
 }
 #[test]
 fn test_declare_class_js_format_1_7c769b25() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nvar z: number = 123;\n\ndeclare class Foo {\n  get goodGetterWithAnnotation(): number;\n  set goodSetterWithAnnotation(x: number): void;\n\n  get propWithMatchingGetterAndSetter(): number;\n  set propWithMatchingGetterAndSetter(x: number): void;\n\n  // The getter and setter need not have the same type - no error\n  get propWithSubtypingGetterAndSetter(): ?number;\n  set propWithSubtypingGetterAndSetter(x: number): void;\n\n  // The getter and setter need not have the same type - no error\n  set propWithSubtypingGetterAndSetterReordered(x: number): void;\n  get propWithSubtypingGetterAndSetterReordered(): ?number;\n\n  get propWithMismatchingGetterAndSetter(): number;\n  set propWithMismatchingGetterAndSetter(x: string): void; // doesn't match getter (OK)\n\n  propOverriddenWithGetter: number;\n  get propOverriddenWithGetter(): string;\n\n  propOverriddenWithSetter: number;\n  set propOverriddenWithSetter(x: string): void;\n};\n\nvar foo = new Foo();\n\n// Test getting properties with getters\nvar testGetterNoError2: number = foo.goodGetterWithAnnotation;\n\nvar testGetterWithError2: string = foo.goodGetterWithAnnotation; // Error number ~> string\n\n// Test setting properties with getters\nfoo.goodSetterWithAnnotation = 123;\n\nfoo.goodSetterWithAnnotation = \"hello\"; // Error string ~> number\n\nvar testSubtypingGetterAndSetter: number = foo.propWithSubtypingGetterAndSetter; // Error ?number ~> number\n\nvar testPropOverridenWithGetter: number = foo.propOverriddenWithGetter; // Error string ~> number\nfoo.propOverriddenWithSetter = 123; // Error number ~> string") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_declare_class_js_format_1_7c769b25() {
 }
 #[test]
 fn test_object_js_format_1_52b2327b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nvar z: number = 123;\n\nclass A {}\nclass B extends A {}\nclass C extends A {}\n\nvar obj = {\n  get goodGetterNoAnnotation() { return 4; },\n  get goodGetterWithAnnotation(): number { return 4; },\n\n  set goodSetterNoAnnotation(x) { z = x; },\n  set goodSetterWithAnnotation(x: number) { z = x; },\n\n  get propWithMatchingGetterAndSetter(): number { return 4; },\n  set propWithMatchingGetterAndSetter(x: number) { },\n\n  // The getter and setter need not have the same type\n  get propWithSubtypingGetterAndSetter(): ?number { return 4; }, // OK\n  set propWithSubtypingGetterAndSetter(x: number) { },\n\n  set propWithSubtypingGetterAndSetterReordered(x: number) { }, // OK\n  get propWithSubtypingGetterAndSetterReordered(): ?number { return 4; },\n\n  get exampleOfOrderOfGetterAndSetter(): A { return new A(); },\n  set exampleOfOrderOfGetterAndSetter(x: B) {},\n\n  set exampleOfOrderOfGetterAndSetterReordered(x: B) {},\n  get exampleOfOrderOfGetterAndSetterReordered(): A { return new A(); },\n\n  set [z](x: string) {},\n  get [z](): string { return string; },\n};\n\n\n\n// Test getting properties with getters\nvar testGetterNoError1: number = obj.goodGetterNoAnnotation;\nvar testGetterNoError2: number = obj.goodGetterWithAnnotation;\n\nvar testGetterWithError1: string = obj.goodGetterNoAnnotation; // Error number ~> string\nvar testGetterWithError2: string = obj.goodGetterWithAnnotation; // Error number ~> string\n\n// Test setting properties with getters\nobj.goodSetterNoAnnotation = 123;\nobj.goodSetterWithAnnotation = 123;\n\nobj.goodSetterNoAnnotation = \"hello\"; // Error string ~> number\nobj.goodSetterWithAnnotation = \"hello\"; // Error string ~> number\n\nvar testSubtypingGetterAndSetter: number = obj.propWithSubtypingGetterAndSetter; // Error ?number ~> number\n\n// When building this feature, it was tempting to flow the setter into the\n// getter and then use either the getter or setter as the type of the property.\n// This example shows the danger of using the getter's type\nobj.exampleOfOrderOfGetterAndSetter = new C(); // Error C ~> B\n\n// And this example shows the danger of using the setter's type.\nvar testExampleOrOrderOfGetterAndSetterReordered: number =\n  obj.exampleOfOrderOfGetterAndSetterReordered; // Error A ~> B") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_object_js_format_1_52b2327b() {
 }
 #[test]
 fn test_object_type_js_format_1_6393a983() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nvar z: number = 123;\n\nclass A {}\nclass B extends A {}\nclass C extends A {}\n\ntype T = {\n  get goodGetterWithAnnotation(): number,\n  set goodSetterWithAnnotation(x: number): void,\n\n  get propWithMatchingGetterAndSetter(): number,\n  set propWithMatchingGetterAndSetter(x: number): void,\n\n  // The getter and setter need not have the same type\n  get propWithSubtypingGetterAndSetter(): ?number, // OK\n  set propWithSubtypingGetterAndSetter(x: number): void,\n\n  set propWithSubtypingGetterAndSetterReordered(x: number): void, // OK\n  get propWithSubtypingGetterAndSetterReordered(): ?number,\n\n  get exampleOfOrderOfGetterAndSetter(): A,\n  set exampleOfOrderOfGetterAndSetter(x: B): void,\n\n  set exampleOfOrderOfGetterAndSetterReordered(x: B): void,\n  get exampleOfOrderOfGetterAndSetterReordered(): A,\n};\n\nfunction test(obj: T) {\n  // Test getting properties with getters\n  var testGetterNoError2: number = obj.goodGetterWithAnnotation;\n\n  var testGetterWithError2: string = obj.goodGetterWithAnnotation; // Error number ~> string\n\n  // Test setting properties with getters\n  obj.goodSetterWithAnnotation = 123;\n\n  obj.goodSetterWithAnnotation = \"hello\"; // Error string ~> number\n\n  var testSubtypingGetterAndSetter: number = obj.propWithSubtypingGetterAndSetter; // Error ?number ~> number\n\n  // When building this feature, it was tempting to flow the setter into the\n  // getter and then use either the getter or setter as the type of the\n  // property. This example shows the danger of using the getter's type\n  obj.exampleOfOrderOfGetterAndSetter = new C(); // Error C ~> B\n\n  // And this example shows the danger of using the setter's type.\n  var testExampleOrOrderOfGetterAndSetterReordered: number =\n    obj.exampleOfOrderOfGetterAndSetterReordered; // Error A ~> B\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_object_type_js_format_1_6393a983() {
 }
 #[test]
 fn test_react_js_format_1_1cf3f97b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nimport React from \"react\";\n\nconst Example = React.createClass({\n  propTypes: {\n    get a() { return React.PropTypes.number.isRequired; },\n    set b(x: number) { this.c = x; },\n    c: React.PropTypes.string,\n  }\n});\n\n(<Example />); // error: property \\`a\\` not found\n(<Example a={0} />); // ok\n(<Example a=\"bad\" />); // error: number ~> string\n(<Example a={0} c={0} />); // error: number ~> string") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_react_js_format_1_1cf3f97b() {
 }
 #[test]
 fn test_variance_js_format_1_c35835a4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nclass A {}\nclass B extends A {}\nclass C extends B {}\n\ndeclare var a: A;\ndeclare var b: B;\ndeclare var c: C;\n\nclass Base {\n  x: B;\n  +pos: B;\n  -neg: B;\n  get get(): B { return this.x };\n  set set(value: B): void { this.x = value };\n  get getset(): B { return this.x };\n  set getset(value: B): void { this.x = value };\n}\n\n(class extends Base {\n  // error: getter incompatible with read/write property\n  get x(): B { return b }\n});\n\n(class extends Base {\n  // error: setter incompatible with read/write property\n  set x(value: B): void {}\n});\n\n(class extends Base {\n  // ok: get/set co/contra with read/write property, resp.\n  get x(): C { return c }\n  set x(value: A): void {}\n});\n\n(class extends Base {\n  // error: setter incompatible with read-only property\n  set pos(value: B): void {}\n});\n\n(class extends Base {\n  // ok: getter covariant with read-only property\n  get pos(): C { return c }\n});\n\n(class extends Base {\n  // error: getter incompatible with write-only property\n  get neg(): B { return b }\n});\n\n(class extends Base {\n  // ok: setter contravariant with write-only property\n  set neg(value: A): void {}\n});\n\n(class extends Base {\n  // ok: read/write covariant with getter\n  get: C;\n});\n\n(class extends Base {\n  // ok: read/write contravariant with setter\n  set: A;\n});\n\n(class extends Base {\n  // ok: read/write invariant with get/set\n  getset: B;\n});") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

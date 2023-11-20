@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_95d7e4b0() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("123  \n456\n\n123\\\\\n456\n\n- 123  \n  123");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

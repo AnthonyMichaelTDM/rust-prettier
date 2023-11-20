@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_example_js_format_1_d9a1d1de() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("await something();");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_example_js_format_1_d9a1d1de() {
 }
 #[test]
 fn test_in_expression_js_format_1_79fc1865() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("call(\nawait something()\n)");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

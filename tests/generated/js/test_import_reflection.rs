@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_js_acorn_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -42,7 +44,11 @@ fn test_comments_js_typescript_format_1_d41d8cd9() {
 }
 #[test]
 fn test_comments_js_format_1_96b7b277() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format(
         "/* 0 */import /* 1 */module /* 2 */from /* 3 */from /* 4 */\"./module.wasm\"/* 5 */;",
     );
@@ -92,7 +98,11 @@ fn test_import_reflection_js_typescript_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_reflection_js_format_1_ca41c905() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("import module foo from \"./module.wasm\";");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -140,7 +150,11 @@ fn test_valid_default_import_mjs_typescript_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_default_import_mjs_format_1_7e4812c8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("import module foo from \"./module.wasm\";\nimport bar from \"./module.wasm\";");
     assert!(formatted.is_ok());
@@ -192,7 +206,11 @@ fn test_valid_from_as_default_module_binding_mjs_typescript_format_1_d41d8cd9() 
 }
 #[test]
 fn test_valid_from_as_default_module_binding_mjs_format_1_95a9edfd() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("import module from from \"./module.wasm\";");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -240,7 +258,11 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_typescript_format_1_d41
 }
 #[test]
 fn test_valid_from_as_default_module_binding_escaped_mjs_format_1_0fe07d47() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("import module \\\\u0066rom from \"./module.wasm\";");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -248,7 +270,11 @@ fn test_valid_from_as_default_module_binding_escaped_mjs_format_1_0fe07d47() {
 }
 #[test]
 fn test_valid_module_as_default_binding_mjs_format_1_bc39ef68() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("import module from \"./module.wasm\";");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -256,7 +282,11 @@ fn test_valid_module_as_default_binding_mjs_format_1_bc39ef68() {
 }
 #[test]
 fn test_valid_module_as_default_binding_2_mjs_format_1_e2adcd8f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("import module, { createRequire } from \"node:module\";");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

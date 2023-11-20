@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_js_format_1_fb8ab789() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class GeneratorExamples {\n  *stmt_yield(): Generator<number, void, void> {\n    yield 0; // ok\n    yield \"\"; // error: string ~> number\n  }\n\n  *stmt_next(): Generator<void, void, number> {\n    var a = yield;\n    if (a) {\n      (a : number); // ok\n    }\n\n    var b = yield;\n    if (b) {\n      (b : string); // error: number ~> string\n    }\n  }\n\n  *stmt_return_ok(): Generator<void, number, void> {\n    return 0; // ok\n  }\n\n  *stmt_return_err(): Generator<void, number, void> {\n    return \"\"; // error: string ~> number\n  }\n\n  *infer_stmt() {\n    var x: boolean = yield 0; // error: number ~> boolean\n    return \"\";\n  }\n\n  *widen_next() {\n    var x = yield 0;\n    if (typeof x === \"number\") {\n    } else if (typeof x === \"boolean\") {\n    } else {\n      (x : string) // ok, sherlock\n    }\n  }\n\n  *widen_yield() {\n    yield 0;\n    yield \"\";\n    yield true;\n  }\n\n  *delegate_next_generator() {\n    function *inner() {\n      var x: number = yield; // error: string ~> number\n    }\n    yield *inner();\n  }\n\n  *delegate_yield_generator() {\n    function *inner() {\n      yield \"\";\n    }\n\n    yield *inner();\n  }\n\n  *delegate_return_generator() {\n    function *inner() {\n      return \"\";\n    }\n\n    var x: number = yield *inner(); // error: string ~> number\n  }\n\n  // only generators can make use of a value passed to next\n  *delegate_next_iterable(xs: Array<number>) {\n    yield *xs;\n  }\n\n  *delegate_yield_iterable(xs: Array<number>) {\n    yield *xs;\n  }\n\n  *delegate_return_iterable(xs: Array<number>) {\n    var x: void = yield *xs // ok: Iterator has no yield value\n  }\n\n  *generic_yield<Y>(y: Y): Generator<Y,void,void> {\n    yield y;\n  }\n\n  *generic_return<R>(r: R): Generator<void,R,void> {\n    return r;\n  }\n\n  *generic_next<N>(): Generator<void,N,N> {\n    return yield undefined;\n  }\n}\n\nvar examples = new GeneratorExamples();\n\nfor (var x of examples.infer_stmt()) { (x : string) } // error: number ~> string\n\nvar infer_stmt_next = examples.infer_stmt().next(0).value; // error: number ~> boolean\nif (typeof infer_stmt_next === \"undefined\") {\n} else if (typeof infer_stmt_next === \"number\") {\n} else {\n  (infer_stmt_next : boolean) // error: string ~> boolean\n}\n\nexamples.widen_next().next(0)\nexamples.widen_next().next(\"\")\nexamples.widen_next().next(true)\n\nfor (var x of examples.widen_yield()) {\n  if (typeof x === \"number\") {\n  } else if (typeof x === \"boolean\") {\n  } else {\n    (x : string) // ok, sherlock\n  }\n}\n\nexamples.delegate_next_generator().next(\"\");\n\nfor (var x of examples.delegate_yield_generator()) {\n  (x : number) // error: string ~> number\n}\n\nexamples.delegate_next_iterable([]).next(\"\"); // error: Iterator has no next value\n\nfor (var x of examples.delegate_yield_iterable([])) {\n  (x : string) // error: number ~> string\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_class_js_format_1_fb8ab789() {
 }
 #[test]
 fn test_class_failure_js_format_1_0a2b2b47() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// generalization of failure in class.js\n\nclass GeneratorExamples<X> {\n  *infer_stmt() {\n    var x: boolean = yield 0; // error: number ~> boolean\n    return \"\";\n  }\n}\n\nvar examples = new GeneratorExamples();\n\nfor (var x of examples.infer_stmt()) { (x : string) } // error: number ~> string\n\nvar infer_stmt_next = examples.infer_stmt().next(0).value; // error: number ~> boolean\n\nif (typeof infer_stmt_next === \"undefined\") {\n} else if (typeof infer_stmt_next === \"number\") {\n} else {\n  (infer_stmt_next : boolean) // error: string ~> boolean\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_class_failure_js_format_1_0a2b2b47() {
 }
 #[test]
 fn test_generators_js_format_1_19bccb3d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function *stmt_yield(): Generator<number, void, void> {\n  yield 0; // ok\n  yield \"\"; // error: string ~> number\n}\n\nfunction *stmt_next(): Generator<void, void, number> {\n  var a = yield;\n  if (a) {\n    (a : number); // ok\n  }\n\n  var b = yield;\n  if (b) {\n    (b : string); // error: number ~> string\n  }\n}\n\nfunction *stmt_return_ok(): Generator<void, number, void> {\n  return 0; // ok\n}\n\nfunction *stmt_return_err(): Generator<void, number, void> {\n  return \"\"; // error: string ~> number\n}\n\nfunction *infer_stmt() {\n  var x: boolean = yield 0;\n  return \"\";\n}\nfor (var x of infer_stmt()) { (x : string) } // error: number ~> string\nvar infer_stmt_next = infer_stmt().next(0).value; // error: number ~> boolean\nif (typeof infer_stmt_next === \"undefined\") {\n} else if (typeof infer_stmt_next === \"number\") {\n} else {\n  (infer_stmt_next : boolean) // error: string ~> boolean\n}\n\nfunction *widen_next() {\n  var x = yield 0;\n  if (typeof x === \"number\") {\n  } else if (typeof x === \"boolean\") {\n  } else {\n    (x : string) // ok, sherlock\n  }\n}\nwiden_next().next(0)\nwiden_next().next(\"\")\nwiden_next().next(true)\n\nfunction *widen_yield() {\n  yield 0;\n  yield \"\";\n  yield true;\n}\nfor (var x of widen_yield()) {\n  if (typeof x === \"number\") {\n  } else if (typeof x === \"boolean\") {\n  } else {\n    (x : string) // ok, sherlock\n  }\n}\n\nfunction *delegate_next_generator() {\n  function *inner() {\n    var x: number = yield; // error: string ~> number\n  }\n  yield *inner();\n}\ndelegate_next_generator().next(\"\");\n\nfunction *delegate_yield_generator() {\n  function *inner() {\n    yield \"\";\n  }\n\n  yield *inner();\n}\nfor (var x of delegate_yield_generator()) {\n  (x : number) // error: string ~> number\n}\n\nfunction *delegate_return_generator() {\n  function *inner() {\n    return \"\";\n  }\n\n  var x: number = yield *inner(); // error: string ~> number\n}\n\n// only generators can make use of a value passed to next\nfunction *delegate_next_iterable(xs: Array<number>) {\n  yield *xs;\n}\ndelegate_next_iterable([]).next(\"\"); // error: Iterator has no next value\n\nfunction *delegate_yield_iterable(xs: Array<number>) {\n  yield *xs;\n}\nfor (var x of delegate_yield_iterable([])) {\n  (x : string) // error: number ~> string\n}\n\nfunction *delegate_return_iterable(xs: Array<number>) {\n  var x: void = yield *xs // ok: Iterator has no yield value\n}\n\nfunction *generic_yield<Y>(y: Y): Generator<Y,void,void> {\n  yield y;\n}\n\nfunction *generic_return<R>(r: R): Generator<void,R,void> {\n  return r;\n}\n\nfunction *generic_next<N>(): Generator<void,N,N> {\n  return yield undefined;\n}\n\nfunction *multiple_return(b) {\n  if (b) {\n    return 0;\n  } else {\n    return \"foo\";\n  }\n}\nlet multiple_return_result = multiple_return().next();\nif (multiple_return_result.done) {\n  (multiple_return_result.value: void); // error: number|string ~> void\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_generators_js_format_1_19bccb3d() {
 }
 #[test]
 fn test_refi_js_format_1_fa37d5a1() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function *a(x: {a: void | string}): Generator<void, void, void> {\n  if (!x.a) return;\n  (x.a: string); // ok\n  yield;\n  (x.a: string); // error\n}\n\nfunction *b(x: void | string): Generator<void, void, void> {\n  if (!x) return;\n  (x: string); // ok\n  yield;\n  (x: string); // ok\n}\n\ndeclare function fn(): Generator<void, void, void>;\n\nfunction *c(x: {a: void | string}): Generator<void, void, void> {\n  const gen = fn();\n  if (!x.a) return;\n  (x.a: string); // ok\n  yield * gen;\n  (x.a: string); // error\n}\n\nfunction *d(x: void | string): Generator<void, void, void> {\n  const gen = fn();\n  if (!x) return;\n  (x: string); // ok\n  yield * gen;\n  (x: string); // ok\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_refi_js_format_1_fa37d5a1() {
 }
 #[test]
 fn test_return_js_format_1_59317cf8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function test1(gen: Generator<void, string, void>) {\n  // You can pass whatever you like to return, it doesn't need to be related to\n  // the Generator's return type\n  var ret = gen.return(0);\n  (ret.value: void); // error: string | number ~> void\n}\n\n// However, a generator can \"refuse\" the return by catching an exception and\n// yielding or returning internally.\nfunction *refuse_return() {\n  try {\n    yield 1;\n  } finally {\n    return 0;\n  }\n}\nvar refuse_return_gen = refuse_return();\nvar refuse_return_result = refuse_return_gen.return(\"string\");\nif (refuse_return_result.done) {\n  (refuse_return_result.value: string); // error: number | void ~> string\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_return_js_format_1_59317cf8() {
 }
 #[test]
 fn test_throw_js_format_1_d1c36577() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function *catch_return() {\n  try {\n    yield 0;\n  } catch (e) {\n    return e;\n  }\n}\n\nvar catch_return_value = catch_return().throw(\"\").value;\nif (catch_return_value !== undefined) {\n  (catch_return_value : string); // error: number ~> string\n}\n\nfunction *yield_return() {\n  try {\n    yield 0;\n    return;\n  } catch (e) {\n    yield e;\n  }\n}\nvar yield_return_value = yield_return().throw(\"\").value;\nif (yield_return_value !== undefined) {\n  (yield_return_value: string); // error: number ~> string\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +76,11 @@ fn test_throw_js_format_1_d1c36577() {
 }
 #[test]
 fn test_variance_js_format_1_160faa22() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("declare var g1: Generator<string, string, ?string>;\nvar g2: Generator<?string, ?string, string> = g1;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

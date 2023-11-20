@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_attributes_html_semifalse_format_1_d45402bb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["lwc"])
+        .semi(false)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div\n    data-for={value}\n    data-for={value[0]}\n    data-for={value.toString()}\n    data-for={value()}\n    class=\"test\"\n  ></div>\n  </template>\n<template if:true={value.error}>\n    <c-error-panel errors={value.error}></c-error-panel>\n</template>\n<a href=\"#\" onclick={aFunction}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,12 @@ fn test_attributes_html_semifalse_format_1_d45402bb() {
 }
 #[test]
 fn test_attributes_html_trailing_commaes_5_format_1_d45402bb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["lwc"])
+        .trailing_comma("es5")
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div\n    data-for={value}\n    data-for={value[0]}\n    data-for={value.toString()}\n    data-for={value()}\n    class=\"test\"\n  ></div>\n  </template>\n<template if:true={value.error}>\n    <c-error-panel errors={value.error}></c-error-panel>\n</template>\n<a href=\"#\" onclick={aFunction}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +30,12 @@ fn test_attributes_html_trailing_commaes_5_format_1_d45402bb() {
 }
 #[test]
 fn test_attributes_html_trailing_commanone_format_1_d45402bb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["lwc"])
+        .print_width(80)
+        .trailing_comma("none")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<template>\n  <div\n    data-for={value}\n    data-for={value[0]}\n    data-for={value.toString()}\n    data-for={value()}\n    class=\"test\"\n  ></div>\n  </template>\n<template if:true={value.error}>\n    <c-error-panel errors={value.error}></c-error-panel>\n</template>\n<a href=\"#\" onclick={aFunction}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

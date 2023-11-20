@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_trailing_commas_js_trailing_commaall_format_1_b2017e29() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .trailing_comma("all")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class C {\n  f(\n    superSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLong,\n    ...args\n  ) {}\n}\n\nfunction f(\n  superSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLong,\n  ...args\n) {}\n\nclass D { f(...superSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLong) {}; }\n\n[superSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLong,,];\n\n[veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, ...a] = [];\nvar {veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, ...a} = {};\n") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

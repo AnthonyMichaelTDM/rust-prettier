@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_keys_js_format_1_6dbf204a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction testKeysOfObject(str: string, lit: 'hi') {\n  (str: $Keys<Object>); // Any string should be fine\n  if (str) {\n    (str: $Keys<Object>); // No error, truthy string should be fine\n  }\n  ('hi': $Keys<Object>); // String literal should be fine\n\n  (123: $Keys<Object>); // Error: number -> keys of Object\n}\n\ntype StrDict = {[key: string]: mixed};\nfunction testKeysOfStrDict(str: string, lit: 'hi') {\n  (str: $Keys<StrDict>); // Any string should be fine\n  if (str) {\n    (str: $Keys<StrDict>); // No error, truthy string should be fine\n  }\n  ('hi': $Keys<StrDict>); // String literal should be fine\n\n  (123: $Keys<StrDict>); // Error: number -> keys of StrDict\n}\n\ntype StrLitDict = {[key: 'hi']: mixed};\nfunction testKeysOfStrLitDict(str: string, lit: 'hi') {\n  (str: $Keys<StrLitDict>); // Error: Not all strings are allowed\n  if (str) {\n    (str: $Keys<StrLitDict>); // Error: Not all truthy strings are allowed\n  }\n  ('hi': $Keys<StrLitDict>); // The right string literal is allowed\n  ('bye': $Keys<StrLitDict>); // Error: The wrong string literal is not allowed\n\n  (123: $Keys<StrLitDict>); // Error: number -> keys of StrLitDict\n}\n\ntype ObjLit = {hi: mixed};\nfunction testKeysOfOtherObj(str: string, lit: 'hi') {\n  (str: $Keys<ObjLit>); // Error: string -> keys of ObjLit\n  if (str) {\n    (str: $Keys<ObjLit>); // Error: truthy string -> keys of ObjLit\n  }\n  ('hi': $Keys<ObjLit>); // String literal should be fine\n\n  (123: $Keys<ObjLit>); // Error: number -> keys of ObjLit\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

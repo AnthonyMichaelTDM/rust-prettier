@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_bar_js_format_1_ec1d2728() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// @flow");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_bar_js_format_1_ec1d2728() {
 }
 #[test]
 fn test_foo_js_format_1_18fe6b93() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// @flow\nrequire('./bar');");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

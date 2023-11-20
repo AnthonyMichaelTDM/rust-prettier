@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_no_pragma_html_insert_pragmatrue_format_1_25429724() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .insert_pragma(true)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("\n\n<!-- @not-a-pragma -->\n<!doctype html>\n<html>\n            </html>");
     assert!(formatted.is_ok());
@@ -14,7 +21,12 @@ fn test_no_pragma_html_insert_pragmatrue_format_1_25429724() {
 }
 #[test]
 fn test_no_pragma_html_require_pragmatrue_format_1_25429724() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .require_pragma(true)
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("\n\n<!-- @not-a-pragma -->\n<!doctype html>\n<html>\n            </html>");
     assert!(formatted.is_ok());
@@ -26,7 +38,12 @@ fn test_no_pragma_html_require_pragmatrue_format_1_25429724() {
 }
 #[test]
 fn test_with_pragma_html_insert_pragmatrue_format_1_e4f75b98() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .insert_pragma(true)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("\n\n<!-- @format -->\n<!doctype html>\n<html>\n            </html>");
     assert!(formatted.is_ok());
@@ -38,7 +55,12 @@ fn test_with_pragma_html_insert_pragmatrue_format_1_e4f75b98() {
 }
 #[test]
 fn test_with_pragma_html_require_pragmatrue_format_1_e4f75b98() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .require_pragma(true)
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("\n\n<!-- @format -->\n<!doctype html>\n<html>\n            </html>");
     assert!(formatted.is_ok());
@@ -50,7 +72,12 @@ fn test_with_pragma_html_require_pragmatrue_format_1_e4f75b98() {
 }
 #[test]
 fn test_with_pragma_2_html_insert_pragmatrue_format_1_2aea0308() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .insert_pragma(true)
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("\n\n<!-- @prettier -->\n<!doctype html>\n<html>\n            </html>");
     assert!(formatted.is_ok());
@@ -62,7 +89,12 @@ fn test_with_pragma_2_html_insert_pragmatrue_format_1_2aea0308() {
 }
 #[test]
 fn test_with_pragma_2_html_require_pragmatrue_format_1_2aea0308() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .require_pragma(true)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("\n\n<!-- @prettier -->\n<!doctype html>\n<html>\n            </html>");
     assert!(formatted.is_ok());

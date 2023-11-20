@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_canvas_rendering_context_2_d_js_format_1_f01977ce() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // fillRect\n  function(ctx: CanvasRenderingContext2D) {\n    ctx.fillRect(0, 0, 200, 100);\n  },\n\n  // moveTo\n  function(ctx: CanvasRenderingContext2D) {\n    ctx.moveTo('0', '1');  // error: should be numbers\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_canvas_rendering_context_2_d_js_format_1_f01977ce() {
 }
 #[test]
 fn test_custom_event_js_format_1_3d7c93e7() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // CustomEvent\n  function(document: Document) {\n    const event = document.createEvent('CustomEvent');\n    event.initCustomEvent('butts', true, false, { nice: 42 });\n  }\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_custom_event_js_format_1_3d7c93e7() {
 }
 #[test]
 fn test_document_js_format_1_aa924157() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // createElement\n  function(document: Document) {\n    (document.createElement('canvas'): HTMLCanvasElement);\n    (document.createElement('link'): HTMLLinkElement);\n    (document.createElement('option'): HTMLOptionElement);\n    (document.createElement('select'): HTMLSelectElement);\n    (document.querySelector('select'): HTMLSelectElement | null);\n    (document.createElement('hr'): HTMLElement); // GH #3752\n  }\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_document_js_format_1_aa924157() {
 }
 #[test]
 fn test_element_js_format_1_11bd3a44() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // scrollIntoView\n  function(element: Element) {\n    element.scrollIntoView();\n    element.scrollIntoView(false);\n    element.scrollIntoView({});\n    element.scrollIntoView({ behavior: 'smooth', block: 'end' });\n    element.scrollIntoView({ block: 'end' });\n    element.scrollIntoView({ behavior: 'smooth' });\n\n    // fails\n    element.scrollIntoView({ behavior: 'invalid' });\n    element.scrollIntoView({ block: 'invalid' });\n    element.scrollIntoView(1);\n  }\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_element_js_format_1_11bd3a44() {
 }
 #[test]
 fn test_html_canvas_element_js_format_1_763526b6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // getContext\n  function(el: HTMLCanvasElement) {\n    (el.getContext('2d'): ?CanvasRenderingContext2D);\n  }\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_html_canvas_element_js_format_1_763526b6() {
 }
 #[test]
 fn test_html_element_js_format_1_8017e7f5() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // scrollIntoView\n  function(element: HTMLElement) {\n    element.scrollIntoView();\n    element.scrollIntoView(false);\n    element.scrollIntoView({});\n    element.scrollIntoView({ behavior: 'smooth', block: 'end' });\n    element.scrollIntoView({ block: 'end' });\n    element.scrollIntoView({ behavior: 'smooth' });\n\n    // fails\n    element.scrollIntoView({ behavior: 'invalid' });\n    element.scrollIntoView({ block: 'invalid' });\n    element.scrollIntoView(1);\n  }\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +76,11 @@ fn test_html_element_js_format_1_8017e7f5() {
 }
 #[test]
 fn test_html_input_element_js_format_1_909b42fa() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // setRangeText\n  function(el: HTMLInputElement) {\n    el.setRangeText('foo');\n    el.setRangeText('foo', 123); // end is required\n    el.setRangeText('foo', 123, 234);\n    el.setRangeText('foo', 123, 234, 'select');\n    el.setRangeText('foo', 123, 234, 'bogus'); // invalid value\n  }\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +88,11 @@ fn test_html_input_element_js_format_1_909b42fa() {
 }
 #[test]
 fn test_url_js_format_1_cd4a0b9d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nconst a = new URL('http://flowtype.org/'); // correct\nconst b = new URL('/docs', a); // correct\nconst c = new URL('/docs', 'http://flowtype.org/'); // correct\n\nconst d: URLSearchParams = c.searchParams; // correct\nconst e: string = c.path; // not correct\nconst f: string = c.pathname; // correct\nconst g: string = c.hash; // correct\nconst h: string = c.host; // correct\nconst i: string = c.hostname; // correct\nconst j: string = c.href; // correct\nconst l: string = c.origin; // correct\nconst m: string = c.password; // correct\nconst n: string = c.pathname; // correct\nconst o: string = c.port; // correct\nconst p: string = c.protocol; // correct\nconst q: string = c.search; // correct\nconst r: string = c.username; // correct") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -66,7 +100,11 @@ fn test_url_js_format_1_cd4a0b9d() {
 }
 #[test]
 fn test_eventtarget_js_format_1_69489c5b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet listener: EventListener = function (event: Event) :void {};\n\nlet tests = [\n  // attachEvent\n  function() {\n    let target = new EventTarget();\n    (target.attachEvent('foo', listener): void); // invalid, may be undefined\n    (target.attachEvent && target.attachEvent('foo', listener): void); // valid\n  },\n\n  // detachEvent\n  function() {\n    let target = new EventTarget();\n    (target.detachEvent('foo', listener): void); // invalid, may be undefined\n    (target.detachEvent && target.detachEvent('foo', listener): void); // valid\n  },\n\n  function() {\n    window.onmessage = (event: MessageEvent) => {\n      (event.target: window);\n    };\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -74,7 +112,11 @@ fn test_eventtarget_js_format_1_69489c5b() {
 }
 #[test]
 fn test_path_2_d_js_format_1_fbf6ccad() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // arcTo\n  function() {\n    let path = new Path2D();\n    (path.arcTo(0, 0, 0, 0, 10): void); // valid\n    (path.arcTo(0, 0, 0, 0, 10, 20, 5): void); // valid\n    (path.arcTo(0, 0, 0, 0, 10, '20', 5): void); // invalid\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -82,7 +124,11 @@ fn test_path_2_d_js_format_1_fbf6ccad() {
 }
 #[test]
 fn test_register_element_js_format_1_3d6e78b2() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // should work with Object.create()\n  function() {\n    document.registerElement('custom-element', {\n      prototype: Object.create(HTMLElement.prototype, {\n        createdCallback: { value: function createdCallback () {\n        }},\n        attachedCallback: { value: function attachedCallback () {\n        }},\n        detachedCallback: { value: function detachedCallback () {\n        }},\n        attributeChangedCallback: {\n          value: function attributeChangedCallback (\n            attributeLocalName,\n            oldAttributeValue,\n            newAttributeValue,\n            attributeNamespace\n          ) {\n          }\n        }\n      })\n    })\n  },\n  // or with Object.assign()\n  function() {\n    document.registerElement('custom-element', {\n      prototype: Object.assign(Object.create(HTMLElement.prototype), {\n        createdCallback () {\n        },\n        attachedCallback () {\n        },\n        detachedCallback () {\n        },\n        attributeChangedCallback (\n          attributeLocalName,\n          oldAttributeValue,\n          newAttributeValue,\n          attributeNamespace\n        ) {\n        }\n      })\n    })\n  },\n  // should complain about invalid callback parameters\n  function() {\n    document.registerElement('custom-element', {\n      prototype: {\n        attributeChangedCallback(\n          localName: string,\n          oldVal: string, // Error: This might be null\n          newVal: string, // Error: This might be null\n          namespace: string) {}\n      },\n    });\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -90,7 +136,11 @@ fn test_register_element_js_format_1_3d6e78b2() {
 }
 #[test]
 fn test_traversal_js_format_1_4755ee65() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // basic functionality\n  function() {\n    const i: NodeIterator<*,*> = document.createNodeIterator(document.body);\n    const filter: NodeFilter = i.filter;\n    const response:\n      typeof NodeFilter.FILTER_ACCEPT |\n      typeof NodeFilter.FILTER_REJECT |\n      typeof NodeFilter.FILTER_SKIP =\n      filter.acceptNode(document.body);\n  },\n  function() {\n    const w: TreeWalker<*,*> = document.createTreeWalker(document.body);\n    const filter: NodeFilter = w.filter;\n    const response:\n      typeof NodeFilter.FILTER_ACCEPT |\n      typeof NodeFilter.FILTER_REJECT |\n      typeof NodeFilter.FILTER_SKIP =\n      filter.acceptNode(document.body);\n  },\n  // rootNode must be a Node\n  function() {\n    document.createNodeIterator(document.body); // valid\n    document.createNodeIterator({}); // invalid\n  },\n  function() {\n    document.createTreeWalker(document.body);\n    document.createTreeWalker({}); // invalid\n  },\n  // Type Parameters\n  function() {\n    const _root = document.body;\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_ELEMENT);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | Element = i.referenceNode;\n    const previousNode: Element | null = i.previousNode();\n    const nextNode: Element | null = i.nextNode();\n  },\n  function() {\n    const _root = document.body.attributes[0];\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_ATTRIBUTE);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | Attr = i.referenceNode\n    const previousNode: Attr | null = i.previousNode();\n    const nextNode: Attr | null = i.nextNode();\n  },\n  function() {\n    const _root = document.body;\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_TEXT);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | Text = i.referenceNode;\n    const previousNode: Text | null = i.previousNode();\n    const nextNode: Text | null = i.nextNode();\n  },\n  function() {\n    const _root = document;\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_DOCUMENT);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | Document = i.referenceNode;\n    const previousNode: Document | null = i.previousNode();\n    const nextNode: Document | null = i.nextNode();\n  },\n  function() {\n    const _root = document;\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_DOCUMENT_TYPE);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | DocumentType = i.referenceNode;\n    const previousNode: DocumentType | null = i.previousNode();\n    const nextNode: DocumentType | null = i.nextNode();\n  },\n  function() {\n    const _root = document.createDocumentFragment();\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_DOCUMENT_FRAGMENT);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | DocumentFragment = i.referenceNode;\n    const previousNode: DocumentFragment | null = i.previousNode();\n    const nextNode: DocumentFragment | null = i.nextNode();\n  },\n  function() {\n    const _root = document.body;\n    const i = document.createNodeIterator(_root, NodeFilter.SHOW_ALL);\n    const root: typeof _root = i.root;\n    const referenceNode: typeof _root | Node = i.referenceNode;\n    const previousNode: Node | null = i.previousNode();\n    const nextNode: Node | null = i.nextNode();\n  },\n  function() {\n    const _root = document.body;\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_ELEMENT);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | Element = w.currentNode;\n    const parentNode: Element | null = w.parentNode();\n    const firstChild: Element | null = w.firstChild();\n    const lastChild: Element | null = w.lastChild();\n    const previousSibling: Element | null = w.previousSibling();\n    const nextSibling: Element | null = w.nextSibling();\n    const previousNode: Element | null = w.previousNode();\n    const nextNode: Element | null = w.nextNode();\n  },\n  function() {\n    const _root = document.body.attributes[0];\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_ATTRIBUTE);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | Attr = w.currentNode;\n    const parentNode: Attr | null = w.parentNode();\n    const firstChild: Attr | null = w.firstChild();\n    const lastChild: Attr | null = w.lastChild();\n    const previousSibling: Attr | null = w.previousSibling();\n    const nextSibling: Attr | null = w.nextSibling();\n    const previousNode: Attr | null = w.previousNode();\n    const nextNode: Attr | null = w.nextNode();\n  },\n  function() {\n    const _root = document.body;\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_TEXT);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | Text = w.currentNode;\n    const parentNode: Text | null = w.parentNode();\n    const firstChild: Text | null = w.firstChild();\n    const lastChild: Text | null = w.lastChild();\n    const previousSibling: Text | null = w.previousSibling();\n    const nextSibling: Text | null = w.nextSibling();\n    const previousNode: Text | null = w.previousNode();\n    const nextNode: Text | null = w.nextNode();\n  },\n  function() {\n    const _root = document;\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_DOCUMENT);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | Document = w.currentNode;\n    const parentNode: Document | null = w.parentNode();\n    const firstChild: Document | null = w.firstChild();\n    const lastChild: Document | null = w.lastChild();\n    const previousSibling: Document | null = w.previousSibling();\n    const nextSibling: Document | null = w.nextSibling();\n    const previousNode: Document | null = w.previousNode();\n    const nextNode: Document | null = w.nextNode();\n  },\n  function() {\n    const _root = document;\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_DOCUMENT_TYPE);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | DocumentType = w.currentNode;\n    const parentNode: DocumentType | null = w.parentNode();\n    const firstChild: DocumentType | null = w.firstChild();\n    const lastChild: DocumentType | null = w.lastChild();\n    const previousSibling: DocumentType | null = w.previousSibling();\n    const nextSibling: DocumentType | null = w.nextSibling();\n    const previousNode: DocumentType | null = w.previousNode();\n    const nextNode: DocumentType | null = w.nextNode();\n  },\n  function() {\n    const _root = document.createDocumentFragment();\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_DOCUMENT_FRAGMENT);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | DocumentFragment = w.currentNode;\n    const parentNode: DocumentFragment | null = w.parentNode();\n    const firstChild: DocumentFragment | null = w.firstChild();\n    const lastChild: DocumentFragment | null = w.lastChild();\n    const previousSibling: DocumentFragment | null = w.previousSibling();\n    const nextSibling: DocumentFragment | null = w.nextSibling();\n    const previousNode: DocumentFragment | null = w.previousNode();\n    const nextNode: DocumentFragment | null = w.nextNode();\n  },\n  function() {\n    const _root = document.body;\n    const w = document.createTreeWalker(_root, NodeFilter.SHOW_ALL);\n    const root: typeof _root = w.root;\n    const currentNode: typeof _root | Node = w.currentNode;\n    const parentNode: Node | null = w.parentNode();\n    const firstChild: Node | null = w.firstChild();\n    const lastChild: Node | null = w.lastChild();\n    const previousSibling: Node | null = w.previousSibling();\n    const nextSibling: Node | null = w.nextSibling();\n    const previousNode: Node | null = w.previousNode();\n    const nextNode: Node | null = w.nextNode();\n  },\n  // NodeFilterInterface\n  function() {\n    document.createNodeIterator(document.body, -1, node => NodeFilter.FILTER_ACCEPT); // valid\n    document.createNodeIterator(document.body, -1, node => 'accept'); // invalid\n    document.createNodeIterator(document.body, -1, { acceptNode: node => NodeFilter.FILTER_ACCEPT }); // valid\n    document.createNodeIterator(document.body, -1, { acceptNode: node => 'accept' }); // invalid\n    document.createNodeIterator(document.body, -1, {}); // invalid\n  },\n  function() {\n    document.createTreeWalker(document.body, -1, node => NodeFilter.FILTER_ACCEPT); // valid\n    document.createTreeWalker(document.body, -1, node => 'accept'); // invalid\n    document.createTreeWalker(document.body, -1, { acceptNode: node => NodeFilter.FILTER_ACCEPT }); // valid\n    document.createTreeWalker(document.body, -1, { acceptNode: node => 'accept' }); // invalid\n    document.createTreeWalker(document.body, -1, {}); // invalid\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

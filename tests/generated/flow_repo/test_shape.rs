@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_shadow_js_format_1_e430cb4f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("var o = {};\n(o.p: string);\n(o: $Shape<{p:string}>);");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -13,7 +19,11 @@ fn test_shadow_js_format_1_e430cb4f() {
 }
 #[test]
 fn test_test_js_format_1_291edaf6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("type Foo = {\n  field: number,\n}\n\nvar x: {field?: number} = {};\nvar y: $Shape<Foo> = x;\n(y.field: number)") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

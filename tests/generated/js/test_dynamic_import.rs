@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_assertions_js_acorn_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -34,7 +36,11 @@ fn test_assertions_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_assertions_js_format_1_c70cf81a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("import(\"./foo.json\", { assert: { type: \"json\" } });");
     assert!(formatted.is_ok());
@@ -46,7 +52,11 @@ fn test_assertions_js_format_1_c70cf81a() {
 }
 #[test]
 fn test_test_js_format_1_fb22c766() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("import(\"module.js\");\nimport(\"module.js\").then((a) => a);");
     assert!(formatted.is_ok());

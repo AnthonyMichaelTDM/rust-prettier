@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_a_js_format_1_48be516c() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule A */\n\nmodule.exports = {};\n\nvar A = {x:true, ...{}};\nmodule.exports.cls = A;\n\nfunction f(x:boolean) { }\nmodule.exports.fn = f;\n\nA.y = \"?\";\nA.x = A.y;\nf(A.x); // A.x is now a string, by def assign") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_a_js_format_1_48be516c() {
 }
 #[test]
 fn test_b_js_format_1_d2b1e28d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule B */\n\nvar A = require('A').cls;\n\nfunction B() {\n  this.b = \"...\";\n}\n\nfunction f():number { return this.b; }\n\nB.prototype.s = 0;\nB.prototype.fn = f;\n\nmodule.exports = B;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_b_js_format_1_d2b1e28d() {
 }
 #[test]
 fn test_c_js_format_1_7bd1fcd2() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule C */\n\nvar B = require('B');\nvar f = require('A').fn;\n\nfunction C() {\n  var o = new B();\n  f(o.b);\n  f(o.s);\n  o.fn();\n}\n\nmodule.exports = C;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_c_js_format_1_7bd1fcd2() {
 }
 #[test]
 fn test_d_js_format_1_31cd7383() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule D */\n\nvar f = require('A').fn;\n\nfunction g():string { return this.i; }\n\nvar o = {fn: g, ...{}};\no.i = true;\n\nvar i = o.fn();\nf(i);\n\nmodule.exports = \"D for dummy\";") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_d_js_format_1_31cd7383() {
 }
 #[test]
 fn test_e_js_format_1_79fda66a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("\n/* @providesModule E */\n\nfunction h(x:number) { }\nvar proto = { fn: h }\n\nvar o = Object.create(proto);\no.fn(false);\n\nmodule.exports = {obj: o};") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_e_js_format_1_79fda66a() {
 }
 #[test]
 fn test_f_js_format_1_24fa6d3b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function fn2(x) { return x.length * 4; }\nfn2({length: 'hi'});\n\nfunction foo(x: Array<number>): string {\n  return x.length;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +76,11 @@ fn test_f_js_format_1_24fa6d3b() {
 }
 #[test]
 fn test_g_js_format_1_826d4e3a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var a = { length: \"duck\" };\na.length = 123;\na.length();\n\nvar b = [ 123 ];\nb.length = \"duck\";\nb.length();") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

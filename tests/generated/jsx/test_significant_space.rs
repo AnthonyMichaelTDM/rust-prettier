@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_js_format_1_c1f98606() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<div>\n  {\n    // TODO: don't harcode this space! not all locales use whitespace\n    // in the same way\n    ' '\n  }\n</div>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_comments_js_format_1_c1f98606() {
 }
 #[test]
 fn test_test_js_format_1_c4484eb2() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("after =\n  <span>\n      foo <span>bar</span>\n  </span>\n\nbefore =\n  <span>\n    <span>bar</span> foo\n  </span>\n\nbefore_break1 =\n  <span>\n    <span barbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbar /> foo\n  </span>\n\nbefore_break2 =\n  <span>\n    <span barbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbar /> foo\n  </span>\n\nafter_break =\n  <span>\n    foo <span barbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbarbar />\n  </span>\n\nwithin =\n  <span>\n    foo <span> bar </span>\n  </span>\n\nbreak_components =\n  <div>\n    <Foo />\n    <Bar>\n      <p>foo<span>bar bar bar</span></p><h1><span><em>yep</em></span></h1>\n    </Bar>\n    <h2>nope</h2>\n  </div>\n\nvar x = <div>\n    hello <strong>hi</strong> <foo>sdkflsdfjk</foo>\n </div>;\n\nnest_plz =\n  <div>\n    <div>\n    <div></div>\n    </div>\n  </div>\n\nregression_not_transformed_1 =\n  <span> <Icon icon=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" /></span>;\n\nregression_not_transformed_2 =\n  <span><Icon icon=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" /> </span>;\n\nsimilar_1 =\n  <span> <Icon icon=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" /></span>;\n\nsimilar_2 =\n  <span><Icon icon=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" /> </span>;\n\nsimilar_3 =\n  <span><Icon icon=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" /> <Icon icon=\"\" /></span>;\n\nnot_broken_end =\n  <div>\n    long text long text long text long text long text long text long text long text <link>url</link> long text long text\n  </div>\n\nnot_broken_begin =\n  <div>\n    <br /> long text long text long text long text long text long text long text long text<link>url</link> long text long text\n  </div>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

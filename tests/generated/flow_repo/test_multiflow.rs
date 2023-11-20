@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_apply_js_format_1_7b75cb5b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nfunction apply<Args: $ReadOnlyArray<mixed>, Ret>(\n  fn: (...Args) => Ret,\n  args: Args,\n): Ret {\n  return fn(...args);\n}\n\nfunction noRest(x: 'hi', y: 123): true { return true; }\napply(noRest, ['hi', 123]); // No error\napply(noRest, ['hi', 456]); // Error - 456 ~> 123\napply(noRest, ['hi']); // Error - too few args\napply(noRest, ['hi', 123, false]); // No error - too many args is fine\n\n// withRest behaves the same as noRest except you can't pass too many args in\nfunction withRest(...rest: ['hi', 123]): true { return true; }\napply(withRest, ['hi', 123]); // No error\napply(withRest, ['hi', 456]); // Error - 456 ~> 123\napply(withRest, ['hi']); // Error - too few args\napply(withRest, ['hi', 123, false]); // Error - too many args\n\n// Same thing, but with types instead of functions\ndeclare var applyType: <Args: $ReadOnlyArray<mixed>, Ret>(\n  fn: (...Args) => Ret,\n  args: Args,\n) => Ret;\n\nfunction noRest(x: 'hi', y: 123): true { return true; }\napplyType(noRest, ['hi', 123]); // No error\napplyType(noRest, ['hi', 456]); // Error - 456 ~> 123\napplyType(noRest, ['hi']); // Error - too few args\napplyType(noRest, ['hi', 123, false]); // No error - too many args is fine\n\n// withRest behaves the same as noRest except you can't pass too many args in\nfunction withRest(...rest: ['hi', 123]): true { return true; }\napplyType(withRest, ['hi', 123]); // No error\napplyType(withRest, ['hi', 456]); // Error - 456 ~> 123\napplyType(withRest, ['hi']); // Error - too few args\napplyType(withRest, ['hi', 123, false]); // Error - too many args") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_apply_js_format_1_7b75cb5b() {
 }
 #[test]
 fn test_issue_3443_js_format_1_c4238d43() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Adapted from https://github.com/facebook/flow/issues/3443\n\nclass A {\n    f(...args: any[]) {}\n}\n\nclass B extends A {\n    f(...args) {\n      this.f(...args);\n    }\n}\n\nfunction foo(...args) {\n  foo(1, ...args);\n}\nfoo(123);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_issue_3443_js_format_1_c4238d43() {
 }
 #[test]
 fn test_jsx_js_format_1_ed89feb3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @jsx JSX\n * @flow\n */\n\n// This one for when there are no JSX attributes\ndeclare function JSX<\n  Children: $ReadOnlyArray<mixed>,\n  Elem,\n  C: (props: {}, children: Children) => Elem\n>(\n  component: C,\n  props: null,\n  ...children: Children\n): Elem;\n\n// This one for when there are JSX attributes.\ndeclare function JSX<\n  Children: $ReadOnlyArray<mixed>,\n  Elem,\n  Props: Object,\n  C: (props: Props, children: Children) => Elem\n>(\n  component: C,\n  props: Props,\n  ...children: Children\n): Elem;\n\ndeclare function AcceptsWhatever(props: {} | null, children: any): string;\n(<AcceptsWhatever />: number); // Error string ~> number\n(<AcceptsWhatever name=\"hi\">Text</AcceptsWhatever>: number); // Error string ~> number\n\ndeclare function ExpectsProps(props: { name: string }, children: any): string;\n(<ExpectsProps />); // Error - missing prop\n(<ExpectsProps name=\"hi\">Text</ExpectsProps>: number); // Error string ~> number\n\ndeclare function ExpectsChildrenTuple(props: any, children: [string]): string;\n(<ExpectsChildrenTuple />); // Error - mising child\n(<ExpectsChildrenTuple>Hi</ExpectsChildrenTuple>); // No error\n(<ExpectsChildrenTuple>{123}</ExpectsChildrenTuple>); // Error: number ~> string\n(<ExpectsChildrenTuple>Hi {\"there\"}</ExpectsChildrenTuple>); // Error: too many children\n\ndeclare function ExpectsChildrenArray(props: any, children: Array<string>): string;\n(<ExpectsChildrenArray />); // No error - 0 children is fine\n(<ExpectsChildrenArray>Hi</ExpectsChildrenArray>); // No error - 1 child is fine\n(<ExpectsChildrenArray>{123}</ExpectsChildrenArray>); // Error: number ~> string\n(<ExpectsChildrenArray>Hi {\"there\"}</ExpectsChildrenArray>); // No error - 2 children is fine") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_jsx_js_format_1_ed89feb3() {
 }
 #[test]
 fn test_spread_js_format_1_7ee067cd() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nfunction fun(x: 'hi', y: 123) {}\nfun(...['hi', 123]); // No error\nfun(...['hi'], ...[123]); // No error\nfun(...['hi'], ...[], ...[123]); // No error\nfun(...['hi'], ...[], ...[123], ...[true]); // Error - true is unused\nfun(...['hi'], ...[true], ...[123]); // Error: true ~> 123 and 123 is unused\n\ndeclare var arrOf123: Array<123>;\nfun('hi', ...arrOf123); // No error - ignore the fact arrOf123 could be empty\n\n\nfunction funWithRestArray(x: 'hi', y: 123, ...rest: Array<number>) {}\nfunWithRestArray(...['hi', 123]); // No error\nfunWithRestArray(...['hi'], ...[123]); // No error\nfunWithRestArray(...['hi'], ...[], ...[123]); // No error\nfunWithRestArray(...['hi'], ...[], ...[123], ...[456, 789]); // No error\nfunWithRestArray(...['hi'], ...[true], ...[123]); // Error: true ~> 123\n\nfunWithRestArray('hi', 123, ...arrOf123); // Ok\nfunWithRestArray('hi', ...arrOf123); // No error - ignore the fact arrOf123 could be empty\nfunWithRestArray('hi', ...arrOf123, ...arrOf123); // No error - ignore the fact arrOf123 could be empty\n\n// 2 errors\n// 1. 'bye' ~> 123 in case the first spread is empty\n// 2. 'bye' ~> number in case the first spread is not empty\nfunWithRestArray('hi', ...arrOf123, 'bye', ...arrOf123);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

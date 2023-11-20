@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_7cc940dc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("(a?.b).c;\n(a?.()).b;\n\n(a?.b)();\n(a?.())();\n\nnew (a?.b)();\nnew (a?.())();");
     assert!(formatted.is_ok());

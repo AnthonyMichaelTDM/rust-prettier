@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_long_md_prose_wrapalways_format_1_55d42c0f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("always")
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^hello]: this is a long long long long long long long long long long long long long paragraph.\n[^world]: this is a long long long long long long long long long long long long long paragraph.\n          this is a long long long long long long long long long long long long long paragraph.") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,12 @@ fn test_long_md_prose_wrapalways_format_1_55d42c0f() {
 }
 #[test]
 fn test_long_md_prose_wrapnever_format_1_55d42c0f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("never")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^hello]: this is a long long long long long long long long long long long long long paragraph.\n[^world]: this is a long long long long long long long long long long long long long paragraph.\n          this is a long long long long long long long long long long long long long paragraph.") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +30,12 @@ fn test_long_md_prose_wrapnever_format_1_55d42c0f() {
 }
 #[test]
 fn test_long_md_prose_wrappreserve_format_1_55d42c0f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("preserve")
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^hello]: this is a long long long long long long long long long long long long long paragraph.\n[^world]: this is a long long long long long long long long long long long long long paragraph.\n          this is a long long long long long long long long long long long long long paragraph.") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +43,12 @@ fn test_long_md_prose_wrappreserve_format_1_55d42c0f() {
 }
 #[test]
 fn test_long_md_tab_width_3_format_1_55d42c0f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .tab_width(3)
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^hello]: this is a long long long long long long long long long long long long long paragraph.\n[^world]: this is a long long long long long long long long long long long long long paragraph.\n          this is a long long long long long long long long long long long long long paragraph.") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +56,12 @@ fn test_long_md_tab_width_3_format_1_55d42c0f() {
 }
 #[test]
 fn test_multiline_md_prose_wrapalways_format_1_3c905cdb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .prose_wrap("always")
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^fn1]:\n\n    > \\`\\`\\`rs\n    > fn main() {\n    >     println!(\"this is some Rust!\");\n    > }\n    > \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code. Here is a footnote which includes code. Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +69,12 @@ fn test_multiline_md_prose_wrapalways_format_1_3c905cdb() {
 }
 #[test]
 fn test_multiline_md_prose_wrapnever_format_1_3c905cdb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("never")
+        .print_width(80)
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^fn1]:\n\n    > \\`\\`\\`rs\n    > fn main() {\n    >     println!(\"this is some Rust!\");\n    > }\n    > \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code. Here is a footnote which includes code. Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +82,12 @@ fn test_multiline_md_prose_wrapnever_format_1_3c905cdb() {
 }
 #[test]
 fn test_multiline_md_prose_wrappreserve_format_1_3c905cdb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .prose_wrap("preserve")
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^fn1]:\n\n    > \\`\\`\\`rs\n    > fn main() {\n    >     println!(\"this is some Rust!\");\n    > }\n    > \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code. Here is a footnote which includes code. Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +95,12 @@ fn test_multiline_md_prose_wrappreserve_format_1_3c905cdb() {
 }
 #[test]
 fn test_multiline_md_tab_width_3_format_1_3c905cdb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .tab_width(3)
+        .print_width(80)
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^fn1]:\n\n    > \\`\\`\\`rs\n    > fn main() {\n    >     println!(\"this is some Rust!\");\n    > }\n    > \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`\n\n[^fn2]: Here is a footnote which includes code. Here is a footnote which includes code. Here is a footnote which includes code.\n\n    \\`\\`\\`rs\n    fn main() {\n        println!(\"this is some Rust!\");\n    }\n    \\`\\`\\`") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -66,7 +108,12 @@ fn test_multiline_md_tab_width_3_format_1_3c905cdb() {
 }
 #[test]
 fn test_sibling_md_prose_wrapalways_format_1_d251e981() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .prose_wrap("always")
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: a\n[^a]: a\n\n---\n\n[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: a\n[^a]: a") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -74,7 +121,12 @@ fn test_sibling_md_prose_wrapalways_format_1_d251e981() {
 }
 #[test]
 fn test_sibling_md_prose_wrapnever_format_1_d251e981() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("never")
+        .print_width(80)
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: a\n[^a]: a\n\n---\n\n[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: a\n[^a]: a") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -82,7 +134,12 @@ fn test_sibling_md_prose_wrapnever_format_1_d251e981() {
 }
 #[test]
 fn test_sibling_md_prose_wrappreserve_format_1_d251e981() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("preserve")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: a\n[^a]: a\n\n---\n\n[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: a\n[^a]: a") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -90,7 +147,12 @@ fn test_sibling_md_prose_wrappreserve_format_1_d251e981() {
 }
 #[test]
 fn test_sibling_md_tab_width_3_format_1_d251e981() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .tab_width(3)
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: > 123\n[^a]: a\n[^a]: a\n[^a]: a\n\n---\n\n[^a]: a\n[^a]: a\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: > 123\\\\\n      > 456\n[^a]: a\n[^a]: a\n[^a]: a") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -98,7 +160,12 @@ fn test_sibling_md_tab_width_3_format_1_d251e981() {
 }
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_99e518c6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("[^hello]: world");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -106,7 +173,12 @@ fn test_simple_md_prose_wrapalways_format_1_99e518c6() {
 }
 #[test]
 fn test_simple_md_prose_wrapnever_format_1_99e518c6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["markdown"])
+        .prose_wrap("never")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("[^hello]: world");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -114,7 +186,12 @@ fn test_simple_md_prose_wrapnever_format_1_99e518c6() {
 }
 #[test]
 fn test_simple_md_prose_wrappreserve_format_1_99e518c6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .prose_wrap("preserve")
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("[^hello]: world");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -122,7 +199,12 @@ fn test_simple_md_prose_wrappreserve_format_1_99e518c6() {
 }
 #[test]
 fn test_simple_md_tab_width_3_format_1_99e518c6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .tab_width(3)
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("[^hello]: world");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

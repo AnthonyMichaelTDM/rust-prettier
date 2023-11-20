@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_break_continue_js_format_1_0d34b19f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function foo() {\n    while(true) { break; }\n}\n\nfunction bar() {\n    L: do { continue L; } while(false)\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_break_continue_js_format_1_0d34b19f() {
 }
 #[test]
 fn test_return_js_format_1_da42602d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function bar(x:number) { }\nfunction foo() {\n    var x = null;\n    if (x == null) return;\n    bar(x);\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_return_js_format_1_da42602d() {
 }
 #[test]
 fn test_toplevel_throw_js_format_1_39b6e8ed() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// @flow\n\nthrow new Error('foo'); // no error");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

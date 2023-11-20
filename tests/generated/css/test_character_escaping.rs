@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_character_escaping_css_format_1_22d4399b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["css"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("#♥ {}\n#© {}\n#“‘’” {}\n#☺☃ {}\n#⌘⌥ {}\n#𝄞♪♩♫♬ {}\n#💩 {}\n#\\\\? {}\n#\\\\@ {}\n#\\\\. {}\n#\\\\3A \\\\) {}\n#\\\\3A \\\\\\`\\\\( {}\n#\\\\31 23 {}\n#\\\\31 a2b3c {}\n#\\\\<p\\\\> {}\n#\\\\<\\\\>\\\\<\\\\<\\\\<\\\\>\\\\>\\\\<\\\\> {}\n#\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\[\\\\>\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\>\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\>\\\\+\\\\+\\\\+\\\\>\\\\+\\\\<\\\\<\\\\<\\\\<\\\\-\\\\]\\\\>\\\\+\\\\+\\\\.\\\\>\\\\+\\\\.\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\.\\\\.\\\\+\\\\+\\\\+\\\\.\\\\>\\\\+\\\\+\\\\.\\\\<\\\\<\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\+\\\\.\\\\>\\\\.\\\\+\\\\+\\\\+\\\\.\\\\-\\\\-\\\\-\\\\-\\\\-\\\\-\\\\.\\\\-\\\\-\\\\-\\\\-\\\\-\\\\-\\\\-\\\\-\\\\.\\\\>\\\\+\\\\.\\\\>\\\\. {}\n#\\\\# {}\n#\\\\#\\\\# {}\n#\\\\#\\\\.\\\\#\\\\.\\\\# {}\n#\\\\#fake-id {} /* matches the element with id=\"#fake-id\" */\n#\\\\_ {}\n#\\\\{\\\\} {}\n#\\\\.fake\\\\-class {}\n#foo\\\\.bar {}\n#\\\\3A hover {}\n#\\\\3A hover\\\\3A focus\\\\3A active {}\n#\\\\[attr\\\\=value\\\\] {}\n#f\\\\/o\\\\/o {}\n#f\\\\\\\\o\\\\\\\\o {}\n#f\\\\*o\\\\*o {}\n#f\\\\!o\\\\!o {}\n#f\\\\'o\\\\'o {}\n#f\\\\~o\\\\~o {}\n#f\\\\+o\\\\+o {}\n#-a-b-c- {}\n#a\\\\\\\\b {}\n\n@keyframes \\\\@mymove {\n    from {top: 0px;}\n    to {top: 200px;}\n}\n\n.foo {\n    animation-name: \\\\@mymove;\n    content: \"\\\\21D3\";\n}\n\n/* Ignore escape \"\\\\\" in CSS classes */\n.bar\\\\/baz {\n    animation-name: \\\\@mymove;\n    content: \"\\\\21D3\";\n}\n\n.grid {\n  grid-template-rows:\n    [row-1-00\\\\:00] auto;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

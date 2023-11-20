@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_trailing_comma_notjson_trailing_commaall_format_1_02e9caad() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["json"])
+        .print_width(80)
+        .trailing_comma("all")
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("{\n  \"k1\": \"v1\",\n  \"k2\": \"v2\",\n  \"k3\": \"v3\"\n}");
     assert!(formatted.is_ok());
@@ -14,7 +21,12 @@ fn test_trailing_comma_notjson_trailing_commaall_format_1_02e9caad() {
 }
 #[test]
 fn test_trailing_comma_notjson_trailing_commaall_format_2_02e9caad() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["json5"])
+        .print_width(80)
+        .trailing_comma("all")
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("{\n  \"k1\": \"v1\",\n  \"k2\": \"v2\",\n  \"k3\": \"v3\"\n}");
     assert!(formatted.is_ok());
@@ -26,7 +38,12 @@ fn test_trailing_comma_notjson_trailing_commaall_format_2_02e9caad() {
 }
 #[test]
 fn test_trailing_comma_notjson_trailing_commaes_5_format_1_02e9caad() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .trailing_comma("es5")
+        .parsers(vec!["json"])
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("{\n  \"k1\": \"v1\",\n  \"k2\": \"v2\",\n  \"k3\": \"v3\"\n}");
     assert!(formatted.is_ok());
@@ -38,7 +55,12 @@ fn test_trailing_comma_notjson_trailing_commaes_5_format_1_02e9caad() {
 }
 #[test]
 fn test_trailing_comma_notjson_trailing_commaes_5_format_2_02e9caad() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["json5"])
+        .print_width(80)
+        .trailing_comma("es5")
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("{\n  \"k1\": \"v1\",\n  \"k2\": \"v2\",\n  \"k3\": \"v3\"\n}");
     assert!(formatted.is_ok());
@@ -50,7 +72,11 @@ fn test_trailing_comma_notjson_trailing_commaes_5_format_2_02e9caad() {
 }
 #[test]
 fn test_trailing_comma_notjson_format_1_02e9caad() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["json-stringify"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("{\n  \"k1\": \"v1\",\n  \"k2\": \"v2\",\n  \"k3\": \"v3\"\n}");
     assert!(formatted.is_ok());

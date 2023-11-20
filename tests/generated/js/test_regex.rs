@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_d_flag_js_format_1_ddeb0f21() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("/./d;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_d_flag_js_format_1_ddeb0f21() {
 }
 #[test]
 fn test_multiple_flags_js_format_1_671448e6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("/.*/ms;\n/.*/my;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +52,11 @@ fn test_regexp_modifiers_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_regexp_modifiers_js_format_1_5daeaa9a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("/(?ims:^[a-z])/u;\n/(?-ims:^[a-z].)(^[a-z].)/uims;\n/(?ims:^[a-z].1$)/;");
     assert!(formatted.is_ok());
@@ -54,7 +68,11 @@ fn test_regexp_modifiers_js_format_1_5daeaa9a() {
 }
 #[test]
 fn test_test_js_format_1_ce890b42() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("/[/]\\\\/\\\\u0aBc/mgi;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -78,7 +96,11 @@ fn test_v_flag_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_v_flag_js_format_1_b3692630() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("/a/v;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

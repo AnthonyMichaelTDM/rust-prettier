@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_snippet_cursor_1_js_format_1_8999657b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(27)
+        .parsers(vec!["babel"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("\u{feff}(function(){return        <|>15})()");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,14 @@ fn test_snippet_cursor_1_js_format_1_8999657b() {
 }
 #[test]
 fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_start(11)
+        .parsers(vec!["babel"])
+        .cursor_offset(22)
+        .range_end(27)
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -21,7 +35,13 @@ fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
 }
 #[test]
 fn test_snippet_range_1_js_format_1_f19ae2ee() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_end(27)
+        .range_start(11)
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -29,7 +49,14 @@ fn test_snippet_range_1_js_format_1_f19ae2ee() {
 }
 #[test]
 fn test_snippet_range_and_cursor_1_js_format_1_1e50091b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .range_start(12)
+        .cursor_offset(23)
+        .range_end(28)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

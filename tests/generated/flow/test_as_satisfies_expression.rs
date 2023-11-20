@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_as_js_babel_flow_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -10,7 +12,11 @@ fn test_as_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_as_js_format_1_73341263() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst name = (description as Description).name || (description as string);\nthis.isTabActionBar((e.target || e.srcElement) as HTMLElement);\n(originalError ? wrappedError(errMsg, originalError) : Error(errMsg)) as InjectionError;\n'current' in (props.pagination as {...});\n('current' in props.pagination) as {...};\nstart + (yearSelectTotal as number);\n(start + yearSelectTotal) as number;\nscrollTop > (visibilityHeight as number);\n(scrollTop > visibilityHeight) as number;\nexport default class Column<T> extends (RcTable.Column as Long.Thing<ColumnProps<T>,ColumnProps<T>,ColumnProps<T>,ColumnProps<T>>) {}\n({}) as {};\nfunction*g() {\n  const test = (yield 'foo') as number;\n}\nasync function g1() {\n  const test = (await 'foo') as number;\n}\n({}) as X;\n() => ({}) as X;\nconst state = JSON.stringify({\n  next: window.location.href,\n  nonce,\n} as State);\n\n(bValue as boolean) ? 0 : -1;\n\nconst value1 = thisIsAReallyReallyReallyReallyReallyLongIdentifier as SomeInterface;\nconst value2 = thisIsAnIdentifier as thisIsAReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongInterface;\nconst value3 = thisIsAReallyLongIdentifier as (SomeInterface | SomeOtherInterface);\nconst value4 = thisIsAReallyLongIdentifier as { prop1: string, prop2: number, prop3: number }[];\nconst value5 = thisIsAReallyReallyReallyReallyReallyReallyReallyReallyReallyLongIdentifier as [string, number];\n\nconst iter1 = createIterator(this.controller, child, this.tag as BlahFunctionComponent);\nconst iter2 = createIterator(self.controller, child, self.tag as BlahFunctionComponent);\n\nx as any as T;\n\n(type) as T;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +32,11 @@ fn test_as_const_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_as_const_js_format_1_c0b5be18() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nexport const LOG_LEVEL = {\n    EMERGENCY: 0,\n    ALERT: 1,\n    CRITICAL: 2,\n    ERROR: 3,\n    WARNING: 4,\n    NOTICE: 5,\n    INFO: 6,\n    DEBUG: 7,\n} as const;\n\n(type) as const;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +52,11 @@ fn test_assignment_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_assignment_js_format_1_76154220() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst TYPE_MAP = {\n    'character device': 'special',\n    'character special file': 'special',\n    directory: 'directory',\n    'regular file': 'file',\n    socket: 'socket',\n    'symbolic link': 'link',\n} as Foo;\n\nthis.previewPlayerHandle = (setInterval(async () => {\n  if (this.previewIsPlaying) {\n    await this.fetchNextPreviews();\n    this.currentPreviewIndex++;\n  }\n}, this.refreshDelay) as any);\n\nthis.intervalID = (setInterval(() => {\n  self.step();\n}, 30) as any);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +72,11 @@ fn test_export_default_as_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_export_default_as_js_format_1_3027c287() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("// @flow\n\nexport default (function log() {} as typeof console.log)");
     assert!(formatted.is_ok());
@@ -78,7 +96,11 @@ fn test_long_identifiers_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_long_identifiers_js_format_1_b9f0d436() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst bifornCringerMoshedPerplexSawder =\n  askTrovenaBeenaDependsRowans as glimseGlyphsHazardNoopsTieTie;\n\naverredBathersBoxroomBuggyNurl.anodyneCondosMalateOverateRetinol =\n  annularCooeedSplicesWalksWayWay as kochabCooieGameOnOboleUnweave;\n\naverredBathersBoxroomBuggyNurl = {\n  anodyneCondosMalateOverateRetinol:\n    annularCooeedSplicesWalksWayWay as kochabCooieGameOnOboleUnweave\n};\n\naverredBathersBoxroomBuggyNurl(\n  anodyneCondosMalateOverateRetinol.annularCooeedSplicesWalksWayWay as\n    kochabCooieGameOnOboleUnweave\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -94,7 +116,11 @@ fn test_nested_await_and_as_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_nested_await_and_as_js_format_1_d1acd537() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst getAccountCount = async () =>\n  (await\n    ((await (\n      await focusOnSection(BOOKMARKED_PROJECTS_SECTION_NAME)\n    ).findItem(\"My bookmarks\")) as TreeItem\n  ).getChildren()\n  ).length") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -110,7 +136,11 @@ fn test_return_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_return_js_format_1_770b7771() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format(
         "// @flow\n\nfunction foo() {\n  return {\n    foo: 1,\n    bar: 2,\n  } as Foo;\n}",
     );
@@ -131,7 +161,11 @@ fn test_satisfies_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_satisfies_js_format_1_a4c5a4f5() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nconst x = y satisfies T;\n\n// demonstrating how \"satisfies\" expression can be practically used as expression statement.\nconst _ = (type: 'foo' | 'bar') => {\nswitch (type) {\n  case 'foo':\n    return 1;\n  case 'bar':\n    return 2;\n  default:\n    // exhaustiveness check idiom\n    (type) satisfies empty;\n    throw new Error('unreachable');\n}\n}\n\nfunction needParens() {\n(let) satisfies mixed;\n(interface) satisfies mixed;\n(module) satisfies mixed;\n(using) satisfies mixed;\n(yield) satisfies mixed;\n(await) satisfies mixed;\n}\n\nfunction noNeedParens() {\nasync satisfies mixed;\nsatisfies satisfies mixed;\nas satisfies mixed;\nopaque satisfies mixed;\n\nabc satisfies mixed; // not a keyword\n}\n\nfunction satisfiesChain() {\nsatisfies satisfies satisfies satisfies satisfies;\n(type) satisfies empty satisfies mixed;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -147,7 +181,11 @@ fn test_ternary_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_ternary_js_format_1_f18bca57() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\nfoo = (coooooooooooooooooooooooooooooooooooooooooooooooooooond\n    ? baaaaaaaaaaaaaaaaaaaaar\n    : baaaaaaaaaaaaaaaaaaaaaz) as Fooooooooooo;\n\nfoo = (condition ? firstValue : secondValue) as SomeType;\n\nconst foo = (coooooooooooooooooooooooooooooooooooooooooooooooooooond\n  ? baaaaaaaaaaaaaaaaaaaaar\n  : baaaaaaaaaaaaaaaaaaaaaz) as Fooooooooooo;\n\nfunction foo() {\n  return (coooooooooooooooooooooooooooooooooooooooooooooooooooond\n    ? baaaaaaaaaaaaaaaaaaaaar\n    : baaaaaaaaaaaaaaaaaaaaaz) as Fooooooooooo;\n}\n\nfunction foo() {\n  throw (coooooooooooooooooooooooooooooooooooooooooooooooooooond\n      ? baaaaaaaaaaaaaaaaaaaaar\n      : baaaaaaaaaaaaaaaaaaaaaz) as Fooooooooooo;\n}\n\nfunction foo() {\n  void ((coooooooooooooooooooooooooooooooooooooooooooooooooooond\n    ? baaaaaaaaaaaaaaaaaaaaar\n    : baaaaaaaaaaaaaaaaaaaaaz) as Fooooooooooo);\n}\n\nbifornCringerMoshedPerplexSawder =\n  askTrovenaBeenaDependsRowans +\n  ((glimseGlyphsHazardNoopsTieTie === 0\n    ? averredBathersBoxroomBuggyNurl\n    : anodyneCondosMalateOverateRetinol) as AnnularCooeedSplicesWalksWayWay);\n\nbifornCringerMoshedPerplexSawder =\n  askTrovenaBeenaDependsRowans +\n  ((glimseGlyphsHazardNoopsTieTie === 0 &&\n  kochabCooieGameOnOboleUnweave === Math.PI\n    ? averredBathersBoxroomBuggyNurl\n    : anodyneCondosMalateOverateRetinol) as AnnularCooeedSplicesWalksWayWay);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

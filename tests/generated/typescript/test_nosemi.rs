@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_index_signature_ts_semifalse_format_1_ef087fbd() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .semi(false)
+        .parsers(vec!["typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class LocalStorage implements Storage {\n  [index: number]: string;\n  [key: string]: any;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,12 @@ fn test_index_signature_ts_semifalse_format_1_ef087fbd() {
 }
 #[test]
 fn test_interface_ts_semifalse_format_1_3bd02467() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .semi(false)
+        .print_width(80)
+        .parsers(vec!["typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("interface Inline { x: string }\n\ninterface MultiLine {\n    x: string;\n    y: string;\n}\n\ninterface InlineMultiple { x: string; y: string }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +30,12 @@ fn test_interface_ts_semifalse_format_1_3bd02467() {
 }
 #[test]
 fn test_type_ts_semifalse_format_1_a93590ab() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .semi(false)
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("type A = {disabled?: boolean, error?: string}\n\nconst foo: {aasdf?: string; asdf?: number; foob?: string; zzz?: string; yyy: string}  = {}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

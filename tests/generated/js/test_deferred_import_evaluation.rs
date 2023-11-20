@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_import_defer_js_acorn_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -26,7 +28,11 @@ fn test_import_defer_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_defer_js_format_1_20806599() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("import defer * as ns from \"x\";");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +64,11 @@ fn test_import_defer_attributes_declaration_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_import_defer_attributes_declaration_js_format_1_d3ab94fe() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("import defer * as ns from \"x\" with { attr: \"val\" };");
     assert!(formatted.is_ok());

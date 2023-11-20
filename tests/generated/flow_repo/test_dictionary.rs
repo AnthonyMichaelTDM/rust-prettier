@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_any_js_format_1_84a02aec() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nconst dict: {[key: string]: number} = {}\nconst k: any = 'foo'\nconst val: string = dict[k] // error: number incompatible with string") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_any_js_format_1_84a02aec() {
 }
 #[test]
 fn test_compatible_js_format_1_a255da7a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo0(x: Array<{[key: string]: mixed}>): Array<{[key: string]: mixed}> {\n  // this adds a fooBar property to the param type, which should NOT cause\n  // an error in the return type because it is a dictionary.\n  x[0].fooBar = 'foobar';\n  return x;\n}\n\nfunction foo2(\n  x: {[key: string]: number}\n): {[key: string]: number, +toString: () => string} {\n  // x's prototype has a toString method\n  return x;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_compatible_js_format_1_a255da7a() {
 }
 #[test]
 fn test_dictionary_js_format_1_b7f4bec4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* Dictionary types are object types that include an indexer, which specifies a\n * key type and a value type. The presence of an indexer makes the object type\n * unsealed, but all added properties must be consistent with the indexer\n * signature.\n *\n * Dictionaries can be used to represent the common idiom of objects used as\n * maps. They can also be used to represent array-like objects, e.g., NodeList\n * from the DOM API.\n *\n * A dictionary is assumed to have every property described by it's key type.\n * This behavior is similar to the behavior of arrays, which are assumed to have\n * a value at every index.\n *\n * @flow\n */\n\n// Some logic is variance-sensitive.\nclass A {}\nclass B extends A {}\nclass C extends B {}\n\n// Just a couple of short type names. Compare to string/number.\nclass X {}\nclass Y {}\n\n// Any property can be set on a dict with string keys.\nfunction set_prop_to_string_key(\n  o: {[k:string]:any},\n) {\n  o.prop = \"ok\";\n}\n\n// **UNSOUND**\n// This is allowed by design. We don't track get/set and we don't wrap the\n// return type in a maybe.\nfunction unsound_dict_has_every_key(\n  o: {[k:string]:X},\n) {\n  (o.p: X); // ok\n  (o[\"p\"]: X); // ok\n}\n\n// As with any object type, we can assign subtypes to properties.\nfunction set_prop_covariant(\n  o: {[k:string]:B},\n) {\n  o.p = new A; // error, A ~> B\n  o.p = new B; // ok\n  o.p = new C; // ok\n}\n\n// This isn't specific behavior to dictionaries, but for completeness...\nfunction get_prop_contravariant(\n  o: {[k:string]:B},\n) {\n  (o.p: A); // ok\n  (o.p: B); // ok\n  (o.p: C); // error, C ~> B\n}\n\n// Dot-notation can not be used to add properties to dictionaries with\n// non-string keys, because keys are strings.\nfunction add_prop_to_nonstring_key_dot(\n  o: {[k:number]:any},\n) {\n  o.prop = \"err\"; // error: string ~> number\n}\n\n// Bracket notation can be used to add properties to dictionaries with\n// non-string keys, even though all keys are strings. This is a convenient\n// affordance.\nfunction add_prop_to_nonstring_key_bracket(\n  o: {[k:number]:any},\n) {\n  o[0] = \"ok\";\n}\n\n// Objects can be part dict, part not by mixing an indexer with declared props.\nfunction mix_with_declared_props(\n  o: {[k:number]:X,p:Y},\n  x: X,\n  y: Y,\n) {\n  (o[0]: X); // ok\n  (o.p: Y); // ok\n  o[0] = x; // ok\n  o.p = y; // ok\n}\n\n// Indeed, dict types are still Objects and have Object.prototype stuff\nfunction object_prototype(\n  o: {[k:string]:number},\n): {[k:string]:number, +toString: () => string} {\n  (o.toString(): boolean); // error: string ~> boolean\n  return o; // ok\n}\n\n// **UNSOUND**\n// Because we support non-string props w/ bracket notation, it's possible to\n// write into a declared prop unsoundly.\nfunction unsound_string_conversion_alias_declared_prop(\n  o: {[k:number]:any, \"0\":X},\n) {\n  o[0] = \"not-x\"; // a[\"0\"] no longer X\n}\n\nfunction unification_dict_values_invariant(\n  x: Array<{[k:string]:B}>,\n) {\n  let a: Array<{[k:string]:A}> = x; // error\n  a[0].p = new A; // in[0].p no longer B\n\n  let b: Array<{[k:string]:B}> = x; // ok\n\n  let c: Array<{[k:string]:C}> = x; // error\n  (x[0].p: C); // not true\n}\n\nfunction subtype_dict_values_invariant(\n  x: {[k:string]:B},\n) {\n  let a: {[k:string]:A} = x; // error\n  a.p = new A; // x[0].p no longer B\n\n  let b: {[k:string]:B} = x; // ok\n\n  let c: {[k:string]:C} = x; // error\n  (x.p: C); // not true\n}\n\nfunction subtype_dict_values_fresh_exception() {\n  let a: {[k:string]:A} = {\n    a: new A, // ok, A == A\n    b: new B, // ok, B <: A\n    c: new C, // ok, C <: A\n  };\n\n  let b: {[k:string]:B} = {\n    a: new A, // error, A not <: B\n    b: new B, // ok, B == B\n    c: new C, // ok, C <: A\n  };\n\n  let c: {[k:string]:C} = {\n    a: new A, // error, A not <: C\n    b: new B, // error, A not <: C\n    c: new C, // ok, C == C\n  };\n}\n\n// Actually, unsound_string_conversion_alias_declared_prop behavior makes an\n// argument that we shouldn't really care about this, since we ignore the fact\n// that coercing values to string keys can cause unintended aliasing in general.\n// Barring some compelling use case for that in this context, though, we choose\n// to be strict.\nfunction unification_dict_keys_invariant(\n  x: Array<{[k:B]:any}>,\n) {\n  let a: Array<{[k:A]:any}> = x; // error\n  let b: Array<{[k:B]:any}> = x; // ok\n  let c: Array<{[k:C]:any}> = x; // error\n}\n\nfunction subtype_dict_keys_invariant(\n  x: {[k:B]:any},\n) {\n  let a: {[k:A]:any} = x; // error\n  let b: {[k:B]:any} = x; // ok\n  let c: {[k:C]:any} = x; // error\n}\n\nfunction unification_mix_with_declared_props_invariant_l(\n  x: Array<{[k:string]:B}>,\n) {\n  let a: Array<{[k:string]:B, p:A}> = x; // error: A ~> B\n  a[0].p = new A; // x[0].p no longer B\n\n  let b: Array<{[k:string]:B, p:B}> = x; // ok\n\n  let c: Array<{[k:string]:B, p:C}> = x; // error\n  (x[0].p: C); // not true\n}\n\nfunction unification_mix_with_declared_props_invariant_r(\n  xa: Array<{[k:string]:A, p:B}>,\n  xb: Array<{[k:string]:B, p:B}>,\n  xc: Array<{[k:string]:C, p:B}>,\n) {\n  let a: Array<{[k:string]:A}> = xa; // error\n  a[0].p = new A; // xa[0].p no longer B\n\n  let b: Array<{[k:string]:B}> = xb; // ok\n\n  let c: Array<{[k:string]:C}> = xc; // error\n  (xc[0].p: C); // not true\n}\n\nfunction subtype_mix_with_declared_props_invariant_l(\n  x: {[k:string]:B},\n) {\n  let a: {[k:string]:B, p:A} = x; // error: A ~> B\n  a.p = new A; // x.p no longer B\n\n  let b: {[k:string]:B, p:B} = x; // ok\n\n  let c: {[k:string]:B, p:C} = x; // error\n  (x.p: C); // not true\n}\n\nfunction subtype_mix_with_declared_props_invariant_r(\n  xa: {[k:string]:A, p:B},\n  xb: {[k:string]:B, p:B},\n  xc: {[k:string]:C, p:B},\n) {\n  let a: {[k:string]:A} = xa; // error\n  a.p = new A; // xa.p no longer B\n\n  let b: {[k:string]:B} = xb; // ok\n\n  let c: {[k:string]:C} = xc; // error\n  (xc.p: C); // not true\n}\n\nfunction unification_dict_to_obj(\n  x: Array<{[k:string]:X}>,\n): Array<{p:X}> {\n  return x; // error: if allowed, could write {p:X,q:Y} into \\`x\\`\n}\n\nfunction unification_obj_to_dict(\n  x: Array<{p:X}>,\n): Array<{[k:string]:X}> {\n  return x; // error: if allowed, could write {p:X,q:Y} into returned array\n}\n\nfunction subtype_dict_to_obj(\n  x: {[k:string]:B},\n) {\n  let a: {p:A} = x; // error\n  a.p = new A; // x.p no longer B\n\n  let b: {p:B} = x; // ok\n\n  let c: {p:C} = x; // error\n  (x.p: C); // not true\n}\n\nfunction subtype_obj_to_dict(\n  x: {p:B},\n) {\n  let a: {[k:string]:A} = x; // error\n  a.p = new A; // x.p no longer B\n\n  let b: {[k:string]:B} = x;\n\n  let c: {[k:string]:C} = x; // error\n  (x.p: C); // not true\n}\n\n// Only props in l which are not in u must match indexer, but must do so\n// exactly.\nfunction subtype_obj_to_mixed(\n  x: {p:B, x:X},\n) {\n  let a: {[k:string]:A,x:X} = x; // error (as above), but exclusive of x\n  let b: {[k:string]:B,x:X} = x; // ok,\n  let c: {[k:string]:C,x:X} = x; // error (as above), but exclusive of x\n}\n\nfunction unification_dict_to_mixed(\n  x: Array<{[k:string]:B}>,\n) {\n  let a: Array<{[k:string]:B, p:A}> = x; // error\n  let b: Array<{[k:string]:B, p:B}> = x; // ok\n  let c: Array<{[k:string]:B, p:C}> = x; // error\n}\n\nfunction subtype_dict_to_mixed(\n  x: {[k:string]:B},\n) {\n  let a: {[k:string]:B, p:A} = x; // error\n  let b: {[k:string]:B, p:B} = x; // ok\n  let c: {[k:string]:B, p:C} = x; // error\n}\n\nfunction subtype_dict_to_optional_a(\n  x: {[k:string]:B},\n) {\n  let a: {p?:A} = x; // error\n}\n\nfunction subtype_dict_to_optional_b(\n  x: {[k:string]:B},\n) {\n  let b: {p?:B} = x; // ok\n}\n\nfunction subtype_dict_to_optional_c(\n  x: {[k:string]:B},\n) {\n  let c: {p?:C} = x; // error\n}\n\nfunction subtype_optional_a_to_dict(\n  x: {p?:A},\n): {[k:string]:B} { // error: A ~> B\n  return x;\n}\n\nfunction subtype_optional_b_to_dict(\n  x: {p?:B},\n): {[k:string]:B} { // ok\n  return x;\n}\n\nfunction subtype_optional_c_to_dict(\n  x: {p?:C},\n): {[k:string]:B} { // error: C ~> B\n  return x;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_dictionary_js_format_1_b7f4bec4() {
 }
 #[test]
 fn test_incompatible_js_format_1_7f427ba8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nvar x : {[key: string]: string} = {};\nvar y : {[key: string]: number} = x; // 2 errors, number !~> string & vice versa\nvar z : {[key: number]: string} = x; // 2 errors, string !~> number & vice versa\n\nvar a : {[key: string]: ?string} = {};\nvar b : {[key: string]: string} = a; // 2 errors (null & undefined)\nvar c : {[key: string]: ?string} = b; // 2 errors, since c['x'] = null updates b\n\n// 2 errors (number !~> string, string !~> number)\nfunction foo0(x: Array<{[key: string]: number}>): Array<{[key: string]: string}> {\n  return x;\n}\n\n// error, fooBar:string !~> number (x's dictionary)\nfunction foo1(\n  x: Array<{[key: string]: number}>\n): Array<{[key: string]: number, fooBar: string}> {\n  return x;\n}\n\nfunction foo2(\n  x: Array<{[key: string]: mixed}>\n): Array<{[key: string]: mixed, fooBar: string}> {\n  x[0].fooBar = 123; // OK, since number ~> mixed (x elem's dictionary)\n  return x; // error: mixed ~> string\n}\n\n// OK, since we assume dictionaries have every key\nfunction foo3(x: {[key: string]: number}): {foo: number} {\n  return x;\n}\n\n// error: foo can't exist in x\nfunction foo4(x: {[key: string]: number}): {[key: string]: number, foo: string} {\n  return x;\n}\n\n// error, some prop in x could be incompatible (covariance)\nfunction foo5(x: Array<{[key: string]: number}>): Array<{foo: number}> {\n  return x;\n}\n\n// error, some prop in return could be incompatible\nfunction foo6(x: Array<{foo: number}>): Array<{[key: string]: number}> {\n  return x;\n}\n\nfunction foo7(x: {bar: string, [key: string]: number}) {\n  (x.bar: string);\n}\n\nfunction foo8(x: {[key: string]: number}) {\n  (x.foo: string); // error\n  (x.foo: number);\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_incompatible_js_format_1_7f427ba8() {
 }
 #[test]
 fn test_issue_1745_js_format_1_210a2c6a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nclass A {\n  x: {[k:string]: number};\n\n  m1() {\n    this.x = { bar: 0 }; // no error\n  }\n\n  m2() {\n    this.x.foo = 0; // no error\n  }\n}\n\nclass B {\n  x: {[k:string]: number};\n\n  m2() {\n    this.x.foo = 0; // no error\n  }\n\n  m1() {\n    this.x = { bar: 0 }; // no error\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_issue_1745_js_format_1_210a2c6a() {
 }
 #[test]
 fn test_test_js_format_1_59630eb7() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("type Params = {count: number; [name: string]: string};\ntype QueryFunction = (params: Params) => string;\n\nvar o: { foo: QueryFunction } = {\n  foo(params) {\n    return params.count; // error, number ~/~ string\n  }\n};\n\nmodule.exports = o;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +76,11 @@ fn test_test_js_format_1_59630eb7() {
 }
 #[test]
 fn test_test_client_js_format_1_509d0260() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var o = require('./test');\n\no.foo = function (params) {\n  return params.count; // error, number ~/~ string\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

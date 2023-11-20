@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_argument_list_js_format_1_72433c2d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("longArgNamesWithComments(\n\n  // Hello World\n\n  longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong1,\n\n  // Hello World\n\n  longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong2,\n\n  /* Hello World */\n  longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong3,\n\n\n);\n\nshortArgNames(\n\n\n  short,\n\n  short2,\n  short3,\n);\n\ncomments(\n\n  // Comment\n\n  /* Some comments */\n  short,\n  /* Another comment */\n\n\n  short2, // Even more comments\n\n\n  /* Another comment */\n\n\n  // Long Long Long Long Long Comment\n\n\n\n  /* Long Long Long Long Long Comment */\n  // Long Long Long Long Long Comment\n\n  short3,\n  // More comments\n\n\n);\n\ndifferentArgTypes(\n\n  () => {\n    return true\n  },\n\n  isTrue ?\n    doSomething() : 12,\n\n);\n\nmoreArgTypes(\n\n  [1, 2,\n    3],\n\n  {\n    name: 'Hello World',\n    age: 29\n  },\n\n  doSomething(\n\n    // Hello world\n\n\n    // Hello world again\n    { name: 'Hello World', age: 34 },\n\n\n    oneThing\n      + anotherThing,\n\n    // Comment\n\n  ),\n\n);\n\nevenMoreArgTypes(\n  doSomething(\n    { name: 'Hello World', age: 34 },\n\n\n    true\n\n  ),\n\n  14,\n\n  1 + 2\n    - 90/80,\n\n  !98 *\n    60 -\n    90,\n\n\n\n)\n\nfoo.apply(null,\n\n// Array here\n[1, 2]);\n\n\nbar.on(\"readable\",\n\n() => {\n  doStuff()\n});\n\nfoo(['A, B'],\n\n/* function here */\nfunction doSomething() { return true; });\n\ndoSomething.apply(null,\n\n// Comment\n\n[\n  'Hello world 1',\n  'Hello world 2',\n  'Hello world 3',\n]);\n\n\ndoAnotherThing(\"node\",\n\n{\n  solution_type,\n  time_frame\n});\n\nstuff.doThing(someStuff,\n\n  -1, {\n  accept: node => doSomething(node)\n});\n\ndoThing(\n\n  someOtherStuff,\n\n  // This is important\n  true, {\n  decline: creditCard => takeMoney(creditCard)\n}\n\n);\n\nfunc(\n  () => {\n   thing();\n  },\n\n  { yes: true, no: 5 }\n);\n\ndoSomething(\n\n   { tomorrow: maybe, today: never[always] },\n\n   1337,\n\n   /* Comment */\n\n   // This is important\n   { helloWorld, someImportantStuff }\n\n\n);\n\nfunction foo(\n  one,\n\n  two,\n  three,\n  four,\n\n\n  five,\n  six,\n  seven,\n  eight,\n  nine,\n  ten,\n\n  eleven\n\n) {}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_argument_list_js_format_1_72433c2d() {
 }
 #[test]
 fn test_comments_js_format_1_e9548baa() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function a() {\n  const a = 5; // comment\n\n  return a;\n}\n\nfunction a() {\n  const a = 5; /* comment */\n\n  return a;\n}\n\nfunction a() {\n  const a = 5; /* comment */ /* comment */\n\n  return a;\n}\n\nfunction a() {\n  const a = 5; /* comment */ /* comment */ // comment\n  return a;\n}\n\nfunction a() {\n  const a = 5; /* comment */ /* comment */ // comment\n\n  return a;\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_comments_js_format_1_e9548baa() {
 }
 #[test]
 fn test_member_chain_js_format_1_c82ac243() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("fooBar.doSomething('Hello World').doAnotherThing('Foo', { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  .run(() => console.log('Bar'));\n\nbigDeal\n\n  .doSomething('Hello World')\n\n  // Hello world\n  .doAnotherThing('Foo', { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  .run(() => console.log('Bar'));\n\n\nfoo.bar.baz\n\n  .doSomething('Hello World')\n\n  // Hello world\n  .foo.bar.doAnotherThing('Foo', { foo: bar })\n\n  .doOneMoreThing(config)\n  .bar.run(() => console.log('Bar'));\n\n(\n  somethingGood ? thisIsIt : maybeNot\n)\n\n  // Hello world\n  .doSomething('Hello World')\n\n  .doAnotherThing('Foo', { foo: bar }) // Run this\n  .run(() => console.log('Bar')); // Do this\n\nhelloWorld\n\n  .text()\n\n  .then(t => t);\n\n(veryLongVeryLongVeryLong ||\n anotherVeryLongVeryLongVeryLong ||\n veryVeryVeryLongError\n)\n\n  .map(tickets => TicketRecord.createFromSomeLongString())\n\n  .filter(obj => !!obj);\n\nconst sel = this.connections\n\n  .concat(this.activities.concat(this.operators))\n  .filter(x => x.selected);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_member_chain_js_format_1_c82ac243() {
 }
 #[test]
 fn test_parameter_list_js_format_1_0e051d69() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class Foo {\n  constructor(\n    one,\n\n    two,\n    three,\n    four,\n\n\n    five,\n    six,\n    seven,\n    eight,\n    nine,\n    ten,\n\n    eleven\n\n  ) {}\n}\n\nfunction foo(\n  one,\n\n  two,\n  three,\n  four,\n\n\n  five,\n  six,\n  seven,\n  eight,\n  nine,\n  ten,\n\n  eleven\n\n) {}\n\ncall((a, b) => {});\n\ncall((\n  one,\n  two,\n  three,\n  four,\n  five,\n  six,\n  seven,\n  eight,\n  nine,\n  ten,\n  eleven\n) => {});\n\ncall((\n  one,\n\n  two,\n  three,\n  four,\n\n\n  five,\n  six,\n  seven,\n  eight,\n  nine,\n  ten,\n\n  eleven\n\n) => {});\n\nfunction test({\n  one,\n\n  two,\n  three,\n  four,\n\n\n  five,\n  six,\n  seven,\n  eight,\n  nine,\n  ten,\n\n  eleven\n\n}) {}\n\nfunction test({\n  one,\n  two,\n  three,\n  four,\n}) {}\n\nfunction test({\n  one,\n\n  two,\n  three,\n  four,\n\n}) {}\n\nfunction test({ one, two, three, four }, $a) {}\n\n\nfunction test(\n  { one, two, three, four },\n\n  $a\n) {}\n\nfunction foo(\n\n  ...rest\n\n) {}\n\nfunction foo(\n  one,\n\n  ...rest\n) {}\n\nfunction foo(one,...rest) {}\n\nf(\n  superSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLong,...args\n);\n\nit(\n\n  \"does something really long and complicated so I have to write a very long name for the test\",\n\n  function(\n\n    done,\n\n    foo\n  ) {\n\n    console.log(\"hello!\");\n  }\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

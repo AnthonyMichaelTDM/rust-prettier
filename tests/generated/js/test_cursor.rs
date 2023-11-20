@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comments_1_js_format_1_e22b89e1() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .cursor_offset(7)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("// hi l<|>ol\nfunction ehllooo () {\n  const hi = \"hi\"\n}");
     assert!(formatted.is_ok());
@@ -14,7 +21,12 @@ fn test_comments_1_js_format_1_e22b89e1() {
 }
 #[test]
 fn test_comments_2_js_format_1_ef247da8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .cursor_offset(0)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("<|>\n// howdy\n// hi lol\nconst y = 5");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -22,7 +34,12 @@ fn test_comments_2_js_format_1_ef247da8() {
 }
 #[test]
 fn test_comments_3_js_format_1_c3fbcfa9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .cursor_offset(1)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("/<|>/ howdy\n// hi lol\nconst y = 5");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -30,7 +47,12 @@ fn test_comments_3_js_format_1_c3fbcfa9() {
 }
 #[test]
 fn test_comments_4_js_format_1_d8edf93e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(44)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// howdy\n// hi lol\nconst y = 5\n//  traling! <|>");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -41,7 +63,12 @@ fn test_comments_4_js_format_1_d8edf93e() {
 }
 #[test]
 fn test_cursor_0_js_format_1_9e948623() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(27)
+        .print_width(80)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("(function() {return        <|> 15})()");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -49,7 +76,12 @@ fn test_cursor_0_js_format_1_9e948623() {
 }
 #[test]
 fn test_cursor_1_js_format_1_6f1058bc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .cursor_offset(26)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("(function(){return        <|>15})()");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -57,7 +89,12 @@ fn test_cursor_1_js_format_1_6f1058bc() {
 }
 #[test]
 fn test_cursor_2_js_format_1_3169d8f8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .cursor_offset(6)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("\nfoo  <|>  (bar);");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -65,7 +102,12 @@ fn test_cursor_2_js_format_1_3169d8f8() {
 }
 #[test]
 fn test_cursor_3_js_format_1_cefcebce() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(4)
+        .print_width(80)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("\n\n  <|>\n\n  const y = 5");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -73,7 +115,12 @@ fn test_cursor_3_js_format_1_cefcebce() {
 }
 #[test]
 fn test_cursor_4_js_format_1_db95304a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(19)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("\n\n  const y = 5\n\n  <|>\n\n  const z = 9");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -81,7 +128,12 @@ fn test_cursor_4_js_format_1_db95304a() {
 }
 #[test]
 fn test_cursor_5_js_format_1_50b89fc0() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .cursor_offset(13)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("const    /* h<|>i */    y = 5");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -89,7 +141,12 @@ fn test_cursor_5_js_format_1_50b89fc0() {
 }
 #[test]
 fn test_cursor_6_js_format_1_7a9b2791() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript", "flow"])
+        .cursor_offset(20)
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("const      y    /* h<|>i */   = 5");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -97,7 +154,12 @@ fn test_cursor_6_js_format_1_7a9b2791() {
 }
 #[test]
 fn test_cursor_7_js_format_1_c864d521() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .cursor_offset(12)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("const y = 5\n<|>\n\nconst z = 9");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -105,7 +167,12 @@ fn test_cursor_7_js_format_1_c864d521() {
 }
 #[test]
 fn test_cursor_8_js_format_1_8e8d4604() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(6)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("  func<|>tion banana(){");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -113,7 +180,12 @@ fn test_cursor_8_js_format_1_8e8d4604() {
 }
 #[test]
 fn test_cursor_9_js_format_1_4057d6a3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(26)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("     thisWillBeFormatted  <|>  (2  ,3,   ");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -121,7 +193,12 @@ fn test_cursor_9_js_format_1_4057d6a3() {
 }
 #[test]
 fn test_cursor_10_js_format_1_700a4ba9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .cursor_offset(16)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("const y = 5\n\n\n\n\n<|>\n ");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -129,7 +206,12 @@ fn test_cursor_10_js_format_1_700a4ba9() {
 }
 #[test]
 fn test_cursor_emoji_js_format_1_9375a5da() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .cursor_offset(9)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("\"😀😀😀😀<|>\"");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -137,7 +219,12 @@ fn test_cursor_emoji_js_format_1_9375a5da() {
 }
 #[test]
 fn test_file_start_with_comment_1_js_format_1_707cc1b7() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(5)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// hi<|> lol\nhaha()");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -145,7 +232,12 @@ fn test_file_start_with_comment_1_js_format_1_707cc1b7() {
 }
 #[test]
 fn test_file_start_with_comment_2_js_format_1_3d4e0f7f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .cursor_offset(16)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// hi lol\nhaha()<|>");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -153,7 +245,12 @@ fn test_file_start_with_comment_2_js_format_1_3d4e0f7f() {
 }
 #[test]
 fn test_file_start_with_comment_3_js_format_1_11d8b01b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(127)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// All messages are represented in JSON.\n// So, the prettier.py controls a subprocess which spawns \"node {this_file}\".\nimport {<|>  } from \"fs\"") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -161,7 +258,14 @@ fn test_file_start_with_comment_3_js_format_1_11d8b01b() {
 }
 #[test]
 fn test_range_0_js_format_1_616a96c8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_start(31)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .cursor_offset(56)
+        .print_width(80)
+        .range_end(72)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | thisWontBeFormatted  ( 1  ,3)\n  2 |\n> 3 |     thisWillBeFormatted  <|>  (2  ,3,   )\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 4 |\n    | ^\n> 5 |     thisWontBeFormatted  (2, 90  ,)\n    | ^\n  6 |    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -169,7 +273,14 @@ fn test_range_0_js_format_1_616a96c8() {
 }
 #[test]
 fn test_range_1_js_format_1_355fdf96() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_end(72)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .cursor_offset(64)
+        .range_start(31)
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | thisWontBeFormatted  ( 1  ,3)\n  2 |\n> 3 |     thisWillBeFormatted    (2  ,3<|>,   )\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 4 |\n    | ^\n> 5 |     thisWontBeFormatted  (2, 90  ,)\n    | ^\n  6 |    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -177,7 +288,14 @@ fn test_range_1_js_format_1_355fdf96() {
 }
 #[test]
 fn test_range_2_js_format_1_bdabf752() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .range_end(72)
+        .cursor_offset(67)
+        .range_start(31)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | thisWontBeFormatted  ( 1  ,3)\n  2 |\n> 3 |     thisWillBeFormatted    (2  ,3,  <|> )\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 4 |\n    | ^\n> 5 |     thisWontBeFormatted  (2, 90  ,)\n    | ^\n  6 |    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -185,7 +303,14 @@ fn test_range_2_js_format_1_bdabf752() {
 }
 #[test]
 fn test_range_3_js_format_1_dd670a12() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .range_end(72)
+        .range_start(30)
+        .cursor_offset(20)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | thisWontBeFormatted <|> ( 1  ,3)\n> 2 |\n    | ^\n> 3 |     thisWillBeFormatted    (2  ,3,   )\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 4 |\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 5 |     thisWontBeFormatted  (2, 90  ,)\n    | ^\n  6 |    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -193,7 +318,14 @@ fn test_range_3_js_format_1_dd670a12() {
 }
 #[test]
 fn test_range_4_js_format_1_b6c8447a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_start(31)
+        .range_end(75)
+        .print_width(80)
+        .cursor_offset(101)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | thisWontBeFormatted  ( 1  ,3)\n  2 |\n> 3 |     thisWillBeFormatted    (2  ,3,   )\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 4 |\n    | ^\n> 5 |     thisWontBeFormatted  (2, 9<|>0  ,)\n    | ^^^^\n  6 |    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -201,7 +333,14 @@ fn test_range_4_js_format_1_b6c8447a() {
 }
 #[test]
 fn test_range_5_js_format_1_c2f12f3d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_start(14)
+        .print_width(80)
+        .cursor_offset(23)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .range_end(23)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("> 1 | const myVar = aFunction<|>\n    |               ^^^^^^^^^\n  2 ");
     assert!(formatted.is_ok());
@@ -210,7 +349,14 @@ fn test_range_5_js_format_1_c2f12f3d() {
 }
 #[test]
 fn test_range_6_js_format_1_39375b8c() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .range_end(24)
+        .range_start(14)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .cursor_offset(24)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("> 1 | const myVar = aFunction;<|>\n    |               ^^^^^^^^^^\n  2 ");
     assert!(formatted.is_ok());
@@ -219,7 +365,14 @@ fn test_range_6_js_format_1_39375b8c() {
 }
 #[test]
 fn test_range_7_js_format_1_91bb87be() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .cursor_offset(23)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .range_end(24)
+        .range_start(14)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("> 1 | const myVar = aFunction<|>;\n    |               ^^^^^^^^^^^^^\n  2 ");
     assert!(formatted.is_ok());
@@ -228,7 +381,14 @@ fn test_range_7_js_format_1_91bb87be() {
 }
 #[test]
 fn test_range_8_js_format_1_f3e9fe41() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_start(30)
+        .cursor_offset(69)
+        .parsers(vec!["babel", "typescript", "flow"])
+        .print_width(80)
+        .range_end(72)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | thisWontBeFormatted  ( 1  ,3)\n> 2 |\n    | ^\n> 3 |     thisWillBeFormatted    (2  ,3,   )<|>\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 4 |\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 5 |     thisWontBeFormatted  (2, 90  ,)\n    | ^\n  6 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

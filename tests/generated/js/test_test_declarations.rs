@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_angular_async_js_arrow_parensavoid_format_1_69f7a481() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .arrow_parens("avoid")
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(async(() => {\n  // code\n}));\n\nbeforeEach(done =>\n  foo()\n    .bar()\n    .bar(),\n);\n\nafterAll(async(() => {\n  console.log('Hello');\n}));\n\nafterAll(done =>\n  foo()\n    .bar()\n    .bar(),\n);\n\nit('should create the app', async(() => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", async(() => {\n  // code\n}));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { async(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,11 @@ fn test_angular_async_js_arrow_parensavoid_format_1_69f7a481() {
 }
 #[test]
 fn test_angular_async_js_format_1_69f7a481() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(async(() => {\n  // code\n}));\n\nbeforeEach(done =>\n  foo()\n    .bar()\n    .bar(),\n);\n\nafterAll(async(() => {\n  console.log('Hello');\n}));\n\nafterAll(done =>\n  foo()\n    .bar()\n    .bar(),\n);\n\nit('should create the app', async(() => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", async(() => {\n  // code\n}));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { async(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +29,12 @@ fn test_angular_async_js_format_1_69f7a481() {
 }
 #[test]
 fn test_angular_fake_async_js_arrow_parensavoid_format_1_0687fca4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("avoid")
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(fakeAsync(() => {\n  // code\n}));\n\nafterAll(fakeAsync(() => {\n  console.log('Hello');\n}));\n\nit('should create the app', fakeAsync(() => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", fakeAsync(() => {\n  // code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", fakeAsync(() => new SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { fakeAsync(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +42,11 @@ fn test_angular_fake_async_js_arrow_parensavoid_format_1_0687fca4() {
 }
 #[test]
 fn test_angular_fake_async_js_format_1_0687fca4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(fakeAsync(() => {\n  // code\n}));\n\nafterAll(fakeAsync(() => {\n  console.log('Hello');\n}));\n\nit('should create the app', fakeAsync(() => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", fakeAsync(() => {\n  // code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", fakeAsync(() => new SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { fakeAsync(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +54,12 @@ fn test_angular_fake_async_js_format_1_0687fca4() {
 }
 #[test]
 fn test_angular_wait_for_async_js_arrow_parensavoid_format_1_2fa4dbc3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .arrow_parens("avoid")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(waitForAsync(() => {\n  // code\n}));\n\nafterAll(waitForAsync(() => {\n  console.log('Hello');\n}));\n\nit('should create the app', waitForAsync(() => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", waitForAsync(() => {\n  // code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", waitForAsync(() => new SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { waitForAsync(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +67,11 @@ fn test_angular_wait_for_async_js_arrow_parensavoid_format_1_2fa4dbc3() {
 }
 #[test]
 fn test_angular_wait_for_async_js_format_1_2fa4dbc3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(waitForAsync(() => {\n  // code\n}));\n\nafterAll(waitForAsync(() => {\n  console.log('Hello');\n}));\n\nit('should create the app', waitForAsync(() => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", waitForAsync(() => {\n  // code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", waitForAsync(() => new SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { waitForAsync(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +79,12 @@ fn test_angular_wait_for_async_js_format_1_2fa4dbc3() {
 }
 #[test]
 fn test_angularjs_inject_js_arrow_parensavoid_format_1_afc716ee() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .arrow_parens("avoid")
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(inject(($fooService, $barService) => {\n  // code\n}));\n\nafterAll(inject(($fooService, $barService) => {\n  console.log('Hello');\n}));\n\nit('should create the app', inject(($fooService, $barService) => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", inject(() => {\n  // code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", inject(($fooServiceLongName, $barServiceLongName) => {\n  // code\n}));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { inject(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +92,11 @@ fn test_angularjs_inject_js_arrow_parensavoid_format_1_afc716ee() {
 }
 #[test]
 fn test_angularjs_inject_js_format_1_afc716ee() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("beforeEach(inject(($fooService, $barService) => {\n  // code\n}));\n\nafterAll(inject(($fooService, $barService) => {\n  console.log('Hello');\n}));\n\nit('should create the app', inject(($fooService, $barService) => {\n  //code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", inject(() => {\n  // code\n}));\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", inject(($fooServiceLongName, $barServiceLongName) => {\n  // code\n}));\n\n/*\n* isTestCall(parent) should only be called when parent exists\n* and parent.type is CallExpression. This test makes sure that\n* no errors are thrown when calling isTestCall(parent)\n*/\nfunction x() { inject(() => {}) }") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -66,7 +104,12 @@ fn test_angularjs_inject_js_format_1_afc716ee() {
 }
 #[test]
 fn test_jest_each_js_arrow_parensavoid_format_1_a29a3b74() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("avoid")
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("describe.each\\`\na|b|expected\n\\${11   } | \\${  1  }|\\${222}\n\\${1-1}|\\${2+2}|\\${ 3333}\n\\${2+1+2}|\\${1111}|\\${3}\n\\`('$a + $b', ({a, b, expected}) => {\n  test(\\`returns \\${expected}\\`, () => {\n    expect(a + b).toBe(expected);\n  });\n\n  test(\\`returned value not be greater than \\${expected}\\`, () => {\n    expect(a + b).not.toBeGreaterThan(expected);\n  });\n\n  test(\\`returned value not be less than \\${expected}\\`, () => {\n    expect(a + b).not.toBeLessThan(expected);\n  });\n});\n\ndescribe.only.each\\`\na|b|expected\n\\${11   } | \\${  1  }|\\${222}|\\${'unknown column 1'}|\\${'unknown column 2'}\n\\${1-1}|\\${2+2}|\\${ 3333}\n\\${2+1+2}|\\${1111}|\\${3}          |\\${'unknown column xyz'}\n\\`\n\ndescribe.only.each\\`\n||\n\\${11   } | \\${  1  }|\\${222}|\\${'unknown column 1'}|\\${'unknown column 2'}\n\\${1-1}|\\${2+2}|\\${ 3333}\n\\${2+1+2}|\\${1111}|\\${3}          |\\${'unknown column xyz'}\n\\`\n\ndescribe.each\\`a    | b    | expected\n\\${1} | \\${1} | \\${2}\n\\${1} | \\${2} | \\${3}\n\\${2} | \\${1} | \\${3}\\`\n\n// an example to demo multiline quasi\ndescribe.each\\`a    | b    | expected\n\\${11111111111} | \\${a().b(x => x).c().d()} | \\${2}\n\\${1} | \\${2} | \\${3}\n\\${2} | \\${1} | \\${3}\\`\n\ndescribe.each([1, 2, 3])(\"test\", a => {\n  expect(a).toBe(a);\n});\n\ntest.only.each([[1, 1, 2], [1, 2, 3], [2, 1, 3]])(\n  \".add(%i, %i)\", (a, b, expected) => {\n    expect(a + b).toBe(expected);\n  }\n);\n\ntest.each([\n  { a: \"1\", b: 1 },\n  { a: \"2\", b: 2 },\n  { a: \"3\", b: 3 },\n])(\"test\", ({ a, b }) => {\n    expect(Number(a)).toBe(b);\n  }\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -74,7 +117,11 @@ fn test_jest_each_js_arrow_parensavoid_format_1_a29a3b74() {
 }
 #[test]
 fn test_jest_each_js_format_1_a29a3b74() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("describe.each\\`\na|b|expected\n\\${11   } | \\${  1  }|\\${222}\n\\${1-1}|\\${2+2}|\\${ 3333}\n\\${2+1+2}|\\${1111}|\\${3}\n\\`('$a + $b', ({a, b, expected}) => {\n  test(\\`returns \\${expected}\\`, () => {\n    expect(a + b).toBe(expected);\n  });\n\n  test(\\`returned value not be greater than \\${expected}\\`, () => {\n    expect(a + b).not.toBeGreaterThan(expected);\n  });\n\n  test(\\`returned value not be less than \\${expected}\\`, () => {\n    expect(a + b).not.toBeLessThan(expected);\n  });\n});\n\ndescribe.only.each\\`\na|b|expected\n\\${11   } | \\${  1  }|\\${222}|\\${'unknown column 1'}|\\${'unknown column 2'}\n\\${1-1}|\\${2+2}|\\${ 3333}\n\\${2+1+2}|\\${1111}|\\${3}          |\\${'unknown column xyz'}\n\\`\n\ndescribe.only.each\\`\n||\n\\${11   } | \\${  1  }|\\${222}|\\${'unknown column 1'}|\\${'unknown column 2'}\n\\${1-1}|\\${2+2}|\\${ 3333}\n\\${2+1+2}|\\${1111}|\\${3}          |\\${'unknown column xyz'}\n\\`\n\ndescribe.each\\`a    | b    | expected\n\\${1} | \\${1} | \\${2}\n\\${1} | \\${2} | \\${3}\n\\${2} | \\${1} | \\${3}\\`\n\n// an example to demo multiline quasi\ndescribe.each\\`a    | b    | expected\n\\${11111111111} | \\${a().b(x => x).c().d()} | \\${2}\n\\${1} | \\${2} | \\${3}\n\\${2} | \\${1} | \\${3}\\`\n\ndescribe.each([1, 2, 3])(\"test\", a => {\n  expect(a).toBe(a);\n});\n\ntest.only.each([[1, 1, 2], [1, 2, 3], [2, 1, 3]])(\n  \".add(%i, %i)\", (a, b, expected) => {\n    expect(a + b).toBe(expected);\n  }\n);\n\ntest.each([\n  { a: \"1\", b: 1 },\n  { a: \"2\", b: 2 },\n  { a: \"3\", b: 3 },\n])(\"test\", ({ a, b }) => {\n    expect(Number(a)).toBe(b);\n  }\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -82,7 +129,12 @@ fn test_jest_each_js_format_1_a29a3b74() {
 }
 #[test]
 fn test_jest_each_template_string_js_arrow_parensavoid_format_1_26c7022d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .arrow_parens("avoid")
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("test.each\\`\na | b         | c\n\\${1}      | \\${[{ start: 5, end: 15 }]} | \\${[1,2,3,4,5,6,7,8]}\n\\${1}| \\${[{ start: 5, end: 15 }]} | \\${[\"test\", \"string\", \"for\", \"prettier\"]}\n\\${3}      | \\${[{ start: 5, end: 15 }]} | \\${[]}\n\\${4} | \\${[{ start: 1, end: 3 },{ start: 15, end: 20 },]} | \\${[]}\n\\`(\"example test\", ({a, b, c}) => {})\n\n\ntest.each\\`\na | \n\\${[{ a: 1, b: 3 },{ c: 15, d: 20 }]}| \n\\${[{ start: 1, end: 3 },{ start: 15, end: 20 }, { start: 15, end: 20 },]}| \n\\`(\"example test\", ({a, b, c}) => {})") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -90,7 +142,11 @@ fn test_jest_each_template_string_js_arrow_parensavoid_format_1_26c7022d() {
 }
 #[test]
 fn test_jest_each_template_string_js_format_1_26c7022d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("test.each\\`\na | b         | c\n\\${1}      | \\${[{ start: 5, end: 15 }]} | \\${[1,2,3,4,5,6,7,8]}\n\\${1}| \\${[{ start: 5, end: 15 }]} | \\${[\"test\", \"string\", \"for\", \"prettier\"]}\n\\${3}      | \\${[{ start: 5, end: 15 }]} | \\${[]}\n\\${4} | \\${[{ start: 1, end: 3 },{ start: 15, end: 20 },]} | \\${[]}\n\\`(\"example test\", ({a, b, c}) => {})\n\n\ntest.each\\`\na | \n\\${[{ a: 1, b: 3 },{ c: 15, d: 20 }]}| \n\\${[{ start: 1, end: 3 },{ start: 15, end: 20 }, { start: 15, end: 20 },]}| \n\\`(\"example test\", ({a, b, c}) => {})") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -98,7 +154,12 @@ fn test_jest_each_template_string_js_format_1_26c7022d() {
 }
 #[test]
 fn test_test_declarations_js_arrow_parensavoid_format_1_4f854300() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .arrow_parens("avoid")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// Shouldn't break\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", () => {\n  console.log(\"hello!\");\n});\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", function() {\n  console.log(\"hello!\");\n});\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", function(done) {\n  console.log(\"hello!\");\n});\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", function myAssertions(done) {\n  console.log(\"hello!\");\n});\n\nit(\\`does something really long and complicated so I have to write a very long name for the test\\`, function() {\n  console.log(\"hello!\");\n});\n\nit(\\`{foo + bar} does something really long and complicated so I have to write a very long name for the test\\`, function() {\n  console.log(\"hello!\");\n});\n\nit(\\`handles\n  some\n    newlines\n  does something really long and complicated so I have to write a very long name for the test\\`, () => {\n  console.log(\"hello!\");\n})\n\ntest(\"does something really long and complicated so I have to write a very long name for the test\", (done) => {\n  console.log(\"hello!\");\n});\n\ntest(\\`does something really long and complicated so I have to write a very long name for the test\\`, (done) => {\n  console.log(\"hello!\");\n});\n\ndescribe(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {\n  it(\"an example test\", (done) => {\n    console.log(\"hello!\");\n  });\n});\n\ndescribe(\\`does something really long and complicated so I have to write a very long name for the describe block\\`, () => {\n  it(\\`an example test\\`, (done) => {\n    console.log(\"hello!\");\n  });\n});\n\nxdescribe(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nfdescribe(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\ndescribe.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ndescribe.skip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\nfit(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nxit(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nit.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {\n  console.log(\"hello!\");\n});\n\nit.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {\n  console.log(\"hello!\");\n});\n\nit.skip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.skip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\nftest(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nxtest(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nskip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\nskip(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.step(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.step(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.parallel(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.parallel(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.parallel.only(\"does something really long and complicated so I have to write a very long name for the testThis is a very\", () => {});\n\ntest.describe.parallel.only(\\`does something really long and complicated so I have to write a very long name for the testThis is a very\\`, () => {});\n\ntest.describe.serial(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.serial(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.serial.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.serial.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\n// Should break\n\nit.only(\"does something really long and complicated so I have to write a very long name for the test\", 10, () => {\n  console.log(\"hello!\");\n});\n\nit.only.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {\n  console.log(\"hello!\");\n});\n\nit.only.only(\"does something really long and complicated so I have to write a very long name for the test\", (a, b, c) => {\n  console.log(\"hello!\");\n});\n\nxskip(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.only.parallel(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.parallel.serial(\"does something really long and complicated so I have to write a very long name for the testThis is a very\", () => {});\n\ntest.serial(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.dummy.serial(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\n// timeout\n\nit(\\`handles\n  some\n    newlines\n  does something really long and complicated so I have to write a very long name for the test\\`, () => {\n  console.log(\"hello!\");\n}, 2500)\n\nit(\"does something quick\", () => {\n  console.log(\"hello!\")\n}, 1000000000)\n\nit(\n  'succeeds if the test finishes in time',\n  () => new Promise(resolve => setTimeout(resolve, 10))\n);\n\nit(\n  'succeeds if the test finishes in time',\n  () => new Promise(resolve => setTimeout(resolve, 10)),\n  250\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -106,7 +167,11 @@ fn test_test_declarations_js_arrow_parensavoid_format_1_4f854300() {
 }
 #[test]
 fn test_test_declarations_js_format_1_4f854300() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// Shouldn't break\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", () => {\n  console.log(\"hello!\");\n});\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", function() {\n  console.log(\"hello!\");\n});\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", function(done) {\n  console.log(\"hello!\");\n});\n\nit(\"does something really long and complicated so I have to write a very long name for the test\", function myAssertions(done) {\n  console.log(\"hello!\");\n});\n\nit(\\`does something really long and complicated so I have to write a very long name for the test\\`, function() {\n  console.log(\"hello!\");\n});\n\nit(\\`{foo + bar} does something really long and complicated so I have to write a very long name for the test\\`, function() {\n  console.log(\"hello!\");\n});\n\nit(\\`handles\n  some\n    newlines\n  does something really long and complicated so I have to write a very long name for the test\\`, () => {\n  console.log(\"hello!\");\n})\n\ntest(\"does something really long and complicated so I have to write a very long name for the test\", (done) => {\n  console.log(\"hello!\");\n});\n\ntest(\\`does something really long and complicated so I have to write a very long name for the test\\`, (done) => {\n  console.log(\"hello!\");\n});\n\ndescribe(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {\n  it(\"an example test\", (done) => {\n    console.log(\"hello!\");\n  });\n});\n\ndescribe(\\`does something really long and complicated so I have to write a very long name for the describe block\\`, () => {\n  it(\\`an example test\\`, (done) => {\n    console.log(\"hello!\");\n  });\n});\n\nxdescribe(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nfdescribe(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\ndescribe.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ndescribe.skip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\nfit(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nxit(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nit.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {\n  console.log(\"hello!\");\n});\n\nit.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {\n  console.log(\"hello!\");\n});\n\nit.skip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.skip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\nftest(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nxtest(\"does something really long and complicated so I have to write a very long name for the describe block\", () => {});\n\nskip(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\nskip(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.step(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.step(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.parallel(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.parallel(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.parallel.only(\"does something really long and complicated so I have to write a very long name for the testThis is a very\", () => {});\n\ntest.describe.parallel.only(\\`does something really long and complicated so I have to write a very long name for the testThis is a very\\`, () => {});\n\ntest.describe.serial(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.serial(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\ntest.describe.serial.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.serial.only(\\`does something really long and complicated so I have to write a very long name for the test\\`, () => {});\n\n// Should break\n\nit.only(\"does something really long and complicated so I have to write a very long name for the test\", 10, () => {\n  console.log(\"hello!\");\n});\n\nit.only.only(\"does something really long and complicated so I have to write a very long name for the test\", () => {\n  console.log(\"hello!\");\n});\n\nit.only.only(\"does something really long and complicated so I have to write a very long name for the test\", (a, b, c) => {\n  console.log(\"hello!\");\n});\n\nxskip(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.only.parallel(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.parallel.serial(\"does something really long and complicated so I have to write a very long name for the testThis is a very\", () => {});\n\ntest.serial(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\ntest.describe.dummy.serial(\"does something really long and complicated so I have to write a very long name for the test\", () => {});\n\n// timeout\n\nit(\\`handles\n  some\n    newlines\n  does something really long and complicated so I have to write a very long name for the test\\`, () => {\n  console.log(\"hello!\");\n}, 2500)\n\nit(\"does something quick\", () => {\n  console.log(\"hello!\")\n}, 1000000000)\n\nit(\n  'succeeds if the test finishes in time',\n  () => new Promise(resolve => setTimeout(resolve, 10))\n);\n\nit(\n  'succeeds if the test finishes in time',\n  () => new Promise(resolve => setTimeout(resolve, 10)),\n  250\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

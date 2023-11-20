@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arguments_graphql_format_1_8dd433fc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["graphql"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("type Video {\n  playable_url(quality: String, preferred: String): Url\n}");
     assert!(formatted.is_ok());
@@ -14,7 +20,11 @@ fn test_arguments_graphql_format_1_8dd433fc() {
 }
 #[test]
 fn test_directives_graphql_format_1_015463b3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["graphql"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("type PokemonType {\n  pokemon_type: String @mock(value: \"Electric\")\n}");
     assert!(formatted.is_ok());
@@ -26,7 +36,11 @@ fn test_directives_graphql_format_1_015463b3() {
 }
 #[test]
 fn test_extend_graphql_format_1_70893eda() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["graphql"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("extend type Feedback {\n  custom_int: Int\n}");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +48,11 @@ fn test_extend_graphql_format_1_70893eda() {
 }
 #[test]
 fn test_implements_graphql_format_1_0e393185() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["graphql"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("type VRMConversation implements Node& Entity @foo {\n  a: Int\n}");
     assert!(formatted.is_ok());
@@ -46,7 +64,11 @@ fn test_implements_graphql_format_1_0e393185() {
 }
 #[test]
 fn test_input_graphql_format_1_271f33b7() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["graphql"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("input Params {\n  app_id: ID!\n  key_hash: String!\n}");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -57,7 +79,11 @@ fn test_input_graphql_format_1_271f33b7() {
 }
 #[test]
 fn test_object_type_def_graphql_format_1_089b8268() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["graphql"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("type FeedHomeStories {\n  debug_info: String\n  query_title: String\n}");
     assert!(formatted.is_ok());

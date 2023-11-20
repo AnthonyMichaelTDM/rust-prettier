@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_boundary_js_format_1_6d11aa18() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("\\`\\${\na +  // a\n  a\n}\n\n\\${a // comment\n}\n\n\\${b /* comment */}\n\n\\${/* comment */ c /* comment */}\n\n\\${// comment\nd //comment\n}\n\n\\${// $FlowFixMe found when converting React.createClass to ES6\nExampleStory.getFragment('story')}\n\\`;\n\n<div>\n{ExampleStory.getFragment('story') // $FlowFixMe found when converting React.createClass to ES6\n}\n</div>;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

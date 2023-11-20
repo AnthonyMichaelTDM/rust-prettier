@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_array_lib_js_format_1_1007bccb() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\nfunction foo(x:string) { }\n\nvar a = [0];\nvar b = a.map(function (x) { foo(x); return \"\" + x; });\n\nvar c: number = a[0];\nvar d: number = b[0];\n\nvar e:Array<string> = a.reverse();\n\nvar f = [\"\"];\nvar g:number = f.map(function () { return 0; })[0];\n\nvar h: Array<number> = [1,2,3];\nvar i: Array<string> = ['a', 'b', 'c'];\nvar j: Array<number | string> = h.concat(i);\nvar k: Array<number> = h.concat(h);\nvar l: Array<number> = h.concat(1,2,3);\nvar m: Array<number | string> = h.concat('a', 'b', 'c');\nvar n: Array<number> = h.concat('a', 'b', 'c'); // Error\n\nfunction reduce_test() {\n  /* Adapted from the following source:\n   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce\n   */\n  [0, 1, 2, 3, 4].reduce(function(previousValue, currentValue, index, array) {\n    return previousValue + currentValue + array[index];\n  });\n\n  [0, 1, 2, 3, 4].reduce(function(previousValue, currentValue, index, array) {\n    return previousValue + currentValue + array[index];\n  }, 10);\n\n  var total = [0, 1, 2, 3].reduce(function(a, b) {\n    return a + b;\n  });\n\n  var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {\n    return a.concat(b);\n  });\n\n  /* Added later, because the above is insufficient */\n\n  // acc is element type of array when no init is provided\n  [\"\"].reduce((acc, str) => acc * str.length); // error, string ~> number\n  [\"\"].reduceRight((acc, str) => acc * str.length); // error, string ~> number\n}\n\nfunction from_test() {\n  var a: Array<string> = Array.from([1, 2, 3], function(val, index) {\n    return index % 2 ? \"foo\" : String(val);\n  });\n  var b: Array<string> = Array.from([1, 2, 3], function(val) {\n    return String(val);\n  });\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_declared_js_babel_flow_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -10,7 +12,11 @@ fn test_declared_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_declared_js_format_1_6ce3e3e4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ndeclare enum E {\n  A,\n  B,\n}\n\n(E.A: E); // OK\n(E.A: empty); // ERROR\n\ndeclare export enum F {\n  N,\n  M,\n}\n\n(F.N: F); // OK\n(F.N: empty); // ERROR") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +32,11 @@ fn test_lib_js_babel_flow_format_1_d41d8cd9() {
 }
 #[test]
 fn test_lib_js_format_1_0b7e8224() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\ndeclare module 'declared-module' {\n  declare enum G {\n    J,\n    K,\n  }\n  declare export enum H {\n    X,\n    Y,\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

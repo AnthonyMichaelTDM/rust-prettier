@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_comment_js_format_1_93e34c17() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("o = {\n  name:\n    // Comment A\n    // Comment B\n    (({id: type}: any): CreativeConcept),\n};\n\no = {\n  name: // Comment A\n  // Comment B\n  (({ id: type }: any): CreativeConcept)\n};\n\no = {\n  name: // Comment B // Comment A\n  (({ id: type }: any): CreativeConcept)\n};") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

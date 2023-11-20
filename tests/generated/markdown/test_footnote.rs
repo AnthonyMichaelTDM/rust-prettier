@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_footnote_md_prose_wrapalways_format_1_cfbc39d3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .prose_wrap("always")
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("^[inline]");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,12 @@ fn test_footnote_md_prose_wrapalways_format_1_cfbc39d3() {
 }
 #[test]
 fn test_simple_md_prose_wrapalways_format_1_2600a577() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("[^alpha bravo]");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

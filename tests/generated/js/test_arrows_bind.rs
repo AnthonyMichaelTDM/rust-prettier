@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_arrows_bind_js_acorn_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -26,7 +28,11 @@ fn test_arrows_bind_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_arrows_bind_js_format_1_3b5ec4c2() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("a => ({}::b()\\`\\`[''].c++ && 0 ? 0 : 0);\n(a => b)::c;\na::(b => c);");
     assert!(formatted.is_ok());

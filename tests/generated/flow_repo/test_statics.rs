@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_statics_js_format_1_41f99419() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("class C {\n  static f(x:number) { }\n  static x:string;\n}\n\nC.g = function(x:string) { C.f(x); };\nC.g(0);\n\nvar x:number = C.x;\nC.x = 0") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_class_statics_js_format_1_41f99419() {
 }
 #[test]
 fn test_funstatics_js_format_1_155e42ec() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function C() { }\nC.prototype.f = function() { return C.g(0); }\nC.g = function(x) { return x; };\n\nvar x:string = new C().f();") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

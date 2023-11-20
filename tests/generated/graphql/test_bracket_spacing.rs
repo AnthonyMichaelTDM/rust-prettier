@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_bracket_spacing_graphql_bracket_spacingfalse_format_1_52e19abc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["graphql"])
+        .print_width(80)
+        .bracket_spacing(false)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("fragment Visit on HighlightedVisit\n  @argumentDefinitions(\n    count: {type: \"Int\", defaultValue: 20}\n  ) {\n  name\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,11 @@ fn test_bracket_spacing_graphql_bracket_spacingfalse_format_1_52e19abc() {
 }
 #[test]
 fn test_bracket_spacing_graphql_format_1_52e19abc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["graphql"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("fragment Visit on HighlightedVisit\n  @argumentDefinitions(\n    count: {type: \"Int\", defaultValue: 20}\n  ) {\n  name\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

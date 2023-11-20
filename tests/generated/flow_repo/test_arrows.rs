@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_advanced_arrows_js_format_1_6870a5c6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nvar add = (x: number, y: number): number => x + y;\n\nvar bad = (x: number): string => x; // Error!\n\nvar ident = <T>(x: T): T => x;\n(ident(1): number);\n(ident(\"hi\"): number); // Error") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_advanced_arrows_js_format_1_6870a5c6() {
 }
 #[test]
 fn test_arrows_js_format_1_b17d7b29() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function selectBestEffortImageForWidth(\n    maxWidth: number,\n    images: Array<Image>\n): Image {\n    var maxPixelWidth = maxWidth;\n    //images = images.sort(function (a, b) { return a.width - b.width });\n    images = images.sort((a, b) => (a.width - b.width) + \"\");\n    return images.find(image => image.width >= maxPixelWidth) ||\n        images[images.length - 1];\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

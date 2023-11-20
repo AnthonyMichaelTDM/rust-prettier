@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_nested_atrule_css_format_1_8b40146e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["css"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("@media (min-width: 992px){@media (max-width: 1200px) {\n.container\n\n{position: absolute\n    }}\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

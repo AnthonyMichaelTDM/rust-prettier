@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_long_table_md_prose_wrapnever_format_1_521e427b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("never")
+        .print_width(80)
+        .parsers(vec!["markdown"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("| Property | Description | Type | Default |\n| -------- | ----------- | ---- | ------- |\n| bordered | Toggles rendering of the border around the list | boolean | false |\n| footer | List footer renderer | string\\\\|ReactNode | - |\n| grid | The grid type of list. You can set grid to something like {gutter: 16, column: 4} | object | - |\n| header | List header renderer | string\\\\|ReactNode | - |\n| itemLayout | The layout of list, default is \\`horizontal\\`, If a vertical list is desired, set the itemLayout property to \\`vertical\\` | string | - |\n| rowKey | Item's unique key, could be a string or function that returns a string | string\\\\|Function(record):string | \\`key\\` |\n| loading | Shows a loading indicator while the contents of the list are being fetched | boolean\\\\|[object](https://ant.design/components/spin-cn/#API) ([more](https://github.com/ant-design/ant-design/issues/8659)) | false |\n| loadMore | Shows a load more content | string\\\\|ReactNode | - |\n| locale | i18n text including empty text | object | emptyText: 'No Data' <br> |\n| pagination | Pagination [config](https://ant.design/components/pagination/), hide it by setting it to false | boolean \\\\| object | false |\n| split | Toggles rendering of the split under the list item | boolean | true ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,11 @@ fn test_long_table_md_prose_wrapnever_format_1_521e427b() {
 }
 #[test]
 fn test_long_table_md_format_1_521e427b() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("| Property | Description | Type | Default |\n| -------- | ----------- | ---- | ------- |\n| bordered | Toggles rendering of the border around the list | boolean | false |\n| footer | List footer renderer | string\\\\|ReactNode | - |\n| grid | The grid type of list. You can set grid to something like {gutter: 16, column: 4} | object | - |\n| header | List header renderer | string\\\\|ReactNode | - |\n| itemLayout | The layout of list, default is \\`horizontal\\`, If a vertical list is desired, set the itemLayout property to \\`vertical\\` | string | - |\n| rowKey | Item's unique key, could be a string or function that returns a string | string\\\\|Function(record):string | \\`key\\` |\n| loading | Shows a loading indicator while the contents of the list are being fetched | boolean\\\\|[object](https://ant.design/components/spin-cn/#API) ([more](https://github.com/ant-design/ant-design/issues/8659)) | false |\n| loadMore | Shows a load more content | string\\\\|ReactNode | - |\n| locale | i18n text including empty text | object | emptyText: 'No Data' <br> |\n| pagination | Pagination [config](https://ant.design/components/pagination/), hide it by setting it to false | boolean \\\\| object | false |\n| split | Toggles rendering of the split under the list item | boolean | true ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

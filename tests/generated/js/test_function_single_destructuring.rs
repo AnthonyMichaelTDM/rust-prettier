@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_array_js_format_1_9cb10500() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function excludeFirstFiveResults([first, second, third, fourth, fifth, ...rest]) {\n  return rest;\n}\n\nfunction excludeFirstFiveResults2([first, second, third, fourth, fifth, ...rest] = DEFAULT_FIVE_RESULTS) {\n  return rest;\n}\n\nfunction excludeFirstFiveResults3([firstResult, secondResult, thirdResult, fourthResult, fifthResult, ...rest] = [1, 2, 3, 4, 5]) {\n  return rest;\n}\n\nconst excludeFirstFiveResults5 = ([first, second, third, fourth, fifth, ...rest]) => {\n  return rest;\n}\n\nclass A {\n  excludeFirstFiveResults([first, second, third, fourth, fifth, ...restOfResults]) {\n    return restOfResults;\n  }\n}\n\npromise.then(([firstResult, secondResult, thirdResult, fourthResult, fifthResult, ...rest]) => {\n  return rest;\n});") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_array_js_format_1_9cb10500() {
 }
 #[test]
 fn test_object_js_format_1_0acba3ae() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function StatelessFunctionalComponent({\n  isActive,\n  onFiltersUpdated,\n  onSelect,\n  onSubmitAndDeselect,\n  onCancel,\n  searchFilters,\n  title,\n  items,\n}) {\n  return <div />\n}\n\nfunction StatelessFunctionalComponent2({\n  isActive = true,\n  onFiltersUpdated = () => null,\n  onSelect = () => null,\n  onSubmitAndDeselect = () => null,\n  onCancel = () => null,\n  searchFilters = null,\n  title = '',\n  items = [],\n} = {}) {\n  return <div />\n}\n\nfunction StatelessFunctionalComponent3(\n  {\n    isActive,\n    onFiltersUpdated = () => null,\n    onSelect = () => null,\n    onSubmitAndDeselect = () => null,\n    onCancel = () => null,\n    searchFilters = null,\n    title = '',\n    items = [],\n  } = {\n    isActive: true\n  }\n) {\n  return <div />\n}\n\n\nclass C {\n  StatelessFunctionalComponent({\n    isActive,\n    onFiltersUpdated,\n    onSelect,\n    onSubmitAndDeselect,\n    onCancel,\n    searchFilters,\n    title,\n    items,\n  }) {\n    return <div />\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +60,11 @@ fn test_tuple_and_record_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_tuple_and_record_js_format_1_e4773a56() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function StatelessFunctionalComponent1({\n  isActive = true,\n  onFiltersUpdated = () => null,\n  onSelect = () => null,\n  onSubmitAndDeselect = () => null,\n  onCancel = () => null,\n  searchFilters = null,\n  title = '',\n  items = [],\n} = {}) {\n}\n\nfunction StatelessFunctionalComponent2({\n  isActive = true,\n  onFiltersUpdated = () => null,\n  onSelect = () => null,\n  onSubmitAndDeselect = () => null,\n  onCancel = () => null,\n  searchFilters = null,\n  title = '',\n  items = [],\n} = #{}) {\n}\n\nfunction StatelessFunctionalComponent3([\n  isActive = true,\n  onFiltersUpdated = () => null,\n  onSelect = () => null,\n  onSubmitAndDeselect = () => null,\n  onCancel = () => null,\n  searchFilters = null,\n  title = '',\n  items = [],\n] = []) {\n}\n\nfunction StatelessFunctionalComponent4([\n  isActive = true,\n  onFiltersUpdated = () => null,\n  onSelect = () => null,\n  onSubmitAndDeselect = () => null,\n  onCancel = () => null,\n  searchFilters = null,\n  title = '',\n  items = [],\n] = #[]) {\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

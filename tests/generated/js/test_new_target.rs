@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_outside_functions_js_acorn_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -34,7 +36,11 @@ fn test_outside_functions_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_outside_functions_js_format_1_d20c48e8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("const x = new.target;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -74,7 +80,13 @@ fn test_range_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_range_js_format_1_5feabbb9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .range_end(52)
+        .print_width(80)
+        .range_start(38)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("  1 | class A {\n  2 |   constructor() {\n> 3 |     const x =\n    |           ^^^\n> 4 | new.target;\n    | ^^^^^^^^^^\n  5 |   }\n  6 | }\n  7 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

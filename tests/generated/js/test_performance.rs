@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_nested_js_format_1_b1ee3ab9() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("someObject.someFunction().then(function() {\n  return someObject.someFunction().then(function() {\n    return someObject.someFunction().then(function() {\n      return someObject.someFunction().then(function() {\n        return someObject.someFunction().then(function() {\n          return someObject.someFunction().then(function() {\n            return someObject.someFunction().then(function() {\n              return someObject.someFunction().then(function() {\n                return someObject.someFunction().then(function() {\n                  return someObject.someFunction().then(function() {\n                    return someObject.someFunction().then(function() {\n                      return someObject.someFunction().then(function() {\n                        return someObject.someFunction().then(function() {\n                          return someObject.someFunction().then(function() {\n                            anotherFunction();\n                          });\n                        });\n                      });\n                    });\n                  });\n                });\n              });\n            });\n          });\n        });\n      });\n    });\n  });\n});") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_nested_js_format_1_b1ee3ab9() {
 }
 #[test]
 fn test_nested_real_js_format_1_e76182d5() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("tap.test(\"RecordImport.advance\", (t) => {\n    const checkStates = (batches, states) => {\n        t.equal(batches.length, states.length);\n        for (const batch of batches) {\n            t.equal(batch.state, states.shift());\n            t.ok(batch.getCurState().name(i18n));\n        }\n    };\n\n    const batch = init.getRecordBatch();\n    const dataFile = path.resolve(process.cwd(), \"testData\", \"default.json\");\n\n    const getBatches = (callback) => {\n        RecordImport.find({}, \"\", {}, (err, batches) => {\n            callback(null, batches.filter((batch) => (batch.state !== \"error\" &&\n                batch.state !== \"completed\")));\n        });\n    };\n\n    mockFS((callback) => {\n        batch.setResults([fs.createReadStream(dataFile)], (err) => {\n            t.error(err, \"Error should be empty.\");\n            t.equal(batch.results.length, 6, \"Check number of results\");\n            for (const result of batch.results) {\n                t.equal(result.result, \"unknown\");\n                t.ok(result.data);\n                t.equal(result.data.lang, \"en\");\n            }\n\n            getBatches((err, batches) => {\n                checkStates(batches, [\"started\"]);\n\n                RecordImport.advance((err) => {\n                    t.error(err, \"Error should be empty.\");\n\n                    getBatches((err, batches) => {\n                        checkStates(batches, [\"process.completed\"]);\n\n                        // Need to manually move to the next step\n                        batch.importRecords((err) => {\n                            t.error(err, \"Error should be empty.\");\n\n                            getBatches((err, batches) => {\n                                checkStates(batches, [\"import.completed\"]);\n\n                                RecordImport.advance((err) => {\n                                    t.error(err, \"Error should be empty.\");\n\n                                    getBatches((err, batches) => {\n                                        checkStates(batches,\n                                            [\"similarity.sync.completed\"]);\n\n                                        RecordImport.advance((err) => {\n                                            t.error(err,\n                                                \"Error should be empty.\");\n\n                                            t.ok(batch.getCurState()\n                                                .name(i18n));\n\n                                            getBatches((err, batches) => {\n                                                checkStates(batches, []);\n                                                t.end();\n                                                callback();\n                                            });\n                                        });\n\n                                        t.ok(batch.getCurState().name(i18n));\n                                    });\n                                });\n\n                                t.ok(batch.getCurState().name(i18n));\n                            });\n                        });\n\n                        t.ok(batch.getCurState().name(i18n));\n                    });\n                });\n\n                t.ok(batch.getCurState().name(i18n));\n            });\n        });\n    });\n});") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

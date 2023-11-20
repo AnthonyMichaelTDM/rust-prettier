@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_declarations_ts_arrow_parensavoid_format_1_d89393f6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript", "flow"])
+        .arrow_parens("avoid")
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("test(\"does something really long and complicated so I have to write a very long name for the test\", <T>(done) => {\n  console.log(\"hello!\");\n});") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,11 @@ fn test_test_declarations_ts_arrow_parensavoid_format_1_d89393f6() {
 }
 #[test]
 fn test_test_declarations_ts_format_1_d89393f6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript", "flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("test(\"does something really long and complicated so I have to write a very long name for the test\", <T>(done) => {\n  console.log(\"hello!\");\n});") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

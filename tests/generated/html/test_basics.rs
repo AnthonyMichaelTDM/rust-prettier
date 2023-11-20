@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_broken_html_html_format_1_8bf60b99() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<!-- \n#7241, \nreproduction:\ntwo different element,\nlinebreak\n\\`<\\`\nextra space(s)\n-->\n<div><span>\n\n\n\n<                                           ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_broken_html_html_format_1_8bf60b99() {
 }
 #[test]
 fn test_comment_html_format_1_ef5a3410() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("<!--hello world-->");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_comment_html_format_1_ef5a3410() {
 }
 #[test]
 fn test_empty_html_format_1_68b329da() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_empty_html_format_1_68b329da() {
 }
 #[test]
 fn test_empty_doc_html_format_1_40ec566a() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("<!doctype html>\n<html>\n<head></head>\n<body></body>\n</html>");
     assert!(formatted.is_ok());
@@ -38,7 +56,11 @@ fn test_empty_doc_html_format_1_40ec566a() {
 }
 #[test]
 fn test_form_html_format_1_db01a4e0() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<form>\n  <div class=\"form-group\">\n    <label for=\"exampleInputEmail1\">Email address</label>\n    <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\n    <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleInputPassword1\">Password</label>\n    <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleSelect1\">Example select</label>\n    <select class=\"form-control\" id=\"exampleSelect1\">\n      <option>1</option>\n      <option>2</option>\n      <option>3</option>\n      <option>4</option>\n      <option>5</option>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleSelect2\">Example multiple select</label>\n    <select multiple class=\"form-control\" id=\"exampleSelect2\">\n      <option>1</option>\n      <option>2</option>\n      <option>3</option>\n      <option>4</option>\n      <option>5</option>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleTextarea\">Example textarea</label>\n    <textarea class=\"form-control\" id=\"exampleTextarea\" rows=\"3\"></textarea>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleInputFile\">File input</label>\n    <input type=\"file\" class=\"form-control-file\" id=\"exampleInputFile\" aria-describedby=\"fileHelp\">\n    <small id=\"fileHelp\" class=\"form-text text-muted\">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>\n  </div>\n  <fieldset class=\"form-group\">\n    <legend>Radio buttons</legend>\n    <div class=\"form-check\">\n      <label class=\"form-check-label\">\n        <input type=\"radio\" class=\"form-check-input\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\" checked>\n        Option one is this and that&mdash;be sure to include why it's great\n      </label>\n    </div>\n    <div class=\"form-check\">\n      <label class=\"form-check-label\">\n        <input type=\"radio\" class=\"form-check-input\" name=\"optionsRadios\" id=\"optionsRadios2\" value=\"option2\">\n        Option two can be something else and selecting it will deselect option one\n      </label>\n    </div>\n    <div class=\"form-check disabled\">\n      <label class=\"form-check-label\">\n        <input type=\"radio\" class=\"form-check-input\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled>\n        Option three is disabled\n      </label>\n    </div>\n  </fieldset>\n  <div class=\"form-check\">\n    <label class=\"form-check-label\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      Check me out\n    </label>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -46,7 +68,11 @@ fn test_form_html_format_1_db01a4e0() {
 }
 #[test]
 fn test_hello_world_html_format_1_6b32a0d1() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n</head>\n<body>\n    <!-- A comment -->\n    <h1>Hello World</h1>\n</body>\n</html>\n") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -54,7 +80,11 @@ fn test_hello_world_html_format_1_6b32a0d1() {
 }
 #[test]
 fn test_html_comments_html_format_1_78ffce31() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<!-- htmlhint attr-lowercase: false -->\n<html>\n  <body>\n    <a href=\"#\">Anchor</a>\n    <div hidden class=\"foo\" id=bar></div>\n  </body>\n</html>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -62,7 +92,11 @@ fn test_html_comments_html_format_1_78ffce31() {
 }
 #[test]
 fn test_html_5_boilerplate_html_format_1_fe8bb766() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<!doctype html>\n<html class=\"no-js\" lang=\"\">\n\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n    <title></title>\n    <meta name=\"description\" content=\"\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n\n    <link rel=\"manifest\" href=\"site.webmanifest\">\n    <link rel=\"apple-touch-icon\" href=\"icon.png\">\n    <!-- Place favicon.ico in the root directory -->\n\n    <link rel=\"stylesheet\" href=\"css/normalize.css\">\n    <link rel=\"stylesheet\" href=\"css/main.css\">\n  </head>\n\n  <body>\n    <!--[if lte IE 9]>\n    <p class=\"browserupgrade\">You are using an <strong>outdated</strong> browser. Please <a href=\"https://browsehappy.com/\">upgrade your browser</a> to improve your experience and security.</p>\n    <![endif]-->\n\n    <!-- Add your site or application content here -->\n    <p>Hello world! This is HTML5 Boilerplate.</p>\n    <script src=\"js/vendor/modernizr-3.6.0.min.js\"></script>\n    <script src=\"https://code.jquery.com/jquery-3.3.1.min.js\" integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\" crossorigin=\"anonymous\"></script>\n    <script>window.jQuery || document.write('<script src=\"js/vendor/jquery-3.3.1.min.js\"><\\\\/script>')</script>\n    <script src=\"js/plugins.js\"></script>\n    <script src=\"js/main.js\"></script>\n\n    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->\n    <script>\n      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;\n      ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')\n    </script>\n    <script src=\"https://www.google-analytics.com/analytics.js\" async defer></script>\n  </body>\n\n</html>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -70,7 +104,11 @@ fn test_html_5_boilerplate_html_format_1_fe8bb766() {
 }
 #[test]
 fn test_issue_9368_html_format_1_4ca688fc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("<strong>a</strong>-&gt;<strong>b</strong>-&gt;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -78,7 +116,11 @@ fn test_issue_9368_html_format_1_4ca688fc() {
 }
 #[test]
 fn test_issue_9368_2_html_format_1_3fedb30e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("<strong>a</strong>-<strong>b</strong>-");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -86,7 +128,11 @@ fn test_issue_9368_2_html_format_1_3fedb30e() {
 }
 #[test]
 fn test_issue_9368_3_html_format_1_dc423d5e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted =
         pretty_printer.format("a track<strong>pad</strong>, or a <strong>gyro</strong>scope.");
     assert!(formatted.is_ok());
@@ -98,7 +144,11 @@ fn test_issue_9368_3_html_format_1_dc423d5e() {
 }
 #[test]
 fn test_more_html_html_format_1_29d9bc23() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<html>\n<head></head>\n<body>\n    <a href=\"#\">Anchor</a>\n    <div hidden class=\"foo\" id=bar></div>\n</body>\n</html>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -106,7 +156,11 @@ fn test_more_html_html_format_1_29d9bc23() {
 }
 #[test]
 fn test_void_elements_html_format_1_d99149a4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <link rel=\"stylesheet\" href=\"code-guide.css\">\n</head>\n<body></body>\n</html>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -114,7 +168,11 @@ fn test_void_elements_html_format_1_d99149a4() {
 }
 #[test]
 fn test_void_elements_2_html_format_1_984d7ae4() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<video controls width=\"250\">\n    <source src=\"/media/examples/flower.webm\"\n            type=\"video/webm\">\n    <source src=\"/media/examples/flower.mp4\"\n            type=\"video/mp4\"\n></video>text after\n\n<!-- #8626 -->\n<object data=\"horse.wav\"><param name=\"autoplay\" value=\"true\"\n><param name=\"autoplay\" value=\"true\"\n></object>1\n\n<span><img  src=\"1.png\"\n><img src=\"1.png\"\n></span>1") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -122,7 +180,11 @@ fn test_void_elements_2_html_format_1_984d7ae4() {
 }
 #[test]
 fn test_with_colon_html_format_1_e4060f1f() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["html"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<!-- unknown tag with colon -->\n<div>\n<foo:bar>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo:bar>\n</div>\n\n<!-- block tag with colon -->\n<div>\n<foo:div>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo:div>\n</div>\n\n<!-- inline tag with colon -->\n<div>\n<foo:span>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo:span>\n</div>\n\n<!-- unknown -->\n<div>\n<foo-bar>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></foo-bar>\n</div>\n\n<!-- without colon -->\n<div>\n<div>\n<div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </div>\n<div> block </div><DIV> BLOCK </DIV> <div> block </div><div> block </div><div> block </div>\n<pre> pre pr\ne</pre>\n<textarea> pre-wrap pr\ne-wrap </textarea>\n<span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </span>\n<span> inline </span><span> inline </span> <span> inline </span><span> inline </span>\n<html:div> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog block </html:div>\n<html:DIV> block </html:DIV><HTML:DIV> BLOCK </HTML:DIV> <html:div> block </html:div><html:div> block </html:div><html:div> block </html:div>\n<html:pre> pre pr\ne</html:pre>\n<html:textarea> pre-wrap pr\ne-wrap </html:textarea>\n<html:span> looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog inline </html:span>\n<html:span> inline </html:span><html:span> inline </html:span> <html:span> inline </html:span><html:span> inline </html:span></div>\n</div>\n\n<!-- #7236 -->\n<with:colon>\n  <div><h1> text  text  text  text  text  text  text  text  text  text  text  text  text  text </h1></div>\n  <script>\n  const func = function() { console.log('Hello, there');}\n  </script>\n  </with:colon>\n\n<!-- script like -->\n<with:colon>\n<style>.a{color:#f00}</style>\n  <SCRIPT>\n  const func = function() { console.log('Hello, there');}\n  </SCRIPT>\n<STYLE>.A{COLOR:#F00}</STYLE>\n<html:script>const func = function() { console.log('Hello, there');}</html:script>\n<html:style>.a{color:#f00}</html:style>\n<svg><style>.a{color:#f00}</style></svg>\n<svg><style>.a{color:#f00}</style></svg>\n</with:colon>\n<html:script>const func = function() { console.log('Hello, there');}</html:script>\n<html:style>.a{color:#f00}</html:style>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

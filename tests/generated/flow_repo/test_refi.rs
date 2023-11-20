@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_bound_js_format_1_b6eee0f6() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// refinements of bound vars (closed-over locals)\n// should have the same lifetimes as heap objects.\n\nvar x : ?string = \"xxx\";\n\nvar tests =\n[\n  function() {\n    var y : string = x;  // not ok\n  },\n\n  function() {\n    if (x != null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    if (x == null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    if (x == null)\n      return;\n    var y : string = x;  // ok\n  },\n\n  function() {\n    if (!(x != null)) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  /* TODO we actually allow this currently; fix\n  // requires further remedial work in Env\n  function() {\n    if (x != null) {\n      alert(\"\");\n      var y : string = x;  // not ok\n    }\n  },\n  */\n  function() {\n    if (x != null) {}\n    var y : string = x;  // not ok\n  },\n\n  function() {\n    if (x != null) {\n    } else {\n      var y : string = x;  // not ok\n    }\n  },\n\n  function() {\n    var y : string = x != null ? x : \"\"; // ok\n  },\n\n  function() {\n    var y : string = x || \"\"; // ok\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_bound_js_format_1_b6eee0f6() {
 }
 #[test]
 fn test_heap_js_format_1_10f137e1() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var tests =\n[\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    var y : string = x.p;  // not ok\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p == null) {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p == null)\n      return;\n    var y : string = x.p;  // ok\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (!(x.p != null)) {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {\n      alert(\"\");\n      var y : string = x.p;  // not ok\n    }\n  },\n\n  function () {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {\n      x.p = null;\n      var y : string = x.p;  // not ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {}\n    var y : string = x.p;  // not ok\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {\n    } else {\n      var y : string = x.p;  // not ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    var y : string = x.p != null ? x.p : \"\"; // ok\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    var y : string = x.p || \"\"; // ok\n  },\n\n  function() {\n    var x : {p:string | string[]} = {p:[\"xxx\"]};\n    if (Array.isArray(x.p)) {\n      var y : string[] = x.p; // ok\n    } else {\n      var z : string = x.p; // ok\n    }\n  },\n\n  function() {\n    var x : {y: ?string} = {y: null};\n    if (!x.y) {\n      x.y = \"foo\";\n    }\n    (x.y: string);\n  },\n\n  function() {\n    var x : {y: ?string} = {y: null};\n    if (x.y) {\n    } else {\n      x.y = \"foo\";\n    }\n    (x.y: string);\n  },\n\n  function() {\n    var x : {y: ?string} = {y: null};\n    if (!x.y) {\n      x.y = 123; // error\n    }\n    (x.y: string); // error, this got widened to a number\n  },\n\n  function() {\n    var x : {y: ?string} = {y: null};\n    if (x.y) {\n      x.y = \"foo\";\n    } else {\n      x.y = \"bar\";\n    }\n    (x.y : string);\n  },\n\n  function() {\n    var x : {y: string | number | boolean} = {y: false};\n    if (typeof x.y == \"number\") {\n      x.y = \"foo\";\n    }\n    (x.y : string); // error, could also be boolean\n  },\n\n  function() {\n    var x : {y: string | number | boolean} = {y: false};\n    if (typeof x.y == \"number\") {\n      x.y = \"foo\";\n    } else if (typeof x.y == \"boolean\") {\n      x.y = \"bar\";\n    }\n    (x.y : boolean); // error, string\n  },\n\n  function() {\n    var x : {y: ?string} = {y: null};\n    if (!x.y) {\n      x.y = \"foo\";\n    }\n    if (x.y) {\n      x.y = null;\n    }\n    (x.y : string); // error\n  },\n\n  function() {\n    var x : {y: string | number | boolean} = {y: false};\n    if (typeof x.y == \"number\") {\n      x.y = \"foo\";\n    }\n    // now x.y can is string | boolean\n    if (typeof x.y == \"string\") {\n      x.y = false;\n    }\n    // now x.y is only boolean\n    (x.y : string); // error\n  },\n\n  function() {\n    var x : {y: string | number | boolean} = {y: false};\n    if (typeof x.y == \"number\") {\n      x.y = \"foo\";\n    }\n    // now x.y can is string | boolean\n    if (typeof x.y == \"string\") {\n      x.y = 123;\n    }\n    // now x.y is number | boolean\n    (x.y : string); // error\n  },\n\n  function() {\n    var x : {y: ?string} = {y: null};\n    var z : string = \"foo\";\n    if (x.y) {\n      x.y = z;\n    } else {\n      x.y = z;\n    }\n    (x.y : string);\n  },\n\n  function(x: string) {\n    if (x === 'a') {}\n    (x: 'b'); // error (but only once, string !~> 'b'; 'a' is irrelevant)\n  },\n\n  function(x: mixed) {\n    if (typeof x.bar === 'string') {} // error, so \\`x.bar\\` refinement is empty\n    (x: string & number);\n  },\n\n  // --- nested conditionals ---\n  // after a branch, the current scope may have changed. this causes the\n  // subsequent assignment to refine the new scope. these tests make sure that\n  // the scope that gets merged after the if statement is the correct\n  // post-condition scope, not the one that was saved at the beginning of the\n  // if statement.\n\n  function() {\n    let x: { foo: ?string } = { foo: null };\n    if (!x.foo) {\n      if (false) {}\n      x.foo = \"foo\";\n    }\n    (x.foo: string);\n  },\n\n  function() {\n    let x: { foo: ?string } = { foo: null };\n    if (!x.foo) {\n      while(false) {}\n      x.foo = \"foo\";\n    }\n    (x.foo: string);\n  },\n\n  function() {\n    let x: { foo: ?string } = { foo: null };\n    if (!x.foo) {\n      for (var i = 0; i < 0; i++) {}\n      x.foo = \"foo\";\n    }\n    (x.foo: string);\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {\n      var {p} = x; // TODO: annot checked against type of x\n      (p : string); // ok\n    }\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_heap_js_format_1_10f137e1() {
 }
 #[test]
 fn test_lex_js_format_1_3877f582() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function block_scope(x: string | number) {\n  {\n    let x;\n    x = \"\"; // doesn't refine outer x\n  }\n  (x : string); // error: number ~> string\n}\n\nfunction switch_scope(x: string | number) {\n  switch (x) {\n    default:\n      let x;\n      x = \"\"; // doesn't refine outer x\n  }\n  (x : string); // error: number ~> string\n}\n\nfunction try_scope(x: string | number) {\n  try {\n    let x;\n    x = \"\"; // doesn't refine outer x\n  } catch (e) {\n    x = \"\"; // refinement would only escape if both sides refined\n  }\n  (x : string); // error: number ~> string\n}\n\nfunction try_scope_catch(x: string | number) {\n  try {\n    x = \"\"; // refinement would only escape if both sides refined\n  } catch (e) {\n    let x;\n    x = \"\"; // doesn't refine outer x\n  }\n  (x : string); // error: number ~> string\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_lex_js_format_1_3877f582() {
 }
 #[test]
 fn test_local_js_format_1_e8678c2c() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var paths =\n[\n  function() {\n    var x : ?string = \"xxx\";\n    var y : string = x;  // not ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x == null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x == null)\n      return;\n    var y : string = x;  // ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (!(x != null)) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n      alert(\"\");\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {}\n    var y : string = x;  // not ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n    } else {\n      var y : string = x;  // not ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    var y : string = x != null ? x : \"\"; // ok\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    var y : string = x || \"\"; // ok\n  },\n\n  function() {\n    var x : string | string[] = [\"xxx\"];\n    if (Array.isArray(x)) {\n      var y : string[] = x; // ok\n    } else {\n      var z : string = x; // ok\n    }\n  },\n\n  function() {\n    var x : ?string = null;\n    if (!x) {\n      x = \"xxx\";\n    }\n    var y : string = x;\n  },\n];") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_local_js_format_1_e8678c2c() {
 }
 #[test]
 fn test_null_tests_js_format_1_ae113953() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var null_tests =\n[\n  // expr != null\n  function() {\n    var x : ?string = \"xxx\";\n    if (x != null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (null != x) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p != null) {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q != null) {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // expr == null\n  function() {\n    var x : ?string = \"xxx\";\n    if (x == null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p == null) {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q == null) {} else {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // expr !== null\n  function() {\n    var x : ?string = \"xxx\";\n    if (x !== null) {\n      var y : string | void = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p !== null) {\n      var y : string | void = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q !== null) {\n      var y : string | void = x.p.q;  // ok\n    }\n  },\n\n  // expr === null\n  function() {\n    var x : ?string = \"xxx\";\n    if (x === null) {} else {\n      var y : string | void = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p === null) {} else {\n      var y : string | void = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q === null) {} else {\n      var y : string | void = x.p.q;  // ok\n    }\n  },\n];\n\n// this.p op null\nclass C {\n  p: ?string;\n\n  ensure0(): string {\n    if (this.p != null)\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure1(): string {\n    if (this.p == null)\n      return \"\";\n    return this.p;\n  }\n\n  ensure2(): string | void {\n    if (this.p !== null)\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure3(): string | void {\n    if (this.p === null)\n      return \"\";\n    return this.p;\n  }\n}\n\n// super.p op null\nclass D extends C {\n\n  ensure100(): string {\n    if (super.p != null)\n      return super.p;\n    else\n      return \"\";\n  }\n\n  ensure101(): string {\n    if (super.p == null)\n      return \"\";\n    else\n      return super.p;\n  }\n\n  ensure103(): string {\n    if (super.p != null) {\n      alert(\"\");\n      return super.p;  // not ok\n    }\n    return \"\";\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_null_tests_js_format_1_ae113953() {
 }
 #[test]
 fn test_switch_js_format_1_cad03360() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\nfunction foo(a,b,c) {\n  switch (c) {\n  case a.x.y: // OK\n  case b.x.y: // OK\n    return;\n  default:\n    return;\n  }\n}\n\n// test refis out of switches that are exhaustive without default case\n\nfunction exhaustion1(x): number {\n  var foo;\n  switch (x) {\n  case 0: // falls through\n  case 1:\n    foo = 3;\n    break;\n  default:\n    throw new Error('Invalid state');\n  }\n  return foo; // no error\n}\n\nfunction exhaustion2(x, y): number {\n  var foo;\n  switch (x) {\n  case 0:\n    if (y) {\n      break;  // leaks uninitialized foo out of switch\n    }\n    /**\n     * TODO this shouldn't cause an error, because the path that\n     * runs it will always go on to assign a number to foo. But\n     * we'll need true isolation in env snapshots to model this.\n     * Currently tvars are always shared between clones - we'd\n     * have to rework envs pretty extensively to avoid it.\n     *\n    foo = \"\";\n     */\n  case 1:\n    foo = 3;\n    break;\n  default:\n    throw new Error('Invalid state');\n  }\n  return foo; // error, possibly uninitialized\n}\n\nfunction exhaustion3(x): number {\n  let foo = null;\n  switch (x) {\n  case 0: // falls through\n  case 1:\n    foo = 3;\n    break;\n  default:\n    throw new Error('Invalid state');\n  }\n  return foo; // no error\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +76,11 @@ fn test_switch_js_format_1_cad03360() {
 }
 #[test]
 fn test_typeof_tests_js_format_1_21e74476() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var null_tests =\n[\n  // typeof expr == typename\n  function() {\n    var x : ?string = \"xxx\";\n    if (typeof x == \"string\") {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (\"string\" == typeof x) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (typeof x.p == \"string\") {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (typeof x.p.q == \"string\") {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // typeof expr != typename\n  function() {\n    var x : ?string = \"xxx\";\n    if (typeof x != \"string\") {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (typeof x.p != \"string\") {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (typeof x.p.q != \"string\") {} else {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // typeof expr === typename\n  function() {\n    var x : ?string = \"xxx\";\n    if (typeof x === \"string\") {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (typeof x.p === \"string\") {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (typeof x.p.q === \"string\") {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // typeof expr !== typename\n  function() {\n    var x : ?string = \"xxx\";\n    if (typeof x !== \"string\") {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (typeof x.p !== \"string\") {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (typeof x.p.q !== \"string\") {} else {\n      var y : string = x.p.q;  // ok\n    }\n  },\n];\n\n// typeof this.p op typename\nclass A {\n  p: ?string;\n\n  ensure0(): string {\n    if (typeof this.p == \"string\")\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure1(): string {\n    if (typeof this.p != \"string\")\n      return \"\";\n    else\n     return this.p;\n  }\n\n  ensure2(): string | void {\n    if (typeof this.p === \"string\")\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure3(): string | void {\n    if (typeof this.p !== \"string\")\n      return \"\";\n    else\n      return this.p;\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +88,11 @@ fn test_typeof_tests_js_format_1_21e74476() {
 }
 #[test]
 fn test_undef_tests_js_format_1_07d41402() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var undef_tests =\n[\n  // NOTE: not (yet?) supporting non-strict eq test for undefined\n\n  // expr !== undefined\n  function() {\n    var x : ?string = \"xxx\";\n    if (x !== undefined && x !== null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (undefined !== x && x !== null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p !== undefined && x.p !== null) {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q !== undefined && x.p.q !== null) {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // expr === undefined\n  function() {\n    var x : ?string = \"xxx\";\n    if (x === undefined || x === null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p === undefined || x.p === null) {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q === undefined || x.p.q === null) {} else {\n      var y : string = x.p.q;  // ok\n    }\n  },\n];\n\n// this.p op undefined\nclass A {\n  p: ?string;\n\n  ensure0(): string {\n    if (this.p !== undefined && this.p !== null)\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure1(): string {\n    if (this.p === undefined || this.p === null)\n      return \"\";\n    else\n      return this.p;\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -66,7 +100,11 @@ fn test_undef_tests_js_format_1_07d41402() {
 }
 #[test]
 fn test_void_tests_js_format_1_feff6ad0() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("var void_tests =\n[\n  // NOTE: not (yet?) supporting non-strict eq test for undefined\n\n  // expr !== void(...)\n  function() {\n    var x : ?string = \"xxx\";\n    if (x !== void(0) && x !== null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : ?string = \"xxx\";\n    if (void(0) !== x && x !== null) {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p !== void(0) && x.p !== null) {\n      var y : string | void = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q !== void(0) && x.p.q !== null) {\n      var y : string = x.p.q;  // ok\n    }\n  },\n\n  // expr === void(...)\n  function() {\n    var x : ?string = \"xxx\";\n    if (x === void(0) || x === null) {} else {\n      var y : string = x;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:?string} = {p:\"xxx\"};\n    if (x.p === void(0) || x.p === null) {} else {\n      var y : string = x.p;  // ok\n    }\n  },\n\n  function() {\n    var x : {p:{q:?string}} = {p:{q:\"xxx\"}};\n    if (x.p.q === void(0) || x.p.q === null) {} else {\n      var y : string = x.p.q;  // ok\n    }\n  },\n];\n\n// this.p op void(...)\nclass A {\n  p: ?string;\n\n  ensure0(): string {\n    if (this.p !== void(0) && this.p !== null)\n      return this.p;\n    else\n      return \"\";\n  }\n\n  ensure1(): string {\n    if (this.p === void(0) || this.p === null)\n      return \"\";\n    else\n      return this.p;\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

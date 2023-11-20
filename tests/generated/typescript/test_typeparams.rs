@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_class_method_ts_format_1_5feb86b5() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// https://github.com/prettier/prettier/issues/4070\nexport class Thing implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType): Provider<Opts> => {});\n}\n\nexport class Thing2 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType): Provider<Opts> => { const someVar = doSomething(type); if (someVar) {return someVar.method()} return false;});\n}\n\nexport class Thing3 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type) => { const someVar = doSomething(type); if (someVar) {return someVar.method()} return false;});\n}\n\nexport class Thing4 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType): Provider<Opts> => type.doSomething());\n}\n\nexport class Thing5 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType): Provider<Opts> => <any>type.doSomething());\n}\n\nexport class Thing6 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType): Provider<Opts> => <Provider<Opts>>type.doSomething());\n}\n\nexport class Thing7 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType) => <Provider<Opts>>type.doSomething());\n}\n\nexport class Thing8 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType) => <Provider<Opts>>type.doSomething(withArgs, soIt, does, not, fit).extraCall());\n}\n\nexport class Thing9 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType) => type.doSomething());\n}\n\nexport class Thing10 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((veryLongArgName: ObjectType): Provider<Options, MoreOptions> => veryLongArgName );\n}\n\nexport class Thing11 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize((type: ObjectType): Provider => {});\n}\n\n// regular non-arrow functions\n\nexport class Thing12 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType): Provider<Opts> {return type});\n}\n\nexport class Thing13 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType): Provider<Opts> { const someVar = doSomething(type); if (someVar) {return someVar.method()} return false;});\n}\n\nexport class Thing14 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type) { const someVar = doSomething(type); if (someVar) {return someVar.method()} return false;});\n}\n\nexport class Thing15 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType): Provider<Opts> {return type.doSomething()});\n}\n\nexport class Thing16 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType): Provider<Opts> {return <any>type.doSomething()});\n}\n\nexport class Thing17 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType): Provider<Opts>  {return <Provider<Opts>>type.doSomething()});\n}\n\nexport class Thing18 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType) {return <Provider<Opts>>type.doSomething()});\n}\n\nexport class Thing19 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType) { return <Provider<Opts>>type.doSomething(withArgs, soIt, does, not, fit).extraCall()});\n}\n\nexport class Thing20 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType) {return type.doSomething()});\n}\n\nexport class Thing21 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(veryLongArgName: ObjectType): Provider<Options, MoreOptions> { return veryLongArgName });\n}\n\nexport class Thing22 implements OtherThing {\n    do: (type: Type) => Provider<Prop> = memoize(function(type: ObjectType): Provider {});\n}\n\n\n// case from https://github.com/prettier/prettier/issues/2581\n\nconst appIDs = createSelector(\n    PubXURLParams.APP_IDS,\n   (rawAppIDs): Array<AppID> => deserializeList(rawAppIDs),\n)") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_class_method_ts_format_1_5feb86b5() {
 }
 #[test]
 fn test_const_ts_format_1_dd58c448() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function a<const T>() {}\nfunction b<const T extends U>() {}\nfunction c<T, const U>() {}\ndeclare function d<const T>();\n<const T>() => {};\n<const T extends U>() => {};\n(function <const T>() {});\n(function <const T extends U>() {});\n(function <T, const U>() {});\n\nclass A<const T> {}\nclass B<const T extends U> {}\nclass C<T, const U> {}\nclass D<in const T> {}\nclass E<const in T> {}\n(class <const T> {});\n(class <const T extends U> {});\n(class <T, const U> {});\n(class <in const T> {});\n(class <const in T> {});\n\ninterface I<const T> {}\ninterface J<const T extends U> {}\ninterface K<T, const U> {}\ninterface L<in const T> {}\ninterface M<const in T> {}\n\nclass _ {\n  method<const T>() {}\n  method<const T extends U>() {}\n  method<T, const U>() {}\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_const_ts_format_1_dd58c448() {
 }
 #[test]
 fn test_line_breaking_after_extends_ts_format_1_03d074f8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("export type OuterType1<\n  LongerLongerLongerLongerInnerType extends LongerLongerLongerLongerOtherType<OneMoreType>\n> = { a: 1 };\n\nexport type OuterType2<\n  LongerLongerLongerLongerInnerType extends LongerLongerLongerLongerLongerLongerLongerLongerOtherType\n> = { a: 1 };\n\nexport type OuterType3<\n  LongerLongerLongerLongerInnerType extends LongerLongerLongerLongerLongerLo.ngerLongerLongerOtherType\n> = { a: 1 };\n\nexport type OuterType4<\n  LongerLongerLongerLongerInnerType extends\n    | LongerLongerLongerLongerLongerLo\n    | ngerLongerLongerOtherType\n> = { a: 1 };") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_line_breaking_after_extends_ts_format_1_03d074f8() {
 }
 #[test]
 fn test_line_breaking_after_extends_2_ts_format_1_bdc22bc8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("a = {\n  parseFunctionBodyAndFinish<\n    T extends\n      | N.Function\n      | N.TSDeclareMethod\n      | N.TSDeclareFunction\n      | N.ClassPrivateMethod,\n  >() {}\n}\n\nfunction parseFunctionBodyAndFinish<\n  T extends\n    | N.Function\n    | N.TSDeclareMethod\n    | N.TSDeclareFunction\n    | N.ClassPrivateMethod\n    | Foo\n    | Bar\n    | Baz\n>();\n\nfunction parseFunctionBodyAndFinish<\n  T extends // comment\n    N.Function | N.TSDeclareMethod | Baz\n>();\n\nfunction makeChainWalker<\n  ArgT extends {\n    options: ValidatedOptions;\n    dirname: string;\n    filepath?: string;\n  },\n>() {}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +52,11 @@ fn test_line_breaking_after_extends_2_ts_format_1_bdc22bc8() {
 }
 #[test]
 fn test_long_function_arg_ts_format_1_862be85e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("export const forwardS = R.curry(\n  <V,T>(prop: string, reducer: ReducerFunction<V, T>, value: V, state: {[name: string]: T}) =>\n  R.assoc(prop, reducer(value, state[prop]), state)\n)\n\nexport const forwardS1 = R.curry(\n  <VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV, TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT>(prop: string, reducer: ReducerFunction<V, T>, value: V, state: {[name: string]: T}) =>\n  R.assoc(prop, reducer(value, state[prop]), state)\n)\n") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +64,11 @@ fn test_long_function_arg_ts_format_1_862be85e() {
 }
 #[test]
 fn test_tagged_template_expression_ts_format_1_2b54be13() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("export const RedBox = styled.div<{foo: string}>\\`\n  background: red;\n  \\${props => props.foo}\n\\`;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

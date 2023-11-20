@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_invalid_destructuring_arr_js_babel_estree_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -426,7 +428,11 @@ fn test_valid_complex_case_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_complex_case_js_format_1_0da89152() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("let?.()[a] =1;\nlet?.[a] = 1;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -450,7 +456,11 @@ fn test_valid_lhs_eq_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_lhs_eq_js_format_1_896edf66() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("a?.b.c = d;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -474,7 +484,11 @@ fn test_valid_lhs_plus_eq_js_espree_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_lhs_plus_eq_js_format_1_7d8f659e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("a?.b.c += d;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -506,7 +520,11 @@ fn test_valid_parenthesized_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_valid_parenthesized_js_format_1_67665601() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("(a?.b) = c;");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

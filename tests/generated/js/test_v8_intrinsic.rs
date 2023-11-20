@@ -1,5 +1,7 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_avoid_conflicts_to_pipeline_js_acorn_format_1_d41d8cd9() {
     let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
@@ -26,7 +28,11 @@ fn test_avoid_conflicts_to_pipeline_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_avoid_conflicts_to_pipeline_js_format_1_3b462a77() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("// |>\nconst status = %GetOptimizationStatus(fn);");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -61,7 +67,11 @@ fn test_intrinsic_call_js_meriyah_format_1_d41d8cd9() {
 }
 #[test]
 fn test_intrinsic_call_js_format_1_5664d48e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("function doSmth()     {\n            %DebugPrint\n        (\n                foo )\n  }\n\n    function printFunc  (\n        f\n) {\n    if(%\n    IsAsmWasmCode(f))              console.log(\"asm.js\");\n        if(\n\n        % IsWasmCode(\n        f))\n            console.log (\n                \"wasm\"\n            );\n\n    console.log\n    (%\n        GetFunctioName(f)\n        );\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

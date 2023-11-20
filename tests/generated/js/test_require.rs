@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_require_js_format_1_f2a4a650() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("const { one, two, three, four, five, six, seven, eight, nine, ten } = require('./my-utils');\nconst { one1, two1, three1, four1, five1, six1, seven1, eight1, nine1, ten1, eleven1 } = require('./my-utils');\n\nconst MyReallyExtrememlyLongModuleName = require('MyReallyExtrememlyLongModuleName');\n\nconst plugin = require(\n  global.STANDALONE\n    ? path.join(__dirname, \"../standalone.js\")\n    : path.join(__dirname, \"..\")\n);\n\nconst plugin2 = require(\n  path.join(\n    __dirname,\n    global.STANDALONE ? \"../standalone.js\" : '..'\n  )\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

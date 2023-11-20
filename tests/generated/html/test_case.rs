@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_case_html_format_1_5a2c9262() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["html"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("<!DOCTYPE html>\n<HTML CLASS=\"no-js mY-ClAsS\">\n  <HEAD>\n    <META CHARSET=\"utf-8\">\n    <TITLE>My tITlE</TITLE>\n    <META NAME=\"description\" content=\"My CoNtEnT\">\n  </HEAD>\n  <body>\n    <P>Hello world!<BR> This is HTML5 Boilerplate.</P>\n    <SCRIPT>\n      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;\n      ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')\n    </SCRIPT>\n    <SCRIPT src=\"https://www.google-analytics.com/analytics.js\" ASYNC DEFER></SCRIPT>\n  </body>\n</HTML>") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

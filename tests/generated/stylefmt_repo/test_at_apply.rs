@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_at_apply_css_format_1_3a22f0de() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["css"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format(".toolbar{@apply   --toolbar-theme   ;\n}");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

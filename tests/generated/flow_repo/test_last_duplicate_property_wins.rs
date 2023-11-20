@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_test_js_format_1_8a5a42bc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("// @flow\n\n// Classes\n\nclass C {\n  foo(): number { return 0; }\n  foo(): string { return \"hello\" } // last wins\n  x: number;\n  x: string; // last wins\n  bar(): number { return 0; }\n  bar: string; // field wins over method\n  qux: number;\n  qux(): string { return \"hello\" } // method loses to field!\n}\n\n// check\n\n((new C).foo(): boolean); // last wins\n((new C).x: boolean); // last wins\n((new C).bar: boolean); // last wins\n((new C).qux: boolean); // weird outlier where last doesn't win in classes\n\n// Objects\n\nconst o = {\n  foo(): number { return 0; },\n  foo(): string { return \"hello\" }, // last wins\n  x: 42,\n  x: \"hello\", // last wins\n  bar(): number { return 0; },\n  bar: \"hello\", // last wins\n  qux: 42,\n  qux(): string { return \"hello\" }, // last wins\n};\n\n// check\n\n(o.foo(): boolean); // last wins\n(o.x: boolean); // last wins\n(o.bar: boolean); // last wins\n(o.qux(): boolean); // last wins") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

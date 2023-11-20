@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_instanceof_js_format_1_f8428035() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n// x instancof t\nclass X1 { foo: number; };\nclass X2 { foo: string; };\n\nfunction x(b) { return b ? new X1 : new X2; }\n\nfunction consumer1(b) {\n    var g = x(b);\n    if (g instanceof X2) g.foo = '1337';\n    else g.foo = 1337;\n}\n\nfunction consumer2(b) {\n    var g = x(b);\n    if (g instanceof X1) g.foo = '1337';  // oops\n}\n\n// x.y instanceof t\nclass Y1 { bar: X1; };\nclass Y2 { bar: X2; };\n\nfunction y(b) { return b ? new Y1 : new Y2; }\n\nfunction consumer3(b) {\n    var g = y(b);\n    if (g.bar instanceof X2) g.bar.foo = '1337';\n    else g.bar.foo = 1337;\n}\n\nfunction consumer4(b) {\n    var g = y(b);\n    if (g.bar instanceof X1) g.bar.foo = '1337';  // oops\n}\n\n// x.y.z instance of t\nclass Z1 { baz: Y1; };\nclass Z2 { baz: Y2; };\n\nfunction z(b) { return b ? new Z1 : new Z2; }\n\nfunction consumer5(b) {\n    var g = z(b);\n    if (g.baz.bar instanceof X2) g.baz.bar.foo = '1337';\n    else g.baz.bar.foo = 1337;\n}\n\nfunction consumer6(b) {\n    var g = z(b);\n    if (g.baz.bar instanceof X1) g.baz.bar.foo = '1337';  // oops\n}\n\n// this instanceof t\nclass C {\n  m() {\n    if (this instanceof D)\n      alert(this.s);\n    else\n      alert(\"nope\");\n  }\n}\n\nclass D extends C {\n  s: string;\n  constructor() {\n    super();\n    this.s = \"yup\";\n  }\n}\n\n\nfunction foo0(x: Array<number> | number) {\n  if (x instanceof Array) {\n    x[0] = 123;\n  } else {\n    x++;\n  }\n}\n\nfunction foo1(x: Array<number> | number) {\n  if (x instanceof Array) {\n    x++; // error\n  } else {\n    x[0] = 123; // error\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

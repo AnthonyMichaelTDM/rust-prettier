@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_break_js_format_1_8c03da88() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("const f = (argument1, argument2, argument3) =>\n  (doSomethingWithArgument(argument1), doSomethingWithArgument(argument2),argument1);\n(function(){\n\treturn aLongIdentifierName, aLongIdentifierName, aLongIdentifierName, aLongIdentifierName;\n});\naLongIdentifierName, aLongIdentifierName, aLongIdentifierName, aLongIdentifierName;\na.then(() => (aLongIdentifierName, aLongIdentifierName, aLongIdentifierName, aLongIdentifierName));\nfor (aLongIdentifierName = 0, aLongIdentifierName = 0, aLongIdentifierName = 0, aLongIdentifierName = 0; test; update) {}\n(a = b ? c : function() { return 0; }),\n  (a = b ? c : function() { return 0; }),\n  (a = b ? c : function() { return 0; }),\n  (a = b ? c : function() { return 0; }),\n  (a = b ? c : function() { return 0; });") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

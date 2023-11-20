@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_conditional_types_ts_format_1_d938b3ed() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("export type UnwrappedResultRow<T> = {\n    [P in keyof T]: (\n        T[P] extends Req<infer a> ? (\n            a\n        ) : (\n            T[P] extends Opt<infer b> ? (\n                b\n            ) : (\n                // TEST\n                never\n            )\n        )\n    );\n};") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_conditional_types_ts_format_1_d938b3ed() {
 }
 #[test]
 fn test_keyword_types_with_parens_comments_ts_format_1_1cb6e029() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("let foo: (\n    // comment\n    any\n);\nlet foo: (\n    // comment\n    null\n);\nlet foo: (\n    // comment\n    this\n);\nlet foo: (\n    // comment\n    number\n);\nlet foo: (\n    // comment\n    void\n);\nlet foo: (\n    // comment\n    boolean\n);\nlet foo: (\n    // comment\n    bigint\n);\nlet foo: (\n    // comment\n    symbol\n);\nlet foo: (\n    // comment\n    string\n);\nlet foo: (\n    // comment\n    never\n);\nlet foo: (\n    // comment\n    object\n);\nlet foo: (\n    // comment\n    undefined\n);\nlet foo: (\n    // comment\n    unknown\n);") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

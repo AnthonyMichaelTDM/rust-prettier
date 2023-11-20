@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_multiline_yml_prose_wrapalways_format_1_cdcda6a8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
+        .print_width(80)
+        .prose_wrap("always")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("a: \"   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    \"\nb: '   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    '") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,12 @@ fn test_multiline_yml_prose_wrapalways_format_1_cdcda6a8() {
 }
 #[test]
 fn test_multiline_yml_prose_wrapnever_format_1_cdcda6a8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["yaml"])
+        .prose_wrap("never")
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("a: \"   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    \"\nb: '   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    '") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +30,12 @@ fn test_multiline_yml_prose_wrapnever_format_1_cdcda6a8() {
 }
 #[test]
 fn test_multiline_yml_single_quotetrue_format_1_cdcda6a8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .single_quote(true)
+        .parsers(vec!["yaml"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("a: \"   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    \"\nb: '   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    '") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +43,11 @@ fn test_multiline_yml_single_quotetrue_format_1_cdcda6a8() {
 }
 #[test]
 fn test_multiline_yml_format_1_cdcda6a8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("a: \"   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    \"\nb: '   \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    '") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -34,7 +55,12 @@ fn test_multiline_yml_format_1_cdcda6a8() {
 }
 #[test]
 fn test_quote_yml_prose_wrapalways_format_1_0e8d34df() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("always")
+        .print_width(80)
+        .parsers(vec!["yaml"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -42,7 +68,12 @@ fn test_quote_yml_prose_wrapalways_format_1_0e8d34df() {
 }
 #[test]
 fn test_quote_yml_prose_wrapnever_format_1_0e8d34df() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("never")
+        .parsers(vec!["yaml"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -50,7 +81,12 @@ fn test_quote_yml_prose_wrapnever_format_1_0e8d34df() {
 }
 #[test]
 fn test_quote_yml_single_quotetrue_format_1_0e8d34df() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
+        .print_width(80)
+        .single_quote(true)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -58,7 +94,11 @@ fn test_quote_yml_single_quotetrue_format_1_0e8d34df() {
 }
 #[test]
 fn test_quote_yml_format_1_0e8d34df() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["yaml"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

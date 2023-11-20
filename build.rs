@@ -1,4 +1,6 @@
 use cfg_if::cfg_if;
+use proc_macro2::{Punct, Spacing};
+use quote::{ToTokens, TokenStreamExt};
 
 cfg_if! {
     if #[cfg(not(debug_assertions))] {
@@ -29,9 +31,31 @@ cfg_if! {
 
         struct TestCase {
             name: String,
-            config: HashMap<syn::Ident, syn::Ident>,
+            config: HashMap<syn::Ident, ValueType>,
             input: String,
             output: String,
+        }
+
+        enum ValueType {
+            Literal(syn::Lit),
+            Array(syn::ExprArray),
+            Ident(syn::Ident),
+        }
+
+        impl ToTokens for ValueType {
+            fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
+                match self {
+                    ValueType::Literal(lit) => lit.to_tokens(tokens),
+                    ValueType::Ident(ident) => ident.to_tokens(tokens),
+                    ValueType::Array(array) => {
+                        tokens.append(Punct::new('v', Spacing::Joint));
+                        tokens.append(Punct::new('e', Spacing::Joint));
+                        tokens.append(Punct::new('c', Spacing::Joint));
+                        tokens.append(Punct::new('!', Spacing::Joint));
+                        array.to_tokens(tokens)
+                    },
+                }
+            }
         }
 
         impl TestCase {
@@ -71,12 +95,18 @@ cfg_if! {
                     else {
                         continue;
                     };
-                    let Ok(value) = syn::parse_str::<syn::Ident>(parts.get(1).expect("value").to_owned())
-                    else {
+                    let value = if let Ok(val) = syn::parse_str::<syn::Lit>(parts.get(1).expect("value").to_owned()) {
+                        ValueType::Literal(val)
+                    } else if let Ok(val) = syn::parse_str::<syn::ExprArray>(parts.get(1).expect("value").to_owned()) {
+                        ValueType::Array(val)
+                    } else if let Ok(val) = syn::parse_str::<syn::Ident>(&parts.get(1).expect("value").to_case(Case::UpperSnake)) {
+                        ValueType::Ident(val)
+                    } else {
                         continue;
                     };
 
-                    config.insert(key.to_owned(), value.to_owned());
+
+                    config.insert(key.to_owned(), value);
                 }
 
                 // parse out the input
@@ -136,6 +166,7 @@ cfg_if! {
             // std::fs::create_dir_all(OUT_DIR).unwrap();
 
             println!("cargo:rerun-if-changed=prettier/tests/format");
+            println!("cargo:rerun-if-changed=build.rs");
 
             // create mod.rs for OUT_DIR
             std::fs::write(format!("{OUT_DIR}mod.rs", OUT_DIR = OUT_DIR), "").unwrap();
@@ -272,6 +303,8 @@ cfg_if! {
             let imports_and_helpers = quote! {
                 #[allow(unused_imports)]
                 use rust_prettier::PrettyPrinterBuilder;
+                #[allow(dead_code)]
+                static INFINITY: usize = usize::MAX;
             };
 
             let tests = test_cases
@@ -288,7 +321,7 @@ cfg_if! {
                         #[test]
                         fn #name() {
                             let pretty_printer = PrettyPrinterBuilder::default()
-                                #(.#config_keys(&#config_values))*
+                                #(.#config_keys(#config_values))*
                                 .build()
                                 .unwrap();
 

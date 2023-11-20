@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_classes_js_format_1_96300413() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\nclass A<T> {\n  p: T;\n  constructor(p: T) {\n    this.p = p;\n  }\n}\n\n// Test out simple defaults\nclass B<T = string> extends A<T> {}\n\nvar b_number: B<number> = new B(123);\nvar b_void: B<void> = new B();\nvar b_default: B<> = new B('hello');\n\nvar b_star: B<*> = new B(123);\n\n(b_number.p: boolean); // Error number ~> boolean\n(b_void.p: boolean); // Error void ~> boolean\n(b_default.p: boolean); // Error string ~> boolean\n\n(b_star.p: boolean); // Error number ~> boolean\n\nclass C<T: ?string = string> extends A<T> {}\n\nvar c_number: C<number> = new C(123); // Error number ~> ?string\nvar c_void: C<void> = new C();\nvar c_default: C<> = new C('hello');\nvar c_star: C<*> = new C('hello');\n\n(c_void.p: boolean); // Error void ~> boolean\n(c_default.p: boolean); // Error string ~> boolean\n(c_star.p: boolean); // Error string ~> boolean\n\nclass D<S, T = string> extends A<T> {}\nvar d_number: D<mixed, number> = new D(123);\nvar d_void: D<mixed, void> = new D();\nvar d_default: D<mixed> = new D('hello');\nvar d_too_few_args: D<> = new D('hello'); // Error too few tparams\nvar d_too_many: D<mixed, string, string> = new D('hello'); // Error too many tparams\nvar d_star: D<*> = new D(10); // error, number ~> string\n\n(d_number.p: boolean); // Error number ~> boolean\n(d_void.p: boolean); // Error void ~> boolean\n(d_default.p: boolean); // Error string ~> boolean\n(d_star.p: boolean); // Error number ~> boolean\n\nclass E<S: string, T: number = S> {} // Error: string ~> number\nclass F<S: string, T: S = number> {} // Error: number ~> string\n\nclass G<S: string, T = S> extends A<T> {}\n\nvar g_default: G<string> = new G('hello');\n\n(g_default.p: boolean); // Error string ~> boolean\n\nclass H<S = T, T = string> {} // Error - can't refer to T before it's defined\n\nclass I<T: ?string = *> extends A<T> {}\n\nvar i_number: I<number> = new I(123); // Error number ~> ?string\nvar i_void: I<void> = new I();\nvar i_default: I<> = new I('hello');\nvar i_star: I<*> = new I('hello');") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

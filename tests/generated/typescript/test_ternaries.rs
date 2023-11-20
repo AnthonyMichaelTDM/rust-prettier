@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_indent_ts_format_1_60457ef1() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("foo = (callNode.parent?.type === AST_NODE_TYPES.ChainExpression\n  ? callNode.parent.parent\n  : callNode.parent\n).TSESTree!.BinaryExpression;\n\nfoo = (callNode.parent?.type === AST_NODE_TYPES.ChainExpression\n  ? callNode.parent.parent\n  : callNode.parent\n).TSESTree!.BinaryExpression;\n\nbifornCringerMoshedPerplexSawder = (glimseGlyphsHazardNoopsTieTie === 0 &&\nkochabCooieGameOnOboleUnweave === Math.PI\n  ? averredBathersBoxroomBuggyNurl\n  : anodyneCondosMalateOverateRetinol\n).annularCooeedSplicesWalksWayWay\n  .annularCooeedSplicesWalksWayWay(annularCooeedSplicesWalksWayWay)!\n  .annularCooeedSplicesWalksWayWay();\n\nfoo = (callNode.parent?.type === AST_NODE_TYPES.ChainExpression\n  ? callNode.parent.parent\n  : callNode.parent\n).TSESTree!.BinaryExpression!;\n\nfoo = (callNode.parent?.type === AST_NODE_TYPES.ChainExpression\n  ? callNode.parent.parent\n  : callNode.parent\n).TSESTree!.BinaryExpression!;\n\nbifornCringerMoshedPerplexSawder = (glimseGlyphsHazardNoopsTieTie === 0 &&\nkochabCooieGameOnOboleUnweave === Math.PI\n  ? averredBathersBoxroomBuggyNurl\n  : anodyneCondosMalateOverateRetinol\n).annularCooeedSplicesWalksWayWay\n  .annularCooeedSplicesWalksWayWay(annularCooeedSplicesWalksWayWay)!\n  .annularCooeedSplicesWalksWayWay()!;\n\nbifornCringerMoshedPerplexSawder =\n  askTrovenaBeenaDependsRowans +\n  (glimseGlyphsHazardNoopsTieTie === 0\n    ? averredBathersBoxroomBuggyNurl\n    : anodyneCondosMalateOverateRetinol\n  ).Foo!.foo;\n\nfoo = (coooooooooooooooooooooooooooooooooooooooooooooooooooond\n  ? baaaaaaaaaaaaaaaaaaaaar\n  : baaaaaaaaaaaaaaaaaaaaaz)!;\n\nfoo = (coooooooooooooooooooooooooooooooooooooooooooooooooooond\n  ? baaaaaaaaaaaaaaaaaaaaar\n  : baaaaaaaaaaaaaaaaaaaaaz)!!!!!;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

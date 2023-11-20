@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_conditional_js_format_1_b28fc685() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["babel", "flow", "typescript"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("(valid\n  ? helper.responseBody(this.currentUser)\n  : helper.responseBody(this.defaultUser))\n.prop;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_conditional_js_format_1_b28fc685() {
 }
 #[test]
 fn test_expand_js_format_1_003d29b0() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("const veryVeryVeryVeryVeryVeryVeryLong = doc.expandedStates[doc.expandedStates.length - 1];\nconst small = doc.expandedStates[doc.expandedStates.length - 1];\n\nconst promises = [\n  promise.resolve().then(console.log).catch(err => {\n    console.log(err)\n    return null\n  }),\n  redis.fetch(),\n  other.fetch(),\n];\n\nconst promises2 = [\n  promise.resolve().veryLongFunctionCall().veryLongFunctionCall().then(console.log).catch(err => {\n    console.log(err)\n    return null\n  }),\n  redis.fetch(),\n  other.fetch(),\n];\n\nwindow.FooClient.setVars({\n  locale: getFooLocale({ page }),\n  authorizationToken: data.token\n}).initVerify(\"foo_container\");\n\nwindow.something.FooClient.setVars({\n  locale: getFooLocale({ page }),\n  authorizationToken: data.token\n}).initVerify(\"foo_container\");\n\nwindow.FooClient.something.setVars({\n  locale: getFooLocale({ page }),\n  authorizationToken: data.token\n}).initVerify(\"foo_container\");") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_expand_js_format_1_003d29b0() {
 }
 #[test]
 fn test_logical_js_format_1_232fec79() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["babel", "flow", "typescript"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("(veryLongVeryLongVeryLong || e).prop;\n\n(veryLongVeryLongVeryLong || anotherVeryLongVeryLongVeryLong || veryVeryVeryLongError).prop;") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

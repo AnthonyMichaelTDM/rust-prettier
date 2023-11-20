@@ -1,8 +1,15 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_asterisk_md_prose_wrapalways_format_1_ae78015e() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("always")
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("*123*");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +17,12 @@ fn test_asterisk_md_prose_wrapalways_format_1_ae78015e() {
 }
 #[test]
 fn test_complex_md_prose_wrapalways_format_1_bb7a0796() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .prose_wrap("always")
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer
         .format("**Do you want to request a *feature* or report a *bug*?**\n\n*bug*?");
     assert!(formatted.is_ok());
@@ -22,7 +34,12 @@ fn test_complex_md_prose_wrapalways_format_1_bb7a0796() {
 }
 #[test]
 fn test_special_md_prose_wrapalways_format_1_b78ef1d8() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .prose_wrap("always")
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("0*1*2\n\n!*1*2\n\n0*1*!\n\n!*1*!\n\n0*1*2\n\n！*1*2\n\n0*1*！\n\n！*1*！\n\n0_1_2\n\n!_1_2\n\n0_1_! <!-- remark-misparsing, should be formatted as \\`0_1\\\\_!\\` -->\n\n!_1_!\n\n0_1_2\n\n！_1_2\n\n0_1_！ <!-- remark-misparsing, should be formatted as \\`0_1\\\\_！\\` -->\n\n！_1_！") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -30,7 +47,12 @@ fn test_special_md_prose_wrapalways_format_1_b78ef1d8() {
 }
 #[test]
 fn test_underscore_md_prose_wrapalways_format_1_16db6593() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["markdown"])
+        .print_width(80)
+        .prose_wrap("always")
+        .build()
+        .unwrap();
     let formatted = pretty_printer.format("_123_");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();

@@ -1,8 +1,14 @@
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
+#[allow(dead_code)]
+static INFINITY: usize = usize::MAX;
 #[test]
 fn test_abnormals_js_format_1_7774d7c3() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/* @flow */\n\n/* This test documents an issue we used to have with merging the environment of\n * the try block and the catch block. The error variable, when inspected and in\n * the presence of an abnormal, would sometimes kind of leak. It would hit an\n * abnormal. It was weird.\n */\nfunction foo() {\n  try {\n  } catch(error) {\n    if (error.foo === 4) {\n      throw error;\n    }\n  }\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -10,7 +16,11 @@ fn test_abnormals_js_format_1_7774d7c3() {
 }
 #[test]
 fn test_init_js_format_1_dac4bc8d() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .parsers(vec!["flow"])
+        .print_width(80)
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/***\n * test initialization tracking of hoisted stuff\n * @flow\n */\n\n// for illustrative purposes only - Flow considers a throw possible\n// anywhere within a block\nfunction might_throw() {}\n\n// local use of annotated var within try is ok\nfunction f() {\n  try {\n    var x:number = 0;\n    var y:number = x;\n  } catch (e) {\n  }\n}\n\n// and within catch\nfunction f() {\n  try {\n  } catch (e) {\n    var x:number = 0;\n    var y:number = x;\n  }\n}\n\n// but not across try/catch\nfunction f() {\n  try {\n    might_throw();\n    var x:number = 0;\n  } catch (e) {\n    var y:number = x; // error\n  }\n}\n\n// or try/finally\nfunction f() {\n  try {\n    might_throw();\n    var x:number = 0;\n  } finally {\n    var y:number = x; // error\n  }\n}\n\n// or catch/finally\nfunction f() {\n  try {\n  } catch (e) {\n    var x:number = 0;\n  } finally {\n    var y:number = x; // error\n  }\n}\n\n// or try/catch/finally if init doesn't dominate\nfunction f() {\n  try {\n    var x:number = 0;\n  } catch (e) {\n    might_throw();\n    var x:number = 0;\n  } finally {\n    var y:number = x; // error\n  }\n}\n\n// post-use ok because init dominates here\nfunction f() {\n  try {\n    var x:number = 0;\n  } catch (e) {\n    might_throw();  // ...but if so, suffix is not reached\n    var x:number = 0;\n  }\n  var y:number = x;\n}\n\n// and here\nfunction f() {\n  try {\n  } catch (e) {\n  } finally {\n    might_throw();  // ...but if so, suffix is not reached\n    var x:number = 0;\n  }\n  var y:number = x;\n}\n\n// and here\nfunction f() {\n  try {\n    var x:number;\n  } catch (e) {\n  } finally {\n    might_throw();  // ...but if so, suffix is not reached\n    x = 0;\n  }\n  var y:number = x;\n}\n\n// and here, thank you JS for the wonder that is hoisting\nfunction f() {\n  try {\n  } catch (e) {\n    var x:number;\n  } finally {\n    might_throw();  // ...but if so, suffix is not reached\n    x = 0;\n  }\n  var y:number = x;\n}\n\n// error if used prior to init\nfunction f() {\n  var y:number = x; // error\n  try {\n    var x:number = 0;\n  } catch (e) {\n  }\n}\n\n// another non-dominated post\nfunction f() {\n  try {\n    var x:number = 0;\n  } catch (e) {\n  }\n  var y:number = x; // error\n}\n\n// ditto\nfunction f() {\n  try {\n  } catch (e) {\n    var x:number = 0;\n  }\n  var y:number = x; // error\n}\n\n// ditto\nfunction f(b) {\n  try {\n    var x:number;\n    if (b) {\n      throw new Error();\n    }\n    x = 0;\n  } catch (e) {\n  }\n  var y:number = x; // error\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -18,7 +28,11 @@ fn test_init_js_format_1_dac4bc8d() {
 }
 #[test]
 fn test_return_js_format_1_97086bf5() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nfunction foo(x: ?number): string {\n    try {\n    } catch (e) {\n        return 'bar';\n    }\n    console.log();\n    return 'foo';\n}\n\nfunction bar(): string {\n  try {\n    return 'foo';\n  } catch (e) {\n    return 'bar';\n  }\n}\n\nfunction baz(): string {\n  try {\n    throw new Error(\"foo\");\n  } catch (e) {\n    return \"foo\";\n  }\n  return \"bar\"; // unreachable\n}\n\nfunction qux(): string {\n  try {\n    throw new Error(\"foo\");\n  } catch (e) {\n  }\n  console.log();\n  return 'bar';\n}\n\nfunction quux(): string {\n  try {\n    return qux();\n  } catch (e) {\n  }\n  return 'bar';\n}\n\nfunction bliffl(): string {\n  try {\n    throw new Error(\"foo\");\n  } catch (e) {\n    return \"foo\";\n  } finally {\n    return \"bar\";\n  }\n}\n\nfunction corge(): string {\n  try {\n    return 'foo';\n  } catch (e) {\n    throw new Error('bar');\n  }\n  bar(); // unreachable\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
@@ -26,7 +40,11 @@ fn test_return_js_format_1_97086bf5() {
 }
 #[test]
 fn test_test_js_format_1_af746adc() {
-    let pretty_printer = PrettyPrinterBuilder::default().build().unwrap();
+    let pretty_printer = PrettyPrinterBuilder::default()
+        .print_width(80)
+        .parsers(vec!["flow"])
+        .build()
+        .unwrap();
     let formatted = pretty_printer . format ("/***\n * test env state tracking thru try/catch/finally\n * @flow\n */\n\nfunction foo() {\n    var x = 0;\n    var y;\n    try {\n        x = \"\";\n    } catch(e) {\n        x = false;\n        throw -1;\n    } finally {\n        y = {};\n    }\n    // here via [try; finally] only.\n    x(); // string ~/> function call (no num or bool error)\n    y(); // object ~/> function call (no uninitialized error)\n}\n\nfunction bar(response) {\n    var payload;\n    try {\n        payload = JSON.parse(response);\n    } catch (e) {\n        throw new Error('...');\n    }\n    // here via [try] only.\n    if (payload.error) {    // ok\n        // ...\n    }\n}\n\nfunction qux() {\n    var x = 5;\n    try {\n        throw -1;\n    } finally {\n    }\n    x(); // unreachable\n}") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
