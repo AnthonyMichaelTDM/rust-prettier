@@ -97,7 +97,7 @@ pub enum DocCommand {
     },
     IfBreak {
         break_contents: Box<Doc>,
-        flat_contents: Option<Box<Doc>>,
+        flat_contents: Box<Doc>,
         group_id: Option<ID>,
     },
     Indent {

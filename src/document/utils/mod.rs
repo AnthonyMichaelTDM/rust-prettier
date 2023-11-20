@@ -205,10 +205,9 @@ pub fn remove_lines(doc: &Doc) -> Doc {
         // of breaking existing assumptions otherwise.
         Doc::DocCommand(DocCommand::Line(LineType::Soft)) => Doc::String("".to_string()),
         Doc::DocCommand(DocCommand::Line(LineType::Literal)) => Doc::String(" ".to_string()),
-        Doc::DocCommand(DocCommand::IfBreak {
-            flat_contents: Some(flat_contents),
-            ..
-        }) => flat_contents.as_ref().clone(),
+        Doc::DocCommand(DocCommand::IfBreak { flat_contents, .. }) => {
+            flat_contents.as_ref().clone()
+        }
         Doc::DocCommand(DocCommand::Line(LineType::Hard)) | _ => d.clone(),
     });
 }
@@ -285,9 +284,7 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
             group_id,
         }) => Doc::DocCommand(DocCommand::IfBreak {
             break_contents: Box::new(strip_trailing_hardline_from_doc(&break_contents)),
-            flat_contents: flat_contents
-                .as_ref()
-                .map(|d| Box::from(strip_trailing_hardline_from_doc(&d))),
+            flat_contents: Box::new(strip_trailing_hardline_from_doc(&flat_contents)),
             group_id: group_id.clone(),
         }),
         Doc::DocCommand(DocCommand::Fill { parts }) => {
@@ -396,9 +393,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 flat_contents,
                 ..
             }) => {
-                if break_contents.as_ref().is_empty()
-                    && (flat_contents.is_none() || matches!(flat_contents, Some(d) if d.is_empty()))
-                {
+                if break_contents.as_ref().is_empty() && flat_contents.as_ref().is_empty() {
                     return Doc::String("".to_string());
                 }
             }
@@ -499,7 +494,7 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
             group_id,
         }) => Doc::DocCommand(DocCommand::IfBreak {
             break_contents: Box::new(normalize_doc(&break_contents)),
-            flat_contents: flat_contents.as_ref().map(|d| Box::from(normalize_doc(&d))),
+            flat_contents: Box::new(normalize_doc(&flat_contents)),
             group_id: group_id.clone(),
         }),
         // base cases

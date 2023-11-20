@@ -116,7 +116,7 @@ pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
 pub fn if_break(break_contents: Doc, flat_contents: Option<Doc>, group_id: Option<ID>) -> Doc {
     Doc::DocCommand(DocCommand::IfBreak {
         break_contents: Box::new(break_contents),
-        flat_contents: flat_contents.map(Box::new),
+        flat_contents: Box::new(flat_contents.unwrap_or(Doc::String("".into()))),
         group_id,
     })
 }

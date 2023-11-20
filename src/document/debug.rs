@@ -112,7 +112,7 @@ impl Debug for Doc {
                         String::new()
                     };
 
-                    if let Some(flat_contents) = flat_contents {
+                    if !flat_contents.is_empty() {
                         format!(
                             "ifBreak({}, {}{})",
                             print_doc(break_contents, ps, uk),
@@ -229,7 +229,7 @@ fn flatten_doc(doc: &Doc) -> Doc {
             group_id,
         }) => Doc::DocCommand(DocCommand::IfBreak {
             break_contents: Box::new(flatten_doc(break_contents)),
-            flat_contents: flat_contents.as_ref().map(|doc| Box::new(flatten_doc(doc))),
+            flat_contents: Box::new(flatten_doc(flat_contents)),
             group_id: group_id.clone(),
         }),
         Doc::DocCommand(DocCommand::Group {

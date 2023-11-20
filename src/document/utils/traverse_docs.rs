@@ -67,9 +67,7 @@ pub fn traverse_doc(
                 flat_contents,
                 ..
             }) => {
-                if let Some(flat_contents) = flat_contents {
-                    stack.push(TraverseDoc::Doc(flat_contents));
-                }
+                stack.push(TraverseDoc::Doc(flat_contents));
                 stack.push(TraverseDoc::Doc(break_contents));
             }
             Doc::DocCommand(DocCommand::Group {
