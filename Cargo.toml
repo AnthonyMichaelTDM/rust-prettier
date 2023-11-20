@@ -9,6 +9,7 @@ edition = "2021"
 anyhow = "1.0"
 derive_builder = "0.12"
 git2 = "0.18"
+lazy_static = "1.4"
 regex = "1.10"
 serde = { version = "1.0", features = ["derive"] }
 tap = "1.0"

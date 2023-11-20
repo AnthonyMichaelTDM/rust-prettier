@@ -48,7 +48,7 @@ enum OutputItem {
 
 #[derive(thiserror::Error, Debug)]
 pub enum FormattingError {
-    #[error("Too are too many 'cursor' in doc.")]
+    #[error("There are too many 'cursor' in doc.")]
     TooManyCursors,
 }
 
@@ -490,7 +490,7 @@ impl Doc {
                             pos = 0;
                         }
                     } else {
-                        pos -= trim(&mut out);
+                        pos = pos.checked_sub(trim(&mut out)).unwrap_or_default();
                         out.push(OutputItem::Content(new_line.to_string() + &indent.value));
                         pos += indent.length;
                     }
@@ -641,26 +641,27 @@ fn make_align(indent: &Indent, options: &PrettyPrinter, alignment: Align) -> Ind
 fn trim(out: &mut Vec<OutputItem>) -> usize {
     let mut trim_count = 0;
     let mut cursor_count = 0;
+    let mut out_index = out.len();
 
-    'outer: for last in out.iter_mut().rev() {
-        let last = match last {
-            OutputItem::Content(s) => s,
+    'outer: while out_index > 0 {
+        out_index -= 1;
+
+        match &out[out_index] {
+            OutputItem::Content(last) => {
+                for char_index in (0..last.len()).rev() {
+                    let c = last.chars().nth(char_index).unwrap();
+                    if c == ' ' || c == '\t' {
+                        trim_count += 1;
+                    } else {
+                        out[out_index] = OutputItem::Content(last[..char_index + 1].to_string());
+                        // *last = last[..char_index + 1].to_string();
+                        break 'outer;
+                    }
+                }
+                out[out_index] = OutputItem::Content(String::new());
+            }
             OutputItem::Cursor => {
                 cursor_count += 1;
-                continue;
-            }
-        };
-
-        // Not using a regexp here because regexps for trimming off trailing
-        // characters are known to have performance issues.
-        let mut char_indx = last.len();
-        for c in last.to_string().chars().rev() {
-            char_indx -= 1;
-            if c.is_whitespace() {
-                trim_count += 1;
-            } else {
-                last.truncate(char_indx + 1);
-                break 'outer;
             }
         }
     }
@@ -675,7 +676,7 @@ fn trim(out: &mut Vec<OutputItem>) -> usize {
     //   return trimCount;
 
     if trim_count > 0 || cursor_count > 0 {
-        out.truncate(out.len() - cursor_count - trim_count);
+        out.truncate(out_index + 1);
         for _ in 0..cursor_count {
             out.push(OutputItem::Cursor);
         }
