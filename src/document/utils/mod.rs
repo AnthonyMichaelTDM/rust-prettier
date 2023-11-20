@@ -352,7 +352,7 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
             })
         }
         Doc::Array(parts) => Doc::Array(strip_trailing_hardline_from_parts(parts.to_vec())),
-        Doc::String(s) => Doc::from(s.replace("\n", "").replace("\r", "")),
+        Doc::String(s) => s.trim_end_matches(['\n', '\r'].as_ref()).into(),
         Doc::DocCommand(DocCommand::Cursor)
         | Doc::DocCommand(DocCommand::Trim)
         | Doc::DocCommand(DocCommand::LineSuffixBoundary)
@@ -364,31 +364,6 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
 pub fn strip_trailing_hardline(doc: &Doc) -> Doc {
     // HACK remove ending hardline, original PR: prettier/prettier#1984
     return strip_trailing_hardline_from_doc(&clean_doc(doc));
-}
-
-fn flatten_and_concat(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
-    let mut result = Vec::new();
-
-    for part in parts.into_iter() {
-        match part.as_ref() {
-            Doc::Array(parts) => result.extend(flatten_and_concat(parts)),
-            Doc::DocCommand(DocCommand::Fill { parts }) => {
-                let mut parts = parts.clone();
-                parts.make_contiguous();
-                result.extend(flatten_and_concat(parts.as_slices().0))
-            }
-            Doc::String(s) => {
-                if let Some(Doc::String(last)) = result.last_mut().map(|d| &mut **d) {
-                    *last += &s;
-                } else {
-                    result.push(Box::new(Doc::String(s.to_owned())));
-                }
-            }
-            _ => result.push(part.clone()),
-        }
-    }
-
-    result
 }
 
 /// A safer version of `normalizeDoc`
@@ -455,7 +430,32 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 }
             }
             Doc::Array(parts) => {
-                return Doc::Array(flatten_and_concat(parts));
+                // Flat array, concat strings
+                let mut result = Vec::new();
+
+                for part in parts.iter().filter(|d| !d.is_empty()) {
+                    match part.as_ref() {
+                        Doc::Array(parts) => {
+                            result.extend(parts.to_owned());
+                        }
+                        Doc::String(s) => {
+                            if let Some(Doc::String(last)) = result.last_mut().map(|d| &mut **d) {
+                                *last += &s;
+                            } else {
+                                result.push(Box::new(s.to_owned().into()));
+                            }
+                        }
+                        _ => result.push(part.clone()),
+                    }
+                }
+
+                if result.is_empty() {
+                    return Doc::String("".to_string());
+                } else if result.len() == 1 {
+                    return result[0].as_ref().clone();
+                } else {
+                    return Doc::Array(result);
+                }
             }
             Doc::String(_)
             | Doc::DocCommand(DocCommand::Cursor)
@@ -465,7 +465,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
             | Doc::DocCommand(DocCommand::Label { .. })
             | Doc::DocCommand(DocCommand::BreakParent) => { /* no op */ }
         }
-        return doc.clone();
+        return current_doc.clone();
     })
 }
 

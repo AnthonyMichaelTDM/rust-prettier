@@ -77,7 +77,7 @@ impl From<DocCommand> for Doc {
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum DocCommand {
     Align {
         contents: Box<Doc>,
@@ -127,7 +127,7 @@ pub enum Align {
     ToRoot, // equivalent to original implementation's Number.NEGATIVE_INFINITY
 }
 
-#[derive(Clone, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
 pub enum ID {
     // TODO: this is basically the Symbol type from the original implementation
     Symbol(String),
@@ -143,7 +143,7 @@ impl Display for ID {
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
 pub enum Break {
     Yes,
     Never,
