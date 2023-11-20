@@ -163,15 +163,16 @@ pub fn find_in_doc(doc: &Doc, f: impl Fn(&Doc) -> bool) -> Option<Doc> {
     let mut should_skip_further_processing = false;
 
     traverse_doc(
-        doc,
-        |doc| {
-            if should_skip_further_processing {
+        &mut doc.clone(),
+        &mut (&mut should_skip_further_processing, &mut result),
+        |doc, (should_skip_further_processing, result)| {
+            if **should_skip_further_processing {
                 return false;
             }
 
             if f(doc) {
-                result = Some(doc.to_owned());
-                should_skip_further_processing = true;
+                **result = Some(doc.to_owned());
+                **should_skip_further_processing = true;
                 return false;
             }
 

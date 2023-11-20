@@ -7,10 +7,11 @@ enum TraverseDoc<'a> {
     ExitMarker(&'a Doc),
 }
 
-pub fn traverse_doc(
+pub fn traverse_doc<State>(
     doc: &Doc,
-    mut on_enter: impl FnMut(&Doc) -> bool,
-    on_exit: Option<Box<dyn Fn(&Doc) -> ()>>,
+    state: &mut State,
+    on_enter: impl Fn(&Doc, &mut State) -> bool,
+    on_exit: Option<Box<dyn Fn(&Doc, &mut State) -> ()>>,
     should_traverse_conditional_groups: Option<bool>,
 ) {
     let mut stack = vec![TraverseDoc::Doc(doc)];
@@ -20,7 +21,7 @@ pub fn traverse_doc(
             Some(TraverseDoc::Doc(doc)) => doc,
             Some(TraverseDoc::ExitMarker(doc)) => {
                 if let Some(ref exit_callback) = on_exit {
-                    exit_callback(doc);
+                    exit_callback(doc, state);
                 }
                 continue;
             }
@@ -34,7 +35,7 @@ pub fn traverse_doc(
         }
 
         // should we recurse into this doc?
-        if !on_enter(doc) {
+        if !on_enter(doc, state) {
             continue;
         }
 
