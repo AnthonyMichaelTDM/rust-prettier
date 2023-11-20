@@ -14,7 +14,7 @@ pub use builders::{
 // pub use printer::print_doc_to_string;
 pub use utils::{
     can_break, find_in_doc, inherit_label, map_doc, normalize_doc, remove_lines,
-    replace_end_of_line, strip_trailing_hardline, traverse_doc, will_break,
+    replace_end_of_line, strip_trailing_hardline, traverse_doc, traverse_doc_mut, will_break,
 };
 
 #[derive(Clone, PartialEq, Eq, Hash)]
