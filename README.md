@@ -33,7 +33,7 @@ foo(
   - we definitely don't want to have to write our own parser, here are some other options:
     - [tree-sitter](https://crates.io/crates/tree-sitter-javascript)
       - pros: general, well maintained. There are tree-sitter grammars for a lot of languages, so we could reuse ideas and code for future parsers.
-      - cons: not a rust library, so we have to use FFI. May not play nice with wasm.
+      - cons: not a rust library, so we have to use C FFI. Meaning we won't be able to compile to wasm.
     - [biome's parser](https://crates.io/crates/biome_js_parser)
       - pros: pure rust, so it should play nice with wasm; supports a lot of js file-types, including typescript; very well documented.
       - cons: not used much outside of the project it was made for, a little heavy

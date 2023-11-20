@@ -1,0 +1,2 @@
+[alias]
+compliance-tests = "test -F generated_tests --test generated_js"

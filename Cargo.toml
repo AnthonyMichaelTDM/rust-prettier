@@ -29,3 +29,117 @@ proc-macro2 = "1.0"
 [features]
 default = []
 generated_tests = []
+
+[[test]]
+name = "unit"
+path = "tests/unit/mod.rs"
+
+[[test]]
+name = "generated"
+path = "tests/generated/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_angular"
+path = "tests/generated/angular/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_css"
+path = "tests/generated/css/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_flow"
+path = "tests/generated/flow/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_flow_repo"
+path = "tests/generated/flow_repo/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_graphql"
+path = "tests/generated/graphql/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_handlebars"
+path = "tests/generated/handlebars/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_html"
+path = "tests/generated/html/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_js"
+path = "tests/generated/js/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_json"
+path = "tests/generated/json/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_jsx"
+path = "tests/generated/jsx/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_less"
+path = "tests/generated/less/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_lwc"
+path = "tests/generated/lwc/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_markdown"
+path = "tests/generated/markdown/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_mdx"
+path = "tests/generated/mdx/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_misc"
+path = "tests/generated/misc/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_mjml"
+path = "tests/generated/mjml/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_scss"
+path = "tests/generated/scss/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_stylefmt_repo"
+path = "tests/generated/stylefmt_repo/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_typescript"
+path = "tests/generated/typescript/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_vue"
+path = "tests/generated/vue/mod.rs"
+required-features = ["generated_tests"]
+
+[[test]]
+name = "generated_yaml"
+path = "tests/generated/yaml/mod.rs"
+required-features = ["generated_tests"]
