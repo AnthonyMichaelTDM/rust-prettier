@@ -36,9 +36,9 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
     // a map and reused.
     let mut cache = std::collections::HashMap::new();
 
-    return rec(doc, &f, &mut cache);
+    return map_doc_recursive(doc, &f, &mut cache);
 
-    fn rec(
+    fn map_doc_recursive(
         doc: &Doc,
         f: &impl Fn(&Doc) -> Doc,
         cache: &mut std::collections::HashMap<Doc, Doc>,
@@ -61,22 +61,22 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
             Doc::Array(parts) => f(&Doc::Array(
                 parts
                     .into_iter()
-                    .map(|d| rec(d, f, cache).into())
+                    .map(|d| map_doc_recursive(d, f, cache).into())
                     .collect::<Vec<_>>(),
             )),
             Doc::DocCommand(DocCommand::Fill { parts }) => f(&Doc::DocCommand(DocCommand::Fill {
                 parts: parts
                     .into_iter()
-                    .map(|d| rec(d, f, cache).into())
-                    .collect::<Vec<_>>(),
+                    .map(|d| map_doc_recursive(d, f, cache).into())
+                    .collect::<VecDeque<_>>(),
             })),
             Doc::DocCommand(DocCommand::IfBreak {
                 break_contents,
                 flat_contents,
                 group_id,
             }) => f(&Doc::DocCommand(DocCommand::IfBreak {
-                break_contents: Box::new(rec(break_contents, f, cache)),
-                flat_contents: flat_contents.as_ref().map(|d| rec(&d, f, cache).into()),
+                break_contents: Box::new(map_doc_recursive(break_contents, f, cache)),
+                flat_contents: Box::new(map_doc_recursive(flat_contents, f, cache)),
                 group_id: group_id.clone(),
             })),
             Doc::DocCommand(DocCommand::Group {
@@ -90,12 +90,12 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                         Some(
                             states
                                 .into_iter()
-                                .map(|d| rec(d, f, cache).into())
+                                .map(|d| map_doc_recursive(d, f, cache).into())
                                 .collect::<Vec<_>>(),
                         ),
-                        rec(contents, f, cache),
+                        map_doc_recursive(contents, f, cache),
                     ),
-                    None => (None, rec(contents, f, cache)),
+                    None => (None, map_doc_recursive(contents, f, cache)),
                 };
                 f(&Doc::DocCommand(DocCommand::Group {
                     expanded_states,
@@ -108,7 +108,7 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                 contents,
                 alignment,
             }) => f(&Doc::DocCommand(DocCommand::Align {
-                contents: Box::new(rec(contents, f, cache)),
+                contents: Box::new(map_doc_recursive(contents, f, cache)),
                 alignment: alignment.to_owned(),
             })),
             Doc::DocCommand(DocCommand::IndentIfBreak {
@@ -116,24 +116,24 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                 group_id,
                 negate,
             }) => f(&Doc::DocCommand(DocCommand::IndentIfBreak {
-                contents: Box::new(rec(contents, f, cache)),
+                contents: Box::new(map_doc_recursive(contents, f, cache)),
                 group_id: group_id.clone(),
                 negate: negate.to_owned(),
             })),
             Doc::DocCommand(DocCommand::Label { contents, label }) => {
                 f(&Doc::DocCommand(DocCommand::Label {
-                    contents: Box::new(rec(contents, f, cache)),
+                    contents: Box::new(map_doc_recursive(contents, f, cache)),
                     label: label.to_owned(),
                 }))
             }
             Doc::DocCommand(DocCommand::Indent { contents }) => {
                 f(&Doc::DocCommand(DocCommand::Indent {
-                    contents: Box::new(rec(contents, f, cache)),
+                    contents: Box::new(map_doc_recursive(contents, f, cache)),
                 }))
             }
             Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
                 f(&Doc::DocCommand(DocCommand::LineSuffix {
-                    contents: Box::new(rec(contents, f, cache)),
+                    contents: Box::new(map_doc_recursive(contents, f, cache)),
                 }))
             }
             Doc::String(_)
