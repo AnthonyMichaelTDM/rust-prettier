@@ -1,6 +1,6 @@
 mod builders;
 pub mod debug;
-mod printer;
+pub mod printer;
 mod utils;
 
 use std::{collections::VecDeque, fmt::Display};
@@ -11,7 +11,6 @@ pub use builders::{
     label, line, line_suffix, line_suffix_boundary, literalline, literalline_without_break_parent,
     mark_as_root, softline, trim,
 };
-// pub use printer::print_doc_to_string;
 pub use utils::{
     can_break, find_in_doc, inherit_label, map_doc, normalize_doc, propagate_breaks, remove_lines,
     replace_end_of_line, strip_trailing_hardline, traverse_doc, traverse_doc_mut, will_break,
@@ -124,8 +123,8 @@ pub enum DocCommand {
 pub enum Align {
     By(isize),
     With(String),
-    AsRoot,
-    ToRoot,
+    AsRoot, // root
+    ToRoot, // equivalent to original implementation's Number.NEGATIVE_INFINITY
 }
 
 #[derive(Clone, PartialEq, Eq, Hash)]
