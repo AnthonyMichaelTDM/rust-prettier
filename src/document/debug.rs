@@ -76,6 +76,7 @@ impl Debug for Doc {
                     LineType::Hard => "hardline".into(),
                     LineType::Soft => "softline".into(),
                     LineType::Literal => "literalline".into(),
+                    LineType::None => "line".into(),
                 },
                 Doc::DocCommand(DocCommand::BreakParent) => "breakParent".into(),
                 Doc::DocCommand(DocCommand::Trim) => "trim".into(),

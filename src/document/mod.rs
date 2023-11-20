@@ -53,9 +53,9 @@ impl From<Vec<Doc>> for Doc {
     }
 }
 
-impl From<&'_ [Doc]> for Doc {
+impl From<&[Doc]> for Doc {
     /// moves inner docs into the heap
-    fn from(t: &'_ [Doc]) -> Doc {
+    fn from(t: &[Doc]) -> Doc {
         Doc::Array(t.iter().map(|d| Box::new(d.clone())).collect())
     }
 }
@@ -66,8 +66,8 @@ impl From<Vec<Box<Doc>>> for Doc {
     }
 }
 
-impl From<&'_ [Box<Doc>]> for Doc {
-    fn from(t: &'_ [Box<Doc>]) -> Doc {
+impl From<&[Box<Doc>]> for Doc {
+    fn from(t: &[Box<Doc>]) -> Doc {
         Doc::Array(t.to_vec())
     }
 }
@@ -147,15 +147,15 @@ impl Display for ID {
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Break {
     Yes,
-    No,
-    Propagated,
+    Never,
+    Propagated, // this is a weird relic, if it's not used just TODO: use bool instead of Break
 }
 
 impl Display for Break {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Break::Yes => write!(f, "{:?}", true),
-            Break::No => write!(f, "{:?}", false),
+            Break::Never => write!(f, "{:?}", false),
             Break::Propagated => write!(f, "propagated"),
         }
     }
@@ -166,7 +166,7 @@ impl From<bool> for Break {
         if t {
             Break::Yes
         } else {
-            Break::No
+            Break::Never
         }
     }
 }
@@ -176,6 +176,30 @@ pub enum LineType {
     Soft,
     Hard,
     Literal,
+    None,
+}
+
+impl LineType {
+    pub fn is_hard(&self) -> bool {
+        match self {
+            LineType::Hard | LineType::Literal => true,
+            LineType::Soft | LineType::None => false,
+        }
+    }
+
+    pub fn is_soft(&self) -> bool {
+        match self {
+            LineType::Soft => true,
+            LineType::Hard | LineType::Literal | LineType::None => false,
+        }
+    }
+
+    pub fn is_literal(&self) -> bool {
+        match self {
+            LineType::Literal => true,
+            LineType::Soft | LineType::Hard | LineType::None => false,
+        }
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Copy)]

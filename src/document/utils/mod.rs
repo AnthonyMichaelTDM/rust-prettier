@@ -359,7 +359,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 expanded_states,
             }) => {
                 if contents.as_ref().is_empty()
-                    && Break::No == *should_break
+                    && Break::Never == *should_break
                     && id.is_none()
                     && (expanded_states.is_none()
                         || matches!(expanded_states, Some(states) if states.is_empty() || states.iter().all(|d| d.is_empty())))
