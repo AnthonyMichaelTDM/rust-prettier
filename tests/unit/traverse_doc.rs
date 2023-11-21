@@ -21,7 +21,7 @@ fn test_traverse_doc() {
             visited.push(d.clone());
             true
         },
-        None::<fn(&_, &mut _)>,
+        None::<&fn(&_, &mut _)>,
         None,
     );
 
@@ -53,7 +53,7 @@ fn test_traverse_doc_skip_children() {
             visited.push(d.clone());
             false
         },
-        None::<fn(&_, &mut _)>,
+        None::<&fn(&_, &mut _)>,
         None,
     );
 
@@ -77,7 +77,7 @@ fn test_traverse_doc_still_visit_siblings() {
             visited.push(d.clone());
             !matches!(d, Doc::String(s) if s == "foo")
         },
-        None::<fn(&_, &mut _)>,
+        None::<&fn(&_, &mut _)>,
         None,
     );
 

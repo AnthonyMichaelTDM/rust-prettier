@@ -21,61 +21,50 @@ use crate::common::Symbol;
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Doc {
     String(String),
-    Array(Vec<Box<Doc>>),
+    Array(Vec<Doc>),
     DocCommand(DocCommand),
 }
 
 impl Doc {
+    #[must_use]
     pub fn is_empty(&self) -> bool {
         match self {
-            Doc::String(s) => s.is_empty(),
-            Doc::Array(a) => a.is_empty(),
-            Doc::DocCommand(_) => false,
+            Self::String(s) => s.is_empty(),
+            Self::Array(a) => a.is_empty(),
+            Self::DocCommand(_) => false,
         }
     }
 }
 
 impl From<&'_ str> for Doc {
-    fn from(t: &'_ str) -> Doc {
-        Doc::String(t.to_string())
+    fn from(t: &'_ str) -> Self {
+        Self::String(t.to_string())
     }
 }
 
 impl From<String> for Doc {
-    fn from(t: String) -> Doc {
-        Doc::String(t)
+    fn from(t: String) -> Self {
+        Self::String(t)
     }
 }
 
-impl From<Vec<Doc>> for Doc {
+impl From<Vec<Self>> for Doc {
     /// moves inner docs into the heap
-    fn from(t: Vec<Doc>) -> Doc {
-        Doc::Array(t.into_iter().map(Box::new).collect())
+    fn from(t: Vec<Self>) -> Self {
+        Self::Array(t)
     }
 }
 
-impl From<&[Doc]> for Doc {
+impl From<&[Self]> for Doc {
     /// moves inner docs into the heap
-    fn from(t: &[Doc]) -> Doc {
-        Doc::Array(t.iter().map(|d| Box::new(d.clone())).collect())
-    }
-}
-
-impl From<Vec<Box<Doc>>> for Doc {
-    fn from(t: Vec<Box<Doc>>) -> Doc {
-        Doc::Array(t)
-    }
-}
-
-impl From<&[Box<Doc>]> for Doc {
-    fn from(t: &[Box<Doc>]) -> Doc {
-        Doc::Array(t.to_vec())
+    fn from(t: &[Self]) -> Self {
+        Self::Array(t.to_vec())
     }
 }
 
 impl From<DocCommand> for Doc {
-    fn from(t: DocCommand) -> Doc {
-        Doc::DocCommand(t)
+    fn from(t: DocCommand) -> Self {
+        Self::DocCommand(t)
     }
 }
 
@@ -88,13 +77,13 @@ pub enum DocCommand {
     BreakParent,
     Cursor,
     Fill {
-        parts: VecDeque<Box<Doc>>,
+        parts: VecDeque<Doc>,
     },
     Group {
         id: Option<Symbol>,
         contents: Box<Doc>,
         should_break: Break,
-        expanded_states: Option<Vec<Box<Doc>>>,
+        expanded_states: Option<Vec<Doc>>,
     },
     IfBreak {
         break_contents: Box<Doc>,

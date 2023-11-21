@@ -56,8 +56,12 @@ pub enum FormattingError {
 impl Doc {
     /// This function is used to render a Doc to a String
     ///
-    /// Note: before getting to this point, options.end_of_line should have been infered (if it was "auto", it should've been changed to match the first newline in the input text),
+    /// Note: before getting to this point, `options.end_of_line` should have been infered (if it was "auto", it should've been changed to match the first newline in the input text),
     /// if this is not the case, we will change it to the default here
+    ///
+    /// # Errors
+    /// - if the tree rooted as `self` has more than 1 cursor
+    #[allow(clippy::too_many_lines, clippy::cognitive_complexity)]
     pub fn format(&self, options: &PrettyPrinter) -> Result<String, FormattingError> {
         let mut group_mode_map: HashMap<Symbol, Mode> = HashMap::new();
 
@@ -106,7 +110,7 @@ impl Doc {
                         cmds.push(Command {
                             indent: indent.clone(),
                             mode,
-                            doc: part.as_ref().to_owned(),
+                            doc: part.clone(),
                         });
                     }
                 }
@@ -198,14 +202,14 @@ impl Doc {
                                             cmds.push(Command {
                                                 indent,
                                                 mode: Mode::Break,
-                                                doc: state.as_ref().to_owned(),
+                                                doc: state.clone(),
                                             });
                                             break;
                                         }
                                         let command = Command {
                                             indent: indent.clone(),
                                             mode: Mode::Flat,
-                                                doc: state.as_ref().to_owned(),
+                                            doc: state.clone(),
                                         };
 
                                         if fits(
@@ -231,7 +235,7 @@ impl Doc {
                                 cmds.push(Command {
                                     indent,
                                     mode: Mode::Break,
-                                    doc: contents.as_ref().to_owned(),
+                                    doc: contents.as_ref().clone(),
                                 });
                             }
                         }
@@ -274,12 +278,12 @@ impl Doc {
                     let content_flat_cmd = Command {
                         indent: indent.clone(),
                         mode: Mode::Flat,
-                        doc: content.as_ref().to_owned(),
+                        doc: content.clone(),
                     };
                     let content_break_cmd = Command {
                         indent: indent.clone(),
                         mode: Mode::Break,
-                        doc: content.as_ref().to_owned(),
+                        doc: content.clone(),
                     };
                     let content_fits = fits(
                         &content_flat_cmd,
@@ -479,8 +483,8 @@ impl Doc {
                         out.push(OutputItem::Content(new_line.to_string()));
                         if let Some(root_indent) = indent.root {
                             out.push(OutputItem::Content(root_indent.value.clone()));
+                            pos = root_indent.length;
                         } else {
-                            out.push(OutputItem::Content(new_line.to_string()));
                             pos = 0;
                         }
                     } else {
@@ -731,18 +735,12 @@ fn fits(
             }
             Doc::Array(parts) => {
                 for part in parts.iter().rev() {
-                    cmds.push(StrippedCommand {
-                        mode,
-                        doc: part.as_ref(),
-                    });
+                    cmds.push(StrippedCommand { mode, doc: part });
                 }
             }
             Doc::DocCommand(DocCommand::Fill { parts }) => {
                 for part in parts.iter().rev() {
-                    cmds.push(StrippedCommand {
-                        mode,
-                        doc: part.as_ref(),
-                    });
+                    cmds.push(StrippedCommand { mode, doc: part });
                 }
             }
             Doc::DocCommand(
@@ -779,8 +777,7 @@ fn fits(
                 let contents = expanded_states
                     .as_ref()
                     .and_then(|v| v.last())
-                    .unwrap_or(contents)
-                    .as_ref();
+                    .unwrap_or(contents);
 
                 cmds.push(StrippedCommand {
                     mode: group_mode,

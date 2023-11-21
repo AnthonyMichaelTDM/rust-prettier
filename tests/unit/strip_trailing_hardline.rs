@@ -9,13 +9,10 @@ mod does_not_mutate_doc {
 
     #[test]
     fn test_fill() {
-        let doc: Doc = fill(vec![Box::new("text".into()), Box::new(hardline())]);
+        let doc: Doc = fill(vec!["text".into(), hardline()]);
+        #[allow(clippy::redundant_clone)]
         let doc_clone = doc.clone();
-        let expected = fill(vec![
-            Box::new("text".into()),
-            // Doc::from(vec![Doc::Array(Vec::new())]).into(),
-            Box::new(Doc::Array(Vec::new())),
-        ]);
+        let expected = fill(vec!["text".into(), Doc::Array(Vec::new())]);
 
         let stripped = strip_trailing_hardline(&doc);
 
@@ -25,16 +22,10 @@ mod does_not_mutate_doc {
 
     #[test]
     fn test_fill_nested_hardline() {
-        let doc: Doc = fill(vec![
-            Box::new("text".into()),
-            Box::new(Doc::from(vec![hardline()])),
-        ]);
+        let doc: Doc = fill(vec!["text".into(), vec![hardline()].into()]);
+        #[allow(clippy::redundant_clone)]
         let doc_clone = doc.clone();
-        let expected = fill(vec![
-            Box::new("text".into()),
-            // Doc::from(vec![Doc::Array(Vec::new())]).into(),
-            Box::new(Doc::Array(Vec::new())),
-        ]);
+        let expected = fill(vec!["text".into(), Vec::new().into()]);
 
         let stripped = strip_trailing_hardline(&doc);
 
@@ -44,9 +35,10 @@ mod does_not_mutate_doc {
 
     #[test]
     fn test_array() {
-        let doc: Doc = Doc::from(vec![Box::new("text".into()), Box::new(hardline())]);
+        let doc: Doc = Doc::from(vec!["text".into(), hardline()]);
+        #[allow(clippy::redundant_clone)]
         let doc_clone = doc.clone();
-        let expected = Doc::from(vec![Box::new("text".into())]);
+        let expected = Doc::from(vec!["text".into()]);
 
         let stripped = strip_trailing_hardline(&doc);
 

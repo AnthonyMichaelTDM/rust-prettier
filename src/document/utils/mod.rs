@@ -2,7 +2,7 @@
 
 mod traverse_docs;
 
-use std::collections::{HashSet, VecDeque};
+use std::collections::HashSet;
 
 pub use traverse_docs::{traverse_doc, traverse_doc_mut};
 
@@ -65,13 +65,13 @@ mod map_doc_fns {
             Doc::Array(parts) => f(&Doc::Array(
                 parts
                     .iter()
-                    .map(|d| map_doc_recursive(d, f, cache).into())
+                    .map(|d| map_doc_recursive(d, f, cache))
                     .collect::<Vec<_>>(),
             )),
             Doc::DocCommand(DocCommand::Fill { parts }) => f(&Doc::DocCommand(DocCommand::Fill {
                 parts: parts
                     .iter()
-                    .map(|d| map_doc_recursive(d, f, cache).into())
+                    .map(|d| map_doc_recursive(d, f, cache))
                     .collect::<VecDeque<_>>(),
             })),
             Doc::DocCommand(DocCommand::IfBreak {
@@ -94,7 +94,7 @@ mod map_doc_fns {
                         Some(
                             states
                                 .iter()
-                                .map(|d| map_doc_recursive(d, f, cache).into())
+                                .map(|d| map_doc_recursive(d, f, cache))
                                 .collect::<Vec<_>>(),
                         ),
                         map_doc_recursive(contents, f, cache),
@@ -105,7 +105,7 @@ mod map_doc_fns {
                     expanded_states,
                     contents: Box::new(contents),
                     id: id.clone(),
-                    should_break: should_break.to_owned(),
+                    should_break: should_break.clone(),
                 }))
             }
             Doc::DocCommand(DocCommand::Align {
@@ -282,16 +282,12 @@ pub fn remove_lines(doc: &Doc) -> Doc {
     });
 }
 
-#[allow(clippy::vec_box)] // re-using the boxes lets us reduce total allocations
-fn strip_trailing_hardline_from_parts(parts: Vec<Box<Doc>>) -> Vec<Box<Doc>> {
-    let mut parts = parts.to_vec();
+fn strip_trailing_hardline_from_parts(parts: Vec<Doc>) -> Vec<Doc> {
+    let mut parts = parts;
 
     while parts.len() >= 2
-        && matches!(
-            *parts[parts.len() - 2],
-            Doc::DocCommand(DocCommand::Line(_))
-        )
-        && *parts[parts.len() - 1] == Doc::DocCommand(DocCommand::BreakParent)
+        && matches!(parts[parts.len() - 2], Doc::DocCommand(DocCommand::Line(_)))
+        && parts[parts.len() - 1] == Doc::DocCommand(DocCommand::BreakParent)
     {
         parts.pop();
         parts.pop();
@@ -300,7 +296,7 @@ fn strip_trailing_hardline_from_parts(parts: Vec<Box<Doc>>) -> Vec<Box<Doc>> {
     if !parts.is_empty() {
         #[allow(clippy::unwrap_used)] // safe because we checked that parts is not empty
         let last_part = strip_trailing_hardline_from_doc(parts.last().unwrap());
-        *parts.last_mut().unwrap() = Box::new(last_part);
+        *parts.last_mut().unwrap() = last_part;
     }
 
     parts
@@ -377,6 +373,7 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
     }
 }
 
+#[must_use]
 pub fn strip_trailing_hardline(doc: &Doc) -> Doc {
     // HACK remove ending hardline, original PR: prettier/prettier#1984
     strip_trailing_hardline_from_doc(&clean_doc(doc))
@@ -393,7 +390,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
             Doc::DocCommand(DocCommand::Fill { parts }) => {
                 if parts
                     .iter()
-                    .all(|d| matches!(d.as_ref(), Doc::String(s) if s.is_empty()))
+                    .all(|d| matches!(d, Doc::String(s) if s.is_empty()))
                 {
                     return Doc::String(String::new());
                 }
@@ -453,15 +450,15 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 let mut result = Vec::new();
 
                 for part in parts.iter().filter(|d| !d.is_empty()) {
-                    match part.as_ref() {
+                    match part {
                         Doc::Array(parts) => {
-                            result.extend(parts.to_owned());
+                            result.extend(parts.clone());
                         }
                         Doc::String(s) => {
-                            if let Some(Doc::String(last)) = result.last_mut().map(|d| &mut **d) {
+                            if let Some(Doc::String(last)) = result.last_mut() {
                                 *last += &s;
                             } else {
-                                result.push(Box::new(s.to_owned().into()));
+                                result.push(s.clone().into());
                             }
                         }
                         Doc::DocCommand(_) => result.push(part.clone()),
@@ -492,22 +489,20 @@ pub fn clean_doc(doc: &Doc) -> Doc {
 
 // TODO: this has too many allocations, optimize it
 #[allow(clippy::vec_box)] // we don't actually make any new boxes in this function, so this is preferable
-fn normalize_parts(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
-    let mut new_parts: Vec<Box<Doc>> = Vec::new();
-    let mut rest_parts: Vec<&Box<Doc>> = parts.iter().rev().collect();
+fn normalize_parts(parts: &[Doc]) -> Vec<Doc> {
+    let mut new_parts: Vec<Doc> = Vec::new();
+    let mut rest_parts: Vec<&Doc> = parts.iter().rev().collect();
 
-    for part in parts.iter().rev() {
-        match *part.as_ref() {
+    while let Some(part) = rest_parts.pop() {
+        match part {
             Doc::Array(ref parts) => {
-                rest_parts.extend(parts.iter().rev().collect::<Vec<_>>());
+                rest_parts.extend(parts.iter().rev());
                 continue;
             }
             Doc::String(ref s) => {
-                if let Some(last_part) = new_parts.last_mut() {
-                    if let Doc::String(ref mut last_s) = **last_part {
-                        last_s.push_str(s);
-                        continue;
-                    }
+                if let Some(Doc::String(ref mut last_s)) = new_parts.last_mut() {
+                    last_s.push_str(s);
+                    continue;
                 }
             }
             Doc::DocCommand(_) => {}

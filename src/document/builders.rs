@@ -1,9 +1,16 @@
-use std::num::NonZeroUsize;
+use std::{collections::VecDeque, num::NonZeroUsize};
 
 use super::{Align, Doc, DocCommand, Label, LineType};
 use crate::common::Symbol;
 
+/// create a `Doc::Array` from a list of `Doc`'s
+#[must_use]
+pub fn concat(docs: Vec<Doc>) -> Doc {
+    Doc::from(docs)
+}
+
 /// increase the level of indentation
+#[must_use]
 pub fn indent(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Indent {
         contents: Box::new(contents),
@@ -13,6 +20,7 @@ pub fn indent(contents: Doc) -> Doc {
 /// Increase the indentation by a fixed number of spaces or a string. A variant of indent.
 ///
 /// When useTabs is enabled, trailing alignments in indentation are still spaces, but middle ones are transformed one tab per align. In a whitespace-sensitive context (e.g., Markdown), you should pass spaces to align as strings to prevent their replacement with tabs.
+#[must_use]
 pub fn align(contents: Doc, alignment: Align) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
@@ -20,9 +28,16 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
     })
 }
 
-/// Mark a group of items which the printer should try to fit on one line. This is the basic command to tell the printer when to break. Groups are usually nested, and the printer will try to fit everything on one line, but if it doesn't fit it will break the outermost group first and try again. It will continue breaking groups until everything fits (or there are no more groups to break).
+
+/// Mark a group of items which the printer should try to fit on one line. This is the basic command to tell the printer when to break.
+/// Groups are usually nested, and the printer will try to fit everything on one line,
+/// but if it doesn't fit it will break the outermost group first and try again.
+/// It will continue breaking groups until everything fits (or there are no more groups to break).
 ///
-/// A group is forced to break if it's created with the should_break option set to true or if it includes breakParent. A hard and literal line breaks automatically include this so they always break parent groups. Breaks are propagated to all parent groups, so if a deeply nested expression has a hard break, everything will break. This only matters for "hard" breaks, i.e. newlines that are printed no matter what and can be statically analyzed.
+/// A group is forced to break if it's created with the `should_break` option set to true or if it includes breakParent.
+/// A hard and literal line breaks automatically include this so they always break parent groups.
+/// Breaks are propagated to all parent groups, so if a deeply nested expression has a hard break, everything will break.
+/// This only matters for "hard" breaks, i.e. newlines that are printed no matter what and can be statically analyzed.
 ///
 /// For example, an array will try to fit on one line:
 /// ```js
@@ -38,14 +53,17 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
 ///   3,
 /// ];
 /// ```
-/// Functions always break after the opening curly brace no matter what, so the array breaks as well for consistent formatting. See the implementation of ArrayExpression for an example.
 ///
-/// The `id`` option can be used in if_break checks.
+/// Functions always break after the opening curly brace no matter what, so the array breaks as well for consistent formatting.
+/// See the implementation of `ArrayExpression` for an example.
+///
+/// The `id` option can be used in `if_break` checks.
+///
 pub fn group(
     contents: Doc,
     id: Option<Symbol>,
     should_break: bool,
-    expanded_states: Option<Vec<Box<Doc>>>,
+    expanded_states: Option<Vec<Doc>>,
 ) -> Doc {
     Doc::DocCommand(DocCommand::Group {
         id,
@@ -89,29 +107,50 @@ pub fn dedent(contents: Doc) -> Doc {
 /// # None
 /// Returns none if states is empty.
 #[must_use]
-pub fn conditional_group(
-    states: Vec<Box<Doc>>,
-    id: Option<Symbol>,
-    should_break: bool,
-) -> Option<Doc> {
+pub fn conditional_group(states: Vec<Doc>, id: Option<Symbol>, should_break: bool) -> Option<Doc> {
     if states.is_empty() {
         return None;
     }
     #[allow(clippy::unwrap_used)] // safe because states is not empty
     Some(group(
-        states.first()?.as_ref().clone(),
+        states.first()?.clone(),
         id,
         should_break,
         Some(states),
     ))
 }
 
-/// This is an alternative type of group which behaves like text layout: it's going to add a break whenever the next element doesn't fit in the line anymore. The difference with group is that it's not going to break all the separators, just the ones that are at the end of lines.
+/// This is an alternative type of group which behaves like text layout:
+/// it's going to add a break whenever the next element doesn't fit in the line anymore.
+/// The difference with group is that it's not going to break all the separators, just the ones that are at the end of lines.
 ///
-/// Expects the docs argument to be an array of alternating content and line breaks. In other words, elements with odd indices must be line breaks (e.g., softline).
-pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
+/// Expects the docs argument to be an array of alternating content and line breaks.
+/// In other words, elements with odd indices must be line breaks (e.g., softline).
+///
+/// # Example
+/// ```
+/// use rust_prettier::{PrettyPrinterBuilder, document::builders::*};
+///
+/// let doc = fill(vec![
+///     "a".repeat(40).into(),
+///     softline(),
+///     "b".repeat(40).into(),
+///     softline(),
+///     "c".repeat(60).into(),
+///     softline(),
+///     "d".repeat(80).into(),
+///     softline(),
+/// ]);
+///
+/// let formatted = doc.format(&PrettyPrinterBuilder::default().print_width(80).build().unwrap()).unwrap();
+///
+/// assert_eq!(formatted, format!("{}{}\n{}\n{}\n", "a".repeat(40), "b".repeat(40),"c".repeat(60),"d".repeat(80)))
+/// ```
+///
+#[must_use]
+pub fn fill(parts: Vec<Doc>) -> Doc {
     Doc::DocCommand(DocCommand::Fill {
-        parts: parts.into(),
+        parts: parts.into_iter().collect::<VecDeque<_>>(),
     })
 }
 
@@ -158,6 +197,7 @@ pub fn indent_if_break(contents: Doc, group_id: Symbol, negate: bool) -> Doc {
 ///
 /// assert_eq!(doc.format(&PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
 /// ```
+#[must_use]
 pub fn line_suffix(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::LineSuffix {
         contents: Box::new(contents),
@@ -196,18 +236,12 @@ pub const fn softline() -> Doc {
 
 #[must_use]
 pub fn hardline() -> Doc {
-    Doc::Array(vec![
-        hardline_without_break_parent().into(),
-        break_parent().into(),
-    ])
+    Doc::Array(vec![hardline_without_break_parent(), break_parent()])
 }
 
 #[must_use]
 pub fn literalline() -> Doc {
-    Doc::Array(vec![
-        literalline_without_break_parent().into(),
-        break_parent().into(),
-    ])
+    Doc::Array(vec![literalline_without_break_parent(), break_parent()])
 }
 
 #[must_use]
@@ -220,12 +254,12 @@ pub const fn cursor() -> Doc {
     Doc::DocCommand(DocCommand::Cursor)
 }
 
-pub fn join(separator: Doc, docs: impl AsRef<[Doc]>) -> Doc {
+pub fn join(separator: &Doc, docs: impl AsRef<[Doc]>) -> Doc {
     Doc::Array(docs.as_ref().iter().fold(Vec::new(), |mut acc, doc| {
         if !acc.is_empty() {
-            acc.push(Box::new(separator.clone()));
+            acc.push(separator.clone());
         }
-        acc.push(Box::new(doc.clone()));
+        acc.push(doc.clone());
         acc
     }))
 }
