@@ -5,16 +5,7 @@ mod utils;
 
 use std::{collections::VecDeque, fmt::Display};
 
-pub use builders::{
-    add_alignment_to_doc, align, break_parent, conditional_group, cursor, dedent, dedent_to_root,
-    fill, group, hardline, hardline_without_break_parent, if_break, indent, indent_if_break, join,
-    label, line, line_suffix, line_suffix_boundary, literalline, literalline_without_break_parent,
-    mark_as_root, softline, trim,
-};
-pub use utils::{
-    can_break, find_in_doc, inherit_label, map_doc, normalize_doc, propagate_breaks, remove_lines,
-    replace_end_of_line, strip_trailing_hardline, traverse_doc, traverse_doc_mut, will_break,
-};
+use crate::common::Symbol;
 
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Doc {
@@ -89,7 +80,7 @@ pub enum DocCommand {
         parts: VecDeque<Box<Doc>>,
     },
     Group {
-        id: Option<ID>,
+        id: Option<Symbol>,
         contents: Box<Doc>,
         should_break: Break,
         expanded_states: Option<Vec<Box<Doc>>>,
@@ -97,14 +88,14 @@ pub enum DocCommand {
     IfBreak {
         break_contents: Box<Doc>,
         flat_contents: Box<Doc>,
-        group_id: Option<ID>,
+        group_id: Option<Symbol>,
     },
     Indent {
         contents: Box<Doc>,
     },
     IndentIfBreak {
         contents: Box<Doc>,
-        group_id: Option<ID>,
+        group_id: Option<Symbol>,
         negate: bool,
     },
     Label {
@@ -125,22 +116,6 @@ pub enum Align {
     With(String),
     AsRoot, // root
     ToRoot, // equivalent to original implementation's Number.NEGATIVE_INFINITY
-}
-
-#[derive(Clone, PartialEq, Eq, Hash, Debug)]
-pub enum ID {
-    // TODO: this is basically the Symbol type from the original implementation
-    Symbol(String),
-    Number(usize),
-}
-
-impl Display for ID {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            ID::Symbol(s) => write!(f, "{}", s),
-            ID::Number(n) => write!(f, "{}", n),
-        }
-    }
 }
 
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]

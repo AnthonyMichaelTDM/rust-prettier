@@ -4,11 +4,12 @@
 use std::collections::{HashMap, HashSet};
 use std::fmt::Debug;
 
-use super::{Align, Break, Doc, DocCommand, LineType, ID};
+use super::{Align, Break, Doc, DocCommand, LineType};
+use crate::common::Symbol;
 
 impl Debug for Doc {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut printed_symbols: HashMap<ID, String> = HashMap::new();
+        let mut printed_symbols: HashMap<Symbol, String> = HashMap::new();
         let mut used_keys_for_symbols: HashSet<String> = HashSet::new();
 
         return write!(
@@ -22,11 +23,11 @@ impl Debug for Doc {
         );
 
         fn print_group_id(
-            id: &ID,
-            printed_symbols: &mut HashMap<ID, String>,
+            id: &Symbol,
+            printed_symbols: &mut HashMap<Symbol, String>,
             used_keys_for_symbols: &mut HashSet<String>,
         ) -> String {
-            if let ID::Symbol(s) = id {
+            if let Symbol::String(s) = id {
                 return s.clone();
             }
 
@@ -56,7 +57,11 @@ impl Debug for Doc {
             return printed_symbols[&id].clone();
         }
 
-        fn print_doc(doc: &Doc, ps: &mut HashMap<ID, String>, uk: &mut HashSet<String>) -> String {
+        fn print_doc(
+            doc: &Doc,
+            ps: &mut HashMap<Symbol, String>,
+            uk: &mut HashSet<String>,
+        ) -> String {
             match doc {
                 Doc::String(s) => s.clone(),
                 Doc::Array(a) => {

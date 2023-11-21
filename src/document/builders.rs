@@ -1,6 +1,7 @@
 use std::num::NonZeroUsize;
 
-use super::{Align, Doc, DocCommand, Label, LineType, ID};
+use super::{Align, Doc, DocCommand, Label, LineType};
+use crate::common::Symbol;
 
 /// increase the level of indentation
 pub fn indent(contents: Doc) -> Doc {
@@ -42,7 +43,7 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
 /// The `id`` option can be used in if_break checks.
 pub fn group(
     contents: Doc,
-    id: Option<ID>,
+    id: Option<Symbol>,
     should_break: bool,
     expanded_states: Option<Vec<Box<Doc>>>,
 ) -> Doc {
@@ -84,7 +85,11 @@ pub fn dedent(contents: Doc) -> Doc {
 ///
 /// # None
 /// Returns none if states is empty.
-pub fn conditional_group(states: Vec<Box<Doc>>, id: Option<ID>, should_break: bool) -> Option<Doc> {
+pub fn conditional_group(
+    states: Vec<Box<Doc>>,
+    id: Option<Symbol>,
+    should_break: bool,
+) -> Option<Doc> {
     if states.is_empty() {
         return None;
     }
@@ -115,7 +120,7 @@ pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
 /// ```
 ///  
 /// group_id can be used to check another *already printed* group instead of the current group.
-pub fn if_break(break_contents: Doc, flat_contents: Option<Doc>, group_id: Option<ID>) -> Doc {
+pub fn if_break(break_contents: Doc, flat_contents: Option<Doc>, group_id: Option<Symbol>) -> Doc {
     Doc::DocCommand(DocCommand::IfBreak {
         break_contents: Box::new(break_contents),
         flat_contents: Box::new(flat_contents.unwrap_or(Doc::String("".into()))),
@@ -128,7 +133,7 @@ pub fn if_break(break_contents: Doc, flat_contents: Option<Doc>, group_id: Optio
 /// With negate: true, corresponds to if_break(doc, indent(doc), { groupId })
 ///
 /// It doesn't make sense to apply indentIfBreak to the current group because "indent if the current group is broken" is the normal behavior of indent. That's why groupId is required.
-pub fn indent_if_break(contents: Doc, group_id: ID, negate: bool) -> Doc {
+pub fn indent_if_break(contents: Doc, group_id: Symbol, negate: bool) -> Doc {
     Doc::DocCommand(DocCommand::IndentIfBreak {
         contents: Box::new(contents),
 

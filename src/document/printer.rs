@@ -3,14 +3,14 @@ use std::collections::HashMap;
 use unicode_width::UnicodeWidthStr;
 
 use crate::{
-    common::end_of_line::EndLine,
+    common::{end_of_line::EndLine, Symbol},
     document::{
         hardline_without_break_parent, utils::propagate_breaks, Break, DocCommand, LineType,
     },
     PrettyPrinter,
 };
 
-use super::{Align, Doc, ID};
+use super::{Align, Doc};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Mode {
@@ -690,7 +690,7 @@ fn fits(
     rest_commands: &[Command],
     mut width: isize,
     mut has_line_suffix: bool,
-    group_mode_map: &mut HashMap<ID, Mode>,
+    group_mode_map: &mut HashMap<Symbol, Mode>,
     must_be_flat: bool,
 ) -> bool {
     struct StrippedCommand<'a> {
