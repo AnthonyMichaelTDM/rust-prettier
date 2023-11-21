@@ -1,5 +1,8 @@
 use rust_prettier::{
-    document::{cursor, hardline, Doc},
+    document::{
+        builders::{cursor, hardline},
+        Doc,
+    },
     PrettyPrinter, PrettyPrinterBuilder,
 };
 

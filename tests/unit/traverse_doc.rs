@@ -1,4 +1,7 @@
-use rust_prettier::document::{find_in_doc, traverse_doc, Doc};
+use rust_prettier::document::{
+    utils::{find_in_doc, traverse_doc},
+    Doc,
+};
 
 fn doc() -> Doc {
     Doc::Array(vec![Doc::Array(vec![

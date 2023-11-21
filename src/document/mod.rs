@@ -1,11 +1,22 @@
-mod builders;
+pub mod builders;
 pub mod debug;
 pub mod printer;
-mod utils;
+pub mod utils;
 
 use std::{collections::VecDeque, fmt::Display};
 
 use crate::common::Symbol;
+
+// pub use builders::{
+//     add_alignment_to_doc, align, break_parent, conditional_group, cursor, dedent, dedent_to_root,
+//     fill, group, hardline, hardline_without_break_parent, if_break, indent, indent_if_break, join,
+//     label, line, line_suffix, line_suffix_boundary, literalline, literalline_without_break_parent,
+//     mark_as_root, softline, trim,
+// };
+// pub use utils::{
+//     can_break, find_in_doc, inherit_label, map_doc, normalize_doc, propagate_breaks, remove_lines,
+//     replace_end_of_line, strip_trailing_hardline, traverse_doc, traverse_doc_mut, will_break,
+// };
 
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Doc {

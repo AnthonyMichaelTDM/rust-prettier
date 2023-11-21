@@ -5,7 +5,8 @@ use unicode_width::UnicodeWidthStr;
 use crate::{
     common::{end_of_line::EndLine, Symbol},
     document::{
-        hardline_without_break_parent, utils::propagate_breaks, Break, DocCommand, LineType,
+        builders::hardline_without_break_parent, utils::propagate_breaks, Break, DocCommand,
+        LineType,
     },
     PrettyPrinter,
 };
@@ -54,7 +55,7 @@ pub enum FormattingError {
 
 impl Doc {
     pub fn format(&self, options: PrettyPrinter) -> Result<String, FormattingError> {
-        let mut group_mode_map: HashMap<ID, Mode> = HashMap::new();
+        let mut group_mode_map: HashMap<Symbol, Mode> = HashMap::new();
 
         let width = options.print_width.clamp(0, isize::MAX as usize);
         let new_line = options.end_of_line;

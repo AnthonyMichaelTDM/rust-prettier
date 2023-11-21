@@ -1,4 +1,8 @@
-use rust_prettier::document::{fill, hardline, strip_trailing_hardline, Doc};
+use rust_prettier::document::{
+    builders::{fill, hardline},
+    utils::strip_trailing_hardline,
+    Doc,
+};
 
 mod does_not_mutate_doc {
     use super::*;

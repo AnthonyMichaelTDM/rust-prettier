@@ -6,7 +6,7 @@ use std::collections::{HashSet, VecDeque};
 
 pub use traverse_docs::{traverse_doc, traverse_doc_mut};
 
-use super::{join, Break, Doc, DocCommand, LineType};
+use super::{builders::join, Break, Doc, DocCommand, LineType};
 
 /// Applies the given function `f` to each node in the `doc` tree, returning a new `Doc` tree with the results.
 ///
