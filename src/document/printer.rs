@@ -5,8 +5,7 @@ use unicode_width::UnicodeWidthStr;
 use crate::{
     common::{end_of_line::EndLine, Symbol},
     document::{
-        builders::hardline_without_break_parent, utils::propagate_breaks, Break, DocCommand,
-        LineType,
+        builders::hardline_without_break_parent, utils::propagate_breaks, DocCommand, LineType,
     },
     PrettyPrinter,
 };
@@ -58,6 +57,16 @@ impl Doc {
     ///
     /// Note: before getting to this point, `options.end_of_line` should have been infered (if it was "auto", it should've been changed to match the first newline in the input text),
     /// if this is not the case, we will change it to the default here
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use rust_prettier::document::{Doc, builders::*};
+    ///
+    /// let doc = concat(vec!["foo".into(), line_suffix(";".into())  ]);
+    ///
+    ///
+    /// ```
     ///
     /// # Errors
     /// - if the tree rooted as `self` has more than 1 cursor
@@ -146,16 +155,17 @@ impl Doc {
                 Self::DocCommand(DocCommand::Group {
                     id,
                     contents,
-                    should_break,
+                    break_: should_break,
                     expanded_states,
                 }) => {
                     match mode {
                         Mode::Flat if !should_remeasure => {
                             cmds.push(Command {
                                 indent,
-                                mode: match should_break {
-                                    Break::Yes => Mode::Break,
-                                    _ => Mode::Flat,
+                                mode: if should_break.should_break() {
+                                    Mode::Break
+                                } else {
+                                    Mode::Flat
                                 },
                                 doc: contents.as_ref().clone(),
                             });
@@ -172,7 +182,7 @@ impl Doc {
                             let rem = width - pos.clamp(0, isize::MAX as usize) as isize;
                             let has_line_suffix = !line_suffix.is_empty();
 
-                            if should_break == Break::Never
+                            if !should_break.should_break()
                                 && fits(&next, &cmds, rem, has_line_suffix, &group_mode_map, false)
                             {
                                 cmds.push(next);
@@ -197,7 +207,13 @@ impl Doc {
                                     unreachable!()
                                 };
 
-                                if should_break == Break::Never {
+                                if should_break.should_break() {
+                                    cmds.push(Command {
+                                        indent,
+                                        mode: Mode::Break,
+                                        doc: most_expanded.clone(),
+                                    });
+                                } else {
                                     for (i, state) in expanded_states.iter().enumerate() {
                                         if i + 1 >= expanded_states.len() {
                                             cmds.push(Command {
@@ -225,12 +241,6 @@ impl Doc {
                                             break;
                                         }
                                     }
-                                } else {
-                                    cmds.push(Command {
-                                        indent,
-                                        mode: Mode::Break,
-                                        doc: most_expanded.clone(),
-                                    });
                                 }
                             } else {
                                 cmds.push(Command {
@@ -762,17 +772,17 @@ fn fits(
             Doc::DocCommand(DocCommand::Group {
                 id: _,
                 contents,
-                should_break,
+                break_: should_break,
                 expanded_states,
             }) => {
-                if must_be_flat && *should_break != Break::Never {
+                if must_be_flat && should_break.should_break() {
                     return false;
                 }
 
-                let group_mode = if *should_break == Break::Never {
-                    mode
-                } else {
+                let group_mode = if should_break.should_break() {
                     Mode::Break
+                } else {
+                    mode
                 };
                 // The most expanded state takes up the least space on the current line.
                 let contents = expanded_states

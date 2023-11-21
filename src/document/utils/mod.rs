@@ -87,7 +87,7 @@ mod map_doc_fns {
                 expanded_states,
                 contents,
                 id,
-                should_break,
+                break_: should_break,
             }) => {
                 let (expanded_states, contents) = match expanded_states {
                     Some(states) => (
@@ -105,7 +105,7 @@ mod map_doc_fns {
                     expanded_states,
                     contents: Box::new(contents),
                     id: id.clone(),
-                    should_break: should_break.clone(),
+                    break_: should_break.clone(),
                 }))
             }
             Doc::DocCommand(DocCommand::Align {
@@ -202,7 +202,7 @@ pub fn will_break(doc: &Doc) -> bool {
             d,
             Doc::DocCommand(
                 DocCommand::Group {
-                    should_break: Break::Yes,
+                    break_: Break::Yes,
                     ..
                 } | DocCommand::Line(LineType::Hard)
                     | DocCommand::BreakParent
@@ -217,12 +217,12 @@ fn break_parent_group(parent_group: &mut Doc) {
     // the user is expected to manually handle what breaks.
     if let Doc::DocCommand(DocCommand::Group {
         expanded_states,
-        should_break,
+        break_: should_break,
         ..
     }) = parent_group
     {
         if (expanded_states.is_none() || expanded_states.as_ref().unwrap().is_empty())
-            && *should_break == Break::Never
+            && !should_break.should_break()
         {
             // value to distinguish propagated group breaks
             // and not to print them as `group(..., { break: true })` in `--debug-print-doc`.
@@ -236,18 +236,18 @@ fn break_parent_group(parent_group: &mut Doc) {
 /// ```
 /// use rust_prettier::{PrettyPrinter, document::{*, builders::*, utils::*}};
 ///
-/// let mut before = group(
+/// let mut doc = group(
 ///     hardline(),
 ///     None,
 ///     false,
 ///     None
 /// );
-/// propagate_breaks(&mut before);
+/// propagate_breaks(&mut doc);
 ///
-/// assert_eq!(before, Doc::DocCommand(DocCommand::Group {
+/// assert_eq!(doc, Doc::DocCommand(DocCommand::Group {
 ///     id: None,
 ///     contents: hardline().into(),
-///     should_break: Break::Propagated,
+///     break_: Break::Propagated,
 ///     expanded_states: None
 /// }));
 /// ```
@@ -279,9 +279,13 @@ pub fn propagate_breaks(doc: &mut Doc) {
         },
         Some(
             &|d: &mut Doc, (group_stack, _): &mut (&mut Vec<*mut Doc>, _)| {
-                if let Doc::DocCommand(DocCommand::Group { should_break, .. }) = d {
+                if let Doc::DocCommand(DocCommand::Group {
+                    break_: should_break,
+                    ..
+                }) = d
+                {
                     group_stack.pop();
-                    if *should_break != Break::Never {
+                    if should_break.should_break() {
                         // safe because we know that `d` is part of the tree rooted at `Doc`, and therefore outlives this function
                         if let Some(parent_group) = group_stack
                             .last_mut()
@@ -357,12 +361,12 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
         Doc::DocCommand(DocCommand::Group {
             id,
             contents,
-            should_break,
+            break_: should_break,
             expanded_states,
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
             contents: Box::new(strip_trailing_hardline_from_doc(contents)),
-            should_break: should_break.clone(),
+            break_: should_break.clone(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
@@ -429,11 +433,11 @@ pub fn clean_doc(doc: &Doc) -> Doc {
             Doc::DocCommand(DocCommand::Group {
                 id,
                 contents,
-                should_break,
+                break_: should_break,
                 expanded_states,
             }) => {
                 if contents.as_ref().is_empty()
-                    && Break::Never == *should_break
+                    && !should_break.should_break()
                     && id.is_none()
                     && (expanded_states.is_none()
                         || matches!(expanded_states, Some(states) if states.is_empty() || states.iter().all(Doc::is_empty)))
@@ -445,7 +449,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                     Doc::DocCommand(DocCommand::Group {
                         id: inner_id,
                         contents: _,
-                        should_break: inner_should_break,
+                        break_: inner_should_break,
                         expanded_states: inner_expanded_states,
                     }) if id == inner_id
                         && should_break == inner_should_break
@@ -581,12 +585,12 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
         Doc::DocCommand(DocCommand::Group {
             id,
             contents,
-            should_break,
+            break_: should_break,
             expanded_states,
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
             contents: Box::new(normalize_doc(contents)),
-            should_break: should_break.clone(),
+            break_: should_break.clone(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::LineSuffix { contents }) => {

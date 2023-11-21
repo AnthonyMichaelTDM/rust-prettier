@@ -58,7 +58,38 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
 ///
 /// The `id` option can be used in `if_break` checks.
 ///
-/// TODO: Unit test rendering of groups, its not working properly
+/// # Example
+/// ```
+/// use rust_prettier::{document::builders::*, PrettyPrinter};
+///
+/// let doc = group(
+///     concat(vec![
+///         "[".into(),indent(group(concat(vec![ softline(),
+///             "1,".into(), softline(),concat(vec![
+///             "function () {".into(),indent(hardline()),
+///                 "return 2;".into(),hardline(),
+///      dedent("},".into()),]), softline(),
+///             "3,".into(),dedent(softline()),]),None,false,None,)),
+///         "];".into(),
+///     ]),
+///     None,
+///     false,
+///     None,
+/// );
+///
+/// let options = PrettyPrinter::default();
+///
+/// let formatted = doc.format(&options).unwrap();
+///
+/// assert_eq!(formatted,
+/// r#"[
+///     1,
+///     function () {
+///         return 2;
+///     },
+///     3,
+/// ];"#);
+/// ```
 #[must_use]
 pub fn group(
     contents: Doc,
@@ -69,7 +100,7 @@ pub fn group(
     Doc::DocCommand(DocCommand::Group {
         id,
         contents: Box::new(contents),
-        should_break: should_break.into(),
+        break_: should_break.into(),
         expanded_states,
     })
 }

@@ -82,7 +82,7 @@ pub enum DocCommand {
     Group {
         id: Option<Symbol>,
         contents: Box<Doc>,
-        should_break: Break,
+        break_: Break,
         expanded_states: Option<Vec<Doc>>,
     },
     IfBreak {
@@ -142,6 +142,13 @@ impl From<bool> for Break {
         } else {
             Self::Never
         }
+    }
+}
+
+impl Break {
+    #[must_use]
+    pub const fn should_break(&self) -> bool {
+        matches!(self, Self::Propagated | Self::Yes)
     }
 }
 

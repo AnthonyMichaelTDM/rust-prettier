@@ -149,7 +149,7 @@ fn print_doc(doc: &Doc, ps: &mut HashMap<Symbol, String>, uk: &mut HashSet<Strin
         Doc::DocCommand(DocCommand::Group {
             id,
             contents,
-            should_break,
+            break_: should_break,
             expanded_states,
         }) => {
             let mut options_parts = Vec::new();
@@ -234,12 +234,12 @@ fn flatten_doc(doc: &Doc) -> Doc {
         Doc::DocCommand(DocCommand::Group {
             contents,
             id,
-            should_break,
+            break_: should_break,
             expanded_states,
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
             contents: flatten_doc(contents).into(),
-            should_break: should_break.clone(),
+            break_: should_break.clone(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::Fill { parts }) => Doc::DocCommand(DocCommand::Fill {
