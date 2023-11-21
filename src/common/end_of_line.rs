@@ -1,6 +1,7 @@
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash)]
 pub enum EndLine {
     Cr,
+    #[default]
     Lf,
     CrLf,
 }
@@ -8,53 +9,47 @@ pub enum EndLine {
 impl ToString for EndLine {
     fn to_string(&self) -> String {
         match self {
-            EndLine::Cr => "\r",
-            EndLine::Lf => "\n",
-            EndLine::CrLf => "\r\n",
+            Self::Cr => "\r",
+            Self::Lf => "\n",
+            Self::CrLf => "\r\n",
         }
         .into()
     }
 }
 
 impl From<&str> for EndLine {
-    fn from(input: &str) -> EndLine {
+    fn from(input: &str) -> Self {
         match input {
-            "\r" => EndLine::Cr,
-            "\n" => EndLine::Lf,
-            "\r\n" => EndLine::CrLf,
-            _ => panic!("invalid end of line"),
+            "\r" => Self::Cr,
+            "\n" => Self::Lf,
+            "\r\n" => Self::CrLf,
+            _ => Self::default(),
         }
     }
 }
-
-impl Default for EndLine {
-    fn default() -> Self {
-        EndLine::Lf
-    }
-}
-
 impl EndLine {
-    pub fn guess_from_str(input: impl AsRef<str>) -> EndLine {
+    pub fn guess_from_str(input: impl AsRef<str>) -> Self {
         let input = input.as_ref();
         if input.contains("\r\n") {
-            EndLine::CrLf
-        } else if input.contains("\r") {
-            EndLine::Cr
+            Self::CrLf
+        } else if input.contains('\r') {
+            Self::Cr
         } else {
-            EndLine::Lf
+            Self::Lf
         }
     }
 
     pub fn count_occurrences(&self, input: impl AsRef<str>) -> usize {
         let input = input.as_ref();
         match self {
-            EndLine::Cr => input.matches("\r").count(),
-            EndLine::Lf => input.matches("\n").count(),
-            EndLine::CrLf => input.matches("\r\n").count(),
+            Self::Cr => input.matches('\r').count(),
+            Self::Lf => input.matches('\n').count(),
+            Self::CrLf => input.matches("\r\n").count(),
         }
     }
 }
 
+#[allow(clippy::module_name_repetitions)]
 pub fn normalize_end_of_line(input: impl AsRef<str>) -> String {
-    input.as_ref().replace("\r\n", "\n").replace("\r", "\n")
+    input.as_ref().replace("\r\n", "\n").replace('\r', "\n")
 }

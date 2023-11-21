@@ -9,13 +9,15 @@ enum TraverseDoc<'a> {
     ExitMarker(&'a Doc),
 }
 
-pub fn traverse_doc<State>(
+pub fn traverse_doc<State, ExitCallbackFN>(
     doc: &Doc,
     state: &mut State,
     on_enter: impl Fn(&Doc, &mut State) -> bool,
-    on_exit: Option<Box<dyn Fn(&Doc, &mut State) -> ()>>,
+    on_exit: Option<&ExitCallbackFN>,
     should_traverse_conditional_groups: Option<bool>,
-) {
+) where
+    ExitCallbackFN: Fn(&Doc, &mut State),
+{
     let mut stack = vec![TraverseDoc::Doc(doc)];
 
     while !stack.is_empty() {
@@ -32,7 +34,7 @@ pub fn traverse_doc<State>(
 
         // push the doc back onto the stack so that we can
         // call the exit callback next time we see it (which will happen after all of its children have been processed)
-        if let Some(_) = on_exit {
+        if on_exit.is_some() {
             stack.push(TraverseDoc::ExitMarker(doc));
         }
 
@@ -48,11 +50,13 @@ pub fn traverse_doc<State>(
 
         match doc {
             Doc::String(_)
-            | Doc::DocCommand(DocCommand::Cursor { .. })
-            | Doc::DocCommand(DocCommand::Trim)
-            | Doc::DocCommand(DocCommand::LineSuffixBoundary)
-            | Doc::DocCommand(DocCommand::Line(_))
-            | Doc::DocCommand(DocCommand::BreakParent) => {
+            | Doc::DocCommand(
+                DocCommand::Cursor { .. }
+                | DocCommand::Trim
+                | DocCommand::LineSuffixBoundary
+                | DocCommand::Line(_)
+                | DocCommand::BreakParent,
+            ) => {
                 // no children
             }
             Doc::DocCommand(DocCommand::Fill { parts }) => {
@@ -88,12 +92,14 @@ pub fn traverse_doc<State>(
                 }
             },
 
-            Doc::DocCommand(DocCommand::Align { contents, .. })
-            | Doc::DocCommand(DocCommand::Indent { contents })
-            | Doc::DocCommand(DocCommand::IndentIfBreak { contents, .. })
-            | Doc::DocCommand(DocCommand::Label { contents, .. })
-            | Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
-                stack.push(TraverseDoc::Doc(contents))
+            Doc::DocCommand(
+                DocCommand::Align { contents, .. }
+                | DocCommand::Indent { contents }
+                | DocCommand::IndentIfBreak { contents, .. }
+                | DocCommand::Label { contents, .. }
+                | DocCommand::LineSuffix { contents },
+            ) => {
+                stack.push(TraverseDoc::Doc(contents));
             }
         }
     }
@@ -117,15 +123,23 @@ impl<'a> TraverseDocMut<'a> {
 ///
 /// # Safety
 ///
-/// as long as the on_enter and on_exit callbacks do not mutate the doc in a way that would
-/// change the structure of the doc, this function is safe.
-pub fn traverse_doc_mut<'a, State>(
-    doc: &'a mut Doc,
+/// To ensure the function executes without panicing, do the following
+///
+/// - Ensure that any given node will not deallocate before being fully explored (entered and exited)
+/// - If your callbacks save the `Doc` they get as their first argument to some external state, ensure that the tree will outlive that state
+///
+/// # Panics
+///
+/// if any part of the doc tree is deallocated before being fully explored (entered and exited)
+pub fn traverse_doc_mut<State, ExitCallbackFN>(
+    doc: &mut Doc,
     state: &mut State,
     on_enter: impl Fn(&mut Doc, &mut State) -> bool,
-    on_exit: Option<Box<dyn Fn(&mut Doc, &mut State) -> ()>>,
+    on_exit: Option<&ExitCallbackFN>,
     should_traverse_conditional_groups: Option<bool>,
-) {
+) where
+    ExitCallbackFN: Fn(&mut Doc, &mut State),
+{
     // let mut current_doc;
     let mut stack = vec![TraverseDocMut::new(doc)];
     while !stack.is_empty() {
@@ -142,7 +156,7 @@ pub fn traverse_doc_mut<'a, State>(
 
         // push the doc back onto the stack so that we can
         // call the exit callback next time we see it (which will happen after all of its children have been processed)
-        if let Some(_) = on_exit {
+        if on_exit.is_some() {
             stack.push(TraverseDocMut::ExitMarker(current_doc.clone()));
             // unsafe { Rc::decrement_strong_count(&mut current_doc) };
         }
@@ -158,11 +172,13 @@ pub fn traverse_doc_mut<'a, State>(
         // when the stack is popped.
         match unsafe { current_doc.as_ptr().as_mut().unwrap() } {
             Doc::String(_)
-            | Doc::DocCommand(DocCommand::Cursor { .. })
-            | Doc::DocCommand(DocCommand::Trim)
-            | Doc::DocCommand(DocCommand::LineSuffixBoundary)
-            | Doc::DocCommand(DocCommand::Line(_))
-            | Doc::DocCommand(DocCommand::BreakParent) => {
+            | Doc::DocCommand(
+                DocCommand::Cursor { .. }
+                | DocCommand::Trim
+                | DocCommand::LineSuffixBoundary
+                | DocCommand::Line(_)
+                | DocCommand::BreakParent,
+            ) => {
                 // no children
             }
             Doc::DocCommand(DocCommand::Fill { parts }) => {
@@ -198,12 +214,14 @@ pub fn traverse_doc_mut<'a, State>(
                 }
             },
 
-            Doc::DocCommand(DocCommand::Align { contents, .. })
-            | Doc::DocCommand(DocCommand::Indent { contents })
-            | Doc::DocCommand(DocCommand::IndentIfBreak { contents, .. })
-            | Doc::DocCommand(DocCommand::Label { contents, .. })
-            | Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
-                stack.push(TraverseDocMut::new(contents))
+            Doc::DocCommand(
+                DocCommand::Align { contents, .. }
+                | DocCommand::Indent { contents }
+                | DocCommand::IndentIfBreak { contents, .. }
+                | DocCommand::Label { contents, .. }
+                | DocCommand::LineSuffix { contents },
+            ) => {
+                stack.push(TraverseDocMut::new(contents));
             }
         };
     }
@@ -224,21 +242,18 @@ mod traverse_doc_mut_tests {
         traverse_doc_mut(
             &mut doc,
             &mut count,
-            |doc, state| {
-                match doc {
-                    Doc::String(s) => {
-                        *s = s.to_uppercase();
-                    }
-                    _ => {}
+            |doc: &mut Doc, state: &mut i32| {
+                if let Doc::String(s) = doc {
+                    *s = s.to_uppercase();
                 }
                 *state += 1;
                 // println!("{:?} ", doc);
                 true
             },
-            Some(Box::new(|_, state| {
+            Some(&|_: &mut _, state: &mut i32| {
                 // println!("{:?} ", doc);
                 *state += 1;
-            })),
+            }),
             // None,
             None,
         );
@@ -265,17 +280,14 @@ mod traverse_doc_mut_tests {
             &mut doc,
             &mut count,
             |doc, state| {
-                match doc {
-                    Doc::String(s) => {
-                        *s = s.to_uppercase();
-                    }
-                    _ => {}
+                if let Doc::String(s) = doc {
+                    *s = s.to_uppercase();
                 }
                 *state += 1;
                 // println!("{:?} ", doc);
                 true
             },
-            None,
+            None::<&fn(&mut _, &mut _)>,
             // None,
             None,
         );

@@ -50,7 +50,7 @@ impl From<String> for Doc {
 impl From<Vec<Doc>> for Doc {
     /// moves inner docs into the heap
     fn from(t: Vec<Doc>) -> Doc {
-        Doc::Array(t.into_iter().map(|d| Box::new(d)).collect())
+        Doc::Array(t.into_iter().map(Box::new).collect())
     }
 }
 
@@ -139,19 +139,19 @@ pub enum Break {
 impl Display for Break {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Break::Yes => write!(f, "{:?}", true),
-            Break::Never => write!(f, "{:?}", false),
-            Break::Propagated => write!(f, "propagated"),
+            Self::Yes => write!(f, "{:?}", true),
+            Self::Never => write!(f, "{:?}", false),
+            Self::Propagated => write!(f, "propagated"),
         }
     }
 }
 
 impl From<bool> for Break {
-    fn from(t: bool) -> Break {
+    fn from(t: bool) -> Self {
         if t {
-            Break::Yes
+            Self::Yes
         } else {
-            Break::Never
+            Self::Never
         }
     }
 }
@@ -165,24 +165,27 @@ pub enum LineType {
 }
 
 impl LineType {
-    pub fn is_hard(&self) -> bool {
+    #[must_use]
+    pub const fn is_hard(&self) -> bool {
         match self {
-            LineType::Hard | LineType::Literal => true,
-            LineType::Soft | LineType::None => false,
+            Self::Hard | Self::Literal => true,
+            Self::Soft | Self::None => false,
         }
     }
 
-    pub fn is_soft(&self) -> bool {
+    #[must_use]
+    pub const fn is_soft(&self) -> bool {
         match self {
-            LineType::Soft => true,
-            LineType::Hard | LineType::Literal | LineType::None => false,
+            Self::Soft => true,
+            Self::Hard | Self::Literal | Self::None => false,
         }
     }
 
-    pub fn is_literal(&self) -> bool {
+    #[must_use]
+    pub const fn is_literal(&self) -> bool {
         match self {
-            LineType::Literal => true,
-            LineType::Soft | LineType::Hard | LineType::None => false,
+            Self::Literal => true,
+            Self::Soft | Self::Hard | Self::None => false,
         }
     }
 }
@@ -195,7 +198,7 @@ pub enum Label {
 impl Display for Label {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Label::MethodChain => write!(f, "method-chain"),
+            Self::MethodChain => write!(f, "method-chain"),
         }
     }
 }

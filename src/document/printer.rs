@@ -80,23 +80,20 @@ impl Doc {
         let mut cmds = vec![Command {
             indent: Indent::root(),
             mode: Mode::Break,
-            doc: doc,
+            doc,
         }];
         let mut out: Vec<OutputItem> = Vec::new();
         let mut should_remeasure = false;
         let mut line_suffix: Vec<Command> = Vec::new();
         let mut printed_cursor_count = 0;
 
-        while !cmds.is_empty() {
-            #[allow(clippy::unwrap_used)] // safe because we check for empty above
-            let Command { indent, mode, doc } = cmds.pop().unwrap();
-
+        while let Some(Command { indent, mode, doc }) = cmds.pop() {
             match doc {
-                Doc::String(s) => {
-                    let formatted = if new_line != EndLine::Lf {
-                        s.replace("\n", &new_line.to_string())
-                    } else {
+                Self::String(s) => {
+                    let formatted = if new_line == EndLine::Lf {
                         s
+                    } else {
+                        s.replace('\n', &new_line.to_string())
                     };
                     // Plugins may print single string, should skip measure the width
                     if !cmds.is_empty() {
@@ -104,7 +101,7 @@ impl Doc {
                     }
                     out.push(OutputItem::Content(formatted));
                 }
-                Doc::Array(parts) => {
+                Self::Array(parts) => {
                     for part in parts.iter().rev() {
                         cmds.push(Command {
                             indent: indent.clone(),
@@ -114,34 +111,34 @@ impl Doc {
                     }
                 }
 
-                Doc::DocCommand(DocCommand::Cursor) => {
-                    if printed_cursor_count >= 2 {
+                Self::DocCommand(DocCommand::Cursor) => {
+                    if printed_cursor_count > 1 {
                         return Err(FormattingError::TooManyCursors);
                     }
                     out.push(OutputItem::Cursor);
                     printed_cursor_count += 1;
                 }
 
-                Doc::DocCommand(DocCommand::Indent { contents }) => cmds.push(Command {
-                    indent: make_indent(&indent, &options),
+                Self::DocCommand(DocCommand::Indent { contents }) => cmds.push(Command {
+                    indent: make_indent(&indent, options),
                     mode,
-                    doc: contents.as_ref().to_owned(),
+                    doc: contents.as_ref().clone(),
                 }),
 
-                Doc::DocCommand(DocCommand::Align {
+                Self::DocCommand(DocCommand::Align {
                     contents,
                     alignment,
                 }) => cmds.push(Command {
-                    indent: make_align(&indent, &options, alignment),
+                    indent: make_align(&indent, options, alignment),
                     mode,
-                    doc: contents.as_ref().to_owned(),
+                    doc: contents.as_ref().clone(),
                 }),
 
-                Doc::DocCommand(DocCommand::Trim) => {
+                Self::DocCommand(DocCommand::Trim) => {
                     pos -= trim(&mut out);
                 }
 
-                Doc::DocCommand(DocCommand::Group {
+                Self::DocCommand(DocCommand::Group {
                     id,
                     contents,
                     should_break,
@@ -155,7 +152,7 @@ impl Doc {
                                     Break::Yes => Mode::Break,
                                     _ => Mode::Flat,
                                 },
-                                doc: contents.as_ref().to_owned(),
+                                doc: contents.as_ref().clone(),
                             });
                         }
                         _ => {
@@ -164,24 +161,18 @@ impl Doc {
                             let next = Command {
                                 indent: indent.clone(),
                                 mode: Mode::Flat,
-                                doc: contents.as_ref().to_owned(),
+                                doc: contents.as_ref().clone(),
                             };
-                            let rem = width as isize - pos as isize;
+                            #[allow(clippy::cast_possible_wrap)]
+                            let rem = width - pos.clamp(0, isize::MAX as usize) as isize;
                             let has_line_suffix = !line_suffix.is_empty();
 
                             if should_break == Break::Never
-                                && fits(
-                                    &next,
-                                    &cmds,
-                                    rem,
-                                    has_line_suffix,
-                                    &mut group_mode_map,
-                                    false,
-                                )
+                                && fits(&next, &cmds, rem, has_line_suffix, &group_mode_map, false)
                             {
-                                cmds.push(next)
+                                cmds.push(next);
                             } else if expanded_states.is_some()
-                                && !expanded_states.as_deref().unwrap_or_else(|| &[]).is_empty()
+                                && !expanded_states.as_deref().unwrap_or(&[]).is_empty()
                             {
                                 // Expanded states are a rare case where a document
                                 // can manually provide multiple representations of
@@ -191,20 +182,17 @@ impl Doc {
                                 // group has these, we need to manually go through
                                 // these states and find the first one that fits.
                                 // eslint-disable-next-line no-lonely-if
+                                let Some(expanded_states) = expanded_states else {
+                                    // safe because we checked`` for none
+                                    unreachable!()
+                                };
                                 #[allow(clippy::unwrap_used)]
-                                // safe because we check for empty above
-                                let expanded_states = expanded_states.unwrap();
-                                #[allow(clippy::unwrap_used)]
-                                // safe because we check for empty above
-                                let most_expanded = expanded_states.last().unwrap();
+                                let Some(most_expanded) = expanded_states.last() else {
+                                    // safe because we check for empty above
+                                    unreachable!()
+                                };
 
-                                if should_break != Break::Never {
-                                    cmds.push(Command {
-                                        indent,
-                                        mode: Mode::Break,
-                                        doc: most_expanded.as_ref().to_owned(),
-                                    });
-                                } else {
+                                if should_break == Break::Never {
                                     for (i, state) in expanded_states.iter().enumerate() {
                                         if i + 1 >= expanded_states.len() {
                                             cmds.push(Command {
@@ -213,26 +201,31 @@ impl Doc {
                                                 doc: state.as_ref().to_owned(),
                                             });
                                             break;
-                                        } else {
-                                            let command = Command {
-                                                indent: indent.clone(),
-                                                mode: Mode::Flat,
+                                        }
+                                        let command = Command {
+                                            indent: indent.clone(),
+                                            mode: Mode::Flat,
                                                 doc: state.as_ref().to_owned(),
-                                            };
+                                        };
 
-                                            if fits(
-                                                &command,
-                                                &cmds,
-                                                rem,
-                                                has_line_suffix,
-                                                &mut group_mode_map,
-                                                false,
-                                            ) {
-                                                cmds.push(command);
-                                                break;
-                                            }
+                                        if fits(
+                                            &command,
+                                            &cmds,
+                                            rem,
+                                            has_line_suffix,
+                                            &group_mode_map,
+                                            false,
+                                        ) {
+                                            cmds.push(command);
+                                            break;
                                         }
                                     }
+                                } else {
+                                    cmds.push(Command {
+                                        indent,
+                                        mode: Mode::Break,
+                                        doc: most_expanded.clone(),
+                                    });
                                 }
                             } else {
                                 cmds.push(Command {
@@ -244,9 +237,8 @@ impl Doc {
                         }
                     }
 
-                    if id.is_some() && !cmds.is_empty() {
-                        #[allow(clippy::unwrap_used)] // we check for none above
-                        group_mode_map.insert(id.unwrap(), cmds.last().unwrap().mode);
+                    if let (Some(id), Some(cmd)) = (id, cmds.last()) {
+                        group_mode_map.insert(id, cmd.mode);
                     }
                 }
                 // # Original Implementation Notes
@@ -270,14 +262,13 @@ impl Doc {
                 //   "break".
                 // * Neither content item fits on the line without breaking
                 //   -> output the first content item and the whitespace with "break".
-                Doc::DocCommand(DocCommand::Fill { mut parts }) => {
-                    let rem = width as isize - pos as isize;
+                Self::DocCommand(DocCommand::Fill { mut parts }) => {
+                    #[allow(clippy::cast_possible_wrap)]
+                    let rem = width - pos.clamp(0, isize::MAX as usize) as isize;
 
-                    if parts.is_empty() {
+                    let Some(content) = parts.pop_front() else {
                         continue;
-                    }
-                    #[allow(clippy::unwrap_used)] // safe because we check for empty above
-                    let content = parts.pop_front().unwrap();
+                    };
                     let whitespace = parts.pop_front();
 
                     let content_flat_cmd = Command {
@@ -294,13 +285,13 @@ impl Doc {
                         &content_flat_cmd,
                         &[],
                         rem,
-                        line_suffix.len() > 0,
-                        &mut group_mode_map,
+                        !line_suffix.is_empty(),
+                        &group_mode_map,
                         true,
                     );
 
-                    // equivalent to the original implementation's `if (parts.length === 1)`
-                    if whitespace.is_none() {
+                    let Some(whitespace) = whitespace else {
+                        // equivalent to the original implementation's `if (parts.length === 1)`
                         debug_assert!(parts.is_empty());
                         if content_fits {
                             cmds.push(content_flat_cmd);
@@ -308,24 +299,26 @@ impl Doc {
                             cmds.push(content_break_cmd);
                         }
                         continue;
-                    }
-                    // we know that whitespace is Some, so we can unwrap it
-                    #[allow(clippy::unwrap_used)] // safe because we check for none above
-                    let whitespace = whitespace.unwrap();
+                    };
 
                     let whitespace_flat_cmd = Command {
                         indent: indent.clone(),
                         mode: Mode::Flat,
-                        doc: whitespace.as_ref().to_owned(),
+                        doc: whitespace.clone(),
                     };
                     let whitespace_break_cmd = Command {
                         indent: indent.clone(),
                         mode: Mode::Break,
-                        doc: whitespace.as_ref().to_owned(),
+                        doc: whitespace.clone(),
                     };
 
-                    // equivalent to the original implementation's `if (parts.length === 2)`
-                    if parts.is_empty() {
+                    // At this point we've handled the first pair (context, separator)
+                    // and will create a new fill doc for the rest of the content.
+                    // Ideally we wouldn't mutate the array here but copying all the
+                    // elements to a new array would make this algorithm quadratic,
+                    // which is unusable for large arrays (e.g. large texts in JSX).
+                    let Some(second_content) = parts.front() else {
+                        // equivalent to the original implementation's `if (parts.length === 2)`
                         if content_fits {
                             cmds.push(whitespace_flat_cmd);
                             cmds.push(content_flat_cmd);
@@ -334,19 +327,11 @@ impl Doc {
                             cmds.push(content_break_cmd);
                         }
                         continue;
-                    }
-
-                    // At this point we've handled the first pair (context, separator)
-                    // and will create a new fill doc for the rest of the content.
-                    // Ideally we wouldn't mutate the array here but copying all the
-                    // elements to a new array would make this algorithm quadratic,
-                    // which is unusable for large arrays (e.g. large texts in JSX).
-                    #[allow(clippy::unwrap_used)] // safe because we check for empty above
-                    let second_content = parts.front().unwrap();
+                    };
                     let remaining_cmd = Command {
                         indent: indent.clone(),
                         mode,
-                        doc: Doc::DocCommand(DocCommand::Fill {
+                        doc: Self::DocCommand(DocCommand::Fill {
                             parts: parts.clone(),
                         }),
                     };
@@ -355,76 +340,74 @@ impl Doc {
                         &Command {
                             indent: indent.clone(),
                             mode: Mode::Flat,
-                            doc: Doc::from(vec![
-                                content.to_owned(),
-                                whitespace.to_owned(),
-                                second_content.to_owned(),
+                            doc: Self::from(vec![
+                                content.clone(),
+                                whitespace.clone(),
+                                second_content.clone(),
                             ]),
                         },
-                        &mut [],
+                        &[],
                         rem,
-                        line_suffix.len() > 0,
-                        &mut group_mode_map,
+                        !line_suffix.is_empty(),
+                        &group_mode_map,
                         true,
                     );
 
+                    cmds.push(remaining_cmd);
                     if first_and_second_fit {
-                        cmds.push(remaining_cmd);
                         cmds.push(whitespace_flat_cmd);
                         cmds.push(content_flat_cmd);
                     } else if content_fits {
-                        cmds.push(remaining_cmd);
                         cmds.push(whitespace_break_cmd);
                         cmds.push(content_flat_cmd);
                     } else {
-                        cmds.push(remaining_cmd);
                         cmds.push(whitespace_break_cmd);
                         cmds.push(content_break_cmd);
                     }
                 }
 
-                Doc::DocCommand(DocCommand::IfBreak {
+                Self::DocCommand(DocCommand::IfBreak {
                     break_contents,
                     flat_contents,
                     group_id,
                 }) => {
                     let group_mode = group_id
-                        .and_then(|id| group_mode_map.get(&id).cloned())
+                        .and_then(|id| group_mode_map.get(&id).copied())
                         .unwrap_or(mode);
                     match group_mode {
                         Mode::Break => {
                             cmds.push(Command {
                                 indent,
                                 mode, // TODO: it's like this in original implementation, but shouldn't this be Mode::Break?
-                                doc: break_contents.as_ref().to_owned(),
+                                doc: break_contents.as_ref().clone(),
                             });
                         }
                         Mode::Flat => {
                             cmds.push(Command {
                                 indent,
                                 mode,
-                                doc: flat_contents.as_ref().to_owned(),
+                                doc: flat_contents.as_ref().clone(),
                             });
                         }
                     }
                 }
-                Doc::DocCommand(DocCommand::IndentIfBreak {
+                Self::DocCommand(DocCommand::IndentIfBreak {
                     contents,
                     group_id,
                     negate,
                 }) => {
                     let group_mode = group_id
-                        .and_then(|id| group_mode_map.get(&id).cloned())
+                        .and_then(|id| group_mode_map.get(&id).copied())
                         .unwrap_or(mode);
                     match group_mode {
                         Mode::Break => cmds.push(Command {
                             indent,
                             mode,
                             doc: if negate {
-                                contents.as_ref().to_owned()
+                                contents.as_ref().clone()
                             } else {
-                                Doc::DocCommand(DocCommand::Indent {
-                                    contents: Box::new(contents.as_ref().to_owned()),
+                                Self::DocCommand(DocCommand::Indent {
+                                    contents: Box::new(contents.as_ref().clone()),
                                 })
                             },
                         }),
@@ -432,34 +415,34 @@ impl Doc {
                             indent,
                             mode,
                             doc: if negate {
-                                Doc::DocCommand(DocCommand::Indent {
-                                    contents: Box::new(contents.as_ref().to_owned()),
+                                Self::DocCommand(DocCommand::Indent {
+                                    contents: Box::new(contents.as_ref().clone()),
                                 })
                             } else {
-                                contents.as_ref().to_owned()
+                                contents.as_ref().clone()
                             },
                         }),
                     }
                 }
 
-                Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
+                Self::DocCommand(DocCommand::LineSuffix { contents }) => {
                     line_suffix.push(Command {
                         indent,
                         mode,
-                        doc: contents.as_ref().to_owned(),
+                        doc: contents.as_ref().clone(),
                     });
                 }
-                Doc::DocCommand(DocCommand::LineSuffixBoundary) => {
+                Self::DocCommand(DocCommand::LineSuffixBoundary) => {
                     if !line_suffix.is_empty() {
                         cmds.push(Command {
                             indent,
                             mode,
                             doc: hardline_without_break_parent(),
-                        })
+                        });
                     }
                 }
 
-                Doc::DocCommand(DocCommand::Line(line_type)) => {
+                Self::DocCommand(DocCommand::Line(line_type)) => {
                     if mode == Mode::Flat {
                         match line_type {
                             crate::document::LineType::Hard
@@ -489,12 +472,13 @@ impl Doc {
                             mode,
                             doc: hardline_without_break_parent(),
                         });
+                        #[allow(clippy::iter_with_drain)]
+                        // we want to consume the vector without moving it
                         cmds.extend(line_suffix.drain(..).rev());
                     } else if line_type == LineType::Literal {
+                        out.push(OutputItem::Content(new_line.to_string()));
                         if let Some(root_indent) = indent.root {
-                            out.push(OutputItem::Content(new_line.to_string()));
                             out.push(OutputItem::Content(root_indent.value.clone()));
-                            pos = root_indent.length;
                         } else {
                             out.push(OutputItem::Content(new_line.to_string()));
                             pos = 0;
@@ -506,20 +490,22 @@ impl Doc {
                     }
                 }
 
-                Doc::DocCommand(DocCommand::Label { contents, .. }) => {
+                Self::DocCommand(DocCommand::Label { contents, .. }) => {
                     cmds.push(Command {
                         indent,
                         mode,
-                        doc: contents.as_ref().to_owned(),
+                        doc: contents.as_ref().clone(),
                     });
                 }
 
-                Doc::DocCommand(DocCommand::BreakParent) => {} // do nothing
+                Self::DocCommand(DocCommand::BreakParent) => {} // do nothing
             }
 
             // Flush remaining line-suffix contents at the end of the document, in case
             // there is no new line after the line-suffix.
-            if cmds.is_empty() && line_suffix.len() > 0 {
+            if cmds.is_empty() && !line_suffix.is_empty() {
+                #[allow(clippy::iter_with_drain)]
+                // this is indeed what we want to do, we want to consume and empty `line_suffix` w/o moving it
                 cmds.extend(line_suffix.drain(..).rev());
             }
         }
@@ -528,17 +514,16 @@ impl Doc {
         return Ok(out
             .iter()
             .filter_map(|o| match o {
-                OutputItem::Content(s) => Some(s.to_owned()),
+                OutputItem::Content(s) => Some(s.clone()),
                 OutputItem::Cursor => None,
             })
-            .collect::<Vec<String>>()
-            .join(""));
+            .collect::<String>());
     }
 }
 
 impl Indent {
-    fn root() -> Indent {
-        Indent {
+    fn root() -> Self {
+        Self {
             value: String::new(),
             length: 0,
             queue: Vec::new(),
@@ -552,13 +537,13 @@ fn make_indent(indent: &Indent, options: &PrettyPrinter) -> Indent {
 }
 
 fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> Indent {
-    let queue = if let Part::Dedent = new_part {
-        let mut q = indent.queue.to_owned();
-        q.pop();
-        q
-    } else {
-        let mut q = indent.queue.to_owned();
-        q.push(new_part);
+    let queue = {
+        let mut q = indent.queue.clone();
+        if matches!(new_part, Part::Dedent) {
+            q.pop();
+        } else {
+            q.push(new_part);
+        }
         q
     };
 
@@ -567,7 +552,7 @@ fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> 
     let mut last_tabs = 0;
     let mut last_spaces = 0;
 
-    for part in queue.iter() {
+    for part in &queue {
         match part {
             Part::Indent => {
                 if options.use_tabs {
@@ -575,7 +560,7 @@ fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> 
                         value.push_str(&"\t".repeat(last_tabs));
                         length += last_tabs * options.tab_width;
                     }
-                    value.push_str(&"\t");
+                    value.push('\t');
                     length += 1;
                 } else {
                     if last_spaces > 0 {
@@ -594,11 +579,9 @@ fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> 
                         value.push_str(&"\t".repeat(last_tabs));
                         length += last_tabs * options.tab_width;
                     }
-                } else {
-                    if last_spaces > 0 {
-                        value.push_str(&" ".repeat(last_spaces));
-                        length += last_spaces;
-                    }
+                } else if last_spaces > 0 {
+                    value.push_str(&" ".repeat(last_spaces));
+                    length += last_spaces;
                 }
                 last_tabs = 0;
                 last_spaces = 0;
@@ -631,18 +614,16 @@ fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> 
 
 fn make_align(indent: &Indent, options: &PrettyPrinter, alignment: Align) -> Indent {
     match alignment {
-        Align::ToRoot => {
-            if let Some(root) = &indent.root {
-                root.as_ref().to_owned()
-            } else {
-                Indent::root()
-            }
-        }
+        Align::ToRoot => indent
+            .root
+            .as_ref()
+            .map_or_else(Indent::root, |root| root.as_ref().clone()),
         Align::AsRoot => Indent {
             root: Some(Box::new(indent.clone())),
-            ..indent.to_owned()
+            ..indent.clone()
         },
         Align::By(n) if n < 0 => generate_indent(indent, Part::Dedent, options),
+        #[allow(clippy::cast_sign_loss)] // the previous case ensures that `n` is positive
         Align::By(n) => generate_indent(indent, Part::NumberAlign(n as usize), options),
         Align::With(s) => generate_indent(indent, Part::StringAlign(s), options),
     }
@@ -663,7 +644,7 @@ fn trim(out: &mut Vec<OutputItem>) -> usize {
                     if c == ' ' || c == '\t' {
                         trim_count += 1;
                     } else {
-                        out[out_index] = OutputItem::Content(last[..char_index + 1].to_string());
+                        out[out_index] = OutputItem::Content(last[..=char_index].to_string());
                         // *last = last[..char_index + 1].to_string();
                         break 'outer;
                     }
@@ -692,15 +673,16 @@ fn trim(out: &mut Vec<OutputItem>) -> usize {
         }
     }
 
-    return trim_count;
+    trim_count
 }
 
+#[allow(clippy::too_many_lines)]
 fn fits(
     next: &Command,
     rest_commands: &[Command],
     mut width: isize,
     mut has_line_suffix: bool,
-    group_mode_map: &mut HashMap<Symbol, Mode>,
+    group_mode_map: &HashMap<Symbol, Mode>,
     must_be_flat: bool,
 ) -> bool {
     struct StrippedCommand<'a> {
@@ -735,17 +717,17 @@ fn fits(
             if let Some(command) = rest_iter.next() {
                 cmds.push(command.into());
                 continue;
-            } else {
-                return true;
             }
+            return true;
         }
         #[allow(clippy::unwrap_used)] // safe because we check for empty above
         let StrippedCommand { mode, doc } = cmds.pop().unwrap();
 
         match doc {
+            #[allow(clippy::cast_possible_wrap)]
             Doc::String(s) => {
-                out.push(OutputItem::Content(s.to_owned()));
-                width -= s.len() as isize;
+                out.push(OutputItem::Content(s.clone()));
+                width -= s.len().clamp(0, isize::MAX as usize) as isize;
             }
             Doc::Array(parts) => {
                 for part in parts.iter().rev() {
@@ -763,17 +745,20 @@ fn fits(
                     });
                 }
             }
-            Doc::DocCommand(DocCommand::Indent { contents })
-            | Doc::DocCommand(DocCommand::Align { contents, .. })
-            | Doc::DocCommand(DocCommand::IndentIfBreak { contents, .. })
-            | Doc::DocCommand(DocCommand::Label { contents, .. }) => {
+            Doc::DocCommand(
+                DocCommand::Indent { contents }
+                | DocCommand::Align { contents, .. }
+                | DocCommand::IndentIfBreak { contents, .. }
+                | DocCommand::Label { contents, .. },
+            ) => {
                 cmds.push(StrippedCommand {
                     mode,
                     doc: contents.as_ref(),
                 });
             }
+            #[allow(clippy::cast_possible_wrap)]
             Doc::DocCommand(DocCommand::Trim) => {
-                width += trim(&mut out) as isize;
+                width += trim(&mut out).clamp(0, isize::MAX as usize) as isize;
             }
             Doc::DocCommand(DocCommand::Group {
                 id: _,
@@ -785,10 +770,10 @@ fn fits(
                     return false;
                 }
 
-                let group_mode = if *should_break != Break::Never {
-                    Mode::Break
-                } else {
+                let group_mode = if *should_break == Break::Never {
                     mode
+                } else {
+                    Mode::Break
                 };
                 // The most expanded state takes up the least space on the current line.
                 let contents = expanded_states
@@ -809,7 +794,7 @@ fn fits(
                 group_id,
             }) => {
                 let group_mode = group_id.as_ref().map_or(mode, |id| {
-                    group_mode_map.get(&id).cloned().unwrap_or(Mode::Break)
+                    group_mode_map.get(id).copied().unwrap_or(Mode::Break)
                 });
                 let contents = if group_mode == Mode::Break {
                     break_contents.as_ref()
@@ -845,10 +830,9 @@ fn fits(
                 }
             }
 
-            Doc::DocCommand(DocCommand::BreakParent) => {}
-            Doc::DocCommand(DocCommand::Cursor) => {}
+            Doc::DocCommand(DocCommand::BreakParent | DocCommand::Cursor) => {}
         }
     }
 
-    return false;
+    false
 }

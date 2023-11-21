@@ -21,7 +21,7 @@ fn test_traverse_doc() {
             visited.push(d.clone());
             true
         },
-        None,
+        None::<fn(&_, &mut _)>,
         None,
     );
 
@@ -32,15 +32,13 @@ fn test_traverse_doc() {
                 Doc::String("foo".to_string()).into(),
                 Doc::String("bar".to_string()).into(),
             ])
-            .into()])
-            .into(),
+            .into()]),
             Doc::Array(vec![
                 Doc::String("foo".to_string()).into(),
                 Doc::String("bar".to_string()).into(),
-            ])
-            .into(),
-            Doc::String("foo".to_string()).into(),
-            Doc::String("bar".to_string()).into(),
+            ]),
+            Doc::String("foo".to_string()),
+            Doc::String("bar".to_string()),
         ]
     );
 }
@@ -55,7 +53,7 @@ fn test_traverse_doc_skip_children() {
             visited.push(d.clone());
             false
         },
-        None,
+        None::<fn(&_, &mut _)>,
         None,
     );
 
@@ -65,8 +63,7 @@ fn test_traverse_doc_skip_children() {
             Doc::String("foo".to_string()).into(),
             Doc::String("bar".to_string()).into(),
         ])
-        .into()])
-        .into(),]
+        .into()]),]
     );
 }
 
@@ -78,13 +75,9 @@ fn test_traverse_doc_still_visit_siblings() {
         &mut visited,
         |d, visited| {
             visited.push(d.clone());
-            if matches!(d, Doc::String(s) if s == "foo") {
-                false
-            } else {
-                true
-            }
+            !matches!(d, Doc::String(s) if s == "foo")
         },
-        None,
+        None::<fn(&_, &mut _)>,
         None,
     );
 
@@ -95,15 +88,13 @@ fn test_traverse_doc_still_visit_siblings() {
                 Doc::String("foo".to_string()).into(),
                 Doc::String("bar".to_string()).into(),
             ])
-            .into()])
-            .into(),
+            .into()]),
             Doc::Array(vec![
                 Doc::String("foo".to_string()).into(),
                 Doc::String("bar".to_string()).into(),
-            ])
-            .into(),
-            Doc::String("foo".to_string()).into(),
-            Doc::String("bar".to_string()).into(),
+            ]),
+            Doc::String("foo".to_string()),
+            Doc::String("bar".to_string()),
         ]
     );
 }
@@ -117,7 +108,7 @@ fn test_find_in_doc() {
         matches!(d, Doc::String(s) if s == "foo")
     });
 
-    assert_eq!(result, Some(Doc::String("foo".to_string()).into()));
+    assert_eq!(result, Some(Doc::String("foo".to_string())));
     assert_eq!(
         visited,
         vec![
@@ -125,14 +116,12 @@ fn test_find_in_doc() {
                 Doc::String("foo".to_string()).into(),
                 Doc::String("bar".to_string()).into(),
             ])
-            .into()])
-            .into(),
+            .into()]),
             Doc::Array(vec![
                 Doc::String("foo".to_string()).into(),
                 Doc::String("bar".to_string()).into(),
-            ])
-            .into(),
-            Doc::String("foo".to_string()).into(),
+            ]),
+            Doc::String("foo".to_string()),
         ],
         "should stop visiting siblings after finding the first match"
     );

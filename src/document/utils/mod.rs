@@ -34,14 +34,20 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
     // a map and reused.
     let mut cache = std::collections::HashMap::new();
 
-    return map_doc_recursive(doc, &f, &mut cache);
+    map_doc_fns::map_doc_recursive(doc, &f, &mut cache)
+}
 
-    fn map_doc_recursive(
+mod map_doc_fns {
+    use std::collections::VecDeque;
+
+    use crate::document::{Doc, DocCommand};
+
+    pub fn map_doc_recursive(
         doc: &Doc,
         f: &impl Fn(&Doc) -> Doc,
         cache: &mut std::collections::HashMap<Doc, Doc>,
     ) -> Doc {
-        if let Some(cached) = cache.get(&doc) {
+        if let Some(cached) = cache.get(doc) {
             return cached.clone();
         }
 
@@ -58,13 +64,13 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
         match doc {
             Doc::Array(parts) => f(&Doc::Array(
                 parts
-                    .into_iter()
+                    .iter()
                     .map(|d| map_doc_recursive(d, f, cache).into())
                     .collect::<Vec<_>>(),
             )),
             Doc::DocCommand(DocCommand::Fill { parts }) => f(&Doc::DocCommand(DocCommand::Fill {
                 parts: parts
-                    .into_iter()
+                    .iter()
                     .map(|d| map_doc_recursive(d, f, cache).into())
                     .collect::<VecDeque<_>>(),
             })),
@@ -87,7 +93,7 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                     Some(states) => (
                         Some(
                             states
-                                .into_iter()
+                                .iter()
                                 .map(|d| map_doc_recursive(d, f, cache).into())
                                 .collect::<Vec<_>>(),
                         ),
@@ -107,7 +113,7 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                 alignment,
             }) => f(&Doc::DocCommand(DocCommand::Align {
                 contents: Box::new(map_doc_recursive(contents, f, cache)),
-                alignment: alignment.to_owned(),
+                alignment: alignment.clone(),
             })),
             Doc::DocCommand(DocCommand::IndentIfBreak {
                 contents,
@@ -121,7 +127,7 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
             Doc::DocCommand(DocCommand::Label { contents, label }) => {
                 f(&Doc::DocCommand(DocCommand::Label {
                     contents: Box::new(map_doc_recursive(contents, f, cache)),
-                    label: label.to_owned(),
+                    label: *label,
                 }))
             }
             Doc::DocCommand(DocCommand::Indent { contents }) => {
@@ -135,11 +141,13 @@ pub fn map_doc(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
                 }))
             }
             Doc::String(_)
-            | Doc::DocCommand(DocCommand::Cursor)
-            | Doc::DocCommand(DocCommand::Trim)
-            | Doc::DocCommand(DocCommand::LineSuffixBoundary)
-            | Doc::DocCommand(DocCommand::Line(_))
-            | Doc::DocCommand(DocCommand::BreakParent) => f(doc),
+            | Doc::DocCommand(
+                DocCommand::Cursor
+                | DocCommand::Trim
+                | DocCommand::LineSuffixBoundary
+                | DocCommand::Line(_)
+                | DocCommand::BreakParent,
+            ) => f(doc),
         }
     }
 }
@@ -165,7 +173,7 @@ pub fn find_in_doc<State>(
     let mut should_skip_further_processing = false;
 
     traverse_doc(
-        &mut doc.clone(),
+        doc,
         &mut (&mut should_skip_further_processing, &mut result, state),
         |doc, (should_skip_further_processing, result, state)| {
             if **should_skip_further_processing {
@@ -173,29 +181,33 @@ pub fn find_in_doc<State>(
             }
 
             if f(doc, state) {
-                **result = Some(doc.to_owned());
+                **result = Some(doc.clone());
                 **should_skip_further_processing = true;
                 return false;
             }
 
             true
         },
-        None,
+        None::<fn(&_, &mut _)>,
         None,
     );
 
     result
 }
 
+#[must_use]
 pub fn will_break(doc: &Doc) -> bool {
-    find_in_doc(doc, &mut (), |d, _| match d {
-        Doc::DocCommand(DocCommand::Group {
-            should_break: Break::Yes,
-            ..
-        }) => true,
-        Doc::DocCommand(DocCommand::Line(LineType::Hard)) => true,
-        Doc::DocCommand(DocCommand::BreakParent) => true,
-        _ => false,
+    find_in_doc(doc, &mut (), |d, _| {
+        matches!(
+            d,
+            Doc::DocCommand(
+                DocCommand::Group {
+                    should_break: Break::Yes,
+                    ..
+                } | DocCommand::Line(LineType::Hard)
+                    | DocCommand::BreakParent
+            )
+        )
     })
     .is_some()
 }
@@ -230,7 +242,7 @@ pub fn propagate_breaks(doc: &mut Doc) {
         doc,
         &mut (&mut group_stack, &mut already_visited),
         |d, (group_stack, already_visited)| {
-            if let Doc::DocCommand(DocCommand::BreakParent) = d {
+            if matches!(d, Doc::DocCommand(DocCommand::BreakParent)) {
                 break_parent_group(group_stack);
             }
             if let Doc::DocCommand(DocCommand::Group { .. }) = d {
@@ -242,33 +254,35 @@ pub fn propagate_breaks(doc: &mut Doc) {
             }
             true
         },
-        Some(Box::new(|d, (group_stack, _)| {
+        Some(&|d: &mut Doc, (group_stack, _): &mut (&mut Vec<Doc>, _)| {
             if let Doc::DocCommand(DocCommand::Group { should_break, .. }) = d {
                 group_stack.pop();
-                if *should_break != Break::Yes {
+                if *should_break != Break::Never {
                     break_parent_group(group_stack);
                 }
             }
-        })),
+        }),
         Some(true),
     );
 }
 
+#[must_use]
 pub fn remove_lines(doc: &Doc) -> Doc {
     return map_doc(doc, |d| match d {
         // Force this doc into flat mode by statically converting all
         // lines into spaces (or soft lines into nothing). Hard lines
         // should still output because there's too great of a chance
         // of breaking existing assumptions otherwise.
-        Doc::DocCommand(DocCommand::Line(LineType::Soft)) => Doc::String("".to_string()),
+        Doc::DocCommand(DocCommand::Line(LineType::Soft)) => Doc::String(String::new()),
         Doc::DocCommand(DocCommand::Line(LineType::Literal)) => Doc::String(" ".to_string()),
         Doc::DocCommand(DocCommand::IfBreak { flat_contents, .. }) => {
             flat_contents.as_ref().clone()
         }
-        Doc::DocCommand(DocCommand::Line(LineType::Hard)) | _ => d.clone(),
+        _ => d.clone(),
     });
 }
 
+#[allow(clippy::vec_box)] // re-using the boxes lets us reduce total allocations
 fn strip_trailing_hardline_from_parts(parts: Vec<Box<Doc>>) -> Vec<Box<Doc>> {
     let mut parts = parts.to_vec();
 
@@ -285,7 +299,7 @@ fn strip_trailing_hardline_from_parts(parts: Vec<Box<Doc>>) -> Vec<Box<Doc>> {
 
     if !parts.is_empty() {
         #[allow(clippy::unwrap_used)] // safe because we checked that parts is not empty
-        let last_part = strip_trailing_hardline_from_doc(&parts.last().unwrap());
+        let last_part = strip_trailing_hardline_from_doc(parts.last().unwrap());
         *parts.last_mut().unwrap() = Box::new(last_part);
     }
 
@@ -298,18 +312,18 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
             contents,
             alignment,
         }) => Doc::DocCommand(DocCommand::Align {
-            contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
-            alignment: alignment.to_owned(),
+            contents: Box::new(strip_trailing_hardline_from_doc(contents)),
+            alignment: alignment.clone(),
         }),
         Doc::DocCommand(DocCommand::Indent { contents }) => Doc::DocCommand(DocCommand::Indent {
-            contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
+            contents: Box::new(strip_trailing_hardline_from_doc(contents)),
         }),
         Doc::DocCommand(DocCommand::IndentIfBreak {
             contents,
             group_id,
             negate,
         }) => Doc::DocCommand(DocCommand::IndentIfBreak {
-            contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
+            contents: Box::new(strip_trailing_hardline_from_doc(contents)),
             group_id: group_id.clone(),
             negate: negate.to_owned(),
         }),
@@ -320,19 +334,19 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
             expanded_states,
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
-            contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
-            should_break: should_break.to_owned(),
+            contents: Box::new(strip_trailing_hardline_from_doc(contents)),
+            should_break: should_break.clone(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
             Doc::DocCommand(DocCommand::LineSuffix {
-                contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
+                contents: Box::new(strip_trailing_hardline_from_doc(contents)),
             })
         }
         Doc::DocCommand(DocCommand::Label { contents, label }) => {
             Doc::DocCommand(DocCommand::Label {
-                contents: Box::new(strip_trailing_hardline_from_doc(&contents)),
-                label: label.to_owned(),
+                contents: Box::new(strip_trailing_hardline_from_doc(contents)),
+                label: *label,
             })
         }
         Doc::DocCommand(DocCommand::IfBreak {
@@ -340,8 +354,8 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
             flat_contents,
             group_id,
         }) => Doc::DocCommand(DocCommand::IfBreak {
-            break_contents: Box::new(strip_trailing_hardline_from_doc(&break_contents)),
-            flat_contents: Box::new(strip_trailing_hardline_from_doc(&flat_contents)),
+            break_contents: Box::new(strip_trailing_hardline_from_doc(break_contents)),
+            flat_contents: Box::new(strip_trailing_hardline_from_doc(flat_contents)),
             group_id: group_id.clone(),
         }),
         Doc::DocCommand(DocCommand::Fill { parts }) => {
@@ -351,25 +365,28 @@ fn strip_trailing_hardline_from_doc(doc: &Doc) -> Doc {
                 parts: strip_trailing_hardline_from_parts(parts.as_slices().0.to_vec()).into(),
             })
         }
-        Doc::Array(parts) => Doc::Array(strip_trailing_hardline_from_parts(parts.to_vec())),
+        Doc::Array(parts) => Doc::Array(strip_trailing_hardline_from_parts(parts.clone())),
         Doc::String(s) => s.trim_end_matches(['\n', '\r'].as_ref()).into(),
-        Doc::DocCommand(DocCommand::Cursor)
-        | Doc::DocCommand(DocCommand::Trim)
-        | Doc::DocCommand(DocCommand::LineSuffixBoundary)
-        | Doc::DocCommand(DocCommand::Line(_))
-        | Doc::DocCommand(DocCommand::BreakParent) => doc.clone(),
+        Doc::DocCommand(
+            DocCommand::Cursor
+            | DocCommand::Trim
+            | DocCommand::LineSuffixBoundary
+            | DocCommand::Line(_)
+            | DocCommand::BreakParent,
+        ) => doc.clone(),
     }
 }
 
 pub fn strip_trailing_hardline(doc: &Doc) -> Doc {
     // HACK remove ending hardline, original PR: prettier/prettier#1984
-    return strip_trailing_hardline_from_doc(&clean_doc(doc));
+    strip_trailing_hardline_from_doc(&clean_doc(doc))
 }
 
 /// A safer version of `normalizeDoc`
 /// - `normalizeDoc` concat strings and flat array in `fill`, while `cleanDoc` don't
 /// - On array, `normalizeDoc` always return object with `parts`, `cleanDoc` may return strings
 /// - `cleanDoc` also remove nested `group`s and empty `fill`/`align`/`indent`/`line-suffix`/`if-break` if possible
+#[must_use]
 pub fn clean_doc(doc: &Doc) -> Doc {
     map_doc(doc, |current_doc| {
         match current_doc {
@@ -378,7 +395,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                     .iter()
                     .all(|d| matches!(d.as_ref(), Doc::String(s) if s.is_empty()))
                 {
-                    return Doc::String("".to_string());
+                    return Doc::String(String::new());
                 }
             }
             Doc::DocCommand(DocCommand::Group {
@@ -391,9 +408,9 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                     && Break::Never == *should_break
                     && id.is_none()
                     && (expanded_states.is_none()
-                        || matches!(expanded_states, Some(states) if states.is_empty() || states.iter().all(|d| d.is_empty())))
+                        || matches!(expanded_states, Some(states) if states.is_empty() || states.iter().all(Doc::is_empty)))
                 {
-                    return Doc::String("".to_string());
+                    return Doc::String(String::new());
                 }
                 // Remove nested only group
                 match contents.as_ref() {
@@ -412,12 +429,14 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 }
             }
 
-            Doc::DocCommand(DocCommand::Align { contents, .. })
-            | Doc::DocCommand(DocCommand::Indent { contents })
-            | Doc::DocCommand(DocCommand::IndentIfBreak { contents, .. })
-            | Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
+            Doc::DocCommand(
+                DocCommand::Align { contents, .. }
+                | DocCommand::Indent { contents }
+                | DocCommand::IndentIfBreak { contents, .. }
+                | DocCommand::LineSuffix { contents },
+            ) => {
                 if contents.as_ref().is_empty() {
-                    return Doc::String("".to_string());
+                    return Doc::String(String::new());
                 }
             }
             Doc::DocCommand(DocCommand::IfBreak {
@@ -426,7 +445,7 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                 ..
             }) => {
                 if break_contents.as_ref().is_empty() && flat_contents.as_ref().is_empty() {
-                    return Doc::String("".to_string());
+                    return Doc::String(String::new());
                 }
             }
             Doc::Array(parts) => {
@@ -445,31 +464,34 @@ pub fn clean_doc(doc: &Doc) -> Doc {
                                 result.push(Box::new(s.to_owned().into()));
                             }
                         }
-                        _ => result.push(part.clone()),
+                        Doc::DocCommand(_) => result.push(part.clone()),
                     }
                 }
 
-                if result.is_empty() {
-                    return Doc::String("".to_string());
+                return if result.is_empty() {
+                    Doc::String(String::new())
                 } else if result.len() == 1 {
-                    return result[0].as_ref().clone();
+                    result[0].clone()
                 } else {
-                    return Doc::Array(result);
-                }
+                    Doc::Array(result)
+                };
             }
             Doc::String(_)
-            | Doc::DocCommand(DocCommand::Cursor)
-            | Doc::DocCommand(DocCommand::Trim)
-            | Doc::DocCommand(DocCommand::LineSuffixBoundary)
-            | Doc::DocCommand(DocCommand::Line(_))
-            | Doc::DocCommand(DocCommand::Label { .. })
-            | Doc::DocCommand(DocCommand::BreakParent) => { /* no op */ }
+            | Doc::DocCommand(
+                DocCommand::Cursor
+                | DocCommand::Trim
+                | DocCommand::LineSuffixBoundary
+                | DocCommand::Line(_)
+                | DocCommand::Label { .. }
+                | DocCommand::BreakParent,
+            ) => { /* no op */ }
         }
-        return current_doc.clone();
+        current_doc.clone()
     })
 }
 
 // TODO: this has too many allocations, optimize it
+#[allow(clippy::vec_box)] // we don't actually make any new boxes in this function, so this is preferable
 fn normalize_parts(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
     let mut new_parts: Vec<Box<Doc>> = Vec::new();
     let mut rest_parts: Vec<&Box<Doc>> = parts.iter().rev().collect();
@@ -488,7 +510,7 @@ fn normalize_parts(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
                     }
                 }
             }
-            _ => {}
+            Doc::DocCommand(_) => {}
         }
 
         new_parts.push(part.clone());
@@ -497,11 +519,12 @@ fn normalize_parts(parts: &[Box<Doc>]) -> Vec<Box<Doc>> {
     new_parts
 }
 
-/// Run `normalizeParts` on all `fill` and `align` commands in the tree.
+/// Run `normalize_parts` on all `fill` and `align` commands in the tree.
+#[must_use]
 pub fn normalize_doc(doc: &Doc) -> Doc {
     map_doc(doc, |current_doc| match current_doc {
         // first layer
-        Doc::Array(parts) => Doc::Array(normalize_parts(&parts)),
+        Doc::Array(parts) => Doc::Array(normalize_parts(parts)),
         Doc::DocCommand(DocCommand::Fill { parts }) => {
             let mut parts = parts.clone();
             parts.make_contiguous();
@@ -514,18 +537,18 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
             contents,
             alignment,
         }) => Doc::DocCommand(DocCommand::Align {
-            contents: Box::new(normalize_doc(&contents)),
-            alignment: alignment.to_owned(),
+            contents: Box::new(normalize_doc(contents)),
+            alignment: alignment.clone(),
         }),
         Doc::DocCommand(DocCommand::Indent { contents }) => Doc::DocCommand(DocCommand::Indent {
-            contents: Box::new(normalize_doc(&contents)),
+            contents: Box::new(normalize_doc(contents)),
         }),
         Doc::DocCommand(DocCommand::IndentIfBreak {
             contents,
             group_id,
             negate,
         }) => Doc::DocCommand(DocCommand::IndentIfBreak {
-            contents: Box::new(normalize_doc(&contents)),
+            contents: Box::new(normalize_doc(contents)),
             group_id: group_id.clone(),
             negate: negate.to_owned(),
         }),
@@ -536,13 +559,13 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
             expanded_states,
         }) => Doc::DocCommand(DocCommand::Group {
             id: id.clone(),
-            contents: Box::new(normalize_doc(&contents)),
-            should_break: should_break.to_owned(),
+            contents: Box::new(normalize_doc(contents)),
+            should_break: should_break.clone(),
             expanded_states: expanded_states.clone(),
         }),
         Doc::DocCommand(DocCommand::LineSuffix { contents }) => {
             Doc::DocCommand(DocCommand::LineSuffix {
-                contents: Box::new(normalize_doc(&contents)),
+                contents: Box::new(normalize_doc(contents)),
             })
         }
         Doc::DocCommand(DocCommand::IfBreak {
@@ -550,26 +573,29 @@ pub fn normalize_doc(doc: &Doc) -> Doc {
             flat_contents,
             group_id,
         }) => Doc::DocCommand(DocCommand::IfBreak {
-            break_contents: Box::new(normalize_doc(&break_contents)),
-            flat_contents: Box::new(normalize_doc(&flat_contents)),
+            break_contents: Box::new(normalize_doc(break_contents)),
+            flat_contents: Box::new(normalize_doc(flat_contents)),
             group_id: group_id.clone(),
         }),
         // base cases
         Doc::String(_)
-        | Doc::DocCommand(DocCommand::Cursor)
-        | Doc::DocCommand(DocCommand::Trim)
-        | Doc::DocCommand(DocCommand::LineSuffixBoundary)
-        | Doc::DocCommand(DocCommand::Line(_))
-        | Doc::DocCommand(DocCommand::Label { .. })
-        | Doc::DocCommand(DocCommand::BreakParent) => current_doc.clone(),
+        | Doc::DocCommand(
+            DocCommand::Cursor
+            | DocCommand::Trim
+            | DocCommand::LineSuffixBoundary
+            | DocCommand::Line(_)
+            | DocCommand::Label { .. }
+            | DocCommand::BreakParent,
+        ) => current_doc.clone(),
     })
 }
 
 /// for `replacement`, default to `literalline`
-pub fn replace_end_of_line(doc: &Doc, replacement: Doc) -> Doc {
+#[must_use]
+pub fn replace_end_of_line(doc: &Doc, replacement: &Doc) -> Doc {
     map_doc(doc, |current_doc| match current_doc {
         Doc::String(s) => join(
-            replacement.clone(),
+            replacement,
             s.split('\n')
                 .map(|s| Doc::from(s.to_string()))
                 .collect::<Vec<_>>(),
@@ -578,13 +604,12 @@ pub fn replace_end_of_line(doc: &Doc, replacement: Doc) -> Doc {
     })
 }
 
+#[must_use]
 pub fn can_break(doc: &Doc) -> bool {
-    return find_in_doc(
-        doc,
-        &mut (),
-        |d, _| matches! {d, Doc::DocCommand(DocCommand::Line(_))},
-    )
-    .map_or(false, |_| true);
+    find_in_doc(doc, &mut (), |d, _| {
+        matches!(d, Doc::DocCommand(DocCommand::Line(_)))
+    })
+    .map_or(false, |_| true)
 }
 
 pub fn inherit_label(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
@@ -592,7 +617,7 @@ pub fn inherit_label(doc: &Doc, f: impl Fn(&Doc) -> Doc) -> Doc {
         Doc::DocCommand(DocCommand::Label { contents, label }) => {
             Doc::DocCommand(DocCommand::Label {
                 contents: Box::new(f(contents)),
-                label: label.to_owned(),
+                label: *label,
             })
         }
         _ => f(doc),

@@ -47,13 +47,13 @@ pub trait ParseToAST<Ast, AstNode, Error, Options: From<PrettyPrinter>> {
     /// Parse input text into an AST
     fn parse(&self, text: Cow<str>, options: Options) -> Result<Ast, Error>;
 
-    /// The location extraction functions (`loc_start`` and `loc_end`) return the starting and ending locations of a given AST node:
+    /// The location extraction functions (`loc_start` and `loc_end`) return the starting and ending locations of a given AST node:
     fn loc_start(&self, node: AstNode) -> usize;
 
-    /// The location extraction functions (`loc_start`` and `loc_end`) return the starting and ending locations of a given AST node:
+    /// The location extraction functions (`loc_start` and `loc_end`) return the starting and ending locations of a given AST node:
     fn loc_end(&self, node: AstNode) -> usize;
 
-    /// Optional: The pragma detection function (has_pragma) should return if the text contains the pragma comment.
+    /// Optional: The pragma detection function (`has_pragma`) should return if the text contains the pragma comment.
     ///
     /// # Returns
     /// - `None`: this parser does not support pragma's
@@ -79,7 +79,7 @@ pub trait PrintToDoc<Ast, AstNode, AstPath, Error, Options: From<PrettyPrinter>>
     HandleComments<Ast, AstNode, AstPath, Error, Options>
 {
     /// # Arguments
-    /// - path: An object, which can be used to access nodes in the AST. It’s a stack-like data structure that maintains the current state of the recursion. It is called “path” because it represents the path to the current node from the root of the AST. The current node is returned by path.get_value().
+    /// - path: An object, which can be used to access nodes in the AST. It’s a stack-like data structure that maintains the current state of the recursion. It is called “path” because it represents the path to the current node from the root of the AST. The current node is returned by `path.get_value()`.
     /// - options: A persistent object, which contains global options and which a plugin may mutate to store contextual data.
     /// - print: A callback for printing sub-nodes. This function contains the core printing logic that consists of steps whose implementation is provided by plugins. In particular, it calls the printer’s print function and passes itself to it. Thus, the two print functions – the one from the core and the one from the plugin – call each other while descending down the AST recursively.
     fn print<State>(
@@ -114,7 +114,7 @@ pub trait HandleComments<Ast, AstNode, AstPath, Error, Options> {
     // TODO: comment handling https://prettier.io/docs/en/plugins#handling-comments-in-a-printer
 }
 
-/// Selector Enum: enum that represents the different types of selectors a printer's print_callback might use
+/// Selector Enum: enum that represents the different types of selectors a printer's `print_callback` might use
 ///
 /// TODO: come back to this
 #[allow(dead_code)]

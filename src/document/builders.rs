@@ -55,7 +55,8 @@ pub fn group(
     })
 }
 
-/// Decrease the current indentation to the root marked by mark_as_root.
+/// Decrease the current indentation to the root marked by `mark_as_root`.
+#[must_use]
 pub fn dedent_to_root(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
@@ -63,7 +64,8 @@ pub fn dedent_to_root(contents: Doc) -> Doc {
     })
 }
 
-/// Mark the current indentation as root for dedent_to_root and literallines.
+/// Mark the current indentation as root for `dedent_to_root` and literallines.
+#[must_use]
 pub fn mark_as_root(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
@@ -72,6 +74,7 @@ pub fn mark_as_root(contents: Doc) -> Doc {
 }
 
 /// Decrease the level of indentation. (Each align is considered one level of indentation.)
+#[must_use]
 pub fn dedent(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
@@ -85,6 +88,7 @@ pub fn dedent(contents: Doc) -> Doc {
 ///
 /// # None
 /// Returns none if states is empty.
+#[must_use]
 pub fn conditional_group(
     states: Vec<Box<Doc>>,
     id: Option<Symbol>,
@@ -119,20 +123,22 @@ pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
 /// if_break(Doc::from(";"), Some(Doc::from(" ")), None);
 /// ```
 ///  
-/// group_id can be used to check another *already printed* group instead of the current group.
+/// `group_id` can be used to check another *already printed* group instead of the current group.
+#[must_use]
 pub fn if_break(break_contents: Doc, flat_contents: Option<Doc>, group_id: Option<Symbol>) -> Doc {
     Doc::DocCommand(DocCommand::IfBreak {
         break_contents: Box::new(break_contents),
-        flat_contents: Box::new(flat_contents.unwrap_or(Doc::String("".into()))),
+        flat_contents: Box::new(flat_contents.unwrap_or(Doc::String(String::new()))),
         group_id,
     })
 }
 
-/// An optimized version of if_break(indent(doc), doc, { groupId }).
+/// An optimized version of `if_break(indent(doc), doc, { groupId })`.
 ///
-/// With negate: true, corresponds to if_break(doc, indent(doc), { groupId })
+/// With negate: true, corresponds to `if_break(doc, indent(doc), { groupId })`
 ///
-/// It doesn't make sense to apply indentIfBreak to the current group because "indent if the current group is broken" is the normal behavior of indent. That's why groupId is required.
+/// It doesn't make sense to apply `indentIfBreak` to the current group because "indent if the current group is broken" is the normal behavior of indent. That's why groupId is required.
+#[must_use]
 pub fn indent_if_break(contents: Doc, group_id: Symbol, negate: bool) -> Doc {
     Doc::DocCommand(DocCommand::IndentIfBreak {
         contents: Box::new(contents),
@@ -158,30 +164,37 @@ pub fn line_suffix(contents: Doc) -> Doc {
     })
 }
 
+#[must_use]
 pub const fn line_suffix_boundary() -> Doc {
     Doc::DocCommand(DocCommand::LineSuffixBoundary)
 }
 
+#[must_use]
 pub const fn break_parent() -> Doc {
     Doc::DocCommand(DocCommand::BreakParent)
 }
 
+#[must_use]
 pub const fn trim() -> Doc {
     Doc::DocCommand(DocCommand::Trim)
 }
 
+#[must_use]
 pub const fn hardline_without_break_parent() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Hard))
 }
 
+#[must_use]
 pub const fn literalline_without_break_parent() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Literal))
 }
 
+#[must_use]
 pub const fn softline() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Soft))
 }
 
+#[must_use]
 pub fn hardline() -> Doc {
     Doc::Array(vec![
         hardline_without_break_parent().into(),
@@ -189,6 +202,7 @@ pub fn hardline() -> Doc {
     ])
 }
 
+#[must_use]
 pub fn literalline() -> Doc {
     Doc::Array(vec![
         literalline_without_break_parent().into(),
@@ -196,16 +210,18 @@ pub fn literalline() -> Doc {
     ])
 }
 
+#[must_use]
 pub const fn line() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Soft))
 }
 
+#[must_use]
 pub const fn cursor() -> Doc {
     Doc::DocCommand(DocCommand::Cursor)
 }
 
 pub fn join(separator: Doc, docs: impl AsRef<[Doc]>) -> Doc {
-    Doc::Array(docs.as_ref().into_iter().fold(Vec::new(), |mut acc, doc| {
+    Doc::Array(docs.as_ref().iter().fold(Vec::new(), |mut acc, doc| {
         if !acc.is_empty() {
             acc.push(Box::new(separator.clone()));
         }
@@ -214,16 +230,19 @@ pub fn join(separator: Doc, docs: impl AsRef<[Doc]>) -> Doc {
     }))
 }
 
+#[must_use]
 pub fn add_alignment_to_doc(doc: Doc, size: isize, tab_width: NonZeroUsize) -> Doc {
     let mut aligned = doc;
+    #[allow(clippy::cast_sign_loss, clippy::cast_possible_wrap)]
     if size > 0 {
+        let size = size as usize;
         // Use indent to add tabs for all the levels of tabs we need
         // casting is safe because we know size is positive
-        for _ in 0..(size as usize / tab_width) {
+        for _ in 0..(size / tab_width) {
             aligned = indent(aligned);
         }
         // Use align for all the spaces that are needed
-        aligned = align(aligned, Align::By((size as usize % tab_width) as isize));
+        aligned = align(aligned, Align::By((size % tab_width) as isize));
         // size is absolute from 0 and not relative to the current
         // indentation, so we use -Infinity to reset the indentation to 0
         aligned = align(aligned, Align::ToRoot);
@@ -231,6 +250,7 @@ pub fn add_alignment_to_doc(doc: Doc, size: isize, tab_width: NonZeroUsize) -> D
     aligned
 }
 
+#[must_use]
 pub fn label(label: Label, contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Label {
         label,

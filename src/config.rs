@@ -1,4 +1,4 @@
-//! defines the options for PrettyPrinter
+//! defines the options for `PrettyPrinter`
 
 use std::{fmt::Display, path::Path};
 
@@ -13,7 +13,7 @@ pub enum Parser {
 impl<T: AsRef<str>> From<T> for Parser {
     fn from(s: T) -> Self {
         match s.as_ref() {
-            "javascript" | "js" => Parser::Javascript,
+            "javascript" | "js" => Self::Javascript,
             _ => unimplemented!("no parser for {} is implemented yet", s.as_ref()),
         }
     }
@@ -34,10 +34,10 @@ impl Parser {
     }
 }
 
-#[allow(dead_code)]
+#[allow(dead_code, clippy::struct_excessive_bools)]
 #[derive(Debug, Clone, Builder)]
 #[builder(default)]
-/// See https://prettier.io/docs/en/options
+/// See [the documentation](https://prettier.io/docs/en/options)
 pub struct PrettyPrinter {
     /// Try prettier's new ternary formatting before it becomes the default behavior.
     ///
@@ -187,13 +187,13 @@ pub struct PrettyPrinter {
     /// Prettier can restrict itself to only format files that contain a special comment, called a pragma, at the top of the file. This is very useful when gradually transitioning large, unformatted codebases to Prettier.
     ///
     /// A file with the following as its first comment will be formatted when --require-pragma is supplied:
-    /// ```ignore
+    /// ```js
     /// /**
     ///  * @prettier
     ///  */
     /// ```
     /// or
-    /// ```ignore
+    /// ```js
     /// /**
     ///  * @format
     ///  */
@@ -355,15 +355,18 @@ impl Default for PrettyPrinter {
 }
 
 impl PrettyPrinter {
+    /// # Errors
+    /// if there is an error parsing the text to an AST, printing AST to Doc, or formating Doc to string
     pub fn format(&self, _input: impl AsRef<str>) -> Result<String> {
         todo!("formatting is not implemented yet")
     }
 }
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 /// Change when properties in objects are quoted.
 pub enum QuoteProps {
     /// Only add quotes around object properties where required.
+    #[default]
     AsNeeded,
     /// If at least one property in an object requires quotes, quote all properties.
     Conistent,
@@ -393,16 +396,11 @@ impl Display for QuoteProps {
     }
 }
 
-impl Default for QuoteProps {
-    fn default() -> Self {
-        Self::AsNeeded
-    }
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 /// Print trailing commas wherever possible in multi-line comma-separated syntactic structures. (A single-line array, for example, never gets trailing commas.)
 pub enum TrailingComma {
     /// Trailing commas wherever possible (including [function parameters and calls](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas#Trailing_commas_in_functions)). To run, JavaScript code formatted this way needs an engine that supports ES2017 (Node.js 8+ or a modern browser) or [downlevel compilation](https://babeljs.io/docs/en/index). This also enables trailing commas in type parameters in TypeScript (supported since TypeScript 2.7 released in January 2018).
+    #[default]
     All,
     /// Trailing commas where valid in ES5 (objects, arrays, etc.). Trailing commas in type parameters in TypeScript and Flow
     ES5,
@@ -432,16 +430,11 @@ impl Display for TrailingComma {
     }
 }
 
-impl Default for TrailingComma {
-    fn default() -> Self {
-        Self::All
-    }
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 /// Include parentheses around a sole arrow function parameter.
 pub enum ArrowParens {
     /// Always include parens. Example: `(x) => x`
+    #[default]
     Always,
     /// Omit parens when possible. Example: `x => x`
     Avoid,
@@ -467,25 +460,20 @@ impl Display for ArrowParens {
     }
 }
 
-impl Default for ArrowParens {
-    fn default() -> Self {
-        Self::Always
-    }
-}
-
 /// By default, Prettier will not change wrapping in markdown text since
 /// some services use a linebreak-sensitive renderer,
-/// e.g. GitHub comments and BitBucket.
+/// e.g. GitHub comments and `BitBucket`.
 /// To have Prettier wrap prose to the print width, change this option to `"always"`.
 /// If you want Prettier to force all prose blocks to be on a single line and rely on
 /// editor/viewer soft wrapping instead, you can use `"never"`.
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 pub enum ProseWrap {
     /// Wrap prose if it exceeds the print width.
     Always,
     /// Un-wrap each block of prose into one line.
     Never,
     /// Do nothing, leave prose as-is.
+    #[default]
     Preserve,
 }
 
@@ -504,22 +492,17 @@ impl From<&str> for ProseWrap {
 impl Display for ProseWrap {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            ProseWrap::Always => write!(f, "always"),
-            ProseWrap::Never => write!(f, "never"),
-            ProseWrap::Preserve => write!(f, "preserve"),
+            Self::Always => write!(f, "always"),
+            Self::Never => write!(f, "never"),
+            Self::Preserve => write!(f, "preserve"),
         }
     }
 }
 
-impl Default for ProseWrap {
-    fn default() -> Self {
-        Self::Preserve
-    }
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 pub enum EndOfLine {
     /// Line Feed only (\n), common on Linux and macOS as well as inside git repos
+    #[default]
     Lf,
     /// Carriage Return + Line Feed characters (`\r\n`), common on Windows
     CrLf,
@@ -553,11 +536,6 @@ impl Display for EndOfLine {
     }
 }
 
-impl Default for EndOfLine {
-    fn default() -> Self {
-        Self::Lf
-    }
-}
 /// Specify the global whitespace sensitivity for HTML, Vue, Angular, and Handlebars.
 /// See [whitespace-sensitive formatting](https://prettier.io/blog/2018/11/07/1.15.0#whitespace-sensitive-formatting) for more info.
 ///
@@ -566,11 +544,11 @@ impl Default for EndOfLine {
 /// - `"css"` - Respect the default value of CSS `display` property. For Handlebars treated same as `strict`.
 /// - `"strict"` - Whitespace (or the lack of it) around all tags is considered significant.
 /// - `"ignore"` - Whitespace (or the lack of it) around all tags is considered insignificant.
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 pub enum HtmlWhitespaceSensitivity {
     /// Respect the default value of CSS display property. For Handlebars treated same as strict.
-    CSS,
+    #[default]
+    Css,
     /// Whitespace (or the lack of it) around all tags is considered significant.
     Strict,
     /// Whitespace (or the lack of it) around all tags is considered insignificant.
@@ -580,7 +558,7 @@ pub enum HtmlWhitespaceSensitivity {
 impl From<&str> for HtmlWhitespaceSensitivity {
     fn from(value: &str) -> Self {
         match value {
-            "css" => Self::CSS,
+            "css" => Self::Css,
             "strict" => Self::Strict,
             "ignore" => Self::Ignore,
             _ => Self::default(),
@@ -591,23 +569,18 @@ impl From<&str> for HtmlWhitespaceSensitivity {
 impl Display for HtmlWhitespaceSensitivity {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            HtmlWhitespaceSensitivity::CSS => write!(f, "css"),
-            HtmlWhitespaceSensitivity::Strict => write!(f, "strict"),
-            HtmlWhitespaceSensitivity::Ignore => write!(f, "ignore"),
+            Self::Css => write!(f, "css"),
+            Self::Strict => write!(f, "strict"),
+            Self::Ignore => write!(f, "ignore"),
         }
     }
 }
 
-impl Default for HtmlWhitespaceSensitivity {
-    fn default() -> Self {
-        HtmlWhitespaceSensitivity::CSS
-    }
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 /// Control whether Prettier formats quoted code embedded in the file.
 pub enum EmbeddedLanguageFormatting {
     /// Format embedded code if Prettier can automatically identify it.
+    #[default]
     Auto,
     /// Never automatically format embedded code.
     Off,
@@ -633,12 +606,6 @@ impl Display for EmbeddedLanguageFormatting {
     }
 }
 
-impl Default for EmbeddedLanguageFormatting {
-    fn default() -> Self {
-        Self::Auto
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -647,6 +614,6 @@ mod tests {
     fn test_default_config() {
         let config = PrettyPrinterBuilder::default().build().unwrap();
 
-        assert!(config.bracket_spacing)
+        assert!(config.bracket_spacing);
     }
 }

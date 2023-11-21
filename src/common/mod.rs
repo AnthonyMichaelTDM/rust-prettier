@@ -1,4 +1,3 @@
-pub mod ast_path;
 pub mod end_of_line;
 
 use std::fmt::Display;
@@ -12,8 +11,8 @@ pub enum Symbol {
 impl Display for Symbol {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Symbol::String(s) => write!(f, "{}", s),
-            Symbol::Number(n) => write!(f, "{}", n),
+            Self::String(s) => write!(f, "{s}"),
+            Self::Number(n) => write!(f, "{n}"),
         }
     }
 }
