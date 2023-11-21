@@ -54,11 +54,20 @@ pub enum FormattingError {
 }
 
 impl Doc {
-    pub fn format(&self, options: PrettyPrinter) -> Result<String, FormattingError> {
+    /// This function is used to render a Doc to a String
+    ///
+    /// Note: before getting to this point, options.end_of_line should have been infered (if it was "auto", it should've been changed to match the first newline in the input text),
+    /// if this is not the case, we will change it to the default here
+    pub fn format(&self, options: &PrettyPrinter) -> Result<String, FormattingError> {
         let mut group_mode_map: HashMap<Symbol, Mode> = HashMap::new();
 
         let width = options.print_width.clamp(0, isize::MAX as usize);
-        let new_line = options.end_of_line;
+        let new_line = match options.end_of_line {
+            crate::config::EndOfLine::Auto => EndLine::default(),
+            crate::config::EndOfLine::Lf => EndLine::Lf,
+            crate::config::EndOfLine::CrLf => EndLine::CrLf,
+            crate::config::EndOfLine::Cr => EndLine::Cr,
+        };
         let mut pos = 0;
 
         let mut doc = self.clone();

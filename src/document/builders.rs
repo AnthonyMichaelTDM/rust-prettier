@@ -114,7 +114,7 @@ pub fn fill(parts: Vec<Box<Doc>>) -> Doc {
 /// Print something if the current group or the current element of fill breaks and something else if it doesn't.
 ///
 /// ```no_run
-/// use rust_prettier::document::{Doc, if_break};
+/// use rust_prettier::document::{Doc, builders::if_break};
 ///
 /// if_break(Doc::from(";"), Some(Doc::from(" ")), None);
 /// ```
@@ -145,12 +145,12 @@ pub fn indent_if_break(contents: Doc, group_id: Symbol, negate: bool) -> Doc {
 /// This is used to implement trailing comments. It's not practical to constantly check where the line ends to avoid accidentally printing some code at the end of a comment. lineSuffix buffers docs passed to it and flushes them before any new line.
 /// For example,
 /// ```
-/// use rust_prettier::document::{Doc, line_suffix, hardline};
+/// use rust_prettier::document::{Doc, builders::{line_suffix, hardline}};
 /// # use rust_prettier::{PrettyPrinter, PrettyPrinterBuilder};
 ///
 /// let doc: Doc = Doc::from(vec!["a".into(), line_suffix(" // comment".into()), ";".into(), hardline()]);
 ///
-/// assert_eq!(doc.format(PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
+/// assert_eq!(doc.format(&PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
 /// ```
 pub fn line_suffix(contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::LineSuffix {

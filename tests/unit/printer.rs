@@ -23,7 +23,7 @@ fn test_too_many_cursors() {
     let doc = Doc::from(vec![cursor(), cursor(), cursor(), cursor()]);
 
     assert_eq!(
-        doc.format(OPTIONS.clone()).unwrap_err().to_string(),
+        doc.format(&OPTIONS).unwrap_err().to_string(),
         "There are too many 'cursor' in doc."
     );
 }
@@ -37,7 +37,7 @@ fn test_trim_first_blank_line() {
         hardline(),
     ]);
 
-    assert_eq!(doc.format(OPTIONS.clone()).unwrap(), "\nPrettier\n");
+    assert_eq!(doc.format(&OPTIONS).unwrap(), "\nPrettier\n");
 }
 
 #[test]
@@ -50,5 +50,5 @@ fn test_properly_trim_with_cursor() {
         hardline(),
     ]);
 
-    assert_eq!(doc.format(OPTIONS.clone()).unwrap(), "Prettier\n");
+    assert_eq!(doc.format(&OPTIONS).unwrap(), "Prettier\n");
 }

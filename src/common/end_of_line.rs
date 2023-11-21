@@ -27,6 +27,12 @@ impl From<&str> for EndLine {
     }
 }
 
+impl Default for EndLine {
+    fn default() -> Self {
+        EndLine::Lf
+    }
+}
+
 impl EndLine {
     pub fn guess_from_str(input: impl AsRef<str>) -> EndLine {
         let input = input.as_ref();
