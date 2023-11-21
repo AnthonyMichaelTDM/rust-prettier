@@ -65,7 +65,8 @@ impl Doc {
     pub fn format(&self, options: &PrettyPrinter) -> Result<String, FormattingError> {
         let mut group_mode_map: HashMap<Symbol, Mode> = HashMap::new();
 
-        let width = options.print_width.clamp(0, isize::MAX as usize);
+        #[allow(clippy::cast_possible_wrap)]
+        let width = options.print_width.clamp(0, isize::MAX as usize) as isize;
         let new_line = match options.end_of_line {
             crate::config::EndOfLine::Auto => EndLine::default(),
             crate::config::EndOfLine::Lf => EndLine::Lf,

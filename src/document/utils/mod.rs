@@ -188,7 +188,7 @@ pub fn find_in_doc<State>(
 
             true
         },
-        None::<fn(&_, &mut _)>,
+        None::<&fn(&_, &mut _)>,
         None,
     );
 
@@ -212,28 +212,45 @@ pub fn will_break(doc: &Doc) -> bool {
     .is_some()
 }
 
-fn break_parent_group(group_stack: &mut [Doc]) {
-    if !group_stack.is_empty() {
-        let parent_group = group_stack.last_mut().unwrap();
-        // Breaks are not propagated through conditional groups because
-        // the user is expected to manually handle what breaks.
-        if let Doc::DocCommand(DocCommand::Group {
-            expanded_states,
-            should_break,
-            ..
-        }) = parent_group
+fn break_parent_group(parent_group: &mut Doc) {
+    // Breaks are not propagated through conditional groups because
+    // the user is expected to manually handle what breaks.
+    if let Doc::DocCommand(DocCommand::Group {
+        expanded_states,
+        should_break,
+        ..
+    }) = parent_group
+    {
+        if (expanded_states.is_none() || expanded_states.as_ref().unwrap().is_empty())
+            && *should_break == Break::Never
         {
-            if (expanded_states.is_none() || expanded_states.as_ref().unwrap().is_empty())
-                && *should_break == Break::Never
-            {
-                // An alternative truthy value allows to distinguish propagated group breaks
-                // and not to print them as `group(..., { break: true })` in `--debug-print-doc`.
-                *should_break = Break::Propagated;
-            }
+            // value to distinguish propagated group breaks
+            // and not to print them as `group(..., { break: true })` in `--debug-print-doc`.
+            *should_break = Break::Propagated;
         }
     }
 }
 
+/// # Example
+///
+/// ```
+/// use rust_prettier::{PrettyPrinter, document::{*, builders::*, utils::*}};
+///
+/// let mut before = group(
+///     hardline(),
+///     None,
+///     false,
+///     None
+/// );
+/// propagate_breaks(&mut before);
+///
+/// assert_eq!(before, Doc::DocCommand(DocCommand::Group {
+///     id: None,
+///     contents: hardline().into(),
+///     should_break: Break::Propagated,
+///     expanded_states: None
+/// }));
+/// ```
 pub fn propagate_breaks(doc: &mut Doc) {
     let mut already_visited = HashSet::new();
     let mut group_stack = Vec::new();
@@ -243,25 +260,39 @@ pub fn propagate_breaks(doc: &mut Doc) {
         &mut (&mut group_stack, &mut already_visited),
         |d, (group_stack, already_visited)| {
             if matches!(d, Doc::DocCommand(DocCommand::BreakParent)) {
-                break_parent_group(group_stack);
+                // safe because we know that `d` is part of the tree rooted at `Doc`, and therefore outlives this function
+                if let Some(parent_group) = group_stack
+                    .last_mut()
+                    .and_then(|ptr| unsafe { ptr.as_mut() })
+                {
+                    break_parent_group(parent_group);
+                }
             }
             if let Doc::DocCommand(DocCommand::Group { .. }) = d {
-                group_stack.push(d.clone());
-                if already_visited.contains(&*d) {
+                group_stack.push(d);
+                if already_visited.contains(d) {
                     return false;
                 }
                 already_visited.insert(d.clone());
             }
             true
         },
-        Some(&|d: &mut Doc, (group_stack, _): &mut (&mut Vec<Doc>, _)| {
-            if let Doc::DocCommand(DocCommand::Group { should_break, .. }) = d {
-                group_stack.pop();
-                if *should_break != Break::Never {
-                    break_parent_group(group_stack);
+        Some(
+            &|d: &mut Doc, (group_stack, _): &mut (&mut Vec<*mut Doc>, _)| {
+                if let Doc::DocCommand(DocCommand::Group { should_break, .. }) = d {
+                    group_stack.pop();
+                    if *should_break != Break::Never {
+                        // safe because we know that `d` is part of the tree rooted at `Doc`, and therefore outlives this function
+                        if let Some(parent_group) = group_stack
+                            .last_mut()
+                            .and_then(|ptr| unsafe { ptr.as_mut() })
+                        {
+                            break_parent_group(parent_group);
+                        }
+                    }
                 }
-            }
-        }),
+            },
+        ),
         Some(true),
     );
 }

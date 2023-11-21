@@ -28,7 +28,6 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
     })
 }
 
-
 /// Mark a group of items which the printer should try to fit on one line. This is the basic command to tell the printer when to break.
 /// Groups are usually nested, and the printer will try to fit everything on one line,
 /// but if it doesn't fit it will break the outermost group first and try again.
@@ -59,6 +58,8 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
 ///
 /// The `id` option can be used in `if_break` checks.
 ///
+/// TODO: Unit test rendering of groups, its not working properly
+#[must_use]
 pub fn group(
     contents: Doc,
     id: Option<Symbol>,
