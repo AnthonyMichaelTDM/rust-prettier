@@ -5,8 +5,8 @@ use crate::common::Symbol;
 
 /// create a `Doc::Array` from a list of `Doc`'s
 #[must_use]
-pub fn concat(docs: Vec<Doc>) -> Doc {
-    Doc::from(docs)
+pub fn concat(docs: impl AsRef<[Doc]>) -> Doc {
+    Doc::from(docs.as_ref())
 }
 
 /// increase the level of indentation
@@ -63,12 +63,12 @@ pub fn align(contents: Doc, alignment: Align) -> Doc {
 /// use rust_prettier::{document::builders::*, PrettyPrinter};
 ///
 /// let doc = group(
-///     concat(vec![
-///         "[".into(),indent(group(concat(vec![ softline(),
-///             "1,".into(), softline(),concat(vec![
+///     concat([
+///         "[".into(),indent(group(concat([ softline(),
+///             "1,".into(), softline(),concat([
 ///             "function () {".into(),indent(hardline()),
-///                 "return 2;".into(),hardline(),
-///      dedent("},".into()),]), softline(),
+///                 "return 2;".into(),dedent(hardline()),
+///             "},".into(),]), softline(),
 ///             "3,".into(),dedent(softline()),]),None,false,None,)),
 ///         "];".into(),
 ///     ]),
@@ -171,12 +171,12 @@ pub fn conditional_group(states: Vec<Doc>, id: Option<Symbol>, should_break: boo
 ///     "c".repeat(60).into(),
 ///     softline(),
 ///     "d".repeat(80).into(),
-///     softline(),
+///     softline(), // trailing soft lines are ignored
 /// ]);
 ///
 /// let formatted = doc.format(&PrettyPrinterBuilder::default().print_width(80).build().unwrap()).unwrap();
 ///
-/// assert_eq!(formatted, format!("{}{}\n{}\n{}\n", "a".repeat(40), "b".repeat(40),"c".repeat(60),"d".repeat(80)))
+/// assert_eq!(formatted, format!("{}{}\n{}\n{}", "a".repeat(40), "b".repeat(40),"c".repeat(60),"d".repeat(80)))
 /// ```
 ///
 #[must_use]

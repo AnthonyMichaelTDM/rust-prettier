@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{cell::RefCell, collections::HashMap, rc::Rc};
 
 use unicode_width::UnicodeWidthStr;
 
@@ -36,7 +36,7 @@ enum Part {
 
 #[derive(Clone)]
 struct Command {
-    indent: Indent,
+    indent: Rc<RefCell<Indent>>,
     mode: Mode,
     doc: Doc,
 }
@@ -92,7 +92,7 @@ impl Doc {
         // while loop which is much faster. The while loop below adds new
         // cmds to the array instead of recursively calling `print`.
         let mut cmds = vec![Command {
-            indent: Indent::root(),
+            indent: Rc::new(RefCell::new(Indent::root())),
             mode: Mode::Break,
             doc,
         }];
@@ -133,20 +133,28 @@ impl Doc {
                     printed_cursor_count += 1;
                 }
 
-                Self::DocCommand(DocCommand::Indent { contents }) => cmds.push(Command {
-                    indent: make_indent(&indent, options),
-                    mode,
-                    doc: contents.as_ref().clone(),
-                }),
+                Self::DocCommand(DocCommand::Indent { contents }) => {
+                    *indent.borrow_mut() = make_indent(indent.clone(), options);
+                    // indent.replace_with(|old| make_indent(old, options));
+                    cmds.push(Command {
+                        indent,
+                        mode,
+                        doc: contents.as_ref().clone(),
+                    })
+                }
 
                 Self::DocCommand(DocCommand::Align {
                     contents,
                     alignment,
-                }) => cmds.push(Command {
-                    indent: make_align(&indent, options, alignment),
-                    mode,
-                    doc: contents.as_ref().clone(),
-                }),
+                }) => {
+                    *indent.borrow_mut() = make_align(indent.clone(), options, alignment);
+                    // indent.replace_with(|old| make_align(old, options, alignment));
+                    cmds.push(Command {
+                        indent,
+                        mode,
+                        doc: contents.as_ref().clone(),
+                    })
+                }
 
                 Self::DocCommand(DocCommand::Trim) => {
                     pos -= trim(&mut out);
@@ -486,7 +494,7 @@ impl Doc {
                                 cmds.extend(line_suffix.drain(..).rev());
                             } else if line_type == LineType::Literal {
                                 out.push(OutputItem::Content(new_line.to_string()));
-                                if let Some(root_indent) = indent.root {
+                                if let Some(root_indent) = indent.borrow().to_owned().root {
                                     out.push(OutputItem::Content(root_indent.value.clone()));
                                     pos = root_indent.length;
                                 } else {
@@ -495,8 +503,10 @@ impl Doc {
                             } else {
                                 // pos -= pos.checked_sub(trim(&mut out)).unwrap_or_default();
                                 trim(&mut out);
-                                out.push(OutputItem::Content(new_line.to_string() + &indent.value));
-                                pos = indent.length;
+                                out.push(OutputItem::Content(
+                                    new_line.to_string() + &indent.borrow().value,
+                                ));
+                                pos = indent.borrow().length;
                             }
                         }
                     }
@@ -544,13 +554,13 @@ impl Indent {
     }
 }
 
-fn make_indent(indent: &Indent, options: &PrettyPrinter) -> Indent {
+fn make_indent(indent: Rc<RefCell<Indent>>, options: &PrettyPrinter) -> Indent {
     generate_indent(indent, Part::Indent, options)
 }
 
-fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> Indent {
+fn generate_indent(indent: Rc<RefCell<Indent>>, new_part: Part, options: &PrettyPrinter) -> Indent {
     let queue = {
-        let mut q = indent.queue.clone();
+        let mut q = indent.borrow().to_owned().queue.clone();
         if matches!(new_part, Part::Dedent) {
             q.pop();
         } else {
@@ -620,19 +630,20 @@ fn generate_indent(indent: &Indent, new_part: Part, options: &PrettyPrinter) -> 
         value,
         length,
         queue,
-        root: None,
+        root: indent.borrow().to_owned().root,
     }
 }
 
-fn make_align(indent: &Indent, options: &PrettyPrinter, alignment: Align) -> Indent {
+fn make_align(indent: Rc<RefCell<Indent>>, options: &PrettyPrinter, alignment: Align) -> Indent {
     match alignment {
         Align::ToRoot => indent
+            .borrow()
             .root
             .as_ref()
             .map_or_else(Indent::root, |root| root.as_ref().clone()),
         Align::AsRoot => Indent {
-            root: Some(Box::new(indent.clone())),
-            ..indent.clone()
+            root: Some(Box::new(indent.borrow().to_owned())),
+            ..indent.borrow().to_owned()
         },
         Align::By(n) if n < 0 => generate_indent(indent, Part::Dedent, options),
         #[allow(clippy::cast_sign_loss)] // the previous case ensures that `n` is positive
