@@ -458,10 +458,14 @@ impl Doc {
                 }
 
                 Self::DocCommand(DocCommand::Line(line_type)) => {
-                    if mode == Mode::Flat {
-                        match line_type {
-                            crate::document::LineType::Hard
-                            | crate::document::LineType::Literal => {
+                    match mode {
+                        Mode::Flat if line_type == LineType::None => {
+                            out.push(OutputItem::Content(" ".into()));
+                            pos += 1;
+                        }
+                        Mode::Flat if line_type == LineType::Soft => {}
+                        _ => {
+                            if mode == Mode::Flat {
                                 // This line was forced into the output even if we
                                 // were in flattened mode, so we need to tell the next
                                 // group that no matter what, it needs to remeasure
@@ -470,38 +474,31 @@ impl Doc {
                                 // for nested groups)
                                 should_remeasure = true;
                             }
-                            crate::document::LineType::None => {
-                                out.push(OutputItem::Content(" ".into()));
-                                pos += 1;
-                                continue;
-                            }
-                            crate::document::LineType::Soft => {
-                                continue;
-                            } // do nothing
-                        }
-                    }
 
-                    if !line_suffix.is_empty() {
-                        cmds.push(Command {
-                            indent,
-                            mode,
-                            doc: hardline_without_break_parent(),
-                        });
-                        #[allow(clippy::iter_with_drain)]
-                        // we want to consume the vector without moving it
-                        cmds.extend(line_suffix.drain(..).rev());
-                    } else if line_type == LineType::Literal {
-                        out.push(OutputItem::Content(new_line.to_string()));
-                        if let Some(root_indent) = indent.root {
-                            out.push(OutputItem::Content(root_indent.value.clone()));
-                            pos = root_indent.length;
-                        } else {
-                            pos = 0;
+                            if !line_suffix.is_empty() {
+                                cmds.push(Command {
+                                    indent,
+                                    mode,
+                                    doc: hardline_without_break_parent(),
+                                });
+                                #[allow(clippy::iter_with_drain)]
+                                // we want to consume the vector without moving it
+                                cmds.extend(line_suffix.drain(..).rev());
+                            } else if line_type == LineType::Literal {
+                                out.push(OutputItem::Content(new_line.to_string()));
+                                if let Some(root_indent) = indent.root {
+                                    out.push(OutputItem::Content(root_indent.value.clone()));
+                                    pos = root_indent.length;
+                                } else {
+                                    pos = 0;
+                                }
+                            } else {
+                                // pos -= pos.checked_sub(trim(&mut out)).unwrap_or_default();
+                                trim(&mut out);
+                                out.push(OutputItem::Content(new_line.to_string() + &indent.value));
+                                pos = indent.length;
+                            }
                         }
-                    } else {
-                        pos = pos.checked_sub(trim(&mut out)).unwrap_or_default();
-                        out.push(OutputItem::Content(new_line.to_string() + &indent.value));
-                        pos += indent.length;
                     }
                 }
 
