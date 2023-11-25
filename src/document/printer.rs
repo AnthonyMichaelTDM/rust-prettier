@@ -584,6 +584,7 @@ fn generate_indent(indent: Rc<RefCell<Indent>>, new_part: Part, options: &Pretty
                     }
                     value.push('\t');
                     length += 1;
+                    last_tabs = 0;
                 } else {
                     if last_spaces > 0 {
                         value.push_str(&" ".repeat(last_spaces));
@@ -591,9 +592,8 @@ fn generate_indent(indent: Rc<RefCell<Indent>>, new_part: Part, options: &Pretty
                     }
                     value.push_str(&" ".repeat(options.tab_width));
                     length += options.tab_width;
+                    last_spaces = 0;
                 }
-                last_tabs = 0;
-                last_spaces = 0;
             }
             Part::StringAlign(s) => {
                 if options.use_tabs {
@@ -601,18 +601,23 @@ fn generate_indent(indent: Rc<RefCell<Indent>>, new_part: Part, options: &Pretty
                         value.push_str(&"\t".repeat(last_tabs));
                         length += last_tabs * options.tab_width;
                     }
+                    last_tabs = 0;
                 } else if last_spaces > 0 {
                     value.push_str(&" ".repeat(last_spaces));
                     length += last_spaces;
+                    last_spaces = 0;
                 }
-                last_tabs = 0;
-                last_spaces = 0;
                 value += &s;
                 length += s.len();
             }
-            Part::NumberAlign(n) => {
-                last_tabs += 1;
-                last_spaces += n;
+            Part::NumberAlign(mut n) => {
+                if options.use_tabs {
+                    n = n + last_tabs * options.tab_width + last_spaces;
+                    last_tabs = n / options.tab_width;
+                    last_spaces = n % options.tab_width;
+                } else {
+                    last_spaces += n;
+                }
             }
             Part::Dedent => {
                 unreachable!("Dedent should have been handled above");
