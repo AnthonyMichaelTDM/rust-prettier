@@ -546,7 +546,15 @@ fn print_expression(
                             Ok("".into())
                         } else {
                             Ok(concat([
-                                indent(softline()),
+                                if_break(
+                                    indent(softline()),
+                                    if options.bracket_spacing {
+                                        Some(" ".into())
+                                    } else {
+                                        None
+                                    },
+                                    None,
+                                ),
                                 join(
                                     &concat([
                                         ",".into(),
@@ -554,7 +562,15 @@ fn print_expression(
                                     ]),
                                     members,
                                 ),
-                                dedent(softline()),
+                                if_break(
+                                    dedent(softline()),
+                                    if options.bracket_spacing {
+                                        Some(" ".into())
+                                    } else {
+                                        None
+                                    },
+                                    None,
+                                ),
                             ]))
                         }
                     })?,

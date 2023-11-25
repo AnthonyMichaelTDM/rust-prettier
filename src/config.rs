@@ -103,8 +103,6 @@ pub struct PrettyPrinter {
     ///
     /// - true - Example: { foo: bar }.
     /// - false - Example: {foo: bar}.
-    ///
-    /// TODO: support
     pub bracket_spacing: bool,
     /// Put the > of a multi-line HTML (HTML, JSX, Vue, Angular) element at the end of the last line instead of being alone on the next line (does not apply to self closing elements).
     ///
