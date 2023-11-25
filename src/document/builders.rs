@@ -1,6 +1,6 @@
 use std::{collections::VecDeque, num::NonZeroUsize};
 
-use super::{Align, Doc, DocCommand, Label, LineType};
+use super::{Align, Doc, DocCommand, LineType};
 use crate::common::Symbol;
 
 /// create a `Doc::Array` from a list of `Doc`'s
@@ -19,12 +19,40 @@ pub fn indent(contents: Doc) -> Doc {
 
 /// Increase the indentation by a fixed number of spaces or a string. A variant of indent.
 ///
-/// When useTabs is enabled, trailing alignments in indentation are still spaces, but middle ones are transformed one tab per align. In a whitespace-sensitive context (e.g., Markdown), you should pass spaces to align as strings to prevent their replacement with tabs.
+/// When `use_tabs` is enabled, trailing alignments in indentation are still spaces, but middle ones are transformed one tab per align. In a whitespace-sensitive context (e.g., Markdown), you should pass spaces to align as strings to prevent their replacement with tabs.
+/// note: the above isn't implemented yet
 #[must_use]
 pub fn align(contents: Doc, alignment: Align) -> Doc {
     Doc::DocCommand(DocCommand::Align {
         contents: Box::new(contents),
         alignment,
+    })
+}
+
+/// Decrease the current indentation to the root marked by `mark_as_root`.
+#[must_use]
+pub fn dedent_to_root(contents: Doc) -> Doc {
+    Doc::DocCommand(DocCommand::Align {
+        contents: Box::new(contents),
+        alignment: Align::ToRoot,
+    })
+}
+
+/// Mark the current indentation as root for `dedent_to_root` and literallines.
+#[must_use]
+pub fn mark_as_root(contents: Doc) -> Doc {
+    Doc::DocCommand(DocCommand::Align {
+        contents: Box::new(contents),
+        alignment: Align::AsRoot,
+    })
+}
+
+/// Decrease the level of indentation. (Each align is considered one level of indentation.)
+#[must_use]
+pub fn dedent(contents: Doc) -> Doc {
+    Doc::DocCommand(DocCommand::Align {
+        contents: Box::new(contents),
+        alignment: Align::By(-1),
     })
 }
 
@@ -105,41 +133,20 @@ pub fn group(
     })
 }
 
-/// Decrease the current indentation to the root marked by `mark_as_root`.
-#[must_use]
-pub fn dedent_to_root(contents: Doc) -> Doc {
-    Doc::DocCommand(DocCommand::Align {
-        contents: Box::new(contents),
-        alignment: Align::ToRoot,
-    })
-}
-
-/// Mark the current indentation as root for `dedent_to_root` and literallines.
-#[must_use]
-pub fn mark_as_root(contents: Doc) -> Doc {
-    Doc::DocCommand(DocCommand::Align {
-        contents: Box::new(contents),
-        alignment: Align::AsRoot,
-    })
-}
-
-/// Decrease the level of indentation. (Each align is considered one level of indentation.)
-#[must_use]
-pub fn dedent(contents: Doc) -> Doc {
-    Doc::DocCommand(DocCommand::Align {
-        contents: Box::new(contents),
-        alignment: Align::By(-1),
-    })
-}
-
 /// This should be used as last resort as it triggers an exponential complexity when nested.
 ///
-/// This will try to print the first alternative, if it fit use it, otherwise go to the next one and so on. The alternatives is an array of documents going from the least expanded (most flattened) representation first to the most expanded.
+/// This will try to print the first alternative, if it fit use it, otherwise go to the next one and so on.
+/// The alternatives is an array of documents going from the least expanded (most flattened) representation first to the most expanded.
 ///
 /// # None
 /// Returns none if states is empty.
 #[must_use]
-pub fn conditional_group(states: Vec<Doc>, id: Option<Symbol>, should_break: bool) -> Option<Doc> {
+pub fn conditional_group(
+    states: impl AsRef<[Doc]>,
+    id: Option<Symbol>,
+    should_break: bool,
+) -> Option<Doc> {
+    let states = states.as_ref();
     if states.is_empty() {
         return None;
     }
@@ -148,7 +155,7 @@ pub fn conditional_group(states: Vec<Doc>, id: Option<Symbol>, should_break: boo
         states.first()?.clone(),
         id,
         should_break,
-        Some(states),
+        Some(states.to_owned()),
     ))
 }
 
@@ -223,11 +230,11 @@ pub fn indent_if_break(contents: Doc, group_id: Symbol, negate: bool) -> Doc {
 /// For example,
 /// ```
 /// use rust_prettier::document::{Doc, builders::{line_suffix, hardline}};
-/// # use rust_prettier::{PrettyPrinter, PrettyPrinterBuilder};
+/// use rust_prettier::{PrettyPrinter};
 ///
 /// let doc: Doc = Doc::from(vec!["a".into(), line_suffix(" // comment".into()), ";".into(), hardline()]);
 ///
-/// assert_eq!(doc.format(&PrettyPrinterBuilder::default().build().unwrap()).unwrap(), "a; // comment\n");
+/// assert_eq!(doc.format(&PrettyPrinter::default()).unwrap(), "a; // comment\n");
 /// ```
 #[must_use]
 pub fn line_suffix(contents: Doc) -> Doc {
@@ -236,56 +243,107 @@ pub fn line_suffix(contents: Doc) -> Doc {
     })
 }
 
+/// In cases where you embed code inside of templates,
+/// comments shouldn't be able to leave the code part.
+/// `line_suffix_boundary` is an explicit marker you can use to flush the
+/// `line_suffix` buffer in addition to line breaks.
+///
+/// For Example:
+///
+/// ```
+/// use rust_prettier::{PrettyPrinter, document::builders::*};
+///
+/// let doc = concat(["{".into(), line_suffix(" // comment".into()), line_suffix_boundary(), "}".into(), hardline()]);
+///
+/// assert_eq!(doc.format(&PrettyPrinter::default()).unwrap(), "{ // comment\n}\n");
+/// // not
+/// assert_ne!(doc.format(&PrettyPrinter::default()).unwrap(), "{} // comment\n");
+/// ```
 #[must_use]
 pub const fn line_suffix_boundary() -> Doc {
     Doc::DocCommand(DocCommand::LineSuffixBoundary)
 }
 
+/// Include this anywhere to force all parent groups to break. See [`group`] for more info.
+/// # Example
+/// ```no_run
+/// use rust_prettier::document::builders::*;
+///
+/// # let some_doc = Doc::from("some doc");
+/// # let some_other_doc = Doc::from("some other doc");
+///
+/// let doc = group(
+///     concat([
+///         some_doc,
+///         softline(),
+///         some_other_doc,
+///         softline(),
+///         break_parent(),
+///     ]),
+///     None, false, None,
+/// );
 #[must_use]
 pub const fn break_parent() -> Doc {
     Doc::DocCommand(DocCommand::BreakParent)
 }
 
+/// Trim all the indentation on the current line.
+/// This can be used for preprocessor directives.
+/// Should be placed after a line break.
 #[must_use]
 pub const fn trim() -> Doc {
     Doc::DocCommand(DocCommand::Trim)
 }
 
+/// This is used very rarely, for advanced formatting tricks.
+/// Unlike its "normal" counterpart, it doesn't include an implicit `break_parent`.
 #[must_use]
 pub const fn hardline_without_break_parent() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Hard))
 }
 
+/// This is used very rarely, for advanced formatting tricks.
+/// Unlike its "normal" counterpart, it doesn't include an implicit `break_parent`.
 #[must_use]
 pub const fn literalline_without_break_parent() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Literal))
 }
 
 #[must_use]
+/// Specify a line break. The difference from `line` is that if the expression fits on one line,
+/// it will be replaced with nothing.
 pub const fn softline() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Soft))
 }
 
 #[must_use]
+/// Specify a line break that is **always** included in the output,
+/// no matter if the expression fits on one line or not.
 pub fn hardline() -> Doc {
     Doc::Array(vec![hardline_without_break_parent(), break_parent()])
 }
 
 #[must_use]
+/// Specify a line break that is **always** included in the output and doesn't indent the next line. Also, unlike `hardline`,
+/// this kind of line break preserves trailing whitespace on the line it ends. This is used for template literals.
 pub fn literalline() -> Doc {
     Doc::Array(vec![literalline_without_break_parent(), break_parent()])
 }
 
 #[must_use]
+/// Specify a line break. If an expression fits on one line, the line break will be replaced with a space.
+/// Line breaks always indent the next line with the current level of indentation.
 pub const fn line() -> Doc {
     Doc::DocCommand(DocCommand::Line(LineType::Soft))
 }
 
+/// This is a placeholder value where the cursor is in the original input in order to find where it would be printed.
 #[must_use]
 pub const fn cursor() -> Doc {
     Doc::DocCommand(DocCommand::Cursor)
 }
 
+/// Join an array of docs with a separator.
 pub fn join(separator: &Doc, docs: impl AsRef<[Doc]>) -> Doc {
     Doc::Array(docs.as_ref().iter().fold(Vec::new(), |mut acc, doc| {
         if !acc.is_empty() {
@@ -296,28 +354,44 @@ pub fn join(separator: &Doc, docs: impl AsRef<[Doc]>) -> Doc {
     }))
 }
 
+/// add `size` spaces/tabs to the current indentation level, greadily using tabs first and then spaces with what is left over.
 #[must_use]
-pub fn add_alignment_to_doc(doc: Doc, size: isize, tab_width: NonZeroUsize) -> Doc {
+pub fn add_alignment_to_doc(doc: Doc, size: usize, tab_width: NonZeroUsize) -> Doc {
     let mut aligned = doc;
-    #[allow(clippy::cast_sign_loss, clippy::cast_possible_wrap)]
-    if size > 0 {
-        let size = size as usize;
-        // Use indent to add tabs for all the levels of tabs we need
-        // casting is safe because we know size is positive
-        for _ in 0..(size / tab_width) {
-            aligned = indent(aligned);
-        }
-        // Use align for all the spaces that are needed
-        aligned = align(aligned, Align::By((size % tab_width) as isize));
-        // size is absolute from 0 and not relative to the current
-        // indentation, so we use -Infinity to reset the indentation to 0
-        aligned = align(aligned, Align::ToRoot);
+
+    let size = size.clamp(0, isize::MAX as usize);
+
+    // Use indent to add tabs for all the levels of tabs we need
+    // casting is safe because we know size is positive
+    for _ in 0..(size / tab_width) {
+        aligned = indent(aligned);
     }
+    // Use align for all the spaces that are needed
+    #[allow(clippy::cast_sign_loss, clippy::cast_possible_wrap)]
+    {
+        // new scope so we can attach a clippy lint to excuse the cast
+        aligned = align(aligned, Align::By((size % tab_width) as isize));
+    }
+    // size is absolute from 0 and not relative to the current
+    // indentation, so we use ToRoot to reset the indentation to 0
+    aligned = align(aligned, Align::ToRoot);
+
     aligned
 }
 
+/// Mark a doc with an arbitrary [`Symbol`].
+/// This doesn't affect how the doc is printed, but can be useful for heuristics based on doc introspection.
+///
+/// E.g., to decide how to print an assignment expression,
+/// we might want to know whether its right-hand side has been printed as a method call chain, not as a plain function call.
+/// If the method chain printing code uses `label` to mark its result,
+/// checking that condition can be as easy as:
+///
+/// ```ignore
+/// matches!(right_hand_side_doc, Doc::DocCommand(DocCommand::Label{Symbol::String(s)}) if s == "method-chain")
+/// ```
 #[must_use]
-pub fn label(label: Label, contents: Doc) -> Doc {
+pub fn label(label: Symbol, contents: Doc) -> Doc {
     Doc::DocCommand(DocCommand::Label {
         label,
         contents: Box::new(contents),
