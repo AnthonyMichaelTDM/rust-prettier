@@ -1,0 +1,505 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'rust-prettier'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "rust-prettier",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'unit'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=unit",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "unit",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_angular'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_angular",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_angular",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_css'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_css",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_css",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_flow'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_flow",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_flow",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_flow_repo'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_flow_repo",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_flow_repo",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_graphql'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_graphql",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_graphql",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_handlebars'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_handlebars",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_handlebars",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_html'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_html",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_html",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_js'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_js",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_js",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_json'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_json",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_json",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_jsx'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_jsx",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_jsx",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_less'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_less",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_less",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_lwc'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_lwc",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_lwc",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_markdown'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_markdown",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_markdown",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_mdx'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_mdx",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_mdx",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_misc'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_misc",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_misc",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_mjml'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_mjml",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_mjml",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_scss'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_scss",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_scss",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_stylefmt_repo'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_stylefmt_repo",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_stylefmt_repo",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_typescript'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_typescript",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_typescript",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_vue'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_vue",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_vue",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'generated_yaml'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "-F generated_tests",
+                    "--test=generated_yaml",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "generated_yaml",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'mod'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=mod",
+                    "--package=rust-prettier"
+                ],
+                "filter": {
+                    "name": "mod",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

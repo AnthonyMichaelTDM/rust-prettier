@@ -9,14 +9,14 @@ mod config;
 pub mod document;
 mod languages;
 pub mod utils;
+
 use std::{path::PathBuf, str::FromStr};
 
-pub use config::{PrettyPrinter, PrettyPrinterBuilder};
-pub use languages::{Language, ParseToAST, PrintToDoc};
+pub use crate::config::{PrettyPrinter, PrettyPrinterBuilder};
+pub use crate::languages::{Language, ParseToAST, PrintToDoc};
+use crate::{config::Parser, document::Doc};
 
 use anyhow::{anyhow, Result};
-
-use crate::{config::Parser, document::Doc};
 
 impl PrettyPrinter {
     /// # Errors

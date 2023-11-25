@@ -297,47 +297,55 @@ pub(crate) fn print_module(js_module: JsModule, options: &PrettyPrinter) -> Resu
     // a map and reused if they are encountered again.
     let mut cache = HashMap::new();
 
-    let imports = join(
-        &hardline(),
-        js_module
-            .items()
-            .iter()
-            .filter(|item| matches!(item, AnyJsModuleItem::JsImport(_)))
-            .map(|ref item| print_module_recursive(item, options, &mut cache))
-            .collect::<Result<Vec<_>>>()?,
-    );
+    let imports = js_module
+        .items()
+        .iter()
+        .filter(|item| matches!(item, AnyJsModuleItem::JsImport(_)))
+        .map(|ref item| print_module_recursive(item, options, &mut cache))
+        .collect::<Result<Vec<_>>>()
+        .and_then(|imports| {
+            if !imports.is_empty() {
+                Ok(concat([join(&hardline(), imports), hardline(), hardline()]))
+            } else {
+                Ok("".into())
+            }
+        })?;
 
-    let statements = join(
-        &hardline(),
-        js_module
-            .items()
-            .iter()
-            .filter(|item| matches!(item, AnyJsModuleItem::AnyJsStatement(_)))
-            .map(|ref item| print_module_recursive(item, options, &mut cache))
-            .collect::<Result<Vec<_>>>()?,
-    );
+    let statements = js_module
+        .items()
+        .iter()
+        .filter(|item| matches!(item, AnyJsModuleItem::AnyJsStatement(_)))
+        .map(|ref item| print_module_recursive(item, options, &mut cache))
+        .collect::<Result<Vec<_>>>()
+        .and_then(|statements| {
+            if !statements.is_empty() {
+                Ok(concat([
+                    join(&hardline(), statements),
+                    hardline(),
+                    hardline(),
+                ]))
+            } else {
+                Ok("".into())
+            }
+        })?;
 
-    let exports = join(
-        &hardline(),
-        js_module
-            .items()
-            .iter()
-            .filter(|item| matches!(item, AnyJsModuleItem::JsExport(_)))
-            .map(|ref item| print_module_recursive(item, options, &mut cache))
-            .collect::<Result<Vec<_>>>()?,
-    );
+    let exports = js_module
+        .items()
+        .iter()
+        .filter(|item| matches!(item, AnyJsModuleItem::JsExport(_)))
+        .map(|ref item| print_module_recursive(item, options, &mut cache))
+        .collect::<Result<Vec<_>>>()
+        .and_then(|exports| {
+            if !exports.is_empty() {
+                Ok(join(&hardline(), exports))
+            } else {
+                Ok("".into())
+            }
+        })?;
 
-    Ok(builders::concat([
-        imports,
-        hardline(),
-        hardline(),
-        statements,
-        hardline(),
-        hardline(),
-        exports,
-    ]))
+    Ok(builders::concat([imports, statements, exports]))
 }
 
-pub(crate) fn print_script(js_script: JsScript, options: &PrettyPrinter) -> Result<Doc> {
+pub(crate) fn print_script(_js_script: JsScript, _options: &PrettyPrinter) -> Result<Doc> {
     todo!()
 }

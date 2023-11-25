@@ -80,10 +80,9 @@ impl PrintToDoc<AnyJsRoot, JsSyntaxNode, AnyJsRoot, JsError, PrettyPrinter> for 
         }
     }
 
-    fn insert_pragma(&self, text: &str) -> String {
+    fn insert_pragma(&self, _text: &str) -> String {
         todo!()
     }
 }
 
 impl HandleComments<AnyJsRoot, JsSyntaxNode, AnyJsRoot, JsError, PrettyPrinter> for Javascript {}
-
