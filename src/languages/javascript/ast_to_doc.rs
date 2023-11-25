@@ -2,14 +2,15 @@ use std::collections::HashMap;
 
 use anyhow::Result;
 use biome_js_syntax::{
-    AnyJsCallArgument, AnyJsExportClause, AnyJsExpression, AnyJsImportClause, AnyJsModuleItem,
-    AnyJsNamedImport, AnyJsStatement, JsExport, JsImport, JsModule, JsScript, JsSyntaxNode,
+    AnyJsCallArgument, AnyJsExportClause, AnyJsExpression, AnyJsFormalParameter, AnyJsImportClause,
+    AnyJsModuleItem, AnyJsNamedImport, AnyJsNamedImportSpecifier, AnyJsParameter, AnyJsStatement,
+    JsExport, JsImport, JsModule, JsScript, JsSyntaxNode,
 };
 use biome_rowan::{AstNode, AstNodeList};
 
 use crate::{
     document::{
-        builders::{self, concat, dedent, group, hardline, if_break, indent, join, softline},
+        builders::{concat, dedent, group, hardline, if_break, indent, join, softline},
         Doc,
     },
     PrettyPrinter,
@@ -62,20 +63,27 @@ fn print_import(
         AnyJsImportClause::JsImportBareClause(_) => todo!(),
         AnyJsImportClause::JsImportDefaultClause(_) => todo!(),
         AnyJsImportClause::JsImportNamedClause(named_import) => {
-            let imports = match  named_import.named_import().unwrap() {
-                    AnyJsNamedImport::JsNamedImportSpecifiers(imports) => imports
-                        .specifiers()
-                        .into_iter()
-                        .filter_map(|specifier| specifier.ok())
-                        .map(|specifier| match specifier {
-                            biome_js_syntax::AnyJsNamedImportSpecifier::JsBogusNamedImportSpecifier(_) => todo!(),
-                            biome_js_syntax::AnyJsNamedImportSpecifier::JsNamedImportSpecifier(_) => todo!(),
-                            biome_js_syntax::AnyJsNamedImportSpecifier::JsShorthandNamedImportSpecifier(name) => name.local_name().unwrap().to_string().into(),
-                        }).collect::<Vec<_>>(),
-                    AnyJsNamedImport::JsNamespaceImportSpecifier(_) => todo!(),
-                };
+            let imports = match named_import.named_import().unwrap() {
+                AnyJsNamedImport::JsNamedImportSpecifiers(imports) => imports
+                    .specifiers()
+                    .into_iter()
+                    .filter_map(|specifier| specifier.ok())
+                    .map(|specifier| match specifier {
+                        AnyJsNamedImportSpecifier::JsBogusNamedImportSpecifier(_) => todo!(),
+                        AnyJsNamedImportSpecifier::JsNamedImportSpecifier(_) => todo!(),
+                        AnyJsNamedImportSpecifier::JsShorthandNamedImportSpecifier(name) => name
+                            .local_name()
+                            .unwrap()
+                            .trim_trivia()
+                            .unwrap()
+                            .text()
+                            .into(),
+                    })
+                    .collect::<Vec<_>>(),
+                AnyJsNamedImport::JsNamespaceImportSpecifier(_) => todo!(),
+            };
 
-            let source: Doc = named_import.source().unwrap().to_string().into();
+            let source: Doc = named_import.source()?.trim_trivia().unwrap().text().into();
 
             let doc = group(
                 concat([
@@ -116,57 +124,148 @@ fn print_statement(
         return Ok(doc.clone());
     }
     let doc = match statement {
-        biome_js_syntax::AnyJsStatement::JsBlockStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsBogusStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsBreakStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsClassDeclaration(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsContinueStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsDebuggerStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsDoWhileStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsEmptyStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsExpressionStatement(expr) => concat([
+        AnyJsStatement::JsBlockStatement(_) => todo!(),
+        AnyJsStatement::JsBogusStatement(_) => todo!(),
+        AnyJsStatement::JsBreakStatement(_) => todo!(),
+        AnyJsStatement::JsClassDeclaration(_) => todo!(),
+        AnyJsStatement::JsContinueStatement(_) => todo!(),
+        AnyJsStatement::JsDebuggerStatement(_) => todo!(),
+        AnyJsStatement::JsDoWhileStatement(_) => todo!(),
+        AnyJsStatement::JsEmptyStatement(_) => todo!(),
+        AnyJsStatement::JsExpressionStatement(expr) => concat([
             print_expression(&expr.expression().unwrap(), _options, cache)?,
             ";".into(),
         ]),
-        biome_js_syntax::AnyJsStatement::JsForInStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsForOfStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsForStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsFunctionDeclaration(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsIfStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsLabeledStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsReturnStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsSwitchStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsThrowStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsTryFinallyStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsTryStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsVariableStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsWhileStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::JsWithStatement(_) => todo!(),
-        biome_js_syntax::AnyJsStatement::TsDeclareFunctionDeclaration(_) => {
+        AnyJsStatement::JsForInStatement(_) => todo!(),
+        AnyJsStatement::JsForOfStatement(_) => todo!(),
+        AnyJsStatement::JsForStatement(_) => todo!(),
+        AnyJsStatement::JsFunctionDeclaration(function) => {
+            // get params
+            let params = function
+                .parameters()?
+                .items()
+                .into_iter()
+                .filter_map(|item| match item.ok()? {
+                    AnyJsParameter::AnyJsFormalParameter(
+                        AnyJsFormalParameter::JsBogusParameter(_),
+                    ) => todo!(),
+                    AnyJsParameter::AnyJsFormalParameter(
+                        AnyJsFormalParameter::JsFormalParameter(param),
+                    ) => {
+                        let param_name = param.binding().ok()?.trim_trivia()?.text().into();
+
+                        if let Some(initializer) =
+                            param.initializer().and_then(|init| init.expression().ok())
+                        {
+                            Some(concat([
+                                param_name,
+                                " = ".into(),
+                                print_expression(&initializer, _options, cache).ok()?,
+                            ]))
+                        } else {
+                            Some(param_name)
+                        }
+                    }
+                    AnyJsParameter::JsRestParameter(_) => todo!(),
+                    AnyJsParameter::TsThisParameter(_) => {
+                        unimplemented!("TS, not JS")
+                    }
+                })
+                .collect::<Vec<_>>();
+
+            let body = group(
+                concat([
+                    "{".into(),
+                    function
+                        .body()?
+                        .statements()
+                        .into_iter()
+                        .map(|statement| print_statement(&statement, _options, cache))
+                        .collect::<Result<Vec<_>>>()
+                        .and_then(|statements| {
+                            if statements.is_empty() {
+                                Ok(" ".into())
+                            } else {
+                                Ok(concat([
+                                    indent(hardline()),
+                                    join(&hardline(), statements),
+                                    dedent(hardline()),
+                                ]))
+                            }
+                        })?,
+                    "}".into(),
+                ]),
+                None,
+                false,
+                None,
+            );
+            let doc = concat([
+                format!(
+                    "{}function {name}",
+                    function.async_token().map_or("", |_| "async "),
+                    name = function.id()?.trim_trivia().unwrap().text()
+                )
+                .into(),
+                if !params.is_empty() {
+                    group(
+                        concat([
+                            "(".into(),
+                            indent(softline()),
+                            join(
+                                &concat([",".into(), if_break(softline(), Some(" ".into()), None)]),
+                                params,
+                            ),
+                            dedent(softline()),
+                            ")".into(),
+                        ]),
+                        None,
+                        false,
+                        None,
+                    )
+                } else {
+                    "()".into()
+                },
+                " ".into(),
+                body,
+            ]);
+
+            doc
+        }
+        AnyJsStatement::JsIfStatement(_) => todo!(),
+        AnyJsStatement::JsLabeledStatement(_) => todo!(),
+        AnyJsStatement::JsReturnStatement(_) => todo!(),
+        AnyJsStatement::JsSwitchStatement(_) => todo!(),
+        AnyJsStatement::JsThrowStatement(_) => todo!(),
+        AnyJsStatement::JsTryFinallyStatement(_) => todo!(),
+        AnyJsStatement::JsTryStatement(_) => todo!(),
+        AnyJsStatement::JsVariableStatement(_) => todo!(),
+        AnyJsStatement::JsWhileStatement(_) => todo!(),
+        AnyJsStatement::JsWithStatement(_) => todo!(),
+        AnyJsStatement::TsDeclareFunctionDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsDeclareStatement(_) => {
+        AnyJsStatement::TsDeclareStatement(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsEnumDeclaration(_) => {
+        AnyJsStatement::TsEnumDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsExternalModuleDeclaration(_) => {
+        AnyJsStatement::TsExternalModuleDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsGlobalDeclaration(_) => {
+        AnyJsStatement::TsGlobalDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsImportEqualsDeclaration(_) => {
+        AnyJsStatement::TsImportEqualsDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsInterfaceDeclaration(_) => {
+        AnyJsStatement::TsInterfaceDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsModuleDeclaration(_) => {
+        AnyJsStatement::TsModuleDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
-        biome_js_syntax::AnyJsStatement::TsTypeAliasDeclaration(_) => {
+        AnyJsStatement::TsTypeAliasDeclaration(_) => {
             unimplemented!("TS, not JS")
         }
     };
@@ -185,7 +284,9 @@ fn print_expression(
         return Ok(doc.clone());
     }
     let doc: Doc = match expression {
-        AnyJsExpression::AnyJsLiteralExpression(literal) => literal.to_string().into(),
+        AnyJsExpression::AnyJsLiteralExpression(literal) => {
+            literal.to_owned().trim_trivia().unwrap().text().into()
+        }
         AnyJsExpression::JsArrayExpression(_) => todo!(),
         AnyJsExpression::JsArrowFunctionExpression(_) => todo!(),
         AnyJsExpression::JsAssignmentExpression(_) => todo!(),
@@ -194,7 +295,7 @@ fn print_expression(
         AnyJsExpression::JsBogusExpression(_) => todo!(),
         AnyJsExpression::JsCallExpression(call) => group(
             concat([
-                call.callee().unwrap().to_string().into(),
+                call.callee().unwrap().trim_trivia().unwrap().text().into(),
                 "(".into(),
                 indent(softline()),
                 join(
@@ -217,6 +318,7 @@ fn print_expression(
                         .collect::<Vec<_>>(),
                 ),
                 dedent(softline()),
+                ")".into(),
             ]),
             None,
             false,
@@ -226,7 +328,9 @@ fn print_expression(
         AnyJsExpression::JsComputedMemberExpression(_) => todo!(),
         AnyJsExpression::JsConditionalExpression(_) => todo!(),
         AnyJsExpression::JsFunctionExpression(_) => todo!(),
-        AnyJsExpression::JsIdentifierExpression(ident) => ident.name().unwrap().text().into(),
+        AnyJsExpression::JsIdentifierExpression(ident) => {
+            ident.name()?.trim_trivia().unwrap().text().into()
+        }
         AnyJsExpression::JsImportCallExpression(_) => todo!(),
         AnyJsExpression::JsImportMetaExpression(_) => todo!(),
         AnyJsExpression::JsInExpression(_) => todo!(),
@@ -319,11 +423,7 @@ pub(crate) fn print_module(js_module: JsModule, options: &PrettyPrinter) -> Resu
         .collect::<Result<Vec<_>>>()
         .and_then(|statements| {
             if !statements.is_empty() {
-                Ok(concat([
-                    join(&hardline(), statements),
-                    hardline(),
-                    hardline(),
-                ]))
+                Ok(concat([join(&hardline(), statements), hardline()]))
             } else {
                 Ok("".into())
             }
@@ -343,7 +443,7 @@ pub(crate) fn print_module(js_module: JsModule, options: &PrettyPrinter) -> Resu
             }
         })?;
 
-    Ok(builders::concat([imports, statements, exports]))
+    Ok(concat([imports, statements, exports]))
 }
 
 pub(crate) fn print_script(_js_script: JsScript, _options: &PrettyPrinter) -> Result<Doc> {

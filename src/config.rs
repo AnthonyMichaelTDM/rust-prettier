@@ -327,7 +327,7 @@ impl Default for PrettyPrinter {
         Self {
             experimental_ternaries: false,
             print_width: 80,
-            tab_width: 4,
+            tab_width: 2,
             use_tabs: false,
             semi: true,
             single_quote: false,

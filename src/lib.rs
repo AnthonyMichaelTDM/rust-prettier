@@ -50,7 +50,10 @@ impl PrettyPrinter {
             Parser::Javascript => {
                 let parser = languages::javascript::Javascript::new();
                 let ast = parser.parse(_input.as_ref().into(), self)?;
-                parser.print(ast, self)?
+                // println!("{:#?}", ast);
+                let doc = parser.print(ast, self)?;
+                // println!("{:#?}", doc);
+                doc
             }
         };
 
