@@ -42,10 +42,10 @@ wasm = ["wasm-bindgen"]
 name = "unit"
 path = "tests/unit/mod.rs"
 
-[[test]]
-name = "generated"
-path = "tests/generated/mod.rs"
-required-features = ["generated_tests"]
+# [[test]]
+# name = "generated"
+# path = "tests/generated/mod.rs"
+# required-features = ["generated_tests"]
 
 [[test]]
 name = "generated_angular"

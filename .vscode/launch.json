@@ -45,26 +45,6 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug integration test 'generated'",
-            "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "-F generated_tests",
-                    "--test=generated",
-                    "--package=rust-prettier"
-                ],
-                "filter": {
-                    "name": "generated",
-                    "kind": "test"
-                }
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
             "name": "Debug integration test 'generated_angular'",
             "cargo": {
                 "args": [
@@ -481,7 +461,27 @@
             },
             "args": [],
             "cwd": "${workspaceFolder}"
-        },
+        }, 
+        // {
+        //     "type": "lldb",
+        //     "request": "launch",
+        //     "name": "Debug integration test 'generated'",
+        //     "cargo": {
+        //         "args": [
+        //             "test",
+        //             "--no-run",
+        //             "-F generated_tests",
+        //             "--test=generated",
+        //             "--package=rust-prettier"
+        //         ],
+        //         "filter": {
+        //             "name": "generated",
+        //             "kind": "test"
+        //         }
+        //     },
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}"
+        // },
         {
             "type": "lldb",
             "request": "launch",
