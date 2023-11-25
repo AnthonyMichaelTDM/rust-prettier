@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod test_json;
 #[cfg(test)]
-mod test_with_comment;
+mod test_json_5_as_json_with_trailing_commas;
 #[cfg(test)]
 mod test_range;
 #[cfg(test)]
-mod test_json_5_as_json_with_trailing_commas;
+mod test_with_comment;

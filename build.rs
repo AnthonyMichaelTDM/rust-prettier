@@ -4,8 +4,7 @@ cfg_if! {
     if #[cfg(not(all(debug_assertions, feature = "generated_tests")))] {
         fn main() {}
     } else {
-        use proc_macro2::{Punct, Spacing};
-        use quote::{ToTokens, TokenStreamExt};
+        use quote::ToTokens;
         use convert_case::{Case, Casing};
         use quote::quote;
         use std::{collections::HashMap, io::Write};
@@ -316,7 +315,7 @@ cfg_if! {
         fn generate_test_module(test_cases: Vec<TestCase>) -> String {
             let imports_and_helpers = quote! {
                 #[allow(unused_imports)]
-                use rust_prettier::{PrettyPrinterBuilder, Parsers};
+                use rust_prettier::PrettyPrinterBuilder;
                 #[allow(dead_code)]
                 static INFINITY: usize = usize::MAX;
             };
