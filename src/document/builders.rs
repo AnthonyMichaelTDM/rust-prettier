@@ -170,7 +170,7 @@ pub fn conditional_group(
 /// ```
 /// use rust_prettier::{PrettyPrinterBuilder, document::builders::*};
 ///
-/// let doc = fill(vec![
+/// let doc = fill([
 ///     "a".repeat(40).into(),
 ///     softline(),
 ///     "b".repeat(40).into(),
@@ -187,9 +187,9 @@ pub fn conditional_group(
 /// ```
 ///
 #[must_use]
-pub fn fill(parts: Vec<Doc>) -> Doc {
+pub fn fill(parts: impl AsRef<[Doc]>) -> Doc {
     Doc::DocCommand(DocCommand::Fill {
-        parts: parts.into_iter().collect::<VecDeque<_>>(),
+        parts: parts.as_ref().iter().cloned().collect::<VecDeque<_>>(),
     })
 }
 
