@@ -336,6 +336,7 @@ cfg_if! {
             let imports_and_helpers = quote! {
                 #[allow(unused_imports)]
                 use rust_prettier::PrettyPrinterBuilder;
+                use pretty_assertions::assert_eq;
                 #[allow(dead_code)]
                 static INFINITY: usize = usize::MAX;
             };
