@@ -10,13 +10,13 @@ fn test_example_js_end_of_linecr_format_1_575aaa40() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("function f() {<LF>\n  console.log(\"testing line endings\");<LF>\n}<LF>");
+    let formatted =
+        pretty_printer.format("function f() {\n  console.log(\"testing line endings\");\n}\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
     assert_eq!(
         formatted,
-        "function f() {<CR>\n  console.log(\"testing line endings\");<CR>\n}<CR>"
+        "function f() {\r  console.log(\"testing line endings\");\r}\r"
     );
 }
 #[test]
@@ -27,13 +27,13 @@ fn test_example_js_end_of_linecrlf_format_1_575aaa40() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("function f() {<LF>\n  console.log(\"testing line endings\");<LF>\n}<LF>");
+    let formatted =
+        pretty_printer.format("function f() {\n  console.log(\"testing line endings\");\n}\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
     assert_eq!(
         formatted,
-        "function f() {<CRLF>\n  console.log(\"testing line endings\");<CRLF>\n}<CRLF>"
+        "function f() {\r\n  console.log(\"testing line endings\");\r\n}\r\n"
     );
 }
 #[test]
@@ -44,12 +44,12 @@ fn test_example_js_end_of_linelf_format_1_575aaa40() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("function f() {<LF>\n  console.log(\"testing line endings\");<LF>\n}<LF>");
+    let formatted =
+        pretty_printer.format("function f() {\n  console.log(\"testing line endings\");\n}\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
     assert_eq!(
         formatted,
-        "function f() {<LF>\n  console.log(\"testing line endings\");<LF>\n}<LF>"
+        "function f() {\n  console.log(\"testing line endings\");\n}\n"
     );
 }

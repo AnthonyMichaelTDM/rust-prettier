@@ -163,6 +163,14 @@ cfg_if! {
                 output.pop();
                 output.pop();
 
+                // replace <LF>\n with \n, <CR>\n with \r, and <CRLF>\n with \r\n
+                input = input
+                    .replace("<LF>\n", "\n").replace("<CR>\n", "\r").replace("<CRLF>\n", "\r\n")
+                    .replace("<LF>", "\n").replace("<CR>", "\r").replace("<CRLF>", "\r\n");
+                output = output
+                    .replace("<LF>\n", "\n").replace("<CR>\n", "\r").replace("<CRLF>\n", "\r\n")
+                    .replace("<LF>", "\n").replace("<CR>", "\r").replace("<CRLF>", "\r\n");
+
                 TestCase {
                     name,
                     config,
@@ -225,18 +233,21 @@ cfg_if! {
                     std::fs::create_dir_all(format!("{OUT_DIR}{parser}")).unwrap();
                     // create mod.rs file for the parser
                     std::fs::write(
-                        format!("{OUT_DIR}{parser}/mod.rs", parser = parser),
+                        format!("{OUT_DIR}{parser}/mod.rs"),
                         rules
                             .iter()
                             .filter(|(_, path)| {
                                 std::path::Path::new(&format!("{}/__snapshots__", path.to_str().unwrap()))
                                     .exists()
                             })
-                            .map(|(rule, _)| format!("#[cfg(test)]\nmod {};", rule))
+                            .map(|(rule, _)| format!("#[cfg(test)]\nmod {rule};"))
                             .collect::<Vec<_>>()
                             .join("\n"),
                     )
                     .unwrap();
+
+                    // rustfmt the file
+                    rustfmt(format!("{OUT_DIR}{parser}/mod.rs")).unwrap();
 
                     rules.into_iter().filter_map(move |(rule, path)| {
                         Some((
@@ -277,6 +288,9 @@ cfg_if! {
                         })
                 })
                 .collect::<Vec<Snapshot>>();
+
+            // rustfmt the generated/mod.rs file
+            rustfmt(format!("{OUT_DIR}mod.rs", OUT_DIR = OUT_DIR)).unwrap();
 
             // now, for each of those snapshots, we need to parse out all the test cases, the configs they use, and the expected output
             let test_cases = snapshots

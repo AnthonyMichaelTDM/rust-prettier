@@ -11,13 +11,10 @@ fn test_cursor_1_js_end_of_lineauto_format_1_c6ae08c4() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("(function(){return        <|>15})()<LF>");
+    let formatted = pretty_printer.format("(function(){return        <|>15})()\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "(function () {<LF>\n  return <|>15;<LF>\n})();<LF>"
-    );
+    assert_eq!(formatted, "(function () {\n  return <|>15;\n})();\n");
 }
 #[test]
 fn test_cursor_1_js_end_of_linecr_format_1_c6ae08c4() {
@@ -28,13 +25,10 @@ fn test_cursor_1_js_end_of_linecr_format_1_c6ae08c4() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("(function(){return        <|>15})()<LF>");
+    let formatted = pretty_printer.format("(function(){return        <|>15})()\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "(function () {<CR>\n  return <|>15;<CR>\n})();<CR>"
-    );
+    assert_eq!(formatted, "(function () {\r  return <|>15;\r})();\r");
 }
 #[test]
 fn test_cursor_1_js_end_of_linecrlf_format_1_c6ae08c4() {
@@ -45,13 +39,10 @@ fn test_cursor_1_js_end_of_linecrlf_format_1_c6ae08c4() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("(function(){return        <|>15})()<LF>");
+    let formatted = pretty_printer.format("(function(){return        <|>15})()\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "(function () {<CRLF>\n  return <|>15;<CRLF>\n})();<CRLF>"
-    );
+    assert_eq!(formatted, "(function () {\r\n  return <|>15;\r\n})();\r\n");
 }
 #[test]
 fn test_cursor_1_js_end_of_linelf_format_1_c6ae08c4() {
@@ -62,13 +53,10 @@ fn test_cursor_1_js_end_of_linelf_format_1_c6ae08c4() {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("(function(){return        <|>15})()<LF>");
+    let formatted = pretty_printer.format("(function(){return        <|>15})()\n");
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "(function () {<LF>\n  return <|>15;<LF>\n})();<LF>"
-    );
+    assert_eq!(formatted, "(function () {\n  return <|>15;\n})();\n");
 }
 #[test]
 fn test_cursor_and_range_js_end_of_lineauto_format_1_82619bf8() {
@@ -81,13 +69,10 @@ fn test_cursor_and_range_js_end_of_lineauto_format_1_82619bf8() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<LF>\n<LF>\nclass a {<LF>\n  b(<|>) {}<LF>\n}<LF>\n<LF>\nlet    "
-    );
+    assert_eq!(formatted, "\n\nclass a {\n  b(<|>) {}\n}\n\nlet    ");
 }
 #[test]
 fn test_cursor_and_range_js_end_of_linecr_format_1_82619bf8() {
@@ -100,13 +85,10 @@ fn test_cursor_and_range_js_end_of_linecr_format_1_82619bf8() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<CR>\n<CR>\nclass a {<CR>\n  b(<|>) {}<CR>\n}<CR>\n<CR>\nlet    "
-    );
+    assert_eq!(formatted, "\r\rclass a {\r  b(<|>) {}\r}\r\rlet    ");
 }
 #[test]
 fn test_cursor_and_range_js_end_of_linecrlf_format_1_82619bf8() {
@@ -119,12 +101,12 @@ fn test_cursor_and_range_js_end_of_linecrlf_format_1_82619bf8() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
     assert_eq!(
         formatted,
-        "<CRLF>\n<CRLF>\nclass a {<CRLF>\n  b(<|>) {}<CRLF>\n}<CRLF>\n<CRLF>\nlet    "
+        "\r\n\r\nclass a {\r\n  b(<|>) {}\r\n}\r\n\r\nlet    "
     );
 }
 #[test]
@@ -138,13 +120,10 @@ fn test_cursor_and_range_js_end_of_linelf_format_1_82619bf8() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<LF>\n<LF>\nclass a {<LF>\n  b(<|>) {}<LF>\n}<LF>\n<LF>\nlet    "
-    );
+    assert_eq!(formatted, "\n\nclass a {\n  b(<|>) {}\n}\n\nlet    ");
 }
 #[test]
 fn test_range_1_js_end_of_lineauto_format_1_4b4219bc() {
@@ -156,13 +135,10 @@ fn test_range_1_js_end_of_lineauto_format_1_4b4219bc() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(   ) {}<LF>\n    | ^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    x<LF>\n  8 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<LF>\n<LF>\nclass a {<LF>\n  b() {}<LF>\n}<LF>\n<LF>\nlet    x<LF>"
-    );
+    assert_eq!(formatted, "\n\nclass a {\n  b() {}\n}\n\nlet    x\n");
 }
 #[test]
 fn test_range_1_js_end_of_linecr_format_1_4b4219bc() {
@@ -174,13 +150,10 @@ fn test_range_1_js_end_of_linecr_format_1_4b4219bc() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(   ) {}<LF>\n    | ^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    x<LF>\n  8 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<CR>\n<CR>\nclass a {<CR>\n  b() {}<CR>\n}<CR>\n<CR>\nlet    x<CR>"
-    );
+    assert_eq!(formatted, "\r\rclass a {\r  b() {}\r}\r\rlet    x\r");
 }
 #[test]
 fn test_range_1_js_end_of_linecrlf_format_1_4b4219bc() {
@@ -192,12 +165,12 @@ fn test_range_1_js_end_of_linecrlf_format_1_4b4219bc() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(   ) {}<LF>\n    | ^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    x<LF>\n  8 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
     assert_eq!(
         formatted,
-        "<CRLF>\n<CRLF>\nclass a {<CRLF>\n  b() {}<CRLF>\n}<CRLF>\n<CRLF>\nlet    x<CRLF>"
+        "\r\n\r\nclass a {\r\n  b() {}\r\n}\r\n\r\nlet    x\r\n"
     );
 }
 #[test]
@@ -210,13 +183,10 @@ fn test_range_1_js_end_of_linelf_format_1_4b4219bc() {
         .range_start(10)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n> 3 | class    a {<LF>\n    |         ^^^^<LF>\n> 4 |   b(   ) {}<LF>\n    | ^^^^^^^^^^^<LF>\n  5 | }<LF>\n  6 |<LF>\n  7 | let    x<LF>\n  8 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<LF>\n<LF>\nclass a {<LF>\n  b() {}<LF>\n}<LF>\n<LF>\nlet    x<LF>"
-    );
+    assert_eq!(formatted, "\n\nclass a {\n  b() {}\n}\n\nlet    x\n");
 }
 #[test]
 fn test_range_and_cursor_1_js_end_of_lineauto_format_1_de8ed09b() {
@@ -229,13 +199,10 @@ fn test_range_and_cursor_1_js_end_of_lineauto_format_1_de8ed09b() {
         .range_start(11)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n  3 |<LF>\n> 4 | class    a {<LF>\n    |         ^^^^<LF>\n> 5 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  6 | }<LF>\n  7 |<LF>\n  8 | let    x <LF>\n  9 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<LF>\n<LF>\n<LF>\nclass a {<LF>\n  b(<|>) {}<LF>\n}<LF>\n<LF>\nlet    x <LF>"
-    );
+    assert_eq!(formatted, "\n\n\nclass a {\n  b(<|>) {}\n}\n\nlet    x \n");
 }
 #[test]
 fn test_range_and_cursor_1_js_end_of_linecr_format_1_de8ed09b() {
@@ -248,13 +215,10 @@ fn test_range_and_cursor_1_js_end_of_linecr_format_1_de8ed09b() {
         .range_start(11)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n  3 |<LF>\n> 4 | class    a {<LF>\n    |         ^^^^<LF>\n> 5 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  6 | }<LF>\n  7 |<LF>\n  8 | let    x <LF>\n  9 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<CR>\n<CR>\n<CR>\nclass a {<CR>\n  b(<|>) {}<CR>\n}<CR>\n<CR>\nlet    x <CR>"
-    );
+    assert_eq!(formatted, "\r\r\rclass a {\r  b(<|>) {}\r}\r\rlet    x \r");
 }
 #[test]
 fn test_range_and_cursor_1_js_end_of_linecrlf_format_1_de8ed09b() {
@@ -267,10 +231,13 @@ fn test_range_and_cursor_1_js_end_of_linecrlf_format_1_de8ed09b() {
         .range_start(11)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n  3 |<LF>\n> 4 | class    a {<LF>\n    |         ^^^^<LF>\n> 5 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  6 | }<LF>\n  7 |<LF>\n  8 | let    x <LF>\n  9 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq ! (formatted , "<CRLF>\n<CRLF>\n<CRLF>\nclass a {<CRLF>\n  b(<|>) {}<CRLF>\n}<CRLF>\n<CRLF>\nlet    x <CRLF>");
+    assert_eq!(
+        formatted,
+        "\r\n\r\n\r\nclass a {\r\n  b(<|>) {}\r\n}\r\n\r\nlet    x \r\n"
+    );
 }
 #[test]
 fn test_range_and_cursor_1_js_end_of_linelf_format_1_de8ed09b() {
@@ -283,11 +250,8 @@ fn test_range_and_cursor_1_js_end_of_linelf_format_1_de8ed09b() {
         .range_start(11)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 |<LF>\n  2 |<LF>\n  3 |<LF>\n> 4 | class    a {<LF>\n    |         ^^^^<LF>\n> 5 |   b(  <|> ) {}<LF>\n    | ^^^^^^^^^^^^^^<LF>\n  6 | }<LF>\n  7 |<LF>\n  8 | let    x <LF>\n  9 ") ;
+    let formatted = pretty_printer . format ("  1 |\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;
     assert!(formatted.is_ok());
     let formatted = formatted.unwrap();
-    assert_eq!(
-        formatted,
-        "<LF>\n<LF>\n<LF>\nclass a {<LF>\n  b(<|>) {}<LF>\n}<LF>\n<LF>\nlet    x <LF>"
-    );
+    assert_eq!(formatted, "\n\n\nclass a {\n  b(<|>) {}\n}\n\nlet    x \n");
 }
