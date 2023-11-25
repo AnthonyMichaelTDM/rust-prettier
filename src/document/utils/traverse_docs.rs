@@ -105,6 +105,7 @@ pub fn traverse_doc<State, ExitCallbackFN>(
     }
 }
 
+// TODO: refactor to use Rc<RefCell<Doc>> instead of Rc<RefCell<&mut Doc>>, the mutable reference is redundant
 enum TraverseDocMut<'a> {
     Doc(Rc<RefCell<&'a mut Doc>>),
     ExitMarker(Rc<RefCell<&'a mut Doc>>),
