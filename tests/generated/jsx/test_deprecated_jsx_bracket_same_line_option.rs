@@ -5,7 +5,7 @@ static INFINITY: usize = usize::MAX;
 #[test]
 fn test_jsx_js_jsx_bracket_same_linefalse_format_1_7a632ffd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .jsx_bracket_same_line(false)
+        .bracket_same_line(false)
         .parser("js")
         .print_width(80)
         .build()
@@ -18,7 +18,7 @@ fn test_jsx_js_jsx_bracket_same_linefalse_format_1_7a632ffd() {
 #[test]
 fn test_jsx_js_jsx_bracket_same_linetrue_format_1_7a632ffd() {
     let pretty_printer = PrettyPrinterBuilder::default()
-        .jsx_bracket_same_line(true)
+        .bracket_same_line(true)
         .parser("js")
         .print_width(80)
         .build()

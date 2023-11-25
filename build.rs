@@ -103,8 +103,15 @@ cfg_if! {
                         continue;
                     }
 
+                    // map jsx_bracket_same_line to bracket_same_line
+                    let key = parts.first().expect("key").to_case(Case::Snake);
+                    let key = match key.as_str() {
+                        "jsx_bracket_same_line" => "bracket_same_line",
+                        other => other,
+                    };
+
                     let Ok(key) =
-                        syn::parse_str::<syn::Ident>(&parts.first().expect("key").to_case(Case::Snake))
+                        syn::parse_str::<syn::Ident>(key)
                     else {
                         continue;
                     };
@@ -117,7 +124,6 @@ cfg_if! {
                     } else {
                         continue;
                     };
-
 
                     config.insert(key.to_owned(), value);
                 }
