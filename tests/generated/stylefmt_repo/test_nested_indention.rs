@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_nested_indention_css_format_1_b07feed0() {
+fn test_nested_indention_css_format_1_b07feed0() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".y-photo-grid\n{\n    display: flex;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    flex-direction: column;\n    align-items: stretch;\n    justify-content: flex-start;\n\n    &__row\n    {\n        display: flex;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n        flex-direction: row;\n        align-items: center;\n        justify-content: flex-start;\n    }\n\n    &__item\n    {\n        display: block;\n        margin: 0;\n        background: #eee;\n\n        &:first-child\n        {\n            margin-left: 0;\n        }\n    }\n\n    &__link\n    {\n        display: block;\n        height: 100%;\n        width: 100%;\n    }\n\n    &__image\n    {\n        width: 100%;\n        height: 100%;\n    }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".y-photo-grid\n{\n    display: flex;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    flex-direction: column;\n    align-items: stretch;\n    justify-content: flex-start;\n\n    &__row\n    {\n        display: flex;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n        flex-direction: row;\n        align-items: center;\n        justify-content: flex-start;\n    }\n\n    &__item\n    {\n        display: block;\n        margin: 0;\n        background: #eee;\n\n        &:first-child\n        {\n            margin-left: 0;\n        }\n    }\n\n    &__link\n    {\n        display: block;\n        height: 100%;\n        width: 100%;\n    }\n\n    &__image\n    {\n        width: 100%;\n        height: 100%;\n    }\n}") ? ;
     assert_eq ! (formatted , ".y-photo-grid {\n  display: flex;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  flex-direction: column;\n  align-items: stretch;\n  justify-content: flex-start;\n\n  &__row {\n    display: flex;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n  }\n\n  &__item {\n    display: block;\n    margin: 0;\n    background: #eee;\n\n    &:first-child {\n      margin-left: 0;\n    }\n  }\n\n  &__link {\n    display: block;\n    height: 100%;\n    width: 100%;\n  }\n\n  &__image {\n    width: 100%;\n    height: 100%;\n  }\n}");
+    Ok(())
 }

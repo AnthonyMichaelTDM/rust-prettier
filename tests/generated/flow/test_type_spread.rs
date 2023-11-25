@@ -1,20 +1,22 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_comments_js_format_1_69cc226e() {
+fn test_comments_js_format_1_69cc226e() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("type X1 = {...Y/**/};\ntype X2 = {/**/...Y};");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("type X1 = {...Y/**/};\ntype X2 = {/**/...Y};")?;
     assert_eq!(
         formatted,
         "type X1 = { ...Y /**/ };\ntype X2 = { /**/ ...Y };"
     );
+    Ok(())
 }

@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_test_js_format_1_5d1cb46c() {
+fn test_test_js_format_1_5d1cb46c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const comp1 = (\n  <div style={styles} key=\"something\">\n    Keep the wrapping parens.\n  </div>\n);\n\nconst comp2 = <div style={styles} key=\"something\">\n  Create wrapping parens.\n</div>;\n\ncomp2A = <div style={styles} key=\"something\">\n  Create wrapping parens.\n</div>;\n\nconst comp3 = <div style={styles} key=\"something\">Bump to next line without parens</div>;\n\nconst comp4 = <div style={styles} key=\"something\">Create wrapping parens and indent <strong>all the things</strong>.</div>;\n\nconst comp5 = <div>Keep it on one line.</div>;") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("const comp1 = (\n  <div style={styles} key=\"something\">\n    Keep the wrapping parens.\n  </div>\n);\n\nconst comp2 = <div style={styles} key=\"something\">\n  Create wrapping parens.\n</div>;\n\ncomp2A = <div style={styles} key=\"something\">\n  Create wrapping parens.\n</div>;\n\nconst comp3 = <div style={styles} key=\"something\">Bump to next line without parens</div>;\n\nconst comp4 = <div style={styles} key=\"something\">Create wrapping parens and indent <strong>all the things</strong>.</div>;\n\nconst comp5 = <div>Keep it on one line.</div>;") ? ;
     assert_eq ! (formatted , "const comp1 = (\n  <div style={styles} key=\"something\">\n    Keep the wrapping parens.\n  </div>\n);\n\nconst comp2 = (\n  <div style={styles} key=\"something\">\n    Create wrapping parens.\n  </div>\n);\n\ncomp2A = (\n  <div style={styles} key=\"something\">\n    Create wrapping parens.\n  </div>\n);\n\nconst comp3 = (\n  <div style={styles} key=\"something\">\n    Bump to next line without parens\n  </div>\n);\n\nconst comp4 = (\n  <div style={styles} key=\"something\">\n    Create wrapping parens and indent <strong>all the things</strong>.\n  </div>\n);\n\nconst comp5 = <div>Keep it on one line.</div>;");
+    Ok(())
 }

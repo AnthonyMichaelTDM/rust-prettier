@@ -1,55 +1,54 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_class_js_tab_width_4_format_1_038c69eb() {
+fn test_class_js_tab_width_4_format_1_038c69eb() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("class A {\n  method() {\n    var x = 1;\n    while(typeof x == \"number\" || typeof x == \"string\") {\n        x = x + 1;\n        if (true) x = \"\";\n    }\n    var z = x;\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("class A {\n  method() {\n    var x = 1;\n    while(typeof x == \"number\" || typeof x == \"string\") {\n        x = x + 1;\n        if (true) x = \"\";\n    }\n    var z = x;\n  }\n}") ? ;
     assert_eq ! (formatted , "class A {\n    method() {\n        var x = 1;\n        while (typeof x == \"number\" || typeof x == \"string\") {\n            x = x + 1;\n            if (true) x = \"\";\n        }\n        var z = x;\n    }\n}");
+    Ok(())
 }
 #[test]
-fn test_class_js_format_1_038c69eb() {
+fn test_class_js_format_1_038c69eb() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("class A {\n  method() {\n    var x = 1;\n    while(typeof x == \"number\" || typeof x == \"string\") {\n        x = x + 1;\n        if (true) x = \"\";\n    }\n    var z = x;\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("class A {\n  method() {\n    var x = 1;\n    while(typeof x == \"number\" || typeof x == \"string\") {\n        x = x + 1;\n        if (true) x = \"\";\n    }\n    var z = x;\n  }\n}") ? ;
     assert_eq ! (formatted , "class A {\n  method() {\n    var x = 1;\n    while (typeof x == \"number\" || typeof x == \"string\") {\n      x = x + 1;\n      if (true) x = \"\";\n    }\n    var z = x;\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_nested_functions_spec_js_tab_width_4_format_1_d2844d83() {
+fn test_nested_functions_spec_js_tab_width_4_format_1_d2844d83() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("spec.js")
         .print_width(80)
         .tab_width(4)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const c = () => {};\n\nfunction a() {\n  return function b() {\n    return () => {\n      return function() {\n        return c;\n      }\n    }\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("const c = () => {};\n\nfunction a() {\n  return function b() {\n    return () => {\n      return function() {\n        return c;\n      }\n    }\n  }\n}") ? ;
     assert_eq ! (formatted , "const c = () => {};\n\nfunction a() {\n    return function b() {\n        return () => {\n            return function () {\n                return c;\n            };\n        };\n    };\n}");
+    Ok(())
 }
 #[test]
-fn test_nested_functions_spec_js_format_1_d2844d83() {
+fn test_nested_functions_spec_js_format_1_d2844d83() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("spec.js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const c = () => {};\n\nfunction a() {\n  return function b() {\n    return () => {\n      return function() {\n        return c;\n      }\n    }\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("const c = () => {};\n\nfunction a() {\n  return function b() {\n    return () => {\n      return function() {\n        return c;\n      }\n    }\n  }\n}") ? ;
     assert_eq ! (formatted , "const c = () => {};\n\nfunction a() {\n  return function b() {\n    return () => {\n      return function () {\n        return c;\n      };\n    };\n  };\n}");
+    Ok(())
 }

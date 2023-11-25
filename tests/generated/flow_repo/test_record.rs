@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_test_js_format_1_50202638() {
+fn test_test_js_format_1_50202638() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("type Key1 = 'foo' | 'bar'; // make an enum type with known key set\nvar o1: {[key: Key1]: number} = {\n  foo: 0,\n  bar: \"\", // error: string ~/~ number\n};\no1.foo; // OK\no1.qux; // error: qux not found\no1.toString(); // ok\n\ntype R = {foo: any, bar: any};\ntype Key2 = $Keys<R>; // another way to make an enum type, with unknown key set\nvar o2: {[key: Key2]: number} = { foo: 0 }; // OK to leave out bar\no2.bar; // OK to access bar\no2.qux; // error: qux not found\n\nclass C<X> {\n  x: $Subtype<{[key: $Keys<X>]: any}>; // object with larger key set than X's\n}\nclass D extends C<{foo: number, bar: string}> {\n  x: { foo: number, qux: boolean }; // error: qux not found\n}\n\ntype AnyKey = $Keys<Object>;\nvar o3: {[key: AnyKey]: number} = { foo: 0 };") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("type Key1 = 'foo' | 'bar'; // make an enum type with known key set\nvar o1: {[key: Key1]: number} = {\n  foo: 0,\n  bar: \"\", // error: string ~/~ number\n};\no1.foo; // OK\no1.qux; // error: qux not found\no1.toString(); // ok\n\ntype R = {foo: any, bar: any};\ntype Key2 = $Keys<R>; // another way to make an enum type, with unknown key set\nvar o2: {[key: Key2]: number} = { foo: 0 }; // OK to leave out bar\no2.bar; // OK to access bar\no2.qux; // error: qux not found\n\nclass C<X> {\n  x: $Subtype<{[key: $Keys<X>]: any}>; // object with larger key set than X's\n}\nclass D extends C<{foo: number, bar: string}> {\n  x: { foo: number, qux: boolean }; // error: qux not found\n}\n\ntype AnyKey = $Keys<Object>;\nvar o3: {[key: AnyKey]: number} = { foo: 0 };") ? ;
     assert_eq ! (formatted , "type Key1 = \"foo\" | \"bar\"; // make an enum type with known key set\nvar o1: { [key: Key1]: number } = {\n  foo: 0,\n  bar: \"\", // error: string ~/~ number\n};\no1.foo; // OK\no1.qux; // error: qux not found\no1.toString(); // ok\n\ntype R = { foo: any, bar: any };\ntype Key2 = $Keys<R>; // another way to make an enum type, with unknown key set\nvar o2: { [key: Key2]: number } = { foo: 0 }; // OK to leave out bar\no2.bar; // OK to access bar\no2.qux; // error: qux not found\n\nclass C<X> {\n  x: $Subtype<{ [key: $Keys<X>]: any }>; // object with larger key set than X's\n}\nclass D extends C<{ foo: number, bar: string }> {\n  x: { foo: number, qux: boolean }; // error: qux not found\n}\n\ntype AnyKey = $Keys<Object>;\nvar o3: { [key: AnyKey]: number } = { foo: 0 };");
+    Ok(())
 }

@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_basic_ts_format_1_52c5dac9() {
+fn test_basic_ts_format_1_52c5dac9() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("import { type A } from \"foo\";\nimport { type B, C } from \"foo\";\nimport { type D, type E } from \"foo\";\nimport { type E as F } from \"foo\";\n\nexport { type A } from \"foo\";\nexport { type B, C } from \"foo\";\nexport { type D, type E } from \"foo\";\nexport { type E as F } from \"foo\";") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("import { type A } from \"foo\";\nimport { type B, C } from \"foo\";\nimport { type D, type E } from \"foo\";\nimport { type E as F } from \"foo\";\n\nexport { type A } from \"foo\";\nexport { type B, C } from \"foo\";\nexport { type D, type E } from \"foo\";\nexport { type E as F } from \"foo\";") ? ;
     assert_eq ! (formatted , "import { type A } from \"foo\";\nimport { type B, C } from \"foo\";\nimport { type D, type E } from \"foo\";\nimport { type E as F } from \"foo\";\n\nexport { type A } from \"foo\";\nexport { type B, C } from \"foo\";\nexport { type D, type E } from \"foo\";\nexport { type E as F } from \"foo\";");
+    Ok(())
 }

@@ -1,30 +1,31 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_type_arguments_ts_semifalse_format_1_fa10f631() {
+fn test_type_arguments_ts_semifalse_format_1_fa10f631() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .semi(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<ALongNamedInterface1 & ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<ALongNamedInterface1 | ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<ALongNamedInterface1, ALongNamedInterface2> = (props) => {}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<ALongNamedInterface1 & ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<ALongNamedInterface1 | ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<ALongNamedInterface1, ALongNamedInterface2> = (props) => {}") ? ;
     assert_eq ! (formatted , "// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<\n  ALongNamedInterface1 & ALongNamedInterface2\n> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<\n  ALongNamedInterface1 | ALongNamedInterface2\n> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<\n  ALongNamedInterface1,\n  ALongNamedInterface2\n> = (props) => {}");
+    Ok(())
 }
 #[test]
-fn test_type_arguments_ts_format_1_fa10f631() {
+fn test_type_arguments_ts_format_1_fa10f631() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<ALongNamedInterface1 & ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<ALongNamedInterface1 | ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<ALongNamedInterface1, ALongNamedInterface2> = (props) => {}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<ALongNamedInterface1 & ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<ALongNamedInterface1 | ALongNamedInterface2> = (props) => {}\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<ALongNamedInterface1, ALongNamedInterface2> = (props) => {}") ? ;
     assert_eq ! (formatted , "// #6988\n\n// functional component with ugly linebreak\nexport const MyLongNamedReactFunctionalComponent1: FunctionComponent<\n  ALongNamedInterface1 & ALongNamedInterface2\n> = (props) => {};\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent2: FunctionComponent<\n  ALongNamedInterface1 | ALongNamedInterface2\n> = (props) => {};\n\n// functional component with valid linebreak\nexport const MyLongNamedReactFunctionalComponent3: FunctionComponent<\n  ALongNamedInterface1,\n  ALongNamedInterface2\n> = (props) => {};");
+    Ok(())
 }

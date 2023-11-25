@@ -1,65 +1,63 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_postcss_mixins_css_format_1_e848ab1c() {
+fn test_postcss_mixins_css_format_1_e848ab1c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("a {\n    @mixin $(theme)-colors;\n}\n\n@define-mixin icon $network, $color: blue {\n    .icon.is-$(network) {\n        color: $color;\n        @mixin-content;\n    }\n    .icon.is-$(network):hover {\n       color: white;\n       background: $color;\n   }\n}\n\n@mixin icon twitter {\n    background: url(twt.png);\n}\n@mixin icon youtube, red {\n    background: url(youtube.png);\n}\n\n.search {\n    @mixin icon search;\n}\n\na {\n    color: black;\n    @mixin parent {\n        @mixin child;\n    }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("a {\n    @mixin $(theme)-colors;\n}\n\n@define-mixin icon $network, $color: blue {\n    .icon.is-$(network) {\n        color: $color;\n        @mixin-content;\n    }\n    .icon.is-$(network):hover {\n       color: white;\n       background: $color;\n   }\n}\n\n@mixin icon twitter {\n    background: url(twt.png);\n}\n@mixin icon youtube, red {\n    background: url(youtube.png);\n}\n\n.search {\n    @mixin icon search;\n}\n\na {\n    color: black;\n    @mixin parent {\n        @mixin child;\n    }\n}") ? ;
     assert_eq ! (formatted , "a {\n  @mixin $(theme)-colors;\n}\n\n@define-mixin icon $network, $color: blue {\n  .icon.is-$(network) {\n    color: $color;\n    @mixin-content;\n  }\n  .icon.is-$(network):hover {\n    color: white;\n    background: $color;\n  }\n}\n\n@mixin icon twitter {\n  background: url(twt.png);\n}\n@mixin icon youtube, red {\n  background: url(youtube.png);\n}\n\n.search {\n  @mixin icon search;\n}\n\na {\n  color: black;\n  @mixin parent {\n    @mixin child;\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_postcss_nested_css_format_1_93d935d2() {
+fn test_postcss_nested_css_format_1_93d935d2() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".phone {\n    &_title {\n        width: 500px;\n        @media (max-width: 500px) {\n            width: auto;\n        }\n        body.is_dark & {\n            color: white;\n        }\n    }\n    img {\n        display: block;\n    }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".phone {\n    &_title {\n        width: 500px;\n        @media (max-width: 500px) {\n            width: auto;\n        }\n        body.is_dark & {\n            color: white;\n        }\n    }\n    img {\n        display: block;\n    }\n}") ? ;
     assert_eq ! (formatted , ".phone {\n  &_title {\n    width: 500px;\n    @media (max-width: 500px) {\n      width: auto;\n    }\n    body.is_dark & {\n      color: white;\n    }\n  }\n  img {\n    display: block;\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_postcss_nested_props_css_format_1_8f289b67() {
+fn test_postcss_nested_props_css_format_1_8f289b67() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".funky {\n    font: {\n        family: fantasy;\n        size: 30em;\n        weight: bold;\n    }\n}\n\n.funky {\n    font: 20px/24px fantasy {\n        weight: bold;\n    }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".funky {\n    font: {\n        family: fantasy;\n        size: 30em;\n        weight: bold;\n    }\n}\n\n.funky {\n    font: 20px/24px fantasy {\n        weight: bold;\n    }\n}") ? ;
     assert_eq ! (formatted , ".funky {\n  font: {\n    family: fantasy;\n    size: 30em;\n    weight: bold;\n  }\n}\n\n.funky {\n  font: 20px/24px fantasy {\n    weight: bold;\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_postcss_nesting_css_format_1_c0411c5f() {
+fn test_postcss_nesting_css_format_1_c0411c5f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("a {\n  order: 1;\n  @nest b & {\n    order: 2;\n  }\n  @nest c & {\n    order: 3;\n  }\n  @nest d & {\n    order: 4;\n  }\n  @nest e & {\n    order: 5;\n  }\n}\na {\n  order: 1;\n  @nest & b {\n    order: 2;\n  }\n  @nest & c {\n    order: 3;\n  }\n  @nest & d {\n    order: 4;\n  }\n  @nest & e {\n    order: 5;\n  }\n}\n\n.rule-1 {\n  order: 1;\n  @media screen, print {\n    order: 2;\n    &.rule-2 {\n      order: 3;\n      @media (max-width: 30em) {\n        order: 4;\n        @nest .rule-prefix & {\n          order: 5;\n        }\n        order: 6;\n      }\n      order: 7;\n    }\n    order: 8;\n  }\n  order: 9;\n}\n\na, b {\n  order: 1;\n  & c, & d {\n    order: 2;\n    & e, & f {\n      order: 3;\n    }\n    order: 4;\n  }\n  order: 5;\n}\na, b {\n  order: 1;\n  @nest & c, & d {\n    order: 2;\n    @nest & e, & f {\n      order: 3;\n    }\n    order: 4;\n  }\n  order: 5;\n}\n\na {\n  & b {\n    & c {\n      order: 1;\n    }\n  }\n}\nd {\n  order: 2;\n  & e {\n    order: 3;\n  }\n}\nf {\n  & g {\n    order: 4;\n  }\n  order: 5;\n}\na {\n  @nest & b {\n    @nest & c {\n      order: 1;\n    }\n  }\n}\nd {\n  order: 2;\n  @nest & e {\n    order: 3;\n  }\n}\nf {\n  @nest & g {\n    order: 4;\n  }\n  order: 5;\n}\n\na, b {\n  order: 1;\n  c, d {\n    order: 2;\n  }\n}\n& e {\n  order: 3;\n}\nf {\n  & g & {\n    order: 4;\n  }\n  &h {\n    order: 5;\n  }\n}\na, b {\n  order: 1;\n  @nest c, d {\n    order: 2;\n  }\n}\n@nest & e {\n  order: 3;\n}\nf {\n  @nest & g & {\n    order: 4;\n  }\n  @nest &h {\n    order: 5;\n  }\n}\n\na {\n  order: 1;\n  @media (min-width: 100px) {\n    order: 2;\n    @media (max-width: 200px) {\n      order: 3;\n    }\n    & b {\n      @media (max-width: 200px) {\n        order: 4;\n      }\n    }\n  }\n  @media screen, print and speech {\n    @media (max-width: 300px), (min-aspect-ratio: 16/9) {\n      order: 5;\n      & c {\n        order: 6;\n      }\n    }\n  }\n}\na {\n  order: 1;\n  @media (min-width: 100px) {\n    order: 2;\n    @media (max-width: 200px) {\n      order: 3;\n    }\n    @nest & b {\n      @media (max-width: 200px) {\n        order: 4;\n      }\n    }\n  }\n  @media screen, print and speech {\n    @media (max-width: 300px), (min-aspect-ratio: 16/9) {\n      order: 5;\n      @nest & c {\n        order: 6;\n      }\n    }\n  }\n}\na {\n  order: 1;\n  @nest very-very-very-very-very-very-very-very-very-long-selector &, very-very-very-very-very-very-very-very-very-long-selector & {\n    order: 2;\n  }\n  @nest very-very-very-very-very-very-very-very-very-long-selector + very-very-very-very-very-very-very-very-very-long-selector  &, very-very-very-very-very-very-very-very-very-long-selector very-very-very-very-very-very-very-very-very-long-selector & {\n    order: 2;\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("a {\n  order: 1;\n  @nest b & {\n    order: 2;\n  }\n  @nest c & {\n    order: 3;\n  }\n  @nest d & {\n    order: 4;\n  }\n  @nest e & {\n    order: 5;\n  }\n}\na {\n  order: 1;\n  @nest & b {\n    order: 2;\n  }\n  @nest & c {\n    order: 3;\n  }\n  @nest & d {\n    order: 4;\n  }\n  @nest & e {\n    order: 5;\n  }\n}\n\n.rule-1 {\n  order: 1;\n  @media screen, print {\n    order: 2;\n    &.rule-2 {\n      order: 3;\n      @media (max-width: 30em) {\n        order: 4;\n        @nest .rule-prefix & {\n          order: 5;\n        }\n        order: 6;\n      }\n      order: 7;\n    }\n    order: 8;\n  }\n  order: 9;\n}\n\na, b {\n  order: 1;\n  & c, & d {\n    order: 2;\n    & e, & f {\n      order: 3;\n    }\n    order: 4;\n  }\n  order: 5;\n}\na, b {\n  order: 1;\n  @nest & c, & d {\n    order: 2;\n    @nest & e, & f {\n      order: 3;\n    }\n    order: 4;\n  }\n  order: 5;\n}\n\na {\n  & b {\n    & c {\n      order: 1;\n    }\n  }\n}\nd {\n  order: 2;\n  & e {\n    order: 3;\n  }\n}\nf {\n  & g {\n    order: 4;\n  }\n  order: 5;\n}\na {\n  @nest & b {\n    @nest & c {\n      order: 1;\n    }\n  }\n}\nd {\n  order: 2;\n  @nest & e {\n    order: 3;\n  }\n}\nf {\n  @nest & g {\n    order: 4;\n  }\n  order: 5;\n}\n\na, b {\n  order: 1;\n  c, d {\n    order: 2;\n  }\n}\n& e {\n  order: 3;\n}\nf {\n  & g & {\n    order: 4;\n  }\n  &h {\n    order: 5;\n  }\n}\na, b {\n  order: 1;\n  @nest c, d {\n    order: 2;\n  }\n}\n@nest & e {\n  order: 3;\n}\nf {\n  @nest & g & {\n    order: 4;\n  }\n  @nest &h {\n    order: 5;\n  }\n}\n\na {\n  order: 1;\n  @media (min-width: 100px) {\n    order: 2;\n    @media (max-width: 200px) {\n      order: 3;\n    }\n    & b {\n      @media (max-width: 200px) {\n        order: 4;\n      }\n    }\n  }\n  @media screen, print and speech {\n    @media (max-width: 300px), (min-aspect-ratio: 16/9) {\n      order: 5;\n      & c {\n        order: 6;\n      }\n    }\n  }\n}\na {\n  order: 1;\n  @media (min-width: 100px) {\n    order: 2;\n    @media (max-width: 200px) {\n      order: 3;\n    }\n    @nest & b {\n      @media (max-width: 200px) {\n        order: 4;\n      }\n    }\n  }\n  @media screen, print and speech {\n    @media (max-width: 300px), (min-aspect-ratio: 16/9) {\n      order: 5;\n      @nest & c {\n        order: 6;\n      }\n    }\n  }\n}\na {\n  order: 1;\n  @nest very-very-very-very-very-very-very-very-very-long-selector &, very-very-very-very-very-very-very-very-very-long-selector & {\n    order: 2;\n  }\n  @nest very-very-very-very-very-very-very-very-very-long-selector + very-very-very-very-very-very-very-very-very-long-selector  &, very-very-very-very-very-very-very-very-very-long-selector very-very-very-very-very-very-very-very-very-long-selector & {\n    order: 2;\n  }\n}") ? ;
     assert_eq ! (formatted , "a {\n  order: 1;\n  @nest b & {\n    order: 2;\n  }\n  @nest c & {\n    order: 3;\n  }\n  @nest d & {\n    order: 4;\n  }\n  @nest e & {\n    order: 5;\n  }\n}\na {\n  order: 1;\n  @nest & b {\n    order: 2;\n  }\n  @nest & c {\n    order: 3;\n  }\n  @nest & d {\n    order: 4;\n  }\n  @nest & e {\n    order: 5;\n  }\n}\n\n.rule-1 {\n  order: 1;\n  @media screen, print {\n    order: 2;\n    &.rule-2 {\n      order: 3;\n      @media (max-width: 30em) {\n        order: 4;\n        @nest .rule-prefix & {\n          order: 5;\n        }\n        order: 6;\n      }\n      order: 7;\n    }\n    order: 8;\n  }\n  order: 9;\n}\n\na,\nb {\n  order: 1;\n  & c,\n  & d {\n    order: 2;\n    & e,\n    & f {\n      order: 3;\n    }\n    order: 4;\n  }\n  order: 5;\n}\na,\nb {\n  order: 1;\n  @nest & c, & d {\n    order: 2;\n    @nest & e, & f {\n      order: 3;\n    }\n    order: 4;\n  }\n  order: 5;\n}\n\na {\n  & b {\n    & c {\n      order: 1;\n    }\n  }\n}\nd {\n  order: 2;\n  & e {\n    order: 3;\n  }\n}\nf {\n  & g {\n    order: 4;\n  }\n  order: 5;\n}\na {\n  @nest & b {\n    @nest & c {\n      order: 1;\n    }\n  }\n}\nd {\n  order: 2;\n  @nest & e {\n    order: 3;\n  }\n}\nf {\n  @nest & g {\n    order: 4;\n  }\n  order: 5;\n}\n\na,\nb {\n  order: 1;\n  c,\n  d {\n    order: 2;\n  }\n}\n& e {\n  order: 3;\n}\nf {\n  & g & {\n    order: 4;\n  }\n  &h {\n    order: 5;\n  }\n}\na,\nb {\n  order: 1;\n  @nest c, d {\n    order: 2;\n  }\n}\n@nest & e {\n  order: 3;\n}\nf {\n  @nest & g & {\n    order: 4;\n  }\n  @nest &h {\n    order: 5;\n  }\n}\n\na {\n  order: 1;\n  @media (min-width: 100px) {\n    order: 2;\n    @media (max-width: 200px) {\n      order: 3;\n    }\n    & b {\n      @media (max-width: 200px) {\n        order: 4;\n      }\n    }\n  }\n  @media screen, print and speech {\n    @media (max-width: 300px), (min-aspect-ratio: 16/9) {\n      order: 5;\n      & c {\n        order: 6;\n      }\n    }\n  }\n}\na {\n  order: 1;\n  @media (min-width: 100px) {\n    order: 2;\n    @media (max-width: 200px) {\n      order: 3;\n    }\n    @nest & b {\n      @media (max-width: 200px) {\n        order: 4;\n      }\n    }\n  }\n  @media screen, print and speech {\n    @media (max-width: 300px), (min-aspect-ratio: 16/9) {\n      order: 5;\n      @nest & c {\n        order: 6;\n      }\n    }\n  }\n}\na {\n  order: 1;\n  @nest very-very-very-very-very-very-very-very-very-long-selector &,\n    very-very-very-very-very-very-very-very-very-long-selector & {\n    order: 2;\n  }\n  @nest very-very-very-very-very-very-very-very-very-long-selector\n      + very-very-very-very-very-very-very-very-very-long-selector\n      &,\n    very-very-very-very-very-very-very-very-very-long-selector\n      very-very-very-very-very-very-very-very-very-long-selector\n      & {\n    order: 2;\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_postcss_simple_vars_css_format_1_ec4bf30d() {
+fn test_postcss_simple_vars_css_format_1_ec4bf30d() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("background-color: $$(style)Color;\nbackground-color: $$(style)Color Color122;\ncolor: @@color;\nfont: 100% $font-stack;\nbackground-color: darken(@link-color, 10%);\nborder: 1px solid var(--border-color);\ncolor: $(style)color;\ncolor: @@(style) color123;\ncolor: @@(style)color123;") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("background-color: $$(style)Color;\nbackground-color: $$(style)Color Color122;\ncolor: @@color;\nfont: 100% $font-stack;\nbackground-color: darken(@link-color, 10%);\nborder: 1px solid var(--border-color);\ncolor: $(style)color;\ncolor: @@(style) color123;\ncolor: @@(style)color123;") ? ;
     assert_eq ! (formatted , "background-color: $$(style)Color;\nbackground-color: $$(style)Color Color122;\ncolor: @@color;\nfont: 100% $font-stack;\nbackground-color: darken(@link-color, 10%);\nborder: 1px solid var(--border-color);\ncolor: $(style) color;\ncolor: @@(style) color123;\ncolor: @@(style) color123;");
+    Ok(())
 }

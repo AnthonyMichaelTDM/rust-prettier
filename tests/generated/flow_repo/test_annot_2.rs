@@ -1,41 +1,41 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_a_js_format_1_2705cde1() {
+fn test_a_js_format_1_2705cde1() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/**\n * @providesModule A\n * @flow\n */\n\nimport type T from \"T\";\n\nexport default class {\n  p: T;\n\n  constructor() {\n    this.p = 0;\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("/**\n * @providesModule A\n * @flow\n */\n\nimport type T from \"T\";\n\nexport default class {\n  p: T;\n\n  constructor() {\n    this.p = 0;\n  }\n}") ? ;
     assert_eq ! (formatted , "/**\n * @providesModule A\n * @flow\n */\n\nimport type T from \"T\";\n\nexport default class {\n  p: T;\n\n  constructor() {\n    this.p = 0;\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_b_js_format_1_8ca15f53() {
+fn test_b_js_format_1_8ca15f53() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nimport A from \"A\"\n\nclass B extends A {\n  p: string; // OK, string ~> any\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nimport A from \"A\"\n\nclass B extends A {\n  p: string; // OK, string ~> any\n}") ? ;
     assert_eq ! (formatted , "/**\n * @flow\n */\n\nimport A from \"A\";\n\nclass B extends A {\n  p: string; // OK, string ~> any\n}");
+    Ok(())
 }
 #[test]
-fn test_t_js_format_1_d8c5f2cf() {
+fn test_t_js_format_1_d8c5f2cf() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("/**\n * @providesModule T\n */");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("/**\n * @providesModule T\n */")?;
     assert_eq!(formatted, "/**\n * @providesModule T\n */");
+    Ok(())
 }

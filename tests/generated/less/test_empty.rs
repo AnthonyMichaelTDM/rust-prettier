@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_empty_less_format_1_f55e7940() {
+fn test_empty_less_format_1_f55e7940() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("less")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".ui-syntax-color();\n\ndetails[open] {\n}\n\ndiv {\n  box-sizing: border-box;;\n  color: red;\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".ui-syntax-color();\n\ndetails[open] {\n}\n\ndiv {\n  box-sizing: border-box;;\n  color: red;\n}") ? ;
     assert_eq ! (formatted , ".ui-syntax-color();\n\ndetails[open] {\n}\n\ndiv {\n  box-sizing: border-box;\n  color: red;\n}");
+    Ok(())
 }

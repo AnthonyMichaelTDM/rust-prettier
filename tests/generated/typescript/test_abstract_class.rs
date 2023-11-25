@@ -1,21 +1,23 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_export_default_ts_format_1_85197e9a() {
+fn test_export_default_ts_format_1_85197e9a() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("export default abstract class C5 { abstract foo(): void; }");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("export default abstract class C5 { abstract foo(): void; }")?;
     assert_eq!(
         formatted,
         "export default abstract class C5 {\n  abstract foo(): void;\n}"
     );
+    Ok(())
 }

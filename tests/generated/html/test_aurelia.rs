@@ -1,20 +1,23 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_basic_html_format_1_f29f88bf() {
+fn test_basic_html_format_1_f29f88bf() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("html")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<template>\n  <i class.bind=\"icon\"></i>\n</template>");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted =
+        pretty_printer.format("<template>\n  <i class.bind=\"icon\"></i>\n</template>")?;
     assert_eq!(
         formatted,
         "<template>\n  <i class.bind=\"icon\"></i>\n</template>"
     );
+    Ok(())
 }

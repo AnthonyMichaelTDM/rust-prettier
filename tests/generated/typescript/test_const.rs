@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_initializer_ambient_context_ts_format_1_92df2442() {
+fn test_initializer_ambient_context_ts_format_1_92df2442() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("declare module N {\n  enum E {\n    ok = 0\n  }\n\n  export const string = \"2\";\n  export const number = 1.;\n  export const bigint = 0n;\n  export const negative_bigint = -0n;\n  export const negative_number = -1;\n  export const template = \\`-2\\`;\n  export const False = false;\n  export const True = true;\n  export const E_ok = E.ok;\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("declare module N {\n  enum E {\n    ok = 0\n  }\n\n  export const string = \"2\";\n  export const number = 1.;\n  export const bigint = 0n;\n  export const negative_bigint = -0n;\n  export const negative_number = -1;\n  export const template = \\`-2\\`;\n  export const False = false;\n  export const True = true;\n  export const E_ok = E.ok;\n}") ? ;
     assert_eq ! (formatted , "declare module N {\n  enum E {\n    ok = 0,\n  }\n\n  export const string = \"2\";\n  export const number = 1;\n  export const bigint = 0n;\n  export const negative_bigint = -0n;\n  export const negative_number = -1;\n  export const template = \\`-2\\`;\n  export const False = false;\n  export const True = true;\n  export const E_ok = E.ok;\n}");
+    Ok(())
 }

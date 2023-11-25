@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_indent_js_format_1_6cded8a9() {
+fn test_indent_js_format_1_6cded8a9() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("with (0) {}\n\nwith (0) 1;");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("with (0) {}\n\nwith (0) 1;")?;
     assert_eq!(formatted, "with (0) {\n}\n\nwith (0) 1;");
+    Ok(())
 }

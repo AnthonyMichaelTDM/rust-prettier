@@ -1,23 +1,25 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_comments_ts_trailing_commaes_5_format_1_c2984eef() {
+fn test_comments_ts_trailing_commaes_5_format_1_c2984eef() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("interface A1  // comment\n{  foo(): bar;}\n\ninterface A2  // comment\nextends Base\n{  foo(): bar;}\n\ninterface A3  // comment1\nextends Base  // comment2\n{  foo(): bar;}\n\ninterface A4  // comment1\nextends Base  // comment2\n              // comment3\n{  foo(): bar;}\n\ninterface A5  // comment1\nextends Base  // comment2\n              // comment3\n{             // comment4\nfoo(): bar;}\n\ninterface A6  // comment1\nextends Base  // comment2\n              // comment3\n{\n// comment4\nfoo(): bar;}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("interface A1  // comment\n{  foo(): bar;}\n\ninterface A2  // comment\nextends Base\n{  foo(): bar;}\n\ninterface A3  // comment1\nextends Base  // comment2\n{  foo(): bar;}\n\ninterface A4  // comment1\nextends Base  // comment2\n              // comment3\n{  foo(): bar;}\n\ninterface A5  // comment1\nextends Base  // comment2\n              // comment3\n{             // comment4\nfoo(): bar;}\n\ninterface A6  // comment1\nextends Base  // comment2\n              // comment3\n{\n// comment4\nfoo(): bar;}") ? ;
     assert_eq ! (formatted , "interface A1 {\n  // comment\n  foo(): bar;\n}\n\ninterface A2 // comment\n  extends Base {\n  foo(): bar;\n}\n\ninterface A3 // comment1\n  extends Base {\n  // comment2\n  foo(): bar;\n}\n\ninterface A4 // comment1\n  extends Base {\n  // comment2\n  // comment3\n  foo(): bar;\n}\n\ninterface A5 // comment1\n  extends Base {\n  // comment2\n  // comment3\n  // comment4\n  foo(): bar;\n}\n\ninterface A6 // comment1\n  extends Base {\n  // comment2\n  // comment3\n  // comment4\n  foo(): bar;\n}");
+    Ok(())
 }
 #[test]
-fn test_comments_declare_ts_trailing_commaes_5_format_1_4de68c3a() {
+fn test_comments_declare_ts_trailing_commaes_5_format_1_4de68c3a() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
@@ -25,16 +27,15 @@ fn test_comments_declare_ts_trailing_commaes_5_format_1_4de68c3a() {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("declare interface a // 1\n  extends b  // 2\n{  foo: boolean}");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("declare interface a // 1\n  extends b  // 2\n{  foo: boolean}")?;
     assert_eq!(
         formatted,
         "declare interface a // 1\n  extends b {\n  // 2\n  foo: boolean;\n}"
     );
+    Ok(())
 }
 #[test]
-fn test_module_ts_trailing_commaes_5_format_1_1b3e2ab8() {
+fn test_module_ts_trailing_commaes_5_format_1_1b3e2ab8() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
@@ -42,11 +43,10 @@ fn test_module_ts_trailing_commaes_5_format_1_1b3e2ab8() {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("declare module X {\n  declare interface Y { x: number; }\n}");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("declare module X {\n  declare interface Y { x: number; }\n}")?;
     assert_eq!(
         formatted,
         "declare module X {\n  declare interface Y {\n    x: number;\n  }\n}"
     );
+    Ok(())
 }

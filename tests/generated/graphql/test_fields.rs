@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_fields_graphql_format_1_0b411f46() {
+fn test_fields_graphql_format_1_0b411f46() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("graphql")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("{\n  posts {, title, votes, author {,   firstName,   posts {, author { firstName } }\n    }}\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("{\n  posts {, title, votes, author {,   firstName,   posts {, author { firstName } }\n    }}\n}") ? ;
     assert_eq ! (formatted , "{\n  posts {\n    title\n    votes\n    author {\n      firstName\n      posts {\n        author {\n          firstName\n        }\n      }\n    }\n  }\n}");
+    Ok(())
 }

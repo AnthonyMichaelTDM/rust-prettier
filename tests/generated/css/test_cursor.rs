@@ -1,10 +1,13 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_test_css_format_1_a2be3917() {
+fn test_test_css_format_1_a2be3917() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(19)
         .parser("css")
@@ -12,11 +15,10 @@ fn test_test_css_format_1_a2be3917() {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format(".blah {\n  /* hloow <|> */\n  background-color: white;\n}");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format(".blah {\n  /* hloow <|> */\n  background-color: white;\n}")?;
     assert_eq!(
         formatted,
         ".blah {\n  /* hloow <|> */\n  background-color: white;\n}"
     );
+    Ok(())
 }

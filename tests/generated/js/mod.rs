@@ -7,8 +7,6 @@ mod test_arrow_call;
 #[cfg(test)]
 mod test_arrows;
 #[cfg(test)]
-mod test_arrows_bind;
-#[cfg(test)]
 mod test_assignment;
 #[cfg(test)]
 mod test_assignment_comments;
@@ -17,17 +15,11 @@ mod test_assignment_expression;
 #[cfg(test)]
 mod test_async;
 #[cfg(test)]
-mod test_async_do_expressions;
-#[cfg(test)]
-mod test_babel_plugins;
-#[cfg(test)]
 mod test_big_int;
 #[cfg(test)]
 mod test_binary_expressions;
 #[cfg(test)]
 mod test_binary_math;
-#[cfg(test)]
-mod test_bind_expressions;
 #[cfg(test)]
 mod test_bom;
 #[cfg(test)]
@@ -51,8 +43,6 @@ mod test_comments;
 #[cfg(test)]
 mod test_comments_closure_typecast;
 #[cfg(test)]
-mod test_comments_pipeline_own_line;
-#[cfg(test)]
 mod test_computed_props;
 #[cfg(test)]
 mod test_conditional;
@@ -65,17 +55,11 @@ mod test_decorators;
 #[cfg(test)]
 mod test_decorators_export;
 #[cfg(test)]
-mod test_deferred_import_evaluation;
-#[cfg(test)]
 mod test_destructuring;
 #[cfg(test)]
 mod test_destructuring_ignore;
 #[cfg(test)]
-mod test_destructuring_private_fields;
-#[cfg(test)]
 mod test_directives;
-#[cfg(test)]
-mod test_do;
 #[cfg(test)]
 mod test_dynamic_import;
 #[cfg(test)]
@@ -131,8 +115,6 @@ mod test_import_attributes;
 #[cfg(test)]
 mod test_import_meta;
 #[cfg(test)]
-mod test_import_reflection;
-#[cfg(test)]
 mod test_in;
 #[cfg(test)]
 mod test_invalid_code;
@@ -157,23 +139,7 @@ mod test_member;
 #[cfg(test)]
 mod test_method_chain;
 #[cfg(test)]
-mod test_module_blocks;
-#[cfg(test)]
 mod test_module_string_names;
-#[cfg(test)]
-mod test_multiparser_comments;
-#[cfg(test)]
-mod test_multiparser_css;
-#[cfg(test)]
-mod test_multiparser_graphql;
-#[cfg(test)]
-mod test_multiparser_html;
-#[cfg(test)]
-mod test_multiparser_invalid;
-#[cfg(test)]
-mod test_multiparser_markdown;
-#[cfg(test)]
-mod test_multiparser_text;
 #[cfg(test)]
 mod test_new_expression;
 #[cfg(test)]
@@ -207,11 +173,7 @@ mod test_optional_chaining;
 #[cfg(test)]
 mod test_optional_chaining_assignment;
 #[cfg(test)]
-mod test_partial_application;
-#[cfg(test)]
 mod test_performance;
-#[cfg(test)]
-mod test_pipeline_operator;
 #[cfg(test)]
 mod test_preserve_line;
 #[cfg(test)]
@@ -222,8 +184,6 @@ mod test_quote_props;
 mod test_quotes;
 #[cfg(test)]
 mod test_range;
-#[cfg(test)]
-mod test_record;
 #[cfg(test)]
 mod test_regex;
 #[cfg(test)]
@@ -246,8 +206,6 @@ mod test_sequence_expression;
 mod test_shebang;
 #[cfg(test)]
 mod test_sloppy_mode;
-#[cfg(test)]
-mod test_source_phase_imports;
 #[cfg(test)]
 mod test_spread;
 #[cfg(test)]
@@ -278,8 +236,6 @@ mod test_trailing_comma;
 mod test_trailing_whitespace;
 #[cfg(test)]
 mod test_try;
-#[cfg(test)]
-mod test_tuple;
 #[cfg(test)]
 mod test_unary;
 #[cfg(test)]

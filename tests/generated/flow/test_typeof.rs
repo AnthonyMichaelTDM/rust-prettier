@@ -1,20 +1,22 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_typeof_with_type_arguments_js_format_1_6c3b6495() {
+fn test_typeof_with_type_arguments_js_format_1_6c3b6495() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("type Foo = typeof MyGenericClass<string, number>;");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("type Foo = typeof MyGenericClass<string, number>;")?;
     assert_eq!(
         formatted,
         "type Foo = typeof MyGenericClass<string, number>;"
     );
+    Ok(())
 }

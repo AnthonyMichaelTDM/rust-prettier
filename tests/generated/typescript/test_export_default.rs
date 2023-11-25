@@ -1,21 +1,23 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_function_as_ts_format_1_33f1c68d() {
+fn test_function_as_ts_format_1_33f1c68d() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("export default (function log(){} as typeof console.log);");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("export default (function log(){} as typeof console.log);")?;
     assert_eq!(
         formatted,
         "export default (function log() {} as typeof console.log);"
     );
+    Ok(())
 }

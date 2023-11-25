@@ -1,23 +1,25 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_snippet_cursor_1_js_format_1_8999657b() {
+fn test_snippet_cursor_1_js_format_1_8999657b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(27)
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\u{feff}(function(){return        <|>15})()");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("\u{feff}(function(){return        <|>15})()")?;
     assert_eq!(formatted, "\u{feff}(function () {\n  return <|>15;\n})();");
+    Ok(())
 }
 #[test]
-fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
+fn test_snippet_cursor_and_range_js_format_1_713e2d9e() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(22)
         .parser("js")
@@ -26,16 +28,15 @@ fn test_snippet_cursor_and_range_js_format_1_713e2d9e() {
         .range_start(11)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    ") ? ;
     assert_eq!(
         formatted,
         "\u{feff}\n\nclass a {\n  b(<|>) {}\n}\n\nlet    "
     );
+    Ok(())
 }
 #[test]
-fn test_snippet_range_1_js_format_1_f19ae2ee() {
+fn test_snippet_range_1_js_format_1_f19ae2ee() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
@@ -43,13 +44,12 @@ fn test_snippet_range_1_js_format_1_f19ae2ee() {
         .range_start(11)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n> 3 | class    a {\n    |         ^^^^\n> 4 |   b(   ) {}\n    | ^^^^^^^^^^^\n  5 | }\n  6 |\n  7 | let    x\n  8 ") ? ;
     assert_eq!(formatted, "\u{feff}\n\nclass a {\n  b() {}\n}\n\nlet    x");
+    Ok(())
 }
 #[test]
-fn test_snippet_range_and_cursor_1_js_format_1_1e50091b() {
+fn test_snippet_range_and_cursor_1_js_format_1_1e50091b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .cursor_offset(23)
         .parser("js")
@@ -58,11 +58,10 @@ fn test_snippet_range_and_cursor_1_js_format_1_1e50091b() {
         .range_start(12)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("  1 | \u{feff}\n  2 |\n  3 |\n> 4 | class    a {\n    |         ^^^^\n> 5 |   b(  <|> ) {}\n    | ^^^^^^^^^^^^^^\n  6 | }\n  7 |\n  8 | let    x \n  9 ") ? ;
     assert_eq!(
         formatted,
         "\u{feff}\n\n\nclass a {\n  b(<|>) {}\n}\n\nlet    x "
     );
+    Ok(())
 }

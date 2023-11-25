@@ -1,29 +1,30 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_apply_rule_css_format_1_bdad1509() {
+fn test_apply_rule_css_format_1_bdad1509() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* http://tabatkins.github.io/specs/css-apply-rule/#defining */\n\n:root {\n  --toolbar-theme: {\n    background-color: hsl(120, 70%, 95%);\n    border-radius: 4px;\n    border: 1px solid var(--theme-color late);\n  };\n  --toolbar-title-theme: {\n    color: green;\n  };\n}\n\n:root {\n  --without-semi: {color:red;}\n}\n\n:root {\n  --like-a-apply-rule: {\n  color:red;} /* no semi here*/\n  --another-prop: blue;\n}\n\n:root {\n  --like-a-apply-rule: {\n  color:red;} /* no semi here*/\n  --another-one-like-a-apply-rule: {\n    color:red;\n  };\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("/* http://tabatkins.github.io/specs/css-apply-rule/#defining */\n\n:root {\n  --toolbar-theme: {\n    background-color: hsl(120, 70%, 95%);\n    border-radius: 4px;\n    border: 1px solid var(--theme-color late);\n  };\n  --toolbar-title-theme: {\n    color: green;\n  };\n}\n\n:root {\n  --without-semi: {color:red;}\n}\n\n:root {\n  --like-a-apply-rule: {\n  color:red;} /* no semi here*/\n  --another-prop: blue;\n}\n\n:root {\n  --like-a-apply-rule: {\n  color:red;} /* no semi here*/\n  --another-one-like-a-apply-rule: {\n    color:red;\n  };\n}") ? ;
     assert_eq ! (formatted , "/* http://tabatkins.github.io/specs/css-apply-rule/#defining */\n\n:root {\n  --toolbar-theme: {\n    background-color: hsl(120, 70%, 95%);\n    border-radius: 4px;\n    border: 1px solid var(--theme-color late);\n  };\n  --toolbar-title-theme: {\n    color: green;\n  };\n}\n\n:root {\n  --without-semi: {\n    color: red;\n  };\n}\n\n:root {\n  --like-a-apply-rule: {\n  color:red;} /* no semi here*/\n  --another-prop: blue;\n}\n\n:root {\n  --like-a-apply-rule: {\n  color:red;} /* no semi here*/\n  --another-one-like-a-apply-rule: {\n    color:red;\n  };\n}");
+    Ok(())
 }
 #[test]
-fn test_variables_css_format_1_e8a4075c() {
+fn test_variables_css_format_1_e8a4075c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".foo {\n    --prop: 10px;\n    prop1: var(--prop);\n    prop2: var(--my-var, --my-background, pink);\n    prop3: calc(var(--prop) * 1px);\n}\n\n@supports (--foo: green) {\n    body {\n        color: var(--varName);\n    }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".foo {\n    --prop: 10px;\n    prop1: var(--prop);\n    prop2: var(--my-var, --my-background, pink);\n    prop3: calc(var(--prop) * 1px);\n}\n\n@supports (--foo: green) {\n    body {\n        color: var(--varName);\n    }\n}") ? ;
     assert_eq ! (formatted , ".foo {\n  --prop: 10px;\n  prop1: var(--prop);\n  prop2: var(--my-var, --my-background, pink);\n  prop3: calc(var(--prop) * 1px);\n}\n\n@supports (--foo: green) {\n  body {\n    color: var(--varName);\n  }\n}");
+    Ok(())
 }

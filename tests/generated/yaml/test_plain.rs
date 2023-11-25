@@ -1,233 +1,218 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_force_singleline_in_mapping_value_yml_prose_wrapalways_format_1_0fc63254() {
+fn test_force_singleline_in_mapping_value_yml_prose_wrapalways_format_1_0fc63254() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ? ;
     assert_eq ! (formatted , "no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace:\n  longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline:\n  longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong");
+    Ok(())
 }
 #[test]
-fn test_force_singleline_in_mapping_value_yml_prose_wrapnever_format_1_0fc63254() {
+fn test_force_singleline_in_mapping_value_yml_prose_wrapnever_format_1_0fc63254() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ? ;
     assert_eq ! (formatted , "no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong");
+    Ok(())
 }
 #[test]
-fn test_force_singleline_in_mapping_value_yml_format_1_0fc63254() {
+fn test_force_singleline_in_mapping_value_yml_format_1_0fc63254() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong") ? ;
     assert_eq ! (formatted , "no-whitesapce: longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong\n\nwhitespace: longlonglonglonglonglonglonglonglonglonglong longlonglonglonglonglonglonglonglonglonglong\n\nliteral-newline: longlonglonglonglonglonglonglonglonglonglong\n  longlonglonglonglonglonglonglonglonglonglong\n\nnewline: longlonglonglonglonglonglonglonglonglonglong\n\n  longlonglonglonglonglonglonglonglonglonglong");
+    Ok(())
 }
 #[test]
-fn test_middle_comment_yml_prose_wrapalways_format_1_657a1acc() {
+fn test_middle_comment_yml_prose_wrapalways_format_1_657a1acc() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment\nhello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment\nhello")?;
     assert_eq!(formatted, "!!str # comment\nhello");
+    Ok(())
 }
 #[test]
-fn test_middle_comment_yml_prose_wrapnever_format_1_657a1acc() {
+fn test_middle_comment_yml_prose_wrapnever_format_1_657a1acc() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment\nhello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment\nhello")?;
     assert_eq!(formatted, "!!str # comment\nhello");
+    Ok(())
 }
 #[test]
-fn test_middle_comment_yml_format_1_657a1acc() {
+fn test_middle_comment_yml_format_1_657a1acc() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment\nhello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment\nhello")?;
     assert_eq!(formatted, "!!str # comment\nhello");
+    Ok(())
 }
 #[test]
-fn test_middle_comments_yml_prose_wrapalways_format_1_94999c99() {
+fn test_middle_comments_yml_prose_wrapalways_format_1_94999c99() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello")?;
     assert_eq!(formatted, "!!str\n# comment 1\n# comment 2\nhello");
+    Ok(())
 }
 #[test]
-fn test_middle_comments_yml_prose_wrapnever_format_1_94999c99() {
+fn test_middle_comments_yml_prose_wrapnever_format_1_94999c99() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello")?;
     assert_eq!(formatted, "!!str\n# comment 1\n# comment 2\nhello");
+    Ok(())
 }
 #[test]
-fn test_middle_comments_yml_format_1_94999c99() {
+fn test_middle_comments_yml_format_1_94999c99() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\nhello")?;
     assert_eq!(formatted, "!!str\n# comment 1\n# comment 2\nhello");
+    Ok(())
 }
 #[test]
-fn test_multiline_yml_prose_wrapalways_format_1_dded7bd1() {
+fn test_multiline_yml_prose_wrapalways_format_1_dded7bd1() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ? ;
     assert_eq ! (formatted , "b: 123123123123123123123123123 123123123123123123123123123\n  123123123123123123123123123 123123123123123123123123123\n  123123123123123123123123123 123123123123123123123123123\n  123123123123123123123123123\n\n  123123123123123123123123123\n\n\n  123123123123123123123123123\n\n\n\n\n  123123123123123123123123123");
+    Ok(())
 }
 #[test]
-fn test_multiline_yml_prose_wrapnever_format_1_dded7bd1() {
+fn test_multiline_yml_prose_wrapnever_format_1_dded7bd1() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ? ;
     assert_eq ! (formatted , "b:\n  123123123123123123123123123 123123123123123123123123123 123123123123123123123123123 123123123123123123123123123 123123123123123123123123123 123123123123123123123123123 123123123123123123123123123\n\n  123123123123123123123123123\n\n\n  123123123123123123123123123\n\n\n\n\n  123123123123123123123123123");
+    Ok(())
 }
 #[test]
-fn test_multiline_yml_format_1_dded7bd1() {
+fn test_multiline_yml_format_1_dded7bd1() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("b:    \n  123123123123123123123123123   \n       123123123123123123123123123   \n         123123123123123123123123123\t\t\t\t\n    123123123123123123123123123   \n      123123123123123123123123123   \n  123123123123123123123123123   \n            123123123123123123123123123\t\t\t\t\n         \n         123123123123123123123123123   \n         \n         \n         123123123123123123123123123      \n         \n         \n         \n         \n         123123123123123123123123123  \n    ") ? ;
     assert_eq ! (formatted , "b: 123123123123123123123123123\n  123123123123123123123123123\n  123123123123123123123123123\n  123123123123123123123123123\n  123123123123123123123123123\n  123123123123123123123123123\n  123123123123123123123123123\n\n  123123123123123123123123123\n\n\n  123123123123123123123123123\n\n\n\n\n  123123123123123123123123123");
+    Ok(())
 }
 #[test]
-fn test_true_yml_prose_wrapalways_format_1_14e273e6() {
+fn test_true_yml_prose_wrapalways_format_1_14e273e6() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("hello")?;
     assert_eq!(formatted, "hello");
+    Ok(())
 }
 #[test]
-fn test_true_yml_prose_wrapnever_format_1_14e273e6() {
+fn test_true_yml_prose_wrapnever_format_1_14e273e6() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("hello")?;
     assert_eq!(formatted, "hello");
+    Ok(())
 }
 #[test]
-fn test_true_yml_format_1_14e273e6() {
+fn test_true_yml_format_1_14e273e6() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("hello")?;
     assert_eq!(formatted, "hello");
+    Ok(())
 }
 #[test]
-fn test_verbatim_yml_prose_wrapalways_format_1_5d31d918() {
+fn test_verbatim_yml_prose_wrapalways_format_1_5d31d918() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!<hello> hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!<hello> hello")?;
     assert_eq!(formatted, "!<hello> hello");
+    Ok(())
 }
 #[test]
-fn test_verbatim_yml_prose_wrapnever_format_1_5d31d918() {
+fn test_verbatim_yml_prose_wrapnever_format_1_5d31d918() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!<hello> hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!<hello> hello")?;
     assert_eq!(formatted, "!<hello> hello");
+    Ok(())
 }
 #[test]
-fn test_verbatim_yml_format_1_5d31d918() {
+fn test_verbatim_yml_format_1_5d31d918() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!<hello> hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!<hello> hello")?;
     assert_eq!(formatted, "!<hello> hello");
+    Ok(())
 }

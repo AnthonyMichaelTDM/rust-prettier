@@ -1,33 +1,34 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_exports_optional_prop_js_format_1_a5a77b77() {
+fn test_exports_optional_prop_js_format_1_a5a77b77() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("// @flow\n\ndeclare class Foo {\n  bar?: () => string\n}\n\nexport {Foo};");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        .format("// @flow\n\ndeclare class Foo {\n  bar?: () => string\n}\n\nexport {Foo};")?;
     assert_eq!(
         formatted,
         "// @flow\n\ndeclare class Foo {\n  bar?: () => string;\n}\n\nexport { Foo };"
     );
+    Ok(())
 }
 #[test]
-fn test_test_js_format_1_5177448d() {
+fn test_test_js_format_1_5177448d() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("class C {\n  C() { }\n  foo() { }\n  static bar() { }\n  qux() { this.constructor.x; }\n}\nC.x;\n(new C).foo.x;\nC.bar.x;\n\nimport {Foo} from './exports_optional_prop';\nconst foo = new Foo();\n(foo.bar(): string); // error, could be undefined\n\nfunction f(x) {\n  (x.bar(): string); // error. caused by \\`f(foo)\\`; annotate x to track it down.\n}\nf(foo);") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("class C {\n  C() { }\n  foo() { }\n  static bar() { }\n  qux() { this.constructor.x; }\n}\nC.x;\n(new C).foo.x;\nC.bar.x;\n\nimport {Foo} from './exports_optional_prop';\nconst foo = new Foo();\n(foo.bar(): string); // error, could be undefined\n\nfunction f(x) {\n  (x.bar(): string); // error. caused by \\`f(foo)\\`; annotate x to track it down.\n}\nf(foo);") ? ;
     assert_eq ! (formatted , "class C {\n  C() {}\n  foo() {}\n  static bar() {}\n  qux() {\n    this.constructor.x;\n  }\n}\nC.x;\nnew C().foo.x;\nC.bar.x;\n\nimport { Foo } from \"./exports_optional_prop\";\nconst foo = new Foo();\n(foo.bar(): string); // error, could be undefined\n\nfunction f(x) {\n  (x.bar(): string); // error. caused by \\`f(foo)\\`; annotate x to track it down.\n}\nf(foo);");
+    Ok(())
 }

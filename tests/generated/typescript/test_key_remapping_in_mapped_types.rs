@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_key_remapping_ts_format_1_fc9808f4() {
+fn test_key_remapping_ts_format_1_fc9808f4() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("type MappedTypeWithNewKeys<T> = {\n  [K in keyof T as NewKeyType]: T[K]\n};\n  \ntype RemoveKindField<T> = {\n  [K in keyof T as Exclude<K, \"kind\">]: T[K]\n};\n  \ntype PickByValueType<T, U> = {\n  [K in keyof T as T[K] extends U ? K : never]: T[K]\n};") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("type MappedTypeWithNewKeys<T> = {\n  [K in keyof T as NewKeyType]: T[K]\n};\n  \ntype RemoveKindField<T> = {\n  [K in keyof T as Exclude<K, \"kind\">]: T[K]\n};\n  \ntype PickByValueType<T, U> = {\n  [K in keyof T as T[K] extends U ? K : never]: T[K]\n};") ? ;
     assert_eq ! (formatted , "type MappedTypeWithNewKeys<T> = {\n  [K in keyof T as NewKeyType]: T[K];\n};\n\ntype RemoveKindField<T> = {\n  [K in keyof T as Exclude<K, \"kind\">]: T[K];\n};\n\ntype PickByValueType<T, U> = {\n  [K in keyof T as T[K] extends U ? K : never]: T[K];\n};");
+    Ok(())
 }

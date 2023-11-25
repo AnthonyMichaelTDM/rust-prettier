@@ -1,41 +1,41 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_closure_js_format_1_933ac9ff() {
+fn test_closure_js_format_1_933ac9ff() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/***\n * Test tracking of variable types across closure calls.\n * @flow\n */\n\nfunction takes_string(_:string) { }\n\n// global write from function\n//\n\nvar global_x = \"hello\";\n\nfunction global_f() { }\nfunction global_g() { global_x = 42; }\n\nglobal_f();\ntakes_string(global_x); // ok\n\nglobal_g();\ntakes_string(global_x); // error\n\nglobal_x = 42;  // shouldn't pollute linear refinement\n\n// local write from function\n//\n\nfunction local_func() {\n\n  var local_x = \"hello\";\n\n  function local_f() { }\n  function local_g() { local_x = 42; }\n\n  local_f();\n  takes_string(local_x); // ok\n\n  local_g();\n  takes_string(local_x); // error\n\n  local_x = 42;  // shouldn't pollute linear refinement\n}\n\n// global write from method\n//\n\nvar global_y = \"hello\";\n\nvar global_o = {\n  f: function() { },\n  g: function() { global_y = 42; }\n}\n\nglobal_o.f();\ntakes_string(global_y); // ok\n\nglobal_o.g();\ntakes_string(global_y); // error\n\nglobal_y = 42;  // shouldn't pollute linear refinement\n\n// local write from method\n//\n\nfunction local_meth() {\n\n  var local_y = \"hello\";\n\n  var local_o = {\n    f: function() { },\n    g: function() { local_y = 42; }\n  }\n\n  local_o.f();\n  takes_string(local_y); // ok\n\n  local_o.g();\n  takes_string(local_y); // error\n\n  local_y = 42;  // shouldn't pollute linear refinement\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("/***\n * Test tracking of variable types across closure calls.\n * @flow\n */\n\nfunction takes_string(_:string) { }\n\n// global write from function\n//\n\nvar global_x = \"hello\";\n\nfunction global_f() { }\nfunction global_g() { global_x = 42; }\n\nglobal_f();\ntakes_string(global_x); // ok\n\nglobal_g();\ntakes_string(global_x); // error\n\nglobal_x = 42;  // shouldn't pollute linear refinement\n\n// local write from function\n//\n\nfunction local_func() {\n\n  var local_x = \"hello\";\n\n  function local_f() { }\n  function local_g() { local_x = 42; }\n\n  local_f();\n  takes_string(local_x); // ok\n\n  local_g();\n  takes_string(local_x); // error\n\n  local_x = 42;  // shouldn't pollute linear refinement\n}\n\n// global write from method\n//\n\nvar global_y = \"hello\";\n\nvar global_o = {\n  f: function() { },\n  g: function() { global_y = 42; }\n}\n\nglobal_o.f();\ntakes_string(global_y); // ok\n\nglobal_o.g();\ntakes_string(global_y); // error\n\nglobal_y = 42;  // shouldn't pollute linear refinement\n\n// local write from method\n//\n\nfunction local_meth() {\n\n  var local_y = \"hello\";\n\n  var local_o = {\n    f: function() { },\n    g: function() { local_y = 42; }\n  }\n\n  local_o.f();\n  takes_string(local_y); // ok\n\n  local_o.g();\n  takes_string(local_y); // error\n\n  local_y = 42;  // shouldn't pollute linear refinement\n}") ? ;
     assert_eq ! (formatted , "/***\n * Test tracking of variable types across closure calls.\n * @flow\n */\n\nfunction takes_string(_: string) {}\n\n// global write from function\n//\n\nvar global_x = \"hello\";\n\nfunction global_f() {}\nfunction global_g() {\n  global_x = 42;\n}\n\nglobal_f();\ntakes_string(global_x); // ok\n\nglobal_g();\ntakes_string(global_x); // error\n\nglobal_x = 42; // shouldn't pollute linear refinement\n\n// local write from function\n//\n\nfunction local_func() {\n  var local_x = \"hello\";\n\n  function local_f() {}\n  function local_g() {\n    local_x = 42;\n  }\n\n  local_f();\n  takes_string(local_x); // ok\n\n  local_g();\n  takes_string(local_x); // error\n\n  local_x = 42; // shouldn't pollute linear refinement\n}\n\n// global write from method\n//\n\nvar global_y = \"hello\";\n\nvar global_o = {\n  f: function () {},\n  g: function () {\n    global_y = 42;\n  },\n};\n\nglobal_o.f();\ntakes_string(global_y); // ok\n\nglobal_o.g();\ntakes_string(global_y); // error\n\nglobal_y = 42; // shouldn't pollute linear refinement\n\n// local write from method\n//\n\nfunction local_meth() {\n  var local_y = \"hello\";\n\n  var local_o = {\n    f: function () {},\n    g: function () {\n      local_y = 42;\n    },\n  };\n\n  local_o.f();\n  takes_string(local_y); // ok\n\n  local_o.g();\n  takes_string(local_y); // error\n\n  local_y = 42; // shouldn't pollute linear refinement\n}");
+    Ok(())
 }
 #[test]
-fn test_cond_havoc_js_format_1_9430a33b() {
+fn test_cond_havoc_js_format_1_9430a33b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\n// from sam, https://github.com/facebook/flow/issues/780\n// call to f() within if should properly havoc x.\n//\nfunction example(b: bool): number {\n  var x = 0;\n  function f() { x = \"\" }\n  if (b) {\n    f();\n  }\n  return x; // error, string ~/~> number (return type anno) TODO\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("// @flow\n\n// from sam, https://github.com/facebook/flow/issues/780\n// call to f() within if should properly havoc x.\n//\nfunction example(b: bool): number {\n  var x = 0;\n  function f() { x = \"\" }\n  if (b) {\n    f();\n  }\n  return x; // error, string ~/~> number (return type anno) TODO\n}") ? ;
     assert_eq ! (formatted , "// @flow\n\n// from sam, https://github.com/facebook/flow/issues/780\n// call to f() within if should properly havoc x.\n//\nfunction example(b: boolean): number {\n  var x = 0;\n  function f() {\n    x = \"\";\n  }\n  if (b) {\n    f();\n  }\n  return x; // error, string ~/~> number (return type anno) TODO\n}");
+    Ok(())
 }
 #[test]
-fn test_const_js_format_1_142a6d44() {
+fn test_const_js_format_1_142a6d44() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/***\n * consts retain refinements\n * @flow\n */\n\n// global, anybody can call it at any time\nvar call_me: () => void = () => {};\n\nfunction g(x: ?number) {\n\n  const const_x = x;\n  if (const_x) {\n    // ok: if const_x is truthy here, it's truthy everywhere\n    call_me = () => { var y:number = const_x; };\n  }\n\n  var var_x = x;\n  if (var_x) {\n    // error: var_x might no longer be truthy when call_me is called\n    call_me = () => { var y:number = var_x; };  // error\n  }\n  var_x = null;\n}\n\nfunction h(x: number | string | boolean) {\n\n  const const_x = x;\n  if (typeof(const_x) == \"number\") {\n    call_me = () => { var y:number = const_x; };  // ok\n  } else if (typeof(const_x) == \"string\") {\n    call_me = () => { var y:string = const_x; };  // ok\n  } else if (typeof(const_x) == \"boolean\") {\n    call_me = () => { var y:boolean = const_x; };  // ok\n  }\n\n  var var_x = x;\n  if (typeof(var_x) == \"number\") {\n    call_me = () => { var y:number = var_x; };  // error\n  } else if (typeof(var_x) == \"string\") {\n    call_me = () => { var y:string = var_x; };  // error\n  } else if (typeof(var_x) == \"boolean\") {\n    call_me = () => { var y:boolean = var_x; };  // error\n  }\n}\n\n// in a galaxy far far away\ncall_me();") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("/***\n * consts retain refinements\n * @flow\n */\n\n// global, anybody can call it at any time\nvar call_me: () => void = () => {};\n\nfunction g(x: ?number) {\n\n  const const_x = x;\n  if (const_x) {\n    // ok: if const_x is truthy here, it's truthy everywhere\n    call_me = () => { var y:number = const_x; };\n  }\n\n  var var_x = x;\n  if (var_x) {\n    // error: var_x might no longer be truthy when call_me is called\n    call_me = () => { var y:number = var_x; };  // error\n  }\n  var_x = null;\n}\n\nfunction h(x: number | string | boolean) {\n\n  const const_x = x;\n  if (typeof(const_x) == \"number\") {\n    call_me = () => { var y:number = const_x; };  // ok\n  } else if (typeof(const_x) == \"string\") {\n    call_me = () => { var y:string = const_x; };  // ok\n  } else if (typeof(const_x) == \"boolean\") {\n    call_me = () => { var y:boolean = const_x; };  // ok\n  }\n\n  var var_x = x;\n  if (typeof(var_x) == \"number\") {\n    call_me = () => { var y:number = var_x; };  // error\n  } else if (typeof(var_x) == \"string\") {\n    call_me = () => { var y:string = var_x; };  // error\n  } else if (typeof(var_x) == \"boolean\") {\n    call_me = () => { var y:boolean = var_x; };  // error\n  }\n}\n\n// in a galaxy far far away\ncall_me();") ? ;
     assert_eq ! (formatted , "/***\n * consts retain refinements\n * @flow\n */\n\n// global, anybody can call it at any time\nvar call_me: () => void = () => {};\n\nfunction g(x: ?number) {\n  const const_x = x;\n  if (const_x) {\n    // ok: if const_x is truthy here, it's truthy everywhere\n    call_me = () => {\n      var y: number = const_x;\n    };\n  }\n\n  var var_x = x;\n  if (var_x) {\n    // error: var_x might no longer be truthy when call_me is called\n    call_me = () => {\n      var y: number = var_x;\n    }; // error\n  }\n  var_x = null;\n}\n\nfunction h(x: number | string | boolean) {\n  const const_x = x;\n  if (typeof const_x == \"number\") {\n    call_me = () => {\n      var y: number = const_x;\n    }; // ok\n  } else if (typeof const_x == \"string\") {\n    call_me = () => {\n      var y: string = const_x;\n    }; // ok\n  } else if (typeof const_x == \"boolean\") {\n    call_me = () => {\n      var y: boolean = const_x;\n    }; // ok\n  }\n\n  var var_x = x;\n  if (typeof var_x == \"number\") {\n    call_me = () => {\n      var y: number = var_x;\n    }; // error\n  } else if (typeof var_x == \"string\") {\n    call_me = () => {\n      var y: string = var_x;\n    }; // error\n  } else if (typeof var_x == \"boolean\") {\n    call_me = () => {\n      var y: boolean = var_x;\n    }; // error\n  }\n}\n\n// in a galaxy far far away\ncall_me();");
+    Ok(())
 }

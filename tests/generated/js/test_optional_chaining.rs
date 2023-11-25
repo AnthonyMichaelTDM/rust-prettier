@@ -1,41 +1,41 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_chaining_js_format_1_bc341ae9() {
+fn test_chaining_js_format_1_bc341ae9() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("var street = user.address?.street\nvar fooValue = myForm.querySelector('input[name=foo]')?.value\n\nobj?.prop;\nobj?.[expr];\nfunc?.(...args);\n\na?.();\na?.[++x];\na?.b.c(++x).d;\na?.b[3].c?.(x).d;\na?.b.c;\n(a?.b).c;\na?.b?.c;\ndelete a?.b;\n\na?.b[3].c?.(x).d.e?.f[3].g?.(y).h;\n\n(a?.b).c();\n(a?.b[c]).c();\n\n(a?.b)?.c.d?.e;\n(a ? b : c)?.d;\n\n(list || list2)?.length;\n(list || list2)?.[(list || list2)];\n\nasync function HelloWorld() {\n  var x = (await foo.bar.blah)?.hi;\n  a?.[await b];\n  (await x)?.();\n}\n\na[b?.c].d();\na?.[b?.c].d();\na[b?.c]?.d();\na?.[b?.c]?.d();\n\n(one?.fn());\n(one?.two).fn();\n(one?.two)();\n(one?.two())();\n(one.two?.fn());\n(one.two?.three).fn();\n(one.two?.three?.fn());\n\n(one?.());\n(one?.())();\n(one?.())?.();\n\n(one?.()).two;\n\na?.[b ? c : d];\n\n(-1)?.toFixed();\n(void fn)?.();\n(a && b)?.();\n(a ? b : c)?.();\n(function(){})?.();\n(() => f)?.();\n(()=>f)?.x;\n(a?.(x)).x;\n(aaaaaaaaaaaaaaaaaaaaaaaa&&aaaaaaaaaaaaaaaaaaaaaaaa&&aaaaaaaaaaaaaaaaaaaaaaaa)?.();\n\nlet f = () => ({}?.());\nlet g = () => ({}?.b);\na = () => ({}?.() && a);\na = () => ({}?.()() && a);\na = () => ({}?.().b && a);\na = () => ({}?.b && a);\na = () => ({}?.b() && a);\n(a) => ({}?.()?.b && 0);\n(a) => ({}?.b?.b && 0);\n(x) => ({}?.()());\n(x) => ({}?.().b);\n(x) => ({}?.b());\n(x) => ({}?.b.b);\n({}?.a().b());\n({ a: 1 }?.entries());\n\nnew (foo?.bar)();\nnew (foo?.bar())();\nnew (foo?.())();") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("var street = user.address?.street\nvar fooValue = myForm.querySelector('input[name=foo]')?.value\n\nobj?.prop;\nobj?.[expr];\nfunc?.(...args);\n\na?.();\na?.[++x];\na?.b.c(++x).d;\na?.b[3].c?.(x).d;\na?.b.c;\n(a?.b).c;\na?.b?.c;\ndelete a?.b;\n\na?.b[3].c?.(x).d.e?.f[3].g?.(y).h;\n\n(a?.b).c();\n(a?.b[c]).c();\n\n(a?.b)?.c.d?.e;\n(a ? b : c)?.d;\n\n(list || list2)?.length;\n(list || list2)?.[(list || list2)];\n\nasync function HelloWorld() {\n  var x = (await foo.bar.blah)?.hi;\n  a?.[await b];\n  (await x)?.();\n}\n\na[b?.c].d();\na?.[b?.c].d();\na[b?.c]?.d();\na?.[b?.c]?.d();\n\n(one?.fn());\n(one?.two).fn();\n(one?.two)();\n(one?.two())();\n(one.two?.fn());\n(one.two?.three).fn();\n(one.two?.three?.fn());\n\n(one?.());\n(one?.())();\n(one?.())?.();\n\n(one?.()).two;\n\na?.[b ? c : d];\n\n(-1)?.toFixed();\n(void fn)?.();\n(a && b)?.();\n(a ? b : c)?.();\n(function(){})?.();\n(() => f)?.();\n(()=>f)?.x;\n(a?.(x)).x;\n(aaaaaaaaaaaaaaaaaaaaaaaa&&aaaaaaaaaaaaaaaaaaaaaaaa&&aaaaaaaaaaaaaaaaaaaaaaaa)?.();\n\nlet f = () => ({}?.());\nlet g = () => ({}?.b);\na = () => ({}?.() && a);\na = () => ({}?.()() && a);\na = () => ({}?.().b && a);\na = () => ({}?.b && a);\na = () => ({}?.b() && a);\n(a) => ({}?.()?.b && 0);\n(a) => ({}?.b?.b && 0);\n(x) => ({}?.()());\n(x) => ({}?.().b);\n(x) => ({}?.b());\n(x) => ({}?.b.b);\n({}?.a().b());\n({ a: 1 }?.entries());\n\nnew (foo?.bar)();\nnew (foo?.bar())();\nnew (foo?.())();") ? ;
     assert_eq ! (formatted , "var street = user.address?.street;\nvar fooValue = myForm.querySelector(\"input[name=foo]\")?.value;\n\nobj?.prop;\nobj?.[expr];\nfunc?.(...args);\n\na?.();\na?.[++x];\na?.b.c(++x).d;\na?.b[3].c?.(x).d;\na?.b.c;\n(a?.b).c;\na?.b?.c;\ndelete a?.b;\n\na?.b[3].c?.(x).d.e?.f[3].g?.(y).h;\n\n(a?.b).c();\n(a?.b[c]).c();\n\na?.b?.c.d?.e;\n(a ? b : c)?.d;\n\n(list || list2)?.length;\n(list || list2)?.[list || list2];\n\nasync function HelloWorld() {\n  var x = (await foo.bar.blah)?.hi;\n  a?.[await b];\n  (await x)?.();\n}\n\na[b?.c].d();\na?.[b?.c].d();\na[b?.c]?.d();\na?.[b?.c]?.d();\n\none?.fn();\n(one?.two).fn();\n(one?.two)();\n(one?.two())();\none.two?.fn();\n(one.two?.three).fn();\none.two?.three?.fn();\n\none?.();\n(one?.())();\none?.()?.();\n\n(one?.()).two;\n\na?.[b ? c : d];\n\n(-1)?.toFixed();\n(void fn)?.();\n(a && b)?.();\n(a ? b : c)?.();\n(function () {})?.();\n(() => f)?.();\n(() => f)?.x;\n(a?.(x)).x;\n(\n  aaaaaaaaaaaaaaaaaaaaaaaa &&\n  aaaaaaaaaaaaaaaaaaaaaaaa &&\n  aaaaaaaaaaaaaaaaaaaaaaaa\n)?.();\n\nlet f = () => ({})?.();\nlet g = () => ({})?.b;\na = () => ({})?.() && a;\na = () => ({})?.()() && a;\na = () => ({})?.().b && a;\na = () => ({})?.b && a;\na = () => ({})?.b() && a;\n(a) => ({})?.()?.b && 0;\n(a) => ({})?.b?.b && 0;\n(x) => ({})?.()();\n(x) => ({})?.().b;\n(x) => ({})?.b();\n(x) => ({})?.b.b;\n({})?.a().b();\n({ a: 1 })?.entries();\n\nnew (foo?.bar)();\nnew (foo?.bar())();\nnew (foo?.())();");
+    Ok(())
 }
 #[test]
-fn test_comments_js_format_1_1cb34a3c() {
+fn test_comments_js_format_1_1cb34a3c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("function foo() {\n  return a\n    .b()\n    .c()\n    // Comment\n    ?.d()\n}\n\nfooBar\n  .doSomething(\"Hello World\")\n  .doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nbigDeal\n\n  .doSomething(\"Hello World\")\n\n  // Hello world\n  ?.doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nfoo.bar.baz\n\n  ?.doSomething(\"Hello World\")\n\n  // Hello world\n  .foo.bar.doAnotherThing(\"Foo\", { foo: bar })\n\n  .doOneMoreThing(config)\n  ?.bar.run(() => console.log(\"Bar\"));\n\n(somethingGood ? thisIsIt : maybeNot)\n\n// Hello world\n.doSomething(\"Hello World\")\n\n  ?.doAnotherThing(\"Foo\", { foo: bar }) // Run this\n  .run(() => console.log(\"Bar\")); // Do this") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("function foo() {\n  return a\n    .b()\n    .c()\n    // Comment\n    ?.d()\n}\n\nfooBar\n  .doSomething(\"Hello World\")\n  .doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nbigDeal\n\n  .doSomething(\"Hello World\")\n\n  // Hello world\n  ?.doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nfoo.bar.baz\n\n  ?.doSomething(\"Hello World\")\n\n  // Hello world\n  .foo.bar.doAnotherThing(\"Foo\", { foo: bar })\n\n  .doOneMoreThing(config)\n  ?.bar.run(() => console.log(\"Bar\"));\n\n(somethingGood ? thisIsIt : maybeNot)\n\n// Hello world\n.doSomething(\"Hello World\")\n\n  ?.doAnotherThing(\"Foo\", { foo: bar }) // Run this\n  .run(() => console.log(\"Bar\")); // Do this") ? ;
     assert_eq ! (formatted , "function foo() {\n  return (\n    a\n      .b()\n      .c()\n      // Comment\n      ?.d()\n  );\n}\n\nfooBar\n  .doSomething(\"Hello World\")\n  .doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nbigDeal\n\n  .doSomething(\"Hello World\")\n\n  // Hello world\n  ?.doAnotherThing(\"Foo\", { foo: bar })\n\n  // App configuration.\n  .doOneMoreThing(config)\n\n  ?.run(() => console.log(\"Bar\"));\n\nfoo.bar.baz\n\n  ?.doSomething(\"Hello World\")\n\n  // Hello world\n  .foo.bar.doAnotherThing(\"Foo\", { foo: bar })\n\n  .doOneMoreThing(config)\n  ?.bar.run(() => console.log(\"Bar\"));\n\n(somethingGood ? thisIsIt : maybeNot)\n\n  // Hello world\n  .doSomething(\"Hello World\")\n\n  ?.doAnotherThing(\"Foo\", { foo: bar }) // Run this\n  .run(() => console.log(\"Bar\")); // Do this");
+    Ok(())
 }
 #[test]
-fn test_eval_js_format_1_7c668a30() {
+fn test_eval_js_format_1_7c668a30() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// https://github.com/babel/babel/pull/11850\n\nlet foo;\n\n/* indirect eval calls */\neval?.(foo);\n\n(eval)?.(foo);\n\neval?.()();\n\neval?.().foo;\n\n/* direct eval calls */\n\neval()?.();\n\neval()?.foo;\n\n/* plain function calls */\n\nfoo.eval?.(foo);\n\neval.foo?.(foo);") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("// https://github.com/babel/babel/pull/11850\n\nlet foo;\n\n/* indirect eval calls */\neval?.(foo);\n\n(eval)?.(foo);\n\neval?.()();\n\neval?.().foo;\n\n/* direct eval calls */\n\neval()?.();\n\neval()?.foo;\n\n/* plain function calls */\n\nfoo.eval?.(foo);\n\neval.foo?.(foo);") ? ;
     assert_eq ! (formatted , "// https://github.com/babel/babel/pull/11850\n\nlet foo;\n\n/* indirect eval calls */\neval?.(foo);\n\neval?.(foo);\n\neval?.()();\n\neval?.().foo;\n\n/* direct eval calls */\n\neval()?.();\n\neval()?.foo;\n\n/* plain function calls */\n\nfoo.eval?.(foo);\n\neval.foo?.(foo);");
+    Ok(())
 }

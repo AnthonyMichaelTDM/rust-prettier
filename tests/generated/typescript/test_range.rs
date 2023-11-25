@@ -1,10 +1,13 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_export_assignment_ts_format_1_eb67cfa4() {
+fn test_export_assignment_ts_format_1_eb67cfa4() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
@@ -13,13 +16,12 @@ fn test_export_assignment_ts_format_1_eb67cfa4() {
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("  1 | f ( );\n> 2 | export   =   f;\n    |         ^^^\n  3 | g(  )\n  4 ");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        .format("  1 | f ( );\n> 2 | export   =   f;\n    |         ^^^\n  3 | g(  )\n  4 ")?;
     assert_eq!(formatted, "f ( );\nexport = f;\ng(  )");
+    Ok(())
 }
 #[test]
-fn test_issue_4926_ts_format_1_70e90992() {
+fn test_issue_4926_ts_format_1_70e90992() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
@@ -27,13 +29,12 @@ fn test_issue_4926_ts_format_1_70e90992() {
         .range_start(102)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("   1 | class Foo {\n   2 |     /** Does this key match a given MinimalKey extending object? */\n   3 |     match(keyevent) {\n>  4 |         // 'in' doesn't include prototypes, so it's safe for this object.\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  5 |         for (let attr in this) {\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  6 |             if (this[attr] !== keyevent[attr]) return false\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  7 |         }\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  8 |         return true\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  9 |     }\n     | ^^^^^\n  10 | }\n  11 ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("   1 | class Foo {\n   2 |     /** Does this key match a given MinimalKey extending object? */\n   3 |     match(keyevent) {\n>  4 |         // 'in' doesn't include prototypes, so it's safe for this object.\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  5 |         for (let attr in this) {\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  6 |             if (this[attr] !== keyevent[attr]) return false\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  7 |         }\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  8 |         return true\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n>  9 |     }\n     | ^^^^^\n  10 | }\n  11 ") ? ;
     assert_eq ! (formatted , "class Foo {\n    /** Does this key match a given MinimalKey extending object? */\n    match(keyevent) {\n      // 'in' doesn't include prototypes, so it's safe for this object.\n      for (let attr in this) {\n        if (this[attr] !== keyevent[attr]) return false;\n      }\n      return true;\n    }\n}");
+    Ok(())
 }
 #[test]
-fn test_issue_7148_ts_format_1_500513c2() {
+fn test_issue_7148_ts_format_1_500513c2() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
@@ -41,11 +42,10 @@ fn test_issue_7148_ts_format_1_500513c2() {
         .range_start(29)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | export default class Test {\n> 2 |   private obj = { isTest: true }\n    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  3 | }\n  4 ") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("  1 | export default class Test {\n> 2 |   private obj = { isTest: true }\n    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  3 | }\n  4 ") ? ;
     assert_eq!(
         formatted,
         "export default class Test {\n  private obj = { isTest: true };\n}"
     );
+    Ok(())
 }

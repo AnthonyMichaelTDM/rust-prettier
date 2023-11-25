@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_import_css_format_1_8fc2400c() {
+fn test_import_css_format_1_8fc2400c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("        @import         \"./settings\"    ;\n\n\n@import      \"./components\" ;@import \"./themes\";\n.class{float: left;\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("        @import         \"./settings\"    ;\n\n\n@import      \"./components\" ;@import \"./themes\";\n.class{float: left;\n}") ? ;
     assert_eq ! (formatted , "@import \"./settings\";\n\n@import \"./components\";\n@import \"./themes\";\n.class {\n  float: left;\n}");
+    Ok(())
 }

@@ -1,44 +1,44 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_simple_md_prose_wrapalways_format_1_c5b97e92() {
+fn test_simple_md_prose_wrapalways_format_1_c5b97e92() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[alpha]: http://example.com");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("[alpha]: http://example.com")?;
     assert_eq!(formatted, "[alpha]: http://example.com");
+    Ok(())
 }
 #[test]
-fn test_space_md_prose_wrapalways_format_1_a32fe84d() {
+fn test_space_md_prose_wrapalways_format_1_a32fe84d() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[alpha]: <http://example.com 123> \"title\"");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("[alpha]: <http://example.com 123> \"title\"")?;
     assert_eq!(formatted, "[alpha]: <http://example.com 123> \"title\"");
+    Ok(())
 }
 #[test]
-fn test_title_md_prose_wrapalways_format_1_0509eec6() {
+fn test_title_md_prose_wrapalways_format_1_0509eec6() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("md")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[alpha]: http://example.com \"title\"");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("[alpha]: http://example.com \"title\"")?;
     assert_eq!(formatted, "[alpha]: http://example.com \"title\"");
+    Ok(())
 }

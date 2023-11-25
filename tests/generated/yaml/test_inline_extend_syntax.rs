@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_inline_extend_syntax_yml_format_1_0b22cbc0() {
+fn test_inline_extend_syntax_yml_format_1_0b22cbc0() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("# 8876\n\nfoo:\n <<: &anchor\n   K1: \"One\"\n K2: \"Two\"\n\nbar:\n <<: *anchor\n K3: \"Three\"") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("# 8876\n\nfoo:\n <<: &anchor\n   K1: \"One\"\n K2: \"Two\"\n\nbar:\n <<: *anchor\n K3: \"Three\"") ? ;
     assert_eq ! (formatted , "# 8876\n\nfoo:\n  <<: &anchor\n    K1: \"One\"\n  K2: \"Two\"\n\nbar:\n  <<: *anchor\n  K3: \"Three\"");
+    Ok(())
 }

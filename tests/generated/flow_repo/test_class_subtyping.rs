@@ -1,57 +1,56 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_test_js_format_1_fd24be1e() {
+fn test_test_js_format_1_fd24be1e() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("/* @flow */\nclass A {}\nclass B {}\n\nmodule.exports = { A, B };");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer
+        .format("/* @flow */\nclass A {}\nclass B {}\n\nmodule.exports = { A, B };")?;
     assert_eq!(
         formatted,
         "/* @flow */\nclass A {}\nclass B {}\n\nmodule.exports = { A, B };"
     );
+    Ok(())
 }
 #[test]
-fn test_test_2_js_format_1_49f6569d() {
+fn test_test_2_js_format_1_49f6569d() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* @flow */\nvar I = require(\"./test.js\");\n\nclass C extends I.A {}\n\nvar x: I.A = new C();\nvar y: I.B = new C();") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("/* @flow */\nvar I = require(\"./test.js\");\n\nclass C extends I.A {}\n\nvar x: I.A = new C();\nvar y: I.B = new C();") ? ;
     assert_eq ! (formatted , "/* @flow */\nvar I = require(\"./test.js\");\n\nclass C extends I.A {}\n\nvar x: I.A = new C();\nvar y: I.B = new C();");
+    Ok(())
 }
 #[test]
-fn test_test_3_js_format_1_51103871() {
+fn test_test_3_js_format_1_51103871() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("class A<X, Y, Z> {}\nclass B extends A<string, number, bool> {}\nclass C<X, Y, Z> extends B {}\n\nvar c: C<number, string, Array<bool>> = new C; // none of the type args matter\nvar a: A<string, number, Array<bool>> = c; // the third type arg is incorrect") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("class A<X, Y, Z> {}\nclass B extends A<string, number, bool> {}\nclass C<X, Y, Z> extends B {}\n\nvar c: C<number, string, Array<bool>> = new C; // none of the type args matter\nvar a: A<string, number, Array<bool>> = c; // the third type arg is incorrect") ? ;
     assert_eq ! (formatted , "class A<X, Y, Z> {}\nclass B extends A<string, number, boolean> {}\nclass C<X, Y, Z> extends B {}\n\nvar c: C<number, string, Array<boolean>> = new C(); // none of the type args matter\nvar a: A<string, number, Array<boolean>> = c; // the third type arg is incorrect");
+    Ok(())
 }
 #[test]
-fn test_test_4_js_format_1_5dbe7735() {
+fn test_test_4_js_format_1_5dbe7735() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("class C<X> { x: X; }\n\nfunction foo<X>(c: C<X>, x: X) { }\n\ntype O = { f: number };\n\nfoo((new C: C<O>), { f_: 0 });\n\nclass D extends C<O> {\n  bar() { this.x; }\n}\n\nfoo(new D, { f_: 0 });") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("class C<X> { x: X; }\n\nfunction foo<X>(c: C<X>, x: X) { }\n\ntype O = { f: number };\n\nfoo((new C: C<O>), { f_: 0 });\n\nclass D extends C<O> {\n  bar() { this.x; }\n}\n\nfoo(new D, { f_: 0 });") ? ;
     assert_eq ! (formatted , "class C<X> {\n  x: X;\n}\n\nfunction foo<X>(c: C<X>, x: X) {}\n\ntype O = { f: number };\n\nfoo((new C(): C<O>), { f_: 0 });\n\nclass D extends C<O> {\n  bar() {\n    this.x;\n  }\n}\n\nfoo(new D(), { f_: 0 });");
+    Ok(())
 }

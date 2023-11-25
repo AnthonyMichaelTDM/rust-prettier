@@ -1,69 +1,67 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_parent_js_format_1_bf1852ba() {
+fn test_parent_js_format_1_bf1852ba() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("// @flow\n\nvar ParentFoo = {foo: 'bar'};\nmodule.exports = {ParentFoo};");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        .format("// @flow\n\nvar ParentFoo = {foo: 'bar'};\nmodule.exports = {ParentFoo};")?;
     assert_eq!(
         formatted,
         "// @flow\n\nvar ParentFoo = { foo: \"bar\" };\nmodule.exports = { ParentFoo };"
     );
+    Ok(())
 }
 #[test]
-fn test_main_js_format_1_76df567a() {
+fn test_main_js_format_1_76df567a() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\nvar Parent = require('./Parent');\n\n// Hops through destructuring\nlet ParentFoo;\n({ParentFoo} = Parent);\nParentFoo; // Points to lval in line above this\n\n// Follows assignment on simple/\"non-destructuring\" patterns\nlet ParentFoo2;\nParentFoo2 = Parent;\nParentFoo2; // Points to LHS of line above this\n\n// Follows assignment with declaration\nlet ParentFoo3 = Parent;\nParentFoo3; // Points to LHS of line above this\n\n// Follows non-destructured property access of \\`require('Parent')\\`\nlet foo = require('./Parent').ParentFoo.foo;\nfoo;\n\nimport type {Foo} from './types';\nfunction takesFoo(foo: Foo) { }") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("// @flow\n\nvar Parent = require('./Parent');\n\n// Hops through destructuring\nlet ParentFoo;\n({ParentFoo} = Parent);\nParentFoo; // Points to lval in line above this\n\n// Follows assignment on simple/\"non-destructuring\" patterns\nlet ParentFoo2;\nParentFoo2 = Parent;\nParentFoo2; // Points to LHS of line above this\n\n// Follows assignment with declaration\nlet ParentFoo3 = Parent;\nParentFoo3; // Points to LHS of line above this\n\n// Follows non-destructured property access of \\`require('Parent')\\`\nlet foo = require('./Parent').ParentFoo.foo;\nfoo;\n\nimport type {Foo} from './types';\nfunction takesFoo(foo: Foo) { }") ? ;
     assert_eq ! (formatted , "// @flow\n\nvar Parent = require(\"./Parent\");\n\n// Hops through destructuring\nlet ParentFoo;\n({ ParentFoo } = Parent);\nParentFoo; // Points to lval in line above this\n\n// Follows assignment on simple/\"non-destructuring\" patterns\nlet ParentFoo2;\nParentFoo2 = Parent;\nParentFoo2; // Points to LHS of line above this\n\n// Follows assignment with declaration\nlet ParentFoo3 = Parent;\nParentFoo3; // Points to LHS of line above this\n\n// Follows non-destructured property access of \\`require('Parent')\\`\nlet foo = require(\"./Parent\").ParentFoo.foo;\nfoo;\n\nimport type { Foo } from \"./types\";\nfunction takesFoo(foo: Foo) {}");
+    Ok(())
 }
 #[test]
-fn test_override_js_format_1_da660050() {
+fn test_override_js_format_1_da660050() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\nclass C {\n  override() { }\n}\n\nclass D extends C {\n  foo() { this.override() }\n  bar() { this.override }\n  override() { }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("// @flow\n\nclass C {\n  override() { }\n}\n\nclass D extends C {\n  foo() { this.override() }\n  bar() { this.override }\n  override() { }\n}") ? ;
     assert_eq ! (formatted , "// @flow\n\nclass C {\n  override() {}\n}\n\nclass D extends C {\n  foo() {\n    this.override();\n  }\n  bar() {\n    this.override;\n  }\n  override() {}\n}");
+    Ok(())
 }
 #[test]
-fn test_react_js_format_1_943e6864() {
+fn test_react_js_format_1_943e6864() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("var React = require('react');\n\nclass C extends React.Component {\n  props: { x: string };\n}\n\nlet msg = \"hello\";\n\n(<C x={msg}/>);\n\n(<div id={msg}/>);") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("var React = require('react');\n\nclass C extends React.Component {\n  props: { x: string };\n}\n\nlet msg = \"hello\";\n\n(<C x={msg}/>);\n\n(<div id={msg}/>);") ? ;
     assert_eq ! (formatted , "var React = require(\"react\");\n\nclass C extends React.Component {\n  props: { x: string };\n}\n\nlet msg = \"hello\";\n\n<C x={msg} />;\n\n<div id={msg} />;");
+    Ok(())
 }
 #[test]
-fn test_types_js_format_1_0ccaeaf8() {
+fn test_types_js_format_1_0ccaeaf8() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("// @flow\n\nexport type Foo = {};");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("// @flow\n\nexport type Foo = {};")?;
     assert_eq!(formatted, "// @flow\n\nexport type Foo = {};");
+    Ok(())
 }

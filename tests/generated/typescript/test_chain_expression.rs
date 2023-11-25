@@ -1,20 +1,22 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_test_ts_format_1_157c658e() {
+fn test_test_ts_format_1_157c658e() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("(a?.b!).c;\n(a?.()!).b;\n(a?.b)!.c;\n(a?.())!.b;");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("(a?.b!).c;\n(a?.()!).b;\n(a?.b)!.c;\n(a?.())!.b;")?;
     assert_eq!(
         formatted,
         "(a?.b)!.c;\n(a?.())!.b;\n(a?.b)!.c;\n(a?.())!.b;"
     );
+    Ok(())
 }

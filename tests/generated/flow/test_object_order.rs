@@ -1,31 +1,32 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_order_js_trailing_commaall_format_1_62f98dce() {
+fn test_order_js_trailing_commaall_format_1_62f98dce() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("type Foo = {\n  // a\n  alpha: 'hello',\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("type Foo = {\n  // a\n  alpha: 'hello',\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n}") ? ;
     assert_eq ! (formatted , "type Foo = {\n  // a\n  alpha: \"hello\",\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n};");
+    Ok(())
 }
 #[test]
-fn test_order_js_trailing_commaes_5_format_1_62f98dce() {
+fn test_order_js_trailing_commaes_5_format_1_62f98dce() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .trailing_comma("es5")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("type Foo = {\n  // a\n  alpha: 'hello',\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("type Foo = {\n  // a\n  alpha: 'hello',\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n}") ? ;
     assert_eq ! (formatted , "type Foo = {\n  // a\n  alpha: \"hello\",\n\n  // b\n  [key: string]: void,\n  // c\n\n  beta: 10,\n\n  // d\n};");
+    Ok(())
 }

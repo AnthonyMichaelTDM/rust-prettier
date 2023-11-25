@@ -1,32 +1,33 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_object_js_format_1_3007b723() {
+fn test_object_js_format_1_3007b723() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("state = {\n  // students\n  hoverColumn: -1\n};");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("state = {\n  // students\n  hoverColumn: -1\n};")?;
     assert_eq!(
         formatted,
         "state = {\n  // students\n  hoverColumn: -1,\n};"
     );
+    Ok(())
 }
 #[test]
-fn test_series_js_format_1_a105191c() {
+fn test_series_js_format_1_a105191c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("1 + ++x;\n1 + x++;\n\n+ ++x;\n+ x++;\n\nx++ + 1;\n++x + 1;\n\n1 - --x;\n1 - x--;\n\n- --x;\n- x--;\n\nx-- - 1;\n--x - 1;") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("1 + ++x;\n1 + x++;\n\n+ ++x;\n+ x++;\n\nx++ + 1;\n++x + 1;\n\n1 - --x;\n1 - x--;\n\n- --x;\n- x--;\n\nx-- - 1;\n--x - 1;") ? ;
     assert_eq ! (formatted , "1 + ++x;\n1 + x++;\n\n+(++x);\n+x++;\n\nx++ + 1;\n++x + 1;\n\n1 - --x;\n1 - x--;\n\n-(--x);\n-x--;\n\nx-- - 1;\n--x - 1;");
+    Ok(())
 }

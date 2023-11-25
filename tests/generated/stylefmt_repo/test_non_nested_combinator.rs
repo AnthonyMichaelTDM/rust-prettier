@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_non_nested_combinator_css_format_1_14985b5b() {
+fn test_non_nested_combinator_css_format_1_14985b5b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".card-meta {\n  @include padding(null 1rem 1rem);background-color: $card-base-background-color;\n  color: $meta-font-color;\n  .card-content--with-image+&\n  {padding-top: 1rem;\n  }a {\n    color: inherit;\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".card-meta {\n  @include padding(null 1rem 1rem);background-color: $card-base-background-color;\n  color: $meta-font-color;\n  .card-content--with-image+&\n  {padding-top: 1rem;\n  }a {\n    color: inherit;\n  }\n}") ? ;
     assert_eq ! (formatted , ".card-meta {\n  @include padding(null 1rem 1rem);\n  background-color: $card-base-background-color;\n  color: $meta-font-color;\n  .card-content--with-image + & {\n    padding-top: 1rem;\n  }\n  a {\n    color: inherit;\n  }\n}");
+    Ok(())
 }

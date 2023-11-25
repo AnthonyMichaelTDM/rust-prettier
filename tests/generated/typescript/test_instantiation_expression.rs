@@ -1,93 +1,89 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_basic_ts_format_1_5f8d059e() {
+fn test_basic_ts_format_1_5f8d059e() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("// basic\nconst foo = bar<T>;");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("// basic\nconst foo = bar<T>;")?;
     assert_eq!(formatted, "// basic\nconst foo = bar<T>;");
+    Ok(())
 }
 #[test]
-fn test_binary_expr_ts_format_1_7fd1e105() {
+fn test_binary_expr_ts_format_1_7fd1e105() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("new A < B >\nC");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("new A < B >\nC")?;
     assert_eq!(formatted, "new A<B>();\nC;");
+    Ok(())
 }
 #[test]
-fn test_inferface_asi_ts_format_1_6b596118() {
+fn test_inferface_asi_ts_format_1_6b596118() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("interface Example {\n  (a: number): typeof a\n      \n  <T>(): void\n};");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        .format("interface Example {\n  (a: number): typeof a\n      \n  <T>(): void\n};")?;
     assert_eq!(
         formatted,
         "interface Example {\n  (a: number): typeof a;\n\n  <T>(): void;\n}"
     );
+    Ok(())
 }
 #[test]
-fn test_logical_expr_ts_format_1_482e2ad6() {
+fn test_logical_expr_ts_format_1_482e2ad6() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("export class Foo<T> {\n  message: string;\n}\n\nfunction sample(error: unknown) {\n  if (!(error instanceof Foo<'some-type'> || error instanceof Error) || !error.message) {\n    return 'something';\n  }\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("export class Foo<T> {\n  message: string;\n}\n\nfunction sample(error: unknown) {\n  if (!(error instanceof Foo<'some-type'> || error instanceof Error) || !error.message) {\n    return 'something';\n  }\n}") ? ;
     assert_eq ! (formatted , "export class Foo<T> {\n  message: string;\n}\n\nfunction sample(error: unknown) {\n  if (\n    !(error instanceof Foo<\"some-type\"> || error instanceof Error) ||\n    !error.message\n  ) {\n    return \"something\";\n  }\n}");
+    Ok(())
 }
 #[test]
-fn test_new_ts_format_1_aca772f7() {
+fn test_new_ts_format_1_aca772f7() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("// new\nnew A<T>;");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("// new\nnew A<T>;")?;
     assert_eq!(formatted, "// new\nnew A<T>();");
+    Ok(())
 }
 #[test]
-fn test_property_access_ts_format_1_f218477e() {
+fn test_property_access_ts_format_1_f218477e() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[(Array<string>)];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[\\`a\\`];\n(Array<string>)?.[\\`a\\`];\n(Array<string>)[(Array<string>)];") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[(Array<string>)];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[\\`a\\`];\n(Array<string>)?.[\\`a\\`];\n(Array<string>)[(Array<string>)];") ? ;
     assert_eq ! (formatted , "(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[Array<string>];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[\\`a\\`];\n(Array<string>)?.[\\`a\\`];\n(Array<string>)[Array<string>];");
+    Ok(())
 }
 #[test]
-fn test_typeof_ts_format_1_9df6bc3c() {
+fn test_typeof_ts_format_1_9df6bc3c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("ts")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("let x: typeof y.z<w>;");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("let x: typeof y.z<w>;")?;
     assert_eq!(formatted, "let x: typeof y.z<w>;");
+    Ok(())
 }

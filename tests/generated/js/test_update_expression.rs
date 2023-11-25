@@ -1,10 +1,13 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_update_expression_js_format_1_90bf6b65() {
+fn test_update_expression_js_format_1_90bf6b65() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
@@ -12,11 +15,10 @@ fn test_update_expression_js_format_1_90bf6b65() {
         .unwrap();
     let formatted = pretty_printer.format(
         "(this.x++).toString()\nnew (r++);\n(x++)();\nconst uuid = String(this._uuidCounter++);",
-    );
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    )?;
     assert_eq!(
         formatted,
         "(this.x++).toString();\nnew (r++)();\n(x++)();\nconst uuid = String(this._uuidCounter++);"
     );
+    Ok(())
 }

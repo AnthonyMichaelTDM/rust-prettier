@@ -1,77 +1,77 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_document_yml_format_1_0b375f97() {
+fn test_document_yml_format_1_0b375f97() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("# prettier-ignore\n---\naaaaa:\n           bbbbb\n...\naaaaa:\n           bbbbb");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(
+        "# prettier-ignore\n---\naaaaa:\n           bbbbb\n...\naaaaa:\n           bbbbb",
+    )?;
     assert_eq!(
         formatted,
         "# prettier-ignore\n---\naaaaa:\n           bbbbb\n---\naaaaa: bbbbb"
     );
+    Ok(())
 }
 #[test]
-fn test_leading_comment_yml_format_1_4fc57b84() {
+fn test_leading_comment_yml_format_1_4fc57b84() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("abc:     123\n# prettier-ignore\ndef:     456");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("abc:     123\n# prettier-ignore\ndef:     456")?;
     assert_eq!(formatted, "abc: 123\n# prettier-ignore\ndef:     456");
+    Ok(())
 }
 #[test]
-fn test_middle_comment_yml_format_1_22103cb5() {
+fn test_middle_comment_yml_format_1_22103cb5() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("abc:  !!str #   hello\n   123\n# prettier-ignore\ndef:  !!str #   hello\n   456");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(
+        "abc:  !!str #   hello\n   123\n# prettier-ignore\ndef:  !!str #   hello\n   456",
+    )?;
     assert_eq!(
         formatted,
         "abc: !!str #   hello\n  123\n# prettier-ignore\ndef:  !!str #   hello\n   456"
     );
+    Ok(())
 }
 #[test]
-fn test_trailing_comma_yml_format_1_c3f777fc() {
+fn test_trailing_comma_yml_format_1_c3f777fc() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("[\n  # prettier-ignore\n             {  sss  },       # 123\n    {  qqqq },\n  \n  # prettier-ignore\n          [ccc    ]       # 777\n  , [ddd    ]\n]") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("[\n  # prettier-ignore\n             {  sss  },       # 123\n    {  qqqq },\n  \n  # prettier-ignore\n          [ccc    ]       # 777\n  , [ddd    ]\n]") ? ;
     assert_eq ! (formatted , "[\n  # prettier-ignore\n  {  sss  }, # 123\n  { qqqq },\n\n  # prettier-ignore\n  [ccc    ], # 777\n  [ddd],\n]");
+    Ok(())
 }
 #[test]
-fn test_trailing_comment_yml_format_1_931584ad() {
+fn test_trailing_comment_yml_format_1_931584ad() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("abc:     123 # hello\n# prettier-ignore\ndef:     456 # hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("abc:     123 # hello\n# prettier-ignore\ndef:     456 # hello")?;
     assert_eq!(
         formatted,
         "abc: 123 # hello\n# prettier-ignore\ndef:     456 # hello"
     );
+    Ok(())
 }

@@ -1,32 +1,33 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_upper_case_html_tag_html_format_1_9a2d9078() {
+fn test_upper_case_html_tag_html_format_1_9a2d9078() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("html")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<!doctype html><HTML></HTML>");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("<!doctype html><HTML></HTML>")?;
     assert_eq!(formatted, "<!doctype html><HTML></HTML>");
+    Ok(())
 }
 #[test]
-fn test_upper_case_html_tag_2_html_format_1_a2244292() {
+fn test_upper_case_html_tag_2_html_format_1_a2244292() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("html")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<!DOCTYPE html><HTML>\n  <body>\n  </body>\n</HTML>");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("<!DOCTYPE html><HTML>\n  <body>\n  </body>\n</HTML>")?;
     assert_eq!(
         formatted,
         "<!doctype html>\n<HTML>\n  <body></body>\n</HTML>"
     );
+    Ok(())
 }

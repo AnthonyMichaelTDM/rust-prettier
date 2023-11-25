@@ -1,21 +1,23 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_api_js_format_1_9d2c9434() {
+fn test_api_js_format_1_9d2c9434() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("// @flow\n\nvar OpenGraphObject = require('./models/OpenGraphObject.js');");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        .format("// @flow\n\nvar OpenGraphObject = require('./models/OpenGraphObject.js');")?;
     assert_eq!(
         formatted,
         "// @flow\n\nvar OpenGraphObject = require(\"./models/OpenGraphObject.js\");"
     );
+    Ok(())
 }

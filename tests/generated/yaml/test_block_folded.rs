@@ -1,288 +1,269 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_clip_yml_prose_wrapalways_format_1_0489f7b5() {
+fn test_clip_yml_prose_wrapalways_format_1_0489f7b5() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">\n    123\n    456\n    789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">\n    123\n    456\n    789\n\n")?;
     assert_eq!(formatted, ">\n  123 456 789");
+    Ok(())
 }
 #[test]
-fn test_clip_yml_format_1_0489f7b5() {
+fn test_clip_yml_format_1_0489f7b5() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">\n    123\n    456\n    789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">\n    123\n    456\n    789\n\n")?;
     assert_eq!(formatted, ">\n  123\n  456\n  789");
+    Ok(())
 }
 #[test]
-fn test_indent_yml_prose_wrapalways_format_1_ea49748f() {
+fn test_indent_yml_prose_wrapalways_format_1_ea49748f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">2-\n    123\n   456\n  789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">2-\n    123\n   456\n  789\n\n")?;
     assert_eq!(formatted, ">2-\n    123\n   456\n  789");
+    Ok(())
 }
 #[test]
-fn test_indent_yml_format_1_ea49748f() {
+fn test_indent_yml_format_1_ea49748f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">2-\n    123\n   456\n  789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">2-\n    123\n   456\n  789\n\n")?;
     assert_eq!(formatted, ">2-\n    123\n   456\n  789");
+    Ok(())
 }
 #[test]
-fn test_keep_yml_prose_wrapalways_format_1_a1376f9a() {
+fn test_keep_yml_prose_wrapalways_format_1_a1376f9a() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">+\n    123\n    456\n    789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">+\n    123\n    456\n    789\n\n")?;
     assert_eq!(formatted, ">+\n  123 456 789\n\n");
+    Ok(())
 }
 #[test]
-fn test_keep_yml_format_1_a1376f9a() {
+fn test_keep_yml_format_1_a1376f9a() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">+\n    123\n    456\n    789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">+\n    123\n    456\n    789\n\n")?;
     assert_eq!(formatted, ">+\n  123\n  456\n  789\n\n");
+    Ok(())
 }
 #[test]
-fn test_map_yml_prose_wrapalways_format_1_07fa56cb() {
+fn test_map_yml_prose_wrapalways_format_1_07fa56cb() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("a: >\n  123\n  456\n  789\nb: >1\n    123\n   456\n  789\nd: >\n  123\n  456\n  789\n\nc: 0") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("a: >\n  123\n  456\n  789\nb: >1\n    123\n   456\n  789\nd: >\n  123\n  456\n  789\n\nc: 0") ? ;
     assert_eq!(
         formatted,
         "a: >\n  123 456 789\nb: >1\n    123\n   456\n  789\nd: >\n  123 456 789\n\nc: 0"
     );
+    Ok(())
 }
 #[test]
-fn test_map_yml_format_1_07fa56cb() {
+fn test_map_yml_format_1_07fa56cb() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("a: >\n  123\n  456\n  789\nb: >1\n    123\n   456\n  789\nd: >\n  123\n  456\n  789\n\nc: 0") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("a: >\n  123\n  456\n  789\nb: >1\n    123\n   456\n  789\nd: >\n  123\n  456\n  789\n\nc: 0") ? ;
     assert_eq ! (formatted , "a: >\n  123\n  456\n  789\nb: >1\n    123\n   456\n  789\nd: >\n  123\n  456\n  789\n\nc: 0");
+    Ok(())
 }
 #[test]
-fn test_middle_comment_yml_prose_wrapalways_format_1_ca54ffd1() {
+fn test_middle_comment_yml_prose_wrapalways_format_1_ca54ffd1() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str #comment\n>\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str #comment\n>\n  123")?;
     assert_eq!(formatted, "!!str #comment\n>\n  123");
+    Ok(())
 }
 #[test]
-fn test_middle_comment_yml_format_1_ca54ffd1() {
+fn test_middle_comment_yml_format_1_ca54ffd1() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str #comment\n>\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str #comment\n>\n  123")?;
     assert_eq!(formatted, "!!str #comment\n>\n  123");
+    Ok(())
 }
 #[test]
-fn test_middle_comments_yml_prose_wrapalways_format_1_45fb8e6b() {
+fn test_middle_comments_yml_prose_wrapalways_format_1_45fb8e6b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\n>\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\n>\n  123")?;
     assert_eq!(formatted, "!!str\n# comment 1\n# comment 2\n>\n  123");
+    Ok(())
 }
 #[test]
-fn test_middle_comments_yml_format_1_45fb8e6b() {
+fn test_middle_comments_yml_format_1_45fb8e6b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\n>\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str # comment 1\n# comment 2\n>\n  123")?;
     assert_eq!(formatted, "!!str\n# comment 1\n# comment 2\n>\n  123");
+    Ok(())
 }
 #[test]
-fn test_newline_yml_prose_wrapalways_format_1_39fe717c() {
+fn test_newline_yml_prose_wrapalways_format_1_39fe717c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- >+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n\n- >2+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n- 0") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("- >+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n\n- >2+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n- 0") ? ;
     assert_eq ! (formatted , "- >+\n  123 456 789\n\n  123 456 789\n\n\n  123 456 789\n\n\n- >2+\n  123 456 789\n\n  123 456 789\n\n\n  123 456 789\n\n- 0");
+    Ok(())
 }
 #[test]
-fn test_newline_yml_format_1_39fe717c() {
+fn test_newline_yml_format_1_39fe717c() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- >+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n\n- >2+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n- 0") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("- >+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n\n- >2+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n- 0") ? ;
     assert_eq ! (formatted , "- >+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n\n- >2+\n  123\n  456\n  789\n\n  123\n  456\n  789\n\n\n  123\n  456\n  789\n\n- 0");
+    Ok(())
 }
 #[test]
-fn test_newline_unaligned_yml_prose_wrapalways_format_1_1c1c4b3b() {
+fn test_newline_unaligned_yml_prose_wrapalways_format_1_1c1c4b3b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (">\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n\n    3\n    4\n\n  5\n  6") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (">\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n\n    3\n    4\n\n  5\n  6") ? ;
     assert_eq ! (formatted , ">\n  1 2\n    3\n    4\n  5 6\n\n  1 2\n    3\n    4\n  5 6\n\n\n  1 2\n    3\n    4\n  5 6\n\n  1 2\n\n    3\n    4\n\n  5 6");
+    Ok(())
 }
 #[test]
-fn test_newline_unaligned_yml_format_1_1c1c4b3b() {
+fn test_newline_unaligned_yml_format_1_1c1c4b3b() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (">\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n\n    3\n    4\n\n  5\n  6") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (">\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n\n    3\n    4\n\n  5\n  6") ? ;
     assert_eq ! (formatted , ">\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n\n  1\n  2\n    3\n    4\n  5\n  6\n\n  1\n  2\n\n    3\n    4\n\n  5\n  6");
+    Ok(())
 }
 #[test]
-fn test_props_yml_prose_wrapalways_format_1_67327b3f() {
+fn test_props_yml_prose_wrapalways_format_1_67327b3f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str &anchor >\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str &anchor >\n  123")?;
     assert_eq!(formatted, "!!str &anchor >\n  123");
+    Ok(())
 }
 #[test]
-fn test_props_yml_format_1_67327b3f() {
+fn test_props_yml_format_1_67327b3f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("!!str &anchor >\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("!!str &anchor >\n  123")?;
     assert_eq!(formatted, "!!str &anchor >\n  123");
+    Ok(())
 }
 #[test]
-fn test_props_in_map_yml_prose_wrapalways_format_1_b8e9f473() {
+fn test_props_in_map_yml_prose_wrapalways_format_1_b8e9f473() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("a: !!str &anchor >\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("a: !!str &anchor >\n  123")?;
     assert_eq!(formatted, "a: !!str &anchor >\n  123");
+    Ok(())
 }
 #[test]
-fn test_props_in_map_yml_format_1_b8e9f473() {
+fn test_props_in_map_yml_format_1_b8e9f473() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("a: !!str &anchor >\n  123");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("a: !!str &anchor >\n  123")?;
     assert_eq!(formatted, "a: !!str &anchor >\n  123");
+    Ok(())
 }
 #[test]
-fn test_prose_yml_prose_wrapalways_format_1_e3108f0f() {
+fn test_prose_yml_prose_wrapalways_format_1_e3108f0f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (">\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n---\n> \n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (">\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n---\n> \n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789") ? ;
     assert_eq ! (formatted , ">\n  123 456 789 123 456 789 123 456 789 123 456 789 123 456 789 123 456 789 123\n  456 789 123 456 789 123 456 789 123 456 789 123 456 789 123 456 789 123 456\n  789 123 456 789 123 456 789 123 456 789 123 456 789 123 456 789 123 456 789\n---\n>\n  123   456   789 123   456   789 123   456   789 123   456   789\n  123   456   789 123   456   789 123   456   789 123   456   789\n  123   456   789 123   456   789 123   456   789 123   456   789\n  123   456   789 123   456   789 123   456   789 123   456   789\n  123   456   789 123   456   789 123   456   789");
+    Ok(())
 }
 #[test]
-fn test_prose_yml_format_1_e3108f0f() {
+fn test_prose_yml_format_1_e3108f0f() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (">\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n---\n> \n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (">\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n---\n> \n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789") ? ;
     assert_eq ! (formatted , ">\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n  123 456 789\n---\n>\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789\n  123   456   789");
+    Ok(())
 }
 #[test]
-fn test_seq_yml_prose_wrapalways_format_1_74088378() {
+fn test_seq_yml_prose_wrapalways_format_1_74088378() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
@@ -290,77 +271,71 @@ fn test_seq_yml_prose_wrapalways_format_1_74088378() {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("- >\n  123\n  456\n  789\n- >1\n    123\n   456\n  789\n- 0");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("- >\n  123\n  456\n  789\n- >1\n    123\n   456\n  789\n- 0")?;
     assert_eq!(
         formatted,
         "- >\n  123 456 789\n- >1\n    123\n   456\n  789\n- 0"
     );
+    Ok(())
 }
 #[test]
-fn test_seq_yml_format_1_74088378() {
+fn test_seq_yml_format_1_74088378() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("- >\n  123\n  456\n  789\n- >1\n    123\n   456\n  789\n- 0");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+        pretty_printer.format("- >\n  123\n  456\n  789\n- >1\n    123\n   456\n  789\n- 0")?;
     assert_eq!(
         formatted,
         "- >\n  123\n  456\n  789\n- >1\n    123\n   456\n  789\n- 0"
     );
+    Ok(())
 }
 #[test]
-fn test_strip_yml_prose_wrapalways_format_1_7c204036() {
+fn test_strip_yml_prose_wrapalways_format_1_7c204036() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">-\n    123\n    456\n    789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">-\n    123\n    456\n    789\n\n")?;
     assert_eq!(formatted, ">-\n  123 456 789");
+    Ok(())
 }
 #[test]
-fn test_strip_yml_format_1_7c204036() {
+fn test_strip_yml_format_1_7c204036() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(">-\n    123\n    456\n    789\n\n");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format(">-\n    123\n    456\n    789\n\n")?;
     assert_eq!(formatted, ">-\n  123\n  456\n  789");
+    Ok(())
 }
 #[test]
-fn test_trailing_comment_yml_prose_wrapalways_format_1_49b1bb30() {
+fn test_trailing_comment_yml_prose_wrapalways_format_1_49b1bb30() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("a: !!str > # hello\n  hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("a: !!str > # hello\n  hello")?;
     assert_eq!(formatted, "a: !!str > # hello\n  hello");
+    Ok(())
 }
 #[test]
-fn test_trailing_comment_yml_format_1_49b1bb30() {
+fn test_trailing_comment_yml_format_1_49b1bb30() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("yml")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("a: !!str > # hello\n  hello");
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer.format("a: !!str > # hello\n  hello")?;
     assert_eq!(formatted, "a: !!str > # hello\n  hello");
+    Ok(())
 }

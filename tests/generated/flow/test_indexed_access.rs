@@ -1,18 +1,20 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_indexed_access_js_trailing_commaall_format_1_640c83a0() {
+fn test_indexed_access_js_trailing_commaall_format_1_640c83a0() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("js")
         .print_width(80)
         .trailing_comma("all")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const x: Obj['bar'] = 1;\n\ntype A = (T & S)['bar'];\ntype B = (T | S)['bar'];\ntype C = (?T)['bar'];\ntype D = (typeof x)['bar'];\ntype E = (string => void)['bar'];") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format ("const x: Obj['bar'] = 1;\n\ntype A = (T & S)['bar'];\ntype B = (T | S)['bar'];\ntype C = (?T)['bar'];\ntype D = (typeof x)['bar'];\ntype E = (string => void)['bar'];") ? ;
     assert_eq ! (formatted , "const x: Obj[\"bar\"] = 1;\n\ntype A = (T & S)[\"bar\"];\ntype B = (T | S)[\"bar\"];\ntype C = (?T)[\"bar\"];\ntype D = (typeof x)[\"bar\"];\ntype E = ((string) => void)[\"bar\"];");
+    Ok(())
 }

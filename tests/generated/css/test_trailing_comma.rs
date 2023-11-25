@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
+use anyhow::Result;
+#[allow(unused_imports)]
 use pretty_assertions::assert_eq;
 #[allow(unused_imports)]
 use rust_prettier::PrettyPrinterBuilder;
 #[allow(dead_code)]
 static INFINITY: usize = usize::MAX;
 #[test]
-fn test_var_func_css_format_1_9b8ffdb3() {
+fn test_var_func_css_format_1_9b8ffdb3() -> Result<()> {
     let pretty_printer = PrettyPrinterBuilder::default()
         .parser("css")
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format (".foo {\n\t--bar: var(--baz,);\n  --bar: var(--baz     ,);\n  --bar: var(--baz     ,    );\n  --bar: var(--baz,);\n\t--bar: var(   --baz1, --baz2    , );\n}") ;
-    assert!(formatted.is_ok());
-    let formatted = formatted.unwrap();
+    let formatted = pretty_printer . format (".foo {\n\t--bar: var(--baz,);\n  --bar: var(--baz     ,);\n  --bar: var(--baz     ,    );\n  --bar: var(--baz,);\n\t--bar: var(   --baz1, --baz2    , );\n}") ? ;
     assert_eq ! (formatted , ".foo {\n  --bar: var(--baz,);\n  --bar: var(--baz,);\n  --bar: var(--baz,);\n  --bar: var(--baz,);\n  --bar: var(--baz1, --baz2,);\n}");
+    Ok(())
 }
