@@ -1,12 +1,10 @@
-//! this module contains implementations of trait below for each of the supported languages
-//!
-//!
+//! this module contains implementations of the traits below for each of the supported languages
+
+pub mod javascript;
 
 use std::borrow::Cow;
 
 use crate::{document::Doc, PrettyPrinter};
-
-pub mod javascript;
 
 // TODO AstPath trait or something
 
@@ -31,11 +29,13 @@ pub mod javascript;
 ///
 /// 1. AST preprocessing (optional). See `PrintToAst::preprocess`.
 /// 2. Comment attachment (optional). See [Handling comments in a printer](https://prettier.io/docs/en/plugins#handling-comments-in-a-printer).
-/// 3. Processing embedded languages (optional). Not Supported yet, but the original Docs has this to say: The embed method, if defined, is called for each node, depth-first. While, for performance reasons, the recursion itself is synchronous, embed may return asynchronous functions that can call other parsers and printers to compose docs for embedded syntaxes like CSS-in-JS. These returned functions are queued up and sequentially executed before the next step.
+/// 3. Processing embedded languages (optional). Not Supported yet, but the original documentation has this to say:
+/// The embed method, if defined, is called for each node, depth-first. While, for performance reasons, the recursion itself is synchronous, embed may return asynchronous functions that can call other parsers and printers to compose docs for embedded syntaxes like CSS-in-JS. These returned functions are queued up and sequentially executed before the next step.
 /// 4. Recursive printing. A `Doc` is recursively constructed from the `AST`. Starting from the root node:
 ///    - If, from the step 3, there is an embedded language doc associated with the current node, this doc is used.
-///    - Otherwise, the `print(path, options, print_callback): Doc` method is called. It composes a `Doc` for the current node, often by printing child nodes using the `print_callback`.
-pub trait Language<Ast, AstNode, AstPath, Error, Options: From<PrettyPrinter> + Default>:
+///    - Otherwise, the `print(path, options, print_callback): Doc` method is called. It composes a `Doc` for the current node,
+/// often by printing child nodes using the `print_callback`.
+pub trait Language<Ast, AstNode, AstPath, Error: std::error::Error, Options: From<PrettyPrinter>>:
     ParseToAST<Ast, AstNode, Error, Options> + PrintToDoc<Ast, AstNode, AstPath, Error, Options>
 {
 }
@@ -43,9 +43,9 @@ pub trait Language<Ast, AstNode, AstPath, Error, Options: From<PrettyPrinter> + 
 /// this trait defines the behavior of the "Text -> AST" part of the formatting process
 ///
 /// functions are `&self` for flexibility, what if a parser has an expensive startup or needs some kind of persistent state (ex: values of a config file that overrides `Options`)
-pub trait ParseToAST<Ast, AstNode, Error, Options: From<PrettyPrinter>> {
+pub trait ParseToAST<Ast, AstNode, Error: std::error::Error, Options: From<PrettyPrinter>> {
     /// Parse input text into an AST
-    fn parse(&self, text: Cow<str>, options: Options) -> Result<Ast, Error>;
+    fn parse(&self, text: Cow<str>, options: &Options) -> Result<Ast, Error>;
 
     /// The location extraction functions (`loc_start` and `loc_end`) return the starting and ending locations of a given AST node:
     fn loc_start(&self, node: AstNode) -> usize;
@@ -69,28 +69,27 @@ pub trait ParseToAST<Ast, AstNode, Error, Options: From<PrettyPrinter>> {
     /// - `None`: there is no preprocessing defined for this parser.
     /// - `Some(Cow<str>)`: the string was processed, wrapped in a Cow smart pointer so that we only clone if we needed to
     ///     - if there is an error during pre-processing, just return hte unmodified input string.
-    fn preprocess(&self, _text: Cow<str>, _options: Options) -> Option<Cow<str>> {
+    fn preprocess(&self, _text: Cow<str>, _options: &Options) -> Option<Cow<str>> {
         None
     }
 }
 
 /// this trait defines the behavior of the "AST -> Doc" part of the formatting process
-pub trait PrintToDoc<Ast, AstNode, AstPath, Error, Options: From<PrettyPrinter>>:
+pub trait PrintToDoc<Ast, AstNode, AstPath, Error: std::error::Error, Options: From<PrettyPrinter>>:
     HandleComments<Ast, AstNode, AstPath, Error, Options>
 {
     /// # Arguments
-    /// - path: An object, which can be used to access nodes in the AST. It’s a stack-like data structure that maintains the current state of the recursion. It is called “path” because it represents the path to the current node from the root of the AST. The current node is returned by `path.get_value()`.
+    /// - path: An object, which can be used to access nodes in the AST. It’s a stack-like data structure that maintains the current state of the recursion.
+    /// It is called “path” because it represents the path to the current node from the root of the AST. The current node is returned by `path.get_value()`.
     /// - options: A persistent object, which contains global options and which a plugin may mutate to store contextual data.
-    /// - print: A callback for printing sub-nodes. This function contains the core printing logic that consists of steps whose implementation is provided by plugins. In particular, it calls the printer’s print function and passes itself to it. Thus, the two print functions – the one from the core and the one from the plugin – call each other while descending down the AST recursively.
-    fn print<State>(
+    /// - print: A callback for printing sub-nodes. This function contains the core printing logic that consists of steps whose implementation is provided by plugins.
+    /// In particular, it calls the printer’s print function and passes itself to it. Thus, the two print functions – the one from the core and the one from the plugin – call each other while descending down the AST recursively.
+    fn print(
+        &self,
         // Path to the AST node to print
         path: AstPath,
-        options: Options,
-        // Recursively print a child node
-        print: impl Fn(Selector<AstPath>, Options, &mut State) -> Doc,
-        // with this state (a cache for instance)
-        state: &mut State,
-    ) -> Doc;
+        options: &Options,
+    ) -> Result<Doc, Error>;
 
     // TODO: Embed, see https://prettier.io/docs/en/plugins#optional-embed
     // it's out of scope for this initial project, but we'll want to do it eventually
@@ -110,7 +109,14 @@ pub trait PrintToDoc<Ast, AstNode, AstPath, Error, Options: From<PrettyPrinter>>
 /// The *Comment functions are used to adjust Prettier's algorithm.
 /// Once the comments are attached to the AST, Prettier will automatically call the printComment(path, options): Doc
 /// function and insert the returned doc into the (hopefully) correct place.
-pub trait HandleComments<Ast, AstNode, AstPath, Error, Options> {
+pub trait HandleComments<
+    Ast,
+    AstNode,
+    AstPath,
+    Error: std::error::Error,
+    Options: From<PrettyPrinter>,
+>
+{
     // TODO: comment handling https://prettier.io/docs/en/plugins#handling-comments-in-a-printer
 }
 

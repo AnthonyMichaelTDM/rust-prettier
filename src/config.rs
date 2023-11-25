@@ -2,7 +2,6 @@
 
 use std::{fmt::Display, path::Path};
 
-use anyhow::Result;
 use derive_builder::Builder;
 
 #[derive(Debug, Clone, Copy)]
@@ -171,7 +170,7 @@ pub struct PrettyPrinter {
     /// so you shouldn’t have to change this setting.
     ///
     /// TODO: "Support" (we only need to support one parser so this may as well be implemented)
-    #[builder(setter(strip_option))]
+    #[builder(setter(strip_option, into))]
     pub parser: Option<Parser>,
     /// Specify the file name to use to infer which parser to use.
     ///
@@ -285,6 +284,7 @@ pub struct PrettyPrinter {
     /// - `"auto"` - Maintain existing line endings (mixed values within one file are normalised by looking at what’s used after the first line)
     ///
     /// TODO: Support "auto"
+    #[builder(setter(into))]
     pub end_of_line: EndOfLine,
     /// Control whether Prettier formats quoted code embedded in the file.
     ///
@@ -351,14 +351,6 @@ impl Default for PrettyPrinter {
             single_attribute_per_line: false,
             cursor_offset: None,
         }
-    }
-}
-
-impl PrettyPrinter {
-    /// # Errors
-    /// if there is an error parsing the text to an AST, printing AST to Doc, or formating Doc to string
-    pub fn format(&self, _input: impl AsRef<str>) -> Result<String> {
-        todo!("formatting is not implemented yet")
     }
 }
 
