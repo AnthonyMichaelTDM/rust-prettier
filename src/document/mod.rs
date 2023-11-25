@@ -100,7 +100,7 @@ pub enum DocCommand {
     },
     Label {
         contents: Box<Doc>,
-        label: Label,
+        label: Symbol,
     },
     Line(LineType),
     LineSuffix {
@@ -182,19 +182,6 @@ impl LineType {
         match self {
             Self::Literal => true,
             Self::Soft | Self::Hard | Self::None => false,
-        }
-    }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq, Hash, Copy)]
-pub enum Label {
-    MethodChain,
-}
-
-impl Display for Label {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::MethodChain => write!(f, "method-chain"),
         }
     }
 }

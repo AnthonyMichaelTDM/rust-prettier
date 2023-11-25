@@ -2,9 +2,9 @@ pub mod end_of_line;
 
 use std::fmt::Display;
 
-#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
 pub enum Symbol {
-    String(String),
+    String(&'static str),
     Number(usize),
 }
 

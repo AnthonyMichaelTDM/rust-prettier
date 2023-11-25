@@ -30,7 +30,7 @@ fn print_group_id(
     used_keys_for_symbols: &mut HashSet<String>,
 ) -> String {
     if let Symbol::String(s) = id {
-        return s.clone();
+        return s.to_string();
     }
 
     if printed_symbols.contains_key(id) {

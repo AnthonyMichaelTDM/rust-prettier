@@ -267,7 +267,7 @@ pub const fn line_suffix_boundary() -> Doc {
 /// Include this anywhere to force all parent groups to break. See [`group`] for more info.
 /// # Example
 /// ```no_run
-/// use rust_prettier::document::builders::*;
+/// use rust_prettier::document::{builders::*, Doc};
 ///
 /// # let some_doc = Doc::from("some doc");
 /// # let some_other_doc = Doc::from("some other doc");
@@ -355,6 +355,7 @@ pub fn join(separator: &Doc, docs: impl AsRef<[Doc]>) -> Doc {
 }
 
 /// add `size` spaces/tabs to the current indentation level, greadily using tabs first and then spaces with what is left over.
+/// alignment is relative to root and doesn't stack with other alignments from `add_alignment_to_doc`
 #[must_use]
 pub fn add_alignment_to_doc(doc: Doc, size: usize, tab_width: NonZeroUsize) -> Doc {
     let mut aligned = doc;
@@ -362,16 +363,11 @@ pub fn add_alignment_to_doc(doc: Doc, size: usize, tab_width: NonZeroUsize) -> D
     let size = size.clamp(0, isize::MAX as usize);
 
     // Use indent to add tabs for all the levels of tabs we need
-    // casting is safe because we know size is positive
-    for _ in 0..(size / tab_width) {
+    for _ in 0..size / tab_width.get() {
         aligned = indent(aligned);
     }
     // Use align for all the spaces that are needed
-    #[allow(clippy::cast_sign_loss, clippy::cast_possible_wrap)]
-    {
-        // new scope so we can attach a clippy lint to excuse the cast
-        aligned = align(aligned, Align::By((size % tab_width) as isize));
-    }
+    aligned = align(aligned, Align::By((size % tab_width.get()) as isize));
     // size is absolute from 0 and not relative to the current
     // indentation, so we use ToRoot to reset the indentation to 0
     aligned = align(aligned, Align::ToRoot);
