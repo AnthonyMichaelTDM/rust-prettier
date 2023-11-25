@@ -38,8 +38,8 @@ fn test_codeblock_md_prose_wrapalways_format_1_5b5b2a51() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("1. ol01\n\n    \\`\\`\\`js\n    const a = 1;\n\n\n    const b = 2;\n    \\`\\`\\`\n\n2. ol02\n\n    \\`\\`\\`js\n    const a = 1;\n\n\n    const b = 2;\n    \\`\\`\\`\n\n- ul01\n\n    \\`\\`\\`js\n    const a = 1;\n\n\n    const b = 2;\n    \\`\\`\\`\n\n- ul02\n\n    \\`\\`\\`js\n    const a = 1;\n\n\n    const b = 2;\n    \\`\\`\\`") ? ;
-    assert_eq ! (formatted , "1. ol01\n\n   \\`\\`\\`js\n   const a = 1;\n\n   const b = 2;\n   \\`\\`\\`\n\n2. ol02\n\n   \\`\\`\\`js\n   const a = 1;\n\n   const b = 2;\n   \\`\\`\\`\n\n- ul01\n\n  \\`\\`\\`js\n  const a = 1;\n\n  const b = 2;\n  \\`\\`\\`\n\n- ul02\n\n  \\`\\`\\`js\n  const a = 1;\n\n  const b = 2;\n  \\`\\`\\`");
+    let formatted = pretty_printer . format ("1. ol01\n\n    ```js\n    const a = 1;\n\n\n    const b = 2;\n    ```\n\n2. ol02\n\n    ```js\n    const a = 1;\n\n\n    const b = 2;\n    ```\n\n- ul01\n\n    ```js\n    const a = 1;\n\n\n    const b = 2;\n    ```\n\n- ul02\n\n    ```js\n    const a = 1;\n\n\n    const b = 2;\n    ```") ? ;
+    assert_eq ! (formatted , "1. ol01\n\n   ```js\n   const a = 1;\n\n   const b = 2;\n   ```\n\n2. ol02\n\n   ```js\n   const a = 1;\n\n   const b = 2;\n   ```\n\n- ul01\n\n  ```js\n  const a = 1;\n\n  const b = 2;\n  ```\n\n- ul02\n\n  ```js\n  const a = 1;\n\n  const b = 2;\n  ```");
     Ok(())
 }
 #[test]
@@ -178,8 +178,8 @@ fn test_nested_tab_md_prose_wrapalways_format_1_7c348860() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("# List with 1 tab indentation and \\`-\\`\n- Top level list item 1\n- Top level list item 2\n\t- Nested List item 1\n\t- Nested List item 2\n\t\t- Sub-Nested List item 1\n\t\t- Sub-Nested List item 2\n\n# List with 1 tab indentation and \\`*\\`\n* Top level list item 1\n* Top level list item 2\n\t* Nested List item 1\n\t* Nested List item 2\n    \t* Sub-Nested List item 1\n    \t* Sub-Nested List item 2") ? ;
-    assert_eq ! (formatted , "# List with 1 tab indentation and \\`-\\`\n\n- Top level list item 1\n- Top level list item 2\n  - Nested List item 1\n  - Nested List item 2\n    - Sub-Nested List item 1\n    - Sub-Nested List item 2\n\n# List with 1 tab indentation and \\`*\\`\n\n- Top level list item 1\n- Top level list item 2\n  - Nested List item 1\n  - Nested List item 2 _ Sub-Nested List item 1 _ Sub-Nested List item 2");
+    let formatted = pretty_printer . format ("# List with 1 tab indentation and `-`\n- Top level list item 1\n- Top level list item 2\n\t- Nested List item 1\n\t- Nested List item 2\n\t\t- Sub-Nested List item 1\n\t\t- Sub-Nested List item 2\n\n# List with 1 tab indentation and `*`\n* Top level list item 1\n* Top level list item 2\n\t* Nested List item 1\n\t* Nested List item 2\n    \t* Sub-Nested List item 1\n    \t* Sub-Nested List item 2") ? ;
+    assert_eq ! (formatted , "# List with 1 tab indentation and `-`\n\n- Top level list item 1\n- Top level list item 2\n  - Nested List item 1\n  - Nested List item 2\n    - Sub-Nested List item 1\n    - Sub-Nested List item 2\n\n# List with 1 tab indentation and `*`\n\n- Top level list item 1\n- Top level list item 2\n  - Nested List item 1\n  - Nested List item 2 _ Sub-Nested List item 1 _ Sub-Nested List item 2");
     Ok(())
 }
 #[test]
@@ -238,7 +238,7 @@ fn test_tab_md_prose_wrapalways_format_1_e5e1b1f1() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("* Text\n\n \t[title](link)\n\n* Text\n\n \t- foo\n \t- foo\n \t- bar\n\n* Text\n\n \t# foo\n\n* Text\n\n \t\\`\\`\\`\n \tfoo\n \t\\`\\`\\`\n\n* Text\n\n \t\\`foo\\`") ? ;
-    assert_eq ! (formatted , "- Text\n\n  [title](link)\n\n- Text\n\n  - foo\n  - foo\n  - bar\n\n- Text\n\n  # foo\n\n- Text\n\n  \\`\\`\\`\n  foo\n  \\`\\`\\`\n\n- Text\n\n  \\`foo\\`");
+    let formatted = pretty_printer . format ("* Text\n\n \t[title](link)\n\n* Text\n\n \t- foo\n \t- foo\n \t- bar\n\n* Text\n\n \t# foo\n\n* Text\n\n \t```\n \tfoo\n \t```\n\n* Text\n\n \t`foo`") ? ;
+    assert_eq ! (formatted , "- Text\n\n  [title](link)\n\n- Text\n\n  - foo\n  - foo\n  - bar\n\n- Text\n\n  # foo\n\n- Text\n\n  ```\n  foo\n  ```\n\n- Text\n\n  `foo`");
     Ok(())
 }

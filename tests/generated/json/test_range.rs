@@ -181,8 +181,8 @@ fn test_template_literal_json_format_1_b960597d() -> Result<()> {
         .range_start(6)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | [\n> 2 | {a:\\`a\\`,n:\n    |     ^\n  3 | ''},\n  4 | {a:\\`a\\`,n:\n  5 | ''}\n  6 | ]\n  7 ") ? ;
-    assert_eq!(formatted, "[\n{a:\\`a\\`,n:\n''},\n{a:\\`a\\`,n:\n''}\n]");
+    let formatted = pretty_printer . format ("  1 | [\n> 2 | {a:`a`,n:\n    |     ^\n  3 | ''},\n  4 | {a:`a`,n:\n  5 | ''}\n  6 | ]\n  7 ") ? ;
+    assert_eq!(formatted, "[\n{a:`a`,n:\n''},\n{a:`a`,n:\n''}\n]");
     Ok(())
 }
 #[test]
@@ -194,10 +194,10 @@ fn test_template_literal_2_json_format_1_0cdedaf7() -> Result<()> {
         .range_start(4)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | [\n> 2 | {a:\\`a\\`,n:\n    |   ^^^\n  3 | ''},\n  4 | {a:\\`a\\`,n:\n  5 | ''}\n  6 | ]\n  7 ") ? ;
+    let formatted = pretty_printer . format ("  1 | [\n> 2 | {a:`a`,n:\n    |   ^^^\n  3 | ''},\n  4 | {a:`a`,n:\n  5 | ''}\n  6 | ]\n  7 ") ? ;
     assert_eq!(
         formatted,
-        "[\n{ \"a\": \\`a\\`, \"n\": \"\" },\n{a:\\`a\\`,n:\n''}\n]"
+        "[\n{ \"a\": `a`, \"n\": \"\" },\n{a:`a`,n:\n''}\n]"
     );
     Ok(())
 }

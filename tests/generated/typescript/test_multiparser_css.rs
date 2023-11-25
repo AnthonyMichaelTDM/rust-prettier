@@ -13,7 +13,7 @@ fn test_issue_6259_ts_format_1_cdc57cac() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const yesFrame = (\n    ...args: Interpolation<ThemedStyledProps<{}, Theme>>[]\n) => css\\`\n    \\${ChatRoot}[data-frame=\"yes\"] & {\n        \\${css({}, ...args)}\n    }\n\\`") ? ;
-    assert_eq ! (formatted , "const yesFrame = (\n  ...args: Interpolation<ThemedStyledProps<{}, Theme>>[]\n) => css\\`\n  \\${ChatRoot}[data-frame=\"yes\"] & {\n    \\${css({}, ...args)}\n  }\n\\`;");
+    let formatted = pretty_printer . format ("const yesFrame = (\n    ...args: Interpolation<ThemedStyledProps<{}, Theme>>[]\n) => css`\n    ${ChatRoot}[data-frame=\"yes\"] & {\n        ${css({}, ...args)}\n    }\n`") ? ;
+    assert_eq ! (formatted , "const yesFrame = (\n  ...args: Interpolation<ThemedStyledProps<{}, Theme>>[]\n) => css`\n  ${ChatRoot}[data-frame=\"yes\"] & {\n    ${css({}, ...args)}\n  }\n`;");
     Ok(())
 }

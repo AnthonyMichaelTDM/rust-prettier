@@ -28,8 +28,8 @@ fn test_boundary_js_format_1_6cede986() -> Result<()> {
         .range_start(13)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("> 1 | foo = 1.0000;bar = 1.0000;baz=1.0000;\n    |              ^^^^^^^^^^^^^\n  2 | // The range will be 13~26\n  3 | // \\`foo\\` ends at 13, should not format\n  4 | // \\`bar\\` ends at 26, should format\n  5 ") ? ;
-    assert_eq ! (formatted , "foo = 1.0000;bar = 1.0;baz=1.0000;\n// The range will be 13~26\n// \\`foo\\` ends at 13, should not format\n// \\`bar\\` ends at 26, should format");
+    let formatted = pretty_printer . format ("> 1 | foo = 1.0000;bar = 1.0000;baz=1.0000;\n    |              ^^^^^^^^^^^^^\n  2 | // The range will be 13~26\n  3 | // `foo` ends at 13, should not format\n  4 | // `bar` ends at 26, should format\n  5 ") ? ;
+    assert_eq ! (formatted , "foo = 1.0000;bar = 1.0;baz=1.0000;\n// The range will be 13~26\n// `foo` ends at 13, should not format\n// `bar` ends at 26, should format");
     Ok(())
 }
 #[test]
@@ -140,8 +140,8 @@ fn test_ignore_indentation_js_format_1_47e23903() -> Result<()> {
         .range_start(222)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | function ugly ( {a=1,     b     =   2     }      ) {\n  2 |   function ugly ( {a=1,     b     =   2     }      ) {\n  3 |     function ugly ( {a=1,     b     =   2     }      ) {\n  4 |   \t  \t     \\`multiline template string\n> 5 |               with too much indentation\\`\n    |                    ^^^\n  6 |     }\n  7 |   }\n  8 | }\n  9 ") ? ;
-    assert_eq ! (formatted , "function ugly ( {a=1,     b     =   2     }      ) {\n  function ugly ( {a=1,     b     =   2     }      ) {\n    function ugly ( {a=1,     b     =   2     }      ) {\n  \t  \t     \\`multiline template string\n              with too much indentation\\`;\n    }\n  }\n}");
+    let formatted = pretty_printer . format ("  1 | function ugly ( {a=1,     b     =   2     }      ) {\n  2 |   function ugly ( {a=1,     b     =   2     }      ) {\n  3 |     function ugly ( {a=1,     b     =   2     }      ) {\n  4 |   \t  \t     `multiline template string\n> 5 |               with too much indentation`\n    |                    ^^^\n  6 |     }\n  7 |   }\n  8 | }\n  9 ") ? ;
+    assert_eq ! (formatted , "function ugly ( {a=1,     b     =   2     }      ) {\n  function ugly ( {a=1,     b     =   2     }      ) {\n    function ugly ( {a=1,     b     =   2     }      ) {\n  \t  \t     `multiline template string\n              with too much indentation`;\n    }\n  }\n}");
     Ok(())
 }
 #[test]
@@ -232,10 +232,10 @@ fn test_issue_7082_js_format_1_f9250f51() -> Result<()> {
         .range_start(29)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("> 1 | export const Button = styled.button\\`\n    |                              ^^^^^^^\n> 2 | color: blue;\n    | ^^^^^\n  3 | \\`;\n  4 ") ? ;
+    let formatted = pretty_printer . format ("> 1 | export const Button = styled.button`\n    |                              ^^^^^^^\n> 2 | color: blue;\n    | ^^^^^\n  3 | `;\n  4 ") ? ;
     assert_eq!(
         formatted,
-        "export const Button = styled.button\\`\n  color: blue;\n\\`;"
+        "export const Button = styled.button`\n  color: blue;\n`;"
     );
     Ok(())
 }
@@ -436,8 +436,8 @@ fn test_range_js_format_1_bc512e0d() -> Result<()> {
         .range_start(224)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("  1 | function ugly ( {a=1,     b     =   2     }      ) {\n  2 |   function ugly ( {a=1,     b     =   2     }      ) {\n  3 |     function ugly ( {a=1,     b     =   2     }      ) {\n  4 |              \\`multiline template string\n> 5 |               with too much indentation\\`\n    |                    ^^^\n  6 |     }\n  7 |   }\n  8 | }\n  9 ") ? ;
-    assert_eq ! (formatted , "function ugly ( {a=1,     b     =   2     }      ) {\n  function ugly ( {a=1,     b     =   2     }      ) {\n    function ugly ( {a=1,     b     =   2     }      ) {\n             \\`multiline template string\n              with too much indentation\\`;\n    }\n  }\n}");
+    let formatted = pretty_printer . format ("  1 | function ugly ( {a=1,     b     =   2     }      ) {\n  2 |   function ugly ( {a=1,     b     =   2     }      ) {\n  3 |     function ugly ( {a=1,     b     =   2     }      ) {\n  4 |              `multiline template string\n> 5 |               with too much indentation`\n    |                    ^^^\n  6 |     }\n  7 |   }\n  8 | }\n  9 ") ? ;
+    assert_eq ! (formatted , "function ugly ( {a=1,     b     =   2     }      ) {\n  function ugly ( {a=1,     b     =   2     }      ) {\n    function ugly ( {a=1,     b     =   2     }      ) {\n             `multiline template string\n              with too much indentation`;\n    }\n  }\n}");
     Ok(())
 }
 #[test]

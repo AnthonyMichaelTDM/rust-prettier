@@ -13,8 +13,8 @@ fn test_destructuring_js_format_1_06f6ae34() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\nlet [x, y] = [1, 2];\n\n/**\n * Test what happens when the destructuring is unevaluated. In this case,\n * \\`this\\` in a function is unbound, so we never actually find out the type of\n * \\`this.returnsATuple()\\` is; thus, we never evaluate \\`b\\` and so type-at-pos\n * returns EmptyT.\n */\nexport const X = {\n  returnsATuple: function(): [number, number] {\n    return [1, 2];\n  },\n\n  test: function() {\n    let [a, b] = this.returnsATuple();\n  }\n};") ? ;
-    assert_eq ! (formatted , "// @flow\n\nlet [x, y] = [1, 2];\n\n/**\n * Test what happens when the destructuring is unevaluated. In this case,\n * \\`this\\` in a function is unbound, so we never actually find out the type of\n * \\`this.returnsATuple()\\` is; thus, we never evaluate \\`b\\` and so type-at-pos\n * returns EmptyT.\n */\nexport const X = {\n  returnsATuple: function (): [number, number] {\n    return [1, 2];\n  },\n\n  test: function () {\n    let [a, b] = this.returnsATuple();\n  },\n};");
+    let formatted = pretty_printer . format ("// @flow\n\nlet [x, y] = [1, 2];\n\n/**\n * Test what happens when the destructuring is unevaluated. In this case,\n * `this` in a function is unbound, so we never actually find out the type of\n * `this.returnsATuple()` is; thus, we never evaluate `b` and so type-at-pos\n * returns EmptyT.\n */\nexport const X = {\n  returnsATuple: function(): [number, number] {\n    return [1, 2];\n  },\n\n  test: function() {\n    let [a, b] = this.returnsATuple();\n  }\n};") ? ;
+    assert_eq ! (formatted , "// @flow\n\nlet [x, y] = [1, 2];\n\n/**\n * Test what happens when the destructuring is unevaluated. In this case,\n * `this` in a function is unbound, so we never actually find out the type of\n * `this.returnsATuple()` is; thus, we never evaluate `b` and so type-at-pos\n * returns EmptyT.\n */\nexport const X = {\n  returnsATuple: function (): [number, number] {\n    return [1, 2];\n  },\n\n  test: function () {\n    let [a, b] = this.returnsATuple();\n  },\n};");
     Ok(())
 }
 #[test]
@@ -108,8 +108,8 @@ fn test_templates_js_format_1_52cf3705() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("/* @flow */\n\\`foo bar\\`;")?;
-    assert_eq!(formatted, "/* @flow */\n\\`foo bar\\`;");
+    let formatted = pretty_printer.format("/* @flow */\n`foo bar`;")?;
+    assert_eq!(formatted, "/* @flow */\n`foo bar`;");
     Ok(())
 }
 #[test]

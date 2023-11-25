@@ -14,8 +14,8 @@ fn test_invalid_json_md_trailing_commaall_format_1_422b1e96() -> Result<()> {
         .trailing_comma("all")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<!-- #10333 -->\n\\`\\`\\`json\npackages\\\\the-hub\\\\cypress\\\\fixtures\\\\gridConfiguration.json\n\\`\\`\\") ? ;
-    assert_eq ! (formatted , "<!-- #10333 -->\n\n\\`\\`\\`json\npackages\\\\the-hub\\\\cypress\\\\fixtures\\\\gridConfiguration.json\n\\`\\`\\`");
+    let formatted = pretty_printer . format ("<!-- #10333 -->\n```json\npackages\\the-hub\\cypress\\fixtures\\gridConfiguration.json\n``\\") ? ;
+    assert_eq ! (formatted , "<!-- #10333 -->\n\n```json\npackages\\the-hub\\cypress\\fixtures\\gridConfiguration.json\n```");
     Ok(())
 }
 #[test]
@@ -26,11 +26,11 @@ fn test_jsonc_md_trailing_commaall_format_1_e0a09a39() -> Result<()> {
         .trailing_comma("all")
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("\\`\\`\\`jsonc\n   // comment\n{\n     \"foo\"   :    \"bar\"\n}\n\\`\\`\\`")?;
+    let formatted =
+        pretty_printer.format("```jsonc\n   // comment\n{\n     \"foo\"   :    \"bar\"\n}\n```")?;
     assert_eq!(
         formatted,
-        "\\`\\`\\`jsonc\n// comment\n{\n  \"foo\": \"bar\"\n}\n\\`\\`\\`"
+        "```jsonc\n// comment\n{\n  \"foo\": \"bar\"\n}\n```"
     );
     Ok(())
 }
@@ -42,10 +42,7 @@ fn test_trailing_comma_md_trailing_commaall_format_1_6911bac1() -> Result<()> {
         .trailing_comma("all")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`json\n{\n  \"foo\": \"bar\"\n}\n\\`\\`\\`")?;
-    assert_eq!(
-        formatted,
-        "\\`\\`\\`json\n{\n  \"foo\": \"bar\"\n}\n\\`\\`\\`"
-    );
+    let formatted = pretty_printer.format("```json\n{\n  \"foo\": \"bar\"\n}\n```")?;
+    assert_eq!(formatted, "```json\n{\n  \"foo\": \"bar\"\n}\n```");
     Ok(())
 }

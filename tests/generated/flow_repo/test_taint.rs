@@ -57,8 +57,8 @@ fn test_function_js_format_1_68aa1336() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // flows any to each param\n  function(x: any, y: $Tainted<string>) {\n    x(y); // error, taint ~> any\n  },\n\n  // calling \\`any\\` returns \\`any\\`\n  function(x: any, y: $Tainted<string>) {\n    let z = x();\n    z(y);\n  }\n];") ? ;
-    assert_eq ! (formatted , "// @flow\n\nlet tests = [\n  // flows any to each param\n  function (x: any, y: $Tainted<string>) {\n    x(y); // error, taint ~> any\n  },\n\n  // calling \\`any\\` returns \\`any\\`\n  function (x: any, y: $Tainted<string>) {\n    let z = x();\n    z(y);\n  },\n];");
+    let formatted = pretty_printer . format ("// @flow\n\nlet tests = [\n  // flows any to each param\n  function(x: any, y: $Tainted<string>) {\n    x(y); // error, taint ~> any\n  },\n\n  // calling `any` returns `any`\n  function(x: any, y: $Tainted<string>) {\n    let z = x();\n    z(y);\n  }\n];") ? ;
+    assert_eq ! (formatted , "// @flow\n\nlet tests = [\n  // flows any to each param\n  function (x: any, y: $Tainted<string>) {\n    x(y); // error, taint ~> any\n  },\n\n  // calling `any` returns `any`\n  function (x: any, y: $Tainted<string>) {\n    let z = x();\n    z(y);\n  },\n];");
     Ok(())
 }
 #[test]

@@ -13,8 +13,8 @@ fn test_binary_and_template_js_format_1_1d00c9f8() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("export default (function() {} + foo)\\`\\`;")?;
-    assert_eq!(formatted, "export default (function () {} + foo)\\`\\`;");
+    let formatted = pretty_printer.format("export default (function() {} + foo)``;")?;
+    assert_eq!(formatted, "export default (function () {} + foo)``;");
     Ok(())
 }
 #[test]
@@ -46,8 +46,8 @@ fn test_function_in_template_js_format_1_57c6e4e8() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("export default (function templ() {})\\`foo\\`;")?;
-    assert_eq!(formatted, "export default (function templ() {})\\`foo\\`;");
+    let formatted = pretty_printer.format("export default (function templ() {})`foo`;")?;
+    assert_eq!(formatted, "export default (function templ() {})`foo`;");
     Ok(())
 }
 #[test]

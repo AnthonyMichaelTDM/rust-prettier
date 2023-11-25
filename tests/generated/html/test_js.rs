@@ -72,8 +72,8 @@ fn test_template_literal_html_format_1_e80685dd() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n    </head>\n    <body>\n        <script>\n            function foo() {\n                return \\`\n                    <div>\n                        <p>Text</p>\n                    </div>\n                \\`;\n            }\n        </script>\n    </body>\n</html>") ? ;
-    assert_eq ! (formatted , "<!doctype html>\n<html lang=\"en\">\n  <head> </head>\n  <body>\n    <script>\n      function foo() {\n        return \\`\n                    <div>\n                        <p>Text</p>\n                    </div>\n                \\`;\n      }\n    </script>\n  </body>\n</html>");
+    let formatted = pretty_printer . format ("<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n    </head>\n    <body>\n        <script>\n            function foo() {\n                return `\n                    <div>\n                        <p>Text</p>\n                    </div>\n                `;\n            }\n        </script>\n    </body>\n</html>") ? ;
+    assert_eq ! (formatted , "<!doctype html>\n<html lang=\"en\">\n  <head> </head>\n  <body>\n    <script>\n      function foo() {\n        return `\n                    <div>\n                        <p>Text</p>\n                    </div>\n                `;\n      }\n    </script>\n  </body>\n</html>");
     Ok(())
 }
 #[test]

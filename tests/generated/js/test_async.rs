@@ -90,8 +90,8 @@ fn test_nested_2_js_format_1_d296cd2e() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("async function f() {\nawait Promise.all(\n  (await readdir(\"src\")).map(async (path) => {\n    import(\\`./\\${path}\\`);\n  })\n);}") ? ;
-    assert_eq ! (formatted , "async function f() {\n  await Promise.all(\n    (await readdir(\"src\")).map(async (path) => {\n      import(\\`./\\${path}\\`);\n    }),\n  );\n}");
+    let formatted = pretty_printer . format ("async function f() {\nawait Promise.all(\n  (await readdir(\"src\")).map(async (path) => {\n    import(`./${path}`);\n  })\n);}") ? ;
+    assert_eq ! (formatted , "async function f() {\n  await Promise.all(\n    (await readdir(\"src\")).map(async (path) => {\n      import(`./${path}`);\n    }),\n  );\n}");
     Ok(())
 }
 #[test]

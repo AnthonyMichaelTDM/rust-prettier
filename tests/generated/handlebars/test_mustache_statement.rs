@@ -60,8 +60,8 @@ fn test_escaped_hbs_single_quotetrue_format_1_43a33fe0() -> Result<()> {
         .single_quote(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("an escaped mustache:\n\\\\{{my-component}}\na non-escaped mustache:\n\\\\\\\\{{my-component}}\nanother non-escaped mustache:\n\\\\\\\\\\\\{{my-component}}") ? ;
-    assert_eq ! (formatted , "an escaped mustache:\n\\\\{{my-component}} a non-escaped mustache:\n\\\\\\\\{{my-component}}\nanother non-escaped mustache: \\\\\\\\\\\\{{my-component}");
+    let formatted = pretty_printer . format ("an escaped mustache:\n\\{{my-component}}\na non-escaped mustache:\n\\\\{{my-component}}\nanother non-escaped mustache:\n\\\\\\{{my-component}}") ? ;
+    assert_eq ! (formatted , "an escaped mustache:\n\\{{my-component}} a non-escaped mustache:\n\\\\{{my-component}}\nanother non-escaped mustache: \\\\\\{{my-component}");
     Ok(())
 }
 #[test]
@@ -71,8 +71,8 @@ fn test_escaped_hbs_format_1_43a33fe0() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("an escaped mustache:\n\\\\{{my-component}}\na non-escaped mustache:\n\\\\\\\\{{my-component}}\nanother non-escaped mustache:\n\\\\\\\\\\\\{{my-component}}") ? ;
-    assert_eq ! (formatted , "an escaped mustache:\n\\\\{{my-component}} a non-escaped mustache:\n\\\\\\\\{{my-component}}\nanother non-escaped mustache: \\\\\\\\\\\\{{my-component}");
+    let formatted = pretty_printer . format ("an escaped mustache:\n\\{{my-component}}\na non-escaped mustache:\n\\\\{{my-component}}\nanother non-escaped mustache:\n\\\\\\{{my-component}}") ? ;
+    assert_eq ! (formatted , "an escaped mustache:\n\\{{my-component}} a non-escaped mustache:\n\\\\{{my-component}}\nanother non-escaped mustache: \\\\\\{{my-component}");
     Ok(())
 }
 #[test]

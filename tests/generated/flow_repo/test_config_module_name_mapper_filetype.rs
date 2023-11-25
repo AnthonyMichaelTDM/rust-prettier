@@ -13,7 +13,7 @@ fn test_test_js_format_1_cebe22c7() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\nimport {className} from \"./SomeCSSFile.css\";\nimport {doesntExist} from \"./SomeCSSFile.css\"; // Error: \\`doestExist\\` isn't an export") ? ;
-    assert_eq ! (formatted , "// @flow\n\nimport { className } from \"./SomeCSSFile.css\";\nimport { doesntExist } from \"./SomeCSSFile.css\"; // Error: \\`doestExist\\` isn't an export");
+    let formatted = pretty_printer . format ("// @flow\n\nimport {className} from \"./SomeCSSFile.css\";\nimport {doesntExist} from \"./SomeCSSFile.css\"; // Error: `doestExist` isn't an export") ? ;
+    assert_eq ! (formatted , "// @flow\n\nimport { className } from \"./SomeCSSFile.css\";\nimport { doesntExist } from \"./SomeCSSFile.css\"; // Error: `doestExist` isn't an export");
     Ok(())
 }

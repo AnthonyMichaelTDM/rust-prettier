@@ -24,8 +24,8 @@ fn test_method_signature_ts_format_1_2dfda62a() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("type Foo = {\n  get(key: \"foo\"): \\`\n  \\`;\n};\ntype Foo = {\n  get(key: \"foo\"): \\`\\`;\n};\n\ntype Bar = {\n  get(key: \"bar\"): {\n    bar: \"bar\"\n  };\n}\ntype Bar = {\n  get(key: \"bar\"): { bar: \"bar\" };\n}") ? ;
-    assert_eq ! (formatted , "type Foo = {\n  get(key: \"foo\"): \\`\n  \\`;\n};\ntype Foo = {\n  get(key: \"foo\"): \\`\\`;\n};\n\ntype Bar = {\n  get(key: \"bar\"): {\n    bar: \"bar\";\n  };\n};\ntype Bar = {\n  get(key: \"bar\"): { bar: \"bar\" };\n};");
+    let formatted = pretty_printer . format ("type Foo = {\n  get(key: \"foo\"): `\n  `;\n};\ntype Foo = {\n  get(key: \"foo\"): ``;\n};\n\ntype Bar = {\n  get(key: \"bar\"): {\n    bar: \"bar\"\n  };\n}\ntype Bar = {\n  get(key: \"bar\"): { bar: \"bar\" };\n}") ? ;
+    assert_eq ! (formatted , "type Foo = {\n  get(key: \"foo\"): `\n  `;\n};\ntype Foo = {\n  get(key: \"foo\"): ``;\n};\n\ntype Bar = {\n  get(key: \"bar\"): {\n    bar: \"bar\";\n  };\n};\ntype Bar = {\n  get(key: \"bar\"): { bar: \"bar\" };\n};");
     Ok(())
 }
 #[test]
@@ -35,8 +35,8 @@ fn test_method_signature_with_wrapped_return_type_ts_format_1_d1fce9d8() -> Resu
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("type ReleaseToolConfig = {\n  get(key: \"changelog\"): {\n    get(key: \"repo\"): string;\n    get(key: \"labels\"): Map<string, string>;\n  };\n};\n\ntype ReleaseToolConfig2 = {\n  get(key: \"changelog\"): \\`\n  \\`\n};") ? ;
-    assert_eq ! (formatted , "type ReleaseToolConfig = {\n  get(key: \"changelog\"): {\n    get(key: \"repo\"): string;\n    get(key: \"labels\"): Map<string, string>;\n  };\n};\n\ntype ReleaseToolConfig2 = {\n  get(key: \"changelog\"): \\`\n  \\`;\n};");
+    let formatted = pretty_printer . format ("type ReleaseToolConfig = {\n  get(key: \"changelog\"): {\n    get(key: \"repo\"): string;\n    get(key: \"labels\"): Map<string, string>;\n  };\n};\n\ntype ReleaseToolConfig2 = {\n  get(key: \"changelog\"): `\n  `\n};") ? ;
+    assert_eq ! (formatted , "type ReleaseToolConfig = {\n  get(key: \"changelog\"): {\n    get(key: \"repo\"): string;\n    get(key: \"labels\"): Map<string, string>;\n  };\n};\n\ntype ReleaseToolConfig2 = {\n  get(key: \"changelog\"): `\n  `;\n};");
     Ok(())
 }
 #[test]

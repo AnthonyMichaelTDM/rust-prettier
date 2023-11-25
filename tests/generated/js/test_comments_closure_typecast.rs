@@ -183,8 +183,8 @@ fn test_styled_components_js_format_1_e03d01c7() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const OverlapWrapper =\n  /** @type {import('styled-components').ThemedStyledFunction<'div',null,{overlap: boolean}>} */\n  (styled.div)\\`\nposition:relative;\n    > {\n  position: absolute;\n  bottom: \\${p => p.overlap === 'previous' && 0};\ntop: \\${p => p.overlap === 'next' && 0};\n}\n\\`") ? ;
-    assert_eq ! (formatted , "const OverlapWrapper =\n  /** @type {import('styled-components').ThemedStyledFunction<'div',null,{overlap: boolean}>} */\n  (styled.div)\\`\n    position: relative;\n    > {\n      position: absolute;\n      bottom: \\${(p) => p.overlap === \"previous\" && 0};\n      top: \\${(p) => p.overlap === \"next\" && 0};\n    }\n  \\`;");
+    let formatted = pretty_printer . format ("const OverlapWrapper =\n  /** @type {import('styled-components').ThemedStyledFunction<'div',null,{overlap: boolean}>} */\n  (styled.div)`\nposition:relative;\n    > {\n  position: absolute;\n  bottom: ${p => p.overlap === 'previous' && 0};\ntop: ${p => p.overlap === 'next' && 0};\n}\n`") ? ;
+    assert_eq ! (formatted , "const OverlapWrapper =\n  /** @type {import('styled-components').ThemedStyledFunction<'div',null,{overlap: boolean}>} */\n  (styled.div)`\n    position: relative;\n    > {\n      position: absolute;\n      bottom: ${(p) => p.overlap === \"previous\" && 0};\n      top: ${(p) => p.overlap === \"next\" && 0};\n    }\n  `;");
     Ok(())
 }
 #[test]

@@ -73,11 +73,10 @@ fn test_escape_md_prose_wrapalways_format_1_28e62ed2() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("| a | b | c |\n|:--|:-:|--:|\n| \\\\| | \\\\| | \\\\| |")?;
+    let formatted = pretty_printer.format("| a | b | c |\n|:--|:-:|--:|\n| \\| | \\| | \\| |")?;
     assert_eq!(
         formatted,
-        "| a   |  b  |   c |\n| :-- | :-: | --: |\n| \\\\|  | \\\\|  |  \\\\| |"
+        "| a   |  b  |   c |\n| :-- | :-: | --: |\n| \\|  | \\|  |  \\| |"
     );
     Ok(())
 }
@@ -89,8 +88,8 @@ fn test_html_md_prose_wrapalways_format_1_c4454d7b() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("Default | CLI Override | API Override\n--------|--------------|-------------\n\\`\"none\"\\` | <code>--trailing-comma <none&#124;es5&#124;all></code> | <code>trailingComma: \"<none&#124;es5&#124;all>\"</code>") ? ;
-    assert_eq ! (formatted , "| Default  | CLI Override                                           | API Override                                           |\n| -------- | ------------------------------------------------------ | ------------------------------------------------------ |\n| \\`\"none\"\\` | <code>--trailing-comma <none&#124;es5&#124;all></code> | <code>trailingComma: \"<none&#124;es5&#124;all>\"</code> |");
+    let formatted = pretty_printer . format ("Default | CLI Override | API Override\n--------|--------------|-------------\n`\"none\"` | <code>--trailing-comma <none&#124;es5&#124;all></code> | <code>trailingComma: \"<none&#124;es5&#124;all>\"</code>") ? ;
+    assert_eq ! (formatted , "| Default  | CLI Override                                           | API Override                                           |\n| -------- | ------------------------------------------------------ | ------------------------------------------------------ |\n| `\"none\"` | <code>--trailing-comma <none&#124;es5&#124;all></code> | <code>trailingComma: \"<none&#124;es5&#124;all>\"</code> |");
     Ok(())
 }
 #[test]
@@ -115,7 +114,7 @@ fn test_table_md_prose_wrapalways_format_1_cd8c5e26() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- min-table\n\n  | Age | Time | Food | Gold | Requirement |\n  | ------------ | ----- | ---- | ---- | ----------------------- |\n  | Feudal Age | 02:10 | 500 | 0 | Dark Age building x 2 |\n  | Castle Age | 02:40 | 800 | 200 |- |\n  | Imperial Age | 03:30 | 1000 | 800 | Castle Age building x 2 |\n- big-table\n\n  |学号|姓名|分数|\n  |-|-|-|\n  |小明|男|75|\n  |小红|女|79|\n  |小陆|男|92|\n\n| col1 | col2 | col3 |\n|---|--|--|\n| long text | \\`\\` | text |") ? ;
-    assert_eq ! (formatted , "- min-table\n\n  | Age          | Time  | Food | Gold | Requirement             |\n  | ------------ | ----- | ---- | ---- | ----------------------- |\n  | Feudal Age   | 02:10 | 500  | 0    | Dark Age building x 2   |\n  | Castle Age   | 02:40 | 800  | 200  | -                       |\n  | Imperial Age | 03:30 | 1000 | 800  | Castle Age building x 2 |\n\n- big-table\n\n  | 学号 | 姓名 | 分数 |\n  | ---- | ---- | ---- |\n  | 小明 | 男   | 75   |\n  | 小红 | 女   | 79   |\n  | 小陆 | 男   | 92   |\n\n| col1      | col2 | col3 |\n| --------- | ---- | ---- |\n| long text | \\`\\`   | text |");
+    let formatted = pretty_printer . format ("- min-table\n\n  | Age | Time | Food | Gold | Requirement |\n  | ------------ | ----- | ---- | ---- | ----------------------- |\n  | Feudal Age | 02:10 | 500 | 0 | Dark Age building x 2 |\n  | Castle Age | 02:40 | 800 | 200 |- |\n  | Imperial Age | 03:30 | 1000 | 800 | Castle Age building x 2 |\n- big-table\n\n  |学号|姓名|分数|\n  |-|-|-|\n  |小明|男|75|\n  |小红|女|79|\n  |小陆|男|92|\n\n| col1 | col2 | col3 |\n|---|--|--|\n| long text | `` | text |") ? ;
+    assert_eq ! (formatted , "- min-table\n\n  | Age          | Time  | Food | Gold | Requirement             |\n  | ------------ | ----- | ---- | ---- | ----------------------- |\n  | Feudal Age   | 02:10 | 500  | 0    | Dark Age building x 2   |\n  | Castle Age   | 02:40 | 800  | 200  | -                       |\n  | Imperial Age | 03:30 | 1000 | 800  | Castle Age building x 2 |\n\n- big-table\n\n  | 学号 | 姓名 | 分数 |\n  | ---- | ---- | ---- |\n  | 小明 | 男   | 75   |\n  | 小红 | 女   | 79   |\n  | 小陆 | 男   | 92   |\n\n| col1      | col2 | col3 |\n| --------- | ---- | ---- |\n| long text | ``   | text |");
     Ok(())
 }

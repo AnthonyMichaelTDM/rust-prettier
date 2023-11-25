@@ -61,8 +61,8 @@ fn test_object_create_js_format_1_059ed901() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* @flow */\n\nclass C { foo: string; }\n\n// OK, \\`instanceof C\\` would be true\n(Object.create(C.prototype): C);\n\n// OK, \\`instanceof C\\` would be true\n(Object.create(new C): C);\n\n// error, object literals don't structurally match instances\n({ foo: \"foo\" }: C);\n\n// error, object types don't structurally match instances\ntype O = { foo: string; }\ndeclare var o: O;\n(o: C);") ? ;
-    assert_eq ! (formatted , "/* @flow */\n\nclass C {\n  foo: string;\n}\n\n// OK, \\`instanceof C\\` would be true\n(Object.create(C.prototype): C);\n\n// OK, \\`instanceof C\\` would be true\n(Object.create(new C()): C);\n\n// error, object literals don't structurally match instances\n({ foo: \"foo\" }: C);\n\n// error, object types don't structurally match instances\ntype O = { foo: string };\ndeclare var o: O;\n(o: C);");
+    let formatted = pretty_printer . format ("/* @flow */\n\nclass C { foo: string; }\n\n// OK, `instanceof C` would be true\n(Object.create(C.prototype): C);\n\n// OK, `instanceof C` would be true\n(Object.create(new C): C);\n\n// error, object literals don't structurally match instances\n({ foo: \"foo\" }: C);\n\n// error, object types don't structurally match instances\ntype O = { foo: string; }\ndeclare var o: O;\n(o: C);") ? ;
+    assert_eq ! (formatted , "/* @flow */\n\nclass C {\n  foo: string;\n}\n\n// OK, `instanceof C` would be true\n(Object.create(C.prototype): C);\n\n// OK, `instanceof C` would be true\n(Object.create(new C()): C);\n\n// error, object literals don't structurally match instances\n({ foo: \"foo\" }: C);\n\n// error, object types don't structurally match instances\ntype O = { foo: string };\ndeclare var o: O;\n(o: C);");
     Ok(())
 }
 #[test]

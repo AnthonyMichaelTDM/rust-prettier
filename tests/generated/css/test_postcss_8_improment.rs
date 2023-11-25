@@ -29,7 +29,7 @@ fn test_test_css_format_1_3a47d3ca() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/*\nThis test is copied from \\`postcss@8\\` release note\n\nhttps://github.com/postcss/postcss/releases/tag/8.0.0\n*/\n\n:root {\n  --empty: ;\n  --JSON: [1, \"2\", {\"three\": {\"a\":1}}, [4]];\n  --javascript: function(rule) { console.log(rule) };\n}\n\n@supports (--element(\".minwidth\", { \"minWidth\": 300 })) {\n  [--self] {\n    background: greenyellow;\n  }\n}") ? ;
-    assert_eq ! (formatted , "/*\nThis test is copied from \\`postcss@8\\` release note\n\nhttps://github.com/postcss/postcss/releases/tag/8.0.0\n*/\n\n:root {\n  --empty: ;\n  --JSON: [1, \"2\", {\"three\": {\"a\": 1}}, [4]];\n  --javascript: function(rule) {console.log(rule)};\n}\n\n@supports (--element(\".minwidth\", {\"minWidth\": 300})) {\n  [--self] {\n    background: greenyellow;\n  }\n}");
+    let formatted = pretty_printer . format ("/*\nThis test is copied from `postcss@8` release note\n\nhttps://github.com/postcss/postcss/releases/tag/8.0.0\n*/\n\n:root {\n  --empty: ;\n  --JSON: [1, \"2\", {\"three\": {\"a\":1}}, [4]];\n  --javascript: function(rule) { console.log(rule) };\n}\n\n@supports (--element(\".minwidth\", { \"minWidth\": 300 })) {\n  [--self] {\n    background: greenyellow;\n  }\n}") ? ;
+    assert_eq ! (formatted , "/*\nThis test is copied from `postcss@8` release note\n\nhttps://github.com/postcss/postcss/releases/tag/8.0.0\n*/\n\n:root {\n  --empty: ;\n  --JSON: [1, \"2\", {\"three\": {\"a\": 1}}, [4]];\n  --javascript: function(rule) {console.log(rule)};\n}\n\n@supports (--element(\".minwidth\", {\"minWidth\": 300})) {\n  [--self] {\n    background: greenyellow;\n  }\n}");
     Ok(())
 }

@@ -14,8 +14,8 @@ fn test_commonmark_0_30_example_328_md_prose_wrapalways_format_1_63a4e7d9() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo\\`")?;
-    assert_eq!(formatted, "\\`foo\\`");
+    let formatted = pretty_printer.format("`foo`")?;
+    assert_eq!(formatted, "`foo`");
     Ok(())
 }
 #[test]
@@ -26,8 +26,8 @@ fn test_commonmark_0_30_example_329_md_prose_wrapalways_format_1_910f3423() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\` foo \\` bar \\`\\`")?;
-    assert_eq!(formatted, "\\`\\`foo \\` bar\\`\\`");
+    let formatted = pretty_printer.format("`` foo ` bar ``")?;
+    assert_eq!(formatted, "``foo ` bar``");
     Ok(())
 }
 #[test]
@@ -38,8 +38,8 @@ fn test_commonmark_0_30_example_330_md_prose_wrapalways_format_1_2b165875() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\` \\`\\` \\`")?;
-    assert_eq!(formatted, "\\` \\`\\` \\`");
+    let formatted = pretty_printer.format("` `` `")?;
+    assert_eq!(formatted, "` `` `");
     Ok(())
 }
 #[test]
@@ -50,8 +50,8 @@ fn test_commonmark_0_30_example_331_md_prose_wrapalways_format_1_5a8dd071() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`  \\`\\`  \\`")?;
-    assert_eq!(formatted, "\\`  \\`\\`  \\`");
+    let formatted = pretty_printer.format("`  ``  `")?;
+    assert_eq!(formatted, "`  ``  `");
     Ok(())
 }
 #[test]
@@ -62,8 +62,8 @@ fn test_commonmark_0_30_example_332_md_prose_wrapalways_format_1_261fbe1e() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\` a\\`")?;
-    assert_eq!(formatted, "\\` a\\`");
+    let formatted = pretty_printer.format("` a`")?;
+    assert_eq!(formatted, "` a`");
     Ok(())
 }
 #[test]
@@ -74,8 +74,8 @@ fn test_commonmark_0_30_example_333_md_prose_wrapalways_format_1_5228bd13() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\u{a0}b\u{a0}\\`")?;
-    assert_eq!(formatted, "\\`\u{a0}b\u{a0}\\`");
+    let formatted = pretty_printer.format("`\u{a0}b\u{a0}`")?;
+    assert_eq!(formatted, "`\u{a0}b\u{a0}`");
     Ok(())
 }
 #[test]
@@ -86,8 +86,8 @@ fn test_commonmark_0_30_example_334_md_prose_wrapalways_format_1_82ac97f1() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\` \\`\n\\`  \\`")?;
-    assert_eq!(formatted, "\\` \\` \\`  \\`");
+    let formatted = pretty_printer.format("` `\n`  `")?;
+    assert_eq!(formatted, "` ` `  `");
     Ok(())
 }
 #[test]
@@ -98,8 +98,8 @@ fn test_commonmark_0_30_example_335_md_prose_wrapalways_format_1_a68acf46() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\nfoo\nbar  \nbaz\n\\`\\`")?;
-    assert_eq!(formatted, "\\`foo bar   baz\\`");
+    let formatted = pretty_printer.format("``\nfoo\nbar  \nbaz\n``")?;
+    assert_eq!(formatted, "`foo bar   baz`");
     Ok(())
 }
 #[test]
@@ -110,8 +110,8 @@ fn test_commonmark_0_30_example_336_md_prose_wrapalways_format_1_f8f1221d() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\nfoo \n\\`\\`")?;
-    assert_eq!(formatted, "\\`foo \\`");
+    let formatted = pretty_printer.format("``\nfoo \n``")?;
+    assert_eq!(formatted, "`foo `");
     Ok(())
 }
 #[test]
@@ -122,8 +122,8 @@ fn test_commonmark_0_30_example_337_md_prose_wrapalways_format_1_7cbabf44() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo   bar \nbaz\\")?;
-    assert_eq!(formatted, "\\`foo   bar  baz\\`");
+    let formatted = pretty_printer.format("`foo   bar \nbaz\\")?;
+    assert_eq!(formatted, "`foo   bar  baz`");
     Ok(())
 }
 #[test]
@@ -242,8 +242,8 @@ fn test_example_10_md_prose_wrapalways_format_1_bf62e2d6() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("- \\`one\n- two\\`")?;
-    assert_eq!(formatted, "- \\`one\n- two\\`");
+    let formatted = pretty_printer.format("- `one\n- two`")?;
+    assert_eq!(formatted, "- `one\n- two`");
     Ok(())
 }
 #[test]
@@ -291,7 +291,7 @@ fn test_example_14_md_prose_wrapalways_format_1_c2ce7512() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("--\n**\n__")?;
-    assert_eq!(formatted, "-- \\\\*\\\\* \\\\_\\\\_");
+    assert_eq!(formatted, "-- \\*\\* \\_\\_");
     Ok(())
 }
 #[test]
@@ -327,7 +327,7 @@ fn test_example_17_md_prose_wrapalways_format_1_f79d607c() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("Foo\n    ***")?;
-    assert_eq!(formatted, "Foo \\\\*\\\\*\\\\*");
+    assert_eq!(formatted, "Foo \\*\\*\\*");
     Ok(())
 }
 #[test]
@@ -399,7 +399,7 @@ fn test_example_23_md_prose_wrapalways_format_1_c50320d6() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ _ _ _ a\n\na------\n\n---a---")?;
-    assert_eq!(formatted, "\\\\_ \\\\_ \\\\_ \\\\_ a\n\na------\n\n---a---");
+    assert_eq!(formatted, "\\_ \\_ \\_ \\_ a\n\na------\n\n---a---");
     Ok(())
 }
 #[test]
@@ -522,8 +522,8 @@ fn test_example_34_md_prose_wrapalways_format_1_4532c196() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\## foo")?;
-    assert_eq!(formatted, "\\\\## foo");
+    let formatted = pretty_printer.format("\\## foo")?;
+    assert_eq!(formatted, "\\## foo");
     Ok(())
 }
 #[test]
@@ -534,8 +534,8 @@ fn test_example_35_md_prose_wrapalways_format_1_c946094a() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("# foo *bar* \\\\*baz\\\\*")?;
-    assert_eq!(formatted, "# foo _bar_ \\\\*baz\\\\*");
+    let formatted = pretty_printer.format("# foo *bar* \\*baz\\*")?;
+    assert_eq!(formatted, "# foo _bar_ \\*baz\\*");
     Ok(())
 }
 #[test]
@@ -655,11 +655,8 @@ fn test_example_45_md_prose_wrapalways_format_1_67c0283e() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("### foo \\\\###\n## foo #\\\\##\n# foo \\\\#")?;
-    assert_eq!(
-        formatted,
-        "### foo \\\\###\n\n## foo #\\\\##\n\n# foo \\\\#"
-    );
+    let formatted = pretty_printer.format("### foo \\###\n## foo #\\##\n# foo \\#")?;
+    assert_eq!(formatted, "### foo \\###\n\n## foo #\\##\n\n# foo \\#");
     Ok(())
 }
 #[test]
@@ -814,8 +811,8 @@ fn test_example_58_md_prose_wrapalways_format_1_b35547a9() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("Foo\\\\\n----")?;
-    assert_eq!(formatted, "## Foo\\\\");
+    let formatted = pretty_printer.format("Foo\\\n----")?;
+    assert_eq!(formatted, "## Foo\\");
     Ok(())
 }
 #[test]
@@ -827,10 +824,10 @@ fn test_example_59_md_prose_wrapalways_format_1_fcf51c1e() -> Result<()> {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("\\`Foo\n----\n\\`\n\n<a title=\"a lot\n---\nof dashes\"/>")?;
+        pretty_printer.format("`Foo\n----\n`\n\n<a title=\"a lot\n---\nof dashes\"/>")?;
     assert_eq!(
         formatted,
-        "## \\`Foo\n\n\\`\n\n## <a title=\"a lot\n\nof dashes\"/>"
+        "## `Foo\n\n`\n\n## <a title=\"a lot\n\nof dashes\"/>"
     );
     Ok(())
 }
@@ -962,8 +959,8 @@ fn test_example_70_md_prose_wrapalways_format_1_4c8e9ee7() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\> foo\n------")?;
-    assert_eq!(formatted, "## \\\\> foo");
+    let formatted = pretty_printer.format("\\> foo\n------")?;
+    assert_eq!(formatted, "## \\> foo");
     Ok(())
 }
 #[test]
@@ -1010,8 +1007,8 @@ fn test_example_74_md_prose_wrapalways_format_1_20490add() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("Foo\nbar\n\\\\---\nbaz")?;
-    assert_eq!(formatted, "Foo bar \\\\--- baz");
+    let formatted = pretty_printer.format("Foo\nbar\n\\---\nbaz")?;
+    assert_eq!(formatted, "Foo bar \\--- baz");
     Ok(())
 }
 #[test]
@@ -1169,8 +1166,8 @@ fn test_example_87_md_prose_wrapalways_format_1_07410780() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\n<\n >\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\n<\n >\n\\`\\`\\`");
+    let formatted = pretty_printer.format("```\n<\n >\n```")?;
+    assert_eq!(formatted, "```\n<\n >\n```");
     Ok(())
 }
 #[test]
@@ -1182,7 +1179,7 @@ fn test_example_88_md_prose_wrapalways_format_1_20487dd8() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("~~~\n<\n >\n~~~")?;
-    assert_eq!(formatted, "\\`\\`\\`\n<\n >\n\\`\\`\\`");
+    assert_eq!(formatted, "```\n<\n >\n```");
     Ok(())
 }
 #[test]
@@ -1193,8 +1190,8 @@ fn test_example_89_md_prose_wrapalways_format_1_01c8ed54() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\naaa\n~~~\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\n~~~\n\\`\\`\\`");
+    let formatted = pretty_printer.format("```\naaa\n~~~\n```")?;
+    assert_eq!(formatted, "```\naaa\n~~~\n```");
     Ok(())
 }
 #[test]
@@ -1205,8 +1202,8 @@ fn test_example_90_md_prose_wrapalways_format_1_4f6ce27f() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("~~~\naaa\n\\`\\`\\`\n~~~")?;
-    assert_eq!(formatted, "\\`\\`\\`\\`\naaa\n\\`\\`\\`\n\\`\\`\\`\\`");
+    let formatted = pretty_printer.format("~~~\naaa\n```\n~~~")?;
+    assert_eq!(formatted, "````\naaa\n```\n````");
     Ok(())
 }
 #[test]
@@ -1217,8 +1214,8 @@ fn test_example_91_md_prose_wrapalways_format_1_34dc9359() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\\`\naaa\n\\`\\`\\`\n\\`\\`\\`\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\\`\naaa\n\\`\\`\\`\n\\`\\`\\`\\`");
+    let formatted = pretty_printer.format("````\naaa\n```\n``````")?;
+    assert_eq!(formatted, "````\naaa\n```\n````");
     Ok(())
 }
 #[test]
@@ -1230,7 +1227,7 @@ fn test_example_92_md_prose_wrapalways_format_1_962895c7() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("~~~~\naaa\n~~~\n~~~~")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\n~~~\n\\`\\`\\`");
+    assert_eq!(formatted, "```\naaa\n~~~\n```");
     Ok(())
 }
 #[test]
@@ -1241,8 +1238,8 @@ fn test_example_93_md_prose_wrapalways_format_1_6bfec7e5() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\n\n\\`\\`\\`");
+    let formatted = pretty_printer.format("```")?;
+    assert_eq!(formatted, "```\n\n```");
     Ok(())
 }
 #[test]
@@ -1253,8 +1250,8 @@ fn test_example_94_md_prose_wrapalways_format_1_cff72e39() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\\`\\`\n\n\\`\\`\\`\naaa")?;
-    assert_eq!(formatted, "\\`\\`\\`\\`\n\n\\`\\`\\`\naaa\n\\`\\`\\`\\`");
+    let formatted = pretty_printer.format("`````\n\n```\naaa")?;
+    assert_eq!(formatted, "````\n\n```\naaa\n````");
     Ok(())
 }
 #[test]
@@ -1265,8 +1262,8 @@ fn test_example_95_md_prose_wrapalways_format_1_e9e25087() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("> \\`\\`\\`\n> aaa\n\nbbb")?;
-    assert_eq!(formatted, "> \\`\\`\\`\n> aaa\n> \\`\\`\\`\n\nbbb");
+    let formatted = pretty_printer.format("> ```\n> aaa\n\nbbb")?;
+    assert_eq!(formatted, "> ```\n> aaa\n> ```\n\nbbb");
     Ok(())
 }
 #[test]
@@ -1277,8 +1274,8 @@ fn test_example_96_md_prose_wrapalways_format_1_90f9a158() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\n\n  \n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\n\n\n\\`\\`\\`");
+    let formatted = pretty_printer.format("```\n\n  \n```")?;
+    assert_eq!(formatted, "```\n\n\n```");
     Ok(())
 }
 #[test]
@@ -1289,8 +1286,8 @@ fn test_example_97_md_prose_wrapalways_format_1_9671175c() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\n\n\\`\\`\\`");
+    let formatted = pretty_printer.format("```\n```")?;
+    assert_eq!(formatted, "```\n\n```");
     Ok(())
 }
 #[test]
@@ -1301,8 +1298,8 @@ fn test_example_98_md_prose_wrapalways_format_1_1b84e454() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(" \\`\\`\\`\n aaa\naaa\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\naaa\n\\`\\`\\`");
+    let formatted = pretty_printer.format(" ```\n aaa\naaa\n```")?;
+    assert_eq!(formatted, "```\naaa\naaa\n```");
     Ok(())
 }
 #[test]
@@ -1313,8 +1310,8 @@ fn test_example_99_md_prose_wrapalways_format_1_15e3730a() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("  \\`\\`\\`\naaa\n  aaa\naaa\n  \\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\naaa\naaa\n\\`\\`\\`");
+    let formatted = pretty_printer.format("  ```\naaa\n  aaa\naaa\n  ```")?;
+    assert_eq!(formatted, "```\naaa\naaa\naaa\n```");
     Ok(())
 }
 #[test]
@@ -1325,8 +1322,8 @@ fn test_example_100_md_prose_wrapalways_format_1_c3b997c2() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("   \\`\\`\\`\n   aaa\n    aaa\n  aaa\n   \\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\n aaa\naaa\n\\`\\`\\`");
+    let formatted = pretty_printer.format("   ```\n   aaa\n    aaa\n  aaa\n   ```")?;
+    assert_eq!(formatted, "```\naaa\n aaa\naaa\n```");
     Ok(())
 }
 #[test]
@@ -1337,8 +1334,8 @@ fn test_example_101_md_prose_wrapalways_format_1_d6de8098() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("    \\`\\`\\`\n    aaa\n    \\`\\`\\`")?;
-    assert_eq!(formatted, "    \\`\\`\\`\n    aaa\n    \\`\\`\\`");
+    let formatted = pretty_printer.format("    ```\n    aaa\n    ```")?;
+    assert_eq!(formatted, "    ```\n    aaa\n    ```");
     Ok(())
 }
 #[test]
@@ -1349,8 +1346,8 @@ fn test_example_102_md_prose_wrapalways_format_1_f1734785() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\naaa\n  \\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\n\\`\\`\\`");
+    let formatted = pretty_printer.format("```\naaa\n  ```")?;
+    assert_eq!(formatted, "```\naaa\n```");
     Ok(())
 }
 #[test]
@@ -1361,8 +1358,8 @@ fn test_example_103_md_prose_wrapalways_format_1_7a00aeef() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("   \\`\\`\\`\naaa\n  \\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\n\\`\\`\\`");
+    let formatted = pretty_printer.format("   ```\naaa\n  ```")?;
+    assert_eq!(formatted, "```\naaa\n```");
     Ok(())
 }
 #[test]
@@ -1373,8 +1370,8 @@ fn test_example_104_md_prose_wrapalways_format_1_0b0f85fc() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\naaa\n    \\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\\`\naaa\n    \\`\\`\\`\n\\`\\`\\`\\`");
+    let formatted = pretty_printer.format("```\naaa\n    ```")?;
+    assert_eq!(formatted, "````\naaa\n    ```\n````");
     Ok(())
 }
 #[test]
@@ -1385,8 +1382,8 @@ fn test_example_105_md_prose_wrapalways_format_1_31fde435() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\` \\`\\`\\`\naaa")?;
-    assert_eq!(formatted, "\\` \\` aaa");
+    let formatted = pretty_printer.format("``` ```\naaa")?;
+    assert_eq!(formatted, "` ` aaa");
     Ok(())
 }
 #[test]
@@ -1398,7 +1395,7 @@ fn test_example_106_md_prose_wrapalways_format_1_be7fd741() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("~~~~~~\naaa\n~~~ ~~")?;
-    assert_eq!(formatted, "\\`\\`\\`\naaa\n~~~ ~~\n\\`\\`\\`");
+    assert_eq!(formatted, "```\naaa\n~~~ ~~\n```");
     Ok(())
 }
 #[test]
@@ -1409,8 +1406,8 @@ fn test_example_107_md_prose_wrapalways_format_1_4b8cdb62() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo\n\\`\\`\\`\nbar\n\\`\\`\\`\nbaz")?;
-    assert_eq!(formatted, "foo\n\n\\`\\`\\`\nbar\n\\`\\`\\`\n\nbaz");
+    let formatted = pretty_printer.format("foo\n```\nbar\n```\nbaz")?;
+    assert_eq!(formatted, "foo\n\n```\nbar\n```\n\nbaz");
     Ok(())
 }
 #[test]
@@ -1422,7 +1419,7 @@ fn test_example_108_md_prose_wrapalways_format_1_e497f992() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo\n---\n~~~\nbar\n~~~\n# baz")?;
-    assert_eq!(formatted, "## foo\n\n\\`\\`\\`\nbar\n\\`\\`\\`\n\n# baz");
+    assert_eq!(formatted, "## foo\n\n```\nbar\n```\n\n# baz");
     Ok(())
 }
 #[test]
@@ -1433,12 +1430,8 @@ fn test_example_109_md_prose_wrapalways_format_1_a9eee036() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("\\`\\`\\`ruby\ndef foo(x)\n  return 3\nend\n\\`\\`\\`")?;
-    assert_eq!(
-        formatted,
-        "\\`\\`\\`ruby\ndef foo(x)\n  return 3\nend\n\\`\\`\\`"
-    );
+    let formatted = pretty_printer.format("```ruby\ndef foo(x)\n  return 3\nend\n```")?;
+    assert_eq!(formatted, "```ruby\ndef foo(x)\n  return 3\nend\n```");
     Ok(())
 }
 #[test]
@@ -1453,7 +1446,7 @@ fn test_example_110_md_prose_wrapalways_format_1_23677125() -> Result<()> {
         .format("~~~~    ruby startline=3 $%@#$\ndef foo(x)\n  return 3\nend\n~~~~~~~")?;
     assert_eq!(
         formatted,
-        "\\`\\`\\`ruby startline=3 $%@#$\ndef foo(x)\n  return 3\nend\n\\`\\`\\`"
+        "```ruby startline=3 $%@#$\ndef foo(x)\n  return 3\nend\n```"
     );
     Ok(())
 }
@@ -1465,8 +1458,8 @@ fn test_example_111_md_prose_wrapalways_format_1_6829adc9() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\\`;\n\\`\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`;\n\n\\`\\`\\`");
+    let formatted = pretty_printer.format("````;\n````")?;
+    assert_eq!(formatted, "```;\n\n```");
     Ok(())
 }
 #[test]
@@ -1477,8 +1470,8 @@ fn test_example_112_md_prose_wrapalways_format_1_753e214f() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\` aa \\`\\`\\`\nfoo")?;
-    assert_eq!(formatted, "\\`aa\\` foo");
+    let formatted = pretty_printer.format("``` aa ```\nfoo")?;
+    assert_eq!(formatted, "`aa` foo");
     Ok(())
 }
 #[test]
@@ -1489,8 +1482,8 @@ fn test_example_113_md_prose_wrapalways_format_1_509d33a6() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\n\\`\\`\\` aaa\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`\\`\n\\`\\`\\` aaa\n\\`\\`\\`\\`");
+    let formatted = pretty_printer.format("```\n``` aaa\n```")?;
+    assert_eq!(formatted, "````\n``` aaa\n````");
     Ok(())
 }
 #[test]
@@ -1650,11 +1643,8 @@ fn test_example_126_md_prose_wrapalways_format_1_a4f5edfa() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<div></div>\n\\`\\`\\` c\nint x = 33;\n\\`\\`\\`")?;
-    assert_eq!(
-        formatted,
-        "<div></div>\n\\`\\`\\` c\nint x = 33;\n\\`\\`\\`"
-    );
+    let formatted = pretty_printer.format("<div></div>\n``` c\nint x = 33;\n```")?;
+    assert_eq!(formatted, "<div></div>\n``` c\nint x = 33;\n```");
     Ok(())
 }
 #[test]
@@ -2051,10 +2041,10 @@ fn test_example_158_md_prose_wrapalways_format_1_9b9b2f74() -> Result<()> {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("[Foo*bar\\\\]]:my_(url) 'title (with parens)'\n\n[Foo*bar\\\\]]")?;
+        pretty_printer.format("[Foo*bar\\]]:my_(url) 'title (with parens)'\n\n[Foo*bar\\]]")?;
     assert_eq!(
         formatted,
-        "[Foo*bar\\\\]]: my_(url) \"title (with parens)\"\n\n[Foo*bar\\\\]]"
+        "[Foo*bar\\]]: my_(url) \"title (with parens)\"\n\n[Foo*bar\\]]"
     );
     Ok(())
 }
@@ -2114,11 +2104,10 @@ fn test_example_164_md_prose_wrapalways_format_1_10e7a81a() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("[foo]: /url\\\\bar\\\\*baz \"foo\\\\\"bar\\\\baz\"\n\n[foo]")?;
+    let formatted = pretty_printer.format("[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\n\n[foo]")?;
     assert_eq!(
         formatted,
-        "[foo]: /url\\\\bar\\\\*baz \"foo\\\\\"bar\\\\baz\"\n\n[foo]"
+        "[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\n\n[foo]"
     );
     Ok(())
 }
@@ -2238,8 +2227,8 @@ fn test_example_174_md_prose_wrapalways_format_1_afeeedb4() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\`\n[foo]: /url\n\\`\\`\\`\n\n[foo]")?;
-    assert_eq!(formatted, "\\`\\`\\`\n[foo]: /url\n\\`\\`\\`\n\n[foo]");
+    let formatted = pretty_printer.format("```\n[foo]: /url\n```\n\n[foo]")?;
+    assert_eq!(formatted, "```\n[foo]: /url\n```\n\n[foo]");
     Ok(())
 }
 #[test]
@@ -2518,11 +2507,8 @@ fn test_example_197_md_prose_wrapalways_format_1_f41e3b1e() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("> \\`\\`\\`\nfoo\n\\`\\`\\`")?;
-    assert_eq!(
-        formatted,
-        "> \\`\\`\\`\n> foo\n> \\`\\`\\`\n\n\\`\\`\\`\n\n\\`\\`\\`"
-    );
+    let formatted = pretty_printer.format("> ```\nfoo\n```")?;
+    assert_eq!(formatted, "> ```\n> foo\n> ```\n\n```\n\n```");
     Ok(())
 }
 #[test]
@@ -2830,8 +2816,8 @@ fn test_example_222_md_prose_wrapalways_format_1_6b085cf7() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- foo\n\n  bar\n\n- foo\n\n\n  bar\n\n- \\`\\`\\`\n  foo\n\n\n  bar\n  \\`\\`\\`\n\n- baz\n\n  + \\`\\`\\`\n    foo\n\n\n    bar\n    \\`\\`\\`") ? ;
-    assert_eq ! (formatted , "- foo\n\n  bar\n\n- foo\n\n  bar\n\n- \\`\\`\\`\n  foo\n\n\n  bar\n  \\`\\`\\`\n\n- baz\n\n  - \\`\\`\\`\n    foo\n\n\n    bar\n    \\`\\`\\`");
+    let formatted = pretty_printer . format ("- foo\n\n  bar\n\n- foo\n\n\n  bar\n\n- ```\n  foo\n\n\n  bar\n  ```\n\n- baz\n\n  + ```\n    foo\n\n\n    bar\n    ```") ? ;
+    assert_eq ! (formatted , "- foo\n\n  bar\n\n- foo\n\n  bar\n\n- ```\n  foo\n\n\n  bar\n  ```\n\n- baz\n\n  - ```\n    foo\n\n\n    bar\n    ```");
     Ok(())
 }
 #[test]
@@ -2842,11 +2828,11 @@ fn test_example_223_md_prose_wrapalways_format_1_a1341125() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer
-        .format("1.  foo\n\n    \\`\\`\\`\n    bar\n    \\`\\`\\`\n\n    baz\n\n    > bam")?;
+    let formatted =
+        pretty_printer.format("1.  foo\n\n    ```\n    bar\n    ```\n\n    baz\n\n    > bam")?;
     assert_eq!(
         formatted,
-        "1.  foo\n\n    \\`\\`\\`\n    bar\n    \\`\\`\\`\n\n    baz\n\n    > bam"
+        "1.  foo\n\n    ```\n    bar\n    ```\n\n    baz\n\n    > bam"
     );
     Ok(())
 }
@@ -3496,8 +3482,8 @@ fn test_example_278_md_prose_wrapalways_format_1_cda9fba3() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("- a\n  > b\n  \\`\\`\\`\n  c\n  \\`\\`\\`\n- d")?;
-    assert_eq!(formatted, "- a\n  > b\n  \\`\\`\\`\n  c\n  \\`\\`\\`\n- d");
+    let formatted = pretty_printer.format("- a\n  > b\n  ```\n  c\n  ```\n- d")?;
+    assert_eq!(formatted, "- a\n  > b\n  ```\n  c\n  ```\n- d");
     Ok(())
 }
 #[test]
@@ -3532,8 +3518,8 @@ fn test_example_281_md_prose_wrapalways_format_1_cc9e6f95() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("1. \\`\\`\\`\n   foo\n   \\`\\`\\`\n\n   bar")?;
-    assert_eq!(formatted, "1. \\`\\`\\`\n   foo\n   \\`\\`\\`\n\n   bar");
+    let formatted = pretty_printer.format("1. ```\n   foo\n   ```\n\n   bar")?;
+    assert_eq!(formatted, "1. ```\n   foo\n   ```\n\n   bar");
     Ok(())
 }
 #[test]
@@ -3568,8 +3554,8 @@ fn test_example_284_md_prose_wrapalways_format_1_e5f26a49() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`hi\\`lo\\`")?;
-    assert_eq!(formatted, "\\`hi\\`lo\\`");
+    let formatted = pretty_printer.format("`hi`lo`")?;
+    assert_eq!(formatted, "`hi`lo`");
     Ok(())
 }
 #[test]
@@ -3580,8 +3566,8 @@ fn test_example_285_md_prose_wrapalways_format_1_7ad3b74c() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("\\\\!\\\\\"\\\\#\\\\$\\\\%\\\\&\\\\'\\\\(\\\\)\\\\*\\\\+\\\\,\\\\-\\\\.\\\\/\\\\:\\\\;\\\\<\\\\=\\\\>\\\\?\\\\@\\\\[\\\\\\\\\\\\]\\\\^\\\\_\\\\\\`\\\\{\\\\|\\\\}\\\\~") ? ;
-    assert_eq ! (formatted , "\\\\!\\\\\"\\\\#\\\\$\\\\%\\\\&\\\\'\\\\(\\\\)\\\\*\\\\+\\\\,\\\\-\\\\.\\\\/\\\\:\\\\;\\\\<\\\\=\\\\>\\\\?\\\\@\\\\[\\\\\\\\\\\\]\\\\^\\\\_\\\\\\`\\\\{\\\\|\\\\}\\\\~");
+    let formatted = pretty_printer . format ("\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~") ? ;
+    assert_eq ! (formatted , "\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~");
     Ok(())
 }
 #[test]
@@ -3592,8 +3578,8 @@ fn test_example_286_md_prose_wrapalways_format_1_e04d1ad8() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\\t\\\\A\\\\a\\\\ \\\\3\\\\φ\\\\«")?;
-    assert_eq!(formatted, "\\\\ \\\\A\\\\a\\\\ \\\\3\\\\φ\\\\«");
+    let formatted = pretty_printer.format("\\\t\\A\\a\\ \\3\\φ\\«")?;
+    assert_eq!(formatted, "\\ \\A\\a\\ \\3\\φ\\«");
     Ok(())
 }
 #[test]
@@ -3604,8 +3590,8 @@ fn test_example_287_md_prose_wrapalways_format_1_d6f7657a() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("\\\\*not emphasized*\n\\\\<br/> not a tag\n\\\\[not a link](/foo)\n\\\\\\`not code\\`\n1\\\\. not a list\n\\\\* not a list\n\\\\# not a heading\n\\\\[foo]: /url \"not a reference\"") ? ;
-    assert_eq ! (formatted , "\\\\*not emphasized\\\\* \\\\<br/> not a tag \\\\[not a link](/foo) \\\\\\`not code\\` 1\\\\. not a\nlist \\\\* not a list \\\\# not a heading \\\\[foo]: /url \"not a reference\"");
+    let formatted = pretty_printer . format ("\\*not emphasized*\n\\<br/> not a tag\n\\[not a link](/foo)\n\\`not code`\n1\\. not a list\n\\* not a list\n\\# not a heading\n\\[foo]: /url \"not a reference\"") ? ;
+    assert_eq ! (formatted , "\\*not emphasized\\* \\<br/> not a tag \\[not a link](/foo) \\`not code` 1\\. not a\nlist \\* not a list \\# not a heading \\[foo]: /url \"not a reference\"");
     Ok(())
 }
 #[test]
@@ -3616,8 +3602,8 @@ fn test_example_288_md_prose_wrapalways_format_1_7bbafe9b() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\\\\\*emphasis*")?;
-    assert_eq!(formatted, "\\\\\\\\_emphasis_");
+    let formatted = pretty_printer.format("\\\\*emphasis*")?;
+    assert_eq!(formatted, "\\\\_emphasis_");
     Ok(())
 }
 #[test]
@@ -3628,8 +3614,8 @@ fn test_example_289_md_prose_wrapalways_format_1_ba92dbce() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo\\\\\nbar")?;
-    assert_eq!(formatted, "foo\\\\\nbar");
+    let formatted = pretty_printer.format("foo\\\nbar")?;
+    assert_eq!(formatted, "foo\\\nbar");
     Ok(())
 }
 #[test]
@@ -3640,8 +3626,8 @@ fn test_example_290_md_prose_wrapalways_format_1_589c2c2b() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\` \\\\[\\\\\\` \\`\\`")?;
-    assert_eq!(formatted, "\\`\\` \\\\[\\\\\\` \\`\\`");
+    let formatted = pretty_printer.format("`` \\[\\` ``")?;
+    assert_eq!(formatted, "`` \\[\\` ``");
     Ok(())
 }
 #[test]
@@ -3652,8 +3638,8 @@ fn test_example_291_md_prose_wrapalways_format_1_163a3e14() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("    \\\\[\\\\]")?;
-    assert_eq!(formatted, "    \\\\[\\\\]");
+    let formatted = pretty_printer.format("    \\[\\]")?;
+    assert_eq!(formatted, "    \\[\\]");
     Ok(())
 }
 #[test]
@@ -3664,8 +3650,8 @@ fn test_example_292_md_prose_wrapalways_format_1_fe6ca467() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("~~~\n\\\\[\\\\]\n~~~")?;
-    assert_eq!(formatted, "\\`\\`\\`\n\\\\[\\\\]\n\\`\\`\\`");
+    let formatted = pretty_printer.format("~~~\n\\[\\]\n~~~")?;
+    assert_eq!(formatted, "```\n\\[\\]\n```");
     Ok(())
 }
 #[test]
@@ -3676,8 +3662,8 @@ fn test_example_293_md_prose_wrapalways_format_1_0f5d2c72() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<http://example.com?find=\\\\*>")?;
-    assert_eq!(formatted, "<http://example.com?find=\\\\*>");
+    let formatted = pretty_printer.format("<http://example.com?find=\\*>")?;
+    assert_eq!(formatted, "<http://example.com?find=\\*>");
     Ok(())
 }
 #[test]
@@ -3688,8 +3674,8 @@ fn test_example_294_md_prose_wrapalways_format_1_077874f0() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<a href=\"/bar\\\\/)\">")?;
-    assert_eq!(formatted, "<a href=\"/bar\\\\/)\">");
+    let formatted = pretty_printer.format("<a href=\"/bar\\/)\">")?;
+    assert_eq!(formatted, "<a href=\"/bar\\/)\">");
     Ok(())
 }
 #[test]
@@ -3700,7 +3686,7 @@ fn test_example_295_md_prose_wrapalways_format_1_370c7517() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[foo](/bar\\\\* \"ti\\\\*tle\")")?;
+    let formatted = pretty_printer.format("[foo](/bar\\* \"ti\\*tle\")")?;
     assert_eq!(formatted, "[foo](/bar* \"ti*tle\")");
     Ok(())
 }
@@ -3712,7 +3698,7 @@ fn test_example_296_md_prose_wrapalways_format_1_f6eae3b3() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[foo]\n\n[foo]: /bar\\\\* \"ti\\\\*tle\"")?;
+    let formatted = pretty_printer.format("[foo]\n\n[foo]: /bar\\* \"ti\\*tle\"")?;
     assert_eq!(formatted, "[foo]\n\n[foo]: /bar* \"ti*tle\"");
     Ok(())
 }
@@ -3724,8 +3710,8 @@ fn test_example_297_md_prose_wrapalways_format_1_cc7392ac() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\` foo\\\\+bar\nfoo\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`foo+bar\nfoo\n\\`\\`\\`");
+    let formatted = pretty_printer.format("``` foo\\+bar\nfoo\n```")?;
+    assert_eq!(formatted, "```foo+bar\nfoo\n```");
     Ok(())
 }
 #[test]
@@ -3844,8 +3830,8 @@ fn test_example_307_md_prose_wrapalways_format_1_7b3d3e79() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\\` f&ouml;&ouml;\nfoo\n\\`\\`\\`")?;
-    assert_eq!(formatted, "\\`\\`\\`föö\nfoo\n\\`\\`\\`");
+    let formatted = pretty_printer.format("``` f&ouml;&ouml;\nfoo\n```")?;
+    assert_eq!(formatted, "```föö\nfoo\n```");
     Ok(())
 }
 #[test]
@@ -3856,8 +3842,8 @@ fn test_example_308_md_prose_wrapalways_format_1_64dfcf08() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`f&ouml;&ouml;\\`")?;
-    assert_eq!(formatted, "\\`f&ouml;&ouml;\\`");
+    let formatted = pretty_printer.format("`f&ouml;&ouml;`")?;
+    assert_eq!(formatted, "`f&ouml;&ouml;`");
     Ok(())
 }
 #[test]
@@ -3880,8 +3866,8 @@ fn test_example_310_md_prose_wrapalways_format_1_63a4e7d9() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo\\`")?;
-    assert_eq!(formatted, "\\`foo\\`");
+    let formatted = pretty_printer.format("`foo`")?;
+    assert_eq!(formatted, "`foo`");
     Ok(())
 }
 #[test]
@@ -3892,8 +3878,8 @@ fn test_example_311_md_prose_wrapalways_format_1_ecc0847b() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\` foo \\` bar  \\`\\`")?;
-    assert_eq!(formatted, "\\`\\`foo \\` bar \\`\\`");
+    let formatted = pretty_printer.format("`` foo ` bar  ``")?;
+    assert_eq!(formatted, "``foo ` bar ``");
     Ok(())
 }
 #[test]
@@ -3904,8 +3890,8 @@ fn test_example_312_md_prose_wrapalways_format_1_2b165875() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\` \\`\\` \\`")?;
-    assert_eq!(formatted, "\\` \\`\\` \\`");
+    let formatted = pretty_printer.format("` `` `")?;
+    assert_eq!(formatted, "` `` `");
     Ok(())
 }
 #[test]
@@ -3916,8 +3902,8 @@ fn test_example_313_md_prose_wrapalways_format_1_bc7f6ddd() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`\\`\nfoo\n\\`\\`")?;
-    assert_eq!(formatted, "\\`foo\\`");
+    let formatted = pretty_printer.format("``\nfoo\n``")?;
+    assert_eq!(formatted, "`foo`");
     Ok(())
 }
 #[test]
@@ -3928,8 +3914,8 @@ fn test_example_314_md_prose_wrapalways_format_1_ac2931b4() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo   bar\n  baz\\`")?;
-    assert_eq!(formatted, "\\`foo   bar   baz\\`");
+    let formatted = pretty_printer.format("`foo   bar\n  baz`")?;
+    assert_eq!(formatted, "`foo   bar   baz`");
     Ok(())
 }
 #[test]
@@ -3940,8 +3926,8 @@ fn test_example_315_md_prose_wrapalways_format_1_18f31b02() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo \\`\\` bar\\`")?;
-    assert_eq!(formatted, "\\`foo \\`\\` bar\\`");
+    let formatted = pretty_printer.format("`foo `` bar`")?;
+    assert_eq!(formatted, "`foo `` bar`");
     Ok(())
 }
 #[test]
@@ -3952,8 +3938,8 @@ fn test_example_316_md_prose_wrapalways_format_1_df0e53f9() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo\\\\\\`bar\\`")?;
-    assert_eq!(formatted, "\\`foo\\\\\\`bar\\`");
+    let formatted = pretty_printer.format("`foo\\`bar`")?;
+    assert_eq!(formatted, "`foo\\`bar`");
     Ok(())
 }
 #[test]
@@ -3964,8 +3950,8 @@ fn test_example_317_md_prose_wrapalways_format_1_2c664857() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("*foo\\`*\\`")?;
-    assert_eq!(formatted, "_foo\\`_\\`");
+    let formatted = pretty_printer.format("*foo`*`")?;
+    assert_eq!(formatted, "_foo`_`");
     Ok(())
 }
 #[test]
@@ -3976,8 +3962,8 @@ fn test_example_318_md_prose_wrapalways_format_1_7eaf8b83() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[not a \\`link](/foo\\`)")?;
-    assert_eq!(formatted, "[not a \\`link](/foo\\`)");
+    let formatted = pretty_printer.format("[not a `link](/foo`)")?;
+    assert_eq!(formatted, "[not a `link](/foo`)");
     Ok(())
 }
 #[test]
@@ -3988,8 +3974,8 @@ fn test_example_319_md_prose_wrapalways_format_1_7a916613() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`<a href=\"\\`\">\\`")?;
-    assert_eq!(formatted, "\\`<a href=\"\\`\">\\`");
+    let formatted = pretty_printer.format("`<a href=\"`\">`")?;
+    assert_eq!(formatted, "`<a href=\"`\">`");
     Ok(())
 }
 #[test]
@@ -4000,8 +3986,8 @@ fn test_example_320_md_prose_wrapalways_format_1_ac1f2ff3() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<a href=\"\\`\">\\`")?;
-    assert_eq!(formatted, "<a href=\"\\`\">\\`");
+    let formatted = pretty_printer.format("<a href=\"`\">`")?;
+    assert_eq!(formatted, "<a href=\"`\">`");
     Ok(())
 }
 #[test]
@@ -4012,8 +3998,8 @@ fn test_example_321_md_prose_wrapalways_format_1_c3497c5b() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`<http://foo.bar.\\`baz>\\`")?;
-    assert_eq!(formatted, "\\`<http://foo.bar.\\`baz>\\`");
+    let formatted = pretty_printer.format("`<http://foo.bar.`baz>`")?;
+    assert_eq!(formatted, "`<http://foo.bar.`baz>`");
     Ok(())
 }
 #[test]
@@ -4024,8 +4010,8 @@ fn test_example_322_md_prose_wrapalways_format_1_d9d8fd78() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<http://foo.bar.\\`baz>\\`")?;
-    assert_eq!(formatted, "<http://foo.bar.\\`baz>\\`");
+    let formatted = pretty_printer.format("<http://foo.bar.`baz>`")?;
+    assert_eq!(formatted, "<http://foo.bar.`baz>`");
     Ok(())
 }
 #[test]
@@ -4036,8 +4022,8 @@ fn test_example_324_md_prose_wrapalways_format_1_60ccf997() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`foo")?;
-    assert_eq!(formatted, "\\`foo");
+    let formatted = pretty_printer.format("`foo")?;
+    assert_eq!(formatted, "`foo");
     Ok(())
 }
 #[test]
@@ -4193,7 +4179,7 @@ fn test_example_337_md_prose_wrapalways_format_1_7ddbc040() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("aa_\"bb\"_cc")?;
-    assert_eq!(formatted, "aa\\\\_\"bb\"\\\\_cc");
+    assert_eq!(formatted, "aa\\_\"bb\"\\_cc");
     Ok(())
 }
 #[test]
@@ -4217,7 +4203,7 @@ fn test_example_339_md_prose_wrapalways_format_1_254951b3() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo*")?;
-    assert_eq!(formatted, "\\\\_foo\\\\*");
+    assert_eq!(formatted, "\\_foo\\*");
     Ok(())
 }
 #[test]
@@ -4241,7 +4227,7 @@ fn test_example_341_md_prose_wrapalways_format_1_9946f0c2() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo bar\n*")?;
-    assert_eq!(formatted, "\\\\*foo bar\n\n-");
+    assert_eq!(formatted, "\\*foo bar\n\n-");
     Ok(())
 }
 #[test]
@@ -4301,7 +4287,7 @@ fn test_example_346_md_prose_wrapalways_format_1_62547942() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_(_foo)")?;
-    assert_eq!(formatted, "\\\\_(\\\\_foo)");
+    assert_eq!(formatted, "\\_(\\_foo)");
     Ok(())
 }
 #[test]
@@ -4313,7 +4299,7 @@ fn test_example_347_md_prose_wrapalways_format_1_a0394b71() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_(_foo_)_")?;
-    assert_eq!(formatted, "_(\\\\_foo_)\\\\_");
+    assert_eq!(formatted, "_(\\_foo_)\\_");
     Ok(())
 }
 #[test]
@@ -4325,7 +4311,7 @@ fn test_example_348_md_prose_wrapalways_format_1_f395844b() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo_bar")?;
-    assert_eq!(formatted, "\\\\_foo_bar");
+    assert_eq!(formatted, "\\_foo_bar");
     Ok(())
 }
 #[test]
@@ -4725,7 +4711,7 @@ fn test_example_381_md_prose_wrapalways_format_1_0c79072d() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo _bar_ baz_")?;
-    assert_eq!(formatted, "_foo \\\\_bar_ baz\\\\_");
+    assert_eq!(formatted, "_foo \\_bar_ baz\\_");
     Ok(())
 }
 #[test]
@@ -4737,7 +4723,7 @@ fn test_example_382_md_prose_wrapalways_format_1_8c3bad77() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo_ bar_")?;
-    assert_eq!(formatted, "\\\\__foo_ bar\\\\_");
+    assert_eq!(formatted, "\\__foo_ bar\\_");
     Ok(())
 }
 #[test]
@@ -4749,7 +4735,7 @@ fn test_example_383_md_prose_wrapalways_format_1_ce5ef326() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo *bar**")?;
-    assert_eq!(formatted, "*foo *bar\\\\*\\\\*");
+    assert_eq!(formatted, "*foo *bar\\*\\*");
     Ok(())
 }
 #[test]
@@ -4785,7 +4771,7 @@ fn test_example_386_md_prose_wrapalways_format_1_48a7eeb2() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("***foo** bar*")?;
-    assert_eq!(formatted, "**\\\\*foo** bar\\\\*");
+    assert_eq!(formatted, "**\\*foo** bar\\*");
     Ok(())
 }
 #[test]
@@ -4797,7 +4783,7 @@ fn test_example_387_md_prose_wrapalways_format_1_dd604838() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo **bar***")?;
-    assert_eq!(formatted, "\\\\*foo **bar\\\\***");
+    assert_eq!(formatted, "\\*foo **bar\\***");
     Ok(())
 }
 #[test]
@@ -4809,7 +4795,7 @@ fn test_example_388_md_prose_wrapalways_format_1_c584ffc3() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo**bar***")?;
-    assert_eq!(formatted, "\\\\*foo**bar\\\\***");
+    assert_eq!(formatted, "\\*foo**bar\\***");
     Ok(())
 }
 #[test]
@@ -4833,7 +4819,7 @@ fn test_example_391_md_prose_wrapalways_format_1_02330bb7() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("** is not an empty emphasis")?;
-    assert_eq!(formatted, "\\\\*\\\\* is not an empty emphasis");
+    assert_eq!(formatted, "\\*\\* is not an empty emphasis");
     Ok(())
 }
 #[test]
@@ -4845,10 +4831,7 @@ fn test_example_392_md_prose_wrapalways_format_1_0e03fac8() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**** is not an empty strong emphasis")?;
-    assert_eq!(
-        formatted,
-        "\\\\*\\\\*\\\\*\\\\* is not an empty strong emphasis"
-    );
+    assert_eq!(formatted, "\\*\\*\\*\\* is not an empty strong emphasis");
     Ok(())
 }
 #[test]
@@ -4908,7 +4891,7 @@ fn test_example_397_md_prose_wrapalways_format_1_b315d53a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____foo__ bar__")?;
-    assert_eq!(formatted, "\\\\_**\\\\_foo** bar\\\\_\\\\_");
+    assert_eq!(formatted, "\\_**\\_foo** bar\\_\\_");
     Ok(())
 }
 #[test]
@@ -4920,7 +4903,7 @@ fn test_example_398_md_prose_wrapalways_format_1_eb775d60() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo **bar****")?;
-    assert_eq!(formatted, "**foo **bar\\\\*\\\\*\\\\*\\\\*");
+    assert_eq!(formatted, "**foo **bar\\*\\*\\*\\*");
     Ok(())
 }
 #[test]
@@ -4980,7 +4963,7 @@ fn test_example_403_md_prose_wrapalways_format_1_cd99a74b() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo *bar **baz**\nbim* bop**")?;
-    assert_eq!(formatted, "**foo \\\\*bar **baz** bim\\\\* bop**");
+    assert_eq!(formatted, "**foo \\*bar **baz** bim\\* bop**");
     Ok(())
 }
 #[test]
@@ -5004,7 +4987,7 @@ fn test_example_405_md_prose_wrapalways_format_1_846c954a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__ is not an empty emphasis")?;
-    assert_eq!(formatted, "\\\\_\\\\_ is not an empty emphasis");
+    assert_eq!(formatted, "\\_\\_ is not an empty emphasis");
     Ok(())
 }
 #[test]
@@ -5016,10 +4999,7 @@ fn test_example_406_md_prose_wrapalways_format_1_41b7deae() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____ is not an empty strong emphasis")?;
-    assert_eq!(
-        formatted,
-        "\\\\_\\\\_\\\\_\\\\_ is not an empty strong emphasis"
-    );
+    assert_eq!(formatted, "\\_\\_\\_\\_ is not an empty strong emphasis");
     Ok(())
 }
 #[test]
@@ -5031,7 +5011,7 @@ fn test_example_407_md_prose_wrapalways_format_1_c160213a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo ***")?;
-    assert_eq!(formatted, "foo \\\\*\\\\*\\\\*");
+    assert_eq!(formatted, "foo \\*\\*\\*");
     Ok(())
 }
 #[test]
@@ -5042,8 +5022,8 @@ fn test_example_408_md_prose_wrapalways_format_1_d343a51c() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo *\\\\**")?;
-    assert_eq!(formatted, "foo \\\\*\\\\*\\\\*");
+    let formatted = pretty_printer.format("foo *\\**")?;
+    assert_eq!(formatted, "foo \\*\\*\\*");
     Ok(())
 }
 #[test]
@@ -5055,7 +5035,7 @@ fn test_example_410_md_prose_wrapalways_format_1_86332235() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo *****")?;
-    assert_eq!(formatted, "foo **\\\\***");
+    assert_eq!(formatted, "foo **\\***");
     Ok(())
 }
 #[test]
@@ -5066,8 +5046,8 @@ fn test_example_411_md_prose_wrapalways_format_1_c169d320() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo **\\\\***")?;
-    assert_eq!(formatted, "foo **\\\\***");
+    let formatted = pretty_printer.format("foo **\\***")?;
+    assert_eq!(formatted, "foo **\\***");
     Ok(())
 }
 #[test]
@@ -5079,7 +5059,7 @@ fn test_example_412_md_prose_wrapalways_format_1_9b63ffad() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo **_**")?;
-    assert_eq!(formatted, "foo **\\\\_**");
+    assert_eq!(formatted, "foo **\\_**");
     Ok(())
 }
 #[test]
@@ -5091,7 +5071,7 @@ fn test_example_413_md_prose_wrapalways_format_1_13b0bdc8() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo*")?;
-    assert_eq!(formatted, "\\\\*_foo_");
+    assert_eq!(formatted, "\\*_foo_");
     Ok(())
 }
 #[test]
@@ -5103,7 +5083,7 @@ fn test_example_414_md_prose_wrapalways_format_1_4ac8262a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo**")?;
-    assert_eq!(formatted, "\\\\*foo\\\\*\\\\*");
+    assert_eq!(formatted, "\\*foo\\*\\*");
     Ok(())
 }
 #[test]
@@ -5115,7 +5095,7 @@ fn test_example_415_md_prose_wrapalways_format_1_49326a2f() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("***foo**")?;
-    assert_eq!(formatted, "**\\\\*foo**");
+    assert_eq!(formatted, "**\\*foo**");
     Ok(())
 }
 #[test]
@@ -5127,7 +5107,7 @@ fn test_example_417_md_prose_wrapalways_format_1_d21dc790() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo***")?;
-    assert_eq!(formatted, "**foo\\\\***");
+    assert_eq!(formatted, "**foo\\***");
     Ok(())
 }
 #[test]
@@ -5139,7 +5119,7 @@ fn test_example_418_md_prose_wrapalways_format_1_4318bf8a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo****")?;
-    assert_eq!(formatted, "\\\\*foo\\\\*\\\\*\\\\*\\\\*");
+    assert_eq!(formatted, "\\*foo\\*\\*\\*\\*");
     Ok(())
 }
 #[test]
@@ -5151,7 +5131,7 @@ fn test_example_419_md_prose_wrapalways_format_1_53bb15e1() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo ___")?;
-    assert_eq!(formatted, "foo \\\\_\\\\_\\\\_");
+    assert_eq!(formatted, "foo \\_\\_\\_");
     Ok(())
 }
 #[test]
@@ -5162,8 +5142,8 @@ fn test_example_420_md_prose_wrapalways_format_1_d2f855a1() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo _\\\\__")?;
-    assert_eq!(formatted, "foo \\\\_\\\\_\\\\_");
+    let formatted = pretty_printer.format("foo _\\__")?;
+    assert_eq!(formatted, "foo \\_\\_\\_");
     Ok(())
 }
 #[test]
@@ -5175,7 +5155,7 @@ fn test_example_421_md_prose_wrapalways_format_1_baba90a0() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo _*_")?;
-    assert_eq!(formatted, "foo _\\\\*_");
+    assert_eq!(formatted, "foo _\\*_");
     Ok(())
 }
 #[test]
@@ -5187,7 +5167,7 @@ fn test_example_422_md_prose_wrapalways_format_1_a11aa384() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo _____")?;
-    assert_eq!(formatted, "foo **\\\\_**");
+    assert_eq!(formatted, "foo **\\_**");
     Ok(())
 }
 #[test]
@@ -5198,8 +5178,8 @@ fn test_example_423_md_prose_wrapalways_format_1_f49d6338() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo __\\\\___")?;
-    assert_eq!(formatted, "foo **\\\\_**");
+    let formatted = pretty_printer.format("foo __\\___")?;
+    assert_eq!(formatted, "foo **\\_**");
     Ok(())
 }
 #[test]
@@ -5211,7 +5191,7 @@ fn test_example_424_md_prose_wrapalways_format_1_fcddf6df() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("foo __*__")?;
-    assert_eq!(formatted, "foo **\\\\***");
+    assert_eq!(formatted, "foo **\\***");
     Ok(())
 }
 #[test]
@@ -5223,7 +5203,7 @@ fn test_example_425_md_prose_wrapalways_format_1_9c138e66() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo_")?;
-    assert_eq!(formatted, "\\\\__foo_");
+    assert_eq!(formatted, "\\__foo_");
     Ok(())
 }
 #[test]
@@ -5235,7 +5215,7 @@ fn test_example_426_md_prose_wrapalways_format_1_071f67fa() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo__")?;
-    assert_eq!(formatted, "\\\\_foo\\\\_\\\\_");
+    assert_eq!(formatted, "\\_foo\\_\\_");
     Ok(())
 }
 #[test]
@@ -5247,7 +5227,7 @@ fn test_example_427_md_prose_wrapalways_format_1_b1407bd4() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("___foo__")?;
-    assert_eq!(formatted, "**\\\\_foo**");
+    assert_eq!(formatted, "**\\_foo**");
     Ok(())
 }
 #[test]
@@ -5259,7 +5239,7 @@ fn test_example_428_md_prose_wrapalways_format_1_7e25d28a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____foo_")?;
-    assert_eq!(formatted, "\\\\__\\\\_\\\\_foo_");
+    assert_eq!(formatted, "\\__\\_\\_foo_");
     Ok(())
 }
 #[test]
@@ -5271,7 +5251,7 @@ fn test_example_429_md_prose_wrapalways_format_1_4ee66bcf() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("__foo___")?;
-    assert_eq!(formatted, "**foo\\\\_**");
+    assert_eq!(formatted, "**foo\\_**");
     Ok(())
 }
 #[test]
@@ -5283,7 +5263,7 @@ fn test_example_430_md_prose_wrapalways_format_1_ac34c57a() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_foo____")?;
-    assert_eq!(formatted, "\\\\_foo\\\\_\\\\_\\\\_\\\\_");
+    assert_eq!(formatted, "\\_foo\\_\\_\\_\\_");
     Ok(())
 }
 #[test]
@@ -5343,7 +5323,7 @@ fn test_example_435_md_prose_wrapalways_format_1_1d394616() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("****foo****")?;
-    assert_eq!(formatted, "\\\\***\\\\*foo\\\\*\\\\***");
+    assert_eq!(formatted, "\\***\\*foo\\*\\***");
     Ok(())
 }
 #[test]
@@ -5355,7 +5335,7 @@ fn test_example_436_md_prose_wrapalways_format_1_ae628fe6() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("____foo____")?;
-    assert_eq!(formatted, "\\\\_**\\\\_foo\\\\_\\\\_**");
+    assert_eq!(formatted, "\\_**\\_foo\\_\\_**");
     Ok(())
 }
 #[test]
@@ -5367,7 +5347,7 @@ fn test_example_437_md_prose_wrapalways_format_1_ff5567e1() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("******foo******")?;
-    assert_eq!(formatted, "**\\\\*\\\\***foo**\\\\*\\\\***");
+    assert_eq!(formatted, "**\\*\\***foo**\\*\\***");
     Ok(())
 }
 #[test]
@@ -5391,7 +5371,7 @@ fn test_example_439_md_prose_wrapalways_format_1_f12ef610() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_____foo_____")?;
-    assert_eq!(formatted, "**\\\\_**foo**\\\\_**");
+    assert_eq!(formatted, "**\\_**foo**\\_**");
     Ok(())
 }
 #[test]
@@ -5403,7 +5383,7 @@ fn test_example_440_md_prose_wrapalways_format_1_84283087() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo _bar* baz_")?;
-    assert_eq!(formatted, "_foo \\\\_bar_ baz\\\\_");
+    assert_eq!(formatted, "_foo \\_bar_ baz\\_");
     Ok(())
 }
 #[test]
@@ -5415,7 +5395,7 @@ fn test_example_441_md_prose_wrapalways_format_1_ac46b3cb() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo*bar**")?;
-    assert_eq!(formatted, "**foo\\\\*bar**");
+    assert_eq!(formatted, "**foo\\*bar**");
     Ok(())
 }
 #[test]
@@ -5427,7 +5407,7 @@ fn test_example_442_md_prose_wrapalways_format_1_180d65c7() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo __bar *baz bim__ bam*")?;
-    assert_eq!(formatted, "*foo \\\\_\\\\_bar *baz bim\\\\_\\\\_ bam\\\\*");
+    assert_eq!(formatted, "*foo \\_\\_bar *baz bim\\_\\_ bam\\*");
     Ok(())
 }
 #[test]
@@ -5439,7 +5419,7 @@ fn test_example_443_md_prose_wrapalways_format_1_89a48b68() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("**foo **bar baz**")?;
-    assert_eq!(formatted, "**foo **bar baz\\\\*\\\\*");
+    assert_eq!(formatted, "**foo **bar baz\\*\\*");
     Ok(())
 }
 #[test]
@@ -5451,7 +5431,7 @@ fn test_example_444_md_prose_wrapalways_format_1_86f44837() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("*foo *bar baz*")?;
-    assert_eq!(formatted, "*foo *bar baz\\\\*");
+    assert_eq!(formatted, "*foo *bar baz\\*");
     Ok(())
 }
 #[test]
@@ -5522,8 +5502,8 @@ fn test_example_450_md_prose_wrapalways_format_1_9aa68977() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("*a \\`*\\`*")?;
-    assert_eq!(formatted, "_a \\`_\\`\\\\*");
+    let formatted = pretty_printer.format("*a `*`*")?;
+    assert_eq!(formatted, "_a `_`\\*");
     Ok(())
 }
 #[test]
@@ -5534,8 +5514,8 @@ fn test_example_451_md_prose_wrapalways_format_1_9ce23543() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("_a \\`_\\`_")?;
-    assert_eq!(formatted, "_a \\`_\\`\\\\_");
+    let formatted = pretty_printer.format("_a `_`_")?;
+    assert_eq!(formatted, "_a `_`\\_");
     Ok(())
 }
 #[test]
@@ -5666,7 +5646,7 @@ fn test_example_462_md_prose_wrapalways_format_1_a6a6a876() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link](\\\\(foo\\\\))")?;
+    let formatted = pretty_printer.format("[link](\\(foo\\))")?;
     assert_eq!(formatted, "[link](<(foo)>)");
     Ok(())
 }
@@ -5702,7 +5682,7 @@ fn test_example_465_md_prose_wrapalways_format_1_e79cf989() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link](foo(and\\\\(bar\\\\)))")?;
+    let formatted = pretty_printer.format("[link](foo(and\\(bar\\)))")?;
     assert_eq!(formatted, "[link](<foo(and(bar))>)");
     Ok(())
 }
@@ -5726,7 +5706,7 @@ fn test_example_467_md_prose_wrapalways_format_1_25335ec2() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link](foo\\\\)\\\\:)")?;
+    let formatted = pretty_printer.format("[link](foo\\)\\:)")?;
     assert_eq!(formatted, "[link](<foo):>)");
     Ok(())
 }
@@ -5750,8 +5730,8 @@ fn test_example_469_md_prose_wrapalways_format_1_e6e6d268() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link](foo\\\\bar)")?;
-    assert_eq!(formatted, "[link](foo\\\\bar)");
+    let formatted = pretty_printer.format("[link](foo\\bar)")?;
+    assert_eq!(formatted, "[link](foo\\bar)");
     Ok(())
 }
 #[test]
@@ -5802,7 +5782,7 @@ fn test_example_473_md_prose_wrapalways_format_1_80eaec33() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link](/url \"title \\\\\"&quot;\")")?;
+    let formatted = pretty_printer.format("[link](/url \"title \\\"&quot;\")")?;
     assert_eq!(formatted, "[link](/url 'title \"\"')");
     Ok(())
 }
@@ -5898,8 +5878,8 @@ fn test_example_481_md_prose_wrapalways_format_1_9c0a05e5() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link \\\\[bar](/uri)")?;
-    assert_eq!(formatted, "[link \\\\[bar](/uri)");
+    let formatted = pretty_printer.format("[link \\[bar](/uri)")?;
+    assert_eq!(formatted, "[link \\[bar](/uri)");
     Ok(())
 }
 #[test]
@@ -5910,8 +5890,8 @@ fn test_example_482_md_prose_wrapalways_format_1_156d57e3() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link *foo **bar** \\`#\\`*](/uri)")?;
-    assert_eq!(formatted, "[link _foo **bar** \\`#\\`_](/uri)");
+    let formatted = pretty_printer.format("[link *foo **bar** `#`*](/uri)")?;
+    assert_eq!(formatted, "[link _foo **bar** `#`_](/uri)");
     Ok(())
 }
 #[test]
@@ -5983,7 +5963,7 @@ fn test_example_488_md_prose_wrapalways_format_1_2fac866f() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo *bar](baz*)")?;
-    assert_eq!(formatted, "[foo \\\\*bar](baz*)");
+    assert_eq!(formatted, "[foo \\*bar](baz*)");
     Ok(())
 }
 #[test]
@@ -6018,8 +5998,8 @@ fn test_example_491_md_prose_wrapalways_format_1_d865055c() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[foo\\`](/uri)\\`")?;
-    assert_eq!(formatted, "[foo\\`](/uri)\\`");
+    let formatted = pretty_printer.format("[foo`](/uri)`")?;
+    assert_eq!(formatted, "[foo`](/uri)`");
     Ok(())
 }
 #[test]
@@ -6066,8 +6046,8 @@ fn test_example_495_md_prose_wrapalways_format_1_ea448480() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link \\\\[bar][ref]\n\n[ref]: /uri")?;
-    assert_eq!(formatted, "[link \\\\[bar][ref]\n\n[ref]: /uri");
+    let formatted = pretty_printer.format("[link \\[bar][ref]\n\n[ref]: /uri")?;
+    assert_eq!(formatted, "[link \\[bar][ref]\n\n[ref]: /uri");
     Ok(())
 }
 #[test]
@@ -6078,11 +6058,8 @@ fn test_example_496_md_prose_wrapalways_format_1_16b4b490() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[link *foo **bar** \\`#\\`*][ref]\n\n[ref]: /uri")?;
-    assert_eq!(
-        formatted,
-        "[link _foo **bar** \\`#\\`_][ref]\n\n[ref]: /uri"
-    );
+    let formatted = pretty_printer.format("[link *foo **bar** `#`*][ref]\n\n[ref]: /uri")?;
+    assert_eq!(formatted, "[link _foo **bar** `#`_][ref]\n\n[ref]: /uri");
     Ok(())
 }
 #[test]
@@ -6142,7 +6119,7 @@ fn test_example_501_md_prose_wrapalways_format_1_148c1736() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("[foo *bar][ref]\n\n[ref]: /uri")?;
-    assert_eq!(formatted, "[foo \\\\*bar][ref]\n\n[ref]: /uri");
+    assert_eq!(formatted, "[foo \\*bar][ref]\n\n[ref]: /uri");
     Ok(())
 }
 #[test]
@@ -6165,8 +6142,8 @@ fn test_example_503_md_prose_wrapalways_format_1_d59849d2() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[foo\\`][ref]\\`\n\n[ref]: /uri")?;
-    assert_eq!(formatted, "[foo\\`][ref]\\`\n\n[ref]: /uri");
+    let formatted = pretty_printer.format("[foo`][ref]`\n\n[ref]: /uri")?;
+    assert_eq!(formatted, "[foo`][ref]`\n\n[ref]: /uri");
     Ok(())
 }
 #[test]
@@ -6269,8 +6246,8 @@ fn test_example_511_md_prose_wrapalways_format_1_532e16d6() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[bar][foo\\\\!]\n\n[foo!]: /url")?;
-    assert_eq!(formatted, "[bar][foo\\\\!]\n\n[foo!]: /url");
+    let formatted = pretty_printer.format("[bar][foo\\!]\n\n[foo!]: /url")?;
+    assert_eq!(formatted, "[bar][foo\\!]\n\n[foo!]: /url");
     Ok(())
 }
 #[test]
@@ -6317,8 +6294,8 @@ fn test_example_515_md_prose_wrapalways_format_1_a3639bb1() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[foo][ref\\\\[]\n\n[ref\\\\[]: /uri")?;
-    assert_eq!(formatted, "[foo][ref\\\\[]\n\n[ref\\\\[]: /uri");
+    let formatted = pretty_printer.format("[foo][ref\\[]\n\n[ref\\[]: /uri")?;
+    assert_eq!(formatted, "[foo][ref\\[]\n\n[ref\\[]: /uri");
     Ok(())
 }
 #[test]
@@ -6329,8 +6306,8 @@ fn test_example_516_md_prose_wrapalways_format_1_c7cc3f0e() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("[bar\\\\\\\\]: /uri\n\n[bar\\\\\\\\]")?;
-    assert_eq!(formatted, "[bar\\\\\\\\]: /uri\n\n[bar\\\\\\\\]");
+    let formatted = pretty_printer.format("[bar\\\\]: /uri\n\n[bar\\\\]")?;
+    assert_eq!(formatted, "[bar\\\\]: /uri\n\n[bar\\\\]");
     Ok(())
 }
 #[test]
@@ -6485,8 +6462,8 @@ fn test_example_529_md_prose_wrapalways_format_1_7a83dc15() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\[foo]\n\n[foo]: /url \"title\"")?;
-    assert_eq!(formatted, "\\\\[foo]\n\n[foo]: /url \"title\"");
+    let formatted = pretty_printer.format("\\[foo]\n\n[foo]: /url \"title\"")?;
+    assert_eq!(formatted, "\\[foo]\n\n[foo]: /url \"title\"");
     Ok(())
 }
 #[test]
@@ -6809,8 +6786,8 @@ fn test_example_555_md_prose_wrapalways_format_1_0e1004a8() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\!\\\\[foo]\n\n[foo]: /url \"title\"")?;
-    assert_eq!(formatted, "\\\\!\\\\[foo]\n\n[foo]: /url \"title\"");
+    let formatted = pretty_printer.format("\\!\\[foo]\n\n[foo]: /url \"title\"")?;
+    assert_eq!(formatted, "\\!\\[foo]\n\n[foo]: /url \"title\"");
     Ok(())
 }
 #[test]
@@ -6821,8 +6798,8 @@ fn test_example_556_md_prose_wrapalways_format_1_cb15089e() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\\\![foo]\n\n[foo]: /url \"title\"")?;
-    assert_eq!(formatted, "\\\\![foo]\n\n[foo]: /url \"title\"");
+    let formatted = pretty_printer.format("\\![foo]\n\n[foo]: /url \"title\"")?;
+    assert_eq!(formatted, "\\![foo]\n\n[foo]: /url \"title\"");
     Ok(())
 }
 #[test]
@@ -6941,8 +6918,8 @@ fn test_example_566_md_prose_wrapalways_format_1_b66c1a5a() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<http://example.com/\\\\[\\\\>")?;
-    assert_eq!(formatted, "<http://example.com/\\\\[\\\\>");
+    let formatted = pretty_printer.format("<http://example.com/\\[\\>")?;
+    assert_eq!(formatted, "<http://example.com/\\[\\>");
     Ok(())
 }
 #[test]
@@ -6977,8 +6954,8 @@ fn test_example_569_md_prose_wrapalways_format_1_dbc9dd0e() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<foo\\\\+@bar.example.com>")?;
-    assert_eq!(formatted, "<foo\\\\+@bar.example.com>");
+    let formatted = pretty_printer.format("<foo\\+@bar.example.com>")?;
+    assert_eq!(formatted, "<foo\\+@bar.example.com>");
     Ok(())
 }
 #[test]
@@ -7126,7 +7103,7 @@ fn test_example_581_md_prose_wrapalways_format_1_03773f2c() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<33> <__>")?;
-    assert_eq!(formatted, "<33> <\\\\_\\\\_>");
+    assert_eq!(formatted, "<33> <\\_\\_>");
     Ok(())
 }
 #[test]
@@ -7138,7 +7115,7 @@ fn test_example_582_md_prose_wrapalways_format_1_00c02070() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("<a h*#ref=\"hi\">")?;
-    assert_eq!(formatted, "<a h\\\\*#ref=\"hi\">");
+    assert_eq!(formatted, "<a h\\*#ref=\"hi\">");
     Ok(())
 }
 #[test]
@@ -7293,8 +7270,8 @@ fn test_example_595_md_prose_wrapalways_format_1_c565b477() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo <a href=\"\\\\*\">")?;
-    assert_eq!(formatted, "foo <a href=\"\\\\*\">");
+    let formatted = pretty_printer.format("foo <a href=\"\\*\">")?;
+    assert_eq!(formatted, "foo <a href=\"\\*\">");
     Ok(())
 }
 #[test]
@@ -7305,8 +7282,8 @@ fn test_example_596_md_prose_wrapalways_format_1_5b28bdac() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<a href=\"\\\\\"\">")?;
-    assert_eq!(formatted, "<a href=\"\\\\\"\">");
+    let formatted = pretty_printer.format("<a href=\"\\\"\">")?;
+    assert_eq!(formatted, "<a href=\"\\\"\">");
     Ok(())
 }
 #[test]
@@ -7329,8 +7306,8 @@ fn test_example_598_md_prose_wrapalways_format_1_7e8eaeae() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo\\\\\nbaz")?;
-    assert_eq!(formatted, "foo\\\\\nbaz");
+    let formatted = pretty_printer.format("foo\\\nbaz")?;
+    assert_eq!(formatted, "foo\\\nbaz");
     Ok(())
 }
 #[test]
@@ -7365,8 +7342,8 @@ fn test_example_601_md_prose_wrapalways_format_1_41c10565() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo\\\\\n     bar")?;
-    assert_eq!(formatted, "foo\\\\\n bar");
+    let formatted = pretty_printer.format("foo\\\n     bar")?;
+    assert_eq!(formatted, "foo\\\n bar");
     Ok(())
 }
 #[test]
@@ -7389,8 +7366,8 @@ fn test_example_603_md_prose_wrapalways_format_1_2b0592d3() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("*foo\\\\\nbar*")?;
-    assert_eq!(formatted, "_foo\\\\\nbar_");
+    let formatted = pretty_printer.format("*foo\\\nbar*")?;
+    assert_eq!(formatted, "_foo\\\nbar_");
     Ok(())
 }
 #[test]
@@ -7401,8 +7378,8 @@ fn test_example_604_md_prose_wrapalways_format_1_6e2e55a4() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`code  \nspan\\`")?;
-    assert_eq!(formatted, "\\`code   span\\`");
+    let formatted = pretty_printer.format("`code  \nspan`")?;
+    assert_eq!(formatted, "`code   span`");
     Ok(())
 }
 #[test]
@@ -7413,8 +7390,8 @@ fn test_example_605_md_prose_wrapalways_format_1_43bcf31a() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\\`code\\\\\nspan\\`")?;
-    assert_eq!(formatted, "\\`code\\\\ span\\`");
+    let formatted = pretty_printer.format("`code\\\nspan`")?;
+    assert_eq!(formatted, "`code\\ span`");
     Ok(())
 }
 #[test]
@@ -7437,8 +7414,8 @@ fn test_example_607_md_prose_wrapalways_format_1_d37da033() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("<a href=\"foo\\\\\nbar\">")?;
-    assert_eq!(formatted, "<a href=\"foo\\\\\nbar\">");
+    let formatted = pretty_printer.format("<a href=\"foo\\\nbar\">")?;
+    assert_eq!(formatted, "<a href=\"foo\\\nbar\">");
     Ok(())
 }
 #[test]
@@ -7449,8 +7426,8 @@ fn test_example_608_md_prose_wrapalways_format_1_80b9eafa() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("foo\\\\")?;
-    assert_eq!(formatted, "foo\\\\");
+    let formatted = pretty_printer.format("foo\\")?;
+    assert_eq!(formatted, "foo\\");
     Ok(())
 }
 #[test]
@@ -7473,8 +7450,8 @@ fn test_example_610_md_prose_wrapalways_format_1_9f62088d() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("### foo\\\\")?;
-    assert_eq!(formatted, "### foo\\\\");
+    let formatted = pretty_printer.format("### foo\\")?;
+    assert_eq!(formatted, "### foo\\");
     Ok(())
 }
 #[test]

@@ -246,8 +246,8 @@ fn test_valid_await_expr_using_js_format_1_7040eb3d() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("async function f() {\n  await using[x];\n  await using.x + await using(x) ? await using?.x : await using\\`x\\`;\n}") ? ;
-    assert_eq ! (formatted , "async function f() {\n  await using[x];\n  (await using.x) + (await using(x)) ? await using?.x : await using\\`x\\`;\n}");
+    let formatted = pretty_printer . format ("async function f() {\n  await using[x];\n  await using.x + await using(x) ? await using?.x : await using`x`;\n}") ? ;
+    assert_eq ! (formatted , "async function f() {\n  await using[x];\n  (await using.x) + (await using(x)) ? await using?.x : await using`x`;\n}");
     Ok(())
 }
 #[test]
@@ -397,7 +397,7 @@ fn test_valid_await_using_binding_escaped_js_format_1_33e19708() -> Result<()> {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("async function f() {\n  await using \\\\u0061b = c;\n}")?;
+        pretty_printer.format("async function f() {\n  await using \\u0061b = c;\n}")?;
     assert_eq!(formatted, "async function f() {\n  await using ab = c;\n}");
     Ok(())
 }
@@ -580,10 +580,10 @@ fn test_valid_for_await_using_binding_escaped_of_of_js_format_1_e63ed930() -> Re
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("// TODO: Fix this test\n// for await (using \\\\u006ff of of);")?;
+        pretty_printer.format("// TODO: Fix this test\n// for await (using \\u006ff of of);")?;
     assert_eq!(
         formatted,
-        "// TODO: Fix this test\n// for await (using \\\\u006ff of of);"
+        "// TODO: Fix this test\n// for await (using \\u006ff of of);"
     );
     Ok(())
 }
@@ -595,10 +595,10 @@ fn test_valid_for_using_binding_escaped_of_of_js_format_1_90ae51b3() -> Result<(
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("// TODO: Fix this test\n// for (using o\\\\u0066 of of);")?;
+        pretty_printer.format("// TODO: Fix this test\n// for (using o\\u0066 of of);")?;
     assert_eq!(
         formatted,
-        "// TODO: Fix this test\n// for (using o\\\\u0066 of of);"
+        "// TODO: Fix this test\n// for (using o\\u0066 of of);"
     );
     Ok(())
 }
@@ -907,8 +907,8 @@ fn test_valid_using_as_identifier_for_in_js_format_1_01450c8a() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("for (using in []);\nfor (using.foo in []);\nfor (using().foo in []);\nfor (using\\`\\`.foo in []);") ? ;
-    assert_eq ! (formatted , "for (using in []);\nfor (using.foo in []);\nfor (using().foo in []);\nfor (using\\`\\`.foo in []);");
+    let formatted = pretty_printer . format ("for (using in []);\nfor (using.foo in []);\nfor (using().foo in []);\nfor (using``.foo in []);") ? ;
+    assert_eq ! (formatted , "for (using in []);\nfor (using.foo in []);\nfor (using().foo in []);\nfor (using``.foo in []);");
     Ok(())
 }
 #[test]
@@ -929,8 +929,8 @@ fn test_valid_using_as_identifier_for_of_js_format_1_e09ad90f() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("for (using of of);\nfor (using.foo of of);\nfor (using().foo of of);\nfor (using\\`\\`.foo of of);") ? ;
-    assert_eq ! (formatted , "for (using of of);\nfor (using.foo of of);\nfor (using().foo of of);\nfor (using\\`\\`.foo of of);");
+    let formatted = pretty_printer . format ("for (using of of);\nfor (using.foo of of);\nfor (using().foo of of);\nfor (using``.foo of of);") ? ;
+    assert_eq ! (formatted , "for (using of of);\nfor (using.foo of of);\nfor (using().foo of of);\nfor (using``.foo of of);");
     Ok(())
 }
 #[test]
@@ -1042,7 +1042,7 @@ fn test_valid_using_binding_escaped_js_format_1_3fb3ac75() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("{ using \\\\u0061b = c; }")?;
+    let formatted = pretty_printer.format("{ using \\u0061b = c; }")?;
     assert_eq!(formatted, "{\n  using ab = c;\n}");
     Ok(())
 }

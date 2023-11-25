@@ -80,8 +80,8 @@ fn test_test_js_format_1_ce890b42() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("/[/]\\\\/\\\\u0aBc/mgi;")?;
-    assert_eq!(formatted, "/[/]\\\\/\\\\u0aBc/gim;");
+    let formatted = pretty_printer.format("/[/]\\/\\u0aBc/mgi;")?;
+    assert_eq!(formatted, "/[/]\\/\\u0aBc/gim;");
     Ok(())
 }
 #[test]

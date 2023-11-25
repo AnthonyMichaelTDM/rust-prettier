@@ -24,8 +24,8 @@ fn test_call_with_template_js_format_1_81cc5902() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const result = template(\\`\n  if (SOME_VAR === \"\") {}\n\\`)({\n  SOME_VAR: value,\n});\n\nconst output =\n template(\\`function f() %%A%%\\`)({\n   A: t.blockStatement([]),\n });") ? ;
-    assert_eq ! (formatted , "const result = template(\\`\n  if (SOME_VAR === \"\") {}\n\\`)({\n  SOME_VAR: value,\n});\n\nconst output = template(\\`function f() %%A%%\\`)({\n  A: t.blockStatement([]),\n});");
+    let formatted = pretty_printer . format ("const result = template(`\n  if (SOME_VAR === \"\") {}\n`)({\n  SOME_VAR: value,\n});\n\nconst output =\n template(`function f() %%A%%`)({\n   A: t.blockStatement([]),\n });") ? ;
+    assert_eq ! (formatted , "const result = template(`\n  if (SOME_VAR === \"\") {}\n`)({\n  SOME_VAR: value,\n});\n\nconst output = template(`function f() %%A%%`)({\n  A: t.blockStatement([]),\n});");
     Ok(())
 }
 #[test]
@@ -156,8 +156,8 @@ fn test_issue_2540_js_format_1_3d7eb43e() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("manifestCache[templateId] = readFileSync(\\`\\${MANIFESTS_PATH}/\\${templateId}.json\\`, { encoding: 'utf-8' });") ? ;
-    assert_eq ! (formatted , "manifestCache[templateId] = readFileSync(\n  \\`\\${MANIFESTS_PATH}/\\${templateId}.json\\`,\n  { encoding: \"utf-8\" },\n);");
+    let formatted = pretty_printer . format ("manifestCache[templateId] = readFileSync(`${MANIFESTS_PATH}/${templateId}.json`, { encoding: 'utf-8' });") ? ;
+    assert_eq ! (formatted , "manifestCache[templateId] = readFileSync(\n  `${MANIFESTS_PATH}/${templateId}.json`,\n  { encoding: \"utf-8\" },\n);");
     Ok(())
 }
 #[test]
@@ -200,8 +200,8 @@ fn test_issue_6922_js_format_1_530552df() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("async function f() {\n  const { data, status } = await request.delete(\n    \\`/account/\\${accountId}/documents/\\${type}/\\${documentNumber}\\`,\n    { validateStatus: () => true }\n  );\n  return { data, status };\n}\n\nconst data1 = request.delete(\n  '----------------------------------------------',\n  { validateStatus: () => true }\n);\n\nconst data2 = request.delete(\n  '----------------------------------------------x',\n  { validateStatus: () => true }\n);\n\nconst data3 = request.delete(\n  '----------------------------------------------xx',\n  { validateStatus: () => true }\n);\n\nconst data4 = request.delete(\n  '----------------------------------------------xxx',\n  { validateStatus: () => true }\n);") ? ;
-    assert_eq ! (formatted , "async function f() {\n  const { data, status } = await request.delete(\n    \\`/account/\\${accountId}/documents/\\${type}/\\${documentNumber}\\`,\n    { validateStatus: () => true },\n  );\n  return { data, status };\n}\n\nconst data1 = request.delete(\"----------------------------------------------\", {\n  validateStatus: () => true,\n});\n\nconst data2 = request.delete(\n  \"----------------------------------------------x\",\n  { validateStatus: () => true },\n);\n\nconst data3 = request.delete(\n  \"----------------------------------------------xx\",\n  { validateStatus: () => true },\n);\n\nconst data4 = request.delete(\n  \"----------------------------------------------xxx\",\n  { validateStatus: () => true },\n);");
+    let formatted = pretty_printer . format ("async function f() {\n  const { data, status } = await request.delete(\n    `/account/${accountId}/documents/${type}/${documentNumber}`,\n    { validateStatus: () => true }\n  );\n  return { data, status };\n}\n\nconst data1 = request.delete(\n  '----------------------------------------------',\n  { validateStatus: () => true }\n);\n\nconst data2 = request.delete(\n  '----------------------------------------------x',\n  { validateStatus: () => true }\n);\n\nconst data3 = request.delete(\n  '----------------------------------------------xx',\n  { validateStatus: () => true }\n);\n\nconst data4 = request.delete(\n  '----------------------------------------------xxx',\n  { validateStatus: () => true }\n);") ? ;
+    assert_eq ! (formatted , "async function f() {\n  const { data, status } = await request.delete(\n    `/account/${accountId}/documents/${type}/${documentNumber}`,\n    { validateStatus: () => true },\n  );\n  return { data, status };\n}\n\nconst data1 = request.delete(\"----------------------------------------------\", {\n  validateStatus: () => true,\n});\n\nconst data2 = request.delete(\n  \"----------------------------------------------x\",\n  { validateStatus: () => true },\n);\n\nconst data3 = request.delete(\n  \"----------------------------------------------xx\",\n  { validateStatus: () => true },\n);\n\nconst data4 = request.delete(\n  \"----------------------------------------------xxx\",\n  { validateStatus: () => true },\n);");
     Ok(())
 }
 #[test]
@@ -271,8 +271,8 @@ fn test_issue_15534_js_format_1_33f190cf() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("params[\"redirectTo\"] = \\`\\${window.location.pathname}\\${window.location.search}\\${window.location.hash}\\`;\n\nparams[\"redirectTo\"][\"codePointAt\"][\"name\"] =\n  \\`\\${window.location.pathname}\\${window.location.search}\\${window.location.hash}\\`;\n\nparams.redirectTo.bar.bar.ba.barab[\"foo\"].abr =\n  \\`\\${window.location.pathname}\\${window.location.search}\\${window.location.hash}\\`;") ? ;
-    assert_eq ! (formatted , "params[\"redirectTo\"] =\n  \\`\\${window.location.pathname}\\${window.location.search}\\${window.location.hash}\\`;\n\nparams[\"redirectTo\"][\"codePointAt\"][\"name\"] =\n  \\`\\${window.location.pathname}\\${window.location.search}\\${window.location.hash}\\`;\n\nparams.redirectTo.bar.bar.ba.barab[\"foo\"].abr =\n  \\`\\${window.location.pathname}\\${window.location.search}\\${window.location.hash}\\`;");
+    let formatted = pretty_printer . format ("params[\"redirectTo\"] = `${window.location.pathname}${window.location.search}${window.location.hash}`;\n\nparams[\"redirectTo\"][\"codePointAt\"][\"name\"] =\n  `${window.location.pathname}${window.location.search}${window.location.hash}`;\n\nparams.redirectTo.bar.bar.ba.barab[\"foo\"].abr =\n  `${window.location.pathname}${window.location.search}${window.location.hash}`;") ? ;
+    assert_eq ! (formatted , "params[\"redirectTo\"] =\n  `${window.location.pathname}${window.location.search}${window.location.hash}`;\n\nparams[\"redirectTo\"][\"codePointAt\"][\"name\"] =\n  `${window.location.pathname}${window.location.search}${window.location.hash}`;\n\nparams.redirectTo.bar.bar.ba.barab[\"foo\"].abr =\n  `${window.location.pathname}${window.location.search}${window.location.hash}`;");
     Ok(())
 }
 #[test]
@@ -282,8 +282,8 @@ fn test_lone_arg_js_format_1_e822fdaf() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("let vgChannel = pointPositionDefaultRef({\n  model,\n  defaultPos,\n  channel,\n})()\n\nlet vgChannel2 = pointPositionDefaultRef({ model,\n  defaultPos,\n  channel,\n})()\n\nconst bifornCringerMoshedPerplexSawderGlyphsHa =\n  someBigFunctionName(\"foo\")(\"bar\");\n\nif (true) {\n  node.id = this.flowParseTypeAnnotatableIdentifier(/*allowPrimitiveOverride*/ true);\n}\n\nconst bifornCringerMoshedPerplexSawderGlyphsHb = someBigFunctionName(\\`foo\n\\`)(\"bar\");") ? ;
-    assert_eq ! (formatted , "let vgChannel = pointPositionDefaultRef({\n  model,\n  defaultPos,\n  channel,\n})();\n\nlet vgChannel2 = pointPositionDefaultRef({ model, defaultPos, channel })();\n\nconst bifornCringerMoshedPerplexSawderGlyphsHa =\n  someBigFunctionName(\"foo\")(\"bar\");\n\nif (true) {\n  node.id = this.flowParseTypeAnnotatableIdentifier(\n    /*allowPrimitiveOverride*/ true,\n  );\n}\n\nconst bifornCringerMoshedPerplexSawderGlyphsHb = someBigFunctionName(\\`foo\n\\`)(\"bar\");");
+    let formatted = pretty_printer . format ("let vgChannel = pointPositionDefaultRef({\n  model,\n  defaultPos,\n  channel,\n})()\n\nlet vgChannel2 = pointPositionDefaultRef({ model,\n  defaultPos,\n  channel,\n})()\n\nconst bifornCringerMoshedPerplexSawderGlyphsHa =\n  someBigFunctionName(\"foo\")(\"bar\");\n\nif (true) {\n  node.id = this.flowParseTypeAnnotatableIdentifier(/*allowPrimitiveOverride*/ true);\n}\n\nconst bifornCringerMoshedPerplexSawderGlyphsHb = someBigFunctionName(`foo\n`)(\"bar\");") ? ;
+    assert_eq ! (formatted , "let vgChannel = pointPositionDefaultRef({\n  model,\n  defaultPos,\n  channel,\n})();\n\nlet vgChannel2 = pointPositionDefaultRef({ model, defaultPos, channel })();\n\nconst bifornCringerMoshedPerplexSawderGlyphsHa =\n  someBigFunctionName(\"foo\")(\"bar\");\n\nif (true) {\n  node.id = this.flowParseTypeAnnotatableIdentifier(\n    /*allowPrimitiveOverride*/ true,\n  );\n}\n\nconst bifornCringerMoshedPerplexSawderGlyphsHb = someBigFunctionName(`foo\n`)(\"bar\");");
     Ok(())
 }
 #[test]

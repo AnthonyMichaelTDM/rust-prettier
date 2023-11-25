@@ -46,8 +46,8 @@ fn test_not_react_ts_format_1_45f4b7ec() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/// <reference types=\"node\" />\n\ntype ul = any;\nconst somethingElse = 1;\nconst thing = <ul>somethingElse;\nconst div = \"<div></div>\";\nconst h1 = \\`<h1>Hi</h1>\\`;\nconst footer = '<footer></footer>';") ? ;
-    assert_eq ! (formatted , "/// <reference types=\"node\" />\n\ntype ul = any;\nconst somethingElse = 1;\nconst thing = <ul>somethingElse;\nconst div = \"<div></div>\";\nconst h1 = \\`<h1>Hi</h1>\\`;\nconst footer = \"<footer></footer>\";");
+    let formatted = pretty_printer . format ("/// <reference types=\"node\" />\n\ntype ul = any;\nconst somethingElse = 1;\nconst thing = <ul>somethingElse;\nconst div = \"<div></div>\";\nconst h1 = `<h1>Hi</h1>`;\nconst footer = '<footer></footer>';") ? ;
+    assert_eq ! (formatted , "/// <reference types=\"node\" />\n\ntype ul = any;\nconst somethingElse = 1;\nconst thing = <ul>somethingElse;\nconst div = \"<div></div>\";\nconst h1 = `<h1>Hi</h1>`;\nconst footer = \"<footer></footer>\";");
     Ok(())
 }
 #[test]

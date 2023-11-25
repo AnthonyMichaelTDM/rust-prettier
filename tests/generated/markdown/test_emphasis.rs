@@ -42,8 +42,8 @@ fn test_special_md_prose_wrapalways_format_1_b78ef1d8() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("0*1*2\n\n!*1*2\n\n0*1*!\n\n!*1*!\n\n0*1*2\n\n！*1*2\n\n0*1*！\n\n！*1*！\n\n0_1_2\n\n!_1_2\n\n0_1_! <!-- remark-misparsing, should be formatted as \\`0_1\\\\_!\\` -->\n\n!_1_!\n\n0_1_2\n\n！_1_2\n\n0_1_！ <!-- remark-misparsing, should be formatted as \\`0_1\\\\_！\\` -->\n\n！_1_！") ? ;
-    assert_eq ! (formatted , "0*1*2\n\n!*1*2\n\n0*1*!\n\n!_1_!\n\n0*1*2\n\n！*1*2\n\n0*1*！\n\n！_1_！\n\n0_1_2\n\n!\\\\_1_2\n\n0*1*! <!-- remark-misparsing, should be formatted as \\`0_1\\\\_!\\` -->\n\n!_1_!\n\n0_1_2\n\n！\\\\_1_2\n\n0*1*！ <!-- remark-misparsing, should be formatted as \\`0_1\\\\_！\\` -->\n\n！_1_！");
+    let formatted = pretty_printer . format ("0*1*2\n\n!*1*2\n\n0*1*!\n\n!*1*!\n\n0*1*2\n\n！*1*2\n\n0*1*！\n\n！*1*！\n\n0_1_2\n\n!_1_2\n\n0_1_! <!-- remark-misparsing, should be formatted as `0_1\\_!` -->\n\n!_1_!\n\n0_1_2\n\n！_1_2\n\n0_1_！ <!-- remark-misparsing, should be formatted as `0_1\\_！` -->\n\n！_1_！") ? ;
+    assert_eq ! (formatted , "0*1*2\n\n!*1*2\n\n0*1*!\n\n!_1_!\n\n0*1*2\n\n！*1*2\n\n0*1*！\n\n！_1_！\n\n0_1_2\n\n!\\_1_2\n\n0*1*! <!-- remark-misparsing, should be formatted as `0_1\\_!` -->\n\n!_1_!\n\n0_1_2\n\n！\\_1_2\n\n0*1*！ <!-- remark-misparsing, should be formatted as `0_1\\_！` -->\n\n！_1_！");
     Ok(())
 }
 #[test]

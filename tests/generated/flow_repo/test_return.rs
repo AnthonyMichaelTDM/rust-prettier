@@ -24,7 +24,7 @@ fn test_void_js_format_1_fc2be1f7() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* This is a regression test. At one point we incorrectly inferred the return\n   type of functions that have an explicit \\`undefined\\` to be only \\`undefined\\` --\n   ignoring other possible exits. */\nfunction f(b) {\n  if (b) {\n    return undefined;\n  } else {\n    return \"nope\";\n  }\n}\n\n(f(true): void); // error: string ~> void") ? ;
-    assert_eq ! (formatted , "/* This is a regression test. At one point we incorrectly inferred the return\n   type of functions that have an explicit \\`undefined\\` to be only \\`undefined\\` --\n   ignoring other possible exits. */\nfunction f(b) {\n  if (b) {\n    return undefined;\n  } else {\n    return \"nope\";\n  }\n}\n\n(f(true): void); // error: string ~> void");
+    let formatted = pretty_printer . format ("/* This is a regression test. At one point we incorrectly inferred the return\n   type of functions that have an explicit `undefined` to be only `undefined` --\n   ignoring other possible exits. */\nfunction f(b) {\n  if (b) {\n    return undefined;\n  } else {\n    return \"nope\";\n  }\n}\n\n(f(true): void); // error: string ~> void") ? ;
+    assert_eq ! (formatted , "/* This is a regression test. At one point we incorrectly inferred the return\n   type of functions that have an explicit `undefined` to be only `undefined` --\n   ignoring other possible exits. */\nfunction f(b) {\n  if (b) {\n    return undefined;\n  } else {\n    return \"nope\";\n  }\n}\n\n(f(true): void); // error: string ~> void");
     Ok(())
 }

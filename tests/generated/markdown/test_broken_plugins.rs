@@ -13,10 +13,11 @@ fn test_missing_comments_md_format_1_dd29e688() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("\\`\\`\\`\\`\\`\\`missing-comments\n        This should not be replaced.\n\\`\\`\\`\\`\\`\\`") ? ;
+    let formatted = pretty_printer
+        .format("``````missing-comments\n        This should not be replaced.\n``````")?;
     assert_eq!(
         formatted,
-        "\\`\\`\\`missing-comments\n        This should not be replaced.\n\\`\\`\\`"
+        "```missing-comments\n        This should not be replaced.\n```"
     );
     Ok(())
 }

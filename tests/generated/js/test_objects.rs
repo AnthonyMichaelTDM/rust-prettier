@@ -37,8 +37,8 @@ fn test_escape_sequence_key_js_format_1_517e89a7() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// #6235\nconst a = {\n  '\\\\u2139': 'why \"\\\\\\\\u2139\" is converted to \"i\"?',\n};\n\nconst b = {\n  \"\\\\x66\\\\x69\\\\x73\\\\x6b\\\\x65\\\\x72\": \"\\\\x66\\\\x69\\\\x73\\\\x6b\\\\x65\\\\x72\",\n};") ? ;
-    assert_eq ! (formatted , "// #6235\nconst a = {\n  \"\\\\u2139\": 'why \"\\\\\\\\u2139\" is converted to \"i\"?',\n};\n\nconst b = {\n  \"\\\\x66\\\\x69\\\\x73\\\\x6b\\\\x65\\\\x72\": \"\\\\x66\\\\x69\\\\x73\\\\x6b\\\\x65\\\\x72\",\n};");
+    let formatted = pretty_printer . format ("// #6235\nconst a = {\n  '\\u2139': 'why \"\\\\u2139\" is converted to \"i\"?',\n};\n\nconst b = {\n  \"\\x66\\x69\\x73\\x6b\\x65\\x72\": \"\\x66\\x69\\x73\\x6b\\x65\\x72\",\n};") ? ;
+    assert_eq ! (formatted , "// #6235\nconst a = {\n  \"\\u2139\": 'why \"\\\\u2139\" is converted to \"i\"?',\n};\n\nconst b = {\n  \"\\x66\\x69\\x73\\x6b\\x65\\x72\": \"\\x66\\x69\\x73\\x6b\\x65\\x72\",\n};");
     Ok(())
 }
 #[test]
@@ -109,8 +109,8 @@ fn test_expression_js_format_1_12f29dd7() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("() => ({}\\`\\`);\n({})\\`\\`;\na = () => ({}).x;\n({} && a, b);\n({}::b, 0);\n({}::b()\\`\\`[''].c++ && 0 ? 0 : 0, 0);\n({}(), 0);\n({} = 0);\n(({} = 0), 1);\n\nconst a1 = {\n  someKey:\n    (shortName, shortName)\n};\n\nconst a2 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName, shortName)\n};\n\nconst a3 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName, longLongLongLongLongLongLongLongLongLongLongLongLongLongName, longLongLongLongLongLongLongLongLongLongLongLongLongLongName)\n};") ? ;
-    assert_eq ! (formatted , "() => ({})\\`\\`;\n({})\\`\\`;\na = () => ({}).x;\n({}) && a, b;\n({})::b, 0;\n({})::b()\\`\\`[\"\"].c++ && 0 ? 0 : 0, 0;\n({})(), 0;\n({} = 0);\n({} = 0), 1;\n\nconst a1 = {\n  someKey: (shortName, shortName),\n};\n\nconst a2 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName, shortName),\n};\n\nconst a3 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName,\n    longLongLongLongLongLongLongLongLongLongLongLongLongLongName,\n    longLongLongLongLongLongLongLongLongLongLongLongLongLongName),\n};");
+    let formatted = pretty_printer . format ("() => ({}``);\n({})``;\na = () => ({}).x;\n({} && a, b);\n({}::b, 0);\n({}::b()``[''].c++ && 0 ? 0 : 0, 0);\n({}(), 0);\n({} = 0);\n(({} = 0), 1);\n\nconst a1 = {\n  someKey:\n    (shortName, shortName)\n};\n\nconst a2 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName, shortName)\n};\n\nconst a3 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName, longLongLongLongLongLongLongLongLongLongLongLongLongLongName, longLongLongLongLongLongLongLongLongLongLongLongLongLongName)\n};") ? ;
+    assert_eq ! (formatted , "() => ({})``;\n({})``;\na = () => ({}).x;\n({}) && a, b;\n({})::b, 0;\n({})::b()``[\"\"].c++ && 0 ? 0 : 0, 0;\n({})(), 0;\n({} = 0);\n({} = 0), 1;\n\nconst a1 = {\n  someKey: (shortName, shortName),\n};\n\nconst a2 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName, shortName),\n};\n\nconst a3 = {\n  someKey:\n    (longLongLongLongLongLongLongLongLongLongLongLongLongLongName,\n    longLongLongLongLongLongLongLongLongLongLongLongLongLongName,\n    longLongLongLongLongLongLongLongLongLongLongLongLongLongName),\n};");
     Ok(())
 }
 #[test]

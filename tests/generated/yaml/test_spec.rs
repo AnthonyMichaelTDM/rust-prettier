@@ -86,8 +86,8 @@ fn test_allowed_characters_in_keys_yml_prose_wrapalways_format_1_d9c6c095() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment") ? ;
-    assert_eq ! (formatted , "a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment");
+    let formatted = pretty_printer . format ("a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment") ? ;
+    assert_eq ! (formatted , "a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment");
     Ok(())
 }
 #[test]
@@ -98,8 +98,8 @@ fn test_allowed_characters_in_keys_yml_use_tabstrue_format_1_d9c6c095() -> Resul
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment") ? ;
-    assert_eq ! (formatted , "a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment");
+    let formatted = pretty_printer . format ("a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment") ? ;
+    assert_eq ! (formatted , "a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~: safe\n?foo: safe question mark\n:foo: safe colon\n-foo: safe dash\nthis is#not: a comment");
     Ok(())
 }
 #[test]
@@ -110,8 +110,8 @@ fn test_allowed_characters_in_plain_scalars_yml_prose_wrapalways_format_1_8c3a11
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("safe: a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\n     !\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo") ? ;
-    assert_eq ! (formatted , "safe:\n  a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~ !\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo");
+    let formatted = pretty_printer . format ("safe: a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\n     !\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo") ? ;
+    assert_eq ! (formatted , "safe:\n  a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~ !\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo");
     Ok(())
 }
 #[test]
@@ -122,8 +122,8 @@ fn test_allowed_characters_in_plain_scalars_yml_use_tabstrue_format_1_8c3a1111()
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("safe: a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\n     !\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo") ? ;
-    assert_eq ! (formatted , "safe: a!\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\n  !\"#$%&'()*+,-./09:;<=>?@AZ[\\\\]^_\\`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo");
+    let formatted = pretty_printer . format ("safe: a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\n     !\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo") ? ;
+    assert_eq ! (formatted , "safe: a!\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\n  !\"#$%&'()*+,-./09:;<=>?@AZ[\\]^_`az{|}~\nsafe question mark: ?foo\nsafe colon: :foo\nsafe dash: -foo");
     Ok(())
 }
 #[test]
@@ -136,10 +136,10 @@ fn test_allowed_characters_in_quoted_mapping_key_yml_prose_wrapalways_format_1_9
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("\"foo\\\\nbar:baz\\\\tx \\\\\\\\$%^&*()x\": 23\n'x\\\\ny:z\\\\tx $%^&*()x': 24")?;
+        .format("\"foo\\nbar:baz\\tx \\\\$%^&*()x\": 23\n'x\\ny:z\\tx $%^&*()x': 24")?;
     assert_eq!(
         formatted,
-        "\"foo\\\\nbar:baz\\\\tx \\\\\\\\$%^&*()x\": 23\n'x\\\\ny:z\\\\tx $%^&*()x': 24"
+        "\"foo\\nbar:baz\\tx \\\\$%^&*()x\": 23\n'x\\ny:z\\tx $%^&*()x': 24"
     );
     Ok(())
 }
@@ -153,10 +153,10 @@ fn test_allowed_characters_in_quoted_mapping_key_yml_use_tabstrue_format_1_9c39f
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("\"foo\\\\nbar:baz\\\\tx \\\\\\\\$%^&*()x\": 23\n'x\\\\ny:z\\\\tx $%^&*()x': 24")?;
+        .format("\"foo\\nbar:baz\\tx \\\\$%^&*()x\": 23\n'x\\ny:z\\tx $%^&*()x': 24")?;
     assert_eq!(
         formatted,
-        "\"foo\\\\nbar:baz\\\\tx \\\\\\\\$%^&*()x\": 23\n'x\\\\ny:z\\\\tx $%^&*()x': 24"
+        "\"foo\\nbar:baz\\tx \\\\$%^&*()x\": 23\n'x\\ny:z\\tx $%^&*()x': 24"
     );
     Ok(())
 }
@@ -289,8 +289,8 @@ fn test_backslashes_in_singlequotes_yml_prose_wrapalways_format_1_6d3047ac() -> 
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("'foo: bar\\\\': baz'")?;
-    assert_eq!(formatted, "'foo: bar\\\\': baz'");
+    let formatted = pretty_printer.format("'foo: bar\\': baz'")?;
+    assert_eq!(formatted, "'foo: bar\\': baz'");
     Ok(())
 }
 #[test]
@@ -301,8 +301,8 @@ fn test_backslashes_in_singlequotes_yml_use_tabstrue_format_1_6d3047ac() -> Resu
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("'foo: bar\\\\': baz'")?;
-    assert_eq!(formatted, "'foo: bar\\\\': baz'");
+    let formatted = pretty_printer.format("'foo: bar\\': baz'")?;
+    assert_eq!(formatted, "'foo: bar\\': baz'");
     Ok(())
 }
 #[test]
@@ -595,7 +595,7 @@ fn test_colon_in_double_quoted_string_yml_prose_wrapalways_format_1_d3c52967() -
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\"foo: bar\\\\\": baz\"")?;
+    let formatted = pretty_printer.format("\"foo: bar\\\": baz\"")?;
     assert_eq!(formatted, "'foo: bar\": baz'");
     Ok(())
 }
@@ -607,7 +607,7 @@ fn test_colon_in_double_quoted_string_yml_use_tabstrue_format_1_d3c52967() -> Re
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("\"foo: bar\\\\\": baz\"")?;
+    let formatted = pretty_printer.format("\"foo: bar\\\": baz\"")?;
     assert_eq!(formatted, "'foo: bar\": baz'");
     Ok(())
 }
@@ -644,8 +644,8 @@ fn test_construct_binary_yml_prose_wrapalways_format_1_c880ae44() -> Result<()> 
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("canonical: !!binary \"\\\\\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\\\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\\\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\\\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription:\n The binary value above is a tiny arrow encoded as a gif image.") ? ;
-    assert_eq ! (formatted , "canonical: !!binary \"\\\\\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\\\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\\\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\\\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription: The binary value above is a tiny arrow encoded as a gif image.");
+    let formatted = pretty_printer . format ("canonical: !!binary \"\\\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription:\n The binary value above is a tiny arrow encoded as a gif image.") ? ;
+    assert_eq ! (formatted , "canonical: !!binary \"\\\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription: The binary value above is a tiny arrow encoded as a gif image.");
     Ok(())
 }
 #[test]
@@ -656,8 +656,8 @@ fn test_construct_binary_yml_use_tabstrue_format_1_c880ae44() -> Result<()> {
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("canonical: !!binary \"\\\\\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\\\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\\\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\\\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription:\n The binary value above is a tiny arrow encoded as a gif image.") ? ;
-    assert_eq ! (formatted , "canonical: !!binary \"\\\\\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\\\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\\\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\\\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription: The binary value above is a tiny arrow encoded as a gif image.");
+    let formatted = pretty_printer . format ("canonical: !!binary \"\\\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription:\n The binary value above is a tiny arrow encoded as a gif image.") ? ;
+    assert_eq ! (formatted , "canonical: !!binary \"\\\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\\\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\\\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\\\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\"\ngeneric: !!binary |\n  R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5\n  OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+\n  +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC\n  AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=\ndescription: The binary value above is a tiny arrow encoded as a gif image.");
     Ok(())
 }
 #[test]
@@ -789,8 +789,8 @@ fn test_escaped_slash_in_double_quotes_yml_prose_wrapalways_format_1_1947b750() 
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("escaped slash: \"a\\\\/b\"")?;
-    assert_eq!(formatted, "escaped slash: \"a\\\\/b\"");
+    let formatted = pretty_printer.format("escaped slash: \"a\\/b\"")?;
+    assert_eq!(formatted, "escaped slash: \"a\\/b\"");
     Ok(())
 }
 #[test]
@@ -801,8 +801,8 @@ fn test_escaped_slash_in_double_quotes_yml_use_tabstrue_format_1_1947b750() -> R
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("escaped slash: \"a\\\\/b\"")?;
-    assert_eq!(formatted, "escaped slash: \"a\\\\/b\"");
+    let formatted = pretty_printer.format("escaped slash: \"a\\/b\"")?;
+    assert_eq!(formatted, "escaped slash: \"a\\/b\"");
     Ok(())
 }
 #[test]
@@ -1556,8 +1556,8 @@ fn test_plain_scalar_with_backslashes_yml_prose_wrapalways_format_1_0709ff4d() -
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("---\nplain\\\\value\\\\with\\\\backslashes")?;
-    assert_eq!(formatted, "---\nplain\\\\value\\\\with\\\\backslashes");
+    let formatted = pretty_printer.format("---\nplain\\value\\with\\backslashes")?;
+    assert_eq!(formatted, "---\nplain\\value\\with\\backslashes");
     Ok(())
 }
 #[test]
@@ -1568,8 +1568,8 @@ fn test_plain_scalar_with_backslashes_yml_use_tabstrue_format_1_0709ff4d() -> Re
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("---\nplain\\\\value\\\\with\\\\backslashes")?;
-    assert_eq!(formatted, "---\nplain\\\\value\\\\with\\\\backslashes");
+    let formatted = pretty_printer.format("---\nplain\\value\\with\\backslashes")?;
+    assert_eq!(formatted, "---\nplain\\value\\with\\backslashes");
     Ok(())
 }
 #[test]
@@ -2121,11 +2121,10 @@ fn test_spec_example_2_13_in_literals_newlines_are_preserved_yml_prose_wrapalway
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("# ASCII Art\n--- |\n  \\\\//||\\\\/||\n  // ||  ||__")?;
+    let formatted = pretty_printer.format("# ASCII Art\n--- |\n  \\//||\\/||\n  // ||  ||__")?;
     assert_eq!(
         formatted,
-        "# ASCII Art\n---\n|\n  \\\\//||\\\\/||\n  // ||  ||__"
+        "# ASCII Art\n---\n|\n  \\//||\\/||\n  // ||  ||__"
     );
     Ok(())
 }
@@ -2138,11 +2137,10 @@ fn test_spec_example_2_13_in_literals_newlines_are_preserved_yml_use_tabstrue_fo
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("# ASCII Art\n--- |\n  \\\\//||\\\\/||\n  // ||  ||__")?;
+    let formatted = pretty_printer.format("# ASCII Art\n--- |\n  \\//||\\/||\n  // ||  ||__")?;
     assert_eq!(
         formatted,
-        "# ASCII Art\n---\n|\n  \\\\//||\\\\/||\n  // ||  ||__"
+        "# ASCII Art\n---\n|\n  \\//||\\/||\n  // ||  ||__"
     );
     Ok(())
 }
@@ -2240,8 +2238,8 @@ fn test_spec_example_2_17_quoted_scalars_yml_prose_wrapalways_format_1_e27c9de0(
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("unicode: \"Sosa did fine.\\\\u263A\"\ncontrol: \"\\\\b1998\\\\t1999\\\\t2000\\\\n\"\nhex esc: \"\\\\x0d\\\\x0a is \\\\r\\\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: ' # Not a ''comment''.'\ntie-fighter: '|\\\\-*-/|'") ? ;
-    assert_eq ! (formatted , "unicode: \"Sosa did fine.\\\\u263A\"\ncontrol: \"\\\\b1998\\\\t1999\\\\t2000\\\\n\"\nhex esc: \"\\\\x0d\\\\x0a is \\\\r\\\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: \" # Not a 'comment'.\"\ntie-fighter: '|\\\\-*-/|'");
+    let formatted = pretty_printer . format ("unicode: \"Sosa did fine.\\u263A\"\ncontrol: \"\\b1998\\t1999\\t2000\\n\"\nhex esc: \"\\x0d\\x0a is \\r\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: ' # Not a ''comment''.'\ntie-fighter: '|\\-*-/|'") ? ;
+    assert_eq ! (formatted , "unicode: \"Sosa did fine.\\u263A\"\ncontrol: \"\\b1998\\t1999\\t2000\\n\"\nhex esc: \"\\x0d\\x0a is \\r\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: \" # Not a 'comment'.\"\ntie-fighter: '|\\-*-/|'");
     Ok(())
 }
 #[test]
@@ -2252,8 +2250,8 @@ fn test_spec_example_2_17_quoted_scalars_yml_use_tabstrue_format_1_e27c9de0() ->
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("unicode: \"Sosa did fine.\\\\u263A\"\ncontrol: \"\\\\b1998\\\\t1999\\\\t2000\\\\n\"\nhex esc: \"\\\\x0d\\\\x0a is \\\\r\\\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: ' # Not a ''comment''.'\ntie-fighter: '|\\\\-*-/|'") ? ;
-    assert_eq ! (formatted , "unicode: \"Sosa did fine.\\\\u263A\"\ncontrol: \"\\\\b1998\\\\t1999\\\\t2000\\\\n\"\nhex esc: \"\\\\x0d\\\\x0a is \\\\r\\\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: \" # Not a 'comment'.\"\ntie-fighter: '|\\\\-*-/|'");
+    let formatted = pretty_printer . format ("unicode: \"Sosa did fine.\\u263A\"\ncontrol: \"\\b1998\\t1999\\t2000\\n\"\nhex esc: \"\\x0d\\x0a is \\r\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: ' # Not a ''comment''.'\ntie-fighter: '|\\-*-/|'") ? ;
+    assert_eq ! (formatted , "unicode: \"Sosa did fine.\\u263A\"\ncontrol: \"\\b1998\\t1999\\t2000\\n\"\nhex esc: \"\\x0d\\x0a is \\r\\n\"\n\nsingle: '\"Howdy!\" he cried.'\nquoted: \" # Not a 'comment'.\"\ntie-fighter: '|\\-*-/|'");
     Ok(())
 }
 #[test]
@@ -2265,8 +2263,8 @@ fn test_spec_example_2_18_multi_line_flow_scalars_yml_prose_wrapalways_format_1_
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("plain:\n  This unquoted scalar\n  spans many lines.\n\nquoted: \"So does this\n  quoted scalar.\\\\n\"") ? ;
-    assert_eq ! (formatted , "plain: This unquoted scalar spans many lines.\n\nquoted: \"So does this quoted scalar.\\\\n\"");
+    let formatted = pretty_printer . format ("plain:\n  This unquoted scalar\n  spans many lines.\n\nquoted: \"So does this\n  quoted scalar.\\n\"") ? ;
+    assert_eq ! (formatted , "plain: This unquoted scalar spans many lines.\n\nquoted: \"So does this quoted scalar.\\n\"");
     Ok(())
 }
 #[test]
@@ -2278,8 +2276,8 @@ fn test_spec_example_2_18_multi_line_flow_scalars_yml_use_tabstrue_format_1_add8
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("plain:\n  This unquoted scalar\n  spans many lines.\n\nquoted: \"So does this\n  quoted scalar.\\\\n\"") ? ;
-    assert_eq ! (formatted , "plain: This unquoted scalar\n  spans many lines.\n\nquoted: \"So does this\n  quoted scalar.\\\\n\"");
+    let formatted = pretty_printer . format ("plain:\n  This unquoted scalar\n  spans many lines.\n\nquoted: \"So does this\n  quoted scalar.\\n\"") ? ;
+    assert_eq ! (formatted , "plain: This unquoted scalar\n  spans many lines.\n\nquoted: \"So does this\n  quoted scalar.\\n\"");
     Ok(())
 }
 #[test]
@@ -2411,8 +2409,8 @@ fn test_spec_example_2_28_log_file_yml_prose_wrapalways_format_1_1aef01c4() -> R
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning:\n  This is an error message\n  for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning:\n  A slightly different error\n  message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal:\n  Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar") ? ;
-    assert_eq ! (formatted , "---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning: This is an error message for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning: A slightly different error message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal: Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar");
+    let formatted = pretty_printer . format ("---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning:\n  This is an error message\n  for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning:\n  A slightly different error\n  message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal:\n  Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar") ? ;
+    assert_eq ! (formatted , "---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning: This is an error message for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning: A slightly different error message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal: Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar");
     Ok(())
 }
 #[test]
@@ -2423,8 +2421,8 @@ fn test_spec_example_2_28_log_file_yml_use_tabstrue_format_1_1aef01c4() -> Resul
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning:\n  This is an error message\n  for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning:\n  A slightly different error\n  message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal:\n  Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar") ? ;
-    assert_eq ! (formatted , "---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning: This is an error message\n  for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning: A slightly different error\n  message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal: Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar");
+    let formatted = pretty_printer . format ("---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning:\n  This is an error message\n  for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning:\n  A slightly different error\n  message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal:\n  Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar") ? ;
+    assert_eq ! (formatted , "---\nTime: 2001-11-23 15:01:42 -5\nUser: ed\nWarning: This is an error message\n  for the log file\n---\nTime: 2001-11-23 15:02:31 -5\nUser: ed\nWarning: A slightly different error\n  message.\n---\nDate: 2001-11-23 15:03:17 -5\nUser: ed\nFatal: Unknown variable \"bar\"\nStack:\n  - file: TopClass.py\n    line: 23\n    code: |\n      x = MoreObject(\"345\\n\")\n  - file: MoreClass.py\n    line: 58\n    code: |-\n      foo = bar");
     Ok(())
 }
 #[test]
@@ -2638,8 +2636,8 @@ fn test_spec_example_5_12_tabs_and_spaces_yml_prose_wrapalways_format_1_aabf9fff
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("# Tabs and spaces\nquoted: \"Quoted \t\"\nblock:\t|\n  void main() {\n  \tprintf(\"Hello, world!\\\\n\");\n  }") ? ;
-    assert_eq ! (formatted , "# Tabs and spaces\nquoted: \"Quoted \t\"\nblock: |\n  void main() {\n  \tprintf(\"Hello, world!\\\\n\");\n  }");
+    let formatted = pretty_printer . format ("# Tabs and spaces\nquoted: \"Quoted \t\"\nblock:\t|\n  void main() {\n  \tprintf(\"Hello, world!\\n\");\n  }") ? ;
+    assert_eq ! (formatted , "# Tabs and spaces\nquoted: \"Quoted \t\"\nblock: |\n  void main() {\n  \tprintf(\"Hello, world!\\n\");\n  }");
     Ok(())
 }
 #[test]
@@ -2650,8 +2648,8 @@ fn test_spec_example_5_12_tabs_and_spaces_yml_use_tabstrue_format_1_aabf9fff() -
         .use_tabs(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("# Tabs and spaces\nquoted: \"Quoted \t\"\nblock:\t|\n  void main() {\n  \tprintf(\"Hello, world!\\\\n\");\n  }") ? ;
-    assert_eq ! (formatted , "# Tabs and spaces\nquoted: \"Quoted \t\"\nblock: |\n  void main() {\n  \tprintf(\"Hello, world!\\\\n\");\n  }");
+    let formatted = pretty_printer . format ("# Tabs and spaces\nquoted: \"Quoted \t\"\nblock:\t|\n  void main() {\n  \tprintf(\"Hello, world!\\n\");\n  }") ? ;
+    assert_eq ! (formatted , "# Tabs and spaces\nquoted: \"Quoted \t\"\nblock: |\n  void main() {\n  \tprintf(\"Hello, world!\\n\");\n  }");
     Ok(())
 }
 #[test]
@@ -3469,10 +3467,10 @@ fn test_spec_example_7_5_double_quoted_line_breaks_yml_prose_wrapalways_format_1
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("\"folded \nto a space,\t\n \nto a line feed, or \t\\\\\n \\\\ \tnon-content\"")?;
+        .format("\"folded \nto a space,\t\n \nto a line feed, or \t\\\n \\ \tnon-content\"")?;
     assert_eq!(
         formatted,
-        "\"folded to a space,\n\nto a line feed, or \t\\\\\n\\\\ \tnon-content\""
+        "\"folded to a space,\n\nto a line feed, or \t\\\n\\ \tnon-content\""
     );
     Ok(())
 }
@@ -3486,10 +3484,10 @@ fn test_spec_example_7_5_double_quoted_line_breaks_yml_use_tabstrue_format_1_47b
         .build()
         .unwrap();
     let formatted = pretty_printer
-        .format("\"folded \nto a space,\t\n \nto a line feed, or \t\\\\\n \\\\ \tnon-content\"")?;
+        .format("\"folded \nto a space,\t\n \nto a line feed, or \t\\\n \\ \tnon-content\"")?;
     assert_eq!(
         formatted,
-        "\"folded\nto a space,\n\nto a line feed, or \t\\\\\n\\\\ \tnon-content\""
+        "\"folded\nto a space,\n\nto a line feed, or \t\\\n\\ \tnon-content\""
     );
     Ok(())
 }

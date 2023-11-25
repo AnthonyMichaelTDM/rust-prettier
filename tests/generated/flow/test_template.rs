@@ -13,7 +13,7 @@ fn test_inline_js_format_1_3c0fb379() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("(): {\n  someLong: boolean,\n  t: boolean\n} => \\`\n  a\n\\`;\n\n(): {\n  someLong: boolean,\n  t: boolean\n} =>\n  \\`\n    a\n  \\`;\n\n(\n  someLong: boolean,\n  t: boolean\n) => \\`\n    a\n  \\`;\n\n(\n  someLong: boolean,\n  t: boolean\n) =>\n  \\`\n    a\n  \\`;") ? ;
-    assert_eq ! (formatted , "(): {\n  someLong: boolean,\n  t: boolean,\n} => \\`\n  a\n\\`;\n\n(): {\n  someLong: boolean,\n  t: boolean,\n} =>\n  \\`\n    a\n  \\`;\n\n(someLong: boolean, t: boolean) => \\`\n    a\n  \\`;\n\n(someLong: boolean, t: boolean) =>\n  \\`\n    a\n  \\`;");
+    let formatted = pretty_printer . format ("(): {\n  someLong: boolean,\n  t: boolean\n} => `\n  a\n`;\n\n(): {\n  someLong: boolean,\n  t: boolean\n} =>\n  `\n    a\n  `;\n\n(\n  someLong: boolean,\n  t: boolean\n) => `\n    a\n  `;\n\n(\n  someLong: boolean,\n  t: boolean\n) =>\n  `\n    a\n  `;") ? ;
+    assert_eq ! (formatted , "(): {\n  someLong: boolean,\n  t: boolean,\n} => `\n  a\n`;\n\n(): {\n  someLong: boolean,\n  t: boolean,\n} =>\n  `\n    a\n  `;\n\n(someLong: boolean, t: boolean) => `\n    a\n  `;\n\n(someLong: boolean, t: boolean) =>\n  `\n    a\n  `;");
     Ok(())
 }

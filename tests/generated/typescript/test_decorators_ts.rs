@@ -24,8 +24,8 @@ fn test_angular_ts_format_1_c6068b21() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("@Component({\n  selector: 'toh-hero-button',\n  template: \\`<button>{{label}}</button>\\`\n})\nexport class HeroButtonComponent {\n  @Output() change = new EventEmitter<any>();\n  @Input() label: string;\n}") ? ;
-    assert_eq ! (formatted , "@Component({\n  selector: \"toh-hero-button\",\n  template: \\`<button>{{ label }}</button>\\`,\n})\nexport class HeroButtonComponent {\n  @Output() change = new EventEmitter<any>();\n  @Input() label: string;\n}");
+    let formatted = pretty_printer . format ("@Component({\n  selector: 'toh-hero-button',\n  template: `<button>{{label}}</button>`\n})\nexport class HeroButtonComponent {\n  @Output() change = new EventEmitter<any>();\n  @Input() label: string;\n}") ? ;
+    assert_eq ! (formatted , "@Component({\n  selector: \"toh-hero-button\",\n  template: `<button>{{ label }}</button>`,\n})\nexport class HeroButtonComponent {\n  @Output() change = new EventEmitter<any>();\n  @Input() label: string;\n}");
     Ok(())
 }
 #[test]

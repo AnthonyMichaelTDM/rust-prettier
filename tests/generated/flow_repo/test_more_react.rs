@@ -68,7 +68,7 @@ fn test_prop_types_js_format_1_35255060() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("var React = require('React');\n\nvar C = React.createClass({\n  propTypes: {\n    title: React.PropTypes.string.isRequired,\n  }\n});\nvar D = React.createClass({\n  propTypes: {\n    name: React.PropTypes.string.isRequired,\n    ...C.propTypes,\n  }\n});\n\n<D />; // errors: properties \\`name\\` and \\`title\\` not found") ? ;
-    assert_eq ! (formatted , "var React = require(\"React\");\n\nvar C = React.createClass({\n  propTypes: {\n    title: React.PropTypes.string.isRequired,\n  },\n});\nvar D = React.createClass({\n  propTypes: {\n    name: React.PropTypes.string.isRequired,\n    ...C.propTypes,\n  },\n});\n\n<D />; // errors: properties \\`name\\` and \\`title\\` not found");
+    let formatted = pretty_printer . format ("var React = require('React');\n\nvar C = React.createClass({\n  propTypes: {\n    title: React.PropTypes.string.isRequired,\n  }\n});\nvar D = React.createClass({\n  propTypes: {\n    name: React.PropTypes.string.isRequired,\n    ...C.propTypes,\n  }\n});\n\n<D />; // errors: properties `name` and `title` not found") ? ;
+    assert_eq ! (formatted , "var React = require(\"React\");\n\nvar C = React.createClass({\n  propTypes: {\n    title: React.PropTypes.string.isRequired,\n  },\n});\nvar D = React.createClass({\n  propTypes: {\n    name: React.PropTypes.string.isRequired,\n    ...C.propTypes,\n  },\n});\n\n<D />; // errors: properties `name` and `title` not found");
     Ok(())
 }

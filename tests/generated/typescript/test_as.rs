@@ -35,8 +35,8 @@ fn test_as_const_embedded_ts_format_1_cde30fa7() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const GQL_QUERY_WITH_CONST = /* GraphQL */ \\`\n  query S { shop }\n\\` as const;\n\nconst HTML_WITH_CONST = /* HTML */ \\`\n<div>\n<h1>foo</h1>\n  <p>foo</p>\n</div>\n\\` as const;") ? ;
-    assert_eq ! (formatted , "const GQL_QUERY_WITH_CONST = /* GraphQL */ \\`\n  query S {\n    shop\n  }\n\\` as const;\n\nconst HTML_WITH_CONST = /* HTML */ \\`\n  <div>\n    <h1>foo</h1>\n    <p>foo</p>\n  </div>\n\\` as const;");
+    let formatted = pretty_printer . format ("const GQL_QUERY_WITH_CONST = /* GraphQL */ `\n  query S { shop }\n` as const;\n\nconst HTML_WITH_CONST = /* HTML */ `\n<div>\n<h1>foo</h1>\n  <p>foo</p>\n</div>\n` as const;") ? ;
+    assert_eq ! (formatted , "const GQL_QUERY_WITH_CONST = /* GraphQL */ `\n  query S {\n    shop\n  }\n` as const;\n\nconst HTML_WITH_CONST = /* HTML */ `\n  <div>\n    <h1>foo</h1>\n    <p>foo</p>\n  </div>\n` as const;");
     Ok(())
 }
 #[test]

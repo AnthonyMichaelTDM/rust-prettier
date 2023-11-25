@@ -219,10 +219,12 @@ cfg_if! {
                 // replace <LF>\n with \n, <CR>\n with \r, and <CRLF>\n with \r\n
                 input = input
                     .replace("<LF>\n", "\n").replace("<CR>\n", "\r").replace("<CRLF>\n", "\r\n")
-                    .replace("<LF>", "\n").replace("<CR>", "\r").replace("<CRLF>", "\r\n");
+                    .replace("<LF>", "\n").replace("<CR>", "\r").replace("<CRLF>", "\r\n")
+                    .replace("\\`", "`").replace("\\$", "$").replace("\\\\", "\\");
                 output = output
                     .replace("<LF>\n", "\n").replace("<CR>\n", "\r").replace("<CRLF>\n", "\r\n")
-                    .replace("<LF>", "\n").replace("<CR>", "\r").replace("<CRLF>", "\r\n");
+                    .replace("<LF>", "\n").replace("<CR>", "\r").replace("<CRLF>", "\r\n")
+                    .replace("\\`", "`").replace("\\$", "$").replace("\\\\", "\\");
 
                 TestCase {
                     name,

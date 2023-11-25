@@ -25,7 +25,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_8d9b49e4() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a_ ")?;
-    assert_eq!(formatted, "_ http://www.example.com:80/_a_ \\\\_");
+    assert_eq!(formatted, "_ http://www.example.com:80/_a_ \\_");
     Ok(())
 }
 #[test]
@@ -47,7 +47,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_0d0803e2() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a_/ ")?;
-    assert_eq!(formatted, "_ http://www.example.com:80/_a_/ \\\\_");
+    assert_eq!(formatted, "_ http://www.example.com:80/_a_/ \\_");
     Ok(())
 }
 #[test]
@@ -58,7 +58,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_157040bf() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a_/_ ")?;
-    assert_eq!(formatted, "_ http://www.example.com:80/_a_/\\\\_ \\\\_");
+    assert_eq!(formatted, "_ http://www.example.com:80/_a_/\\_ \\_");
     Ok(())
 }
 #[test]
@@ -69,7 +69,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_b48088c9() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a_/")?;
-    assert_eq!(formatted, "_ http://www.example.com:80/_a_/\\\\_");
+    assert_eq!(formatted, "_ http://www.example.com:80/_a_/\\_");
     Ok(())
 }
 #[test]
@@ -80,7 +80,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_8bd96f50() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a_/_")?;
-    assert_eq!(formatted, "_ http://www.example.com:80/_a_/\\\\_\\\\_");
+    assert_eq!(formatted, "_ http://www.example.com:80/_a_/\\_\\_");
     Ok(())
 }
 #[test]
@@ -102,7 +102,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_2e4043dd() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a_")?;
-    assert_eq!(formatted, "\\\\_ http://www.example.com:80/_a__");
+    assert_eq!(formatted, "\\_ http://www.example.com:80/_a__");
     Ok(())
 }
 #[test]
@@ -113,7 +113,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_90ba1d99() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_ http://www.example.com:80/_a__")?;
-    assert_eq!(formatted, "\\\\_ http://www.example.com:80/_a___");
+    assert_eq!(formatted, "\\_ http://www.example.com:80/_a___");
     Ok(())
 }
 #[test]
@@ -157,7 +157,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_d7f96584() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a_ ")?;
-    assert_eq!(formatted, "_http://www.example.com:80/_a_ \\\\_");
+    assert_eq!(formatted, "_http://www.example.com:80/_a_ \\_");
     Ok(())
 }
 #[test]
@@ -179,7 +179,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_d2bca30f() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a_/ ")?;
-    assert_eq!(formatted, "_http://www.example.com:80/_a_/ \\\\_");
+    assert_eq!(formatted, "_http://www.example.com:80/_a_/ \\_");
     Ok(())
 }
 #[test]
@@ -190,7 +190,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_ea89d285() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a_/_ ")?;
-    assert_eq!(formatted, "_http://www.example.com:80/_a_/\\\\_ \\\\_");
+    assert_eq!(formatted, "_http://www.example.com:80/_a_/\\_ \\_");
     Ok(())
 }
 #[test]
@@ -201,7 +201,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_a4670c40() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a_/")?;
-    assert_eq!(formatted, "_http://www.example.com:80/_a_/\\\\_");
+    assert_eq!(formatted, "_http://www.example.com:80/_a_/\\_");
     Ok(())
 }
 #[test]
@@ -212,7 +212,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_3a2341ff() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a_/_")?;
-    assert_eq!(formatted, "_http://www.example.com:80/_a_/\\\\_\\\\_");
+    assert_eq!(formatted, "_http://www.example.com:80/_a_/\\_\\_");
     Ok(())
 }
 #[test]
@@ -234,7 +234,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_54678ec1() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a_")?;
-    assert_eq!(formatted, "\\\\_http://www.example.com:80/_a__");
+    assert_eq!(formatted, "\\_http://www.example.com:80/_a__");
     Ok(())
 }
 #[test]
@@ -245,7 +245,7 @@ fn test_snippet_httpwww_example_com_80_a_format_1_b7422d5c() -> Result<()> {
         .build()
         .unwrap();
     let formatted = pretty_printer.format("_http://www.example.com:80/_a__")?;
-    assert_eq!(formatted, "\\\\_http://www.example.com:80/_a___");
+    assert_eq!(formatted, "\\_http://www.example.com:80/_a___");
     Ok(())
 }
 #[test]

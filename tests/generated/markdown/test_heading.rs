@@ -78,10 +78,10 @@ fn test_unbreakable_md_prose_wrapalways_format_1_ee2c86a6() -> Result<()> {
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("### \\`reporters\\` [array<moduleName | [moduleName, options]>]")?;
+        pretty_printer.format("### `reporters` [array<moduleName | [moduleName, options]>]")?;
     assert_eq!(
         formatted,
-        "### \\`reporters\\` [array<moduleName | [moduleName, options]>]"
+        "### `reporters` [array<moduleName | [moduleName, options]>]"
     );
     Ok(())
 }

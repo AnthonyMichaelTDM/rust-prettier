@@ -39,7 +39,7 @@ fn test_c_js_format_1_17650170() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @flow\n\n// This test exports a function whose return type is the class's \\`this\\` type.\n// It should be inferred (no annotation required).\n\nclass Foo {\n  foo(): this {\n    return this;\n  }\n}\n\nexport function f(x: Foo) {\n  return x.foo();\n}") ? ;
-    assert_eq ! (formatted , "// @flow\n\n// This test exports a function whose return type is the class's \\`this\\` type.\n// It should be inferred (no annotation required).\n\nclass Foo {\n  foo(): this {\n    return this;\n  }\n}\n\nexport function f(x: Foo) {\n  return x.foo();\n}");
+    let formatted = pretty_printer . format ("// @flow\n\n// This test exports a function whose return type is the class's `this` type.\n// It should be inferred (no annotation required).\n\nclass Foo {\n  foo(): this {\n    return this;\n  }\n}\n\nexport function f(x: Foo) {\n  return x.foo();\n}") ? ;
+    assert_eq ! (formatted , "// @flow\n\n// This test exports a function whose return type is the class's `this` type.\n// It should be inferred (no annotation required).\n\nclass Foo {\n  foo(): this {\n    return this;\n  }\n}\n\nexport function f(x: Foo) {\n  return x.foo();\n}");
     Ok(())
 }

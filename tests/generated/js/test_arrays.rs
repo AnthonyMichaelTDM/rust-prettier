@@ -35,8 +35,8 @@ fn test_issue_10159_js_format_1_157e187f() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("{for (const srcPath of [src, \\`\\${src}.js\\`, \\`\\${src}/index\\`, \\`\\${src}/index.js\\`]) {}}\n{for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_43]) {}}\n{for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_432]) {}}\n{for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_4321]) {}}") ? ;
-    assert_eq ! (formatted , "{\n  for (const srcPath of [src, \\`\\${src}.js\\`, \\`\\${src}/index\\`, \\`\\${src}/index.js\\`]) {\n  }\n}\n{\n  for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_43]) {\n  }\n}\n{\n  for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_432]) {\n  }\n}\n{\n  for (const srcPath of [\n    123, 123_123_123, 123_123_123_1, 13_123_3123_31_4321,\n  ]) {\n  }\n}");
+    let formatted = pretty_printer . format ("{for (const srcPath of [src, `${src}.js`, `${src}/index`, `${src}/index.js`]) {}}\n{for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_43]) {}}\n{for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_432]) {}}\n{for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_4321]) {}}") ? ;
+    assert_eq ! (formatted , "{\n  for (const srcPath of [src, `${src}.js`, `${src}/index`, `${src}/index.js`]) {\n  }\n}\n{\n  for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_43]) {\n  }\n}\n{\n  for (const srcPath of [123, 123_123_123, 123_123_123_1, 13_123_3123_31_432]) {\n  }\n}\n{\n  for (const srcPath of [\n    123, 123_123_123, 123_123_123_1, 13_123_3123_31_4321,\n  ]) {\n  }\n}");
     Ok(())
 }
 #[test]

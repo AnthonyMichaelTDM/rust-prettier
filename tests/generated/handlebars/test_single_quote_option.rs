@@ -62,8 +62,8 @@ fn test_string_literals_hbs_single_quotefalse_format_1_a4399b89() -> Result<()> 
         .single_quote(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("{{\"abc\"}}\n{{'abc'}}\n{{\" \\\\\" \\\\\" ' more double quote than single quote \"}}\n{{' \\\\' \\\\' \" more single quote than double quote '}}\n{{' \" \\\\' \\\\\" \\\\\\\\ '}}\n{{\" \\\\\" \\\\' ' \\\\\\\\ \"}}") ? ;
-    assert_eq ! (formatted , "{{\"abc\"}}\n{{\"abc\"}}\n{{' \" \" \\\\' more double quote than single quote '}}\n{{\" ' ' \\\\\" more single quote than double quote \"}}\n{{' \" \\\\' \\\\\" \\\\\\\\ '}}\n{{\" \\\\\" \\\\' ' \\\\\\\\ \"}");
+    let formatted = pretty_printer . format ("{{\"abc\"}}\n{{'abc'}}\n{{\" \\\" \\\" ' more double quote than single quote \"}}\n{{' \\' \\' \" more single quote than double quote '}}\n{{' \" \\' \\\" \\\\ '}}\n{{\" \\\" \\' ' \\\\ \"}}") ? ;
+    assert_eq ! (formatted , "{{\"abc\"}}\n{{\"abc\"}}\n{{' \" \" \\' more double quote than single quote '}}\n{{\" ' ' \\\" more single quote than double quote \"}}\n{{' \" \\' \\\" \\\\ '}}\n{{\" \\\" \\' ' \\\\ \"}");
     Ok(())
 }
 #[test]
@@ -74,7 +74,7 @@ fn test_string_literals_hbs_single_quotetrue_format_1_a4399b89() -> Result<()> {
         .single_quote(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("{{\"abc\"}}\n{{'abc'}}\n{{\" \\\\\" \\\\\" ' more double quote than single quote \"}}\n{{' \\\\' \\\\' \" more single quote than double quote '}}\n{{' \" \\\\' \\\\\" \\\\\\\\ '}}\n{{\" \\\\\" \\\\' ' \\\\\\\\ \"}}") ? ;
-    assert_eq ! (formatted , "{{'abc'}}\n{{'abc'}}\n{{' \" \" \\\\' more double quote than single quote '}}\n{{\" ' ' \\\\\" more single quote than double quote \"}}\n{{' \" \\\\' \\\\\" \\\\\\\\ '}}\n{{\" \\\\\" \\\\' ' \\\\\\\\ \"}");
+    let formatted = pretty_printer . format ("{{\"abc\"}}\n{{'abc'}}\n{{\" \\\" \\\" ' more double quote than single quote \"}}\n{{' \\' \\' \" more single quote than double quote '}}\n{{' \" \\' \\\" \\\\ '}}\n{{\" \\\" \\' ' \\\\ \"}}") ? ;
+    assert_eq ! (formatted , "{{'abc'}}\n{{'abc'}}\n{{' \" \" \\' more double quote than single quote '}}\n{{\" ' ' \\\" more single quote than double quote \"}}\n{{' \" \\' \\\" \\\\ '}}\n{{\" \\\" \\' ' \\\\ \"}");
     Ok(())
 }

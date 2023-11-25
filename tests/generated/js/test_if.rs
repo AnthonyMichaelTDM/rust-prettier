@@ -57,7 +57,7 @@ fn test_trailing_comment_js_format_1_4ba2c1a2() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("if (code === 92 /* '\\\\' */) {}\nif (code === 92 /* '\\\\' */ /* '\\\\' */) {}\n\nif (code === 92) /* '\\\\' */ {}\nif (code === 92) { /* '\\\\' */ }\n\nif (\n  1\n  // Comment\n) {\n  a;\n}") ? ;
-    assert_eq ! (formatted , "if (code === 92 /* '\\\\' */) {\n}\nif (code === 92 /* '\\\\' */ /* '\\\\' */) {\n}\n\nif (code === 92) {\n  /* '\\\\' */\n}\nif (code === 92) {\n  /* '\\\\' */\n}\n\nif (\n  1\n  // Comment\n) {\n  a;\n}");
+    let formatted = pretty_printer . format ("if (code === 92 /* '\\' */) {}\nif (code === 92 /* '\\' */ /* '\\' */) {}\n\nif (code === 92) /* '\\' */ {}\nif (code === 92) { /* '\\' */ }\n\nif (\n  1\n  // Comment\n) {\n  a;\n}") ? ;
+    assert_eq ! (formatted , "if (code === 92 /* '\\' */) {\n}\nif (code === 92 /* '\\' */ /* '\\' */) {\n}\n\nif (code === 92) {\n  /* '\\' */\n}\nif (code === 92) {\n  /* '\\' */\n}\n\nif (\n  1\n  // Comment\n) {\n  a;\n}");
     Ok(())
 }

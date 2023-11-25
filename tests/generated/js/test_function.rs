@@ -13,8 +13,8 @@ fn test_function_expression_js_format_1_0a0b4a07() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("(function() {}).length\ntypeof (function() {});\nexport default (function() {})();\n(function() {})()\\`\\`;\n(function() {})\\`\\`;\nnew (function() {});\n(function() {});\na = function f() {} || b;\n(function() {} && a);\na + function() {};\nnew function() {};") ? ;
-    assert_eq ! (formatted , "(function () {}).length;\ntypeof function () {};\nexport default (function () {})();\n(function () {})()\\`\\`;\n(function () {})\\`\\`;\nnew (function () {})();\n(function () {});\na = function f() {} || b;\n(function () {}) && a;\na + function () {};\nnew (function () {})();");
+    let formatted = pretty_printer . format ("(function() {}).length\ntypeof (function() {});\nexport default (function() {})();\n(function() {})()``;\n(function() {})``;\nnew (function() {});\n(function() {});\na = function f() {} || b;\n(function() {} && a);\na + function() {};\nnew function() {};") ? ;
+    assert_eq ! (formatted , "(function () {}).length;\ntypeof function () {};\nexport default (function () {})();\n(function () {})()``;\n(function () {})``;\nnew (function () {})();\n(function () {});\na = function f() {} || b;\n(function () {}) && a;\na + function () {};\nnew (function () {})();");
     Ok(())
 }
 #[test]

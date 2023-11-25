@@ -57,8 +57,8 @@ fn test_react_js_format_1_1cf3f97b() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nimport React from \"react\";\n\nconst Example = React.createClass({\n  propTypes: {\n    get a() { return React.PropTypes.number.isRequired; },\n    set b(x: number) { this.c = x; },\n    c: React.PropTypes.string,\n  }\n});\n\n(<Example />); // error: property \\`a\\` not found\n(<Example a={0} />); // ok\n(<Example a=\"bad\" />); // error: number ~> string\n(<Example a={0} c={0} />); // error: number ~> string") ? ;
-    assert_eq ! (formatted , "/**\n * @flow\n */\n\nimport React from \"react\";\n\nconst Example = React.createClass({\n  propTypes: {\n    get a() {\n      return React.PropTypes.number.isRequired;\n    },\n    set b(x: number) {\n      this.c = x;\n    },\n    c: React.PropTypes.string,\n  },\n});\n\n<Example />; // error: property \\`a\\` not found\n<Example a={0} />; // ok\n<Example a=\"bad\" />; // error: number ~> string\n<Example a={0} c={0} />; // error: number ~> string");
+    let formatted = pretty_printer . format ("/**\n * @flow\n */\n\nimport React from \"react\";\n\nconst Example = React.createClass({\n  propTypes: {\n    get a() { return React.PropTypes.number.isRequired; },\n    set b(x: number) { this.c = x; },\n    c: React.PropTypes.string,\n  }\n});\n\n(<Example />); // error: property `a` not found\n(<Example a={0} />); // ok\n(<Example a=\"bad\" />); // error: number ~> string\n(<Example a={0} c={0} />); // error: number ~> string") ? ;
+    assert_eq ! (formatted , "/**\n * @flow\n */\n\nimport React from \"react\";\n\nconst Example = React.createClass({\n  propTypes: {\n    get a() {\n      return React.PropTypes.number.isRequired;\n    },\n    set b(x: number) {\n      this.c = x;\n    },\n    c: React.PropTypes.string,\n  },\n});\n\n<Example />; // error: property `a` not found\n<Example a={0} />; // ok\n<Example a=\"bad\" />; // error: number ~> string\n<Example a={0} c={0} />; // error: number ~> string");
     Ok(())
 }
 #[test]

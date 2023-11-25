@@ -14,8 +14,8 @@ fn test_ignore_mdx_semifalse_format_1_6696b60b() -> Result<()> {
         .semi(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nNo comment:\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`") ? ;
-    assert_eq ! (formatted , "An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nNo comment:\n\n\\`\\`\\`js\nfoo(\n  reallyLongArg(),\n  omgSoManyParameters(),\n  IShouldRefactorThis(),\n  isThereSeriouslyAnotherOne(),\n)\n\\`\\`\\`");
+    let formatted = pretty_printer . format ("An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nNo comment:\n\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```") ? ;
+    assert_eq ! (formatted , "An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nNo comment:\n\n```js\nfoo(\n  reallyLongArg(),\n  omgSoManyParameters(),\n  IShouldRefactorThis(),\n  isThereSeriouslyAnotherOne(),\n)\n```");
     Ok(())
 }
 #[test]
@@ -25,8 +25,8 @@ fn test_ignore_mdx_format_1_6696b60b() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nNo comment:\n\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`") ? ;
-    assert_eq ! (formatted , "An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\\`\\`\\`js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n\\`\\`\\`\n\nNo comment:\n\n\\`\\`\\`js\nfoo(\n  reallyLongArg(),\n  omgSoManyParameters(),\n  IShouldRefactorThis(),\n  isThereSeriouslyAnotherOne(),\n);\n\\`\\`\\`");
+    let formatted = pretty_printer . format ("An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nNo comment:\n\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```") ? ;
+    assert_eq ! (formatted , "An ignore comment (HTML):\n\n<!-- prettier-ignore -->\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nAn ignore comment (ES):\n\n{/* prettier-ignore */}\n```js\nfoo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());\n```\n\nNo comment:\n\n```js\nfoo(\n  reallyLongArg(),\n  omgSoManyParameters(),\n  IShouldRefactorThis(),\n  isThereSeriouslyAnotherOne(),\n);\n```");
     Ok(())
 }
 #[test]
@@ -60,8 +60,8 @@ fn test_inline_html_mdx_semifalse_format_1_0da8814c() -> Result<()> {
         .semi(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("This is an example of a component _being used in some italic markdown with some <Bolded />, \nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1 | Column 2 |\n| -- | -- |\n| **\\`Row 1 Code\\`** | Some text. |\n| **<code>Row 2 Code</code>** | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |") ? ;
-    assert_eq ! (formatted , "This is an example of a component _being used in some italic markdown with some <Bolded />,\nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1                                | Column 2   |\n| --------------------------------------- | ---------- |\n| **\\`Row 1 Code\\`**                        | Some text. |\n| **<code>Row 2 Code</code>**             | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |");
+    let formatted = pretty_printer . format ("This is an example of a component _being used in some italic markdown with some <Bolded />, \nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1 | Column 2 |\n| -- | -- |\n| **`Row 1 Code`** | Some text. |\n| **<code>Row 2 Code</code>** | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |") ? ;
+    assert_eq ! (formatted , "This is an example of a component _being used in some italic markdown with some <Bolded />,\nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1                                | Column 2   |\n| --------------------------------------- | ---------- |\n| **`Row 1 Code`**                        | Some text. |\n| **<code>Row 2 Code</code>**             | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |");
     Ok(())
 }
 #[test]
@@ -71,8 +71,8 @@ fn test_inline_html_mdx_format_1_0da8814c() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("This is an example of a component _being used in some italic markdown with some <Bolded />, \nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1 | Column 2 |\n| -- | -- |\n| **\\`Row 1 Code\\`** | Some text. |\n| **<code>Row 2 Code</code>** | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |") ? ;
-    assert_eq ! (formatted , "This is an example of a component _being used in some italic markdown with some <Bolded />,\nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1                                | Column 2   |\n| --------------------------------------- | ---------- |\n| **\\`Row 1 Code\\`**                        | Some text. |\n| **<code>Row 2 Code</code>**             | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |");
+    let formatted = pretty_printer . format ("This is an example of a component _being used in some italic markdown with some <Bolded />, \nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1 | Column 2 |\n| -- | -- |\n| **`Row 1 Code`** | Some text. |\n| **<code>Row 2 Code</code>** | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |") ? ;
+    assert_eq ! (formatted , "This is an example of a component _being used in some italic markdown with some <Bolded />,\nand as you can see_ once you close the italics, it will break incorrectly when prettier formats it.\n\n| Column 1                                | Column 2   |\n| --------------------------------------- | ---------- |\n| **`Row 1 Code`**                        | Some text. |\n| **<code>Row 2 Code</code>**             | Some text. |\n| **<InlineCode>Row 2 Code</InlineCode>** | Some text. |");
     Ok(())
 }
 #[test]
@@ -106,8 +106,12 @@ fn test_jsx_codeblock_mdx_semifalse_format_1_c5c7ba73() -> Result<()> {
         .semi(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("\\`\\`\\`jsx\n<div>foo</div>\n\\`\\`\\`\n\n\\`\\`\\`jsx\nconst a = 1;\n<div>foo</div>;\n\\`\\`\\`") ? ;
-    assert_eq ! (formatted , "\\`\\`\\`jsx\n<div>foo</div>\n\\`\\`\\`\n\n\\`\\`\\`jsx\nconst a = 1\n;<div>foo</div>\n\\`\\`\\`");
+    let formatted = pretty_printer
+        .format("```jsx\n<div>foo</div>\n```\n\n```jsx\nconst a = 1;\n<div>foo</div>;\n```")?;
+    assert_eq!(
+        formatted,
+        "```jsx\n<div>foo</div>\n```\n\n```jsx\nconst a = 1\n;<div>foo</div>\n```"
+    );
     Ok(())
 }
 #[test]
@@ -117,8 +121,12 @@ fn test_jsx_codeblock_mdx_format_1_c5c7ba73() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("\\`\\`\\`jsx\n<div>foo</div>\n\\`\\`\\`\n\n\\`\\`\\`jsx\nconst a = 1;\n<div>foo</div>;\n\\`\\`\\`") ? ;
-    assert_eq ! (formatted , "\\`\\`\\`jsx\n<div>foo</div>\n\\`\\`\\`\n\n\\`\\`\\`jsx\nconst a = 1;\n<div>foo</div>;\n\\`\\`\\`");
+    let formatted = pretty_printer
+        .format("```jsx\n<div>foo</div>\n```\n\n```jsx\nconst a = 1;\n<div>foo</div>;\n```")?;
+    assert_eq!(
+        formatted,
+        "```jsx\n<div>foo</div>\n```\n\n```jsx\nconst a = 1;\n<div>foo</div>;\n```"
+    );
     Ok(())
 }
 #[test]
@@ -152,8 +160,8 @@ fn test_mixed_mdx_semifalse_format_1_7c993d9a() -> Result<()> {
         .semi(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("import     {     Baz } from     './Fixture'\nimport { Buz  }   from './Fixture'\n\nexport  const   foo    = {\n  hi:     \\`Fudge \\${Baz.displayName || 'Baz'}\\`,\n  authors: [\n     'fred',\n           'sally'\n    ]\n}\n\n# Hello,    world!\n\n\n I'm an awesome   paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg='red'>\n      <Bar    >hi    </Bar>\n       {  hello       }\n       {     /* another comment */}\n</Foo>\n\n\\`\\`\\`\ntest codeblock\n\\`\\`\\`\n\n\\`\\`\\`js\nmodule.exports = 'test'\n\\`\\`\\`\n\n\\`\\`\\`sh\nnpm i -g foo\n\\`\\`\\`\n\n| Test  | Table   |\n|    :---     | :----  |\n|   Col1  | Col2    |\n\nexport   default     ({children   }) => < div>{    children}</div>") ? ;
-    assert_eq ! (formatted , "import { Baz } from \"./Fixture\"\nimport { Buz } from \"./Fixture\"\n\nexport const foo = {\n  hi: \\`Fudge \\${Baz.displayName || \"Baz\"}\\`,\n  authors: [\"fred\", \"sally\"],\n}\n\n# Hello, world!\n\nI'm an awesome paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg=\"red\">\n  <Bar>hi </Bar>\n  {hello}\n  {/* another comment */}\n</Foo>\n\n\\`\\`\\`\ntest codeblock\n\\`\\`\\`\n\n\\`\\`\\`js\nmodule.exports = \"test\"\n\\`\\`\\`\n\n\\`\\`\\`sh\nnpm i -g foo\n\\`\\`\\`\n\n| Test | Table |\n| :--- | :---- |\n| Col1 | Col2  |\n\nexport default ({ children }) => <div>{children}</div>");
+    let formatted = pretty_printer . format ("import     {     Baz } from     './Fixture'\nimport { Buz  }   from './Fixture'\n\nexport  const   foo    = {\n  hi:     `Fudge ${Baz.displayName || 'Baz'}`,\n  authors: [\n     'fred',\n           'sally'\n    ]\n}\n\n# Hello,    world!\n\n\n I'm an awesome   paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg='red'>\n      <Bar    >hi    </Bar>\n       {  hello       }\n       {     /* another comment */}\n</Foo>\n\n```\ntest codeblock\n```\n\n```js\nmodule.exports = 'test'\n```\n\n```sh\nnpm i -g foo\n```\n\n| Test  | Table   |\n|    :---     | :----  |\n|   Col1  | Col2    |\n\nexport   default     ({children   }) => < div>{    children}</div>") ? ;
+    assert_eq ! (formatted , "import { Baz } from \"./Fixture\"\nimport { Buz } from \"./Fixture\"\n\nexport const foo = {\n  hi: `Fudge ${Baz.displayName || \"Baz\"}`,\n  authors: [\"fred\", \"sally\"],\n}\n\n# Hello, world!\n\nI'm an awesome paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg=\"red\">\n  <Bar>hi </Bar>\n  {hello}\n  {/* another comment */}\n</Foo>\n\n```\ntest codeblock\n```\n\n```js\nmodule.exports = \"test\"\n```\n\n```sh\nnpm i -g foo\n```\n\n| Test | Table |\n| :--- | :---- |\n| Col1 | Col2  |\n\nexport default ({ children }) => <div>{children}</div>");
     Ok(())
 }
 #[test]
@@ -163,7 +171,7 @@ fn test_mixed_mdx_format_1_7c993d9a() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("import     {     Baz } from     './Fixture'\nimport { Buz  }   from './Fixture'\n\nexport  const   foo    = {\n  hi:     \\`Fudge \\${Baz.displayName || 'Baz'}\\`,\n  authors: [\n     'fred',\n           'sally'\n    ]\n}\n\n# Hello,    world!\n\n\n I'm an awesome   paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg='red'>\n      <Bar    >hi    </Bar>\n       {  hello       }\n       {     /* another comment */}\n</Foo>\n\n\\`\\`\\`\ntest codeblock\n\\`\\`\\`\n\n\\`\\`\\`js\nmodule.exports = 'test'\n\\`\\`\\`\n\n\\`\\`\\`sh\nnpm i -g foo\n\\`\\`\\`\n\n| Test  | Table   |\n|    :---     | :----  |\n|   Col1  | Col2    |\n\nexport   default     ({children   }) => < div>{    children}</div>") ? ;
-    assert_eq ! (formatted , "import { Baz } from \"./Fixture\";\nimport { Buz } from \"./Fixture\";\n\nexport const foo = {\n  hi: \\`Fudge \\${Baz.displayName || \"Baz\"}\\`,\n  authors: [\"fred\", \"sally\"],\n};\n\n# Hello, world!\n\nI'm an awesome paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg=\"red\">\n  <Bar>hi </Bar>\n  {hello}\n  {/* another comment */}\n</Foo>\n\n\\`\\`\\`\ntest codeblock\n\\`\\`\\`\n\n\\`\\`\\`js\nmodule.exports = \"test\";\n\\`\\`\\`\n\n\\`\\`\\`sh\nnpm i -g foo\n\\`\\`\\`\n\n| Test | Table |\n| :--- | :---- |\n| Col1 | Col2  |\n\nexport default ({ children }) => <div>{children}</div>;");
+    let formatted = pretty_printer . format ("import     {     Baz } from     './Fixture'\nimport { Buz  }   from './Fixture'\n\nexport  const   foo    = {\n  hi:     `Fudge ${Baz.displayName || 'Baz'}`,\n  authors: [\n     'fred',\n           'sally'\n    ]\n}\n\n# Hello,    world!\n\n\n I'm an awesome   paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg='red'>\n      <Bar    >hi    </Bar>\n       {  hello       }\n       {     /* another comment */}\n</Foo>\n\n```\ntest codeblock\n```\n\n```js\nmodule.exports = 'test'\n```\n\n```sh\nnpm i -g foo\n```\n\n| Test  | Table   |\n|    :---     | :----  |\n|   Col1  | Col2    |\n\nexport   default     ({children   }) => < div>{    children}</div>") ? ;
+    assert_eq ! (formatted , "import { Baz } from \"./Fixture\";\nimport { Buz } from \"./Fixture\";\n\nexport const foo = {\n  hi: `Fudge ${Baz.displayName || \"Baz\"}`,\n  authors: [\"fred\", \"sally\"],\n};\n\n# Hello, world!\n\nI'm an awesome paragraph.\n\n<!-- I'm a comment -->\n\n<Foo bg=\"red\">\n  <Bar>hi </Bar>\n  {hello}\n  {/* another comment */}\n</Foo>\n\n```\ntest codeblock\n```\n\n```js\nmodule.exports = \"test\";\n```\n\n```sh\nnpm i -g foo\n```\n\n| Test | Table |\n| :--- | :---- |\n| Col1 | Col2  |\n\nexport default ({ children }) => <div>{children}</div>;");
     Ok(())
 }

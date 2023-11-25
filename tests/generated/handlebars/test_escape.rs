@@ -13,8 +13,13 @@ fn test_backslashes_hbs_format_1_72d6de8e() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<p>\\\\</p>\n<p>\\\\\\\\</p>\n<p>\\\\\\\\\\\\</p>\n<p>\\\\\\\\\\\\ \\\\\\\\{{non-escaped-moustache}}</p>") ? ;
-    assert_eq ! (formatted , "<p>\\\\</p>\n<p>\\\\\\\\</p>\n<p>\\\\\\\\\\\\</p>\n<p>\\\\\\\\\\\\ \\\\\\\\{{non-escaped-moustache}}</p");
+    let formatted = pretty_printer.format(
+        "<p>\\</p>\n<p>\\\\</p>\n<p>\\\\\\</p>\n<p>\\\\\\ \\\\{{non-escaped-moustache}}</p>",
+    )?;
+    assert_eq!(
+        formatted,
+        "<p>\\</p>\n<p>\\\\</p>\n<p>\\\\\\</p>\n<p>\\\\\\ \\\\{{non-escaped-moustache}}</p"
+    );
     Ok(())
 }
 #[test]
@@ -24,11 +29,10 @@ fn test_backslashes_in_attributes_hbs_format_1_64e791cb() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted =
-        pretty_printer.format("<p data-attr=\"backslash \\\\ in an attribute\"></p>")?;
+    let formatted = pretty_printer.format("<p data-attr=\"backslash \\ in an attribute\"></p>")?;
     assert_eq!(
         formatted,
-        "<p data-attr=\"backslash \\\\ in an attribute\"></p"
+        "<p data-attr=\"backslash \\ in an attribute\"></p"
     );
     Ok(())
 }
@@ -50,12 +54,11 @@ fn test_mustache_hbs_format_1_ce3c1b2d() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format(
-        "<div title=\"foo \\\\{{\"> \\\\{{ </div>\n<div class=\" bar \\\\{{\">\\\\{{</div>",
-    )?;
+    let formatted = pretty_printer
+        .format("<div title=\"foo \\{{\"> \\{{ </div>\n<div class=\" bar \\{{\">\\{{</div>")?;
     assert_eq!(
         formatted,
-        "<div title=\"foo \\\\{{\"> \\\\{{ </div>\n<div class=\"bar \\\\{{\">\\\\{{</div"
+        "<div title=\"foo \\{{\"> \\{{ </div>\n<div class=\"bar \\{{\">\\{{</div"
     );
     Ok(())
 }

@@ -13,7 +13,7 @@ fn test_type_args_ts_format_1_7c93dd95() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("const response = something.$http.get<ThingamabobService.DetailsData>(\n  \\`api/foo.ashx/foo-details/\\${myId}\\`,\n  { cache: quux.httpCache, timeout }\n);") ? ;
-    assert_eq ! (formatted , "const response = something.$http.get<ThingamabobService.DetailsData>(\n  \\`api/foo.ashx/foo-details/\\${myId}\\`,\n  { cache: quux.httpCache, timeout },\n);");
+    let formatted = pretty_printer . format ("const response = something.$http.get<ThingamabobService.DetailsData>(\n  `api/foo.ashx/foo-details/${myId}`,\n  { cache: quux.httpCache, timeout }\n);") ? ;
+    assert_eq ! (formatted , "const response = something.$http.get<ThingamabobService.DetailsData>(\n  `api/foo.ashx/foo-details/${myId}`,\n  { cache: quux.httpCache, timeout },\n);");
     Ok(())
 }

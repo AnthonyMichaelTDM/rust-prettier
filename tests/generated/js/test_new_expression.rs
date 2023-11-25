@@ -28,8 +28,8 @@ fn test_new_expression_js_format_1_e213d5a2() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("new (memoize.Cache || MapCache)\nnew (typeof this == \"function\" ? this : Dict())\nnew (createObj()).prop(a());\nnew (x()\\`\\`.y)();\nnew e[f().x].y();\nnew e[f()].y();\nnew (a().b)();\nnew (a().b().c)();\nnew (a\\`\\`());") ? ;
-    assert_eq ! (formatted , "new (memoize.Cache || MapCache)();\nnew (typeof this == \"function\" ? this : Dict())();\nnew (createObj().prop)(a());\nnew (x()\\`\\`.y)();\nnew e[f().x].y();\nnew e[f()].y();\nnew (a().b)();\nnew (a().b().c)();\nnew (a\\`\\`())();");
+    let formatted = pretty_printer . format ("new (memoize.Cache || MapCache)\nnew (typeof this == \"function\" ? this : Dict())\nnew (createObj()).prop(a());\nnew (x()``.y)();\nnew e[f().x].y();\nnew e[f()].y();\nnew (a().b)();\nnew (a().b().c)();\nnew (a``());") ? ;
+    assert_eq ! (formatted , "new (memoize.Cache || MapCache)();\nnew (typeof this == \"function\" ? this : Dict())();\nnew (createObj().prop)(a());\nnew (x()``.y)();\nnew e[f().x].y();\nnew e[f()].y();\nnew (a().b)();\nnew (a().b().c)();\nnew (a``())();");
     Ok(())
 }
 #[test]

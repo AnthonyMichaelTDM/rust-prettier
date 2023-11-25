@@ -13,7 +13,7 @@ fn test_foo_js_format_1_66054bfe() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer.format("a\\`foo \\${bar} baz\\`")?;
-    assert_eq!(formatted, "a\\`foo \\${bar} baz\\`;");
+    let formatted = pretty_printer.format("a`foo ${bar} baz`")?;
+    assert_eq!(formatted, "a`foo ${bar} baz`;");
     Ok(())
 }

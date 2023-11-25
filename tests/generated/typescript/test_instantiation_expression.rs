@@ -72,8 +72,8 @@ fn test_property_access_ts_format_1_f218477e() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[(Array<string>)];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[\\`a\\`];\n(Array<string>)?.[\\`a\\`];\n(Array<string>)[(Array<string>)];") ? ;
-    assert_eq ! (formatted , "(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[Array<string>];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[\\`a\\`];\n(Array<string>)?.[\\`a\\`];\n(Array<string>)[Array<string>];");
+    let formatted = pretty_printer . format ("(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[(Array<string>)];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[`a`];\n(Array<string>)?.[`a`];\n(Array<string>)[(Array<string>)];") ? ;
+    assert_eq ! (formatted , "(Array<string>).name;\n(fn1<string>).bind(obj);\n(fn2<string, number>).bind(obj);\na[Array<string>];\na[(Array<string>).name];\n(Array<string>).a;\n(Array<string>)?.a;\n(Array<string>)[a];\n(Array<string>)?.[a];\n(Array<string>)[\"a\"];\n(Array<string>)?.[\"a\"];\n(Array<string>)[`a`];\n(Array<string>)?.[`a`];\n(Array<string>)[Array<string>];");
     Ok(())
 }
 #[test]

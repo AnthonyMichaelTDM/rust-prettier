@@ -84,7 +84,7 @@ fn test_test_4_js_format_1_f00aba7a() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("interface I { foo(x: number): void; }\n(function foo(x: number) { }: I); // error, property \\`foo\\` not found function\n\ndeclare class C {\n  bar(i: I): void;\n  bar(f: (x: number) => void): void;\n}\n\nnew C().bar((x: string) => { }); // error, number ~/~> string") ? ;
-    assert_eq ! (formatted , "interface I {\n  foo(x: number): void;\n}\n(function foo(x: number) {}: I); // error, property \\`foo\\` not found function\n\ndeclare class C {\n  bar(i: I): void;\n  bar(f: (x: number) => void): void;\n}\n\nnew C().bar((x: string) => {}); // error, number ~/~> string");
+    let formatted = pretty_printer . format ("interface I { foo(x: number): void; }\n(function foo(x: number) { }: I); // error, property `foo` not found function\n\ndeclare class C {\n  bar(i: I): void;\n  bar(f: (x: number) => void): void;\n}\n\nnew C().bar((x: string) => { }); // error, number ~/~> string") ? ;
+    assert_eq ! (formatted , "interface I {\n  foo(x: number): void;\n}\n(function foo(x: number) {}: I); // error, property `foo` not found function\n\ndeclare class C {\n  bar(i: I): void;\n  bar(f: (x: number) => void): void;\n}\n\nnew C().bar((x: string) => {}); // error, number ~/~> string");
     Ok(())
 }

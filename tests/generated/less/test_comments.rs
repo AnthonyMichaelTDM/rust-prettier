@@ -68,8 +68,8 @@ fn test_issue_8130_less_format_1_edc06c26() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("@import \"../node_modules/foo/bar.less\";\n\n// @index(['./components/**/*.less', '!./**/_demo/**'], f => \\`@import '\\${f.path}\\${f.ext}';\\`)\n@import './components/Button/Button.less';\n@import './components/Form/Form.less';\n@import './components/Input/Input.less';\n// @endindex") ? ;
-    assert_eq ! (formatted , "@import \"../node_modules/foo/bar.less\";\n\n// @index(['./components/**/*.less', '!./**/_demo/**'], f => \\`@import '\\${f.path}\\${f.ext}';\\`)\n@import \"./components/Button/Button.less\";\n@import \"./components/Form/Form.less\";\n@import \"./components/Input/Input.less\";\n// @endindex");
+    let formatted = pretty_printer . format ("@import \"../node_modules/foo/bar.less\";\n\n// @index(['./components/**/*.less', '!./**/_demo/**'], f => `@import '${f.path}${f.ext}';`)\n@import './components/Button/Button.less';\n@import './components/Form/Form.less';\n@import './components/Input/Input.less';\n// @endindex") ? ;
+    assert_eq ! (formatted , "@import \"../node_modules/foo/bar.less\";\n\n// @index(['./components/**/*.less', '!./**/_demo/**'], f => `@import '${f.path}${f.ext}';`)\n@import \"./components/Button/Button.less\";\n@import \"./components/Form/Form.less\";\n@import \"./components/Input/Input.less\";\n// @endindex");
     Ok(())
 }
 #[test]

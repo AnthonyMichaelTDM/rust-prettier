@@ -255,8 +255,8 @@ fn test_test_11_js_format_1_80dd6983() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("// @noflow\n\n// disjoint unions\n\nfunction length(list: List) {\n  if (list.kind === \"cons\") return length(list.next) + 1;\n  else return 0;\n}\n\n\nlength({ kind: \"nil\" });\nlength({ kind: \"cons\" }); // missing \\`next\\`\nlength({ kind: \"cons\", next: { kind: \"nil\" } });\nlength({ kind: \"empty\" }); // \\`kind\\` not found\n\ntype List = Nil | Cons;\ntype Nil = { kind: \"nil\" };\ntype Cons = { kind: \"cons\", next: List };") ? ;
-    assert_eq ! (formatted , "// @noflow\n\n// disjoint unions\n\nfunction length(list: List) {\n  if (list.kind === \"cons\") return length(list.next) + 1;\n  else return 0;\n}\n\nlength({ kind: \"nil\" });\nlength({ kind: \"cons\" }); // missing \\`next\\`\nlength({ kind: \"cons\", next: { kind: \"nil\" } });\nlength({ kind: \"empty\" }); // \\`kind\\` not found\n\ntype List = Nil | Cons;\ntype Nil = { kind: \"nil\" };\ntype Cons = { kind: \"cons\", next: List };");
+    let formatted = pretty_printer . format ("// @noflow\n\n// disjoint unions\n\nfunction length(list: List) {\n  if (list.kind === \"cons\") return length(list.next) + 1;\n  else return 0;\n}\n\n\nlength({ kind: \"nil\" });\nlength({ kind: \"cons\" }); // missing `next`\nlength({ kind: \"cons\", next: { kind: \"nil\" } });\nlength({ kind: \"empty\" }); // `kind` not found\n\ntype List = Nil | Cons;\ntype Nil = { kind: \"nil\" };\ntype Cons = { kind: \"cons\", next: List };") ? ;
+    assert_eq ! (formatted , "// @noflow\n\n// disjoint unions\n\nfunction length(list: List) {\n  if (list.kind === \"cons\") return length(list.next) + 1;\n  else return 0;\n}\n\nlength({ kind: \"nil\" });\nlength({ kind: \"cons\" }); // missing `next`\nlength({ kind: \"cons\", next: { kind: \"nil\" } });\nlength({ kind: \"empty\" }); // `kind` not found\n\ntype List = Nil | Cons;\ntype Nil = { kind: \"nil\" };\ntype Cons = { kind: \"cons\", next: List };");
     Ok(())
 }
 #[test]

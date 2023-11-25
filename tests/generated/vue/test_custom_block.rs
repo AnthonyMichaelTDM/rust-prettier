@@ -346,8 +346,8 @@ fn test_tag_like_vue_embedded_language_formattingoff_format_1_422e4173() -> Resu
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
-    assert_eq ! (formatted , "<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>");
+    let formatted = pretty_printer . format ("<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
+    assert_eq ! (formatted , "<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>");
     Ok(())
 }
 #[test]
@@ -358,8 +358,8 @@ fn test_tag_like_vue_semifalse_format_1_422e4173() -> Result<()> {
         .semi(false)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
-    assert_eq ! (formatted , "<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\"\n</custom>");
+    let formatted = pretty_printer . format ("<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
+    assert_eq ! (formatted , "<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\"\n</custom>");
     Ok(())
 }
 #[test]
@@ -370,8 +370,8 @@ fn test_tag_like_vue_trailing_commaes_5_format_1_422e4173() -> Result<()> {
         .trailing_comma("es5")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
-    assert_eq ! (formatted , "<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\";\n</custom>");
+    let formatted = pretty_printer . format ("<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
+    assert_eq ! (formatted , "<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\";\n</custom>");
     Ok(())
 }
 #[test]
@@ -382,8 +382,8 @@ fn test_tag_like_vue_trailing_commanone_format_1_422e4173() -> Result<()> {
         .trailing_comma("none")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
-    assert_eq ! (formatted , "<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\";\n</custom>");
+    let formatted = pretty_printer . format ("<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
+    assert_eq ! (formatted , "<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\";\n</custom>");
     Ok(())
 }
 #[test]
@@ -394,8 +394,8 @@ fn test_tag_like_vue_vue_indent_script_and_styletrue_format_1_422e4173() -> Resu
         .vue_indent_script_and_style(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
-    assert_eq ! (formatted , "<docs>\nThis component takes an \\`items\\` prop (\\`Array<Object>\\`).\n  or\nThis component should be placed inside a \\`<my-component>\\`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\";\n</custom>");
+    let formatted = pretty_printer . format ("<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo =            \"</\"\n</custom>") ? ;
+    assert_eq ! (formatted , "<docs>\nThis component takes an `items` prop (`Array<Object>`).\n  or\nThis component should be placed inside a `<my-component>`.\n</docs>\n\n<custom lang=\"javascript\">\nconst foo = \"</\";\n</custom>");
     Ok(())
 }
 #[test]

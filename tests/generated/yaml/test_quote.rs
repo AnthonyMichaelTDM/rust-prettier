@@ -61,8 +61,8 @@ fn test_quote_yml_prose_wrapalways_format_1_0e8d34df() -> Result<()> {
         .prose_wrap("always")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ? ;
-    assert_eq ! (formatted , "- \"123\"\n- \"123\"\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\\\n123'\n- \"\\\\n123\"\n- '''a\"b'");
+    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\"\\\"\"\n- '\\n123'\n- \"\\n123\"\n- \"'a\\\"b\"") ? ;
+    assert_eq ! (formatted , "- \"123\"\n- \"123\"\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\n123'\n- \"\\n123\"\n- '''a\"b'");
     Ok(())
 }
 #[test]
@@ -73,8 +73,8 @@ fn test_quote_yml_prose_wrapnever_format_1_0e8d34df() -> Result<()> {
         .prose_wrap("never")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ? ;
-    assert_eq ! (formatted , "- \"123\"\n- \"123\"\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\\\n123'\n- \"\\\\n123\"\n- '''a\"b'");
+    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\"\\\"\"\n- '\\n123'\n- \"\\n123\"\n- \"'a\\\"b\"") ? ;
+    assert_eq ! (formatted , "- \"123\"\n- \"123\"\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\n123'\n- \"\\n123\"\n- '''a\"b'");
     Ok(())
 }
 #[test]
@@ -85,8 +85,8 @@ fn test_quote_yml_single_quotetrue_format_1_0e8d34df() -> Result<()> {
         .single_quote(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ? ;
-    assert_eq ! (formatted , "- '123'\n- '123'\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\\\n123'\n- \"\\\\n123\"\n- '''a\"b'");
+    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\"\\\"\"\n- '\\n123'\n- \"\\n123\"\n- \"'a\\\"b\"") ? ;
+    assert_eq ! (formatted , "- '123'\n- '123'\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\n123'\n- \"\\n123\"\n- '''a\"b'");
     Ok(())
 }
 #[test]
@@ -96,7 +96,7 @@ fn test_quote_yml_format_1_0e8d34df() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\\\"\\\\\"\"\n- '\\\\n123'\n- \"\\\\n123\"\n- \"'a\\\\\"b\"") ? ;
-    assert_eq ! (formatted , "- \"123\"\n- \"123\"\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\\\n123'\n- \"\\\\n123\"\n- '''a\"b'");
+    let formatted = pretty_printer . format ("- \"123\"\n- '123'\n- \"''\"\n- '\"\"'\n- ''''\n- \"\\\"\\\"\"\n- '\\n123'\n- \"\\n123\"\n- \"'a\\\"b\"") ? ;
+    assert_eq ! (formatted , "- \"123\"\n- \"123\"\n- \"''\"\n- '\"\"'\n- \"'\"\n- '\"\"'\n- '\\n123'\n- \"\\n123\"\n- '''a\"b'");
     Ok(())
 }

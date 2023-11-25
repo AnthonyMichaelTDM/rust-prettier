@@ -68,7 +68,7 @@ fn test_tagged_template_expression_ts_format_1_2b54be13() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("export const RedBox = styled.div<{foo: string}>\\`\n  background: red;\n  \\${props => props.foo}\n\\`;") ? ;
-    assert_eq ! (formatted , "export const RedBox = styled.div<{ foo: string }>\\`\n  background: red;\n  \\${(props) => props.foo}\n\\`;");
+    let formatted = pretty_printer . format ("export const RedBox = styled.div<{foo: string}>`\n  background: red;\n  ${props => props.foo}\n`;") ? ;
+    assert_eq ! (formatted , "export const RedBox = styled.div<{ foo: string }>`\n  background: red;\n  ${(props) => props.foo}\n`;");
     Ok(())
 }

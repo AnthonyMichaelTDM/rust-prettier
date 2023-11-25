@@ -13,8 +13,8 @@ fn test_abstract_class_ts_format_1_d53c510f() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("abstract class AbstractRule {\n    /**\n     * @deprecated\n     * Failures will be filtered based on \\`tslint:disable\\` comments by tslint.\n     * This method now does nothing.\n     */\n    filterFailures() {}\n}") ? ;
-    assert_eq ! (formatted , "abstract class AbstractRule {\n  /**\n   * @deprecated\n   * Failures will be filtered based on \\`tslint:disable\\` comments by tslint.\n   * This method now does nothing.\n   */\n  filterFailures() {}\n}");
+    let formatted = pretty_printer . format ("abstract class AbstractRule {\n    /**\n     * @deprecated\n     * Failures will be filtered based on `tslint:disable` comments by tslint.\n     * This method now does nothing.\n     */\n    filterFailures() {}\n}") ? ;
+    assert_eq ! (formatted , "abstract class AbstractRule {\n  /**\n   * @deprecated\n   * Failures will be filtered based on `tslint:disable` comments by tslint.\n   * This method now does nothing.\n   */\n  filterFailures() {}\n}");
     Ok(())
 }
 #[test]

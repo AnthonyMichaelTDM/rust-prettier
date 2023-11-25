@@ -136,10 +136,10 @@ fn test_parenthesized_decorators_tagged_template_ts_semifalse_format_1_0cf42810(
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("class Test {\n  @foo\\`bar\\`\n  text: string = \"text\"\n}")?;
+        pretty_printer.format("class Test {\n  @foo`bar`\n  text: string = \"text\"\n}")?;
     assert_eq!(
         formatted,
-        "class Test {\n  @foo\\`bar\\`\n  text: string = \"text\"\n}"
+        "class Test {\n  @foo`bar`\n  text: string = \"text\"\n}"
     );
     Ok(())
 }
@@ -151,10 +151,10 @@ fn test_parenthesized_decorators_tagged_template_ts_format_1_0cf42810() -> Resul
         .build()
         .unwrap();
     let formatted =
-        pretty_printer.format("class Test {\n  @foo\\`bar\\`\n  text: string = \"text\"\n}")?;
+        pretty_printer.format("class Test {\n  @foo`bar`\n  text: string = \"text\"\n}")?;
     assert_eq!(
         formatted,
-        "class Test {\n  @foo\\`bar\\`\n  text: string = \"text\";\n}"
+        "class Test {\n  @foo`bar`\n  text: string = \"text\";\n}"
     );
     Ok(())
 }

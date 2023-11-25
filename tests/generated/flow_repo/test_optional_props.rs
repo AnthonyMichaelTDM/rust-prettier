@@ -46,8 +46,8 @@ fn test_test_3_exact_annot_js_format_1_e143c9c4() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* The logic that allows ({}: {p?:T}), described in test3.js, should _not_ also\n   fire for exact annotations. */\n\nconst a: {| a: number |} = { a: 1 };\nconst b: { a: number, b?: number } = a; // error: property \\`b\\` not found\nb.b = 0; // because subsequent writes would widen the exact object\n(a.b: number); // error: property \\`b\\` not found") ? ;
-    assert_eq ! (formatted , "/* The logic that allows ({}: {p?:T}), described in test3.js, should _not_ also\n   fire for exact annotations. */\n\nconst a: {| a: number |} = { a: 1 };\nconst b: { a: number, b?: number } = a; // error: property \\`b\\` not found\nb.b = 0; // because subsequent writes would widen the exact object\n(a.b: number); // error: property \\`b\\` not found");
+    let formatted = pretty_printer . format ("/* The logic that allows ({}: {p?:T}), described in test3.js, should _not_ also\n   fire for exact annotations. */\n\nconst a: {| a: number |} = { a: 1 };\nconst b: { a: number, b?: number } = a; // error: property `b` not found\nb.b = 0; // because subsequent writes would widen the exact object\n(a.b: number); // error: property `b` not found") ? ;
+    assert_eq ! (formatted , "/* The logic that allows ({}: {p?:T}), described in test3.js, should _not_ also\n   fire for exact annotations. */\n\nconst a: {| a: number |} = { a: 1 };\nconst b: { a: number, b?: number } = a; // error: property `b` not found\nb.b = 0; // because subsequent writes would widen the exact object\n(a.b: number); // error: property `b` not found");
     Ok(())
 }
 #[test]

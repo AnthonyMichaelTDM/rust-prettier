@@ -14,7 +14,7 @@ fn test_escape_in_string_scss_single_quotetrue_format_1_7265aa0b() -> Result<()>
         .single_quote(true)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("$description: \"Lorem ipsum dolor sit \\\\\"amet\\\\\", consectetur adipiscing elit, \" +\n  \"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\";") ? ;
+    let formatted = pretty_printer . format ("$description: \"Lorem ipsum dolor sit \\\"amet\\\", consectetur adipiscing elit, \" +\n  \"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\";") ? ;
     assert_eq ! (formatted , "$description: 'Lorem ipsum dolor sit \"amet\", consectetur adipiscing elit, ' +\n  'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';");
     Ok(())
 }
@@ -25,7 +25,7 @@ fn test_escape_in_string_scss_format_1_7265aa0b() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("$description: \"Lorem ipsum dolor sit \\\\\"amet\\\\\", consectetur adipiscing elit, \" +\n  \"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\";") ? ;
+    let formatted = pretty_printer . format ("$description: \"Lorem ipsum dolor sit \\\"amet\\\", consectetur adipiscing elit, \" +\n  \"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\";") ? ;
     assert_eq ! (formatted , "$description: 'Lorem ipsum dolor sit \"amet\", consectetur adipiscing elit, ' +\n  \"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\";");
     Ok(())
 }

@@ -13,7 +13,7 @@ fn test_indent_js_format_1_332ebd6b() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("\\`\nMixed tabs and spaces:\n\\${() => {a}}\n \t\\${() => {a}}\n  \t\\${() => {a}}\n   \t\\${() => {a}}\n    \t\\${() => {a}}\n     \t\\${() => {a}}\n      \t\\${() => {a}}\n       \t\\${() => {a}}\n        \t\\${() => {a}}\n\nTabs:\n\t\\${() => {a}}\n\t\t\\${() => {a}}\n\\`") ? ;
-    assert_eq ! (formatted , "\\`\nMixed tabs and spaces:\n\\${() => {\n  a;\n}}\n \t\\${() => {\n    a;\n  }}\n  \t\\${() => {\n      a;\n    }}\n   \t\\${() => {\n      a;\n    }}\n    \t\\${() => {\n        a;\n      }}\n     \t\\${() => {\n        a;\n      }}\n      \t\\${() => {\n          a;\n        }}\n       \t\\${() => {\n          a;\n        }}\n        \t\\${() => {\n            a;\n          }}\n\nTabs:\n\t\\${() => {\n    a;\n  }}\n\t\t\\${() => {\n      a;\n    }}\n\\`;");
+    let formatted = pretty_printer . format ("`\nMixed tabs and spaces:\n${() => {a}}\n \t${() => {a}}\n  \t${() => {a}}\n   \t${() => {a}}\n    \t${() => {a}}\n     \t${() => {a}}\n      \t${() => {a}}\n       \t${() => {a}}\n        \t${() => {a}}\n\nTabs:\n\t${() => {a}}\n\t\t${() => {a}}\n`") ? ;
+    assert_eq ! (formatted , "`\nMixed tabs and spaces:\n${() => {\n  a;\n}}\n \t${() => {\n    a;\n  }}\n  \t${() => {\n      a;\n    }}\n   \t${() => {\n      a;\n    }}\n    \t${() => {\n        a;\n      }}\n     \t${() => {\n        a;\n      }}\n      \t${() => {\n          a;\n        }}\n       \t${() => {\n          a;\n        }}\n        \t${() => {\n            a;\n          }}\n\nTabs:\n\t${() => {\n    a;\n  }}\n\t\t${() => {\n      a;\n    }}\n`;");
     Ok(())
 }

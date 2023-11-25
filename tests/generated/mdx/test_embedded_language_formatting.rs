@@ -14,8 +14,8 @@ fn test_issue_9260_mdx_embedded_language_formattingoff_format_1_dc8de643() -> Re
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("# title\n\n<Parenthesis>\n\nCR: Carriage Return, \\\\r\nLF: Line Feed, \\\\n\n\n</Parenthesis>") ? ;
-    assert_eq ! (formatted , "# title\n\n<Parenthesis>\n\nCR: Carriage Return, \\\\r\nLF: Line Feed, \\\\n\n\n</Parenthesis>");
+    let formatted = pretty_printer . format ("# title\n\n<Parenthesis>\n\nCR: Carriage Return, \\r\nLF: Line Feed, \\n\n\n</Parenthesis>") ? ;
+    assert_eq ! (formatted , "# title\n\n<Parenthesis>\n\nCR: Carriage Return, \\r\nLF: Line Feed, \\n\n\n</Parenthesis>");
     Ok(())
 }
 #[test]

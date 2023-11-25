@@ -50,8 +50,8 @@ fn test_test_2_js_format_1_f5bc3f89() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* @flow */\n\nfunction f() {\n  return this.p;\n}\n\nvar a = {\n  p: 0,\n  f\n}\n\nvar b = {\n  f\n}\n\na.f(); // okey-dokie\nb.f(); // error, property \\`p\\` not found") ? ;
-    assert_eq ! (formatted , "/* @flow */\n\nfunction f() {\n  return this.p;\n}\n\nvar a = {\n  p: 0,\n  f,\n};\n\nvar b = {\n  f,\n};\n\na.f(); // okey-dokie\nb.f(); // error, property \\`p\\` not found");
+    let formatted = pretty_printer . format ("/* @flow */\n\nfunction f() {\n  return this.p;\n}\n\nvar a = {\n  p: 0,\n  f\n}\n\nvar b = {\n  f\n}\n\na.f(); // okey-dokie\nb.f(); // error, property `p` not found") ? ;
+    assert_eq ! (formatted , "/* @flow */\n\nfunction f() {\n  return this.p;\n}\n\nvar a = {\n  p: 0,\n  f,\n};\n\nvar b = {\n  f,\n};\n\na.f(); // okey-dokie\nb.f(); // error, property `p` not found");
     Ok(())
 }
 #[test]
@@ -61,7 +61,7 @@ fn test_test_3_js_format_1_3853f2b4() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo() {\n  this.m();\n}\n\nfunction bar(f: () => void) {\n  f(); // passing global object as \\`this\\`\n  ({ f }).f(); // passing container object as \\`this\\`\n}\n\nbar(foo); // error, since \\`this\\` is used non-trivially in \\`foo\\`\n\nfunction qux(o: { f: () => void }) {\n  o.f(); // passing o as \\`this\\`\n}\n\nqux({ f: foo });  // error, since \\`this\\` is used non-trivially in \\`foo\\`") ? ;
-    assert_eq ! (formatted , "/* @flow */\n\nfunction foo() {\n  this.m();\n}\n\nfunction bar(f: () => void) {\n  f(); // passing global object as \\`this\\`\n  ({ f }).f(); // passing container object as \\`this\\`\n}\n\nbar(foo); // error, since \\`this\\` is used non-trivially in \\`foo\\`\n\nfunction qux(o: { f: () => void }) {\n  o.f(); // passing o as \\`this\\`\n}\n\nqux({ f: foo }); // error, since \\`this\\` is used non-trivially in \\`foo\\`");
+    let formatted = pretty_printer . format ("/* @flow */\n\nfunction foo() {\n  this.m();\n}\n\nfunction bar(f: () => void) {\n  f(); // passing global object as `this`\n  ({ f }).f(); // passing container object as `this`\n}\n\nbar(foo); // error, since `this` is used non-trivially in `foo`\n\nfunction qux(o: { f: () => void }) {\n  o.f(); // passing o as `this`\n}\n\nqux({ f: foo });  // error, since `this` is used non-trivially in `foo`") ? ;
+    assert_eq ! (formatted , "/* @flow */\n\nfunction foo() {\n  this.m();\n}\n\nfunction bar(f: () => void) {\n  f(); // passing global object as `this`\n  ({ f }).f(); // passing container object as `this`\n}\n\nbar(foo); // error, since `this` is used non-trivially in `foo`\n\nfunction qux(o: { f: () => void }) {\n  o.f(); // passing o as `this`\n}\n\nqux({ f: foo }); // error, since `this` is used non-trivially in `foo`");
     Ok(())
 }

@@ -14,8 +14,8 @@ fn test_test_component_ts_trailing_commaes_5_format_1_e5c56993() -> Result<()> {
         .trailing_comma("es5")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("@Component({\n       selector: 'app-test',\n  template: \\`<ul>   <li>test</li>\n  </ul>\n  \\`,\n  styles: [   \\`\n  \n :host {\n   color: red;\n } \n div { background: blue\n }\n\\`\n\n]\n})\nclass     TestComponent {}") ? ;
-    assert_eq ! (formatted , "@Component({\n  selector: \"app-test\",\n  template: \\`<ul>\n    <li>test</li>\n  </ul> \\`,\n  styles: [\n    \\`\n      :host {\n        color: red;\n      }\n      div {\n        background: blue;\n      }\n    \\`,\n  ],\n})\nclass TestComponent {}");
+    let formatted = pretty_printer . format ("@Component({\n       selector: 'app-test',\n  template: `<ul>   <li>test</li>\n  </ul>\n  `,\n  styles: [   `\n  \n :host {\n   color: red;\n } \n div { background: blue\n }\n`\n\n]\n})\nclass     TestComponent {}") ? ;
+    assert_eq ! (formatted , "@Component({\n  selector: \"app-test\",\n  template: `<ul>\n    <li>test</li>\n  </ul> `,\n  styles: [\n    `\n      :host {\n        color: red;\n      }\n      div {\n        background: blue;\n      }\n    `,\n  ],\n})\nclass TestComponent {}");
     Ok(())
 }
 #[test]
@@ -26,7 +26,7 @@ fn test_test_component_ts_trailing_commanone_format_1_e5c56993() -> Result<()> {
         .trailing_comma("none")
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("@Component({\n       selector: 'app-test',\n  template: \\`<ul>   <li>test</li>\n  </ul>\n  \\`,\n  styles: [   \\`\n  \n :host {\n   color: red;\n } \n div { background: blue\n }\n\\`\n\n]\n})\nclass     TestComponent {}") ? ;
-    assert_eq ! (formatted , "@Component({\n  selector: \"app-test\",\n  template: \\`<ul>\n    <li>test</li>\n  </ul> \\`,\n  styles: [\n    \\`\n      :host {\n        color: red;\n      }\n      div {\n        background: blue;\n      }\n    \\`\n  ]\n})\nclass TestComponent {}");
+    let formatted = pretty_printer . format ("@Component({\n       selector: 'app-test',\n  template: `<ul>   <li>test</li>\n  </ul>\n  `,\n  styles: [   `\n  \n :host {\n   color: red;\n } \n div { background: blue\n }\n`\n\n]\n})\nclass     TestComponent {}") ? ;
+    assert_eq ! (formatted , "@Component({\n  selector: \"app-test\",\n  template: `<ul>\n    <li>test</li>\n  </ul> `,\n  styles: [\n    `\n      :host {\n        color: red;\n      }\n      div {\n        background: blue;\n      }\n    `\n  ]\n})\nclass TestComponent {}");
     Ok(())
 }

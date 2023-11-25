@@ -35,8 +35,8 @@ fn test_types_only_js_format_1_a719f954() -> Result<()> {
         .print_width(80)
         .build()
         .unwrap();
-    let formatted = pretty_printer . format ("/* @flow */\n\nexport type inlinedType1 = number;\nvar a: inlinedType1 = 42;\nvar b: inlinedType1 = 'asdf'; // Error: string ~> number\n\ntype standaloneType1 = number;\nexport type {standaloneType1};\n\ntype standaloneType2 = number;\nexport {standaloneType2}; // Error: Missing \\`type\\` keyword\n\nexport type {talias1, talias2 as talias3, IFoo2} from \"./types_only2\";\n\nexport interface IFoo { prop: number };") ? ;
-    assert_eq ! (formatted , "/* @flow */\n\nexport type inlinedType1 = number;\nvar a: inlinedType1 = 42;\nvar b: inlinedType1 = \"asdf\"; // Error: string ~> number\n\ntype standaloneType1 = number;\nexport type { standaloneType1 };\n\ntype standaloneType2 = number;\nexport { standaloneType2 }; // Error: Missing \\`type\\` keyword\n\nexport type { talias1, talias2 as talias3, IFoo2 } from \"./types_only2\";\n\nexport interface IFoo {\n  prop: number;\n}");
+    let formatted = pretty_printer . format ("/* @flow */\n\nexport type inlinedType1 = number;\nvar a: inlinedType1 = 42;\nvar b: inlinedType1 = 'asdf'; // Error: string ~> number\n\ntype standaloneType1 = number;\nexport type {standaloneType1};\n\ntype standaloneType2 = number;\nexport {standaloneType2}; // Error: Missing `type` keyword\n\nexport type {talias1, talias2 as talias3, IFoo2} from \"./types_only2\";\n\nexport interface IFoo { prop: number };") ? ;
+    assert_eq ! (formatted , "/* @flow */\n\nexport type inlinedType1 = number;\nvar a: inlinedType1 = 42;\nvar b: inlinedType1 = \"asdf\"; // Error: string ~> number\n\ntype standaloneType1 = number;\nexport type { standaloneType1 };\n\ntype standaloneType2 = number;\nexport { standaloneType2 }; // Error: Missing `type` keyword\n\nexport type { talias1, talias2 as talias3, IFoo2 } from \"./types_only2\";\n\nexport interface IFoo {\n  prop: number;\n}");
     Ok(())
 }
 #[test]
