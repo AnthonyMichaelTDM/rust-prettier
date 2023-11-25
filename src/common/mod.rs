@@ -16,3 +16,15 @@ impl Display for Symbol {
         }
     }
 }
+
+impl From<&'static str> for Symbol {
+    fn from(s: &'static str) -> Self {
+        Self::String(s)
+    }
+}
+
+impl From<usize> for Symbol {
+    fn from(n: usize) -> Self {
+        Self::Number(n)
+    }
+}
