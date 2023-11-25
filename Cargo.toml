@@ -19,6 +19,7 @@ wasm-bindgen = { version = "0.2", optional = true }
 biome_js_parser = "0.1.0"
 biome_parser = "0.1.0"
 biome_js_syntax = "0.1.0"
+biome_rowan = "0.1.0"
 
 
 [build-dependencies]
