@@ -1,4 +1,4 @@
-mod ast_to_doc;
+mod print;
 
 use biome_js_parser::{parse, JsParserOptions};
 use biome_js_syntax::{
@@ -75,8 +75,8 @@ impl PrintToDoc<AnyJsRoot, JsSyntaxNode, AnyJsRoot, JsError, PrettyPrinter> for 
     fn print(&self, path: AnyJsRoot, options: &PrettyPrinter) -> Result<Doc, JsError> {
         match path {
             AnyJsRoot::JsExpressionSnipped(_) => todo!(),
-            AnyJsRoot::JsModule(js_module) => Ok(ast_to_doc::print_module(js_module, options)?),
-            AnyJsRoot::JsScript(js_script) => Ok(ast_to_doc::print_script(js_script, options)?),
+            AnyJsRoot::JsModule(js_module) => Ok(print::module::print_module(js_module, options)?),
+            AnyJsRoot::JsScript(_) => todo!(),
         }
     }
 
