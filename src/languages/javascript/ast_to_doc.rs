@@ -2,17 +2,22 @@ use std::collections::HashMap;
 
 use anyhow::Result;
 use biome_js_syntax::{
-    AnyJsArrayElement, AnyJsCallArgument, AnyJsExportClause, AnyJsExpression, AnyJsFormalParameter,
-    AnyJsImportClause, AnyJsModuleItem, AnyJsName, AnyJsNamedImport, AnyJsNamedImportSpecifier,
-    AnyJsObjectMember, AnyJsObjectMemberName, AnyJsParameter, AnyJsStatement, JsCallArgumentList,
-    JsExport, JsImport, JsModule, JsScript, JsSyntaxNode,
+    AnyJsArrayElement, AnyJsAssignmentPattern, AnyJsCallArgument, AnyJsExportClause,
+    AnyJsExpression, AnyJsForInOrOfInitializer, AnyJsFormalParameter, AnyJsImportClause,
+    AnyJsModuleItem, AnyJsName, AnyJsNamedImport, AnyJsNamedImportSpecifier, AnyJsObjectMember,
+    AnyJsObjectMemberName, AnyJsParameter, AnyJsStatement, JsCallArgumentList, JsExport, JsImport,
+    JsModule, JsScript, JsSyntaxNode,
 };
 use biome_rowan::{AstNode, AstNodeList};
 
 use crate::{
+    common::Symbol,
     document::{
-        builders::{concat, dedent, fill, group, hardline, if_break, indent, join, softline},
-        Doc,
+        builders::{
+            concat, conditional_group, dedent, fill, group, hardline, if_break, indent, join,
+            label, line, softline,
+        },
+        Doc, DocCommand,
     },
     PrettyPrinter,
 };
@@ -116,6 +121,67 @@ fn print_import(
     Ok(doc)
 }
 
+fn print_js_assignment_pattern(
+    assignment: &AnyJsAssignmentPattern,
+    options: &PrettyPrinter,
+    cache: &mut HashMap<JsSyntaxNode, Doc>,
+) -> Result<Doc> {
+    if let Some(doc) = cache.get(assignment.syntax()) {
+        return Ok(doc.clone());
+    }
+    let doc: Doc = match assignment {
+        AnyJsAssignmentPattern::AnyJsAssignment(_) => todo!(),
+        AnyJsAssignmentPattern::JsArrayAssignmentPattern(_) => todo!(),
+        AnyJsAssignmentPattern::JsObjectAssignmentPattern(_) => todo!(),
+    };
+
+    cache.insert(assignment.syntax().clone(), doc.clone());
+
+    Ok(doc)
+}
+
+fn print_for_in_or_of_initializer(
+    declaration: &AnyJsForInOrOfInitializer,
+    options: &PrettyPrinter,
+    cache: &mut HashMap<JsSyntaxNode, Doc>,
+) -> Result<Doc> {
+    if let Some(doc) = cache.get(declaration.syntax()) {
+        return Ok(doc.clone());
+    }
+
+    let doc = match declaration {
+        AnyJsForInOrOfInitializer::AnyJsAssignmentPattern(assign) => {
+            print_js_assignment_pattern(&assign, options, cache)?
+        }
+        AnyJsForInOrOfInitializer::JsForVariableDeclaration(declaration) => {
+            let prefix: Doc = format! {"{}{} ", if declaration.await_token().is_some() { "await " } else { "" }, declaration.kind_token()?.text_trimmed()}.into();
+            let declarator = declaration.declarator()?;
+            let declarator = concat([
+                declarator.id()?.trim_trivia().unwrap().text().into(),
+                if let Some(annotation) = declarator.variable_annotation() {
+                    todo!()
+                } else {
+                    "".into()
+                },
+                if let Some(initializer) = declarator.initializer() {
+                    concat([
+                        " = ".into(),
+                        print_expression(&initializer.expression()?, options, cache)?,
+                    ])
+                } else {
+                    "".into()
+                },
+            ]);
+
+            concat([prefix, declarator])
+        }
+    };
+
+    cache.insert(declaration.syntax().clone(), doc.clone());
+
+    Ok(doc)
+}
+
 fn print_statement(
     statement: &AnyJsStatement,
     options: &PrettyPrinter,
@@ -125,7 +191,24 @@ fn print_statement(
         return Ok(doc.clone());
     }
     let doc = match statement {
-        AnyJsStatement::JsBlockStatement(_) => todo!(),
+        AnyJsStatement::JsBlockStatement(block) => block
+            .statements()
+            .into_iter()
+            .map(|stmt| print_statement(&stmt, options, cache))
+            .collect::<Result<Vec<_>>>()
+            .and_then(|statements| {
+                if statements.is_empty() {
+                    Ok(concat(["{".into(), softline(), "}".into()]))
+                } else {
+                    Ok(concat([
+                        "{".into(),
+                        indent(hardline()),
+                        join(&hardline(), statements),
+                        dedent(hardline()),
+                        "}".into(),
+                    ]))
+                }
+            })?,
         AnyJsStatement::JsBogusStatement(_) => todo!(),
         AnyJsStatement::JsBreakStatement(_) => todo!(),
         AnyJsStatement::JsClassDeclaration(_) => todo!(),
@@ -138,7 +221,16 @@ fn print_statement(
             ";".into(),
         ]),
         AnyJsStatement::JsForInStatement(_) => todo!(),
-        AnyJsStatement::JsForOfStatement(_) => todo!(),
+        AnyJsStatement::JsForOfStatement(for_statement) => concat([
+            "for ".into(),
+            "(".into(),
+            print_for_in_or_of_initializer(&for_statement.initializer()?, options, cache)?,
+            " of ".into(),
+            print_expression(&for_statement.expression()?, options, cache)?,
+            ")".into(),
+            " ".into(),
+            print_statement(&for_statement.body()?, options, cache)?,
+        ]),
         AnyJsStatement::JsForStatement(_) => todo!(),
         AnyJsStatement::JsFunctionDeclaration(function) => {
             // get params
@@ -241,7 +333,7 @@ fn print_statement(
         AnyJsStatement::JsTryStatement(_) => todo!(),
         AnyJsStatement::JsVariableStatement(stmt) => {
             let stmt = stmt.declaration()?;
-            let prefix: Doc = format! {"{}{} ", if stmt.await_token().is_some() { "await " } else { "" }, stmt.kind()?.text_trimmed()}.into();
+            let prefix: Doc = format! {"{async_}{kind} ",async_ = if stmt.await_token().is_some() { "await " } else { "" }, kind = stmt.kind()?.text_trimmed()}.into();
             let declarations = stmt
                 .declarators()
                 .into_iter()
@@ -354,23 +446,34 @@ fn print_call_args(
     let doc = group(
         concat([
             "(".into(),
-            indent(softline()),
-            join(
-                &concat([",".into(), if_break(softline(), Some(" ".into()), None)]),
-                args.into_iter()
-                    .filter_map(|arg| arg.ok())
-                    .filter_map(|arg| match arg {
-                        AnyJsCallArgument::AnyJsExpression(expr) => {
-                            print_expression(&expr, options, cache).ok()
-                        }
-                        AnyJsCallArgument::JsSpread(spread) => Some(concat([
-                            "...".into(),
-                            print_expression(&spread.argument().unwrap(), options, cache).ok()?,
-                        ])),
-                    })
-                    .collect::<Vec<_>>(),
-            ),
-            dedent(softline()),
+            args.into_iter()
+                .filter_map(|arg| arg.ok())
+                .map(|arg| match arg {
+                    AnyJsCallArgument::AnyJsExpression(expr) => {
+                        print_expression(&expr, options, cache)
+                    }
+                    AnyJsCallArgument::JsSpread(spread) => Ok(concat([
+                        "...".into(),
+                        print_expression(&spread.argument().unwrap(), options, cache)?,
+                    ])),
+                })
+                .collect::<Result<Vec<_>>>()
+                .and_then(|args| {
+                    if args.is_empty() {
+                        Ok("".into())
+                    } else if args.len() == 1 {
+                        Ok(args.first().unwrap().clone())
+                    } else {
+                        Ok(concat([
+                            indent(softline()),
+                            join(
+                                &concat([",".into(), if_break(softline(), Some(" ".into()), None)]),
+                                args,
+                            ),
+                            dedent(softline()),
+                        ]))
+                    }
+                })?,
             ")".into(),
         ]),
         None,
@@ -397,7 +500,7 @@ fn print_array_element(
             "...".into(),
             print_expression(&spread.argument()?, options, cache)?,
         ]),
-        AnyJsArrayElement::JsArrayHole(_) => "".into(),
+        AnyJsArrayElement::JsArrayHole(_) => label(Symbol::from("array_hole"), "".into()),
     };
 
     cache.insert(element.syntax().clone(), doc.clone());
@@ -458,37 +561,77 @@ fn print_expression(
         AnyJsExpression::AnyJsLiteralExpression(literal) => {
             literal.to_owned().trim_trivia().unwrap().text().into()
         }
-        AnyJsExpression::JsArrayExpression(arr) => group(
-            concat([
+        AnyJsExpression::JsArrayExpression(arr) => {
+            let array_elements = arr
+                .elements()
+                .into_iter()
+                .filter_map(|element| element.ok())
+                .map(|element| print_array_element(&element, options, cache))
+                .collect::<Result<Vec<_>>>()?;
+
+            let flat = concat([
                 "[".into(),
-                arr.elements()
-                    .into_iter()
-                    .filter_map(|element| element.ok())
-                    .map(|element| print_array_element(&element, options, cache))
-                    .collect::<Result<Vec<_>>>()
-                    .and_then(|elements| {
-                        if elements.is_empty() {
-                            Ok("".into())
-                        } else {
-                            Ok(concat([
-                                indent(softline()),
-                                join(
-                                    &concat([
-                                        ",".into(),
-                                        if_break(softline(), Some(" ".into()), None),
-                                    ]),
-                                    elements,
-                                ),
-                                dedent(softline()),
-                            ]))
-                        }
-                    })?,
+                if array_elements.is_empty() {
+                    "".into()
+                } else {
+                    let elems = join(&", ".into(), &array_elements);
+                    if let Some(Doc::DocCommand(DocCommand::Label {
+                        label: Symbol::String("array_hole"),
+                        ..
+                    })) = array_elements.last()
+                    {
+                        concat([elems, ",".into()])
+                    } else {
+                        elems
+                    }
+                },
                 "]".into(),
-            ]),
-            None,
-            false,
-            None,
-        ),
+            ]);
+
+            let expanded = concat([
+                "[".into(),
+                if array_elements.is_empty() {
+                    "".into()
+                } else {
+                    concat([
+                        indent(line()),
+                        fill(
+                            array_elements
+                                .iter()
+                                .map(|elem| concat([elem.clone(), ",".into()]))
+                                .fold(Vec::new(), |mut acc, elem| {
+                                    if !acc.is_empty() {
+                                        acc.push(if_break(line(), Some(" ".into()), None));
+                                    }
+                                    acc.push(elem);
+                                    acc
+                                }),
+                        ),
+                        // join(&", ".into(), &array_elements),
+                        dedent(line()),
+                    ])
+                },
+                "]".into(),
+            ]);
+
+            // let most_expanded = concat([
+            //     "[".into(),
+            //     if array_elements.is_empty() {
+            //         "".into()
+            //     } else {
+            //         concat([
+            //             indent(hardline()),
+            //             join(&concat([",".into(), hardline()]), array_elements),
+            //             ",".into(),
+            //             dedent(hardline()),
+            //         ])
+            //     },
+            //     "]".into(),
+            // ]);
+            // group(expanded, None, false, None)
+            // expanded
+            conditional_group([flat, expanded], None, false).unwrap()
+        }
         AnyJsExpression::JsArrowFunctionExpression(_) => todo!(),
         AnyJsExpression::JsAssignmentExpression(_) => todo!(),
         AnyJsExpression::JsAwaitExpression(_) => todo!(),
@@ -593,7 +736,31 @@ fn print_expression(
             },
         ]),
         AnyJsExpression::JsSuperExpression(_) => todo!(),
-        AnyJsExpression::JsTemplateExpression(_) => todo!(),
+        AnyJsExpression::JsTemplateExpression(template) => concat([
+            "`".into(),
+            template
+                .elements()
+                .into_iter()
+                .map(|element| match element {
+                    biome_js_syntax::AnyJsTemplateElement::JsTemplateChunkElement(elem) => {
+                        Ok(elem.template_chunk_token()?.text_trimmed().into())
+                    }
+                    biome_js_syntax::AnyJsTemplateElement::JsTemplateElement(elem) => Ok(concat([
+                        "${".into(),
+                        print_expression(&elem.expression()?, options, cache)?,
+                        "}".into(),
+                    ])),
+                })
+                .collect::<Result<Vec<_>>>()
+                .and_then(|elements| {
+                    if elements.is_empty() {
+                        Ok("".into())
+                    } else {
+                        Ok(concat(elements))
+                    }
+                })?,
+            "`".into(),
+        ]),
         AnyJsExpression::JsThisExpression(_) => todo!(),
         AnyJsExpression::JsUnaryExpression(_) => todo!(),
         AnyJsExpression::JsYieldExpression(_) => todo!(),
