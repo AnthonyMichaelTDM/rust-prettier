@@ -20,58 +20,58 @@ cfg_if! {
             "================================================================================";
         const OUT_DIR: &str = "./tests/generated/";
 
-        static IGNORE_RULES: &[&str] = &[
-            // Embedded languages in template literals
-            "js/test_multiparser_comments",
-            "js/test_multiparser_css",
-            "js/test_multiparser_graphql",
-            "js/test_multiparser_html",
-            "js/test_multiparser_invalid",
-            "js/test_multiparser_markdown",
-            "js/test_multiparser_text",
-            // v8-specific syntaxes
-            "js/test_v8_intrinsic",
-            // Babel plugins (mostly experimental syntaxes)
-            "js/test_babel_plugins",
-            // Experimental syntax: `do {}`
-            "js/test_async_do_expressions",
-            "js/test_do",
-            // Experimental syntax: `export X from "mod"`
-            // "js/export_default/export_default_from/",
-            // "js/export_default/escaped/default_escaped.js",
-            // Experimental syntax: `module <id> {}`
-            "js/test_module_blocks",
-            // "js/test_explicit_resource_management/valid_module_block_top_level_await_using_binding.js",
-            // "js/test_explicit_resource_management/valid_module_block_top_level_using_binding.js",
-            // Experimental syntax: `#[]` and `#{}`
-            "js/test_tuple",
-            "js/test_record",
-            // "js/test_arrays/tuple_and_record.js",
-            // "js/test_arrows/tuple_and_record.js",
-            // "js/test_binary_expressions/tuple_and_record.js",
-            // "js/test_class_extends/tuple_and_record.js",
-            // "js/test_comments_closure_typecast/tuple_and_record.js",
-            // "js/test_comments/tuple_and_record.js",
-            // "js/test_function_single_destructuring/tuple_and_record.js",
-            // "js/test_method_chain/tuple_and_record.js",
-            // Experimental syntax: pipeline operator `|>`
-            "js/test_comments_pipeline_own_line",
-            "js/test_partial_application",
-            "js/test_pipeline_operator",
-            // Experimental syntax: `::`
-            "js/test_arrows_bind",
-            "js/test_bind_expressions",
-            // "js/objects/expression.js",
-            // "js/no_semi_babylon_extensions/no_semi.js",
-            // Experimental syntax: `let { #x: x } = ...`
-            "js/test_destructuring_private_fields",
-            // Experimental syntax: `import defer`
-            "js/test_deferred_import_evaluation",
-            // Experimental syntax: `import source`
-            "js/test_source_phase_imports",
-            // Experimental syntax: `import module`
-            "js/test_import_reflection",
-        ];
+        // static IGNORE_RULES: &[&str] = &[
+        //     // Embedded languages in template literals
+        //     "js/test_multiparser_comments",
+        //     "js/test_multiparser_css",
+        //     "js/test_multiparser_graphql",
+        //     "js/test_multiparser_html",
+        //     "js/test_multiparser_invalid",
+        //     "js/test_multiparser_markdown",
+        //     "js/test_multiparser_text",
+        //     // v8-specific syntaxes
+        //     "js/test_v8_intrinsic",
+        //     // Babel plugins (mostly experimental syntaxes)
+        //     "js/test_babel_plugins",
+        //     // Experimental syntax: `do {}`
+        //     "js/test_async_do_expressions",
+        //     "js/test_do",
+        //     // Experimental syntax: `export X from "mod"`
+        //     // "js/export_default/export_default_from/",
+        //     // "js/export_default/escaped/default_escaped.js",
+        //     // Experimental syntax: `module <id> {}`
+        //     "js/test_module_blocks",
+        //     // "js/test_explicit_resource_management/valid_module_block_top_level_await_using_binding.js",
+        //     // "js/test_explicit_resource_management/valid_module_block_top_level_using_binding.js",
+        //     // Experimental syntax: `#[]` and `#{}`
+        //     "js/test_tuple",
+        //     "js/test_record",
+        //     // "js/test_arrays/tuple_and_record.js",
+        //     // "js/test_arrows/tuple_and_record.js",
+        //     // "js/test_binary_expressions/tuple_and_record.js",
+        //     // "js/test_class_extends/tuple_and_record.js",
+        //     // "js/test_comments_closure_typecast/tuple_and_record.js",
+        //     // "js/test_comments/tuple_and_record.js",
+        //     // "js/test_function_single_destructuring/tuple_and_record.js",
+        //     // "js/test_method_chain/tuple_and_record.js",
+        //     // Experimental syntax: pipeline operator `|>`
+        //     "js/test_comments_pipeline_own_line",
+        //     "js/test_partial_application",
+        //     "js/test_pipeline_operator",
+        //     // Experimental syntax: `::`
+        //     "js/test_arrows_bind",
+        //     "js/test_bind_expressions",
+        //     // "js/objects/expression.js",
+        //     // "js/no_semi_babylon_extensions/no_semi.js",
+        //     // Experimental syntax: `let { #x: x } = ...`
+        //     "js/test_destructuring_private_fields",
+        //     // Experimental syntax: `import defer`
+        //     "js/test_deferred_import_evaluation",
+        //     // Experimental syntax: `import source`
+        //     "js/test_source_phase_imports",
+        //     // Experimental syntax: `import module`
+        //     "js/test_import_reflection",
+        // ];
 
         #[deny(clippy::all, clippy::pedantic, clippy::nursery, clippy::perf)]
         #[derive(Debug)]
@@ -282,10 +282,10 @@ cfg_if! {
                                 .replace(".", "_").to_case(Case::Snake);
                             Some((format!("test_{rule}",), entry.path()))
                         })
-                        // filter out tests we are ignoring
-                        .filter(|(rule, _)| {
-                            !IGNORE_RULES.contains(&format!("{parser}/{rule}").as_str())
-                        })
+                        // // filter out tests we are ignoring
+                        // .filter(|(rule, _)| {
+                        //     !IGNORE_RULES.contains(&format!("{parser}/{rule}").as_str())
+                        // })
                         .collect::<Vec<_>>();
 
                     // create the parser directory if it doesn't exist
