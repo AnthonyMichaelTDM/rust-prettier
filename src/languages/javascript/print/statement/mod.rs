@@ -2,7 +2,7 @@ mod function;
 mod loops;
 
 use anyhow::Result;
-use biome_js_syntax::AnyJsStatement;
+use biome_js_syntax::{AnyJsStatement, JsSyntaxKind};
 use biome_rowan::AstNode as _;
 
 use crate::{
@@ -19,8 +19,15 @@ pub fn print_statement(
     options: &PrettyPrinter,
     cache: &mut Cache,
 ) -> Result<Doc> {
+    let needs_leading_newline = statement_needs_leading_newline(statement);
+
     if let Some(doc) = cache.get(statement.syntax()) {
-        return Ok(doc.clone());
+        let doc = if needs_leading_newline {
+            concat([hardline(), doc.clone()])
+        } else {
+            doc.clone()
+        };
+        return Ok(doc);
     }
     let doc = match statement {
         AnyJsStatement::JsBlockStatement(block) => block
@@ -62,7 +69,13 @@ pub fn print_statement(
         }
         AnyJsStatement::JsIfStatement(_) => todo!(),
         AnyJsStatement::JsLabeledStatement(_) => todo!(),
-        AnyJsStatement::JsReturnStatement(_) => todo!(),
+        AnyJsStatement::JsReturnStatement(stmt) => concat([
+            "return ".into(),
+            stmt.argument()
+                .and_then(|expr| print_expression(&expr, options, cache).ok())
+                .unwrap_or_else(|| "".into()),
+            ";".into(),
+        ]),
         AnyJsStatement::JsSwitchStatement(_) => todo!(),
         AnyJsStatement::JsThrowStatement(_) => todo!(),
         AnyJsStatement::JsTryFinallyStatement(_) => todo!(),
@@ -82,7 +95,7 @@ pub fn print_statement(
                 .collect::<Result<Vec<_>>>()
                 .and_then(|declarations| {
                     if declarations.is_empty() {
-                        Ok(" ".into())
+                        Ok("".into())
                     } else if declarations.len() == 1 {
                         Ok(fill([
                             concat([declarations.first().unwrap().0.clone(), " =".into()]),
@@ -100,13 +113,12 @@ pub fn print_statement(
                             )?,
                         ]))
                     } else {
-                        Ok(indent(join(
-                            &concat([",".into(), if_break(softline(), Some(" ".into()), None)]),
-                            declarations
-                                .iter()
-                                .map(|(name, decl)| {
-                                    Ok(group(
-                                        concat([
+                        Ok(group(
+                            concat(
+                                declarations
+                                    .iter()
+                                    .map(|(name, decl)| {
+                                        Ok(concat([
                                             name.clone(),
                                             " = ".into(),
                                             print_expression(
@@ -114,19 +126,44 @@ pub fn print_statement(
                                                 options,
                                                 cache,
                                             )?,
-                                        ]),
-                                        None,
-                                        false,
-                                        None,
-                                    ))
-                                })
-                                .collect::<Result<Vec<_>>>()?,
-                        )))
+                                        ]))
+                                    })
+                                    .try_fold(
+                                        Vec::with_capacity(declarations.len() * 2),
+                                        |mut acc, doc: Result<Doc>| match doc {
+                                            Ok(doc) => {
+                                                if !acc.is_empty() {
+                                                    acc.push(concat([
+                                                        ",".into(),
+                                                        if_break(
+                                                            (acc.len() == 1)
+                                                                .then(|| indent(softline()))
+                                                                .unwrap_or_else(|| softline()),
+                                                            Some(" ".into()),
+                                                            None,
+                                                        ),
+                                                    ]));
+                                                }
+                                                acc.push(doc.clone());
+                                                Ok(acc)
+                                            }
+                                            Err(err) => Err(err),
+                                        },
+                                    )?,
+                            ),
+                            None,
+                            false,
+                            None,
+                        ))
                     }
                 })?;
 
             let doc = group(
-                concat([prefix, declarations, dedent(";".into())]),
+                concat([
+                    prefix,
+                    declarations,
+                    if_break(dedent(";".into()), Some(";".into()), None),
+                ]),
                 None,
                 false,
                 None,
@@ -167,5 +204,89 @@ pub fn print_statement(
 
     cache.insert(statement.syntax().clone(), doc.clone());
 
-    Ok(doc)
+    if needs_leading_newline {
+        Ok(concat([hardline(), doc.clone()]))
+    } else {
+        Ok(doc)
+    }
+}
+
+fn statement_needs_leading_newline(statement: &AnyJsStatement) -> bool {
+    // if statement's leading trivia has 2 or more NewLine's, and it is not the first element of a statement list
+    // return true, otherwise false.
+    let num_newlines = || {
+        statement
+            .syntax()
+            .first_token()
+            .and_then(|token| {
+                Some(
+                    token
+                        .leading_trivia()
+                        .pieces()
+                        .filter(|trivia| trivia.is_newline())
+                        .count(),
+                )
+            })
+            .unwrap_or_default()
+    };
+
+    let is_first_element_of_parent_list = statement
+        .syntax()
+        .parent()
+        .and_then(|parent| {
+            Some(
+                parent.kind() == JsSyntaxKind::JS_STATEMENT_LIST
+                    && parent.first_child()? == *statement.syntax(),
+            )
+        })
+        .unwrap_or(false);
+
+    return !is_first_element_of_parent_list && num_newlines() >= 2;
+}
+
+/// test that it preserves leading newlines when necessary, and removes them when not (i.e. the start of a block)
+#[cfg(test)]
+mod tests {
+    use crate::PrettyPrinter;
+    use pretty_assertions::assert_str_eq;
+
+    #[test]
+    fn test_statement_needs_leading_newline() {
+        let input = r#"
+function foo() {
+  const a = 50;
+  return a;
+
+  
+  foo();
+}
+
+
+
+function bar() {
+
+    const a = 50;
+
+    return a;
+    foo();
+}"#;
+        let printer = PrettyPrinter::default();
+
+        assert_str_eq!(
+            printer.format(input).unwrap(),
+            r#"function foo() {
+  const a = 50;
+  return a;
+
+  foo();
+}
+
+function bar() {
+  const a = 50;
+
+  return a;
+  foo();
+}"#
+        );
+    }
 }
